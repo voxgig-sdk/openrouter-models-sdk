@@ -1,0 +1,9 @@
+# BasicTranscriptionFlow
+
+main: kit: flow: BasicTranscriptionFlow:
+{
+  entity: "transcription",
+  kind: "basic",
+  name: "BasicTranscriptionFlow",
+  "key$": "BasicTranscriptionFlow"
+}

@@ -1,0 +1,149 @@
+# Entity: image
+
+main: kit: entity: image: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "aspect_ratio"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "background"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "created"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "data"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "input_reference"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "model"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "n"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "output_compression"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "output_format"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "prompt"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "provider"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "quality"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "resolution"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "seed"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "size"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "stream"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "usage"
+      req: true
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "image"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/images"
+          parts: [
+            "images"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

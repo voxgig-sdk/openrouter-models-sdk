@@ -1,0 +1,9 @@
+# BasicCreateByokKeyFlow
+
+main: kit: flow: BasicCreateByokKeyFlow:
+{
+  entity: "create_byok_key",
+  kind: "basic",
+  name: "BasicCreateByokKeyFlow",
+  "key$": "BasicCreateByokKeyFlow"
+}

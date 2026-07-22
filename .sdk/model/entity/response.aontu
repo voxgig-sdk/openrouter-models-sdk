@@ -1,0 +1,10 @@
+# Entity: response
+
+main: kit: entity: response: {
+
+  alias: field: {}
+
+  name: "response"
+
+
+}

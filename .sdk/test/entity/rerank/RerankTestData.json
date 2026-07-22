@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "rerank": {
+      "RERANK00": {
+        "document": [],
+        "id": "RERANK00",
+        "model": "s52",
+        "provider": "s53",
+        "query": "s54",
+        "result": [],
+        "top_n": "s56",
+        "usage": {}
+      },
+      "RERANK01": {
+        "document": [],
+        "id": "RERANK01",
+        "model": "sa2",
+        "provider": "sa3",
+        "query": "sa4",
+        "result": [],
+        "top_n": "sa6",
+        "usage": {}
+      },
+      "RERANK02": {
+        "document": [],
+        "id": "RERANK02",
+        "model": "sf2",
+        "provider": "sf3",
+        "query": "sf4",
+        "result": [],
+        "top_n": "sf6",
+        "usage": {}
+      }
+    }
+  },
+  "new": {
+    "rerank": {
+      "rerank_ref01": {
+        "document": [],
+        "model": "s142",
+        "provider": "s143",
+        "query": "s144",
+        "result": [],
+        "top_n": "s146",
+        "usage": {}
+      }
+    }
+  }
+}

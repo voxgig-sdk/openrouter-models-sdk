@@ -1,0 +1,18 @@
+# Entity: add
+
+main: kit: entity: add: {
+
+  alias: field: {}
+
+  name: "add"
+  relations: {
+    ancestors: [
+      [
+        "workspace"
+      ]
+    ]
+  }
+
+
+
+}

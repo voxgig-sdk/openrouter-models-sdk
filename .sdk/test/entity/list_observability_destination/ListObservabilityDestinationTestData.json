@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "list_observability_destination": {
+      "LIST_OBSERVABILITY_DESTINATION00": {
+        "data": [],
+        "total_count": "s15"
+      },
+      "LIST_OBSERVABILITY_DESTINATION01": {
+        "data": [],
+        "total_count": "s29"
+      },
+      "LIST_OBSERVABILITY_DESTINATION02": {
+        "data": [],
+        "total_count": "s3d"
+      }
+    }
+  },
+  "new": {
+    "list_observability_destination": {
+      "list_observability_destination_ref01": {
+        "data": [],
+        "total_count": "s51"
+      }
+    }
+  }
+}

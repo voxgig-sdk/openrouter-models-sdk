@@ -1,0 +1,21 @@
+# Entity: remove
+
+main: kit: entity: remove: {
+
+  alias: field: {}
+
+  name: "remove"
+  relations: {
+    ancestors: [
+      [
+        "guardrail"
+      ]
+      [
+        "workspace"
+      ]
+    ]
+  }
+
+
+
+}

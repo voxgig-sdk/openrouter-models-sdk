@@ -1,0 +1,9 @@
+# BasicResponseFlow
+
+main: kit: flow: BasicResponseFlow:
+{
+  entity: "response",
+  kind: "basic",
+  name: "BasicResponseFlow",
+  "key$": "BasicResponseFlow"
+}

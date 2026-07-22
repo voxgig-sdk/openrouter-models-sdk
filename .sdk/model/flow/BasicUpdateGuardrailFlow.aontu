@@ -1,0 +1,29 @@
+# BasicUpdateGuardrailFlow
+
+main: kit: flow: BasicUpdateGuardrailFlow:
+{
+  entity: "update_guardrail",
+  kind: "basic",
+  name: "BasicUpdateGuardrailFlow",
+  step: [
+    {
+      input: {
+        ref: "update_guardrail_ref01",
+        srcdatavar: "update_guardrail_ref01_data",
+        suffix: "_up0",
+        textfield: "name"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-update_guardrail_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUpdateGuardrailFlow"
+}

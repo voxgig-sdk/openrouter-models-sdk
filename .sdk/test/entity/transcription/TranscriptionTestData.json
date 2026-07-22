@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "transcription": {
+      "TRANSCRIPTION00": {},
+      "TRANSCRIPTION01": {},
+      "TRANSCRIPTION02": {}
+    }
+  },
+  "new": {
+    "transcription": {
+      "transcription_ref01": {}
+    }
+  }
+}

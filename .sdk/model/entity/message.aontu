@@ -1,0 +1,239 @@
+# Entity: message
+
+main: kit: entity: message: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "cache_control"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "context_management"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "fallback"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "max_token"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "message"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "metadata"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "model"
+      op: {
+        create: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "output_config"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "plugin"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "provider"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "route"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "service_tier"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "session_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "speed"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "stop_sequence"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "stop_server_tools_when"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "stream"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "system"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "temperature"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "thinking"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "tool"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "tool_choice"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "top_k"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "top_p"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "trace"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "user"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "message"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "enabled"
+                kind: "header"
+                name: "x_open_router_metadata"
+                orig: "x_open_router_metadata"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/messages"
+          parts: [
+            "messages"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_metadata"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,9 @@
+# BasicBenchmarkFlow
+
+main: kit: flow: BasicBenchmarkFlow:
+{
+  entity: "benchmark",
+  kind: "basic",
+  name: "BasicBenchmarkFlow",
+  "key$": "BasicBenchmarkFlow"
+}

@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "list_byok_key": {
+      "LIST_BYOK_KEY00": {},
+      "LIST_BYOK_KEY01": {},
+      "LIST_BYOK_KEY02": {}
+    }
+  },
+  "new": {
+    "list_byok_key": {
+      "list_byok_key_ref01": {}
+    }
+  }
+}

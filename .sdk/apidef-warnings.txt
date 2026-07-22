@@ -1,0 +1,96 @@
+{
+  point: "warning"
+  when: 1784693482308
+  note: "No paths defined for entity=create_byok_key"
+  entm: {
+    name: "create_byok_key"
+    orig: "CreateBYOKKeyResponse"
+    path: {
+    }
+  }
+
+}
+
+
+{
+  point: "warning"
+  when: 1784693482309
+  note: "No paths defined for entity=create_guardrail"
+  entm: {
+    name: "create_guardrail"
+    orig: "CreateGuardrailResponse"
+    path: {
+    }
+  }
+
+}
+
+
+{
+  point: "warning"
+  when: 1784693482309
+  note: "No paths defined for entity=create_workspace"
+  entm: {
+    name: "create_workspace"
+    orig: "CreateWorkspaceResponse"
+    path: {
+    }
+  }
+
+}
+
+
+{
+  point: "warning"
+  when: 1784693482309
+  note: "No paths defined for entity=list_byok_key"
+  entm: {
+    name: "list_byok_key"
+    orig: "ListBYOKKeysResponse"
+    path: {
+    }
+  }
+
+}
+
+
+{
+  point: "warning"
+  when: 1784693482309
+  note: "No paths defined for entity=list_guardrail"
+  entm: {
+    name: "list_guardrail"
+    orig: "ListGuardrailsResponse"
+    path: {
+    }
+  }
+
+}
+
+
+{
+  point: "warning"
+  when: 1784693482310
+  note: "No paths defined for entity=list_preset"
+  entm: {
+    name: "list_preset"
+    orig: "ListPresetsResponse"
+    path: {
+    }
+  }
+
+}
+
+
+{
+  point: "warning"
+  when: 1784693482310
+  note: "No paths defined for entity=list_workspace"
+  entm: {
+    name: "list_workspace"
+    orig: "ListWorkspacesResponse"
+    path: {
+    }
+  }
+
+}

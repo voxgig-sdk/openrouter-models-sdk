@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "response": {
+      "RESPONSE00": {},
+      "RESPONSE01": {},
+      "RESPONSE02": {}
+    }
+  },
+  "new": {
+    "response": {
+      "response_ref01": {}
+    }
+  }
+}

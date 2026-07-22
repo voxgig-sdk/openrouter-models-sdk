@@ -1,0 +1,148 @@
+# Entity: activity
+
+main: kit: entity: activity: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "byok_usage_inference"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "completion_token"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "date"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "endpoint_id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "model"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "model_permaslug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "prompt_token"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "provider_name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "reasoning_token"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "request"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "usage"
+      req: true
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "activity"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "abc123def456..."
+                kind: "query"
+                name: "api_key_hash"
+                orig: "api_key_hash"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "2025-08-24"
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "user_abc123"
+                kind: "query"
+                name: "user_id"
+                orig: "user_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/activity"
+          parts: [
+            "activity"
+          ]
+          select: {
+            exist: [
+              "api_key_hash"
+              "date"
+              "http_referer"
+              "user_id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

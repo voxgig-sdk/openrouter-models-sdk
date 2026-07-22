@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "list_workspace_budget": {
+      "LIST_WORKSPACE_BUDGET00": {
+        "created_at": "s3c",
+        "id": "LIST_WORKSPACE_BUDGET00",
+        "limit_usd": 62,
+        "reset_interval": "s3f",
+        "updated_at": "s40",
+        "workspace_id": "WORKSPACE01"
+      },
+      "LIST_WORKSPACE_BUDGET01": {
+        "created_at": "s78",
+        "id": "LIST_WORKSPACE_BUDGET01",
+        "limit_usd": 122,
+        "reset_interval": "s7b",
+        "updated_at": "s7c",
+        "workspace_id": "WORKSPACE01"
+      },
+      "LIST_WORKSPACE_BUDGET02": {
+        "created_at": "sb4",
+        "id": "LIST_WORKSPACE_BUDGET02",
+        "limit_usd": 182,
+        "reset_interval": "sb7",
+        "updated_at": "sb8",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  },
+  "new": {
+    "list_workspace_budget": {
+      "list_workspace_budget_ref01": {
+        "created_at": "sf0",
+        "limit_usd": 242,
+        "reset_interval": "sf3",
+        "updated_at": "sf4",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  }
+}

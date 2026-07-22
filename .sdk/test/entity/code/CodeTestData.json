@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "code": {
+      "CODE00": {},
+      "CODE01": {},
+      "CODE02": {}
+    }
+  },
+  "new": {
+    "code": {
+      "code_ref01": {}
+    }
+  }
+}

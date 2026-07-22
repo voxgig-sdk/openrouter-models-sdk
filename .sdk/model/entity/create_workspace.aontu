@@ -1,0 +1,10 @@
+# Entity: create_workspace
+
+main: kit: entity: create_workspace: {
+
+  alias: field: {}
+
+  name: "create_workspace"
+
+
+}

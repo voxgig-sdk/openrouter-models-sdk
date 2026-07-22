@@ -1,0 +1,10 @@
+# Entity: coinbase
+
+main: kit: entity: coinbase: {
+
+  alias: field: {}
+
+  name: "coinbase"
+
+
+}

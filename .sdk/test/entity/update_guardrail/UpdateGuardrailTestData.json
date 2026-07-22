@@ -1,0 +1,89 @@
+{
+  "existing": {
+    "update_guardrail": {
+      "UPDATE_GUARDRAIL00": {
+        "allowed_model": "saa",
+        "allowed_provider": "sab",
+        "content_filter": "sac",
+        "content_filter_builtin": "sad",
+        "data": "sae",
+        "description": "saf",
+        "enforce_zdr": "sb0",
+        "enforce_zdr_anthropic": "sb1",
+        "enforce_zdr_google": "sb2",
+        "enforce_zdr_openai": "sb3",
+        "enforce_zdr_other": "sb4",
+        "enforce_zdr_xai": "sb5",
+        "ignored_model": "sb6",
+        "ignored_provider": "sb7",
+        "limit_usd": "sb8",
+        "name": "sb9",
+        "reset_interval": "sba",
+        "id": "UPDATE_GUARDRAIL00"
+      },
+      "UPDATE_GUARDRAIL01": {
+        "allowed_model": "s154",
+        "allowed_provider": "s155",
+        "content_filter": "s156",
+        "content_filter_builtin": "s157",
+        "data": "s158",
+        "description": "s159",
+        "enforce_zdr": "s15a",
+        "enforce_zdr_anthropic": "s15b",
+        "enforce_zdr_google": "s15c",
+        "enforce_zdr_openai": "s15d",
+        "enforce_zdr_other": "s15e",
+        "enforce_zdr_xai": "s15f",
+        "ignored_model": "s160",
+        "ignored_provider": "s161",
+        "limit_usd": "s162",
+        "name": "s163",
+        "reset_interval": "s164",
+        "id": "UPDATE_GUARDRAIL01"
+      },
+      "UPDATE_GUARDRAIL02": {
+        "allowed_model": "s1fe",
+        "allowed_provider": "s1ff",
+        "content_filter": "s200",
+        "content_filter_builtin": "s201",
+        "data": "s202",
+        "description": "s203",
+        "enforce_zdr": "s204",
+        "enforce_zdr_anthropic": "s205",
+        "enforce_zdr_google": "s206",
+        "enforce_zdr_openai": "s207",
+        "enforce_zdr_other": "s208",
+        "enforce_zdr_xai": "s209",
+        "ignored_model": "s20a",
+        "ignored_provider": "s20b",
+        "limit_usd": "s20c",
+        "name": "s20d",
+        "reset_interval": "s20e",
+        "id": "UPDATE_GUARDRAIL02"
+      }
+    }
+  },
+  "new": {
+    "update_guardrail": {
+      "update_guardrail_ref01": {
+        "allowed_model": "s2a8",
+        "allowed_provider": "s2a9",
+        "content_filter": "s2aa",
+        "content_filter_builtin": "s2ab",
+        "data": "s2ac",
+        "description": "s2ad",
+        "enforce_zdr": "s2ae",
+        "enforce_zdr_anthropic": "s2af",
+        "enforce_zdr_google": "s2b0",
+        "enforce_zdr_openai": "s2b1",
+        "enforce_zdr_other": "s2b2",
+        "enforce_zdr_xai": "s2b3",
+        "ignored_model": "s2b4",
+        "ignored_provider": "s2b5",
+        "limit_usd": "s2b6",
+        "name": "s2b7",
+        "reset_interval": "s2b8"
+      }
+    }
+  }
+}

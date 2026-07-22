@@ -1,0 +1,25 @@
+{
+  "existing": {
+    "models_count": {
+      "MODELS_COUNT00": {
+        "data": {},
+        "id": "MODELS_COUNT00"
+      },
+      "MODELS_COUNT01": {
+        "data": {},
+        "id": "MODELS_COUNT01"
+      },
+      "MODELS_COUNT02": {
+        "data": {},
+        "id": "MODELS_COUNT02"
+      }
+    }
+  },
+  "new": {
+    "models_count": {
+      "models_count_ref01": {
+        "data": {}
+      }
+    }
+  }
+}

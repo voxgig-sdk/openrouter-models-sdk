@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "bulk_assign_key": {
+      "BULK_ASSIGN_KEY00": {
+        "assigned_count": "s14",
+        "key_hash": [],
+        "guardrail_id": "GUARDRAIL01",
+        "id": "BULK_ASSIGN_KEY00"
+      },
+      "BULK_ASSIGN_KEY01": {
+        "assigned_count": "s28",
+        "key_hash": [],
+        "guardrail_id": "GUARDRAIL01",
+        "id": "BULK_ASSIGN_KEY01"
+      },
+      "BULK_ASSIGN_KEY02": {
+        "assigned_count": "s3c",
+        "key_hash": [],
+        "guardrail_id": "GUARDRAIL01",
+        "id": "BULK_ASSIGN_KEY02"
+      }
+    }
+  },
+  "new": {
+    "bulk_assign_key": {
+      "bulk_assign_key_ref01": {
+        "assigned_count": "s50",
+        "key_hash": []
+      }
+    }
+  }
+}

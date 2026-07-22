@@ -1,0 +1,25 @@
+{
+  "existing": {
+    "task": {
+      "TASK00": {
+        "data": {},
+        "id": "TASK00"
+      },
+      "TASK01": {
+        "data": {},
+        "id": "TASK01"
+      },
+      "TASK02": {
+        "data": {},
+        "id": "TASK02"
+      }
+    }
+  },
+  "new": {
+    "task": {
+      "task_ref01": {
+        "data": {}
+      }
+    }
+  }
+}

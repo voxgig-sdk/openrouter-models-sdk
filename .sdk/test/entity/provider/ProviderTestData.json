@@ -1,0 +1,46 @@
+{
+  "existing": {
+    "provider": {
+      "PROVIDER00": {
+        "datacenter": "s46",
+        "headquarter": "s47",
+        "name": "s48",
+        "privacy_policy_url": "s49",
+        "slug": "s4a",
+        "status_page_url": "s4b",
+        "terms_of_service_url": "s4c"
+      },
+      "PROVIDER01": {
+        "datacenter": "s8c",
+        "headquarter": "s8d",
+        "name": "s8e",
+        "privacy_policy_url": "s8f",
+        "slug": "s90",
+        "status_page_url": "s91",
+        "terms_of_service_url": "s92"
+      },
+      "PROVIDER02": {
+        "datacenter": "sd2",
+        "headquarter": "sd3",
+        "name": "sd4",
+        "privacy_policy_url": "sd5",
+        "slug": "sd6",
+        "status_page_url": "sd7",
+        "terms_of_service_url": "sd8"
+      }
+    }
+  },
+  "new": {
+    "provider": {
+      "provider_ref01": {
+        "datacenter": "s118",
+        "headquarter": "s119",
+        "name": "s11a",
+        "privacy_policy_url": "s11b",
+        "slug": "s11c",
+        "status_page_url": "s11d",
+        "terms_of_service_url": "s11e"
+      }
+    }
+  }
+}

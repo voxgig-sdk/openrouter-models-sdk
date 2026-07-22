@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "unified_benchmark": {
+      "UNIFIED_BENCHMARK00": {
+        "data": [],
+        "meta": {}
+      },
+      "UNIFIED_BENCHMARK01": {
+        "data": [],
+        "meta": {}
+      },
+      "UNIFIED_BENCHMARK02": {
+        "data": [],
+        "meta": {}
+      }
+    }
+  },
+  "new": {
+    "unified_benchmark": {
+      "unified_benchmark_ref01": {
+        "data": [],
+        "meta": {}
+      }
+    }
+  }
+}

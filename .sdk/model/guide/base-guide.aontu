@@ -1,0 +1,634 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 86
+  metrics: count: path: 69
+  metrics: count: method: 89
+
+  entity: activity: {
+    path: "/activity": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: add: {
+    path: "/workspaces/{id}/members/add": {
+      rename: param: "id": *"workspace_id"
+    }
+  }
+
+  entity: api_key: {
+    path: "/key": {
+      op: load: method: *GET
+    }
+    path: "/keys": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/keys/{hash}": {
+      rename: param: "hash": *"id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: app_ranking: {
+    path: "/datasets/app-rankings": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: benchmark: {
+    path: "/benchmarks": {
+    }
+  }
+
+  entity: beta_analytics: {
+    path: "/analytics/meta": {
+      op: load: method: *GET
+    }
+    path: "/analytics/query": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: budget: {
+    path: "/workspaces/{id}/budgets/{interval}": {
+      rename: param: "id": *"workspace_id"
+      rename: param: "interval": *"id"
+    }
+  }
+
+  entity: bulk_add_workspace_member: {
+    path: "/workspaces/{id}/members/add": {
+      rename: param: "id": *"workspace_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: bulk_assign_key: {
+    path: "/guardrails/{id}/assignments/keys": {
+      rename: param: "id": *"guardrail_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: bulk_assign_member: {
+    path: "/guardrails/{id}/assignments/members": {
+      rename: param: "id": *"guardrail_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: bulk_remove_workspace_member: {
+    path: "/workspaces/{id}/members/remove": {
+      rename: param: "id": *"workspace_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: bulk_unassign_key: {
+    path: "/guardrails/{id}/assignments/keys/remove": {
+      rename: param: "id": *"guardrail_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: bulk_unassign_member: {
+    path: "/guardrails/{id}/assignments/members/remove": {
+      rename: param: "id": *"guardrail_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: byok: {
+    path: "/byok": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/byok/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: chat_result: {
+    path: "/chat/completions": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: code: {
+    path: "/auth/keys/code": {
+    }
+  }
+
+  entity: coinbase: {
+    path: "/credits/coinbase": {
+    }
+  }
+
+  entity: completion: {
+    path: "/chat/completions": {
+    }
+    path: "/presets/{slug}/chat/completions": {
+    }
+  }
+
+  entity: content: {
+    path: "/generation/content": {
+    }
+  }
+
+  entity: count: {
+    path: "/models/count": {
+    }
+  }
+
+  entity: create_byok_key: {
+  }
+
+  entity: create_guardrail: {
+  }
+
+  entity: create_observability_destination: {
+    path: "/observability/destinations": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: create_preset_from_inference: {
+    path: "/presets/{slug}/chat/completions": {
+      op: create: method: *POST
+    }
+    path: "/presets/{slug}/messages": {
+      op: create: method: *POST
+    }
+    path: "/presets/{slug}/responses": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: create_workspace: {
+  }
+
+  entity: credit: {
+    path: "/credits": {
+      op: load: method: *GET
+    }
+    path: "/credits/coinbase": {
+      action: "coinbase": {}
+      op: create: method: *POST
+    }
+  }
+
+  entity: destination: {
+    path: "/observability/destinations": {
+    }
+    path: "/observability/destinations/{id}": {
+    }
+  }
+
+  entity: embedding: {
+    path: "/embeddings": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: endpoint: {
+    path: "/endpoints/zdr": {
+      action: "zdr": {}
+      op: list: method: *GET
+    }
+    path: "/images/models/{author}/{slug}/endpoints": {
+      rename: param: "author": *"model_id"
+    }
+    path: "/models": {
+      op: list: method: *GET
+    }
+    path: "/models/{author}/{slug}/endpoints": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: feedback: {
+    path: "/generation/feedback": {
+    }
+  }
+
+  entity: file: {
+    path: "/files": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/files/{file_id}": {
+      rename: param: "file_id": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/files/{file_id}/content": {
+      action: "content": {}
+      rename: param: "file_id": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: generation: {
+    path: "/generation": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: generation_content: {
+    path: "/generation/content": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: guardrail: {
+    path: "/guardrails": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/guardrails/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: image: {
+    path: "/images": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: image_model_endpoint: {
+    path: "/images/models/{author}/{slug}/endpoints": {
+      rename: param: "author": *"model_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: image_models_list: {
+    path: "/images/models": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: key: {
+    path: "/auth/keys": {
+    }
+    path: "/guardrails/assignments/keys": {
+    }
+    path: "/guardrails/{id}/assignments/keys": {
+      rename: param: "id": *"guardrail_id"
+    }
+    path: "/key": {
+    }
+    path: "/keys/{hash}": {
+      rename: param: "hash": *"id"
+    }
+  }
+
+  entity: list_byok_key: {
+  }
+
+  entity: list_guardrail: {
+  }
+
+  entity: list_key_assignment: {
+    path: "/guardrails/assignments/keys": {
+      op: list: method: *GET
+    }
+    path: "/guardrails/{id}/assignments/keys": {
+      rename: param: "id": *"guardrail_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: list_member_assignment: {
+    path: "/guardrails/assignments/members": {
+      op: list: method: *GET
+    }
+    path: "/guardrails/{id}/assignments/members": {
+      rename: param: "id": *"guardrail_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: list_observability_destination: {
+    path: "/observability/destinations": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: list_preset: {
+  }
+
+  entity: list_preset_version: {
+    path: "/presets/{slug}/versions": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: list_workspace: {
+  }
+
+  entity: list_workspace_budget: {
+    path: "/workspaces/{id}/budgets": {
+      rename: param: "id": *"workspace_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: list_workspace_member: {
+    path: "/workspaces/{id}/members": {
+      rename: param: "id": *"workspace_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: member: {
+    path: "/guardrails/assignments/members": {
+    }
+    path: "/guardrails/{id}/assignments/members": {
+      rename: param: "id": *"guardrail_id"
+    }
+    path: "/organization/members": {
+    }
+  }
+
+  entity: message: {
+    path: "/messages": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: meta: {
+    path: "/analytics/meta": {
+    }
+  }
+
+  entity: model: {
+    path: "/embeddings/models": {
+      op: list: method: *GET
+    }
+    path: "/images/models": {
+    }
+    path: "/model/{author}/{slug}": {
+      op: load: method: *GET
+    }
+    path: "/videos/models": {
+    }
+  }
+
+  entity: models_count: {
+    path: "/models/count": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: models_list: {
+    path: "/models/user": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: o_auth: {
+    path: "/auth/keys": {
+      op: create: method: *POST
+    }
+    path: "/auth/keys/code": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: observability_destination: {
+    path: "/observability/destinations/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: open_responses_result: {
+    path: "/responses": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: organization: {
+    path: "/organization/members": {
+      action: "member": {}
+      op: list: method: *GET
+    }
+  }
+
+  entity: preset: {
+    path: "/presets": {
+      op: list: method: *GET
+    }
+    path: "/presets/{slug}": {
+      rename: param: "slug": *"id"
+      op: load: method: *GET
+    }
+    path: "/presets/{slug}/messages": {
+      action: "message": {}
+    }
+    path: "/presets/{slug}/responses": {
+      action: "response": {}
+    }
+    path: "/presets/{slug}/versions": {
+      action: "version": {}
+    }
+  }
+
+  entity: preset_version: {
+    path: "/presets/{slug}/versions/{version}": {
+      rename: param: "version": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: provider: {
+    path: "/providers": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: query: {
+    path: "/analytics/query": {
+    }
+  }
+
+  entity: rankings_daily: {
+    path: "/datasets/rankings-daily": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: remove: {
+    path: "/guardrails/{id}/assignments/keys/remove": {
+      rename: param: "id": *"guardrail_id"
+    }
+    path: "/guardrails/{id}/assignments/members/remove": {
+      rename: param: "id": *"guardrail_id"
+    }
+    path: "/workspaces/{id}/members/remove": {
+      rename: param: "id": *"workspace_id"
+    }
+  }
+
+  entity: rerank: {
+    path: "/rerank": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: response: {
+    path: "/responses": {
+    }
+  }
+
+  entity: speech: {
+    path: "/audio/speech": {
+    }
+  }
+
+  entity: stt: {
+    path: "/audio/transcriptions": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: submit_generation_feedback: {
+    path: "/generation/feedback": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: task: {
+    path: "/classifications/task": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: transcription: {
+    path: "/audio/transcriptions": {
+    }
+  }
+
+  entity: tts: {
+    path: "/audio/speech": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: unified_benchmark: {
+    path: "/benchmarks": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: update_byok_key: {
+    path: "/byok/{id}": {
+      op: patch: method: *PATCH
+    }
+  }
+
+  entity: update_guardrail: {
+    path: "/guardrails/{id}": {
+      op: patch: method: *PATCH
+    }
+  }
+
+  entity: update_observability_destination: {
+    path: "/observability/destinations/{id}": {
+      op: patch: method: *PATCH
+    }
+  }
+
+  entity: update_workspace: {
+    path: "/workspaces": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/workspaces/{id}": {
+      op: patch: method: *PATCH
+    }
+  }
+
+  entity: upsert_workspace_budget: {
+    path: "/workspaces/{id}/budgets/{interval}": {
+      rename: param: "id": *"workspace_id"
+      rename: param: "interval": *"id"
+      op: update: method: *PUT
+    }
+  }
+
+  entity: user: {
+    path: "/models/user": {
+    }
+  }
+
+  entity: version: {
+    path: "/presets/{slug}/versions/{version}": {
+      rename: param: "version": *"id"
+    }
+  }
+
+  entity: video: {
+    path: "/videos": {
+      op: create: method: *POST
+    }
+    path: "/videos/{jobId}": {
+      rename: param: "jobId": *"id"
+      op: load: method: *GET
+    }
+    path: "/videos/{jobId}/content": {
+      action: "content": {}
+      rename: param: "jobId": *"id"
+    }
+  }
+
+  entity: video_generation: {
+    path: "/videos/{jobId}/content": {
+      action: "content": {}
+      rename: param: "jobId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: video_models_list: {
+    path: "/videos/models": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: workspace: {
+    path: "/workspaces/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/workspaces/{id}/budgets": {
+      action: "budget": {}
+    }
+    path: "/workspaces/{id}/members": {
+      action: "member": {}
+    }
+  }
+
+  entity: workspace_budget: {
+    path: "/workspaces/{id}/budgets/{interval}": {
+      rename: param: "id": *"workspace_id"
+      rename: param: "interval": *"id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: zdr: {
+    path: "/endpoints/zdr": {
+    }
+  }
+
+}

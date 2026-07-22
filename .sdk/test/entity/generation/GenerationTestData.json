@@ -1,0 +1,25 @@
+{
+  "existing": {
+    "generation": {
+      "GENERATION00": {
+        "data": {},
+        "id": "GENERATION00"
+      },
+      "GENERATION01": {
+        "data": {},
+        "id": "GENERATION01"
+      },
+      "GENERATION02": {
+        "data": {},
+        "id": "GENERATION02"
+      }
+    }
+  },
+  "new": {
+    "generation": {
+      "generation_ref01": {
+        "data": {}
+      }
+    }
+  }
+}

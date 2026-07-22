@@ -1,0 +1,10 @@
+# Entity: meta
+
+main: kit: entity: meta: {
+
+  alias: field: {}
+
+  name: "meta"
+
+
+}

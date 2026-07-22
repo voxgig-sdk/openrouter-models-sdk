@@ -1,0 +1,33 @@
+# BasicPresetVersionFlow
+
+main: kit: flow: BasicPresetVersionFlow:
+{
+  entity: "preset_version",
+  kind: "basic",
+  name: "BasicPresetVersionFlow",
+  step: [
+    {
+      input: {
+        ref: "preset_version_ref01",
+        srcdatavar: "preset_version_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "preset_version01",
+        slug: "slug01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-preset_version_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPresetVersionFlow"
+}

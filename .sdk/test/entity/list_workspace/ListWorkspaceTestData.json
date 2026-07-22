@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "list_workspace": {
+      "LIST_WORKSPACE00": {},
+      "LIST_WORKSPACE01": {},
+      "LIST_WORKSPACE02": {}
+    }
+  },
+  "new": {
+    "list_workspace": {
+      "list_workspace_ref01": {}
+    }
+  }
+}

@@ -1,0 +1,10 @@
+# Entity: count
+
+main: kit: entity: count: {
+
+  alias: field: {}
+
+  name: "count"
+
+
+}

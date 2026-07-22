@@ -1,0 +1,103 @@
+{
+  "existing": {
+    "model": {
+      "MODEL00": {
+        "architecture": {},
+        "benchmark": {},
+        "canonical_slug": "sca",
+        "context_length": "scb",
+        "created": "scc",
+        "data": {},
+        "default_parameter": "sce",
+        "description": "scf",
+        "expiration_date": "sd0",
+        "hugging_face_id": "HUGGING_FACE01",
+        "id": "MODEL00",
+        "knowledge_cutoff": "sd3",
+        "link": {},
+        "name": "sd5",
+        "per_request_limit": "sd6",
+        "pricing": {},
+        "reasoning": {},
+        "supported_parameter": [],
+        "supported_voice": "sda",
+        "top_provider": {},
+        "author": "AUTHOR01",
+        "slug": "SLUG01"
+      },
+      "MODEL01": {
+        "architecture": {},
+        "benchmark": {},
+        "canonical_slug": "s192",
+        "context_length": "s193",
+        "created": "s194",
+        "data": {},
+        "default_parameter": "s196",
+        "description": "s197",
+        "expiration_date": "s198",
+        "hugging_face_id": "HUGGING_FACE01",
+        "id": "MODEL01",
+        "knowledge_cutoff": "s19b",
+        "link": {},
+        "name": "s19d",
+        "per_request_limit": "s19e",
+        "pricing": {},
+        "reasoning": {},
+        "supported_parameter": [],
+        "supported_voice": "s1a2",
+        "top_provider": {},
+        "author": "AUTHOR01",
+        "slug": "SLUG01"
+      },
+      "MODEL02": {
+        "architecture": {},
+        "benchmark": {},
+        "canonical_slug": "s25a",
+        "context_length": "s25b",
+        "created": "s25c",
+        "data": {},
+        "default_parameter": "s25e",
+        "description": "s25f",
+        "expiration_date": "s260",
+        "hugging_face_id": "HUGGING_FACE01",
+        "id": "MODEL02",
+        "knowledge_cutoff": "s263",
+        "link": {},
+        "name": "s265",
+        "per_request_limit": "s266",
+        "pricing": {},
+        "reasoning": {},
+        "supported_parameter": [],
+        "supported_voice": "s26a",
+        "top_provider": {},
+        "author": "AUTHOR01",
+        "slug": "SLUG01"
+      }
+    }
+  },
+  "new": {
+    "model": {
+      "model_ref01": {
+        "architecture": {},
+        "benchmark": {},
+        "canonical_slug": "s322",
+        "context_length": "s323",
+        "created": "s324",
+        "data": {},
+        "default_parameter": "s326",
+        "description": "s327",
+        "expiration_date": "s328",
+        "hugging_face_id": "HUGGING_FACE01",
+        "knowledge_cutoff": "s32b",
+        "link": {},
+        "name": "s32d",
+        "per_request_limit": "s32e",
+        "pricing": {},
+        "reasoning": {},
+        "supported_parameter": [],
+        "supported_voice": "s332",
+        "top_provider": {}
+      }
+    }
+  }
+}

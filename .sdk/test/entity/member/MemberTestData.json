@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "member": {
+      "MEMBER00": {},
+      "MEMBER01": {},
+      "MEMBER02": {}
+    }
+  },
+  "new": {
+    "member": {
+      "member_ref01": {}
+    }
+  }
+}

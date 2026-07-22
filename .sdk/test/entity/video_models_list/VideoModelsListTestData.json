@@ -1,0 +1,77 @@
+{
+  "existing": {
+    "video_models_list": {
+      "VIDEO_MODELS_LIST00": {
+        "allowed_passthrough_parameter": [],
+        "canonical_slug": "s97",
+        "created": "s98",
+        "description": "s99",
+        "generate_audio": "s9a",
+        "hugging_face_id": "HUGGING_FACE01",
+        "id": "VIDEO_MODELS_LIST00",
+        "name": "s9d",
+        "pricing_skus": "s9e",
+        "seed": "s9f",
+        "supported_aspect_ratio": "sa0",
+        "supported_duration": "sa1",
+        "supported_frame_image": "sa2",
+        "supported_resolution": "sa3",
+        "supported_size": "sa4"
+      },
+      "VIDEO_MODELS_LIST01": {
+        "allowed_passthrough_parameter": [],
+        "canonical_slug": "s12d",
+        "created": "s12e",
+        "description": "s12f",
+        "generate_audio": "s130",
+        "hugging_face_id": "HUGGING_FACE01",
+        "id": "VIDEO_MODELS_LIST01",
+        "name": "s133",
+        "pricing_skus": "s134",
+        "seed": "s135",
+        "supported_aspect_ratio": "s136",
+        "supported_duration": "s137",
+        "supported_frame_image": "s138",
+        "supported_resolution": "s139",
+        "supported_size": "s13a"
+      },
+      "VIDEO_MODELS_LIST02": {
+        "allowed_passthrough_parameter": [],
+        "canonical_slug": "s1c3",
+        "created": "s1c4",
+        "description": "s1c5",
+        "generate_audio": "s1c6",
+        "hugging_face_id": "HUGGING_FACE01",
+        "id": "VIDEO_MODELS_LIST02",
+        "name": "s1c9",
+        "pricing_skus": "s1ca",
+        "seed": "s1cb",
+        "supported_aspect_ratio": "s1cc",
+        "supported_duration": "s1cd",
+        "supported_frame_image": "s1ce",
+        "supported_resolution": "s1cf",
+        "supported_size": "s1d0"
+      }
+    }
+  },
+  "new": {
+    "video_models_list": {
+      "video_models_list_ref01": {
+        "allowed_passthrough_parameter": [],
+        "canonical_slug": "s259",
+        "created": "s25a",
+        "description": "s25b",
+        "generate_audio": "s25c",
+        "hugging_face_id": "HUGGING_FACE01",
+        "name": "s25f",
+        "pricing_skus": "s260",
+        "seed": "s261",
+        "supported_aspect_ratio": "s262",
+        "supported_duration": "s263",
+        "supported_frame_image": "s264",
+        "supported_resolution": "s265",
+        "supported_size": "s266"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "existing": {
+    "credit": {
+      "CREDIT00": {
+        "data": {},
+        "id": "CREDIT00"
+      },
+      "CREDIT01": {
+        "data": {},
+        "id": "CREDIT01"
+      },
+      "CREDIT02": {
+        "data": {},
+        "id": "CREDIT02"
+      }
+    }
+  },
+  "new": {
+    "credit": {
+      "credit_ref01": {
+        "data": {}
+      }
+    }
+  }
+}

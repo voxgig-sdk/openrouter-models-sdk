@@ -1,0 +1,27 @@
+# BasicImageModelEndpointFlow
+
+main: kit: flow: BasicImageModelEndpointFlow:
+{
+  entity: "image_model_endpoint",
+  kind: "basic",
+  name: "BasicImageModelEndpointFlow",
+  step: [
+    {
+      match: {
+        model_id: "model01",
+        slug: "slug01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "image_model_endpoint_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicImageModelEndpointFlow"
+}

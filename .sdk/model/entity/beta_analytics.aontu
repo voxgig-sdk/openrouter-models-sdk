@@ -1,0 +1,169 @@
+# Entity: beta_analytics
+
+main: kit: entity: beta_analytics: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "classifier_dimension"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "classifier_filter"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "data"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "dimension"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "filter"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "granularity"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "group_limit"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "limit"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "metric"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "order_by"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "time_range"
+      req: true
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "beta_analytics"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/analytics/query"
+          parts: [
+            "analytics"
+            "query"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/analytics/meta"
+          parts: [
+            "analytics"
+            "meta"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

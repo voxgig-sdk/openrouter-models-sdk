@@ -1,0 +1,9 @@
+# BasicVersionFlow
+
+main: kit: flow: BasicVersionFlow:
+{
+  entity: "version",
+  kind: "basic",
+  name: "BasicVersionFlow",
+  "key$": "BasicVersionFlow"
+}

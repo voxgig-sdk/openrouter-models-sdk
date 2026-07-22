@@ -1,0 +1,9 @@
+# BasicZdrFlow
+
+main: kit: flow: BasicZdrFlow:
+{
+  entity: "zdr",
+  kind: "basic",
+  name: "BasicZdrFlow",
+  "key$": "BasicZdrFlow"
+}

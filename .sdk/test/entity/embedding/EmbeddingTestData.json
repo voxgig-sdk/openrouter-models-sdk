@@ -1,0 +1,61 @@
+{
+  "existing": {
+    "embedding": {
+      "EMBEDDING00": {
+        "data": [],
+        "dimension": "s6f",
+        "encoding_format": "s70",
+        "id": "EMBEDDING00",
+        "input": "s72",
+        "input_type": "s73",
+        "model": "s74",
+        "object": "s75",
+        "provider": "s76",
+        "usage": {},
+        "user": "s78"
+      },
+      "EMBEDDING01": {
+        "data": [],
+        "dimension": "sdd",
+        "encoding_format": "sde",
+        "id": "EMBEDDING01",
+        "input": "se0",
+        "input_type": "se1",
+        "model": "se2",
+        "object": "se3",
+        "provider": "se4",
+        "usage": {},
+        "user": "se6"
+      },
+      "EMBEDDING02": {
+        "data": [],
+        "dimension": "s14b",
+        "encoding_format": "s14c",
+        "id": "EMBEDDING02",
+        "input": "s14e",
+        "input_type": "s14f",
+        "model": "s150",
+        "object": "s151",
+        "provider": "s152",
+        "usage": {},
+        "user": "s154"
+      }
+    }
+  },
+  "new": {
+    "embedding": {
+      "embedding_ref01": {
+        "data": [],
+        "dimension": "s1b9",
+        "encoding_format": "s1ba",
+        "input": "s1bc",
+        "input_type": "s1bd",
+        "model": "s1be",
+        "object": "s1bf",
+        "provider": "s1c0",
+        "usage": {},
+        "user": "s1c2"
+      }
+    }
+  }
+}

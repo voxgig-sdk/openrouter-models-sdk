@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "submit_generation_feedback": {
+      "SUBMIT_GENERATION_FEEDBACK00": {
+        "category": "s28",
+        "comment": "s29",
+        "data": {},
+        "generation_id": "GENERATION01",
+        "id": "SUBMIT_GENERATION_FEEDBACK00"
+      },
+      "SUBMIT_GENERATION_FEEDBACK01": {
+        "category": "s50",
+        "comment": "s51",
+        "data": {},
+        "generation_id": "GENERATION01",
+        "id": "SUBMIT_GENERATION_FEEDBACK01"
+      },
+      "SUBMIT_GENERATION_FEEDBACK02": {
+        "category": "s78",
+        "comment": "s79",
+        "data": {},
+        "generation_id": "GENERATION01",
+        "id": "SUBMIT_GENERATION_FEEDBACK02"
+      }
+    }
+  },
+  "new": {
+    "submit_generation_feedback": {
+      "submit_generation_feedback_ref01": {
+        "category": "sa0",
+        "comment": "sa1",
+        "data": {},
+        "generation_id": "GENERATION01"
+      }
+    }
+  }
+}

@@ -1,0 +1,111 @@
+# Entity: preset_version
+
+main: kit: entity: preset_version: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "data"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  ]
+
+  name: "preset_version"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "1"
+                kind: "param"
+                name: "id"
+                orig: "version"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "my-preset"
+                kind: "param"
+                name: "slug"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/presets/{slug}/versions/{version}"
+          parts: [
+            "presets"
+            "{slug}"
+            "versions"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              version: "id"
+            }
+          }
+          select: {
+            exist: [
+              "http_referer"
+              "id"
+              "slug"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "preset"
+      ]
+    ]
+  }
+
+
+
+}

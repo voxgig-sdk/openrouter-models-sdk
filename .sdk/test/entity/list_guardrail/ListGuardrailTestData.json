@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "list_guardrail": {
+      "LIST_GUARDRAIL00": {},
+      "LIST_GUARDRAIL01": {},
+      "LIST_GUARDRAIL02": {}
+    }
+  },
+  "new": {
+    "list_guardrail": {
+      "list_guardrail_ref01": {}
+    }
+  }
+}

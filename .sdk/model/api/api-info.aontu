@@ -1,0 +1,38 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "support@openrouter.ai"
+        name: "OpenRouter Support"
+        url: "https://openrouter.ai/docs"
+      }
+      description: "OpenAI-compatible API with additional OpenRouter features"
+      license: {
+        name: "MIT"
+        url: "https://opensource.org/licenses/MIT"
+      }
+      security: {
+        in: "header"
+        name: "Authorization"
+        prefix: "Bearer"
+        scheme: "apiKey"
+        type: "http"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://openrouter.ai/api/v1"
+          "x-speakeasy-server-id": "production"
+        }
+      ]
+      summary: "OpenAI-compatible API with additional OpenRouter features"
+      title: "OpenRouter API"
+      version: "1.0.0"
+      website: "https://openrouter.ai/docs"
+    }
+  }
+}
+

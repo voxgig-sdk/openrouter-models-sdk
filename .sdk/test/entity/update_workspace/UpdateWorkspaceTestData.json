@@ -1,0 +1,81 @@
+{
+  "existing": {
+    "update_workspace": {
+      "UPDATE_WORKSPACE00": {
+        "created_at": "sa0",
+        "created_by": "sa1",
+        "data": "sa2",
+        "default_image_model": "sa3",
+        "default_provider_sort": "sa4",
+        "default_text_model": "sa5",
+        "description": "sa6",
+        "id": "UPDATE_WORKSPACE00",
+        "io_logging_api_key_id": "IO_LOGGING_API_KEY01",
+        "io_logging_sampling_rate": 169,
+        "is_data_discount_logging_enabled": true,
+        "is_observability_broadcast_enabled": false,
+        "is_observability_io_logging_enabled": true,
+        "name": "sad",
+        "slug": "sae",
+        "updated_at": "saf"
+      },
+      "UPDATE_WORKSPACE01": {
+        "created_at": "s140",
+        "created_by": "s141",
+        "data": "s142",
+        "default_image_model": "s143",
+        "default_provider_sort": "s144",
+        "default_text_model": "s145",
+        "description": "s146",
+        "id": "UPDATE_WORKSPACE01",
+        "io_logging_api_key_id": "IO_LOGGING_API_KEY01",
+        "io_logging_sampling_rate": 329,
+        "is_data_discount_logging_enabled": true,
+        "is_observability_broadcast_enabled": false,
+        "is_observability_io_logging_enabled": true,
+        "name": "s14d",
+        "slug": "s14e",
+        "updated_at": "s14f"
+      },
+      "UPDATE_WORKSPACE02": {
+        "created_at": "s1e0",
+        "created_by": "s1e1",
+        "data": "s1e2",
+        "default_image_model": "s1e3",
+        "default_provider_sort": "s1e4",
+        "default_text_model": "s1e5",
+        "description": "s1e6",
+        "id": "UPDATE_WORKSPACE02",
+        "io_logging_api_key_id": "IO_LOGGING_API_KEY01",
+        "io_logging_sampling_rate": 489,
+        "is_data_discount_logging_enabled": true,
+        "is_observability_broadcast_enabled": false,
+        "is_observability_io_logging_enabled": true,
+        "name": "s1ed",
+        "slug": "s1ee",
+        "updated_at": "s1ef"
+      }
+    }
+  },
+  "new": {
+    "update_workspace": {
+      "update_workspace_ref01": {
+        "created_at": "s280",
+        "created_by": "s281",
+        "data": "s282",
+        "default_image_model": "s283",
+        "default_provider_sort": "s284",
+        "default_text_model": "s285",
+        "description": "s286",
+        "io_logging_api_key_id": "IO_LOGGING_API_KEY01",
+        "io_logging_sampling_rate": 649,
+        "is_data_discount_logging_enabled": true,
+        "is_observability_broadcast_enabled": false,
+        "is_observability_io_logging_enabled": true,
+        "name": "s28d",
+        "slug": "s28e",
+        "updated_at": "s28f"
+      }
+    }
+  }
+}

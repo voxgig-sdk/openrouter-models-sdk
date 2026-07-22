@@ -1,0 +1,18 @@
+# BasicSttFlow
+
+main: kit: flow: BasicSttFlow:
+{
+  entity: "stt",
+  kind: "basic",
+  name: "BasicSttFlow",
+  step: [
+    {
+      input: {
+        ref: "stt_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicSttFlow"
+}

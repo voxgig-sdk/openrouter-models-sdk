@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "list_member_assignment": {
+      "LIST_MEMBER_ASSIGNMENT00": {
+        "assigned_by": "s3c",
+        "created_at": "s3d",
+        "guardrail_id": "GUARDRAIL01",
+        "id": "LIST_MEMBER_ASSIGNMENT00",
+        "organization_id": "ORGANIZATION01",
+        "user_id": "USER01"
+      },
+      "LIST_MEMBER_ASSIGNMENT01": {
+        "assigned_by": "s78",
+        "created_at": "s79",
+        "guardrail_id": "GUARDRAIL01",
+        "id": "LIST_MEMBER_ASSIGNMENT01",
+        "organization_id": "ORGANIZATION01",
+        "user_id": "USER01"
+      },
+      "LIST_MEMBER_ASSIGNMENT02": {
+        "assigned_by": "sb4",
+        "created_at": "sb5",
+        "guardrail_id": "GUARDRAIL01",
+        "id": "LIST_MEMBER_ASSIGNMENT02",
+        "organization_id": "ORGANIZATION01",
+        "user_id": "USER01"
+      }
+    }
+  },
+  "new": {
+    "list_member_assignment": {
+      "list_member_assignment_ref01": {
+        "assigned_by": "sf0",
+        "created_at": "sf1",
+        "guardrail_id": "GUARDRAIL01",
+        "organization_id": "ORGANIZATION01",
+        "user_id": "USER01"
+      }
+    }
+  }
+}

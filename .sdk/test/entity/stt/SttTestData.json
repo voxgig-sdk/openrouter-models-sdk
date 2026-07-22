@@ -1,0 +1,73 @@
+{
+  "existing": {
+    "stt": {
+      "STT00": {
+        "duration": 130,
+        "input_audio": {},
+        "language": "s84",
+        "model": "s85",
+        "provider": {},
+        "response_format": "s87",
+        "segment": [],
+        "task": "s89",
+        "temperature": 138,
+        "text": "s8b",
+        "timestamp_granularity": [],
+        "usage": {},
+        "word": [],
+        "id": "STT00"
+      },
+      "STT01": {
+        "duration": 260,
+        "input_audio": {},
+        "language": "s106",
+        "model": "s107",
+        "provider": {},
+        "response_format": "s109",
+        "segment": [],
+        "task": "s10b",
+        "temperature": 268,
+        "text": "s10d",
+        "timestamp_granularity": [],
+        "usage": {},
+        "word": [],
+        "id": "STT01"
+      },
+      "STT02": {
+        "duration": 390,
+        "input_audio": {},
+        "language": "s188",
+        "model": "s189",
+        "provider": {},
+        "response_format": "s18b",
+        "segment": [],
+        "task": "s18d",
+        "temperature": 398,
+        "text": "s18f",
+        "timestamp_granularity": [],
+        "usage": {},
+        "word": [],
+        "id": "STT02"
+      }
+    }
+  },
+  "new": {
+    "stt": {
+      "stt_ref01": {
+        "duration": 520,
+        "input_audio": {},
+        "language": "s20a",
+        "model": "s20b",
+        "provider": {},
+        "response_format": "s20d",
+        "segment": [],
+        "task": "s20f",
+        "temperature": 528,
+        "text": "s211",
+        "timestamp_granularity": [],
+        "usage": {},
+        "word": []
+      }
+    }
+  }
+}

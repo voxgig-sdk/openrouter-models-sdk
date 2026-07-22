@@ -1,0 +1,9 @@
+# BasicCoinbaseFlow
+
+main: kit: flow: BasicCoinbaseFlow:
+{
+  entity: "coinbase",
+  kind: "basic",
+  name: "BasicCoinbaseFlow",
+  "key$": "BasicCoinbaseFlow"
+}

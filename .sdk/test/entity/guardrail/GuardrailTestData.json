@@ -1,0 +1,101 @@
+{
+  "existing": {
+    "guardrail": {
+      "GUARDRAIL00": {
+        "allowed_model": "sd2",
+        "allowed_provider": "sd3",
+        "content_filter": "sd4",
+        "content_filter_builtin": "sd5",
+        "created_at": "sd6",
+        "data": "sd7",
+        "description": "sd8",
+        "enforce_zdr": "sd9",
+        "enforce_zdr_anthropic": "sda",
+        "enforce_zdr_google": "sdb",
+        "enforce_zdr_openai": "sdc",
+        "enforce_zdr_other": "sdd",
+        "enforce_zdr_xai": "sde",
+        "id": "GUARDRAIL00",
+        "ignored_model": "se0",
+        "ignored_provider": "se1",
+        "limit_usd": "se2",
+        "name": "se3",
+        "reset_interval": "se4",
+        "updated_at": "se5",
+        "workspace_id": "WORKSPACE01"
+      },
+      "GUARDRAIL01": {
+        "allowed_model": "s1a4",
+        "allowed_provider": "s1a5",
+        "content_filter": "s1a6",
+        "content_filter_builtin": "s1a7",
+        "created_at": "s1a8",
+        "data": "s1a9",
+        "description": "s1aa",
+        "enforce_zdr": "s1ab",
+        "enforce_zdr_anthropic": "s1ac",
+        "enforce_zdr_google": "s1ad",
+        "enforce_zdr_openai": "s1ae",
+        "enforce_zdr_other": "s1af",
+        "enforce_zdr_xai": "s1b0",
+        "id": "GUARDRAIL01",
+        "ignored_model": "s1b2",
+        "ignored_provider": "s1b3",
+        "limit_usd": "s1b4",
+        "name": "s1b5",
+        "reset_interval": "s1b6",
+        "updated_at": "s1b7",
+        "workspace_id": "WORKSPACE01"
+      },
+      "GUARDRAIL02": {
+        "allowed_model": "s276",
+        "allowed_provider": "s277",
+        "content_filter": "s278",
+        "content_filter_builtin": "s279",
+        "created_at": "s27a",
+        "data": "s27b",
+        "description": "s27c",
+        "enforce_zdr": "s27d",
+        "enforce_zdr_anthropic": "s27e",
+        "enforce_zdr_google": "s27f",
+        "enforce_zdr_openai": "s280",
+        "enforce_zdr_other": "s281",
+        "enforce_zdr_xai": "s282",
+        "id": "GUARDRAIL02",
+        "ignored_model": "s284",
+        "ignored_provider": "s285",
+        "limit_usd": "s286",
+        "name": "s287",
+        "reset_interval": "s288",
+        "updated_at": "s289",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  },
+  "new": {
+    "guardrail": {
+      "guardrail_ref01": {
+        "allowed_model": "s348",
+        "allowed_provider": "s349",
+        "content_filter": "s34a",
+        "content_filter_builtin": "s34b",
+        "created_at": "s34c",
+        "data": "s34d",
+        "description": "s34e",
+        "enforce_zdr": "s34f",
+        "enforce_zdr_anthropic": "s350",
+        "enforce_zdr_google": "s351",
+        "enforce_zdr_openai": "s352",
+        "enforce_zdr_other": "s353",
+        "enforce_zdr_xai": "s354",
+        "ignored_model": "s356",
+        "ignored_provider": "s357",
+        "limit_usd": "s358",
+        "name": "s359",
+        "reset_interval": "s35a",
+        "updated_at": "s35b",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  }
+}

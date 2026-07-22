@@ -1,0 +1,28 @@
+{
+  "existing": {
+    "preset_version": {
+      "PRESET_VERSION00": {
+        "data": "sa",
+        "slug": "SLUG01",
+        "id": "PRESET_VERSION00"
+      },
+      "PRESET_VERSION01": {
+        "data": "s14",
+        "slug": "SLUG01",
+        "id": "PRESET_VERSION01"
+      },
+      "PRESET_VERSION02": {
+        "data": "s1e",
+        "slug": "SLUG01",
+        "id": "PRESET_VERSION02"
+      }
+    }
+  },
+  "new": {
+    "preset_version": {
+      "preset_version_ref01": {
+        "data": "s28"
+      }
+    }
+  }
+}

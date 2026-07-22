@@ -1,0 +1,22 @@
+# BasicImageModelsListFlow
+
+main: kit: flow: BasicImageModelsListFlow:
+{
+  entity: "image_models_list",
+  kind: "basic",
+  name: "BasicImageModelsListFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "image_models_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicImageModelsListFlow"
+}

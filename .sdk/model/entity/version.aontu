@@ -1,0 +1,18 @@
+# Entity: version
+
+main: kit: entity: version: {
+
+  alias: field: {}
+
+  name: "version"
+  relations: {
+    ancestors: [
+      [
+        "preset"
+      ]
+    ]
+  }
+
+
+
+}

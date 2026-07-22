@@ -1,0 +1,10 @@
+# Entity: create_guardrail
+
+main: kit: entity: create_guardrail: {
+
+  alias: field: {}
+
+  name: "create_guardrail"
+
+
+}

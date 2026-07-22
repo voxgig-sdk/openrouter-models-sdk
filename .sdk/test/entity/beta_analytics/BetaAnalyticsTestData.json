@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "beta_analytics": {
+      "BETA_ANALYTICS00": {
+        "classifier_dimension": {},
+        "classifier_filter": {},
+        "data": {},
+        "dimension": [],
+        "filter": [],
+        "granularity": "s73",
+        "group_limit": "s74",
+        "limit": "s75",
+        "metric": [],
+        "order_by": {},
+        "time_range": {},
+        "id": "BETA_ANALYTICS00"
+      },
+      "BETA_ANALYTICS01": {
+        "classifier_dimension": {},
+        "classifier_filter": {},
+        "data": {},
+        "dimension": [],
+        "filter": [],
+        "granularity": "se1",
+        "group_limit": "se2",
+        "limit": "se3",
+        "metric": [],
+        "order_by": {},
+        "time_range": {},
+        "id": "BETA_ANALYTICS01"
+      },
+      "BETA_ANALYTICS02": {
+        "classifier_dimension": {},
+        "classifier_filter": {},
+        "data": {},
+        "dimension": [],
+        "filter": [],
+        "granularity": "s14f",
+        "group_limit": "s150",
+        "limit": "s151",
+        "metric": [],
+        "order_by": {},
+        "time_range": {},
+        "id": "BETA_ANALYTICS02"
+      }
+    }
+  },
+  "new": {
+    "beta_analytics": {
+      "beta_analytics_ref01": {
+        "classifier_dimension": {},
+        "classifier_filter": {},
+        "data": {},
+        "dimension": [],
+        "filter": [],
+        "granularity": "s1bd",
+        "group_limit": "s1be",
+        "limit": "s1bf",
+        "metric": [],
+        "order_by": {},
+        "time_range": {}
+      }
+    }
+  }
+}

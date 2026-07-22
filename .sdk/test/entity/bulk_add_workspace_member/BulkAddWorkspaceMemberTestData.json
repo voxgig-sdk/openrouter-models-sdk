@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "bulk_add_workspace_member": {
+      "BULK_ADD_WORKSPACE_MEMBER00": {
+        "added_count": "s1e",
+        "data": [],
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01",
+        "id": "BULK_ADD_WORKSPACE_MEMBER00"
+      },
+      "BULK_ADD_WORKSPACE_MEMBER01": {
+        "added_count": "s3c",
+        "data": [],
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01",
+        "id": "BULK_ADD_WORKSPACE_MEMBER01"
+      },
+      "BULK_ADD_WORKSPACE_MEMBER02": {
+        "added_count": "s5a",
+        "data": [],
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01",
+        "id": "BULK_ADD_WORKSPACE_MEMBER02"
+      }
+    }
+  },
+  "new": {
+    "bulk_add_workspace_member": {
+      "bulk_add_workspace_member_ref01": {
+        "added_count": "s78",
+        "data": [],
+        "user_id": "USER01"
+      }
+    }
+  }
+}

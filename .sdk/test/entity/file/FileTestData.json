@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "file": {
+      "FILE00": {
+        "created_at": "s46",
+        "downloadable": false,
+        "filename": "s48",
+        "id": "FILE00",
+        "mime_type": "s4a",
+        "size_byte": "s4b",
+        "type": "s4c"
+      },
+      "FILE01": {
+        "created_at": "s8c",
+        "downloadable": false,
+        "filename": "s8e",
+        "id": "FILE01",
+        "mime_type": "s90",
+        "size_byte": "s91",
+        "type": "s92"
+      },
+      "FILE02": {
+        "created_at": "sd2",
+        "downloadable": false,
+        "filename": "sd4",
+        "id": "FILE02",
+        "mime_type": "sd6",
+        "size_byte": "sd7",
+        "type": "sd8"
+      }
+    }
+  },
+  "new": {
+    "file": {
+      "file_ref01": {
+        "created_at": "s118",
+        "downloadable": false,
+        "filename": "s11a",
+        "mime_type": "s11c",
+        "size_byte": "s11d",
+        "type": "s11e"
+      }
+    }
+  }
+}

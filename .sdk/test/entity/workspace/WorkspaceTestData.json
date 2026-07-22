@@ -1,0 +1,25 @@
+{
+  "existing": {
+    "workspace": {
+      "WORKSPACE00": {
+        "data": "sa",
+        "id": "WORKSPACE00"
+      },
+      "WORKSPACE01": {
+        "data": "s14",
+        "id": "WORKSPACE01"
+      },
+      "WORKSPACE02": {
+        "data": "s1e",
+        "id": "WORKSPACE02"
+      }
+    }
+  },
+  "new": {
+    "workspace": {
+      "workspace_ref01": {
+        "data": "s28"
+      }
+    }
+  }
+}

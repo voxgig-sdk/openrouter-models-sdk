@@ -1,0 +1,9 @@
+# BasicCountFlow
+
+main: kit: flow: BasicCountFlow:
+{
+  entity: "count",
+  kind: "basic",
+  name: "BasicCountFlow",
+  "key$": "BasicCountFlow"
+}

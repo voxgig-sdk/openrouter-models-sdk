@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "list_key_assignment": {
+      "LIST_KEY_ASSIGNMENT00": {
+        "assigned_by": "s46",
+        "created_at": "s47",
+        "guardrail_id": "GUARDRAIL01",
+        "id": "LIST_KEY_ASSIGNMENT00",
+        "key_hash": "s4a",
+        "key_label": "s4b",
+        "key_name": "s4c"
+      },
+      "LIST_KEY_ASSIGNMENT01": {
+        "assigned_by": "s8c",
+        "created_at": "s8d",
+        "guardrail_id": "GUARDRAIL01",
+        "id": "LIST_KEY_ASSIGNMENT01",
+        "key_hash": "s90",
+        "key_label": "s91",
+        "key_name": "s92"
+      },
+      "LIST_KEY_ASSIGNMENT02": {
+        "assigned_by": "sd2",
+        "created_at": "sd3",
+        "guardrail_id": "GUARDRAIL01",
+        "id": "LIST_KEY_ASSIGNMENT02",
+        "key_hash": "sd6",
+        "key_label": "sd7",
+        "key_name": "sd8"
+      }
+    }
+  },
+  "new": {
+    "list_key_assignment": {
+      "list_key_assignment_ref01": {
+        "assigned_by": "s118",
+        "created_at": "s119",
+        "guardrail_id": "GUARDRAIL01",
+        "key_hash": "s11c",
+        "key_label": "s11d",
+        "key_name": "s11e"
+      }
+    }
+  }
+}

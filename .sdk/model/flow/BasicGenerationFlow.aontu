@@ -1,0 +1,28 @@
+# BasicGenerationFlow
+
+main: kit: flow: BasicGenerationFlow:
+{
+  entity: "generation",
+  kind: "basic",
+  name: "BasicGenerationFlow",
+  step: [
+    {
+      input: {
+        ref: "generation_ref01",
+        srcdatavar: "generation_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-generation_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGenerationFlow"
+}

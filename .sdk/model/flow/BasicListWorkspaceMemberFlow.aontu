@@ -1,0 +1,26 @@
+# BasicListWorkspaceMemberFlow
+
+main: kit: flow: BasicListWorkspaceMemberFlow:
+{
+  entity: "list_workspace_member",
+  kind: "basic",
+  name: "BasicListWorkspaceMemberFlow",
+  step: [
+    {
+      match: {
+        workspace_id: "workspace01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "list_workspace_member_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicListWorkspaceMemberFlow"
+}

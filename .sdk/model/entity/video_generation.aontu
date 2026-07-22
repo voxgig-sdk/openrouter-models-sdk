@@ -1,0 +1,97 @@
+# Entity: video_generation
+
+main: kit: entity: video_generation: {
+
+  alias: field: {}
+
+  name: "video_generation"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "job-abc123"
+                kind: "param"
+                name: "id"
+                orig: "job_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 0
+                kind: "query"
+                name: "index"
+                orig: "index"
+                reqd: false
+                type: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/videos/{jobId}/content"
+          parts: [
+            "videos"
+            "{id}"
+            "content"
+          ]
+          rename: {
+            param: {
+              jobId: "id"
+            }
+          }
+          select: {
+            "$action": "content"
+            exist: [
+              "http_referer"
+              "id"
+              "index"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

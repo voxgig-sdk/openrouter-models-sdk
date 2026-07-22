@@ -1,0 +1,10 @@
+# Entity: list_guardrail
+
+main: kit: entity: list_guardrail: {
+
+  alias: field: {}
+
+  name: "list_guardrail"
+
+
+}

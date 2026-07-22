@@ -1,0 +1,130 @@
+# Entity: stt
+
+main: kit: entity: stt: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "duration"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "input_audio"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "language"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "model"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "provider"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "response_format"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "segment"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "task"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "temperature"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "text"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp_granularity"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "usage"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "word"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "stt"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/audio/transcriptions"
+          parts: [
+            "audio"
+            "transcriptions"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

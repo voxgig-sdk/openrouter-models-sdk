@@ -1,0 +1,9 @@
+# BasicListGuardrailFlow
+
+main: kit: flow: BasicListGuardrailFlow:
+{
+  entity: "list_guardrail",
+  kind: "basic",
+  name: "BasicListGuardrailFlow",
+  "key$": "BasicListGuardrailFlow"
+}

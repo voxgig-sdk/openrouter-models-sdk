@@ -1,0 +1,10 @@
+# Entity: create_byok_key
+
+main: kit: entity: create_byok_key: {
+
+  alias: field: {}
+
+  name: "create_byok_key"
+
+
+}

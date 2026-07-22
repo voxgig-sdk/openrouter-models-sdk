@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "video_generation": {
+      "VIDEO_GENERATION00": {
+        "id": "VIDEO_GENERATION00"
+      },
+      "VIDEO_GENERATION01": {
+        "id": "VIDEO_GENERATION01"
+      },
+      "VIDEO_GENERATION02": {
+        "id": "VIDEO_GENERATION02"
+      }
+    }
+  },
+  "new": {
+    "video_generation": {
+      "video_generation_ref01": {}
+    }
+  }
+}

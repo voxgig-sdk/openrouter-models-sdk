@@ -1,0 +1,10 @@
+# Entity: benchmark
+
+main: kit: entity: benchmark: {
+
+  alias: field: {}
+
+  name: "benchmark"
+
+
+}

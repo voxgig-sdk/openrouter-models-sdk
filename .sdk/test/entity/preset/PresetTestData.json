@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "preset": {
+      "PRESET00": {
+        "created_at": "s78",
+        "creator_user_id": "CREATOR_USER01",
+        "data": "s7a",
+        "description": "s7b",
+        "designated_version_id": "DESIGNATED_VERSION01",
+        "id": "PRESET00",
+        "name": "s7e",
+        "slug": "s7f",
+        "status": "s80",
+        "status_updated_at": "s81",
+        "updated_at": "s82",
+        "workspace_id": "WORKSPACE01"
+      },
+      "PRESET01": {
+        "created_at": "sf0",
+        "creator_user_id": "CREATOR_USER01",
+        "data": "sf2",
+        "description": "sf3",
+        "designated_version_id": "DESIGNATED_VERSION01",
+        "id": "PRESET01",
+        "name": "sf6",
+        "slug": "sf7",
+        "status": "sf8",
+        "status_updated_at": "sf9",
+        "updated_at": "sfa",
+        "workspace_id": "WORKSPACE01"
+      },
+      "PRESET02": {
+        "created_at": "s168",
+        "creator_user_id": "CREATOR_USER01",
+        "data": "s16a",
+        "description": "s16b",
+        "designated_version_id": "DESIGNATED_VERSION01",
+        "id": "PRESET02",
+        "name": "s16e",
+        "slug": "s16f",
+        "status": "s170",
+        "status_updated_at": "s171",
+        "updated_at": "s172",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  },
+  "new": {
+    "preset": {
+      "preset_ref01": {
+        "created_at": "s1e0",
+        "creator_user_id": "CREATOR_USER01",
+        "data": "s1e2",
+        "description": "s1e3",
+        "designated_version_id": "DESIGNATED_VERSION01",
+        "name": "s1e6",
+        "slug": "s1e7",
+        "status": "s1e8",
+        "status_updated_at": "s1e9",
+        "updated_at": "s1ea",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  }
+}

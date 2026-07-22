@@ -1,0 +1,10 @@
+# Entity: transcription
+
+main: kit: entity: transcription: {
+
+  alias: field: {}
+
+  name: "transcription"
+
+
+}

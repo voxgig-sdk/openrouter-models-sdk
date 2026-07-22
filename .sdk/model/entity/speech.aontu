@@ -1,0 +1,10 @@
+# Entity: speech
+
+main: kit: entity: speech: {
+
+  alias: field: {}
+
+  name: "speech"
+
+
+}

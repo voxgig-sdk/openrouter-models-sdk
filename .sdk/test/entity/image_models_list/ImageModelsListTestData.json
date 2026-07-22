@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "image_models_list": {
+      "IMAGE_MODELS_LIST00": {
+        "architecture": {},
+        "created": "s51",
+        "description": "s52",
+        "endpoint": "s53",
+        "id": "IMAGE_MODELS_LIST00",
+        "name": "s55",
+        "supported_parameter": {},
+        "supports_streaming": false
+      },
+      "IMAGE_MODELS_LIST01": {
+        "architecture": {},
+        "created": "sa1",
+        "description": "sa2",
+        "endpoint": "sa3",
+        "id": "IMAGE_MODELS_LIST01",
+        "name": "sa5",
+        "supported_parameter": {},
+        "supports_streaming": false
+      },
+      "IMAGE_MODELS_LIST02": {
+        "architecture": {},
+        "created": "sf1",
+        "description": "sf2",
+        "endpoint": "sf3",
+        "id": "IMAGE_MODELS_LIST02",
+        "name": "sf5",
+        "supported_parameter": {},
+        "supports_streaming": false
+      }
+    }
+  },
+  "new": {
+    "image_models_list": {
+      "image_models_list_ref01": {
+        "architecture": {},
+        "created": "s141",
+        "description": "s142",
+        "endpoint": "s143",
+        "name": "s145",
+        "supported_parameter": {},
+        "supports_streaming": false
+      }
+    }
+  }
+}

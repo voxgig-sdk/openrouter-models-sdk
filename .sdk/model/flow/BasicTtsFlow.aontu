@@ -1,0 +1,18 @@
+# BasicTtsFlow
+
+main: kit: flow: BasicTtsFlow:
+{
+  entity: "tts",
+  kind: "basic",
+  name: "BasicTtsFlow",
+  step: [
+    {
+      input: {
+        ref: "tts_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicTtsFlow"
+}

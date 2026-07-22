@@ -1,0 +1,9 @@
+# BasicSpeechFlow
+
+main: kit: flow: BasicSpeechFlow:
+{
+  entity: "speech",
+  kind: "basic",
+  name: "BasicSpeechFlow",
+  "key$": "BasicSpeechFlow"
+}

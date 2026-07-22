@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "bulk_assign_member": {
+      "BULK_ASSIGN_MEMBER00": {
+        "assigned_count": "s14",
+        "member_user_id": "MEMBER_USER01",
+        "guardrail_id": "GUARDRAIL01",
+        "id": "BULK_ASSIGN_MEMBER00"
+      },
+      "BULK_ASSIGN_MEMBER01": {
+        "assigned_count": "s28",
+        "member_user_id": "MEMBER_USER01",
+        "guardrail_id": "GUARDRAIL01",
+        "id": "BULK_ASSIGN_MEMBER01"
+      },
+      "BULK_ASSIGN_MEMBER02": {
+        "assigned_count": "s3c",
+        "member_user_id": "MEMBER_USER01",
+        "guardrail_id": "GUARDRAIL01",
+        "id": "BULK_ASSIGN_MEMBER02"
+      }
+    }
+  },
+  "new": {
+    "bulk_assign_member": {
+      "bulk_assign_member_ref01": {
+        "assigned_count": "s50",
+        "member_user_id": "MEMBER_USER01"
+      }
+    }
+  }
+}

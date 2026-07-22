@@ -1,0 +1,93 @@
+{
+  "existing": {
+    "models_list": {
+      "MODELS_LIST00": {
+        "architecture": {},
+        "benchmark": {},
+        "canonical_slug": "sc0",
+        "context_length": "sc1",
+        "created": "sc2",
+        "default_parameter": "sc3",
+        "description": "sc4",
+        "expiration_date": "sc5",
+        "hugging_face_id": "HUGGING_FACE01",
+        "id": "MODELS_LIST00",
+        "knowledge_cutoff": "sc8",
+        "link": {},
+        "name": "sca",
+        "per_request_limit": "scb",
+        "pricing": {},
+        "reasoning": {},
+        "supported_parameter": [],
+        "supported_voice": "scf",
+        "top_provider": {}
+      },
+      "MODELS_LIST01": {
+        "architecture": {},
+        "benchmark": {},
+        "canonical_slug": "s17e",
+        "context_length": "s17f",
+        "created": "s180",
+        "default_parameter": "s181",
+        "description": "s182",
+        "expiration_date": "s183",
+        "hugging_face_id": "HUGGING_FACE01",
+        "id": "MODELS_LIST01",
+        "knowledge_cutoff": "s186",
+        "link": {},
+        "name": "s188",
+        "per_request_limit": "s189",
+        "pricing": {},
+        "reasoning": {},
+        "supported_parameter": [],
+        "supported_voice": "s18d",
+        "top_provider": {}
+      },
+      "MODELS_LIST02": {
+        "architecture": {},
+        "benchmark": {},
+        "canonical_slug": "s23c",
+        "context_length": "s23d",
+        "created": "s23e",
+        "default_parameter": "s23f",
+        "description": "s240",
+        "expiration_date": "s241",
+        "hugging_face_id": "HUGGING_FACE01",
+        "id": "MODELS_LIST02",
+        "knowledge_cutoff": "s244",
+        "link": {},
+        "name": "s246",
+        "per_request_limit": "s247",
+        "pricing": {},
+        "reasoning": {},
+        "supported_parameter": [],
+        "supported_voice": "s24b",
+        "top_provider": {}
+      }
+    }
+  },
+  "new": {
+    "models_list": {
+      "models_list_ref01": {
+        "architecture": {},
+        "benchmark": {},
+        "canonical_slug": "s2fa",
+        "context_length": "s2fb",
+        "created": "s2fc",
+        "default_parameter": "s2fd",
+        "description": "s2fe",
+        "expiration_date": "s2ff",
+        "hugging_face_id": "HUGGING_FACE01",
+        "knowledge_cutoff": "s302",
+        "link": {},
+        "name": "s304",
+        "per_request_limit": "s305",
+        "pricing": {},
+        "reasoning": {},
+        "supported_parameter": [],
+        "supported_voice": "s309",
+        "top_provider": {}
+      }
+    }
+  }
+}

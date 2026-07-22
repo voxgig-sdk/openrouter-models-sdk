@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "create_observability_destination": {
+      "CREATE_OBSERVABILITY_DESTINATION00": {
+        "api_key_hash": "s5a",
+        "config": {},
+        "enabled": true,
+        "filter_rule": "s5d",
+        "name": "s5e",
+        "privacy_mode": false,
+        "sampling_rate": 96,
+        "type": "s61",
+        "workspace_id": "WORKSPACE01",
+        "id": "CREATE_OBSERVABILITY_DESTINATION00"
+      },
+      "CREATE_OBSERVABILITY_DESTINATION01": {
+        "api_key_hash": "sb4",
+        "config": {},
+        "enabled": true,
+        "filter_rule": "sb7",
+        "name": "sb8",
+        "privacy_mode": false,
+        "sampling_rate": 186,
+        "type": "sbb",
+        "workspace_id": "WORKSPACE01",
+        "id": "CREATE_OBSERVABILITY_DESTINATION01"
+      },
+      "CREATE_OBSERVABILITY_DESTINATION02": {
+        "api_key_hash": "s10e",
+        "config": {},
+        "enabled": true,
+        "filter_rule": "s111",
+        "name": "s112",
+        "privacy_mode": false,
+        "sampling_rate": 276,
+        "type": "s115",
+        "workspace_id": "WORKSPACE01",
+        "id": "CREATE_OBSERVABILITY_DESTINATION02"
+      }
+    }
+  },
+  "new": {
+    "create_observability_destination": {
+      "create_observability_destination_ref01": {
+        "api_key_hash": "s168",
+        "config": {},
+        "enabled": true,
+        "filter_rule": "s16b",
+        "name": "s16c",
+        "privacy_mode": false,
+        "sampling_rate": 366,
+        "type": "s16f",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  }
+}

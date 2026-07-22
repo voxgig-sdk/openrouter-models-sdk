@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "tts": {
+      "TTS00": {
+        "input": "s3c",
+        "model": "s3d",
+        "provider": {},
+        "response_format": "s3f",
+        "speed": 64,
+        "voice": "s41",
+        "id": "TTS00"
+      },
+      "TTS01": {
+        "input": "s78",
+        "model": "s79",
+        "provider": {},
+        "response_format": "s7b",
+        "speed": 124,
+        "voice": "s7d",
+        "id": "TTS01"
+      },
+      "TTS02": {
+        "input": "sb4",
+        "model": "sb5",
+        "provider": {},
+        "response_format": "sb7",
+        "speed": 184,
+        "voice": "sb9",
+        "id": "TTS02"
+      }
+    }
+  },
+  "new": {
+    "tts": {
+      "tts_ref01": {
+        "input": "sf0",
+        "model": "sf1",
+        "provider": {},
+        "response_format": "sf3",
+        "speed": 244,
+        "voice": "sf5"
+      }
+    }
+  }
+}

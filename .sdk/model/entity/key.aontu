@@ -1,0 +1,18 @@
+# Entity: key
+
+main: kit: entity: key: {
+
+  alias: field: {}
+
+  name: "key"
+  relations: {
+    ancestors: [
+      [
+        "guardrail"
+      ]
+    ]
+  }
+
+
+
+}

@@ -1,0 +1,189 @@
+<?php
+declare(strict_types=1);
+
+// Guardrail entity test
+
+require_once __DIR__ . '/../openroutermodels_sdk.php';
+require_once __DIR__ . '/Runner.php';
+
+use PHPUnit\Framework\TestCase;
+use Voxgig\Struct\Struct as Vs;
+
+class GuardrailEntityTest extends TestCase
+{
+    public function test_create_instance(): void
+    {
+        $testsdk = OpenrouterModelsSDK::test(null, null);
+        $ent = $testsdk->Guardrail(null);
+        $this->assertNotNull($ent);
+    }
+
+    // Feature #4: the entity stream(action, ...) method runs the op pipeline
+    // and yields result items. With the streaming feature active it yields the
+    // feature's incremental output; otherwise it falls back to the materialised
+    // list so stream always yields.
+    public function test_stream(): void
+    {
+        $seed = [
+            "entity" => [
+                "guardrail" => [
+                    "s1" => ["id" => "s1"],
+                    "s2" => ["id" => "s2"],
+                    "s3" => ["id" => "s3"],
+                ],
+            ],
+        ];
+
+        // Fallback: streaming inactive -> yields the materialised list items.
+        $base = OpenrouterModelsSDK::test($seed, null);
+        $seen = iterator_to_array($base->Guardrail(null)->stream("list", null, null), false);
+        $this->assertCount(3, $seen);
+
+        // Inbound: streaming active -> yields each item from the feature.
+        $cfg = OpenrouterModelsConfig::make_config();
+        if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
+            $sdk = OpenrouterModelsSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
+            $got = [];
+            foreach ($sdk->Guardrail(null)->stream("list", null, null) as $item) {
+                if (is_array($item) && array_is_list($item)) {
+                    foreach ($item as $sub) {
+                        $got[] = $sub;
+                    }
+                } else {
+                    $got[] = $item;
+                }
+            }
+            $this->assertCount(3, $got);
+        }
+    }
+
+    public function test_basic_flow(): void
+    {
+        $setup = guardrail_basic_setup(null);
+        // Per-op sdk-test-control.json skip.
+        $_live = !empty($setup["live"]);
+        foreach (["create", "list", "load", "remove"] as $_op) {
+            [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "guardrail." . $_op, $_live ? "live" : "unit");
+            if ($_shouldSkip) {
+                $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
+                return;
+            }
+        }
+        // The basic flow consumes synthetic IDs from the fixture. In live mode
+        // without an *_ENTID env override, those IDs hit the live API and 4xx.
+        if (!empty($setup["synthetic_only"])) {
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set OPENROUTERMODELS_TEST_GUARDRAIL_ENTID JSON to run live");
+            return;
+        }
+        $client = $setup["client"];
+
+        // CREATE
+        $guardrail_ref01_ent = $client->Guardrail(null);
+        $guardrail_ref01_data = Helpers::to_map(Vs::getprop(
+            Vs::getpath($setup["data"], "new.guardrail"), "guardrail_ref01"));
+
+        $guardrail_ref01_data_result = $guardrail_ref01_ent->create($guardrail_ref01_data, null);
+        $guardrail_ref01_data = Helpers::to_map($guardrail_ref01_data_result);
+        $this->assertNotNull($guardrail_ref01_data);
+        $this->assertNotNull($guardrail_ref01_data["id"]);
+
+        // LIST
+        $guardrail_ref01_match = [];
+
+        $guardrail_ref01_list_result = $guardrail_ref01_ent->list($guardrail_ref01_match, null);
+        $this->assertIsArray($guardrail_ref01_list_result);
+
+        $found_item = sdk_select(
+            Runner::entity_list_to_data($guardrail_ref01_list_result),
+            ["id" => $guardrail_ref01_data["id"]]);
+        $this->assertNotEmpty($found_item);
+
+        // LOAD
+        $guardrail_ref01_match_dt0 = [
+            "id" => $guardrail_ref01_data["id"],
+        ];
+        $guardrail_ref01_data_dt0_loaded = $guardrail_ref01_ent->load($guardrail_ref01_match_dt0, null);
+        $guardrail_ref01_data_dt0_load_result = Helpers::to_map($guardrail_ref01_data_dt0_loaded);
+        $this->assertNotNull($guardrail_ref01_data_dt0_load_result);
+        $this->assertEquals($guardrail_ref01_data_dt0_load_result["id"], $guardrail_ref01_data["id"]);
+
+        // REMOVE
+        $guardrail_ref01_match_rm0 = [
+            "id" => $guardrail_ref01_data["id"],
+        ];
+        $guardrail_ref01_ent->remove($guardrail_ref01_match_rm0, null);
+
+        // LIST
+        $guardrail_ref01_match_rt0 = [];
+
+        $guardrail_ref01_list_rt0_result = $guardrail_ref01_ent->list($guardrail_ref01_match_rt0, null);
+        $this->assertIsArray($guardrail_ref01_list_rt0_result);
+
+        $not_found_item = sdk_select(
+            Runner::entity_list_to_data($guardrail_ref01_list_rt0_result),
+            ["id" => $guardrail_ref01_data["id"]]);
+        $this->assertEmpty($not_found_item);
+
+    }
+}
+
+function guardrail_basic_setup($extra)
+{
+    Runner::load_env_local();
+
+    $entity_data_file = __DIR__ . '/../../.sdk/test/entity/guardrail/GuardrailTestData.json';
+    $entity_data_source = file_get_contents($entity_data_file);
+    $entity_data = json_decode($entity_data_source, true);
+
+    $options = [];
+    $options["entity"] = $entity_data["existing"];
+
+    $client = OpenrouterModelsSDK::test($options, $extra);
+
+    // Generate idmap.
+    $idmap = [];
+    foreach (["guardrail01", "guardrail02", "guardrail03"] as $k) {
+        $idmap[$k] = strtoupper($k);
+    }
+
+    // Detect ENTID env override before envOverride consumes it. When live
+    // mode is on without a real override, the basic test runs against synthetic
+    // IDs from the fixture and 4xx's. Surface this so the test can skip.
+    $entid_env_raw = getenv("OPENROUTERMODELS_TEST_GUARDRAIL_ENTID");
+    $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
+
+    $env = Runner::env_override([
+        "OPENROUTERMODELS_TEST_GUARDRAIL_ENTID" => $idmap,
+        "OPENROUTERMODELS_TEST_LIVE" => "FALSE",
+        "OPENROUTERMODELS_TEST_EXPLAIN" => "FALSE",
+        "OPENROUTERMODELS_APIKEY" => "NONE",
+    ]);
+
+    $idmap_resolved = Helpers::to_map(
+        $env["OPENROUTERMODELS_TEST_GUARDRAIL_ENTID"]);
+    if ($idmap_resolved === null) {
+        $idmap_resolved = Helpers::to_map($idmap);
+    }
+
+    if ($env["OPENROUTERMODELS_TEST_LIVE"] === "TRUE") {
+        $merged_opts = Vs::merge([
+            [
+                "apikey" => $env["OPENROUTERMODELS_APIKEY"],
+            ],
+            $extra ?? [],
+        ]);
+        $client = new OpenrouterModelsSDK(Helpers::to_map($merged_opts));
+    }
+
+    $live = $env["OPENROUTERMODELS_TEST_LIVE"] === "TRUE";
+    return [
+        "client" => $client,
+        "data" => $entity_data,
+        "idmap" => $idmap_resolved,
+        "env" => $env,
+        "explain" => $env["OPENROUTERMODELS_TEST_EXPLAIN"] === "TRUE",
+        "live" => $live,
+        "synthetic_only" => $live && !$idmap_overridden,
+        "now" => (int)(microtime(true) * 1000),
+    ];
+}

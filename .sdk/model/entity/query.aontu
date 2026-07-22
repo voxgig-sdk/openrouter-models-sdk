@@ -1,0 +1,10 @@
+# Entity: query
+
+main: kit: entity: query: {
+
+  alias: field: {}
+
+  name: "query"
+
+
+}

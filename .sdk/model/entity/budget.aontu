@@ -1,0 +1,18 @@
+# Entity: budget
+
+main: kit: entity: budget: {
+
+  alias: field: {}
+
+  name: "budget"
+  relations: {
+    ancestors: [
+      [
+        "workspace"
+      ]
+    ]
+  }
+
+
+
+}

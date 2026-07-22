@@ -1,0 +1,142 @@
+# Entity: image_model_endpoint
+
+main: kit: entity: image_model_endpoint: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "allowed_passthrough_parameter"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "pricing"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "provider_name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "provider_slug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "provider_tag"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "supported_parameter"
+      req: true
+      type: "`$ANY`"
+    }
+    {
+      name: "supports_streaming"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "image_model_endpoint"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "bytedance-seed"
+                kind: "param"
+                name: "model_id"
+                orig: "author"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "seedream-4.5"
+                kind: "param"
+                name: "slug"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/images/models/{author}/{slug}/endpoints"
+          parts: [
+            "images"
+            "models"
+            "{model_id}"
+            "{slug}"
+            "endpoints"
+          ]
+          rename: {
+            param: {
+              author: "model_id"
+            }
+          }
+          select: {
+            exist: [
+              "http_referer"
+              "model_id"
+              "slug"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "model"
+      ]
+    ]
+  }
+
+
+
+}

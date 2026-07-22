@@ -1,0 +1,28 @@
+# BasicGenerationContentFlow
+
+main: kit: flow: BasicGenerationContentFlow:
+{
+  entity: "generation_content",
+  kind: "basic",
+  name: "BasicGenerationContentFlow",
+  step: [
+    {
+      input: {
+        ref: "generation_content_ref01",
+        srcdatavar: "generation_content_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-generation_content_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGenerationContentFlow"
+}

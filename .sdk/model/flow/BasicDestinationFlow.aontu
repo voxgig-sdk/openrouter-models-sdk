@@ -1,0 +1,9 @@
+# BasicDestinationFlow
+
+main: kit: flow: BasicDestinationFlow:
+{
+  entity: "destination",
+  kind: "basic",
+  name: "BasicDestinationFlow",
+  "key$": "BasicDestinationFlow"
+}

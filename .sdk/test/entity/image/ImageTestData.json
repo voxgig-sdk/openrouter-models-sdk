@@ -1,0 +1,89 @@
+{
+  "existing": {
+    "image": {
+      "IMAGE00": {
+        "aspect_ratio": "saa",
+        "background": "sab",
+        "created": "sac",
+        "data": [],
+        "input_reference": [],
+        "model": "saf",
+        "n": "sb0",
+        "output_compression": "sb1",
+        "output_format": "sb2",
+        "prompt": "sb3",
+        "provider": {},
+        "quality": "sb5",
+        "resolution": "sb6",
+        "seed": "sb7",
+        "size": "sb8",
+        "stream": false,
+        "usage": {},
+        "id": "IMAGE00"
+      },
+      "IMAGE01": {
+        "aspect_ratio": "s154",
+        "background": "s155",
+        "created": "s156",
+        "data": [],
+        "input_reference": [],
+        "model": "s159",
+        "n": "s15a",
+        "output_compression": "s15b",
+        "output_format": "s15c",
+        "prompt": "s15d",
+        "provider": {},
+        "quality": "s15f",
+        "resolution": "s160",
+        "seed": "s161",
+        "size": "s162",
+        "stream": false,
+        "usage": {},
+        "id": "IMAGE01"
+      },
+      "IMAGE02": {
+        "aspect_ratio": "s1fe",
+        "background": "s1ff",
+        "created": "s200",
+        "data": [],
+        "input_reference": [],
+        "model": "s203",
+        "n": "s204",
+        "output_compression": "s205",
+        "output_format": "s206",
+        "prompt": "s207",
+        "provider": {},
+        "quality": "s209",
+        "resolution": "s20a",
+        "seed": "s20b",
+        "size": "s20c",
+        "stream": false,
+        "usage": {},
+        "id": "IMAGE02"
+      }
+    }
+  },
+  "new": {
+    "image": {
+      "image_ref01": {
+        "aspect_ratio": "s2a8",
+        "background": "s2a9",
+        "created": "s2aa",
+        "data": [],
+        "input_reference": [],
+        "model": "s2ad",
+        "n": "s2ae",
+        "output_compression": "s2af",
+        "output_format": "s2b0",
+        "prompt": "s2b1",
+        "provider": {},
+        "quality": "s2b3",
+        "resolution": "s2b4",
+        "seed": "s2b5",
+        "size": "s2b6",
+        "stream": false,
+        "usage": {}
+      }
+    }
+  }
+}

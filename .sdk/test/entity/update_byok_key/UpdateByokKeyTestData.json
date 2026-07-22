@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "update_byok_key": {
+      "UPDATE_BYOK_KEY00": {
+        "allowed_model": "s46",
+        "allowed_user_id": "ALLOWED_USER01",
+        "data": "s48",
+        "disabled": false,
+        "is_fallback": true,
+        "key": "s4b",
+        "name": "s4c",
+        "id": "UPDATE_BYOK_KEY00"
+      },
+      "UPDATE_BYOK_KEY01": {
+        "allowed_model": "s8c",
+        "allowed_user_id": "ALLOWED_USER01",
+        "data": "s8e",
+        "disabled": false,
+        "is_fallback": true,
+        "key": "s91",
+        "name": "s92",
+        "id": "UPDATE_BYOK_KEY01"
+      },
+      "UPDATE_BYOK_KEY02": {
+        "allowed_model": "sd2",
+        "allowed_user_id": "ALLOWED_USER01",
+        "data": "sd4",
+        "disabled": false,
+        "is_fallback": true,
+        "key": "sd7",
+        "name": "sd8",
+        "id": "UPDATE_BYOK_KEY02"
+      }
+    }
+  },
+  "new": {
+    "update_byok_key": {
+      "update_byok_key_ref01": {
+        "allowed_model": "s118",
+        "allowed_user_id": "ALLOWED_USER01",
+        "data": "s11a",
+        "disabled": false,
+        "is_fallback": true,
+        "key": "s11d",
+        "name": "s11e"
+      }
+    }
+  }
+}

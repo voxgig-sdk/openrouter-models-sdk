@@ -1,0 +1,81 @@
+{
+  "existing": {
+    "o_auth": {
+      "O_AUTH00": {
+        "callback_url": "s96",
+        "code": "s97",
+        "code_challenge": "s98",
+        "code_challenge_method": "s99",
+        "code_verifier": "s9a",
+        "data": {},
+        "expires_at": "s9c",
+        "key": "s9d",
+        "key_label": "s9e",
+        "limit": 159,
+        "spawn_agent": "sa0",
+        "spawn_cloud": "sa1",
+        "usage_limit_type": "sa2",
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01",
+        "id": "O_AUTH00"
+      },
+      "O_AUTH01": {
+        "callback_url": "s12c",
+        "code": "s12d",
+        "code_challenge": "s12e",
+        "code_challenge_method": "s12f",
+        "code_verifier": "s130",
+        "data": {},
+        "expires_at": "s132",
+        "key": "s133",
+        "key_label": "s134",
+        "limit": 309,
+        "spawn_agent": "s136",
+        "spawn_cloud": "s137",
+        "usage_limit_type": "s138",
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01",
+        "id": "O_AUTH01"
+      },
+      "O_AUTH02": {
+        "callback_url": "s1c2",
+        "code": "s1c3",
+        "code_challenge": "s1c4",
+        "code_challenge_method": "s1c5",
+        "code_verifier": "s1c6",
+        "data": {},
+        "expires_at": "s1c8",
+        "key": "s1c9",
+        "key_label": "s1ca",
+        "limit": 459,
+        "spawn_agent": "s1cc",
+        "spawn_cloud": "s1cd",
+        "usage_limit_type": "s1ce",
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01",
+        "id": "O_AUTH02"
+      }
+    }
+  },
+  "new": {
+    "o_auth": {
+      "o_auth_ref01": {
+        "callback_url": "s258",
+        "code": "s259",
+        "code_challenge": "s25a",
+        "code_challenge_method": "s25b",
+        "code_verifier": "s25c",
+        "data": {},
+        "expires_at": "s25e",
+        "key": "s25f",
+        "key_label": "s260",
+        "limit": 609,
+        "spawn_agent": "s262",
+        "spawn_cloud": "s263",
+        "usage_limit_type": "s264",
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+# BasicVideoModelsListFlow
+
+main: kit: flow: BasicVideoModelsListFlow:
+{
+  entity: "video_models_list",
+  kind: "basic",
+  name: "BasicVideoModelsListFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "video_models_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicVideoModelsListFlow"
+}

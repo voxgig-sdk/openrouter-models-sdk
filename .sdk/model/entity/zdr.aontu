@@ -1,0 +1,10 @@
+# Entity: zdr
+
+main: kit: entity: zdr: {
+
+  alias: field: {}
+
+  name: "zdr"
+
+
+}

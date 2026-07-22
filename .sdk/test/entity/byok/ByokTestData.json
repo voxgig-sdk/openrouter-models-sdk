@@ -1,0 +1,73 @@
+{
+  "existing": {
+    "byok": {
+      "BYOK00": {
+        "allowed_api_key_hash": "s8c",
+        "allowed_model": "s8d",
+        "allowed_user_id": "ALLOWED_USER01",
+        "created_at": "s8f",
+        "data": "s90",
+        "disabled": false,
+        "id": "BYOK00",
+        "is_fallback": false,
+        "key": "s94",
+        "label": "s95",
+        "name": "s96",
+        "provider": "s97",
+        "sort_order": "s98",
+        "workspace_id": "WORKSPACE01"
+      },
+      "BYOK01": {
+        "allowed_api_key_hash": "s118",
+        "allowed_model": "s119",
+        "allowed_user_id": "ALLOWED_USER01",
+        "created_at": "s11b",
+        "data": "s11c",
+        "disabled": false,
+        "id": "BYOK01",
+        "is_fallback": false,
+        "key": "s120",
+        "label": "s121",
+        "name": "s122",
+        "provider": "s123",
+        "sort_order": "s124",
+        "workspace_id": "WORKSPACE01"
+      },
+      "BYOK02": {
+        "allowed_api_key_hash": "s1a4",
+        "allowed_model": "s1a5",
+        "allowed_user_id": "ALLOWED_USER01",
+        "created_at": "s1a7",
+        "data": "s1a8",
+        "disabled": false,
+        "id": "BYOK02",
+        "is_fallback": false,
+        "key": "s1ac",
+        "label": "s1ad",
+        "name": "s1ae",
+        "provider": "s1af",
+        "sort_order": "s1b0",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  },
+  "new": {
+    "byok": {
+      "byok_ref01": {
+        "allowed_api_key_hash": "s230",
+        "allowed_model": "s231",
+        "allowed_user_id": "ALLOWED_USER01",
+        "created_at": "s233",
+        "data": "s234",
+        "disabled": false,
+        "is_fallback": false,
+        "key": "s238",
+        "label": "s239",
+        "name": "s23a",
+        "provider": "s23b",
+        "sort_order": "s23c",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  }
+}

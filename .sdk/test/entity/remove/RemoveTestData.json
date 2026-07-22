@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "remove": {
+      "REMOVE00": {},
+      "REMOVE01": {},
+      "REMOVE02": {}
+    }
+  },
+  "new": {
+    "remove": {
+      "remove_ref01": {}
+    }
+  }
+}
