@@ -26,8 +26,8 @@ import {
 describe('ByokEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -62,14 +62,14 @@ describe('ByokEntity', async () => {
     const byok_ref01_ent = client.Byok()
     let byok_ref01_data = setup.data.new.byok['byok_ref01']
 
-    byok_ref01_data = await byok_ref01_ent.create(byok_ref01_data)
+    byok_ref01_data = (await byok_ref01_ent.create(byok_ref01_data)).data()
     assert(null != byok_ref01_data.id)
 
 
     // LIST
     const byok_ref01_match: any = {}
 
-    const byok_ref01_list = await byok_ref01_ent.list(byok_ref01_match)
+    const byok_ref01_list = (await byok_ref01_ent.list(byok_ref01_match)).map((e: any) => e.data())
 
     assert(!isempty(select(byok_ref01_list, { id: byok_ref01_data.id })))
 
@@ -77,7 +77,7 @@ describe('ByokEntity', async () => {
     // LOAD
     const byok_ref01_match_dt0: any = {}
     byok_ref01_match_dt0.id = byok_ref01_data.id
-    const byok_ref01_data_dt0 = await byok_ref01_ent.load(byok_ref01_match_dt0)
+    const byok_ref01_data_dt0 = (await byok_ref01_ent.load(byok_ref01_match_dt0)).data()
     assert(byok_ref01_data_dt0.id === byok_ref01_data.id)
 
 
@@ -89,7 +89,7 @@ describe('ByokEntity', async () => {
     // LIST
     const byok_ref01_match_rt0: any = {}
 
-    const byok_ref01_list_rt0 = await byok_ref01_ent.list(byok_ref01_match_rt0)
+    const byok_ref01_list_rt0 = (await byok_ref01_ent.list(byok_ref01_match_rt0)).map((e: any) => e.data())
 
     assert(isempty(select(byok_ref01_list_rt0, { id: byok_ref01_data.id })))
 

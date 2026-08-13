@@ -7,7 +7,7 @@
         "filename": "s48",
         "id": "FILE00",
         "mime_type": "s4a",
-        "size_byte": "s4b",
+        "size_bytes": "s4b",
         "type": "s4c"
       },
       "FILE01": {
@@ -16,7 +16,7 @@
         "filename": "s8e",
         "id": "FILE01",
         "mime_type": "s90",
-        "size_byte": "s91",
+        "size_bytes": "s91",
         "type": "s92"
       },
       "FILE02": {
@@ -25,7 +25,7 @@
         "filename": "sd4",
         "id": "FILE02",
         "mime_type": "sd6",
-        "size_byte": "sd7",
+        "size_bytes": "sd7",
         "type": "sd8"
       }
     }
@@ -37,7 +37,7 @@
         "downloadable": false,
         "filename": "s11a",
         "mime_type": "s11c",
-        "size_byte": "s11d",
+        "size_bytes": "s11d",
         "type": "s11e"
       }
     }

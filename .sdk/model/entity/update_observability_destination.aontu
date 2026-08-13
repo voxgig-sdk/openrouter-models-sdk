@@ -6,7 +6,7 @@ main: kit: entity: update_observability_destination: {
 
   fields: [
     {
-      name: "api_key_hash"
+      name: "api_key_hashes"
       req: false
       type: [
         "`$ONE`"
@@ -22,17 +22,12 @@ main: kit: entity: update_observability_destination: {
       type: "`$OBJECT`"
     }
     {
-      name: "data"
-      req: true
-      type: "`$ANY`"
-    }
-    {
       name: "enabled"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "filter_rule"
+      name: "filter_rules"
       req: false
       type: "`$ANY`"
     }
@@ -111,7 +106,7 @@ main: kit: entity: update_observability_destination: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

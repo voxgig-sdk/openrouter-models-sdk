@@ -16,7 +16,7 @@ main: kit: entity: rankings_daily: {
       type: "`$STRING`"
     }
     {
-      name: "total_token"
+      name: "total_tokens"
       req: true
       type: "`$STRING`"
     }

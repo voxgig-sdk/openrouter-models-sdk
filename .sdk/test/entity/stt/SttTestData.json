@@ -8,13 +8,13 @@
         "model": "s85",
         "provider": {},
         "response_format": "s87",
-        "segment": [],
+        "segments": [],
         "task": "s89",
         "temperature": 138,
         "text": "s8b",
-        "timestamp_granularity": [],
+        "timestamp_granularities": [],
         "usage": {},
-        "word": [],
+        "words": [],
         "id": "STT00"
       },
       "STT01": {
@@ -24,13 +24,13 @@
         "model": "s107",
         "provider": {},
         "response_format": "s109",
-        "segment": [],
+        "segments": [],
         "task": "s10b",
         "temperature": 268,
         "text": "s10d",
-        "timestamp_granularity": [],
+        "timestamp_granularities": [],
         "usage": {},
-        "word": [],
+        "words": [],
         "id": "STT01"
       },
       "STT02": {
@@ -40,13 +40,13 @@
         "model": "s189",
         "provider": {},
         "response_format": "s18b",
-        "segment": [],
+        "segments": [],
         "task": "s18d",
         "temperature": 398,
         "text": "s18f",
-        "timestamp_granularity": [],
+        "timestamp_granularities": [],
         "usage": {},
-        "word": [],
+        "words": [],
         "id": "STT02"
       }
     }
@@ -60,13 +60,13 @@
         "model": "s20b",
         "provider": {},
         "response_format": "s20d",
-        "segment": [],
+        "segments": [],
         "task": "s20f",
         "temperature": 528,
         "text": "s211",
-        "timestamp_granularity": [],
+        "timestamp_granularities": [],
         "usage": {},
-        "word": []
+        "words": []
       }
     }
   }

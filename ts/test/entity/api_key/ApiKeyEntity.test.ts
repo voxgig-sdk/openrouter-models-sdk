@@ -26,8 +26,8 @@ import {
 describe('ApiKeyEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -62,16 +62,14 @@ describe('ApiKeyEntity', async () => {
     const api_key_ref01_ent = client.ApiKey()
     let api_key_ref01_data = setup.data.new.api_key['api_key_ref01']
 
-    api_key_ref01_data = await api_key_ref01_ent.create(api_key_ref01_data)
+    api_key_ref01_data = (await api_key_ref01_ent.create(api_key_ref01_data)).data()
     assert(null != api_key_ref01_data)
 
 
     // LIST
     const api_key_ref01_match: any = {}
 
-    const api_key_ref01_list = await api_key_ref01_ent.list(api_key_ref01_match)
-
-    assert(!isempty(select(api_key_ref01_list, { id: api_key_ref01_data.id })))
+    const api_key_ref01_list = (await api_key_ref01_ent.list(api_key_ref01_match)).map((e: any) => e.data())
 
 
     // UPDATE
@@ -80,24 +78,18 @@ describe('ApiKeyEntity', async () => {
     const api_key_ref01_markdef_up0 = { name: 'created_at', value: 'Mark01-api_key_ref01_' + setup.now }
     ;(api_key_ref01_data_up0 as any)[api_key_ref01_markdef_up0.name] = api_key_ref01_markdef_up0.value
 
-    const api_key_ref01_resdata_up0 = await api_key_ref01_ent.update(api_key_ref01_data_up0)
+    const api_key_ref01_resdata_up0 = (await api_key_ref01_ent.update(api_key_ref01_data_up0)).data()
     assert(null != api_key_ref01_resdata_up0)
 
     assert((api_key_ref01_resdata_up0 as any)[api_key_ref01_markdef_up0.name] === api_key_ref01_markdef_up0.value)
 
 
 
-    // REMOVE
-    const api_key_ref01_match_rm0: any = { id: api_key_ref01_data.id }
-    await api_key_ref01_ent.remove(api_key_ref01_match_rm0)
-  
 
     // LIST
     const api_key_ref01_match_rt0: any = {}
 
-    const api_key_ref01_list_rt0 = await api_key_ref01_ent.list(api_key_ref01_match_rt0)
-
-    assert(isempty(select(api_key_ref01_list_rt0, { id: api_key_ref01_data.id })))
+    const api_key_ref01_list_rt0 = (await api_key_ref01_ent.list(api_key_ref01_match_rt0)).map((e: any) => e.data())
 
 
   })

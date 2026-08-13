@@ -6,7 +6,12 @@ main: kit: entity: generation_content: {
 
   fields: [
     {
-      name: "data"
+      name: "input"
+      req: true
+      type: "`$ANY`"
+    }
+    {
+      name: "output"
       req: true
       type: "`$OBJECT`"
     }
@@ -69,7 +74,7 @@ main: kit: entity: generation_content: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

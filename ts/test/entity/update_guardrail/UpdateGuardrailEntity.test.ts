@@ -26,8 +26,8 @@ import {
 describe('UpdateGuardrailEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -66,7 +66,7 @@ describe('UpdateGuardrailEntity', async () => {
     const update_guardrail_ref01_markdef_up0 = { name: 'name', value: 'Mark01-update_guardrail_ref01_' + setup.now }
     ;(update_guardrail_ref01_data_up0 as any)[update_guardrail_ref01_markdef_up0.name] = update_guardrail_ref01_markdef_up0.value
 
-    const update_guardrail_ref01_resdata_up0 = await update_guardrail_ref01_ent.update(update_guardrail_ref01_data_up0)
+    const update_guardrail_ref01_resdata_up0 = (await update_guardrail_ref01_ent.update(update_guardrail_ref01_data_up0)).data()
     assert(null != update_guardrail_ref01_resdata_up0)
 
     assert((update_guardrail_ref01_resdata_up0 as any)[update_guardrail_ref01_markdef_up0.name] === update_guardrail_ref01_markdef_up0.value)

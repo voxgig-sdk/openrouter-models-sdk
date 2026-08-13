@@ -26,8 +26,8 @@ import {
 describe('ListPresetVersionEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -64,7 +64,7 @@ describe('ListPresetVersionEntity', async () => {
     const list_preset_version_ref01_match: any = {}
     list_preset_version_ref01_match['slug'] = setup.idmap['slug01']
 
-    const list_preset_version_ref01_list = await list_preset_version_ref01_ent.list(list_preset_version_ref01_match)
+    const list_preset_version_ref01_list = (await list_preset_version_ref01_ent.list(list_preset_version_ref01_match)).map((e: any) => e.data())
 
 
   })

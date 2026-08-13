@@ -19,11 +19,15 @@ import {
 describe('EndpointDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new OpenrouterModelsSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -118,19 +122,19 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'OPENROUTERMODELS_TEST_ENDPOINT_ENTID': {},
-    'OPENROUTERMODELS_TEST_LIVE': 'FALSE',
-    'OPENROUTERMODELS_APIKEY': 'NONE',
+    'OPENROUTER_MODELS_TEST_ENDPOINT_ENTID': {},
+    'OPENROUTER_MODELS_TEST_LIVE': 'FALSE',
+    'OPENROUTER_MODELS_APIKEY': 'NONE',
   })
 
-  const live = 'TRUE' === env.OPENROUTERMODELS_TEST_LIVE
+  const live = 'TRUE' === env.OPENROUTER_MODELS_TEST_LIVE
 
   if (live) {
     const client = new OpenrouterModelsSDK({
-      apikey: env.OPENROUTERMODELS_APIKEY,
+      apikey: env.OPENROUTER_MODELS_APIKEY,
     })
 
-    let idmap: any = env['OPENROUTERMODELS_TEST_ENDPOINT_ENTID']
+    let idmap: any = env['OPENROUTER_MODELS_TEST_ENDPOINT_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

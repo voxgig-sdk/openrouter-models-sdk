@@ -1138,15 +1138,15 @@ const activity = client.Activity()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `byok_usage_inference` | `number` | Yes |  |
-| `completion_token` | `number` | Yes |  |
+| `completion_tokens` | `number` | Yes |  |
 | `date` | `string` | Yes |  |
 | `endpoint_id` | `string` | Yes |  |
 | `model` | `string` | Yes |  |
 | `model_permaslug` | `string` | Yes |  |
-| `prompt_token` | `number` | Yes |  |
+| `prompt_tokens` | `number` | Yes |  |
 | `provider_name` | `string` | Yes |  |
-| `reasoning_token` | `number` | Yes |  |
-| `request` | `number` | Yes |  |
+| `reasoning_tokens` | `number` | Yes |  |
+| `requests` | `number` | Yes |  |
 | `usage` | `number` | Yes |  |
 
 ### Operations
@@ -1236,23 +1236,26 @@ const api_key = client.ApiKey()
 | `byok_usage_monthly` | `number` | Yes |  |
 | `byok_usage_weekly` | `number` | Yes |  |
 | `created_at` | `string` | Yes |  |
-| `creator_user_id` | `any` | No |  |
-| `data` | `Record<string, any>` | Yes |  |
-| `disabled` | `boolean` | No |  |
-| `expires_at` | `any` | No |  |
+| `creator_user_id` | `string | null` | Yes |  |
+| `disabled` | `boolean` | Yes |  |
+| `expires_at` | `string | null` | No |  |
 | `hash` | `string` | Yes |  |
-| `include_byok_in_limit` | `boolean` | No |  |
+| `include_byok_in_limit` | `boolean` | Yes |  |
+| `is_free_tier` | `boolean` | Yes |  |
+| `is_management_key` | `boolean` | Yes |  |
+| `is_provisioning_key` | `boolean` | Yes |  |
 | `label` | `string` | Yes |  |
-| `limit` | `any` | No |  |
-| `limit_remaining` | `any` | Yes |  |
-| `limit_reset` | `any` | No |  |
+| `limit` | `number | null` | Yes |  |
+| `limit_remaining` | `number | null` | Yes |  |
+| `limit_reset` | `string | null` | Yes |  |
 | `name` | `string` | Yes |  |
-| `updated_at` | `any` | Yes |  |
+| `rate_limit` | `Record<string, any>` | Yes |  |
+| `updated_at` | `string | null` | Yes |  |
 | `usage` | `number` | Yes |  |
 | `usage_daily` | `number` | Yes |  |
 | `usage_monthly` | `number` | Yes |  |
 | `usage_weekly` | `number` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `workspace_id` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
@@ -1263,23 +1266,26 @@ const api_key = client.ApiKey()
 | `byok_usage_monthly` | - | - | - | - | - |
 | `byok_usage_weekly` | - | - | - | - | - |
 | `created_at` | - | - | - | - | - |
-| `creator_user_id` | - | Yes | - | - | - |
-| `data` | - | - | - | - | - |
-| `disabled` | - | Yes | - | - | - |
+| `creator_user_id` | - | - | Yes | - | - |
+| `disabled` | - | - | - | Yes | - |
 | `expires_at` | - | - | - | - | - |
 | `hash` | - | - | - | - | - |
-| `include_byok_in_limit` | - | Yes | - | - | - |
+| `include_byok_in_limit` | - | - | Yes | Yes | - |
+| `is_free_tier` | - | - | - | - | - |
+| `is_management_key` | - | - | - | - | - |
+| `is_provisioning_key` | - | - | - | - | - |
 | `label` | - | - | - | - | - |
-| `limit` | - | Yes | - | - | - |
+| `limit` | - | - | Yes | Yes | - |
 | `limit_remaining` | - | - | - | - | - |
-| `limit_reset` | - | Yes | - | - | - |
+| `limit_reset` | - | - | Yes | Yes | - |
 | `name` | - | - | - | Yes | - |
+| `rate_limit` | - | - | - | - | - |
 | `updated_at` | - | - | - | - | - |
 | `usage` | - | - | - | - | - |
 | `usage_daily` | - | - | - | - | - |
 | `usage_monthly` | - | - | - | - | - |
 | `usage_weekly` | - | - | - | - | - |
-| `workspace_id` | - | Yes | - | - | - |
+| `workspace_id` | - | - | Yes | - | - |
 
 ### Operations
 
@@ -1294,16 +1300,25 @@ const result = await client.ApiKey().create({
   byok_usage_monthly: 1,
   byok_usage_weekly: 1,
   created_at: 'example_created_at',
-  data: {},
+  creator_user_id: 'example_creator_user_id',
+  disabled: true,
   hash: 'example_hash',
+  include_byok_in_limit: true,
+  is_free_tier: true,
+  is_management_key: true,
+  is_provisioning_key: true,
   label: 'example_label',
+  limit: 'example_limit',
   limit_remaining: 'example_limit_remaining',
+  limit_reset: 'example_limit_reset',
   name: 'example_name',
+  rate_limit: {},
   updated_at: 'example_updated_at',
   usage: 1,
   usage_daily: 1,
   usage_monthly: 1,
   usage_weekly: 1,
+  workspace_id: 'example_workspace_id',
 })
 ```
 
@@ -1383,8 +1398,8 @@ const app_ranking = client.AppRanking()
 | `app_id` | `number` | Yes |  |
 | `app_name` | `string` | Yes |  |
 | `rank` | `number` | Yes |  |
-| `total_request` | `number` | Yes |  |
-| `total_token` | `string` | Yes |  |
+| `total_requests` | `number` | Yes |  |
+| `total_tokens` | `string` | Yes |  |
 
 ### Operations
 
@@ -1468,17 +1483,43 @@ const beta_analytics = client.BetaAnalytics()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `classifier_dimension` | `Record<string, any>` | Yes |  |
-| `classifier_filter` | `Record<string, any>` | Yes |  |
-| `data` | `Record<string, any>` | Yes |  |
-| `dimension` | `any[]` | No |  |
-| `filter` | `any[]` | No |  |
+| `cachedAt` | `number` | No |  |
+| `classifier_dimensions` | `Record<string, any>` | Yes |  |
+| `classifier_filters` | `Record<string, any>` | Yes |  |
+| `data` | `any[]` | Yes |  |
+| `dimensions` | `any[]` | Yes |  |
+| `filters` | `any[]` | No |  |
+| `granularities` | `any[]` | Yes |  |
 | `granularity` | `string` | No |  |
 | `group_limit` | `number` | No |  |
 | `limit` | `number` | No |  |
-| `metric` | `any[]` | Yes |  |
+| `metadata` | `Record<string, any>` | Yes |  |
+| `metrics` | `any[]` | Yes |  |
+| `operators` | `any[]` | Yes |  |
 | `order_by` | `Record<string, any>` | Yes |  |
 | `time_range` | `Record<string, any>` | Yes |  |
+| `warnings` | `any[]` | No |  |
+
+### Field Usage by Operation
+
+| Field | load | create |
+| --- | --- | --- |
+| `cachedAt` | - | - |
+| `classifier_dimensions` | - | - |
+| `classifier_filters` | - | - |
+| `data` | - | - |
+| `dimensions` | - | Yes |
+| `filters` | - | - |
+| `granularities` | - | - |
+| `granularity` | - | - |
+| `group_limit` | - | - |
+| `limit` | - | - |
+| `metadata` | - | - |
+| `metrics` | - | - |
+| `operators` | - | - |
+| `order_by` | - | - |
+| `time_range` | - | - |
+| `warnings` | - | - |
 
 ### Operations
 
@@ -1488,10 +1529,14 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.BetaAnalytics().create({
-  classifier_dimension: {},
-  classifier_filter: {},
-  data: {},
-  metric: [],
+  classifier_dimensions: {},
+  classifier_filters: {},
+  data: [],
+  dimensions: [],
+  granularities: [],
+  metadata: {},
+  metrics: [],
+  operators: [],
   order_by: {},
   time_range: {},
 })
@@ -1579,7 +1624,7 @@ const bulk_add_workspace_member = client.BulkAddWorkspaceMember()
 | --- | --- | --- | --- |
 | `added_count` | `number` | Yes |  |
 | `data` | `any[]` | Yes |  |
-| `user_id` | `any[]` | Yes |  |
+| `user_ids` | `any[]` | Yes |  |
 
 ### Operations
 
@@ -1590,6 +1635,9 @@ Create a new entity with the given data.
 ```ts
 const result = await client.BulkAddWorkspaceMember().create({
   workspace_id: 'example_workspace_id',
+  added_count: 1,
+  data: [],
+  user_ids: [],
 })
 ```
 
@@ -1632,7 +1680,7 @@ const bulk_assign_key = client.BulkAssignKey()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `assigned_count` | `number` | Yes |  |
-| `key_hash` | `any[]` | Yes |  |
+| `key_hashes` | `any[]` | Yes |  |
 
 ### Operations
 
@@ -1643,6 +1691,8 @@ Create a new entity with the given data.
 ```ts
 const result = await client.BulkAssignKey().create({
   guardrail_id: 'example_guardrail_id',
+  assigned_count: 1,
+  key_hashes: [],
 })
 ```
 
@@ -1685,7 +1735,7 @@ const bulk_assign_member = client.BulkAssignMember()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `assigned_count` | `number` | Yes |  |
-| `member_user_id` | `any[]` | Yes |  |
+| `member_user_ids` | `any[]` | Yes |  |
 
 ### Operations
 
@@ -1696,6 +1746,8 @@ Create a new entity with the given data.
 ```ts
 const result = await client.BulkAssignMember().create({
   guardrail_id: 'example_guardrail_id',
+  assigned_count: 1,
+  member_user_ids: [],
 })
 ```
 
@@ -1738,7 +1790,7 @@ const bulk_remove_workspace_member = client.BulkRemoveWorkspaceMember()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `removed_count` | `number` | Yes |  |
-| `user_id` | `any[]` | Yes |  |
+| `user_ids` | `any[]` | Yes |  |
 
 ### Operations
 
@@ -1749,6 +1801,8 @@ Create a new entity with the given data.
 ```ts
 const result = await client.BulkRemoveWorkspaceMember().create({
   workspace_id: 'example_workspace_id',
+  removed_count: 1,
+  user_ids: [],
 })
 ```
 
@@ -1790,7 +1844,7 @@ const bulk_unassign_key = client.BulkUnassignKey()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key_hash` | `any[]` | Yes |  |
+| `key_hashes` | `any[]` | Yes |  |
 | `unassigned_count` | `number` | Yes |  |
 
 ### Operations
@@ -1802,6 +1856,8 @@ Create a new entity with the given data.
 ```ts
 const result = await client.BulkUnassignKey().create({
   guardrail_id: 'example_guardrail_id',
+  key_hashes: [],
+  unassigned_count: 1,
 })
 ```
 
@@ -1843,7 +1899,7 @@ const bulk_unassign_member = client.BulkUnassignMember()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `member_user_id` | `any[]` | Yes |  |
+| `member_user_ids` | `any[]` | Yes |  |
 | `unassigned_count` | `number` | Yes |  |
 
 ### Operations
@@ -1855,6 +1911,8 @@ Create a new entity with the given data.
 ```ts
 const result = await client.BulkUnassignMember().create({
   guardrail_id: 'example_guardrail_id',
+  member_user_ids: [],
+  unassigned_count: 1,
 })
 ```
 
@@ -1896,39 +1954,37 @@ const byok = client.Byok()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_api_key_hash` | `any` | Yes |  |
-| `allowed_model` | `any` | No |  |
-| `allowed_user_id` | `any` | No |  |
+| `allowed_api_key_hashes` | `any[] | null` | Yes |  |
+| `allowed_models` | `any[] | null` | Yes |  |
+| `allowed_user_ids` | `any[] | null` | Yes |  |
 | `created_at` | `string` | Yes |  |
-| `data` | `any` | Yes |  |
-| `disabled` | `boolean` | No |  |
+| `disabled` | `boolean` | Yes |  |
 | `id` | `string` | Yes |  |
-| `is_fallback` | `boolean` | No |  |
+| `is_fallback` | `boolean` | Yes |  |
 | `key` | `string` | Yes |  |
 | `label` | `string` | Yes |  |
-| `name` | `any` | No |  |
+| `name` | `string | null` | No |  |
 | `provider` | `string` | Yes |  |
 | `sort_order` | `number` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `workspace_id` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | load | list | create | remove |
 | --- | --- | --- | --- | --- |
-| `allowed_api_key_hash` | - | - | - | - |
-| `allowed_model` | - | Yes | - | - |
-| `allowed_user_id` | - | Yes | - | - |
+| `allowed_api_key_hashes` | - | - | - | - |
+| `allowed_models` | - | - | Yes | - |
+| `allowed_user_ids` | - | - | Yes | - |
 | `created_at` | - | - | - | - |
-| `data` | - | - | - | - |
-| `disabled` | - | Yes | - | - |
+| `disabled` | - | - | Yes | - |
 | `id` | - | - | - | - |
-| `is_fallback` | - | Yes | - | - |
+| `is_fallback` | - | - | Yes | - |
 | `key` | - | - | - | - |
 | `label` | - | - | - | - |
 | `name` | - | - | - | - |
 | `provider` | - | - | - | - |
 | `sort_order` | - | - | - | - |
-| `workspace_id` | - | Yes | - | - |
+| `workspace_id` | - | - | Yes | - |
 
 ### Operations
 
@@ -1938,14 +1994,18 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Byok().create({
-  allowed_api_key_hash: 'example_allowed_api_key_hash',
+  allowed_api_key_hashes: 'example_allowed_api_key_hashes',
+  allowed_models: 'example_allowed_models',
+  allowed_user_ids: 'example_allowed_user_ids',
   created_at: 'example_created_at',
-  data: 'example_data',
+  disabled: true,
   id: 'example_id',
+  is_fallback: true,
   key: 'example_key',
   label: 'example_label',
   provider: 'example_provider',
   sort_order: 1,
+  workspace_id: 'example_workspace_id',
 })
 ```
 
@@ -2012,50 +2072,51 @@ const chat_result = client.ChatResult()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cache_control` | `Record<string, any>` | Yes |  |
-| `choice` | `any[]` | Yes |  |
+| `choices` | `any[]` | Yes |  |
 | `created` | `number` | Yes |  |
 | `debug` | `Record<string, any>` | No |  |
-| `frequency_penalty` | `any` | No |  |
+| `frequency_penalty` | `number | null` | No |  |
 | `id` | `string` | Yes |  |
 | `image_config` | `Record<string, any>` | No |  |
-| `logit_bia` | `any` | No |  |
-| `logprob` | `any` | No |  |
-| `max_completion_token` | `any` | No |  |
-| `max_token` | `any` | No |  |
-| `message` | `any[]` | Yes |  |
+| `logit_bias` | `Record<string, any> | null` | No |  |
+| `logprobs` | `boolean | null` | No |  |
+| `max_completion_tokens` | `number | null` | No |  |
+| `max_tokens` | `number | null` | No |  |
+| `messages` | `any[]` | Yes |  |
 | `metadata` | `Record<string, any>` | No |  |
-| `min_p` | `any` | No |  |
-| `modality` | `any[]` | No |  |
+| `min_p` | `number | null` | No |  |
+| `modalities` | `any[]` | No |  |
 | `model` | `string` | Yes |  |
+| `models` | `any[]` | No |  |
 | `object` | `string` | Yes |  |
 | `openrouter_metadata` | `Record<string, any>` | Yes |  |
-| `parallel_tool_call` | `any` | No |  |
-| `plugin` | `any[]` | No |  |
-| `prediction` | `any` | Yes |  |
-| `presence_penalty` | `any` | No |  |
-| `prompt_cache_key` | `any` | No |  |
-| `prompt_cache_option` | `any` | Yes |  |
-| `provider` | `any` | No |  |
+| `parallel_tool_calls` | `boolean | null` | No |  |
+| `plugins` | `any[]` | No |  |
+| `prediction` | `Record<string, any> | null` | Yes |  |
+| `presence_penalty` | `number | null` | No |  |
+| `prompt_cache_key` | `string | null` | No |  |
+| `prompt_cache_options` | `Record<string, any> | null` | Yes |  |
+| `provider` | `Record<string, any> | null` | No |  |
 | `reasoning` | `Record<string, any>` | No |  |
-| `reasoning_effort` | `any` | No |  |
-| `repetition_penalty` | `any` | No |  |
+| `reasoning_effort` | `string | null` | No |  |
+| `repetition_penalty` | `number | null` | No |  |
 | `response_format` | `any` | No |  |
-| `route` | `any` | No |  |
-| `seed` | `any` | No |  |
-| `service_tier` | `any` | No |  |
+| `route` | `string | null` | No |  |
+| `seed` | `number | null` | No |  |
+| `service_tier` | `string | null` | No |  |
 | `session_id` | `string` | No |  |
 | `stop` | `any` | No |  |
 | `stop_server_tools_when` | `any[]` | No |  |
 | `stream` | `boolean` | No |  |
-| `stream_option` | `any` | No |  |
-| `system_fingerprint` | `any` | Yes |  |
-| `temperature` | `any` | No |  |
-| `tool` | `any[]` | No |  |
+| `stream_options` | `Record<string, any> | null` | No |  |
+| `system_fingerprint` | `string | null` | Yes |  |
+| `temperature` | `number | null` | No |  |
 | `tool_choice` | `any` | No |  |
-| `top_a` | `any` | No |  |
-| `top_k` | `any` | No |  |
-| `top_logprob` | `any` | No |  |
-| `top_p` | `any` | No |  |
+| `tools` | `any[]` | No |  |
+| `top_a` | `number | null` | No |  |
+| `top_k` | `number | null` | No |  |
+| `top_logprobs` | `number | null` | No |  |
+| `top_p` | `number | null` | No |  |
 | `trace` | `Record<string, any>` | No |  |
 | `usage` | `Record<string, any>` | Yes |  |
 | `user` | `string` | No |  |
@@ -2065,29 +2126,30 @@ const chat_result = client.ChatResult()
 | Field | create |
 | --- | --- |
 | `cache_control` | - |
-| `choice` | - |
+| `choices` | - |
 | `created` | - |
 | `debug` | - |
 | `frequency_penalty` | - |
 | `id` | - |
 | `image_config` | - |
-| `logit_bia` | - |
-| `logprob` | - |
-| `max_completion_token` | - |
-| `max_token` | - |
-| `message` | - |
+| `logit_bias` | - |
+| `logprobs` | - |
+| `max_completion_tokens` | - |
+| `max_tokens` | - |
+| `messages` | - |
 | `metadata` | - |
 | `min_p` | - |
-| `modality` | - |
+| `modalities` | - |
 | `model` | Yes |
+| `models` | - |
 | `object` | - |
 | `openrouter_metadata` | - |
-| `parallel_tool_call` | - |
-| `plugin` | - |
+| `parallel_tool_calls` | - |
+| `plugins` | - |
 | `prediction` | - |
 | `presence_penalty` | - |
 | `prompt_cache_key` | - |
-| `prompt_cache_option` | - |
+| `prompt_cache_options` | - |
 | `provider` | - |
 | `reasoning` | - |
 | `reasoning_effort` | - |
@@ -2100,14 +2162,14 @@ const chat_result = client.ChatResult()
 | `stop` | - |
 | `stop_server_tools_when` | - |
 | `stream` | - |
-| `stream_option` | - |
+| `stream_options` | - |
 | `system_fingerprint` | - |
 | `temperature` | - |
-| `tool` | - |
 | `tool_choice` | - |
+| `tools` | - |
 | `top_a` | - |
 | `top_k` | - |
-| `top_logprob` | - |
+| `top_logprobs` | - |
 | `top_p` | - |
 | `trace` | - |
 | `usage` | - |
@@ -2122,15 +2184,15 @@ Create a new entity with the given data.
 ```ts
 const result = await client.ChatResult().create({
   cache_control: {},
-  choice: [],
+  choices: [],
   created: 1,
   id: 'example_id',
-  message: [],
+  messages: [],
   model: 'example_model',
   object: 'example_object',
   openrouter_metadata: {},
   prediction: 'example_prediction',
-  prompt_cache_option: 'example_prompt_cache_option',
+  prompt_cache_options: 'example_prompt_cache_options',
   system_fingerprint: 'example_system_fingerprint',
   usage: {},
 })
@@ -2412,10 +2474,10 @@ const create_observability_destination = client.CreateObservabilityDestination()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hash` | `any` | No |  |
+| `api_key_hashes` | `any[] | null` | No |  |
 | `config` | `Record<string, any>` | Yes |  |
 | `enabled` | `boolean` | No |  |
-| `filter_rule` | `any` | Yes |  |
+| `filter_rules` | `Record<string, any> | null` | Yes |  |
 | `name` | `string` | Yes |  |
 | `privacy_mode` | `boolean` | No |  |
 | `sampling_rate` | `number` | No |  |
@@ -2431,7 +2493,7 @@ Create a new entity with the given data.
 ```ts
 const result = await client.CreateObservabilityDestination().create({
   config: {},
-  filter_rule: 'example_filter_rule',
+  filter_rules: 'example_filter_rules',
   name: 'example_name',
   type: 'example_type',
 })
@@ -2475,66 +2537,66 @@ const create_preset_from_inference = client.CreatePresetFromInference()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background` | `any` | No |  |
+| `background` | `boolean | null` | No |  |
 | `cache_control` | `Record<string, any>` | Yes |  |
-| `context_management` | `any` | No |  |
-| `data` | `any` | Yes |  |
+| `context_management` | `Record<string, any> | null` | No |  |
 | `debug` | `Record<string, any>` | No |  |
-| `fallback` | `any` | No |  |
-| `frequency_penalty` | `any` | No |  |
+| `fallbacks` | `any[] | null` | No |  |
+| `frequency_penalty` | `number | null` | No |  |
 | `image_config` | `Record<string, any>` | No |  |
-| `include` | `any` | No |  |
+| `include` | `any[] | null` | No |  |
 | `input` | `any` | No |  |
-| `instruction` | `any` | No |  |
-| `logit_bia` | `any` | No |  |
-| `logprob` | `any` | No |  |
-| `max_completion_token` | `any` | No |  |
-| `max_output_token` | `any` | No |  |
-| `max_token` | `any` | No |  |
-| `max_tool_call` | `any` | No |  |
-| `message` | `any[]` | Yes |  |
+| `instructions` | `string | null` | No |  |
+| `logit_bias` | `Record<string, any> | null` | No |  |
+| `logprobs` | `boolean | null` | No |  |
+| `max_completion_tokens` | `number | null` | No |  |
+| `max_output_tokens` | `number | null` | No |  |
+| `max_tokens` | `number | null` | No |  |
+| `max_tool_calls` | `number | null` | No |  |
+| `messages` | `any[]` | Yes |  |
 | `metadata` | `Record<string, any>` | No |  |
-| `min_p` | `any` | No |  |
-| `modality` | `any[]` | No |  |
+| `min_p` | `number | null` | No |  |
+| `modalities` | `any[]` | No |  |
 | `model` | `string` | No |  |
+| `models` | `any[]` | No |  |
 | `output_config` | `Record<string, any>` | No |  |
-| `parallel_tool_call` | `any` | No |  |
-| `plugin` | `any[]` | No |  |
-| `prediction` | `any` | Yes |  |
-| `presence_penalty` | `any` | No |  |
+| `parallel_tool_calls` | `boolean | null` | No |  |
+| `plugins` | `any[]` | No |  |
+| `prediction` | `Record<string, any> | null` | Yes |  |
+| `presence_penalty` | `number | null` | No |  |
 | `previous_response_id` | `string` | No |  |
-| `prompt` | `any` | Yes |  |
-| `prompt_cache_key` | `any` | No |  |
-| `prompt_cache_option` | `any` | Yes |  |
-| `provider` | `any` | No |  |
+| `prompt` | `Record<string, any> | null` | Yes |  |
+| `prompt_cache_key` | `string | null` | No |  |
+| `prompt_cache_options` | `Record<string, any> | null` | Yes |  |
+| `provider` | `Record<string, any> | null` | No |  |
 | `reasoning` | `Record<string, any>` | No |  |
-| `reasoning_effort` | `any` | No |  |
-| `repetition_penalty` | `any` | No |  |
+| `reasoning_effort` | `string | null` | No |  |
+| `repetition_penalty` | `number | null` | No |  |
 | `response_format` | `any` | No |  |
-| `route` | `any` | No |  |
-| `safety_identifier` | `any` | No |  |
-| `seed` | `any` | No |  |
-| `service_tier` | `any` | No |  |
+| `route` | `string | null` | No |  |
+| `safety_identifier` | `string | null` | No |  |
+| `seed` | `number | null` | No |  |
+| `service_tier` | `string | null` | No |  |
 | `session_id` | `string` | No |  |
 | `speed` | `any` | No |  |
 | `stop` | `any` | No |  |
-| `stop_sequence` | `any[]` | No |  |
+| `stop_sequences` | `any[]` | No |  |
 | `stop_server_tools_when` | `any[]` | No |  |
 | `store` | `boolean` | No |  |
 | `stream` | `boolean` | No |  |
-| `stream_option` | `any` | No |  |
+| `stream_options` | `Record<string, any> | null` | No |  |
 | `system` | `any` | No |  |
-| `temperature` | `any` | No |  |
+| `temperature` | `number | null` | No |  |
 | `text` | `any` | No |  |
 | `thinking` | `any` | No |  |
-| `tool` | `any[]` | No |  |
 | `tool_choice` | `any` | No |  |
-| `top_a` | `any` | No |  |
-| `top_k` | `any` | No |  |
-| `top_logprob` | `any` | No |  |
-| `top_p` | `any` | No |  |
+| `tools` | `any[]` | No |  |
+| `top_a` | `number | null` | No |  |
+| `top_k` | `number | null` | No |  |
+| `top_logprobs` | `number | null` | No |  |
+| `top_p` | `number | null` | No |  |
 | `trace` | `Record<string, any>` | No |  |
-| `truncation` | `any` | No |  |
+| `truncation` | `string | null` | No |  |
 | `user` | `string` | No |  |
 
 ### Field Usage by Operation
@@ -2544,34 +2606,34 @@ const create_preset_from_inference = client.CreatePresetFromInference()
 | `background` | - |
 | `cache_control` | - |
 | `context_management` | - |
-| `data` | - |
 | `debug` | - |
-| `fallback` | - |
+| `fallbacks` | - |
 | `frequency_penalty` | - |
 | `image_config` | - |
 | `include` | - |
 | `input` | - |
-| `instruction` | - |
-| `logit_bia` | - |
-| `logprob` | - |
-| `max_completion_token` | - |
-| `max_output_token` | - |
-| `max_token` | - |
-| `max_tool_call` | - |
-| `message` | - |
+| `instructions` | - |
+| `logit_bias` | - |
+| `logprobs` | - |
+| `max_completion_tokens` | - |
+| `max_output_tokens` | - |
+| `max_tokens` | - |
+| `max_tool_calls` | - |
+| `messages` | - |
 | `metadata` | - |
 | `min_p` | - |
-| `modality` | - |
+| `modalities` | - |
 | `model` | Yes |
+| `models` | - |
 | `output_config` | - |
-| `parallel_tool_call` | - |
-| `plugin` | - |
+| `parallel_tool_calls` | - |
+| `plugins` | - |
 | `prediction` | - |
 | `presence_penalty` | - |
 | `previous_response_id` | - |
 | `prompt` | - |
 | `prompt_cache_key` | - |
-| `prompt_cache_option` | - |
+| `prompt_cache_options` | - |
 | `provider` | - |
 | `reasoning` | - |
 | `reasoning_effort` | - |
@@ -2584,20 +2646,20 @@ const create_preset_from_inference = client.CreatePresetFromInference()
 | `session_id` | - |
 | `speed` | - |
 | `stop` | - |
-| `stop_sequence` | - |
+| `stop_sequences` | - |
 | `stop_server_tools_when` | - |
 | `store` | - |
 | `stream` | - |
-| `stream_option` | - |
+| `stream_options` | - |
 | `system` | - |
 | `temperature` | - |
 | `text` | - |
 | `thinking` | - |
-| `tool` | - |
 | `tool_choice` | - |
+| `tools` | - |
 | `top_a` | - |
 | `top_k` | - |
-| `top_logprob` | - |
+| `top_logprobs` | - |
 | `top_p` | - |
 | `trace` | - |
 | `truncation` | - |
@@ -2612,6 +2674,11 @@ Create a new entity with the given data.
 ```ts
 const result = await client.CreatePresetFromInference().create({
   slug: 'example_slug',
+  cache_control: {},
+  messages: [],
+  prediction: 'example_prediction',
+  prompt: 'example_prompt',
+  prompt_cache_options: 'example_prompt_cache_options',
 })
 ```
 
@@ -2687,7 +2754,28 @@ const credit = client.Credit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | Yes |  |
+| `total_credits` | `number` | Yes |  |
+| `total_usage` | `number` | Yes |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `coinbase` | `/credits/coinbase` | `client.Credit().create({ $action: 'coinbase', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Credit record — check the API definition for its shape.
+
+```ts
+const result = await client.Credit().create({
+  $action: 'coinbase',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -2697,7 +2785,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Credit().create({
-  data: {},
+  total_credits: 1,
+  total_usage: 1,
 })
 ```
 
@@ -2782,7 +2871,7 @@ const embedding = client.Embedding()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `any[]` | Yes |  |
-| `dimension` | `number` | No |  |
+| `dimensions` | `number` | No |  |
 | `encoding_format` | `string` | No |  |
 | `id` | `string` | No |  |
 | `input` | `any` | Yes |  |
@@ -2847,40 +2936,99 @@ const endpoint = client.Endpoint()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `architecture` | `Record<string, any>` | Yes |  |
-| `benchmark` | `Record<string, any>` | Yes |  |
+| `architecture` | `any` | Yes |  |
+| `benchmarks` | `Record<string, any>` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
-| `context_length` | `any` | Yes |  |
+| `context_length` | `number | null` | Yes |  |
 | `created` | `number` | Yes |  |
-| `data` | `Record<string, any>` | Yes |  |
-| `default_parameter` | `any` | Yes |  |
-| `description` | `string` | No |  |
-| `expiration_date` | `any` | No |  |
-| `hugging_face_id` | `any` | No |  |
+| `default_parameters` | `Record<string, any> | null` | Yes |  |
+| `description` | `string` | Yes |  |
+| `endpoints` | `any[]` | Yes |  |
+| `expiration_date` | `string | null` | No |  |
+| `hugging_face_id` | `string | null` | No |  |
 | `id` | `string` | Yes |  |
-| `knowledge_cutoff` | `any` | No |  |
-| `latency_last_30m` | `any` | Yes |  |
-| `link` | `Record<string, any>` | Yes |  |
-| `max_completion_token` | `any` | Yes |  |
-| `max_prompt_token` | `any` | Yes |  |
+| `knowledge_cutoff` | `string | null` | No |  |
+| `latency_last_30m` | `Record<string, any> | null` | Yes |  |
+| `links` | `Record<string, any>` | Yes |  |
+| `max_completion_tokens` | `number | null` | Yes |  |
+| `max_prompt_tokens` | `number | null` | Yes |  |
 | `model_id` | `string` | Yes |  |
 | `model_name` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `per_request_limit` | `any` | Yes |  |
+| `per_request_limits` | `Record<string, any> | null` | Yes |  |
 | `pricing` | `Record<string, any>` | Yes |  |
 | `provider_name` | `string` | Yes |  |
 | `quantization` | `any` | Yes |  |
 | `reasoning` | `Record<string, any>` | Yes |  |
 | `status` | `number` | No |  |
-| `supported_parameter` | `any[]` | Yes |  |
-| `supported_voice` | `any` | Yes |  |
+| `supported_parameters` | `any[]` | Yes |  |
+| `supported_voices` | `any[] | null` | Yes |  |
 | `supports_implicit_caching` | `boolean` | Yes |  |
 | `tag` | `string` | Yes |  |
 | `throughput_last_30m` | `any` | Yes |  |
 | `top_provider` | `Record<string, any>` | Yes |  |
-| `uptime_last_1d` | `any` | Yes |  |
-| `uptime_last_30m` | `any` | Yes |  |
-| `uptime_last_5m` | `any` | Yes |  |
+| `uptime_last_1d` | `number | null` | Yes |  |
+| `uptime_last_30m` | `number | null` | Yes |  |
+| `uptime_last_5m` | `number | null` | Yes |  |
+
+### Field Usage by Operation
+
+| Field | load | list |
+| --- | --- | --- |
+| `architecture` | - | - |
+| `benchmarks` | - | - |
+| `canonical_slug` | - | - |
+| `context_length` | - | - |
+| `created` | - | - |
+| `default_parameters` | - | - |
+| `description` | - | Yes |
+| `endpoints` | - | - |
+| `expiration_date` | - | - |
+| `hugging_face_id` | - | - |
+| `id` | - | - |
+| `knowledge_cutoff` | - | - |
+| `latency_last_30m` | - | - |
+| `links` | - | - |
+| `max_completion_tokens` | - | - |
+| `max_prompt_tokens` | - | - |
+| `model_id` | - | - |
+| `model_name` | - | - |
+| `name` | - | - |
+| `per_request_limits` | - | - |
+| `pricing` | - | - |
+| `provider_name` | - | - |
+| `quantization` | - | - |
+| `reasoning` | - | - |
+| `status` | - | - |
+| `supported_parameters` | - | - |
+| `supported_voices` | - | - |
+| `supports_implicit_caching` | - | - |
+| `tag` | - | - |
+| `throughput_last_30m` | - | - |
+| `top_provider` | - | - |
+| `uptime_last_1d` | - | - |
+| `uptime_last_30m` | - | - |
+| `uptime_last_5m` | - | - |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `zdr` | `/endpoints/zdr` | `client.Endpoint().list({ $action: 'zdr', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Endpoint record — check the API definition for its shape.
+
+```ts
+const result = await client.Endpoint().list({
+  $action: 'zdr',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -2977,8 +3125,28 @@ const file = client.File()
 | `filename` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
 | `mime_type` | `string` | Yes |  |
-| `size_byte` | `number` | Yes |  |
+| `size_bytes` | `number` | Yes |  |
 | `type` | `string` | Yes |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `content` | `/files/{file_id}/content` | `client.File().load({ $action: 'content', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+File record — check the API definition for its shape.
+
+```ts
+const result = await client.File().load({
+  $action: 'content',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -2993,7 +3161,7 @@ const result = await client.File().create({
   filename: 'example_filename',
   id: 'example_id',
   mime_type: 'example_mime_type',
-  size_byte: 1,
+  size_bytes: 1,
   type: 'example_type',
 })
 ```
@@ -3060,7 +3228,50 @@ const generation = client.Generation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | Yes |  |
+| `api_type` | `string | null` | Yes |  |
+| `app_id` | `number | null` | Yes |  |
+| `cache_discount` | `number | null` | Yes |  |
+| `cancelled` | `boolean | null` | Yes |  |
+| `created_at` | `string` | Yes |  |
+| `data_region` | `string` | Yes |  |
+| `external_user` | `string | null` | Yes |  |
+| `finish_reason` | `string | null` | Yes |  |
+| `generation_time` | `number | null` | Yes |  |
+| `http_referer` | `string | null` | Yes |  |
+| `id` | `string` | Yes |  |
+| `is_byok` | `boolean` | Yes |  |
+| `latency` | `number | null` | Yes |  |
+| `model` | `string` | Yes |  |
+| `moderation_latency` | `number | null` | Yes |  |
+| `native_finish_reason` | `string | null` | Yes |  |
+| `native_tokens_cached` | `number | null` | Yes |  |
+| `native_tokens_completion` | `number | null` | Yes |  |
+| `native_tokens_completion_images` | `number | null` | Yes |  |
+| `native_tokens_prompt` | `number | null` | Yes |  |
+| `native_tokens_reasoning` | `number | null` | Yes |  |
+| `num_fetches` | `number | null` | Yes |  |
+| `num_input_audio_prompt` | `number | null` | Yes |  |
+| `num_media_completion` | `number | null` | Yes |  |
+| `num_media_prompt` | `number | null` | Yes |  |
+| `num_search_results` | `number | null` | Yes |  |
+| `origin` | `string` | Yes |  |
+| `preset_id` | `string | null` | Yes |  |
+| `provider_name` | `string | null` | Yes |  |
+| `provider_responses` | `any[] | null` | Yes |  |
+| `request_id` | `string | null` | No |  |
+| `response_cache_source_id` | `string | null` | No |  |
+| `router` | `string | null` | Yes |  |
+| `service_tier` | `string | null` | Yes |  |
+| `session_id` | `string | null` | No |  |
+| `streamed` | `boolean | null` | Yes |  |
+| `tokens_completion` | `number | null` | Yes |  |
+| `tokens_prompt` | `number | null` | Yes |  |
+| `total_cost` | `number` | Yes |  |
+| `upstream_id` | `string | null` | Yes |  |
+| `upstream_inference_cost` | `number | null` | Yes |  |
+| `usage` | `number` | Yes |  |
+| `user_agent` | `string | null` | Yes |  |
+| `web_search_engine` | `string | null` | Yes |  |
 
 ### Operations
 
@@ -3069,7 +3280,7 @@ const generation = client.Generation()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Generation().load()
+const result = await client.Generation().load({ id: 'generation_id' })
 ```
 
 ### Common Methods
@@ -3110,7 +3321,8 @@ const generation_content = client.GenerationContent()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | Yes |  |
+| `input` | `any` | Yes |  |
+| `output` | `Record<string, any>` | Yes |  |
 
 ### Operations
 
@@ -3160,38 +3372,36 @@ const guardrail = client.Guardrail()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `any` | No |  |
-| `allowed_provider` | `any` | No |  |
-| `content_filter` | `any` | No |  |
-| `content_filter_builtin` | `any` | No |  |
+| `allowed_models` | `any[] | null` | No |  |
+| `allowed_providers` | `any[] | null` | No |  |
+| `content_filter_builtins` | `any[] | null` | No |  |
+| `content_filters` | `any[] | null` | No |  |
 | `created_at` | `string` | Yes |  |
-| `data` | `any` | Yes |  |
-| `description` | `any` | No |  |
-| `enforce_zdr` | `any` | No |  |
-| `enforce_zdr_anthropic` | `any` | No |  |
-| `enforce_zdr_google` | `any` | No |  |
-| `enforce_zdr_openai` | `any` | No |  |
-| `enforce_zdr_other` | `any` | No |  |
-| `enforce_zdr_xai` | `any` | No |  |
+| `description` | `string | null` | No |  |
+| `enforce_zdr` | `boolean | null` | No |  |
+| `enforce_zdr_anthropic` | `boolean | null` | No |  |
+| `enforce_zdr_google` | `boolean | null` | No |  |
+| `enforce_zdr_openai` | `boolean | null` | No |  |
+| `enforce_zdr_other` | `boolean | null` | No |  |
+| `enforce_zdr_xai` | `boolean | null` | No |  |
 | `id` | `string` | Yes |  |
-| `ignored_model` | `any` | No |  |
-| `ignored_provider` | `any` | No |  |
-| `limit_usd` | `any` | No |  |
+| `ignored_models` | `any[] | null` | No |  |
+| `ignored_providers` | `any[] | null` | No |  |
+| `limit_usd` | `number | null` | No |  |
 | `name` | `string` | Yes |  |
-| `reset_interval` | `any` | No |  |
-| `updated_at` | `any` | No |  |
-| `workspace_id` | `string` | No |  |
+| `reset_interval` | `string | null` | No |  |
+| `updated_at` | `string | null` | No |  |
+| `workspace_id` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | load | list | create | remove |
 | --- | --- | --- | --- | --- |
-| `allowed_model` | - | - | - | - |
-| `allowed_provider` | - | - | - | - |
-| `content_filter` | - | - | - | - |
-| `content_filter_builtin` | - | - | - | - |
+| `allowed_models` | - | - | - | - |
+| `allowed_providers` | - | - | - | - |
+| `content_filter_builtins` | - | - | - | - |
+| `content_filters` | - | - | - | - |
 | `created_at` | - | - | - | - |
-| `data` | - | - | - | - |
 | `description` | - | - | - | - |
 | `enforce_zdr` | - | - | - | - |
 | `enforce_zdr_anthropic` | - | - | - | - |
@@ -3200,13 +3410,13 @@ const guardrail = client.Guardrail()
 | `enforce_zdr_other` | - | - | - | - |
 | `enforce_zdr_xai` | - | - | - | - |
 | `id` | - | - | - | - |
-| `ignored_model` | - | - | - | - |
-| `ignored_provider` | - | - | - | - |
+| `ignored_models` | - | - | - | - |
+| `ignored_providers` | - | - | - | - |
 | `limit_usd` | - | - | - | - |
 | `name` | - | - | - | - |
 | `reset_interval` | - | - | - | - |
 | `updated_at` | - | - | - | - |
-| `workspace_id` | - | Yes | - | - |
+| `workspace_id` | - | - | Yes | - |
 
 ### Operations
 
@@ -3217,9 +3427,9 @@ Create a new entity with the given data.
 ```ts
 const result = await client.Guardrail().create({
   created_at: 'example_created_at',
-  data: 'example_data',
   id: 'example_id',
   name: 'example_name',
+  workspace_id: 'example_workspace_id',
 })
 ```
 
@@ -3289,7 +3499,7 @@ const image = client.Image()
 | `background` | `string` | No |  |
 | `created` | `number` | Yes |  |
 | `data` | `any[]` | Yes |  |
-| `input_reference` | `any[]` | No |  |
+| `input_references` | `any[]` | No |  |
 | `model` | `string` | Yes |  |
 | `n` | `number` | No |  |
 | `output_compression` | `number` | No |  |
@@ -3357,12 +3567,12 @@ const image_model_endpoint = client.ImageModelEndpoint()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameter` | `any[]` | Yes |  |
+| `allowed_passthrough_parameters` | `any[]` | Yes |  |
 | `pricing` | `any[]` | Yes |  |
 | `provider_name` | `string` | Yes |  |
 | `provider_slug` | `string` | Yes |  |
-| `provider_tag` | `any` | Yes |  |
-| `supported_parameter` | `any` | Yes |  |
+| `provider_tag` | `string | null` | Yes |  |
+| `supported_parameters` | `any` | Yes |  |
 | `supports_streaming` | `boolean` | Yes |  |
 
 ### Operations
@@ -3372,7 +3582,7 @@ const image_model_endpoint = client.ImageModelEndpoint()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.ImageModelEndpoint().list()
+const results = await client.ImageModelEndpoint().list({ model_id: "example", slug: "example" })
 ```
 
 ### Common Methods
@@ -3416,10 +3626,10 @@ const image_models_list = client.ImageModelsList()
 | `architecture` | `Record<string, any>` | Yes |  |
 | `created` | `number` | Yes |  |
 | `description` | `string` | Yes |  |
-| `endpoint` | `string` | Yes |  |
+| `endpoints` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `supported_parameter` | `Record<string, any>` | Yes |  |
+| `supported_parameters` | `Record<string, any>` | Yes |  |
 | `supports_streaming` | `boolean` | Yes |  |
 
 ### Operations
@@ -3572,7 +3782,7 @@ const list_key_assignment = client.ListKeyAssignment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_by` | `any` | Yes |  |
+| `assigned_by` | `string | null` | Yes |  |
 | `created_at` | `string` | Yes |  |
 | `guardrail_id` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
@@ -3628,7 +3838,7 @@ const list_member_assignment = client.ListMemberAssignment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_by` | `any` | Yes |  |
+| `assigned_by` | `string | null` | Yes |  |
 | `created_at` | `string` | Yes |  |
 | `guardrail_id` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
@@ -3773,7 +3983,7 @@ const list_preset_version = client.ListPresetVersion()
 | `creator_id` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
 | `preset_id` | `string` | Yes |  |
-| `system_prompt` | `any` | Yes |  |
+| `system_prompt` | `string | null` | Yes |  |
 | `updated_at` | `string` | Yes |  |
 | `version` | `number` | Yes |  |
 
@@ -3784,7 +3994,7 @@ const list_preset_version = client.ListPresetVersion()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.ListPresetVersion().list()
+const results = await client.ListPresetVersion().list({ slug: "example" })
 ```
 
 ### Common Methods
@@ -3862,7 +4072,7 @@ const list_workspace_budget = client.ListWorkspaceBudget()
 | `created_at` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
 | `limit_usd` | `number` | Yes |  |
-| `reset_interval` | `any` | Yes |  |
+| `reset_interval` | `string | null` | Yes |  |
 | `updated_at` | `string` | Yes |  |
 | `workspace_id` | `string` | Yes |  |
 
@@ -3873,7 +4083,7 @@ const list_workspace_budget = client.ListWorkspaceBudget()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.ListWorkspaceBudget().list()
+const results = await client.ListWorkspaceBudget().list({ workspace_id: "example" })
 ```
 
 ### Common Methods
@@ -3927,7 +4137,7 @@ const list_workspace_member = client.ListWorkspaceMember()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.ListWorkspaceMember().list()
+const results = await client.ListWorkspaceMember().list({ workspace_id: "example" })
 ```
 
 ### Common Methods
@@ -4003,62 +4213,32 @@ const message = client.Message()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cache_control` | `Record<string, any>` | Yes |  |
-| `context_management` | `any` | No |  |
-| `fallback` | `any` | No |  |
-| `max_token` | `number` | No |  |
-| `message` | `any` | Yes |  |
+| `context_management` | `Record<string, any> | null` | No |  |
+| `fallbacks` | `any[] | null` | No |  |
+| `max_tokens` | `number` | No |  |
+| `messages` | `any[] | null` | Yes |  |
 | `metadata` | `Record<string, any>` | No |  |
 | `model` | `string` | Yes |  |
+| `models` | `any[]` | No |  |
 | `output_config` | `Record<string, any>` | No |  |
-| `plugin` | `any[]` | No |  |
-| `provider` | `any` | No |  |
-| `route` | `any` | No |  |
+| `plugins` | `any[]` | No |  |
+| `provider` | `Record<string, any> | null` | No |  |
+| `route` | `string | null` | No |  |
 | `service_tier` | `string` | No |  |
 | `session_id` | `string` | No |  |
 | `speed` | `any` | No |  |
-| `stop_sequence` | `any[]` | No |  |
+| `stop_sequences` | `any[]` | No |  |
 | `stop_server_tools_when` | `any[]` | No |  |
 | `stream` | `boolean` | No |  |
 | `system` | `any` | No |  |
 | `temperature` | `number` | No |  |
 | `thinking` | `any` | No |  |
-| `tool` | `any[]` | No |  |
 | `tool_choice` | `any` | No |  |
+| `tools` | `any[]` | No |  |
 | `top_k` | `number` | No |  |
 | `top_p` | `number` | No |  |
 | `trace` | `Record<string, any>` | No |  |
 | `user` | `string` | No |  |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `cache_control` | - |
-| `context_management` | - |
-| `fallback` | - |
-| `max_token` | - |
-| `message` | - |
-| `metadata` | - |
-| `model` | Yes |
-| `output_config` | - |
-| `plugin` | - |
-| `provider` | - |
-| `route` | - |
-| `service_tier` | - |
-| `session_id` | - |
-| `speed` | - |
-| `stop_sequence` | - |
-| `stop_server_tools_when` | - |
-| `stream` | - |
-| `system` | - |
-| `temperature` | - |
-| `thinking` | - |
-| `tool` | - |
-| `tool_choice` | - |
-| `top_k` | - |
-| `top_p` | - |
-| `trace` | - |
-| `user` | - |
 
 ### Operations
 
@@ -4069,7 +4249,7 @@ Create a new entity with the given data.
 ```ts
 const result = await client.Message().create({
   cache_control: {},
-  message: 'example_message',
+  messages: 'example_messages',
   model: 'example_model',
 })
 ```
@@ -4147,24 +4327,23 @@ const model = client.Model()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `Record<string, any>` | Yes |  |
-| `benchmark` | `Record<string, any>` | Yes |  |
+| `benchmarks` | `Record<string, any>` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
-| `context_length` | `any` | Yes |  |
+| `context_length` | `number | null` | Yes |  |
 | `created` | `number` | Yes |  |
-| `data` | `Record<string, any>` | Yes |  |
-| `default_parameter` | `any` | Yes |  |
+| `default_parameters` | `Record<string, any> | null` | Yes |  |
 | `description` | `string` | No |  |
-| `expiration_date` | `any` | No |  |
-| `hugging_face_id` | `any` | No |  |
+| `expiration_date` | `string | null` | No |  |
+| `hugging_face_id` | `string | null` | No |  |
 | `id` | `string` | Yes |  |
-| `knowledge_cutoff` | `any` | No |  |
-| `link` | `Record<string, any>` | Yes |  |
+| `knowledge_cutoff` | `string | null` | No |  |
+| `links` | `Record<string, any>` | Yes |  |
 | `name` | `string` | Yes |  |
-| `per_request_limit` | `any` | Yes |  |
+| `per_request_limits` | `Record<string, any> | null` | Yes |  |
 | `pricing` | `Record<string, any>` | Yes |  |
 | `reasoning` | `Record<string, any>` | Yes |  |
-| `supported_parameter` | `any[]` | Yes |  |
-| `supported_voice` | `any` | Yes |  |
+| `supported_parameters` | `any[]` | Yes |  |
+| `supported_voices` | `any[] | null` | Yes |  |
 | `top_provider` | `Record<string, any>` | Yes |  |
 
 ### Operations
@@ -4223,7 +4402,7 @@ const models_count = client.ModelsCount()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | Yes |  |
+| `count` | `number` | Yes |  |
 
 ### Operations
 
@@ -4274,23 +4453,23 @@ const models_list = client.ModelsList()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `Record<string, any>` | Yes |  |
-| `benchmark` | `Record<string, any>` | Yes |  |
+| `benchmarks` | `Record<string, any>` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
-| `context_length` | `any` | Yes |  |
+| `context_length` | `number | null` | Yes |  |
 | `created` | `number` | Yes |  |
-| `default_parameter` | `any` | Yes |  |
+| `default_parameters` | `Record<string, any> | null` | Yes |  |
 | `description` | `string` | No |  |
-| `expiration_date` | `any` | No |  |
-| `hugging_face_id` | `any` | No |  |
+| `expiration_date` | `string | null` | No |  |
+| `hugging_face_id` | `string | null` | No |  |
 | `id` | `string` | Yes |  |
-| `knowledge_cutoff` | `any` | No |  |
-| `link` | `Record<string, any>` | Yes |  |
+| `knowledge_cutoff` | `string | null` | No |  |
+| `links` | `Record<string, any>` | Yes |  |
 | `name` | `string` | Yes |  |
-| `per_request_limit` | `any` | Yes |  |
+| `per_request_limits` | `Record<string, any> | null` | Yes |  |
 | `pricing` | `Record<string, any>` | Yes |  |
 | `reasoning` | `Record<string, any>` | Yes |  |
-| `supported_parameter` | `any[]` | Yes |  |
-| `supported_voice` | `any` | Yes |  |
+| `supported_parameters` | `any[]` | Yes |  |
+| `supported_voices` | `any[] | null` | Yes |  |
 | `top_provider` | `Record<string, any>` | Yes |  |
 
 ### Operations
@@ -4341,20 +4520,22 @@ const o_auth = client.OAuth()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `app_id` | `number` | Yes |  |
 | `callback_url` | `string` | Yes |  |
 | `code` | `string` | Yes |  |
 | `code_challenge` | `string` | No |  |
-| `code_challenge_method` | `any` | No |  |
+| `code_challenge_method` | `string | null` | No |  |
 | `code_verifier` | `string` | No |  |
-| `data` | `Record<string, any>` | Yes |  |
-| `expires_at` | `any` | No |  |
+| `created_at` | `string` | Yes |  |
+| `expires_at` | `string | null` | No |  |
+| `id` | `string` | Yes |  |
 | `key` | `string` | Yes |  |
 | `key_label` | `string` | No |  |
 | `limit` | `number` | No |  |
 | `spawn_agent` | `string` | No |  |
 | `spawn_cloud` | `string` | No |  |
 | `usage_limit_type` | `string` | No |  |
-| `user_id` | `any` | Yes |  |
+| `user_id` | `string | null` | Yes |  |
 | `workspace_id` | `string` | No |  |
 
 ### Operations
@@ -4365,9 +4546,11 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.OAuth().create({
+  app_id: 1,
   callback_url: 'example_callback_url',
   code: 'example_code',
-  data: {},
+  created_at: 'example_created_at',
+  id: 'example_id',
   key: 'example_key',
   user_id: 'example_user_id',
 })
@@ -4411,7 +4594,7 @@ const observability_destination = client.ObservabilityDestination()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | Yes |  |
+| `data` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -4469,44 +4652,45 @@ const open_responses_result = client.OpenResponsesResult()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background` | `any` | No |  |
+| `background` | `boolean | null` | No |  |
 | `cache_control` | `Record<string, any>` | Yes |  |
 | `debug` | `Record<string, any>` | No |  |
-| `frequency_penalty` | `any` | No |  |
+| `frequency_penalty` | `number | null` | No |  |
 | `image_config` | `Record<string, any>` | No |  |
-| `include` | `any` | No |  |
+| `include` | `any[] | null` | No |  |
 | `input` | `any` | No |  |
-| `instruction` | `any` | No |  |
-| `max_output_token` | `any` | No |  |
-| `max_tool_call` | `any` | No |  |
-| `metadata` | `any` | No |  |
-| `modality` | `any[]` | No |  |
+| `instructions` | `string | null` | No |  |
+| `max_output_tokens` | `number | null` | No |  |
+| `max_tool_calls` | `number | null` | No |  |
+| `metadata` | `Record<string, any> | null` | No |  |
+| `modalities` | `any[]` | No |  |
 | `model` | `string` | No |  |
-| `parallel_tool_call` | `any` | No |  |
-| `plugin` | `any[]` | No |  |
-| `presence_penalty` | `any` | No |  |
+| `models` | `any[]` | No |  |
+| `parallel_tool_calls` | `boolean | null` | No |  |
+| `plugins` | `any[]` | No |  |
+| `presence_penalty` | `number | null` | No |  |
 | `previous_response_id` | `string` | No |  |
-| `prompt` | `any` | Yes |  |
-| `prompt_cache_key` | `any` | No |  |
-| `prompt_cache_option` | `any` | Yes |  |
-| `provider` | `any` | No |  |
+| `prompt` | `Record<string, any> | null` | Yes |  |
+| `prompt_cache_key` | `string | null` | No |  |
+| `prompt_cache_options` | `Record<string, any> | null` | Yes |  |
+| `provider` | `Record<string, any> | null` | No |  |
 | `reasoning` | `any` | No |  |
-| `route` | `any` | No |  |
-| `safety_identifier` | `any` | No |  |
-| `service_tier` | `any` | No |  |
+| `route` | `string | null` | No |  |
+| `safety_identifier` | `string | null` | No |  |
+| `service_tier` | `string | null` | No |  |
 | `session_id` | `string` | No |  |
 | `stop_server_tools_when` | `any[]` | No |  |
 | `store` | `boolean` | No |  |
 | `stream` | `boolean` | No |  |
-| `temperature` | `any` | No |  |
+| `temperature` | `number | null` | No |  |
 | `text` | `any` | No |  |
-| `tool` | `any[]` | No |  |
 | `tool_choice` | `any` | No |  |
+| `tools` | `any[]` | No |  |
 | `top_k` | `number` | No |  |
-| `top_logprob` | `any` | No |  |
-| `top_p` | `any` | No |  |
+| `top_logprobs` | `number | null` | No |  |
+| `top_p` | `number | null` | No |  |
 | `trace` | `Record<string, any>` | No |  |
-| `truncation` | `any` | No |  |
+| `truncation` | `string | null` | No |  |
 | `user` | `string` | No |  |
 
 ### Operations
@@ -4519,7 +4703,7 @@ Create a new entity with the given data.
 const result = await client.OpenResponsesResult().create({
   cache_control: {},
   prompt: 'example_prompt',
-  prompt_cache_option: 'example_prompt_cache_option',
+  prompt_cache_options: 'example_prompt_cache_options',
 })
 ```
 
@@ -4562,10 +4746,30 @@ const organization = client.Organization()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email` | `string` | Yes |  |
-| `first_name` | `any` | Yes |  |
+| `first_name` | `string | null` | Yes |  |
 | `id` | `string` | Yes |  |
-| `last_name` | `any` | Yes |  |
+| `last_name` | `string | null` | Yes |  |
 | `role` | `string` | Yes |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `member` | `/organization/members` | `client.Organization().list({ $action: 'member', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Organization record — check the API definition for its shape.
+
+```ts
+const result = await client.Organization().list({
+  $action: 'member',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -4616,17 +4820,17 @@ const preset = client.Preset()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `created_at` | `string` | Yes |  |
-| `creator_user_id` | `any` | Yes |  |
-| `data` | `any` | Yes |  |
-| `description` | `any` | Yes |  |
-| `designated_version_id` | `any` | Yes |  |
+| `creator_user_id` | `string | null` | Yes |  |
+| `description` | `string | null` | Yes |  |
+| `designated_version` | `Record<string, any> | null` | Yes |  |
+| `designated_version_id` | `string | null` | Yes |  |
 | `id` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
 | `slug` | `string` | Yes |  |
 | `status` | `string` | Yes |  |
-| `status_updated_at` | `any` | Yes |  |
+| `status_updated_at` | `string | null` | Yes |  |
 | `updated_at` | `string` | Yes |  |
-| `workspace_id` | `any` | Yes |  |
+| `workspace_id` | `string | null` | Yes |  |
 
 ### Operations
 
@@ -4684,7 +4888,14 @@ const preset_version = client.PresetVersion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | Yes |  |
+| `config` | `Record<string, any>` | Yes |  |
+| `created_at` | `string` | Yes |  |
+| `creator_id` | `string` | Yes |  |
+| `id` | `string` | Yes |  |
+| `preset_id` | `string` | Yes |  |
+| `system_prompt` | `string | null` | Yes |  |
+| `updated_at` | `string` | Yes |  |
+| `version` | `number` | Yes |  |
 
 ### Operations
 
@@ -4734,13 +4945,13 @@ const provider = client.Provider()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datacenter` | `any` | No |  |
-| `headquarter` | `any` | No |  |
+| `datacenters` | `any[] | null` | No |  |
+| `headquarters` | `string | null` | No |  |
 | `name` | `string` | Yes |  |
-| `privacy_policy_url` | `any` | Yes |  |
+| `privacy_policy_url` | `string | null` | Yes |  |
 | `slug` | `string` | Yes |  |
-| `status_page_url` | `any` | No |  |
-| `terms_of_service_url` | `any` | No |  |
+| `status_page_url` | `string | null` | No |  |
+| `terms_of_service_url` | `string | null` | No |  |
 
 ### Operations
 
@@ -4826,7 +5037,7 @@ const rankings_daily = client.RankingsDaily()
 | --- | --- | --- | --- |
 | `date` | `string` | Yes |  |
 | `model_permaslug` | `string` | Yes |  |
-| `total_token` | `string` | Yes |  |
+| `total_tokens` | `string` | Yes |  |
 
 ### Operations
 
@@ -4910,12 +5121,12 @@ const rerank = client.Rerank()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `document` | `any[]` | Yes |  |
+| `documents` | `any[]` | Yes |  |
 | `id` | `string` | No |  |
 | `model` | `string` | Yes |  |
 | `provider` | `string` | No |  |
 | `query` | `string` | Yes |  |
-| `result` | `any[]` | Yes |  |
+| `results` | `any[]` | Yes |  |
 | `top_n` | `number` | No |  |
 | `usage` | `Record<string, any>` | No |  |
 
@@ -4927,10 +5138,10 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Rerank().create({
-  document: [],
+  documents: [],
   model: 'example_model',
   query: 'example_query',
-  result: [],
+  results: [],
 })
 ```
 
@@ -5046,13 +5257,13 @@ const stt = client.Stt()
 | `model` | `string` | Yes |  |
 | `provider` | `Record<string, any>` | No |  |
 | `response_format` | `string` | No |  |
-| `segment` | `any[]` | No |  |
+| `segments` | `any[]` | No |  |
 | `task` | `string` | No |  |
 | `temperature` | `number` | No |  |
 | `text` | `string` | Yes |  |
-| `timestamp_granularity` | `any[]` | No |  |
+| `timestamp_granularities` | `any[]` | No |  |
 | `usage` | `Record<string, any>` | No |  |
-| `word` | `any[]` | No |  |
+| `words` | `any[]` | No |  |
 
 ### Operations
 
@@ -5108,8 +5319,8 @@ const submit_generation_feedback = client.SubmitGenerationFeedback()
 | --- | --- | --- | --- |
 | `category` | `string` | Yes |  |
 | `comment` | `string` | No |  |
-| `data` | `Record<string, any>` | Yes |  |
 | `generation_id` | `string` | Yes |  |
+| `success` | `boolean` | Yes |  |
 
 ### Operations
 
@@ -5120,8 +5331,8 @@ Create a new entity with the given data.
 ```ts
 const result = await client.SubmitGenerationFeedback().create({
   category: 'example_category',
-  data: {},
   generation_id: 'example_generation_id',
+  success: true,
 })
 ```
 
@@ -5163,7 +5374,10 @@ const task = client.Task()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | Yes |  |
+| `as_of` | `string` | Yes |  |
+| `classifications` | `any[]` | Yes |  |
+| `macro_categories` | `any[]` | Yes |  |
+| `window_days` | `number` | Yes |  |
 
 ### Operations
 
@@ -5357,13 +5571,12 @@ const update_byok_key = client.UpdateByokKey()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `any` | No |  |
-| `allowed_user_id` | `any` | No |  |
-| `data` | `any` | Yes |  |
+| `allowed_models` | `any[] | null` | No |  |
+| `allowed_user_ids` | `any[] | null` | No |  |
 | `disabled` | `boolean` | No |  |
 | `is_fallback` | `boolean` | No |  |
 | `key` | `string` | No |  |
-| `name` | `any` | No |  |
+| `name` | `string | null` | No |  |
 
 ### Operations
 
@@ -5416,23 +5629,22 @@ const update_guardrail = client.UpdateGuardrail()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `any` | No |  |
-| `allowed_provider` | `any` | No |  |
-| `content_filter` | `any` | No |  |
-| `content_filter_builtin` | `any` | No |  |
-| `data` | `any` | Yes |  |
-| `description` | `any` | No |  |
-| `enforce_zdr` | `any` | No |  |
-| `enforce_zdr_anthropic` | `any` | No |  |
-| `enforce_zdr_google` | `any` | No |  |
-| `enforce_zdr_openai` | `any` | No |  |
-| `enforce_zdr_other` | `any` | No |  |
-| `enforce_zdr_xai` | `any` | No |  |
-| `ignored_model` | `any` | No |  |
-| `ignored_provider` | `any` | No |  |
-| `limit_usd` | `any` | No |  |
+| `allowed_models` | `any[] | null` | No |  |
+| `allowed_providers` | `any[] | null` | No |  |
+| `content_filter_builtins` | `any[] | null` | No |  |
+| `content_filters` | `any[] | null` | No |  |
+| `description` | `string | null` | No |  |
+| `enforce_zdr` | `boolean | null` | No |  |
+| `enforce_zdr_anthropic` | `boolean | null` | No |  |
+| `enforce_zdr_google` | `boolean | null` | No |  |
+| `enforce_zdr_openai` | `boolean | null` | No |  |
+| `enforce_zdr_other` | `boolean | null` | No |  |
+| `enforce_zdr_xai` | `boolean | null` | No |  |
+| `ignored_models` | `any[] | null` | No |  |
+| `ignored_providers` | `any[] | null` | No |  |
+| `limit_usd` | `number | null` | No |  |
 | `name` | `string` | No |  |
-| `reset_interval` | `any` | No |  |
+| `reset_interval` | `string | null` | No |  |
 
 ### Operations
 
@@ -5485,11 +5697,10 @@ const update_observability_destination = client.UpdateObservabilityDestination()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hash` | `any` | No |  |
+| `api_key_hashes` | `any[] | null` | No |  |
 | `config` | `Record<string, any>` | No |  |
-| `data` | `any` | Yes |  |
 | `enabled` | `boolean` | No |  |
-| `filter_rule` | `any` | No |  |
+| `filter_rules` | `any` | No |  |
 | `name` | `string` | No |  |
 | `privacy_mode` | `boolean` | No |  |
 | `sampling_rate` | `number` | No |  |
@@ -5546,21 +5757,20 @@ const update_workspace = client.UpdateWorkspace()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `created_at` | `string` | Yes |  |
-| `created_by` | `any` | Yes |  |
-| `data` | `any` | Yes |  |
-| `default_image_model` | `any` | No |  |
-| `default_provider_sort` | `any` | No |  |
-| `default_text_model` | `any` | No |  |
-| `description` | `any` | No |  |
+| `created_by` | `string | null` | Yes |  |
+| `default_image_model` | `string | null` | No |  |
+| `default_provider_sort` | `string | null` | No |  |
+| `default_text_model` | `string | null` | No |  |
+| `description` | `string | null` | No |  |
 | `id` | `string` | Yes |  |
-| `io_logging_api_key_id` | `any` | No |  |
+| `io_logging_api_key_ids` | `any[] | null` | No |  |
 | `io_logging_sampling_rate` | `number` | No |  |
 | `is_data_discount_logging_enabled` | `boolean` | No |  |
 | `is_observability_broadcast_enabled` | `boolean` | No |  |
 | `is_observability_io_logging_enabled` | `boolean` | No |  |
 | `name` | `string` | Yes |  |
 | `slug` | `string` | Yes |  |
-| `updated_at` | `any` | Yes |  |
+| `updated_at` | `string | null` | Yes |  |
 
 ### Field Usage by Operation
 
@@ -5568,13 +5778,12 @@ const update_workspace = client.UpdateWorkspace()
 | --- | --- | --- | --- |
 | `created_at` | - | - | - |
 | `created_by` | - | - | - |
-| `data` | - | - | - |
 | `default_image_model` | Yes | - | - |
 | `default_provider_sort` | Yes | - | - |
 | `default_text_model` | Yes | - | - |
 | `description` | Yes | - | - |
 | `id` | - | - | - |
-| `io_logging_api_key_id` | Yes | - | - |
+| `io_logging_api_key_ids` | Yes | - | - |
 | `io_logging_sampling_rate` | Yes | - | - |
 | `is_data_discount_logging_enabled` | Yes | - | - |
 | `is_observability_broadcast_enabled` | Yes | - | - |
@@ -5593,7 +5802,6 @@ Create a new entity with the given data.
 const result = await client.UpdateWorkspace().create({
   created_at: 'example_created_at',
   created_by: 'example_created_by',
-  data: 'example_data',
   id: 'example_id',
   name: 'example_name',
   slug: 'example_slug',
@@ -5658,7 +5866,6 @@ const upsert_workspace_budget = client.UpsertWorkspaceBudget()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | Yes |  |
 | `limit_usd` | `number` | Yes |  |
 
 ### Operations
@@ -5785,11 +5992,11 @@ const video = client.Video()
 | `callback_url` | `string` | No |  |
 | `duration` | `number` | No |  |
 | `error` | `string` | No |  |
-| `frame_image` | `any[]` | No |  |
+| `frame_images` | `any[]` | No |  |
 | `generate_audio` | `boolean` | No |  |
 | `generation_id` | `string` | No |  |
 | `id` | `string` | Yes |  |
-| `input_reference` | `any[]` | No |  |
+| `input_references` | `any[]` | No |  |
 | `model` | `string` | Yes |  |
 | `polling_url` | `string` | Yes |  |
 | `prompt` | `string` | No |  |
@@ -5798,7 +6005,7 @@ const video = client.Video()
 | `seed` | `number` | No |  |
 | `size` | `string` | No |  |
 | `status` | `string` | Yes |  |
-| `unsigned_url` | `any[]` | No |  |
+| `unsigned_urls` | `any[]` | No |  |
 | `usage` | `Record<string, any>` | No |  |
 
 ### Operations
@@ -5858,6 +6065,26 @@ Return a copy of the entity options.
 const video_generation = client.VideoGeneration()
 ```
 
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `content` | `/videos/{jobId}/content` | `client.VideoGeneration().load({ $action: 'content', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+VideoGeneration record — check the API definition for its shape.
+
+```ts
+const result = await client.VideoGeneration().load({
+  $action: 'content',
+  /* ...the action's own arguments */
+})
+```
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`
@@ -5906,21 +6133,21 @@ const video_models_list = client.VideoModelsList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameter` | `any[]` | Yes |  |
+| `allowed_passthrough_parameters` | `any[]` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
 | `created` | `number` | Yes |  |
 | `description` | `string` | No |  |
-| `generate_audio` | `any` | Yes |  |
-| `hugging_face_id` | `any` | No |  |
+| `generate_audio` | `boolean | null` | Yes |  |
+| `hugging_face_id` | `string | null` | No |  |
 | `id` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `pricing_skus` | `any` | No |  |
-| `seed` | `any` | Yes |  |
-| `supported_aspect_ratio` | `any` | Yes |  |
-| `supported_duration` | `any` | Yes |  |
-| `supported_frame_image` | `any` | Yes |  |
-| `supported_resolution` | `any` | Yes |  |
-| `supported_size` | `any` | Yes |  |
+| `pricing_skus` | `Record<string, any> | null` | No |  |
+| `seed` | `boolean | null` | Yes |  |
+| `supported_aspect_ratios` | `any[] | null` | Yes |  |
+| `supported_durations` | `any[] | null` | Yes |  |
+| `supported_frame_images` | `any[] | null` | Yes |  |
+| `supported_resolutions` | `any[] | null` | Yes |  |
+| `supported_sizes` | `any[] | null` | Yes |  |
 
 ### Operations
 
@@ -5970,7 +6197,21 @@ const workspace = client.Workspace()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | Yes |  |
+| `created_at` | `string` | Yes |  |
+| `created_by` | `string | null` | Yes |  |
+| `default_image_model` | `string | null` | Yes |  |
+| `default_provider_sort` | `string | null` | Yes |  |
+| `default_text_model` | `string | null` | Yes |  |
+| `description` | `string | null` | Yes |  |
+| `id` | `string` | Yes |  |
+| `io_logging_api_key_ids` | `any[] | null` | Yes |  |
+| `io_logging_sampling_rate` | `number` | Yes |  |
+| `is_data_discount_logging_enabled` | `boolean` | Yes |  |
+| `is_observability_broadcast_enabled` | `boolean` | Yes |  |
+| `is_observability_io_logging_enabled` | `boolean` | Yes |  |
+| `name` | `string` | Yes |  |
+| `slug` | `string` | Yes |  |
+| `updated_at` | `string | null` | Yes |  |
 
 ### Operations
 

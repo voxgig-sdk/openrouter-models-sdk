@@ -37,7 +37,7 @@ class ListMemberAssignmentEntity extends OpenrouterModelsEntityBase<ListMemberAs
 
 
 
-  async list(this: any, reqmatch?: ListMemberAssignmentListMatch, ctrl?: Control): Promise<ListMemberAssignment[]> {
+  async list(this: any, reqmatch?: ListMemberAssignmentListMatch, ctrl?: Control): Promise<ListMemberAssignmentEntity[]> {
 
     const utility = this._utility
 

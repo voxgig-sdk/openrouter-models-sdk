@@ -19,7 +19,7 @@ describe("WorkspaceEntity", function()
     local setup = workspace_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
-    for _, _op in ipairs({"load", "remove"}) do
+    for _, _op in ipairs({"load"}) do
       local _should_skip, _reason = runner.is_control_skipped("entityOp", "workspace." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
@@ -29,7 +29,7 @@ describe("WorkspaceEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set OPENROUTERMODELS_TEST_WORKSPACE_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set OPENROUTER_MODELS_TEST_WORKSPACE_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -44,10 +44,14 @@ describe("WorkspaceEntity", function()
 
     -- LOAD
     local workspace_ref01_ent = client:Workspace(nil)
-    local workspace_ref01_match_dt0 = {}
+    local workspace_ref01_match_dt0 = {
+      id = workspace_ref01_data["id"],
+    }
     local workspace_ref01_data_dt0_loaded, err = workspace_ref01_ent:load(workspace_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(workspace_ref01_data_dt0_loaded)
+    local workspace_ref01_data_dt0_load_result = helpers.to_map(type(workspace_ref01_data_dt0_loaded) == 'table' and workspace_ref01_data_dt0_loaded.data_get and workspace_ref01_data_dt0_loaded:data_get() or workspace_ref01_data_dt0_loaded)
+    assert.is_not_nil(workspace_ref01_data_dt0_load_result)
+    assert.are.equal(workspace_ref01_data_dt0_load_result["id"], workspace_ref01_data["id"])
 
   end)
 end)
@@ -84,39 +88,39 @@ function workspace_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("OPENROUTERMODELS_TEST_WORKSPACE_ENTID")
+  local entid_env_raw = os.getenv("OPENROUTER_MODELS_TEST_WORKSPACE_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["OPENROUTERMODELS_TEST_WORKSPACE_ENTID"] = idmap,
-    ["OPENROUTERMODELS_TEST_LIVE"] = "FALSE",
-    ["OPENROUTERMODELS_TEST_EXPLAIN"] = "FALSE",
-    ["OPENROUTERMODELS_APIKEY"] = "NONE",
+    ["OPENROUTER_MODELS_TEST_WORKSPACE_ENTID"] = idmap,
+    ["OPENROUTER_MODELS_TEST_LIVE"] = "FALSE",
+    ["OPENROUTER_MODELS_TEST_EXPLAIN"] = "FALSE",
+    ["OPENROUTER_MODELS_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["OPENROUTERMODELS_TEST_WORKSPACE_ENTID"])
+    env["OPENROUTER_MODELS_TEST_WORKSPACE_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["OPENROUTERMODELS_TEST_LIVE"] == "TRUE" then
+  if env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["OPENROUTERMODELS_APIKEY"],
+        apikey = env["OPENROUTER_MODELS_APIKEY"],
       },
       extra or {},
     })
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["OPENROUTERMODELS_TEST_LIVE"] == "TRUE"
+  local live = env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["OPENROUTERMODELS_TEST_EXPLAIN"] == "TRUE",
+    explain = env["OPENROUTER_MODELS_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

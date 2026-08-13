@@ -26,8 +26,8 @@ import {
 describe('TaskEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -62,7 +62,7 @@ describe('TaskEntity', async () => {
     // LOAD
     const task_ref01_ent = client.Task()
     const task_ref01_match_dt0: any = {}
-    const task_ref01_data_dt0 = await task_ref01_ent.load(task_ref01_match_dt0)
+    const task_ref01_data_dt0 = (await task_ref01_ent.load(task_ref01_match_dt0)).data()
     assert(null != task_ref01_data_dt0)
 
 

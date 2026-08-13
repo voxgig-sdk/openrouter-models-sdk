@@ -2,15 +2,18 @@
   "existing": {
     "credit": {
       "CREDIT00": {
-        "data": {},
+        "total_credits": 20,
+        "total_usage": 21,
         "id": "CREDIT00"
       },
       "CREDIT01": {
-        "data": {},
+        "total_credits": 40,
+        "total_usage": 41,
         "id": "CREDIT01"
       },
       "CREDIT02": {
-        "data": {},
+        "total_credits": 60,
+        "total_usage": 61,
         "id": "CREDIT02"
       }
     }
@@ -18,7 +21,8 @@
   "new": {
     "credit": {
       "credit_ref01": {
-        "data": {}
+        "total_credits": 80,
+        "total_usage": 81
       }
     }
   }

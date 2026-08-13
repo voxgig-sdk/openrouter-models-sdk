@@ -37,7 +37,7 @@ class RankingsDailyEntity extends OpenrouterModelsEntityBase<RankingsDaily> {
 
 
 
-  async list(this: any, reqmatch?: RankingsDailyListMatch, ctrl?: Control): Promise<RankingsDaily[]> {
+  async list(this: any, reqmatch?: RankingsDailyListMatch, ctrl?: Control): Promise<RankingsDailyEntity[]> {
 
     const utility = this._utility
 

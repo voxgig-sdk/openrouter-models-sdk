@@ -2,19 +2,19 @@
   "existing": {
     "bulk_unassign_member": {
       "BULK_UNASSIGN_MEMBER00": {
-        "member_user_id": "MEMBER_USER01",
+        "member_user_ids": [],
         "unassigned_count": "s15",
         "guardrail_id": "GUARDRAIL01",
         "id": "BULK_UNASSIGN_MEMBER00"
       },
       "BULK_UNASSIGN_MEMBER01": {
-        "member_user_id": "MEMBER_USER01",
+        "member_user_ids": [],
         "unassigned_count": "s29",
         "guardrail_id": "GUARDRAIL01",
         "id": "BULK_UNASSIGN_MEMBER01"
       },
       "BULK_UNASSIGN_MEMBER02": {
-        "member_user_id": "MEMBER_USER01",
+        "member_user_ids": [],
         "unassigned_count": "s3d",
         "guardrail_id": "GUARDRAIL01",
         "id": "BULK_UNASSIGN_MEMBER02"
@@ -24,7 +24,7 @@
   "new": {
     "bulk_unassign_member": {
       "bulk_unassign_member_ref01": {
-        "member_user_id": "MEMBER_USER01",
+        "member_user_ids": [],
         "unassigned_count": "s51"
       }
     }

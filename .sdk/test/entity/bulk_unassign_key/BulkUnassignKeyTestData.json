@@ -2,19 +2,19 @@
   "existing": {
     "bulk_unassign_key": {
       "BULK_UNASSIGN_KEY00": {
-        "key_hash": [],
+        "key_hashes": [],
         "unassigned_count": "s15",
         "guardrail_id": "GUARDRAIL01",
         "id": "BULK_UNASSIGN_KEY00"
       },
       "BULK_UNASSIGN_KEY01": {
-        "key_hash": [],
+        "key_hashes": [],
         "unassigned_count": "s29",
         "guardrail_id": "GUARDRAIL01",
         "id": "BULK_UNASSIGN_KEY01"
       },
       "BULK_UNASSIGN_KEY02": {
-        "key_hash": [],
+        "key_hashes": [],
         "unassigned_count": "s3d",
         "guardrail_id": "GUARDRAIL01",
         "id": "BULK_UNASSIGN_KEY02"
@@ -24,7 +24,7 @@
   "new": {
     "bulk_unassign_key": {
       "bulk_unassign_key_ref01": {
-        "key_hash": [],
+        "key_hashes": [],
         "unassigned_count": "s51"
       }
     }

@@ -2,10 +2,10 @@
   "existing": {
     "create_observability_destination": {
       "CREATE_OBSERVABILITY_DESTINATION00": {
-        "api_key_hash": "s5a",
+        "api_key_hashes": "s5a",
         "config": {},
         "enabled": true,
-        "filter_rule": "s5d",
+        "filter_rules": "s5d",
         "name": "s5e",
         "privacy_mode": false,
         "sampling_rate": 96,
@@ -14,10 +14,10 @@
         "id": "CREATE_OBSERVABILITY_DESTINATION00"
       },
       "CREATE_OBSERVABILITY_DESTINATION01": {
-        "api_key_hash": "sb4",
+        "api_key_hashes": "sb4",
         "config": {},
         "enabled": true,
-        "filter_rule": "sb7",
+        "filter_rules": "sb7",
         "name": "sb8",
         "privacy_mode": false,
         "sampling_rate": 186,
@@ -26,10 +26,10 @@
         "id": "CREATE_OBSERVABILITY_DESTINATION01"
       },
       "CREATE_OBSERVABILITY_DESTINATION02": {
-        "api_key_hash": "s10e",
+        "api_key_hashes": "s10e",
         "config": {},
         "enabled": true,
-        "filter_rule": "s111",
+        "filter_rules": "s111",
         "name": "s112",
         "privacy_mode": false,
         "sampling_rate": 276,
@@ -42,10 +42,10 @@
   "new": {
     "create_observability_destination": {
       "create_observability_destination_ref01": {
-        "api_key_hash": "s168",
+        "api_key_hashes": "s168",
         "config": {},
         "enabled": true,
-        "filter_rule": "s16b",
+        "filter_rules": "s16b",
         "name": "s16c",
         "privacy_mode": false,
         "sampling_rate": 366,

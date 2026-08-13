@@ -6,7 +6,7 @@ main: kit: entity: create_observability_destination: {
 
   fields: [
     {
-      name: "api_key_hash"
+      name: "api_key_hashes"
       req: false
       type: [
         "`$ONE`"
@@ -27,7 +27,7 @@ main: kit: entity: create_observability_destination: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "filter_rule"
+      name: "filter_rules"
       req: true
       type: [
         "`$ONE`"
@@ -110,7 +110,7 @@ main: kit: entity: create_observability_destination: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

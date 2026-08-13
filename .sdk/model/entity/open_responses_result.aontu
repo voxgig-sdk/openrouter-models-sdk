@@ -59,7 +59,7 @@ main: kit: entity: open_responses_result: {
       type: "`$ANY`"
     }
     {
-      name: "instruction"
+      name: "instructions"
       req: false
       type: [
         "`$ONE`"
@@ -70,7 +70,7 @@ main: kit: entity: open_responses_result: {
       ]
     }
     {
-      name: "max_output_token"
+      name: "max_output_tokens"
       req: false
       type: [
         "`$ONE`"
@@ -81,7 +81,7 @@ main: kit: entity: open_responses_result: {
       ]
     }
     {
-      name: "max_tool_call"
+      name: "max_tool_calls"
       req: false
       type: [
         "`$ONE`"
@@ -103,7 +103,7 @@ main: kit: entity: open_responses_result: {
       ]
     }
     {
-      name: "modality"
+      name: "modalities"
       req: false
       type: "`$ARRAY`"
     }
@@ -113,7 +113,12 @@ main: kit: entity: open_responses_result: {
       type: "`$STRING`"
     }
     {
-      name: "parallel_tool_call"
+      name: "models"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "parallel_tool_calls"
       req: false
       type: [
         "`$ONE`"
@@ -124,7 +129,7 @@ main: kit: entity: open_responses_result: {
       ]
     }
     {
-      name: "plugin"
+      name: "plugins"
       req: false
       type: "`$ARRAY`"
     }
@@ -167,7 +172,7 @@ main: kit: entity: open_responses_result: {
       ]
     }
     {
-      name: "prompt_cache_option"
+      name: "prompt_cache_options"
       req: true
       type: [
         "`$ONE`"
@@ -263,14 +268,14 @@ main: kit: entity: open_responses_result: {
       type: "`$ANY`"
     }
     {
-      name: "tool"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
       name: "tool_choice"
       req: false
       type: "`$ANY`"
+    }
+    {
+      name: "tools"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "top_k"
@@ -278,7 +283,7 @@ main: kit: entity: open_responses_result: {
       type: "`$INTEGER`"
     }
     {
-      name: "top_logprob"
+      name: "top_logprobs"
       req: false
       type: [
         "`$ONE`"

@@ -6,11 +6,11 @@
         "callback_url": "sbf",
         "duration": "sc0",
         "error": "sc1",
-        "frame_image": [],
+        "frame_images": [],
         "generate_audio": false,
         "generation_id": "GENERATION01",
         "id": "VIDEO00",
-        "input_reference": [],
+        "input_references": [],
         "model": "sc7",
         "polling_url": "sc8",
         "prompt": "sc9",
@@ -19,7 +19,7 @@
         "seed": "scc",
         "size": "scd",
         "status": "sce",
-        "unsigned_url": [],
+        "unsigned_urls": [],
         "usage": {}
       },
       "VIDEO01": {
@@ -27,11 +27,11 @@
         "callback_url": "s17d",
         "duration": "s17e",
         "error": "s17f",
-        "frame_image": [],
+        "frame_images": [],
         "generate_audio": false,
         "generation_id": "GENERATION01",
         "id": "VIDEO01",
-        "input_reference": [],
+        "input_references": [],
         "model": "s185",
         "polling_url": "s186",
         "prompt": "s187",
@@ -40,7 +40,7 @@
         "seed": "s18a",
         "size": "s18b",
         "status": "s18c",
-        "unsigned_url": [],
+        "unsigned_urls": [],
         "usage": {}
       },
       "VIDEO02": {
@@ -48,11 +48,11 @@
         "callback_url": "s23b",
         "duration": "s23c",
         "error": "s23d",
-        "frame_image": [],
+        "frame_images": [],
         "generate_audio": false,
         "generation_id": "GENERATION01",
         "id": "VIDEO02",
-        "input_reference": [],
+        "input_references": [],
         "model": "s243",
         "polling_url": "s244",
         "prompt": "s245",
@@ -61,7 +61,7 @@
         "seed": "s248",
         "size": "s249",
         "status": "s24a",
-        "unsigned_url": [],
+        "unsigned_urls": [],
         "usage": {}
       }
     }
@@ -73,10 +73,10 @@
         "callback_url": "s2f9",
         "duration": "s2fa",
         "error": "s2fb",
-        "frame_image": [],
+        "frame_images": [],
         "generate_audio": false,
         "generation_id": "GENERATION01",
-        "input_reference": [],
+        "input_references": [],
         "model": "s301",
         "polling_url": "s302",
         "prompt": "s303",
@@ -85,7 +85,7 @@
         "seed": "s306",
         "size": "s307",
         "status": "s308",
-        "unsigned_url": [],
+        "unsigned_urls": [],
         "usage": {}
       }
     }

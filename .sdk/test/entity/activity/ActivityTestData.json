@@ -3,41 +3,41 @@
     "activity": {
       "ACTIVITY00": {
         "byok_usage_inference": 110,
-        "completion_token": "s6f",
+        "completion_tokens": "s6f",
         "date": "s70",
         "endpoint_id": "ENDPOINT01",
         "model": "s72",
         "model_permaslug": "s73",
-        "prompt_token": "s74",
+        "prompt_tokens": "s74",
         "provider_name": "s75",
-        "reasoning_token": "s76",
-        "request": "s77",
+        "reasoning_tokens": "s76",
+        "requests": "s77",
         "usage": 120
       },
       "ACTIVITY01": {
         "byok_usage_inference": 220,
-        "completion_token": "sdd",
+        "completion_tokens": "sdd",
         "date": "sde",
         "endpoint_id": "ENDPOINT01",
         "model": "se0",
         "model_permaslug": "se1",
-        "prompt_token": "se2",
+        "prompt_tokens": "se2",
         "provider_name": "se3",
-        "reasoning_token": "se4",
-        "request": "se5",
+        "reasoning_tokens": "se4",
+        "requests": "se5",
         "usage": 230
       },
       "ACTIVITY02": {
         "byok_usage_inference": 330,
-        "completion_token": "s14b",
+        "completion_tokens": "s14b",
         "date": "s14c",
         "endpoint_id": "ENDPOINT01",
         "model": "s14e",
         "model_permaslug": "s14f",
-        "prompt_token": "s150",
+        "prompt_tokens": "s150",
         "provider_name": "s151",
-        "reasoning_token": "s152",
-        "request": "s153",
+        "reasoning_tokens": "s152",
+        "requests": "s153",
         "usage": 340
       }
     }
@@ -46,15 +46,15 @@
     "activity": {
       "activity_ref01": {
         "byok_usage_inference": 440,
-        "completion_token": "s1b9",
+        "completion_tokens": "s1b9",
         "date": "s1ba",
         "endpoint_id": "ENDPOINT01",
         "model": "s1bc",
         "model_permaslug": "s1bd",
-        "prompt_token": "s1be",
+        "prompt_tokens": "s1be",
         "provider_name": "s1bf",
-        "reasoning_token": "s1c0",
-        "request": "s1c1",
+        "reasoning_tokens": "s1c0",
+        "requests": "s1c1",
         "usage": 450
       }
     }

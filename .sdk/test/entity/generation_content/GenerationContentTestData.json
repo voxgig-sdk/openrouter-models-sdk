@@ -2,15 +2,18 @@
   "existing": {
     "generation_content": {
       "GENERATION_CONTENT00": {
-        "data": {},
+        "input": "s14",
+        "output": {},
         "id": "GENERATION_CONTENT00"
       },
       "GENERATION_CONTENT01": {
-        "data": {},
+        "input": "s28",
+        "output": {},
         "id": "GENERATION_CONTENT01"
       },
       "GENERATION_CONTENT02": {
-        "data": {},
+        "input": "s3c",
+        "output": {},
         "id": "GENERATION_CONTENT02"
       }
     }
@@ -18,7 +21,8 @@
   "new": {
     "generation_content": {
       "generation_content_ref01": {
-        "data": {}
+        "input": "s50",
+        "output": {}
       }
     }
   }

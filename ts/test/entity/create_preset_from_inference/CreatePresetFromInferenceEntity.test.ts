@@ -26,8 +26,8 @@ import {
 describe('CreatePresetFromInferenceEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -63,7 +63,7 @@ describe('CreatePresetFromInferenceEntity', async () => {
     let create_preset_from_inference_ref01_data = setup.data.new.create_preset_from_inference['create_preset_from_inference_ref01']
     create_preset_from_inference_ref01_data['slug'] = setup.idmap['slug01']
 
-    create_preset_from_inference_ref01_data = await create_preset_from_inference_ref01_ent.create(create_preset_from_inference_ref01_data)
+    create_preset_from_inference_ref01_data = (await create_preset_from_inference_ref01_ent.create(create_preset_from_inference_ref01_data)).data()
     assert(null != create_preset_from_inference_ref01_data)
 
 

@@ -37,7 +37,7 @@ class ListWorkspaceMemberEntity extends OpenrouterModelsEntityBase<ListWorkspace
 
 
 
-  async list(this: any, reqmatch?: ListWorkspaceMemberListMatch, ctrl?: Control): Promise<ListWorkspaceMember[]> {
+  async list(this: any, reqmatch?: ListWorkspaceMemberListMatch, ctrl?: Control): Promise<ListWorkspaceMemberEntity[]> {
 
     const utility = this._utility
 

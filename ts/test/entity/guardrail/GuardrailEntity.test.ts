@@ -26,8 +26,8 @@ import {
 describe('GuardrailEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -62,14 +62,14 @@ describe('GuardrailEntity', async () => {
     const guardrail_ref01_ent = client.Guardrail()
     let guardrail_ref01_data = setup.data.new.guardrail['guardrail_ref01']
 
-    guardrail_ref01_data = await guardrail_ref01_ent.create(guardrail_ref01_data)
+    guardrail_ref01_data = (await guardrail_ref01_ent.create(guardrail_ref01_data)).data()
     assert(null != guardrail_ref01_data.id)
 
 
     // LIST
     const guardrail_ref01_match: any = {}
 
-    const guardrail_ref01_list = await guardrail_ref01_ent.list(guardrail_ref01_match)
+    const guardrail_ref01_list = (await guardrail_ref01_ent.list(guardrail_ref01_match)).map((e: any) => e.data())
 
     assert(!isempty(select(guardrail_ref01_list, { id: guardrail_ref01_data.id })))
 
@@ -77,7 +77,7 @@ describe('GuardrailEntity', async () => {
     // LOAD
     const guardrail_ref01_match_dt0: any = {}
     guardrail_ref01_match_dt0.id = guardrail_ref01_data.id
-    const guardrail_ref01_data_dt0 = await guardrail_ref01_ent.load(guardrail_ref01_match_dt0)
+    const guardrail_ref01_data_dt0 = (await guardrail_ref01_ent.load(guardrail_ref01_match_dt0)).data()
     assert(guardrail_ref01_data_dt0.id === guardrail_ref01_data.id)
 
 
@@ -89,7 +89,7 @@ describe('GuardrailEntity', async () => {
     // LIST
     const guardrail_ref01_match_rt0: any = {}
 
-    const guardrail_ref01_list_rt0 = await guardrail_ref01_ent.list(guardrail_ref01_match_rt0)
+    const guardrail_ref01_list_rt0 = (await guardrail_ref01_ent.list(guardrail_ref01_match_rt0)).map((e: any) => e.data())
 
     assert(isempty(select(guardrail_ref01_list_rt0, { id: guardrail_ref01_data.id })))
 

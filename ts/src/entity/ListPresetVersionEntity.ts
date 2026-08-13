@@ -37,7 +37,7 @@ class ListPresetVersionEntity extends OpenrouterModelsEntityBase<ListPresetVersi
 
 
 
-  async list(this: any, reqmatch?: ListPresetVersionListMatch, ctrl?: Control): Promise<ListPresetVersion[]> {
+  async list(this: any, reqmatch?: ListPresetVersionListMatch, ctrl?: Control): Promise<ListPresetVersionEntity[]> {
 
     const utility = this._utility
 

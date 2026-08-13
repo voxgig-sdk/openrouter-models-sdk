@@ -2,26 +2,50 @@
   "existing": {
     "preset_version": {
       "PRESET_VERSION00": {
-        "data": "sa",
-        "slug": "SLUG01",
-        "id": "PRESET_VERSION00"
+        "config": {},
+        "created_at": "s51",
+        "creator_id": "CREATOR01",
+        "id": "PRESET_VERSION00",
+        "preset_id": "PRESET01",
+        "system_prompt": "s55",
+        "updated_at": "s56",
+        "version": "s57",
+        "slug": "SLUG01"
       },
       "PRESET_VERSION01": {
-        "data": "s14",
-        "slug": "SLUG01",
-        "id": "PRESET_VERSION01"
+        "config": {},
+        "created_at": "sa1",
+        "creator_id": "CREATOR01",
+        "id": "PRESET_VERSION01",
+        "preset_id": "PRESET01",
+        "system_prompt": "sa5",
+        "updated_at": "sa6",
+        "version": "sa7",
+        "slug": "SLUG01"
       },
       "PRESET_VERSION02": {
-        "data": "s1e",
-        "slug": "SLUG01",
-        "id": "PRESET_VERSION02"
+        "config": {},
+        "created_at": "sf1",
+        "creator_id": "CREATOR01",
+        "id": "PRESET_VERSION02",
+        "preset_id": "PRESET01",
+        "system_prompt": "sf5",
+        "updated_at": "sf6",
+        "version": "sf7",
+        "slug": "SLUG01"
       }
     }
   },
   "new": {
     "preset_version": {
       "preset_version_ref01": {
-        "data": "s28"
+        "config": {},
+        "created_at": "s141",
+        "creator_id": "CREATOR01",
+        "preset_id": "PRESET01",
+        "system_prompt": "s145",
+        "updated_at": "s146",
+        "version": "s147"
       }
     }
   }

@@ -13,7 +13,7 @@
 # @!attribute [rw] byok_usage_inference
 #   @return [Float]
 #
-# @!attribute [rw] completion_token
+# @!attribute [rw] completion_tokens
 #   @return [Integer]
 #
 # @!attribute [rw] date
@@ -28,31 +28,31 @@
 # @!attribute [rw] model_permaslug
 #   @return [String]
 #
-# @!attribute [rw] prompt_token
+# @!attribute [rw] prompt_tokens
 #   @return [Integer]
 #
 # @!attribute [rw] provider_name
 #   @return [String]
 #
-# @!attribute [rw] reasoning_token
+# @!attribute [rw] reasoning_tokens
 #   @return [Integer]
 #
-# @!attribute [rw] request
+# @!attribute [rw] requests
 #   @return [Integer]
 #
 # @!attribute [rw] usage
 #   @return [Float]
 Activity = Struct.new(
   :byok_usage_inference,
-  :completion_token,
+  :completion_tokens,
   :date,
   :endpoint_id,
   :model,
   :model_permaslug,
-  :prompt_token,
+  :prompt_tokens,
   :provider_name,
-  :reasoning_token,
-  :request,
+  :reasoning_tokens,
+  :requests,
   :usage,
   keyword_init: true
 )
@@ -62,7 +62,7 @@ Activity = Struct.new(
 # @!attribute [rw] byok_usage_inference
 #   @return [Float, nil]
 #
-# @!attribute [rw] completion_token
+# @!attribute [rw] completion_tokens
 #   @return [Integer, nil]
 #
 # @!attribute [rw] date
@@ -77,31 +77,31 @@ Activity = Struct.new(
 # @!attribute [rw] model_permaslug
 #   @return [String, nil]
 #
-# @!attribute [rw] prompt_token
+# @!attribute [rw] prompt_tokens
 #   @return [Integer, nil]
 #
 # @!attribute [rw] provider_name
 #   @return [String, nil]
 #
-# @!attribute [rw] reasoning_token
+# @!attribute [rw] reasoning_tokens
 #   @return [Integer, nil]
 #
-# @!attribute [rw] request
+# @!attribute [rw] requests
 #   @return [Integer, nil]
 #
 # @!attribute [rw] usage
 #   @return [Float, nil]
 ActivityListMatch = Struct.new(
   :byok_usage_inference,
-  :completion_token,
+  :completion_tokens,
   :date,
   :endpoint_id,
   :model,
   :model_permaslug,
-  :prompt_token,
+  :prompt_tokens,
   :provider_name,
-  :reasoning_token,
-  :request,
+  :reasoning_tokens,
+  :requests,
   :usage,
   keyword_init: true
 )
@@ -128,13 +128,10 @@ end
 #   @return [String]
 #
 # @!attribute [rw] creator_user_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] data
-#   @return [Hash]
+#   @return [Object]
 #
 # @!attribute [rw] disabled
-#   @return [Boolean, nil]
+#   @return [Boolean]
 #
 # @!attribute [rw] expires_at
 #   @return [Object, nil]
@@ -143,22 +140,34 @@ end
 #   @return [String]
 #
 # @!attribute [rw] include_byok_in_limit
-#   @return [Boolean, nil]
+#   @return [Boolean]
+#
+# @!attribute [rw] is_free_tier
+#   @return [Boolean]
+#
+# @!attribute [rw] is_management_key
+#   @return [Boolean]
+#
+# @!attribute [rw] is_provisioning_key
+#   @return [Boolean]
 #
 # @!attribute [rw] label
 #   @return [String]
 #
 # @!attribute [rw] limit
-#   @return [Object, nil]
+#   @return [Object]
 #
 # @!attribute [rw] limit_remaining
 #   @return [Object]
 #
 # @!attribute [rw] limit_reset
-#   @return [Object, nil]
+#   @return [Object]
 #
 # @!attribute [rw] name
 #   @return [String]
+#
+# @!attribute [rw] rate_limit
+#   @return [Hash]
 #
 # @!attribute [rw] updated_at
 #   @return [Object]
@@ -176,7 +185,7 @@ end
 #   @return [Float]
 #
 # @!attribute [rw] workspace_id
-#   @return [String, nil]
+#   @return [String]
 ApiKey = Struct.new(
   :byok_usage,
   :byok_usage_daily,
@@ -184,16 +193,19 @@ ApiKey = Struct.new(
   :byok_usage_weekly,
   :created_at,
   :creator_user_id,
-  :data,
   :disabled,
   :expires_at,
   :hash,
   :include_byok_in_limit,
+  :is_free_tier,
+  :is_management_key,
+  :is_provisioning_key,
   :label,
   :limit,
   :limit_remaining,
   :limit_reset,
   :name,
+  :rate_limit,
   :updated_at,
   :usage,
   :usage_daily,
@@ -232,9 +244,6 @@ ApiKeyLoadMatch = Struct.new(
 # @!attribute [rw] creator_user_id
 #   @return [Object, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] disabled
 #   @return [Boolean, nil]
 #
@@ -245,6 +254,15 @@ ApiKeyLoadMatch = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] include_byok_in_limit
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] is_free_tier
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] is_management_key
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] is_provisioning_key
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] label
@@ -261,6 +279,9 @@ ApiKeyLoadMatch = Struct.new(
 #
 # @!attribute [rw] name
 #   @return [String, nil]
+#
+# @!attribute [rw] rate_limit
+#   @return [Hash, nil]
 #
 # @!attribute [rw] updated_at
 #   @return [Object, nil]
@@ -286,16 +307,19 @@ ApiKeyListMatch = Struct.new(
   :byok_usage_weekly,
   :created_at,
   :creator_user_id,
-  :data,
   :disabled,
   :expires_at,
   :hash,
   :include_byok_in_limit,
+  :is_free_tier,
+  :is_management_key,
+  :is_provisioning_key,
   :label,
   :limit,
   :limit_remaining,
   :limit_reset,
   :name,
+  :rate_limit,
   :updated_at,
   :usage,
   :usage_daily,
@@ -323,13 +347,10 @@ ApiKeyListMatch = Struct.new(
 #   @return [String]
 #
 # @!attribute [rw] creator_user_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] data
-#   @return [Hash]
+#   @return [Object]
 #
 # @!attribute [rw] disabled
-#   @return [Boolean, nil]
+#   @return [Boolean]
 #
 # @!attribute [rw] expires_at
 #   @return [Object, nil]
@@ -338,22 +359,34 @@ ApiKeyListMatch = Struct.new(
 #   @return [String]
 #
 # @!attribute [rw] include_byok_in_limit
-#   @return [Boolean, nil]
+#   @return [Boolean]
+#
+# @!attribute [rw] is_free_tier
+#   @return [Boolean]
+#
+# @!attribute [rw] is_management_key
+#   @return [Boolean]
+#
+# @!attribute [rw] is_provisioning_key
+#   @return [Boolean]
 #
 # @!attribute [rw] label
 #   @return [String]
 #
 # @!attribute [rw] limit
-#   @return [Object, nil]
+#   @return [Object]
 #
 # @!attribute [rw] limit_remaining
 #   @return [Object]
 #
 # @!attribute [rw] limit_reset
-#   @return [Object, nil]
+#   @return [Object]
 #
 # @!attribute [rw] name
 #   @return [String]
+#
+# @!attribute [rw] rate_limit
+#   @return [Hash]
 #
 # @!attribute [rw] updated_at
 #   @return [Object]
@@ -371,7 +404,7 @@ ApiKeyListMatch = Struct.new(
 #   @return [Float]
 #
 # @!attribute [rw] workspace_id
-#   @return [String, nil]
+#   @return [String]
 ApiKeyCreateData = Struct.new(
   :byok_usage,
   :byok_usage_daily,
@@ -379,16 +412,19 @@ ApiKeyCreateData = Struct.new(
   :byok_usage_weekly,
   :created_at,
   :creator_user_id,
-  :data,
   :disabled,
   :expires_at,
   :hash,
   :include_byok_in_limit,
+  :is_free_tier,
+  :is_management_key,
+  :is_provisioning_key,
   :label,
   :limit,
   :limit_remaining,
   :limit_reset,
   :name,
+  :rate_limit,
   :updated_at,
   :usage,
   :usage_daily,
@@ -402,8 +438,108 @@ ApiKeyCreateData = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] byok_usage
+#   @return [Float, nil]
+#
+# @!attribute [rw] byok_usage_daily
+#   @return [Float, nil]
+#
+# @!attribute [rw] byok_usage_monthly
+#   @return [Float, nil]
+#
+# @!attribute [rw] byok_usage_weekly
+#   @return [Float, nil]
+#
+# @!attribute [rw] created_at
+#   @return [String, nil]
+#
+# @!attribute [rw] creator_user_id
+#   @return [Object, nil]
+#
+# @!attribute [rw] disabled
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] expires_at
+#   @return [Object, nil]
+#
+# @!attribute [rw] hash
+#   @return [String, nil]
+#
+# @!attribute [rw] include_byok_in_limit
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] is_free_tier
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] is_management_key
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] is_provisioning_key
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] label
+#   @return [String, nil]
+#
+# @!attribute [rw] limit
+#   @return [Object, nil]
+#
+# @!attribute [rw] limit_remaining
+#   @return [Object, nil]
+#
+# @!attribute [rw] limit_reset
+#   @return [Object, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] rate_limit
+#   @return [Hash, nil]
+#
+# @!attribute [rw] updated_at
+#   @return [Object, nil]
+#
+# @!attribute [rw] usage
+#   @return [Float, nil]
+#
+# @!attribute [rw] usage_daily
+#   @return [Float, nil]
+#
+# @!attribute [rw] usage_monthly
+#   @return [Float, nil]
+#
+# @!attribute [rw] usage_weekly
+#   @return [Float, nil]
+#
+# @!attribute [rw] workspace_id
+#   @return [String, nil]
 ApiKeyUpdateData = Struct.new(
   :id,
+  :byok_usage,
+  :byok_usage_daily,
+  :byok_usage_monthly,
+  :byok_usage_weekly,
+  :created_at,
+  :creator_user_id,
+  :disabled,
+  :expires_at,
+  :hash,
+  :include_byok_in_limit,
+  :is_free_tier,
+  :is_management_key,
+  :is_provisioning_key,
+  :label,
+  :limit,
+  :limit_remaining,
+  :limit_reset,
+  :name,
+  :rate_limit,
+  :updated_at,
+  :usage,
+  :usage_daily,
+  :usage_monthly,
+  :usage_weekly,
+  :workspace_id,
   keyword_init: true
 )
 
@@ -427,17 +563,17 @@ ApiKeyRemoveMatch = Struct.new(
 # @!attribute [rw] rank
 #   @return [Integer]
 #
-# @!attribute [rw] total_request
+# @!attribute [rw] total_requests
 #   @return [Integer]
 #
-# @!attribute [rw] total_token
+# @!attribute [rw] total_tokens
 #   @return [String]
 AppRanking = Struct.new(
   :app_id,
   :app_name,
   :rank,
-  :total_request,
-  :total_token,
+  :total_requests,
+  :total_tokens,
   keyword_init: true
 )
 
@@ -452,17 +588,17 @@ AppRanking = Struct.new(
 # @!attribute [rw] rank
 #   @return [Integer, nil]
 #
-# @!attribute [rw] total_request
+# @!attribute [rw] total_requests
 #   @return [Integer, nil]
 #
-# @!attribute [rw] total_token
+# @!attribute [rw] total_tokens
 #   @return [String, nil]
 AppRankingListMatch = Struct.new(
   :app_id,
   :app_name,
   :rank,
-  :total_request,
-  :total_token,
+  :total_requests,
+  :total_tokens,
   keyword_init: true
 )
 
@@ -472,20 +608,26 @@ end
 
 # BetaAnalytics entity data model.
 #
-# @!attribute [rw] classifier_dimension
+# @!attribute [rw] cachedAt
+#   @return [Float, nil]
+#
+# @!attribute [rw] classifier_dimensions
 #   @return [Hash]
 #
-# @!attribute [rw] classifier_filter
+# @!attribute [rw] classifier_filters
 #   @return [Hash]
 #
 # @!attribute [rw] data
-#   @return [Hash]
+#   @return [Array]
 #
-# @!attribute [rw] dimension
+# @!attribute [rw] dimensions
+#   @return [Array]
+#
+# @!attribute [rw] filters
 #   @return [Array, nil]
 #
-# @!attribute [rw] filter
-#   @return [Array, nil]
+# @!attribute [rw] granularities
+#   @return [Array]
 #
 # @!attribute [rw] granularity
 #   @return [String, nil]
@@ -496,7 +638,13 @@ end
 # @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] metric
+# @!attribute [rw] metadata
+#   @return [Hash]
+#
+# @!attribute [rw] metrics
+#   @return [Array]
+#
+# @!attribute [rw] operators
 #   @return [Array]
 #
 # @!attribute [rw] order_by
@@ -504,36 +652,50 @@ end
 #
 # @!attribute [rw] time_range
 #   @return [Hash]
+#
+# @!attribute [rw] warnings
+#   @return [Array, nil]
 BetaAnalytics = Struct.new(
-  :classifier_dimension,
-  :classifier_filter,
+  :cachedAt,
+  :classifier_dimensions,
+  :classifier_filters,
   :data,
-  :dimension,
-  :filter,
+  :dimensions,
+  :filters,
+  :granularities,
   :granularity,
   :group_limit,
   :limit,
-  :metric,
+  :metadata,
+  :metrics,
+  :operators,
   :order_by,
   :time_range,
+  :warnings,
   keyword_init: true
 )
 
 # Request payload for BetaAnalytics#load.
 #
-# @!attribute [rw] classifier_dimension
+# @!attribute [rw] cachedAt
+#   @return [Float, nil]
+#
+# @!attribute [rw] classifier_dimensions
 #   @return [Hash, nil]
 #
-# @!attribute [rw] classifier_filter
+# @!attribute [rw] classifier_filters
 #   @return [Hash, nil]
 #
 # @!attribute [rw] data
-#   @return [Hash, nil]
-#
-# @!attribute [rw] dimension
 #   @return [Array, nil]
 #
-# @!attribute [rw] filter
+# @!attribute [rw] dimensions
+#   @return [Array, nil]
+#
+# @!attribute [rw] filters
+#   @return [Array, nil]
+#
+# @!attribute [rw] granularities
 #   @return [Array, nil]
 #
 # @!attribute [rw] granularity
@@ -545,7 +707,13 @@ BetaAnalytics = Struct.new(
 # @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] metric
+# @!attribute [rw] metadata
+#   @return [Hash, nil]
+#
+# @!attribute [rw] metrics
+#   @return [Array, nil]
+#
+# @!attribute [rw] operators
 #   @return [Array, nil]
 #
 # @!attribute [rw] order_by
@@ -553,37 +721,51 @@ BetaAnalytics = Struct.new(
 #
 # @!attribute [rw] time_range
 #   @return [Hash, nil]
+#
+# @!attribute [rw] warnings
+#   @return [Array, nil]
 BetaAnalyticsLoadMatch = Struct.new(
-  :classifier_dimension,
-  :classifier_filter,
+  :cachedAt,
+  :classifier_dimensions,
+  :classifier_filters,
   :data,
-  :dimension,
-  :filter,
+  :dimensions,
+  :filters,
+  :granularities,
   :granularity,
   :group_limit,
   :limit,
-  :metric,
+  :metadata,
+  :metrics,
+  :operators,
   :order_by,
   :time_range,
+  :warnings,
   keyword_init: true
 )
 
 # Request payload for BetaAnalytics#create.
 #
-# @!attribute [rw] classifier_dimension
+# @!attribute [rw] cachedAt
+#   @return [Float, nil]
+#
+# @!attribute [rw] classifier_dimensions
 #   @return [Hash]
 #
-# @!attribute [rw] classifier_filter
+# @!attribute [rw] classifier_filters
 #   @return [Hash]
 #
 # @!attribute [rw] data
-#   @return [Hash]
+#   @return [Array]
 #
-# @!attribute [rw] dimension
+# @!attribute [rw] dimensions
+#   @return [Array]
+#
+# @!attribute [rw] filters
 #   @return [Array, nil]
 #
-# @!attribute [rw] filter
-#   @return [Array, nil]
+# @!attribute [rw] granularities
+#   @return [Array]
 #
 # @!attribute [rw] granularity
 #   @return [String, nil]
@@ -594,7 +776,13 @@ BetaAnalyticsLoadMatch = Struct.new(
 # @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] metric
+# @!attribute [rw] metadata
+#   @return [Hash]
+#
+# @!attribute [rw] metrics
+#   @return [Array]
+#
+# @!attribute [rw] operators
 #   @return [Array]
 #
 # @!attribute [rw] order_by
@@ -602,18 +790,26 @@ BetaAnalyticsLoadMatch = Struct.new(
 #
 # @!attribute [rw] time_range
 #   @return [Hash]
+#
+# @!attribute [rw] warnings
+#   @return [Array, nil]
 BetaAnalyticsCreateData = Struct.new(
-  :classifier_dimension,
-  :classifier_filter,
+  :cachedAt,
+  :classifier_dimensions,
+  :classifier_filters,
   :data,
-  :dimension,
-  :filter,
+  :dimensions,
+  :filters,
+  :granularities,
   :granularity,
   :group_limit,
   :limit,
-  :metric,
+  :metadata,
+  :metrics,
+  :operators,
   :order_by,
   :time_range,
+  :warnings,
   keyword_init: true
 )
 
@@ -629,12 +825,12 @@ end
 # @!attribute [rw] data
 #   @return [Array]
 #
-# @!attribute [rw] user_id
+# @!attribute [rw] user_ids
 #   @return [Array]
 BulkAddWorkspaceMember = Struct.new(
   :added_count,
   :data,
-  :user_id,
+  :user_ids,
   keyword_init: true
 )
 
@@ -642,8 +838,20 @@ BulkAddWorkspaceMember = Struct.new(
 #
 # @!attribute [rw] workspace_id
 #   @return [String]
+#
+# @!attribute [rw] added_count
+#   @return [Integer]
+#
+# @!attribute [rw] data
+#   @return [Array]
+#
+# @!attribute [rw] user_ids
+#   @return [Array]
 BulkAddWorkspaceMemberCreateData = Struct.new(
   :workspace_id,
+  :added_count,
+  :data,
+  :user_ids,
   keyword_init: true
 )
 
@@ -652,11 +860,11 @@ BulkAddWorkspaceMemberCreateData = Struct.new(
 # @!attribute [rw] assigned_count
 #   @return [Integer]
 #
-# @!attribute [rw] key_hash
+# @!attribute [rw] key_hashes
 #   @return [Array]
 BulkAssignKey = Struct.new(
   :assigned_count,
-  :key_hash,
+  :key_hashes,
   keyword_init: true
 )
 
@@ -664,8 +872,16 @@ BulkAssignKey = Struct.new(
 #
 # @!attribute [rw] guardrail_id
 #   @return [String]
+#
+# @!attribute [rw] assigned_count
+#   @return [Integer]
+#
+# @!attribute [rw] key_hashes
+#   @return [Array]
 BulkAssignKeyCreateData = Struct.new(
   :guardrail_id,
+  :assigned_count,
+  :key_hashes,
   keyword_init: true
 )
 
@@ -674,11 +890,11 @@ BulkAssignKeyCreateData = Struct.new(
 # @!attribute [rw] assigned_count
 #   @return [Integer]
 #
-# @!attribute [rw] member_user_id
+# @!attribute [rw] member_user_ids
 #   @return [Array]
 BulkAssignMember = Struct.new(
   :assigned_count,
-  :member_user_id,
+  :member_user_ids,
   keyword_init: true
 )
 
@@ -686,8 +902,16 @@ BulkAssignMember = Struct.new(
 #
 # @!attribute [rw] guardrail_id
 #   @return [String]
+#
+# @!attribute [rw] assigned_count
+#   @return [Integer]
+#
+# @!attribute [rw] member_user_ids
+#   @return [Array]
 BulkAssignMemberCreateData = Struct.new(
   :guardrail_id,
+  :assigned_count,
+  :member_user_ids,
   keyword_init: true
 )
 
@@ -696,11 +920,11 @@ BulkAssignMemberCreateData = Struct.new(
 # @!attribute [rw] removed_count
 #   @return [Integer]
 #
-# @!attribute [rw] user_id
+# @!attribute [rw] user_ids
 #   @return [Array]
 BulkRemoveWorkspaceMember = Struct.new(
   :removed_count,
-  :user_id,
+  :user_ids,
   keyword_init: true
 )
 
@@ -708,20 +932,28 @@ BulkRemoveWorkspaceMember = Struct.new(
 #
 # @!attribute [rw] workspace_id
 #   @return [String]
+#
+# @!attribute [rw] removed_count
+#   @return [Integer]
+#
+# @!attribute [rw] user_ids
+#   @return [Array]
 BulkRemoveWorkspaceMemberCreateData = Struct.new(
   :workspace_id,
+  :removed_count,
+  :user_ids,
   keyword_init: true
 )
 
 # BulkUnassignKey entity data model.
 #
-# @!attribute [rw] key_hash
+# @!attribute [rw] key_hashes
 #   @return [Array]
 #
 # @!attribute [rw] unassigned_count
 #   @return [Integer]
 BulkUnassignKey = Struct.new(
-  :key_hash,
+  :key_hashes,
   :unassigned_count,
   keyword_init: true
 )
@@ -730,20 +962,28 @@ BulkUnassignKey = Struct.new(
 #
 # @!attribute [rw] guardrail_id
 #   @return [String]
+#
+# @!attribute [rw] key_hashes
+#   @return [Array]
+#
+# @!attribute [rw] unassigned_count
+#   @return [Integer]
 BulkUnassignKeyCreateData = Struct.new(
   :guardrail_id,
+  :key_hashes,
+  :unassigned_count,
   keyword_init: true
 )
 
 # BulkUnassignMember entity data model.
 #
-# @!attribute [rw] member_user_id
+# @!attribute [rw] member_user_ids
 #   @return [Array]
 #
 # @!attribute [rw] unassigned_count
 #   @return [Integer]
 BulkUnassignMember = Struct.new(
-  :member_user_id,
+  :member_user_ids,
   :unassigned_count,
   keyword_init: true
 )
@@ -752,36 +992,41 @@ BulkUnassignMember = Struct.new(
 #
 # @!attribute [rw] guardrail_id
 #   @return [String]
+#
+# @!attribute [rw] member_user_ids
+#   @return [Array]
+#
+# @!attribute [rw] unassigned_count
+#   @return [Integer]
 BulkUnassignMemberCreateData = Struct.new(
   :guardrail_id,
+  :member_user_ids,
+  :unassigned_count,
   keyword_init: true
 )
 
 # Byok entity data model.
 #
-# @!attribute [rw] allowed_api_key_hash
+# @!attribute [rw] allowed_api_key_hashes
 #   @return [Object]
 #
-# @!attribute [rw] allowed_model
-#   @return [Object, nil]
+# @!attribute [rw] allowed_models
+#   @return [Object]
 #
-# @!attribute [rw] allowed_user_id
-#   @return [Object, nil]
+# @!attribute [rw] allowed_user_ids
+#   @return [Object]
 #
 # @!attribute [rw] created_at
 #   @return [String]
 #
-# @!attribute [rw] data
-#   @return [Object]
-#
 # @!attribute [rw] disabled
-#   @return [Boolean, nil]
+#   @return [Boolean]
 #
 # @!attribute [rw] id
 #   @return [String]
 #
 # @!attribute [rw] is_fallback
-#   @return [Boolean, nil]
+#   @return [Boolean]
 #
 # @!attribute [rw] key
 #   @return [String]
@@ -799,13 +1044,12 @@ BulkUnassignMemberCreateData = Struct.new(
 #   @return [Integer]
 #
 # @!attribute [rw] workspace_id
-#   @return [String, nil]
+#   @return [String]
 Byok = Struct.new(
-  :allowed_api_key_hash,
-  :allowed_model,
-  :allowed_user_id,
+  :allowed_api_key_hashes,
+  :allowed_models,
+  :allowed_user_ids,
   :created_at,
-  :data,
   :disabled,
   :id,
   :is_fallback,
@@ -829,20 +1073,17 @@ ByokLoadMatch = Struct.new(
 
 # Request payload for Byok#list.
 #
-# @!attribute [rw] allowed_api_key_hash
+# @!attribute [rw] allowed_api_key_hashes
 #   @return [Object, nil]
 #
-# @!attribute [rw] allowed_model
+# @!attribute [rw] allowed_models
 #   @return [Object, nil]
 #
-# @!attribute [rw] allowed_user_id
+# @!attribute [rw] allowed_user_ids
 #   @return [Object, nil]
 #
 # @!attribute [rw] created_at
 #   @return [String, nil]
-#
-# @!attribute [rw] data
-#   @return [Object, nil]
 #
 # @!attribute [rw] disabled
 #   @return [Boolean, nil]
@@ -871,11 +1112,10 @@ ByokLoadMatch = Struct.new(
 # @!attribute [rw] workspace_id
 #   @return [String, nil]
 ByokListMatch = Struct.new(
-  :allowed_api_key_hash,
-  :allowed_model,
-  :allowed_user_id,
+  :allowed_api_key_hashes,
+  :allowed_models,
+  :allowed_user_ids,
   :created_at,
-  :data,
   :disabled,
   :id,
   :is_fallback,
@@ -890,29 +1130,26 @@ ByokListMatch = Struct.new(
 
 # Request payload for Byok#create.
 #
-# @!attribute [rw] allowed_api_key_hash
+# @!attribute [rw] allowed_api_key_hashes
 #   @return [Object]
 #
-# @!attribute [rw] allowed_model
-#   @return [Object, nil]
+# @!attribute [rw] allowed_models
+#   @return [Object]
 #
-# @!attribute [rw] allowed_user_id
-#   @return [Object, nil]
+# @!attribute [rw] allowed_user_ids
+#   @return [Object]
 #
 # @!attribute [rw] created_at
 #   @return [String]
 #
-# @!attribute [rw] data
-#   @return [Object]
-#
 # @!attribute [rw] disabled
-#   @return [Boolean, nil]
+#   @return [Boolean]
 #
 # @!attribute [rw] id
 #   @return [String]
 #
 # @!attribute [rw] is_fallback
-#   @return [Boolean, nil]
+#   @return [Boolean]
 #
 # @!attribute [rw] key
 #   @return [String]
@@ -930,13 +1167,12 @@ ByokListMatch = Struct.new(
 #   @return [Integer]
 #
 # @!attribute [rw] workspace_id
-#   @return [String, nil]
+#   @return [String]
 ByokCreateData = Struct.new(
-  :allowed_api_key_hash,
-  :allowed_model,
-  :allowed_user_id,
+  :allowed_api_key_hashes,
+  :allowed_models,
+  :allowed_user_ids,
   :created_at,
-  :data,
   :disabled,
   :id,
   :is_fallback,
@@ -963,7 +1199,7 @@ ByokRemoveMatch = Struct.new(
 # @!attribute [rw] cache_control
 #   @return [Hash]
 #
-# @!attribute [rw] choice
+# @!attribute [rw] choices
 #   @return [Array]
 #
 # @!attribute [rw] created
@@ -981,19 +1217,19 @@ ByokRemoveMatch = Struct.new(
 # @!attribute [rw] image_config
 #   @return [Hash, nil]
 #
-# @!attribute [rw] logit_bia
+# @!attribute [rw] logit_bias
 #   @return [Object, nil]
 #
-# @!attribute [rw] logprob
+# @!attribute [rw] logprobs
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_completion_token
+# @!attribute [rw] max_completion_tokens
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_token
+# @!attribute [rw] max_tokens
 #   @return [Object, nil]
 #
-# @!attribute [rw] message
+# @!attribute [rw] messages
 #   @return [Array]
 #
 # @!attribute [rw] metadata
@@ -1002,11 +1238,14 @@ ByokRemoveMatch = Struct.new(
 # @!attribute [rw] min_p
 #   @return [Object, nil]
 #
-# @!attribute [rw] modality
+# @!attribute [rw] modalities
 #   @return [Array, nil]
 #
 # @!attribute [rw] model
 #   @return [String]
+#
+# @!attribute [rw] models
+#   @return [Array, nil]
 #
 # @!attribute [rw] object
 #   @return [String]
@@ -1014,10 +1253,10 @@ ByokRemoveMatch = Struct.new(
 # @!attribute [rw] openrouter_metadata
 #   @return [Hash]
 #
-# @!attribute [rw] parallel_tool_call
+# @!attribute [rw] parallel_tool_calls
 #   @return [Object, nil]
 #
-# @!attribute [rw] plugin
+# @!attribute [rw] plugins
 #   @return [Array, nil]
 #
 # @!attribute [rw] prediction
@@ -1029,7 +1268,7 @@ ByokRemoveMatch = Struct.new(
 # @!attribute [rw] prompt_cache_key
 #   @return [Object, nil]
 #
-# @!attribute [rw] prompt_cache_option
+# @!attribute [rw] prompt_cache_options
 #   @return [Object]
 #
 # @!attribute [rw] provider
@@ -1068,7 +1307,7 @@ ByokRemoveMatch = Struct.new(
 # @!attribute [rw] stream
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] stream_option
+# @!attribute [rw] stream_options
 #   @return [Object, nil]
 #
 # @!attribute [rw] system_fingerprint
@@ -1077,11 +1316,11 @@ ByokRemoveMatch = Struct.new(
 # @!attribute [rw] temperature
 #   @return [Object, nil]
 #
-# @!attribute [rw] tool
-#   @return [Array, nil]
-#
 # @!attribute [rw] tool_choice
 #   @return [Object, nil]
+#
+# @!attribute [rw] tools
+#   @return [Array, nil]
 #
 # @!attribute [rw] top_a
 #   @return [Object, nil]
@@ -1089,7 +1328,7 @@ ByokRemoveMatch = Struct.new(
 # @!attribute [rw] top_k
 #   @return [Object, nil]
 #
-# @!attribute [rw] top_logprob
+# @!attribute [rw] top_logprobs
 #   @return [Object, nil]
 #
 # @!attribute [rw] top_p
@@ -1105,29 +1344,30 @@ ByokRemoveMatch = Struct.new(
 #   @return [String, nil]
 ChatResult = Struct.new(
   :cache_control,
-  :choice,
+  :choices,
   :created,
   :debug,
   :frequency_penalty,
   :id,
   :image_config,
-  :logit_bia,
-  :logprob,
-  :max_completion_token,
-  :max_token,
-  :message,
+  :logit_bias,
+  :logprobs,
+  :max_completion_tokens,
+  :max_tokens,
+  :messages,
   :metadata,
   :min_p,
-  :modality,
+  :modalities,
   :model,
+  :models,
   :object,
   :openrouter_metadata,
-  :parallel_tool_call,
-  :plugin,
+  :parallel_tool_calls,
+  :plugins,
   :prediction,
   :presence_penalty,
   :prompt_cache_key,
-  :prompt_cache_option,
+  :prompt_cache_options,
   :provider,
   :reasoning,
   :reasoning_effort,
@@ -1140,14 +1380,14 @@ ChatResult = Struct.new(
   :stop,
   :stop_server_tools_when,
   :stream,
-  :stream_option,
+  :stream_options,
   :system_fingerprint,
   :temperature,
-  :tool,
   :tool_choice,
+  :tools,
   :top_a,
   :top_k,
-  :top_logprob,
+  :top_logprobs,
   :top_p,
   :trace,
   :usage,
@@ -1160,7 +1400,7 @@ ChatResult = Struct.new(
 # @!attribute [rw] cache_control
 #   @return [Hash]
 #
-# @!attribute [rw] choice
+# @!attribute [rw] choices
 #   @return [Array]
 #
 # @!attribute [rw] created
@@ -1178,19 +1418,19 @@ ChatResult = Struct.new(
 # @!attribute [rw] image_config
 #   @return [Hash, nil]
 #
-# @!attribute [rw] logit_bia
+# @!attribute [rw] logit_bias
 #   @return [Object, nil]
 #
-# @!attribute [rw] logprob
+# @!attribute [rw] logprobs
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_completion_token
+# @!attribute [rw] max_completion_tokens
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_token
+# @!attribute [rw] max_tokens
 #   @return [Object, nil]
 #
-# @!attribute [rw] message
+# @!attribute [rw] messages
 #   @return [Array]
 #
 # @!attribute [rw] metadata
@@ -1199,11 +1439,14 @@ ChatResult = Struct.new(
 # @!attribute [rw] min_p
 #   @return [Object, nil]
 #
-# @!attribute [rw] modality
+# @!attribute [rw] modalities
 #   @return [Array, nil]
 #
 # @!attribute [rw] model
 #   @return [String]
+#
+# @!attribute [rw] models
+#   @return [Array, nil]
 #
 # @!attribute [rw] object
 #   @return [String]
@@ -1211,10 +1454,10 @@ ChatResult = Struct.new(
 # @!attribute [rw] openrouter_metadata
 #   @return [Hash]
 #
-# @!attribute [rw] parallel_tool_call
+# @!attribute [rw] parallel_tool_calls
 #   @return [Object, nil]
 #
-# @!attribute [rw] plugin
+# @!attribute [rw] plugins
 #   @return [Array, nil]
 #
 # @!attribute [rw] prediction
@@ -1226,7 +1469,7 @@ ChatResult = Struct.new(
 # @!attribute [rw] prompt_cache_key
 #   @return [Object, nil]
 #
-# @!attribute [rw] prompt_cache_option
+# @!attribute [rw] prompt_cache_options
 #   @return [Object]
 #
 # @!attribute [rw] provider
@@ -1265,7 +1508,7 @@ ChatResult = Struct.new(
 # @!attribute [rw] stream
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] stream_option
+# @!attribute [rw] stream_options
 #   @return [Object, nil]
 #
 # @!attribute [rw] system_fingerprint
@@ -1274,11 +1517,11 @@ ChatResult = Struct.new(
 # @!attribute [rw] temperature
 #   @return [Object, nil]
 #
-# @!attribute [rw] tool
-#   @return [Array, nil]
-#
 # @!attribute [rw] tool_choice
 #   @return [Object, nil]
+#
+# @!attribute [rw] tools
+#   @return [Array, nil]
 #
 # @!attribute [rw] top_a
 #   @return [Object, nil]
@@ -1286,7 +1529,7 @@ ChatResult = Struct.new(
 # @!attribute [rw] top_k
 #   @return [Object, nil]
 #
-# @!attribute [rw] top_logprob
+# @!attribute [rw] top_logprobs
 #   @return [Object, nil]
 #
 # @!attribute [rw] top_p
@@ -1302,29 +1545,30 @@ ChatResult = Struct.new(
 #   @return [String, nil]
 ChatResultCreateData = Struct.new(
   :cache_control,
-  :choice,
+  :choices,
   :created,
   :debug,
   :frequency_penalty,
   :id,
   :image_config,
-  :logit_bia,
-  :logprob,
-  :max_completion_token,
-  :max_token,
-  :message,
+  :logit_bias,
+  :logprobs,
+  :max_completion_tokens,
+  :max_tokens,
+  :messages,
   :metadata,
   :min_p,
-  :modality,
+  :modalities,
   :model,
+  :models,
   :object,
   :openrouter_metadata,
-  :parallel_tool_call,
-  :plugin,
+  :parallel_tool_calls,
+  :plugins,
   :prediction,
   :presence_penalty,
   :prompt_cache_key,
-  :prompt_cache_option,
+  :prompt_cache_options,
   :provider,
   :reasoning,
   :reasoning_effort,
@@ -1337,14 +1581,14 @@ ChatResultCreateData = Struct.new(
   :stop,
   :stop_server_tools_when,
   :stream,
-  :stream_option,
+  :stream_options,
   :system_fingerprint,
   :temperature,
-  :tool,
   :tool_choice,
+  :tools,
   :top_a,
   :top_k,
-  :top_logprob,
+  :top_logprobs,
   :top_p,
   :trace,
   :usage,
@@ -1382,7 +1626,7 @@ end
 
 # CreateObservabilityDestination entity data model.
 #
-# @!attribute [rw] api_key_hash
+# @!attribute [rw] api_key_hashes
 #   @return [Object, nil]
 #
 # @!attribute [rw] config
@@ -1391,7 +1635,7 @@ end
 # @!attribute [rw] enabled
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] filter_rule
+# @!attribute [rw] filter_rules
 #   @return [Object]
 #
 # @!attribute [rw] name
@@ -1409,10 +1653,10 @@ end
 # @!attribute [rw] workspace_id
 #   @return [String, nil]
 CreateObservabilityDestination = Struct.new(
-  :api_key_hash,
+  :api_key_hashes,
   :config,
   :enabled,
-  :filter_rule,
+  :filter_rules,
   :name,
   :privacy_mode,
   :sampling_rate,
@@ -1423,7 +1667,7 @@ CreateObservabilityDestination = Struct.new(
 
 # Request payload for CreateObservabilityDestination#create.
 #
-# @!attribute [rw] api_key_hash
+# @!attribute [rw] api_key_hashes
 #   @return [Object, nil]
 #
 # @!attribute [rw] config
@@ -1432,7 +1676,7 @@ CreateObservabilityDestination = Struct.new(
 # @!attribute [rw] enabled
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] filter_rule
+# @!attribute [rw] filter_rules
 #   @return [Object]
 #
 # @!attribute [rw] name
@@ -1450,10 +1694,10 @@ CreateObservabilityDestination = Struct.new(
 # @!attribute [rw] workspace_id
 #   @return [String, nil]
 CreateObservabilityDestinationCreateData = Struct.new(
-  :api_key_hash,
+  :api_key_hashes,
   :config,
   :enabled,
-  :filter_rule,
+  :filter_rules,
   :name,
   :privacy_mode,
   :sampling_rate,
@@ -1473,13 +1717,10 @@ CreateObservabilityDestinationCreateData = Struct.new(
 # @!attribute [rw] context_management
 #   @return [Object, nil]
 #
-# @!attribute [rw] data
-#   @return [Object]
-#
 # @!attribute [rw] debug
 #   @return [Hash, nil]
 #
-# @!attribute [rw] fallback
+# @!attribute [rw] fallbacks
 #   @return [Object, nil]
 #
 # @!attribute [rw] frequency_penalty
@@ -1494,28 +1735,28 @@ CreateObservabilityDestinationCreateData = Struct.new(
 # @!attribute [rw] input
 #   @return [Object, nil]
 #
-# @!attribute [rw] instruction
+# @!attribute [rw] instructions
 #   @return [Object, nil]
 #
-# @!attribute [rw] logit_bia
+# @!attribute [rw] logit_bias
 #   @return [Object, nil]
 #
-# @!attribute [rw] logprob
+# @!attribute [rw] logprobs
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_completion_token
+# @!attribute [rw] max_completion_tokens
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_output_token
+# @!attribute [rw] max_output_tokens
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_token
+# @!attribute [rw] max_tokens
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_tool_call
+# @!attribute [rw] max_tool_calls
 #   @return [Object, nil]
 #
-# @!attribute [rw] message
+# @!attribute [rw] messages
 #   @return [Array]
 #
 # @!attribute [rw] metadata
@@ -1524,19 +1765,22 @@ CreateObservabilityDestinationCreateData = Struct.new(
 # @!attribute [rw] min_p
 #   @return [Object, nil]
 #
-# @!attribute [rw] modality
+# @!attribute [rw] modalities
 #   @return [Array, nil]
 #
 # @!attribute [rw] model
 #   @return [String, nil]
 #
+# @!attribute [rw] models
+#   @return [Array, nil]
+#
 # @!attribute [rw] output_config
 #   @return [Hash, nil]
 #
-# @!attribute [rw] parallel_tool_call
+# @!attribute [rw] parallel_tool_calls
 #   @return [Object, nil]
 #
-# @!attribute [rw] plugin
+# @!attribute [rw] plugins
 #   @return [Array, nil]
 #
 # @!attribute [rw] prediction
@@ -1554,7 +1798,7 @@ CreateObservabilityDestinationCreateData = Struct.new(
 # @!attribute [rw] prompt_cache_key
 #   @return [Object, nil]
 #
-# @!attribute [rw] prompt_cache_option
+# @!attribute [rw] prompt_cache_options
 #   @return [Object]
 #
 # @!attribute [rw] provider
@@ -1593,7 +1837,7 @@ CreateObservabilityDestinationCreateData = Struct.new(
 # @!attribute [rw] stop
 #   @return [Object, nil]
 #
-# @!attribute [rw] stop_sequence
+# @!attribute [rw] stop_sequences
 #   @return [Array, nil]
 #
 # @!attribute [rw] stop_server_tools_when
@@ -1605,7 +1849,7 @@ CreateObservabilityDestinationCreateData = Struct.new(
 # @!attribute [rw] stream
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] stream_option
+# @!attribute [rw] stream_options
 #   @return [Object, nil]
 #
 # @!attribute [rw] system
@@ -1620,11 +1864,11 @@ CreateObservabilityDestinationCreateData = Struct.new(
 # @!attribute [rw] thinking
 #   @return [Object, nil]
 #
-# @!attribute [rw] tool
-#   @return [Array, nil]
-#
 # @!attribute [rw] tool_choice
 #   @return [Object, nil]
+#
+# @!attribute [rw] tools
+#   @return [Array, nil]
 #
 # @!attribute [rw] top_a
 #   @return [Object, nil]
@@ -1632,7 +1876,7 @@ CreateObservabilityDestinationCreateData = Struct.new(
 # @!attribute [rw] top_k
 #   @return [Object, nil]
 #
-# @!attribute [rw] top_logprob
+# @!attribute [rw] top_logprobs
 #   @return [Object, nil]
 #
 # @!attribute [rw] top_p
@@ -1650,34 +1894,34 @@ CreatePresetFromInference = Struct.new(
   :background,
   :cache_control,
   :context_management,
-  :data,
   :debug,
-  :fallback,
+  :fallbacks,
   :frequency_penalty,
   :image_config,
   :include,
   :input,
-  :instruction,
-  :logit_bia,
-  :logprob,
-  :max_completion_token,
-  :max_output_token,
-  :max_token,
-  :max_tool_call,
-  :message,
+  :instructions,
+  :logit_bias,
+  :logprobs,
+  :max_completion_tokens,
+  :max_output_tokens,
+  :max_tokens,
+  :max_tool_calls,
+  :messages,
   :metadata,
   :min_p,
-  :modality,
+  :modalities,
   :model,
+  :models,
   :output_config,
-  :parallel_tool_call,
-  :plugin,
+  :parallel_tool_calls,
+  :plugins,
   :prediction,
   :presence_penalty,
   :previous_response_id,
   :prompt,
   :prompt_cache_key,
-  :prompt_cache_option,
+  :prompt_cache_options,
   :provider,
   :reasoning,
   :reasoning_effort,
@@ -1690,20 +1934,20 @@ CreatePresetFromInference = Struct.new(
   :session_id,
   :speed,
   :stop,
-  :stop_sequence,
+  :stop_sequences,
   :stop_server_tools_when,
   :store,
   :stream,
-  :stream_option,
+  :stream_options,
   :system,
   :temperature,
   :text,
   :thinking,
-  :tool,
   :tool_choice,
+  :tools,
   :top_a,
   :top_k,
-  :top_logprob,
+  :top_logprobs,
   :top_p,
   :trace,
   :truncation,
@@ -1715,8 +1959,252 @@ CreatePresetFromInference = Struct.new(
 #
 # @!attribute [rw] slug
 #   @return [String]
+#
+# @!attribute [rw] background
+#   @return [Object, nil]
+#
+# @!attribute [rw] cache_control
+#   @return [Hash]
+#
+# @!attribute [rw] context_management
+#   @return [Object, nil]
+#
+# @!attribute [rw] debug
+#   @return [Hash, nil]
+#
+# @!attribute [rw] fallbacks
+#   @return [Object, nil]
+#
+# @!attribute [rw] frequency_penalty
+#   @return [Object, nil]
+#
+# @!attribute [rw] image_config
+#   @return [Hash, nil]
+#
+# @!attribute [rw] include
+#   @return [Object, nil]
+#
+# @!attribute [rw] input
+#   @return [Object, nil]
+#
+# @!attribute [rw] instructions
+#   @return [Object, nil]
+#
+# @!attribute [rw] logit_bias
+#   @return [Object, nil]
+#
+# @!attribute [rw] logprobs
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_completion_tokens
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_output_tokens
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_tokens
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_tool_calls
+#   @return [Object, nil]
+#
+# @!attribute [rw] messages
+#   @return [Array]
+#
+# @!attribute [rw] metadata
+#   @return [Hash, nil]
+#
+# @!attribute [rw] min_p
+#   @return [Object, nil]
+#
+# @!attribute [rw] modalities
+#   @return [Array, nil]
+#
+# @!attribute [rw] model
+#   @return [String, nil]
+#
+# @!attribute [rw] models
+#   @return [Array, nil]
+#
+# @!attribute [rw] output_config
+#   @return [Hash, nil]
+#
+# @!attribute [rw] parallel_tool_calls
+#   @return [Object, nil]
+#
+# @!attribute [rw] plugins
+#   @return [Array, nil]
+#
+# @!attribute [rw] prediction
+#   @return [Object]
+#
+# @!attribute [rw] presence_penalty
+#   @return [Object, nil]
+#
+# @!attribute [rw] previous_response_id
+#   @return [String, nil]
+#
+# @!attribute [rw] prompt
+#   @return [Object]
+#
+# @!attribute [rw] prompt_cache_key
+#   @return [Object, nil]
+#
+# @!attribute [rw] prompt_cache_options
+#   @return [Object]
+#
+# @!attribute [rw] provider
+#   @return [Object, nil]
+#
+# @!attribute [rw] reasoning
+#   @return [Hash, nil]
+#
+# @!attribute [rw] reasoning_effort
+#   @return [Object, nil]
+#
+# @!attribute [rw] repetition_penalty
+#   @return [Object, nil]
+#
+# @!attribute [rw] response_format
+#   @return [Object, nil]
+#
+# @!attribute [rw] route
+#   @return [Object, nil]
+#
+# @!attribute [rw] safety_identifier
+#   @return [Object, nil]
+#
+# @!attribute [rw] seed
+#   @return [Object, nil]
+#
+# @!attribute [rw] service_tier
+#   @return [Object, nil]
+#
+# @!attribute [rw] session_id
+#   @return [String, nil]
+#
+# @!attribute [rw] speed
+#   @return [Object, nil]
+#
+# @!attribute [rw] stop
+#   @return [Object, nil]
+#
+# @!attribute [rw] stop_sequences
+#   @return [Array, nil]
+#
+# @!attribute [rw] stop_server_tools_when
+#   @return [Array, nil]
+#
+# @!attribute [rw] store
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] stream
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] stream_options
+#   @return [Object, nil]
+#
+# @!attribute [rw] system
+#   @return [Object, nil]
+#
+# @!attribute [rw] temperature
+#   @return [Object, nil]
+#
+# @!attribute [rw] text
+#   @return [Object, nil]
+#
+# @!attribute [rw] thinking
+#   @return [Object, nil]
+#
+# @!attribute [rw] tool_choice
+#   @return [Object, nil]
+#
+# @!attribute [rw] tools
+#   @return [Array, nil]
+#
+# @!attribute [rw] top_a
+#   @return [Object, nil]
+#
+# @!attribute [rw] top_k
+#   @return [Object, nil]
+#
+# @!attribute [rw] top_logprobs
+#   @return [Object, nil]
+#
+# @!attribute [rw] top_p
+#   @return [Object, nil]
+#
+# @!attribute [rw] trace
+#   @return [Hash, nil]
+#
+# @!attribute [rw] truncation
+#   @return [Object, nil]
+#
+# @!attribute [rw] user
+#   @return [String, nil]
 CreatePresetFromInferenceCreateData = Struct.new(
   :slug,
+  :background,
+  :cache_control,
+  :context_management,
+  :debug,
+  :fallbacks,
+  :frequency_penalty,
+  :image_config,
+  :include,
+  :input,
+  :instructions,
+  :logit_bias,
+  :logprobs,
+  :max_completion_tokens,
+  :max_output_tokens,
+  :max_tokens,
+  :max_tool_calls,
+  :messages,
+  :metadata,
+  :min_p,
+  :modalities,
+  :model,
+  :models,
+  :output_config,
+  :parallel_tool_calls,
+  :plugins,
+  :prediction,
+  :presence_penalty,
+  :previous_response_id,
+  :prompt,
+  :prompt_cache_key,
+  :prompt_cache_options,
+  :provider,
+  :reasoning,
+  :reasoning_effort,
+  :repetition_penalty,
+  :response_format,
+  :route,
+  :safety_identifier,
+  :seed,
+  :service_tier,
+  :session_id,
+  :speed,
+  :stop,
+  :stop_sequences,
+  :stop_server_tools_when,
+  :store,
+  :stream,
+  :stream_options,
+  :system,
+  :temperature,
+  :text,
+  :thinking,
+  :tool_choice,
+  :tools,
+  :top_a,
+  :top_k,
+  :top_logprobs,
+  :top_p,
+  :trace,
+  :truncation,
+  :user,
   keyword_init: true
 )
 
@@ -1726,28 +2214,40 @@ end
 
 # Credit entity data model.
 #
-# @!attribute [rw] data
-#   @return [Hash]
+# @!attribute [rw] total_credits
+#   @return [Float]
+#
+# @!attribute [rw] total_usage
+#   @return [Float]
 Credit = Struct.new(
-  :data,
+  :total_credits,
+  :total_usage,
   keyword_init: true
 )
 
 # Request payload for Credit#load.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
+# @!attribute [rw] total_credits
+#   @return [Float, nil]
+#
+# @!attribute [rw] total_usage
+#   @return [Float, nil]
 CreditLoadMatch = Struct.new(
-  :data,
+  :total_credits,
+  :total_usage,
   keyword_init: true
 )
 
 # Request payload for Credit#create.
 #
-# @!attribute [rw] data
-#   @return [Hash]
+# @!attribute [rw] total_credits
+#   @return [Float]
+#
+# @!attribute [rw] total_usage
+#   @return [Float]
 CreditCreateData = Struct.new(
-  :data,
+  :total_credits,
+  :total_usage,
   keyword_init: true
 )
 
@@ -1760,7 +2260,7 @@ end
 # @!attribute [rw] data
 #   @return [Array]
 #
-# @!attribute [rw] dimension
+# @!attribute [rw] dimensions
 #   @return [Integer, nil]
 #
 # @!attribute [rw] encoding_format
@@ -1791,7 +2291,7 @@ end
 #   @return [String, nil]
 Embedding = Struct.new(
   :data,
-  :dimension,
+  :dimensions,
   :encoding_format,
   :id,
   :input,
@@ -1809,7 +2309,7 @@ Embedding = Struct.new(
 # @!attribute [rw] data
 #   @return [Array]
 #
-# @!attribute [rw] dimension
+# @!attribute [rw] dimensions
 #   @return [Integer, nil]
 #
 # @!attribute [rw] encoding_format
@@ -1840,7 +2340,7 @@ Embedding = Struct.new(
 #   @return [String, nil]
 EmbeddingCreateData = Struct.new(
   :data,
-  :dimension,
+  :dimensions,
   :encoding_format,
   :id,
   :input,
@@ -1856,9 +2356,9 @@ EmbeddingCreateData = Struct.new(
 # Endpoint entity data model.
 #
 # @!attribute [rw] architecture
-#   @return [Hash]
+#   @return [Object]
 #
-# @!attribute [rw] benchmark
+# @!attribute [rw] benchmarks
 #   @return [Hash]
 #
 # @!attribute [rw] canonical_slug
@@ -1870,14 +2370,14 @@ EmbeddingCreateData = Struct.new(
 # @!attribute [rw] created
 #   @return [Integer]
 #
-# @!attribute [rw] data
-#   @return [Hash]
-#
-# @!attribute [rw] default_parameter
+# @!attribute [rw] default_parameters
 #   @return [Object]
 #
 # @!attribute [rw] description
-#   @return [String, nil]
+#   @return [String]
+#
+# @!attribute [rw] endpoints
+#   @return [Array]
 #
 # @!attribute [rw] expiration_date
 #   @return [Object, nil]
@@ -1894,13 +2394,13 @@ EmbeddingCreateData = Struct.new(
 # @!attribute [rw] latency_last_30m
 #   @return [Object]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash]
 #
-# @!attribute [rw] max_completion_token
+# @!attribute [rw] max_completion_tokens
 #   @return [Object]
 #
-# @!attribute [rw] max_prompt_token
+# @!attribute [rw] max_prompt_tokens
 #   @return [Object]
 #
 # @!attribute [rw] model_id
@@ -1912,7 +2412,7 @@ EmbeddingCreateData = Struct.new(
 # @!attribute [rw] name
 #   @return [String]
 #
-# @!attribute [rw] per_request_limit
+# @!attribute [rw] per_request_limits
 #   @return [Object]
 #
 # @!attribute [rw] pricing
@@ -1930,10 +2430,10 @@ EmbeddingCreateData = Struct.new(
 # @!attribute [rw] status
 #   @return [Integer, nil]
 #
-# @!attribute [rw] supported_parameter
+# @!attribute [rw] supported_parameters
 #   @return [Array]
 #
-# @!attribute [rw] supported_voice
+# @!attribute [rw] supported_voices
 #   @return [Object]
 #
 # @!attribute [rw] supports_implicit_caching
@@ -1958,32 +2458,32 @@ EmbeddingCreateData = Struct.new(
 #   @return [Object]
 Endpoint = Struct.new(
   :architecture,
-  :benchmark,
+  :benchmarks,
   :canonical_slug,
   :context_length,
   :created,
-  :data,
-  :default_parameter,
+  :default_parameters,
   :description,
+  :endpoints,
   :expiration_date,
   :hugging_face_id,
   :id,
   :knowledge_cutoff,
   :latency_last_30m,
-  :link,
-  :max_completion_token,
-  :max_prompt_token,
+  :links,
+  :max_completion_tokens,
+  :max_prompt_tokens,
   :model_id,
   :model_name,
   :name,
-  :per_request_limit,
+  :per_request_limits,
   :pricing,
   :provider_name,
   :quantization,
   :reasoning,
   :status,
-  :supported_parameter,
-  :supported_voice,
+  :supported_parameters,
+  :supported_voices,
   :supports_implicit_caching,
   :tag,
   :throughput_last_30m,
@@ -2010,9 +2510,9 @@ EndpointLoadMatch = Struct.new(
 # Request payload for Endpoint#list.
 #
 # @!attribute [rw] architecture
-#   @return [Hash, nil]
+#   @return [Object, nil]
 #
-# @!attribute [rw] benchmark
+# @!attribute [rw] benchmarks
 #   @return [Hash, nil]
 #
 # @!attribute [rw] canonical_slug
@@ -2024,14 +2524,14 @@ EndpointLoadMatch = Struct.new(
 # @!attribute [rw] created
 #   @return [Integer, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
-# @!attribute [rw] default_parameter
+# @!attribute [rw] default_parameters
 #   @return [Object, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
+#
+# @!attribute [rw] endpoints
+#   @return [Array, nil]
 #
 # @!attribute [rw] expiration_date
 #   @return [Object, nil]
@@ -2048,13 +2548,13 @@ EndpointLoadMatch = Struct.new(
 # @!attribute [rw] latency_last_30m
 #   @return [Object, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
-# @!attribute [rw] max_completion_token
+# @!attribute [rw] max_completion_tokens
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_prompt_token
+# @!attribute [rw] max_prompt_tokens
 #   @return [Object, nil]
 #
 # @!attribute [rw] model_id
@@ -2066,7 +2566,7 @@ EndpointLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] per_request_limit
+# @!attribute [rw] per_request_limits
 #   @return [Object, nil]
 #
 # @!attribute [rw] pricing
@@ -2084,10 +2584,10 @@ EndpointLoadMatch = Struct.new(
 # @!attribute [rw] status
 #   @return [Integer, nil]
 #
-# @!attribute [rw] supported_parameter
+# @!attribute [rw] supported_parameters
 #   @return [Array, nil]
 #
-# @!attribute [rw] supported_voice
+# @!attribute [rw] supported_voices
 #   @return [Object, nil]
 #
 # @!attribute [rw] supports_implicit_caching
@@ -2112,32 +2612,32 @@ EndpointLoadMatch = Struct.new(
 #   @return [Object, nil]
 EndpointListMatch = Struct.new(
   :architecture,
-  :benchmark,
+  :benchmarks,
   :canonical_slug,
   :context_length,
   :created,
-  :data,
-  :default_parameter,
+  :default_parameters,
   :description,
+  :endpoints,
   :expiration_date,
   :hugging_face_id,
   :id,
   :knowledge_cutoff,
   :latency_last_30m,
-  :link,
-  :max_completion_token,
-  :max_prompt_token,
+  :links,
+  :max_completion_tokens,
+  :max_prompt_tokens,
   :model_id,
   :model_name,
   :name,
-  :per_request_limit,
+  :per_request_limits,
   :pricing,
   :provider_name,
   :quantization,
   :reasoning,
   :status,
-  :supported_parameter,
-  :supported_voice,
+  :supported_parameters,
+  :supported_voices,
   :supports_implicit_caching,
   :tag,
   :throughput_last_30m,
@@ -2169,18 +2669,18 @@ end
 # @!attribute [rw] mime_type
 #   @return [String]
 #
-# @!attribute [rw] size_byte
+# @!attribute [rw] size_bytes
 #   @return [Integer]
 #
 # @!attribute [rw] type
 #   @return [String]
-File = Struct.new(
+FileType = Struct.new(
   :created_at,
   :downloadable,
   :filename,
   :id,
   :mime_type,
-  :size_byte,
+  :size_bytes,
   :type,
   keyword_init: true
 )
@@ -2211,7 +2711,7 @@ FileLoadMatch = Struct.new(
 # @!attribute [rw] mime_type
 #   @return [String, nil]
 #
-# @!attribute [rw] size_byte
+# @!attribute [rw] size_bytes
 #   @return [Integer, nil]
 #
 # @!attribute [rw] type
@@ -2222,7 +2722,7 @@ FileListMatch = Struct.new(
   :filename,
   :id,
   :mime_type,
-  :size_byte,
+  :size_bytes,
   :type,
   keyword_init: true
 )
@@ -2244,7 +2744,7 @@ FileListMatch = Struct.new(
 # @!attribute [rw] mime_type
 #   @return [String]
 #
-# @!attribute [rw] size_byte
+# @!attribute [rw] size_bytes
 #   @return [Integer]
 #
 # @!attribute [rw] type
@@ -2255,7 +2755,7 @@ FileCreateData = Struct.new(
   :filename,
   :id,
   :mime_type,
-  :size_byte,
+  :size_bytes,
   :type,
   keyword_init: true
 )
@@ -2271,59 +2771,408 @@ FileRemoveMatch = Struct.new(
 
 # Generation entity data model.
 #
-# @!attribute [rw] data
-#   @return [Hash]
+# @!attribute [rw] api_type
+#   @return [Object]
+#
+# @!attribute [rw] app_id
+#   @return [Object]
+#
+# @!attribute [rw] cache_discount
+#   @return [Object]
+#
+# @!attribute [rw] cancelled
+#   @return [Object]
+#
+# @!attribute [rw] created_at
+#   @return [String]
+#
+# @!attribute [rw] data_region
+#   @return [String]
+#
+# @!attribute [rw] external_user
+#   @return [Object]
+#
+# @!attribute [rw] finish_reason
+#   @return [Object]
+#
+# @!attribute [rw] generation_time
+#   @return [Object]
+#
+# @!attribute [rw] http_referer
+#   @return [Object]
+#
+# @!attribute [rw] id
+#   @return [String]
+#
+# @!attribute [rw] is_byok
+#   @return [Boolean]
+#
+# @!attribute [rw] latency
+#   @return [Object]
+#
+# @!attribute [rw] model
+#   @return [String]
+#
+# @!attribute [rw] moderation_latency
+#   @return [Object]
+#
+# @!attribute [rw] native_finish_reason
+#   @return [Object]
+#
+# @!attribute [rw] native_tokens_cached
+#   @return [Object]
+#
+# @!attribute [rw] native_tokens_completion
+#   @return [Object]
+#
+# @!attribute [rw] native_tokens_completion_images
+#   @return [Object]
+#
+# @!attribute [rw] native_tokens_prompt
+#   @return [Object]
+#
+# @!attribute [rw] native_tokens_reasoning
+#   @return [Object]
+#
+# @!attribute [rw] num_fetches
+#   @return [Object]
+#
+# @!attribute [rw] num_input_audio_prompt
+#   @return [Object]
+#
+# @!attribute [rw] num_media_completion
+#   @return [Object]
+#
+# @!attribute [rw] num_media_prompt
+#   @return [Object]
+#
+# @!attribute [rw] num_search_results
+#   @return [Object]
+#
+# @!attribute [rw] origin
+#   @return [String]
+#
+# @!attribute [rw] preset_id
+#   @return [Object]
+#
+# @!attribute [rw] provider_name
+#   @return [Object]
+#
+# @!attribute [rw] provider_responses
+#   @return [Object]
+#
+# @!attribute [rw] request_id
+#   @return [Object, nil]
+#
+# @!attribute [rw] response_cache_source_id
+#   @return [Object, nil]
+#
+# @!attribute [rw] router
+#   @return [Object]
+#
+# @!attribute [rw] service_tier
+#   @return [Object]
+#
+# @!attribute [rw] session_id
+#   @return [Object, nil]
+#
+# @!attribute [rw] streamed
+#   @return [Object]
+#
+# @!attribute [rw] tokens_completion
+#   @return [Object]
+#
+# @!attribute [rw] tokens_prompt
+#   @return [Object]
+#
+# @!attribute [rw] total_cost
+#   @return [Float]
+#
+# @!attribute [rw] upstream_id
+#   @return [Object]
+#
+# @!attribute [rw] upstream_inference_cost
+#   @return [Object]
+#
+# @!attribute [rw] usage
+#   @return [Float]
+#
+# @!attribute [rw] user_agent
+#   @return [Object]
+#
+# @!attribute [rw] web_search_engine
+#   @return [Object]
 Generation = Struct.new(
-  :data,
+  :api_type,
+  :app_id,
+  :cache_discount,
+  :cancelled,
+  :created_at,
+  :data_region,
+  :external_user,
+  :finish_reason,
+  :generation_time,
+  :http_referer,
+  :id,
+  :is_byok,
+  :latency,
+  :model,
+  :moderation_latency,
+  :native_finish_reason,
+  :native_tokens_cached,
+  :native_tokens_completion,
+  :native_tokens_completion_images,
+  :native_tokens_prompt,
+  :native_tokens_reasoning,
+  :num_fetches,
+  :num_input_audio_prompt,
+  :num_media_completion,
+  :num_media_prompt,
+  :num_search_results,
+  :origin,
+  :preset_id,
+  :provider_name,
+  :provider_responses,
+  :request_id,
+  :response_cache_source_id,
+  :router,
+  :service_tier,
+  :session_id,
+  :streamed,
+  :tokens_completion,
+  :tokens_prompt,
+  :total_cost,
+  :upstream_id,
+  :upstream_inference_cost,
+  :usage,
+  :user_agent,
+  :web_search_engine,
   keyword_init: true
 )
 
 # Request payload for Generation#load.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
+# @!attribute [rw] api_type
+#   @return [Object, nil]
+#
+# @!attribute [rw] app_id
+#   @return [Object, nil]
+#
+# @!attribute [rw] cache_discount
+#   @return [Object, nil]
+#
+# @!attribute [rw] cancelled
+#   @return [Object, nil]
+#
+# @!attribute [rw] created_at
+#   @return [String, nil]
+#
+# @!attribute [rw] data_region
+#   @return [String, nil]
+#
+# @!attribute [rw] external_user
+#   @return [Object, nil]
+#
+# @!attribute [rw] finish_reason
+#   @return [Object, nil]
+#
+# @!attribute [rw] generation_time
+#   @return [Object, nil]
+#
+# @!attribute [rw] http_referer
+#   @return [Object, nil]
+#
+# @!attribute [rw] id
+#   @return [String]
+#
+# @!attribute [rw] is_byok
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] latency
+#   @return [Object, nil]
+#
+# @!attribute [rw] model
+#   @return [String, nil]
+#
+# @!attribute [rw] moderation_latency
+#   @return [Object, nil]
+#
+# @!attribute [rw] native_finish_reason
+#   @return [Object, nil]
+#
+# @!attribute [rw] native_tokens_cached
+#   @return [Object, nil]
+#
+# @!attribute [rw] native_tokens_completion
+#   @return [Object, nil]
+#
+# @!attribute [rw] native_tokens_completion_images
+#   @return [Object, nil]
+#
+# @!attribute [rw] native_tokens_prompt
+#   @return [Object, nil]
+#
+# @!attribute [rw] native_tokens_reasoning
+#   @return [Object, nil]
+#
+# @!attribute [rw] num_fetches
+#   @return [Object, nil]
+#
+# @!attribute [rw] num_input_audio_prompt
+#   @return [Object, nil]
+#
+# @!attribute [rw] num_media_completion
+#   @return [Object, nil]
+#
+# @!attribute [rw] num_media_prompt
+#   @return [Object, nil]
+#
+# @!attribute [rw] num_search_results
+#   @return [Object, nil]
+#
+# @!attribute [rw] origin
+#   @return [String, nil]
+#
+# @!attribute [rw] preset_id
+#   @return [Object, nil]
+#
+# @!attribute [rw] provider_name
+#   @return [Object, nil]
+#
+# @!attribute [rw] provider_responses
+#   @return [Object, nil]
+#
+# @!attribute [rw] request_id
+#   @return [Object, nil]
+#
+# @!attribute [rw] response_cache_source_id
+#   @return [Object, nil]
+#
+# @!attribute [rw] router
+#   @return [Object, nil]
+#
+# @!attribute [rw] service_tier
+#   @return [Object, nil]
+#
+# @!attribute [rw] session_id
+#   @return [Object, nil]
+#
+# @!attribute [rw] streamed
+#   @return [Object, nil]
+#
+# @!attribute [rw] tokens_completion
+#   @return [Object, nil]
+#
+# @!attribute [rw] tokens_prompt
+#   @return [Object, nil]
+#
+# @!attribute [rw] total_cost
+#   @return [Float, nil]
+#
+# @!attribute [rw] upstream_id
+#   @return [Object, nil]
+#
+# @!attribute [rw] upstream_inference_cost
+#   @return [Object, nil]
+#
+# @!attribute [rw] usage
+#   @return [Float, nil]
+#
+# @!attribute [rw] user_agent
+#   @return [Object, nil]
+#
+# @!attribute [rw] web_search_engine
+#   @return [Object, nil]
 GenerationLoadMatch = Struct.new(
-  :data,
+  :api_type,
+  :app_id,
+  :cache_discount,
+  :cancelled,
+  :created_at,
+  :data_region,
+  :external_user,
+  :finish_reason,
+  :generation_time,
+  :http_referer,
+  :id,
+  :is_byok,
+  :latency,
+  :model,
+  :moderation_latency,
+  :native_finish_reason,
+  :native_tokens_cached,
+  :native_tokens_completion,
+  :native_tokens_completion_images,
+  :native_tokens_prompt,
+  :native_tokens_reasoning,
+  :num_fetches,
+  :num_input_audio_prompt,
+  :num_media_completion,
+  :num_media_prompt,
+  :num_search_results,
+  :origin,
+  :preset_id,
+  :provider_name,
+  :provider_responses,
+  :request_id,
+  :response_cache_source_id,
+  :router,
+  :service_tier,
+  :session_id,
+  :streamed,
+  :tokens_completion,
+  :tokens_prompt,
+  :total_cost,
+  :upstream_id,
+  :upstream_inference_cost,
+  :usage,
+  :user_agent,
+  :web_search_engine,
   keyword_init: true
 )
 
 # GenerationContent entity data model.
 #
-# @!attribute [rw] data
+# @!attribute [rw] input
+#   @return [Object]
+#
+# @!attribute [rw] output
 #   @return [Hash]
 GenerationContent = Struct.new(
-  :data,
+  :input,
+  :output,
   keyword_init: true
 )
 
 # Request payload for GenerationContent#load.
 #
-# @!attribute [rw] data
+# @!attribute [rw] input
+#   @return [Object, nil]
+#
+# @!attribute [rw] output
 #   @return [Hash, nil]
 GenerationContentLoadMatch = Struct.new(
-  :data,
+  :input,
+  :output,
   keyword_init: true
 )
 
 # Guardrail entity data model.
 #
-# @!attribute [rw] allowed_model
+# @!attribute [rw] allowed_models
 #   @return [Object, nil]
 #
-# @!attribute [rw] allowed_provider
+# @!attribute [rw] allowed_providers
 #   @return [Object, nil]
 #
-# @!attribute [rw] content_filter
+# @!attribute [rw] content_filter_builtins
 #   @return [Object, nil]
 #
-# @!attribute [rw] content_filter_builtin
+# @!attribute [rw] content_filters
 #   @return [Object, nil]
 #
 # @!attribute [rw] created_at
 #   @return [String]
-#
-# @!attribute [rw] data
-#   @return [Object]
 #
 # @!attribute [rw] description
 #   @return [Object, nil]
@@ -2349,10 +3198,10 @@ GenerationContentLoadMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] ignored_model
+# @!attribute [rw] ignored_models
 #   @return [Object, nil]
 #
-# @!attribute [rw] ignored_provider
+# @!attribute [rw] ignored_providers
 #   @return [Object, nil]
 #
 # @!attribute [rw] limit_usd
@@ -2368,14 +3217,13 @@ GenerationContentLoadMatch = Struct.new(
 #   @return [Object, nil]
 #
 # @!attribute [rw] workspace_id
-#   @return [String, nil]
+#   @return [String]
 Guardrail = Struct.new(
-  :allowed_model,
-  :allowed_provider,
-  :content_filter,
-  :content_filter_builtin,
+  :allowed_models,
+  :allowed_providers,
+  :content_filter_builtins,
+  :content_filters,
   :created_at,
-  :data,
   :description,
   :enforce_zdr,
   :enforce_zdr_anthropic,
@@ -2384,8 +3232,8 @@ Guardrail = Struct.new(
   :enforce_zdr_other,
   :enforce_zdr_xai,
   :id,
-  :ignored_model,
-  :ignored_provider,
+  :ignored_models,
+  :ignored_providers,
   :limit_usd,
   :name,
   :reset_interval,
@@ -2405,23 +3253,20 @@ GuardrailLoadMatch = Struct.new(
 
 # Request payload for Guardrail#list.
 #
-# @!attribute [rw] allowed_model
+# @!attribute [rw] allowed_models
 #   @return [Object, nil]
 #
-# @!attribute [rw] allowed_provider
+# @!attribute [rw] allowed_providers
 #   @return [Object, nil]
 #
-# @!attribute [rw] content_filter
+# @!attribute [rw] content_filter_builtins
 #   @return [Object, nil]
 #
-# @!attribute [rw] content_filter_builtin
+# @!attribute [rw] content_filters
 #   @return [Object, nil]
 #
 # @!attribute [rw] created_at
 #   @return [String, nil]
-#
-# @!attribute [rw] data
-#   @return [Object, nil]
 #
 # @!attribute [rw] description
 #   @return [Object, nil]
@@ -2447,10 +3292,10 @@ GuardrailLoadMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] ignored_model
+# @!attribute [rw] ignored_models
 #   @return [Object, nil]
 #
-# @!attribute [rw] ignored_provider
+# @!attribute [rw] ignored_providers
 #   @return [Object, nil]
 #
 # @!attribute [rw] limit_usd
@@ -2468,12 +3313,11 @@ GuardrailLoadMatch = Struct.new(
 # @!attribute [rw] workspace_id
 #   @return [String, nil]
 GuardrailListMatch = Struct.new(
-  :allowed_model,
-  :allowed_provider,
-  :content_filter,
-  :content_filter_builtin,
+  :allowed_models,
+  :allowed_providers,
+  :content_filter_builtins,
+  :content_filters,
   :created_at,
-  :data,
   :description,
   :enforce_zdr,
   :enforce_zdr_anthropic,
@@ -2482,8 +3326,8 @@ GuardrailListMatch = Struct.new(
   :enforce_zdr_other,
   :enforce_zdr_xai,
   :id,
-  :ignored_model,
-  :ignored_provider,
+  :ignored_models,
+  :ignored_providers,
   :limit_usd,
   :name,
   :reset_interval,
@@ -2494,23 +3338,20 @@ GuardrailListMatch = Struct.new(
 
 # Request payload for Guardrail#create.
 #
-# @!attribute [rw] allowed_model
+# @!attribute [rw] allowed_models
 #   @return [Object, nil]
 #
-# @!attribute [rw] allowed_provider
+# @!attribute [rw] allowed_providers
 #   @return [Object, nil]
 #
-# @!attribute [rw] content_filter
+# @!attribute [rw] content_filter_builtins
 #   @return [Object, nil]
 #
-# @!attribute [rw] content_filter_builtin
+# @!attribute [rw] content_filters
 #   @return [Object, nil]
 #
 # @!attribute [rw] created_at
 #   @return [String]
-#
-# @!attribute [rw] data
-#   @return [Object]
 #
 # @!attribute [rw] description
 #   @return [Object, nil]
@@ -2536,10 +3377,10 @@ GuardrailListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] ignored_model
+# @!attribute [rw] ignored_models
 #   @return [Object, nil]
 #
-# @!attribute [rw] ignored_provider
+# @!attribute [rw] ignored_providers
 #   @return [Object, nil]
 #
 # @!attribute [rw] limit_usd
@@ -2555,14 +3396,13 @@ GuardrailListMatch = Struct.new(
 #   @return [Object, nil]
 #
 # @!attribute [rw] workspace_id
-#   @return [String, nil]
+#   @return [String]
 GuardrailCreateData = Struct.new(
-  :allowed_model,
-  :allowed_provider,
-  :content_filter,
-  :content_filter_builtin,
+  :allowed_models,
+  :allowed_providers,
+  :content_filter_builtins,
+  :content_filters,
   :created_at,
-  :data,
   :description,
   :enforce_zdr,
   :enforce_zdr_anthropic,
@@ -2571,8 +3411,8 @@ GuardrailCreateData = Struct.new(
   :enforce_zdr_other,
   :enforce_zdr_xai,
   :id,
-  :ignored_model,
-  :ignored_provider,
+  :ignored_models,
+  :ignored_providers,
   :limit_usd,
   :name,
   :reset_interval,
@@ -2604,7 +3444,7 @@ GuardrailRemoveMatch = Struct.new(
 # @!attribute [rw] data
 #   @return [Array]
 #
-# @!attribute [rw] input_reference
+# @!attribute [rw] input_references
 #   @return [Array, nil]
 #
 # @!attribute [rw] model
@@ -2647,7 +3487,7 @@ Image = Struct.new(
   :background,
   :created,
   :data,
-  :input_reference,
+  :input_references,
   :model,
   :n,
   :output_compression,
@@ -2677,7 +3517,7 @@ Image = Struct.new(
 # @!attribute [rw] data
 #   @return [Array]
 #
-# @!attribute [rw] input_reference
+# @!attribute [rw] input_references
 #   @return [Array, nil]
 #
 # @!attribute [rw] model
@@ -2720,7 +3560,7 @@ ImageCreateData = Struct.new(
   :background,
   :created,
   :data,
-  :input_reference,
+  :input_references,
   :model,
   :n,
   :output_compression,
@@ -2738,7 +3578,7 @@ ImageCreateData = Struct.new(
 
 # ImageModelEndpoint entity data model.
 #
-# @!attribute [rw] allowed_passthrough_parameter
+# @!attribute [rw] allowed_passthrough_parameters
 #   @return [Array]
 #
 # @!attribute [rw] pricing
@@ -2753,18 +3593,18 @@ ImageCreateData = Struct.new(
 # @!attribute [rw] provider_tag
 #   @return [Object]
 #
-# @!attribute [rw] supported_parameter
+# @!attribute [rw] supported_parameters
 #   @return [Object]
 #
 # @!attribute [rw] supports_streaming
 #   @return [Boolean]
 ImageModelEndpoint = Struct.new(
-  :allowed_passthrough_parameter,
+  :allowed_passthrough_parameters,
   :pricing,
   :provider_name,
   :provider_slug,
   :provider_tag,
-  :supported_parameter,
+  :supported_parameters,
   :supports_streaming,
   keyword_init: true
 )
@@ -2793,7 +3633,7 @@ ImageModelEndpointListMatch = Struct.new(
 # @!attribute [rw] description
 #   @return [String]
 #
-# @!attribute [rw] endpoint
+# @!attribute [rw] endpoints
 #   @return [String]
 #
 # @!attribute [rw] id
@@ -2802,7 +3642,7 @@ ImageModelEndpointListMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String]
 #
-# @!attribute [rw] supported_parameter
+# @!attribute [rw] supported_parameters
 #   @return [Hash]
 #
 # @!attribute [rw] supports_streaming
@@ -2811,10 +3651,10 @@ ImageModelsList = Struct.new(
   :architecture,
   :created,
   :description,
-  :endpoint,
+  :endpoints,
   :id,
   :name,
-  :supported_parameter,
+  :supported_parameters,
   :supports_streaming,
   keyword_init: true
 )
@@ -2830,7 +3670,7 @@ ImageModelsList = Struct.new(
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] endpoint
+# @!attribute [rw] endpoints
 #   @return [String, nil]
 #
 # @!attribute [rw] id
@@ -2839,7 +3679,7 @@ ImageModelsList = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] supported_parameter
+# @!attribute [rw] supported_parameters
 #   @return [Hash, nil]
 #
 # @!attribute [rw] supports_streaming
@@ -2848,10 +3688,10 @@ ImageModelsListListMatch = Struct.new(
   :architecture,
   :created,
   :description,
-  :endpoint,
+  :endpoints,
   :id,
   :name,
-  :supported_parameter,
+  :supported_parameters,
   :supports_streaming,
   keyword_init: true
 )
@@ -3112,13 +3952,13 @@ end
 # @!attribute [rw] context_management
 #   @return [Object, nil]
 #
-# @!attribute [rw] fallback
+# @!attribute [rw] fallbacks
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_token
+# @!attribute [rw] max_tokens
 #   @return [Integer, nil]
 #
-# @!attribute [rw] message
+# @!attribute [rw] messages
 #   @return [Object]
 #
 # @!attribute [rw] metadata
@@ -3127,10 +3967,13 @@ end
 # @!attribute [rw] model
 #   @return [String]
 #
+# @!attribute [rw] models
+#   @return [Array, nil]
+#
 # @!attribute [rw] output_config
 #   @return [Hash, nil]
 #
-# @!attribute [rw] plugin
+# @!attribute [rw] plugins
 #   @return [Array, nil]
 #
 # @!attribute [rw] provider
@@ -3148,7 +3991,7 @@ end
 # @!attribute [rw] speed
 #   @return [Object, nil]
 #
-# @!attribute [rw] stop_sequence
+# @!attribute [rw] stop_sequences
 #   @return [Array, nil]
 #
 # @!attribute [rw] stop_server_tools_when
@@ -3166,11 +4009,11 @@ end
 # @!attribute [rw] thinking
 #   @return [Object, nil]
 #
-# @!attribute [rw] tool
-#   @return [Array, nil]
-#
 # @!attribute [rw] tool_choice
 #   @return [Object, nil]
+#
+# @!attribute [rw] tools
+#   @return [Array, nil]
 #
 # @!attribute [rw] top_k
 #   @return [Integer, nil]
@@ -3186,26 +4029,27 @@ end
 Message = Struct.new(
   :cache_control,
   :context_management,
-  :fallback,
-  :max_token,
-  :message,
+  :fallbacks,
+  :max_tokens,
+  :messages,
   :metadata,
   :model,
+  :models,
   :output_config,
-  :plugin,
+  :plugins,
   :provider,
   :route,
   :service_tier,
   :session_id,
   :speed,
-  :stop_sequence,
+  :stop_sequences,
   :stop_server_tools_when,
   :stream,
   :system,
   :temperature,
   :thinking,
-  :tool,
   :tool_choice,
+  :tools,
   :top_k,
   :top_p,
   :trace,
@@ -3221,13 +4065,13 @@ Message = Struct.new(
 # @!attribute [rw] context_management
 #   @return [Object, nil]
 #
-# @!attribute [rw] fallback
+# @!attribute [rw] fallbacks
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_token
+# @!attribute [rw] max_tokens
 #   @return [Integer, nil]
 #
-# @!attribute [rw] message
+# @!attribute [rw] messages
 #   @return [Object]
 #
 # @!attribute [rw] metadata
@@ -3236,10 +4080,13 @@ Message = Struct.new(
 # @!attribute [rw] model
 #   @return [String]
 #
+# @!attribute [rw] models
+#   @return [Array, nil]
+#
 # @!attribute [rw] output_config
 #   @return [Hash, nil]
 #
-# @!attribute [rw] plugin
+# @!attribute [rw] plugins
 #   @return [Array, nil]
 #
 # @!attribute [rw] provider
@@ -3257,7 +4104,7 @@ Message = Struct.new(
 # @!attribute [rw] speed
 #   @return [Object, nil]
 #
-# @!attribute [rw] stop_sequence
+# @!attribute [rw] stop_sequences
 #   @return [Array, nil]
 #
 # @!attribute [rw] stop_server_tools_when
@@ -3275,11 +4122,11 @@ Message = Struct.new(
 # @!attribute [rw] thinking
 #   @return [Object, nil]
 #
-# @!attribute [rw] tool
-#   @return [Array, nil]
-#
 # @!attribute [rw] tool_choice
 #   @return [Object, nil]
+#
+# @!attribute [rw] tools
+#   @return [Array, nil]
 #
 # @!attribute [rw] top_k
 #   @return [Integer, nil]
@@ -3295,26 +4142,27 @@ Message = Struct.new(
 MessageCreateData = Struct.new(
   :cache_control,
   :context_management,
-  :fallback,
-  :max_token,
-  :message,
+  :fallbacks,
+  :max_tokens,
+  :messages,
   :metadata,
   :model,
+  :models,
   :output_config,
-  :plugin,
+  :plugins,
   :provider,
   :route,
   :service_tier,
   :session_id,
   :speed,
-  :stop_sequence,
+  :stop_sequences,
   :stop_server_tools_when,
   :stream,
   :system,
   :temperature,
   :thinking,
-  :tool,
   :tool_choice,
+  :tools,
   :top_k,
   :top_p,
   :trace,
@@ -3331,7 +4179,7 @@ end
 # @!attribute [rw] architecture
 #   @return [Hash]
 #
-# @!attribute [rw] benchmark
+# @!attribute [rw] benchmarks
 #   @return [Hash]
 #
 # @!attribute [rw] canonical_slug
@@ -3343,10 +4191,7 @@ end
 # @!attribute [rw] created
 #   @return [Integer]
 #
-# @!attribute [rw] data
-#   @return [Hash]
-#
-# @!attribute [rw] default_parameter
+# @!attribute [rw] default_parameters
 #   @return [Object]
 #
 # @!attribute [rw] description
@@ -3364,13 +4209,13 @@ end
 # @!attribute [rw] knowledge_cutoff
 #   @return [Object, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash]
 #
 # @!attribute [rw] name
 #   @return [String]
 #
-# @!attribute [rw] per_request_limit
+# @!attribute [rw] per_request_limits
 #   @return [Object]
 #
 # @!attribute [rw] pricing
@@ -3379,34 +4224,33 @@ end
 # @!attribute [rw] reasoning
 #   @return [Hash]
 #
-# @!attribute [rw] supported_parameter
+# @!attribute [rw] supported_parameters
 #   @return [Array]
 #
-# @!attribute [rw] supported_voice
+# @!attribute [rw] supported_voices
 #   @return [Object]
 #
 # @!attribute [rw] top_provider
 #   @return [Hash]
 Model = Struct.new(
   :architecture,
-  :benchmark,
+  :benchmarks,
   :canonical_slug,
   :context_length,
   :created,
-  :data,
-  :default_parameter,
+  :default_parameters,
   :description,
   :expiration_date,
   :hugging_face_id,
   :id,
   :knowledge_cutoff,
-  :link,
+  :links,
   :name,
-  :per_request_limit,
+  :per_request_limits,
   :pricing,
   :reasoning,
-  :supported_parameter,
-  :supported_voice,
+  :supported_parameters,
+  :supported_voices,
   :top_provider,
   keyword_init: true
 )
@@ -3429,7 +4273,7 @@ ModelLoadMatch = Struct.new(
 # @!attribute [rw] architecture
 #   @return [Hash, nil]
 #
-# @!attribute [rw] benchmark
+# @!attribute [rw] benchmarks
 #   @return [Hash, nil]
 #
 # @!attribute [rw] canonical_slug
@@ -3441,10 +4285,7 @@ ModelLoadMatch = Struct.new(
 # @!attribute [rw] created
 #   @return [Integer, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
-# @!attribute [rw] default_parameter
+# @!attribute [rw] default_parameters
 #   @return [Object, nil]
 #
 # @!attribute [rw] description
@@ -3462,13 +4303,13 @@ ModelLoadMatch = Struct.new(
 # @!attribute [rw] knowledge_cutoff
 #   @return [Object, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] per_request_limit
+# @!attribute [rw] per_request_limits
 #   @return [Object, nil]
 #
 # @!attribute [rw] pricing
@@ -3477,53 +4318,52 @@ ModelLoadMatch = Struct.new(
 # @!attribute [rw] reasoning
 #   @return [Hash, nil]
 #
-# @!attribute [rw] supported_parameter
+# @!attribute [rw] supported_parameters
 #   @return [Array, nil]
 #
-# @!attribute [rw] supported_voice
+# @!attribute [rw] supported_voices
 #   @return [Object, nil]
 #
 # @!attribute [rw] top_provider
 #   @return [Hash, nil]
 ModelListMatch = Struct.new(
   :architecture,
-  :benchmark,
+  :benchmarks,
   :canonical_slug,
   :context_length,
   :created,
-  :data,
-  :default_parameter,
+  :default_parameters,
   :description,
   :expiration_date,
   :hugging_face_id,
   :id,
   :knowledge_cutoff,
-  :link,
+  :links,
   :name,
-  :per_request_limit,
+  :per_request_limits,
   :pricing,
   :reasoning,
-  :supported_parameter,
-  :supported_voice,
+  :supported_parameters,
+  :supported_voices,
   :top_provider,
   keyword_init: true
 )
 
 # ModelsCount entity data model.
 #
-# @!attribute [rw] data
-#   @return [Hash]
+# @!attribute [rw] count
+#   @return [Integer]
 ModelsCount = Struct.new(
-  :data,
+  :count,
   keyword_init: true
 )
 
 # Request payload for ModelsCount#load.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
+# @!attribute [rw] count
+#   @return [Integer, nil]
 ModelsCountLoadMatch = Struct.new(
-  :data,
+  :count,
   keyword_init: true
 )
 
@@ -3532,7 +4372,7 @@ ModelsCountLoadMatch = Struct.new(
 # @!attribute [rw] architecture
 #   @return [Hash]
 #
-# @!attribute [rw] benchmark
+# @!attribute [rw] benchmarks
 #   @return [Hash]
 #
 # @!attribute [rw] canonical_slug
@@ -3544,7 +4384,7 @@ ModelsCountLoadMatch = Struct.new(
 # @!attribute [rw] created
 #   @return [Integer]
 #
-# @!attribute [rw] default_parameter
+# @!attribute [rw] default_parameters
 #   @return [Object]
 #
 # @!attribute [rw] description
@@ -3562,13 +4402,13 @@ ModelsCountLoadMatch = Struct.new(
 # @!attribute [rw] knowledge_cutoff
 #   @return [Object, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash]
 #
 # @!attribute [rw] name
 #   @return [String]
 #
-# @!attribute [rw] per_request_limit
+# @!attribute [rw] per_request_limits
 #   @return [Object]
 #
 # @!attribute [rw] pricing
@@ -3577,33 +4417,33 @@ ModelsCountLoadMatch = Struct.new(
 # @!attribute [rw] reasoning
 #   @return [Hash]
 #
-# @!attribute [rw] supported_parameter
+# @!attribute [rw] supported_parameters
 #   @return [Array]
 #
-# @!attribute [rw] supported_voice
+# @!attribute [rw] supported_voices
 #   @return [Object]
 #
 # @!attribute [rw] top_provider
 #   @return [Hash]
 ModelsList = Struct.new(
   :architecture,
-  :benchmark,
+  :benchmarks,
   :canonical_slug,
   :context_length,
   :created,
-  :default_parameter,
+  :default_parameters,
   :description,
   :expiration_date,
   :hugging_face_id,
   :id,
   :knowledge_cutoff,
-  :link,
+  :links,
   :name,
-  :per_request_limit,
+  :per_request_limits,
   :pricing,
   :reasoning,
-  :supported_parameter,
-  :supported_voice,
+  :supported_parameters,
+  :supported_voices,
   :top_provider,
   keyword_init: true
 )
@@ -3613,7 +4453,7 @@ ModelsList = Struct.new(
 # @!attribute [rw] architecture
 #   @return [Hash, nil]
 #
-# @!attribute [rw] benchmark
+# @!attribute [rw] benchmarks
 #   @return [Hash, nil]
 #
 # @!attribute [rw] canonical_slug
@@ -3625,7 +4465,7 @@ ModelsList = Struct.new(
 # @!attribute [rw] created
 #   @return [Integer, nil]
 #
-# @!attribute [rw] default_parameter
+# @!attribute [rw] default_parameters
 #   @return [Object, nil]
 #
 # @!attribute [rw] description
@@ -3643,13 +4483,13 @@ ModelsList = Struct.new(
 # @!attribute [rw] knowledge_cutoff
 #   @return [Object, nil]
 #
-# @!attribute [rw] link
+# @!attribute [rw] links
 #   @return [Hash, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] per_request_limit
+# @!attribute [rw] per_request_limits
 #   @return [Object, nil]
 #
 # @!attribute [rw] pricing
@@ -3658,38 +4498,41 @@ ModelsList = Struct.new(
 # @!attribute [rw] reasoning
 #   @return [Hash, nil]
 #
-# @!attribute [rw] supported_parameter
+# @!attribute [rw] supported_parameters
 #   @return [Array, nil]
 #
-# @!attribute [rw] supported_voice
+# @!attribute [rw] supported_voices
 #   @return [Object, nil]
 #
 # @!attribute [rw] top_provider
 #   @return [Hash, nil]
 ModelsListListMatch = Struct.new(
   :architecture,
-  :benchmark,
+  :benchmarks,
   :canonical_slug,
   :context_length,
   :created,
-  :default_parameter,
+  :default_parameters,
   :description,
   :expiration_date,
   :hugging_face_id,
   :id,
   :knowledge_cutoff,
-  :link,
+  :links,
   :name,
-  :per_request_limit,
+  :per_request_limits,
   :pricing,
   :reasoning,
-  :supported_parameter,
-  :supported_voice,
+  :supported_parameters,
+  :supported_voices,
   :top_provider,
   keyword_init: true
 )
 
 # OAuth entity data model.
+#
+# @!attribute [rw] app_id
+#   @return [Integer]
 #
 # @!attribute [rw] callback_url
 #   @return [String]
@@ -3706,11 +4549,14 @@ ModelsListListMatch = Struct.new(
 # @!attribute [rw] code_verifier
 #   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash]
+# @!attribute [rw] created_at
+#   @return [String]
 #
 # @!attribute [rw] expires_at
 #   @return [Object, nil]
+#
+# @!attribute [rw] id
+#   @return [String]
 #
 # @!attribute [rw] key
 #   @return [String]
@@ -3736,13 +4582,15 @@ ModelsListListMatch = Struct.new(
 # @!attribute [rw] workspace_id
 #   @return [String, nil]
 OAuth = Struct.new(
+  :app_id,
   :callback_url,
   :code,
   :code_challenge,
   :code_challenge_method,
   :code_verifier,
-  :data,
+  :created_at,
   :expires_at,
+  :id,
   :key,
   :key_label,
   :limit,
@@ -3755,6 +4603,9 @@ OAuth = Struct.new(
 )
 
 # Request payload for OAuth#create.
+#
+# @!attribute [rw] app_id
+#   @return [Integer]
 #
 # @!attribute [rw] callback_url
 #   @return [String]
@@ -3771,11 +4622,14 @@ OAuth = Struct.new(
 # @!attribute [rw] code_verifier
 #   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash]
+# @!attribute [rw] created_at
+#   @return [String]
 #
 # @!attribute [rw] expires_at
 #   @return [Object, nil]
+#
+# @!attribute [rw] id
+#   @return [String]
 #
 # @!attribute [rw] key
 #   @return [String]
@@ -3801,13 +4655,15 @@ OAuth = Struct.new(
 # @!attribute [rw] workspace_id
 #   @return [String, nil]
 OAuthCreateData = Struct.new(
+  :app_id,
   :callback_url,
   :code,
   :code_challenge,
   :code_challenge_method,
   :code_verifier,
-  :data,
+  :created_at,
   :expires_at,
+  :id,
   :key,
   :key_label,
   :limit,
@@ -3822,7 +4678,7 @@ OAuthCreateData = Struct.new(
 # ObservabilityDestination entity data model.
 #
 # @!attribute [rw] data
-#   @return [Object]
+#   @return [Hash, nil]
 ObservabilityDestination = Struct.new(
   :data,
   keyword_init: true
@@ -3869,28 +4725,31 @@ ObservabilityDestinationRemoveMatch = Struct.new(
 # @!attribute [rw] input
 #   @return [Object, nil]
 #
-# @!attribute [rw] instruction
+# @!attribute [rw] instructions
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_output_token
+# @!attribute [rw] max_output_tokens
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_tool_call
+# @!attribute [rw] max_tool_calls
 #   @return [Object, nil]
 #
 # @!attribute [rw] metadata
 #   @return [Object, nil]
 #
-# @!attribute [rw] modality
+# @!attribute [rw] modalities
 #   @return [Array, nil]
 #
 # @!attribute [rw] model
 #   @return [String, nil]
 #
-# @!attribute [rw] parallel_tool_call
+# @!attribute [rw] models
+#   @return [Array, nil]
+#
+# @!attribute [rw] parallel_tool_calls
 #   @return [Object, nil]
 #
-# @!attribute [rw] plugin
+# @!attribute [rw] plugins
 #   @return [Array, nil]
 #
 # @!attribute [rw] presence_penalty
@@ -3905,7 +4764,7 @@ ObservabilityDestinationRemoveMatch = Struct.new(
 # @!attribute [rw] prompt_cache_key
 #   @return [Object, nil]
 #
-# @!attribute [rw] prompt_cache_option
+# @!attribute [rw] prompt_cache_options
 #   @return [Object]
 #
 # @!attribute [rw] provider
@@ -3941,16 +4800,16 @@ ObservabilityDestinationRemoveMatch = Struct.new(
 # @!attribute [rw] text
 #   @return [Object, nil]
 #
-# @!attribute [rw] tool
-#   @return [Array, nil]
-#
 # @!attribute [rw] tool_choice
 #   @return [Object, nil]
+#
+# @!attribute [rw] tools
+#   @return [Array, nil]
 #
 # @!attribute [rw] top_k
 #   @return [Integer, nil]
 #
-# @!attribute [rw] top_logprob
+# @!attribute [rw] top_logprobs
 #   @return [Object, nil]
 #
 # @!attribute [rw] top_p
@@ -3972,19 +4831,20 @@ OpenResponsesResult = Struct.new(
   :image_config,
   :include,
   :input,
-  :instruction,
-  :max_output_token,
-  :max_tool_call,
+  :instructions,
+  :max_output_tokens,
+  :max_tool_calls,
   :metadata,
-  :modality,
+  :modalities,
   :model,
-  :parallel_tool_call,
-  :plugin,
+  :models,
+  :parallel_tool_calls,
+  :plugins,
   :presence_penalty,
   :previous_response_id,
   :prompt,
   :prompt_cache_key,
-  :prompt_cache_option,
+  :prompt_cache_options,
   :provider,
   :reasoning,
   :route,
@@ -3996,10 +4856,10 @@ OpenResponsesResult = Struct.new(
   :stream,
   :temperature,
   :text,
-  :tool,
   :tool_choice,
+  :tools,
   :top_k,
-  :top_logprob,
+  :top_logprobs,
   :top_p,
   :trace,
   :truncation,
@@ -4030,28 +4890,31 @@ OpenResponsesResult = Struct.new(
 # @!attribute [rw] input
 #   @return [Object, nil]
 #
-# @!attribute [rw] instruction
+# @!attribute [rw] instructions
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_output_token
+# @!attribute [rw] max_output_tokens
 #   @return [Object, nil]
 #
-# @!attribute [rw] max_tool_call
+# @!attribute [rw] max_tool_calls
 #   @return [Object, nil]
 #
 # @!attribute [rw] metadata
 #   @return [Object, nil]
 #
-# @!attribute [rw] modality
+# @!attribute [rw] modalities
 #   @return [Array, nil]
 #
 # @!attribute [rw] model
 #   @return [String, nil]
 #
-# @!attribute [rw] parallel_tool_call
+# @!attribute [rw] models
+#   @return [Array, nil]
+#
+# @!attribute [rw] parallel_tool_calls
 #   @return [Object, nil]
 #
-# @!attribute [rw] plugin
+# @!attribute [rw] plugins
 #   @return [Array, nil]
 #
 # @!attribute [rw] presence_penalty
@@ -4066,7 +4929,7 @@ OpenResponsesResult = Struct.new(
 # @!attribute [rw] prompt_cache_key
 #   @return [Object, nil]
 #
-# @!attribute [rw] prompt_cache_option
+# @!attribute [rw] prompt_cache_options
 #   @return [Object]
 #
 # @!attribute [rw] provider
@@ -4102,16 +4965,16 @@ OpenResponsesResult = Struct.new(
 # @!attribute [rw] text
 #   @return [Object, nil]
 #
-# @!attribute [rw] tool
-#   @return [Array, nil]
-#
 # @!attribute [rw] tool_choice
 #   @return [Object, nil]
+#
+# @!attribute [rw] tools
+#   @return [Array, nil]
 #
 # @!attribute [rw] top_k
 #   @return [Integer, nil]
 #
-# @!attribute [rw] top_logprob
+# @!attribute [rw] top_logprobs
 #   @return [Object, nil]
 #
 # @!attribute [rw] top_p
@@ -4133,19 +4996,20 @@ OpenResponsesResultCreateData = Struct.new(
   :image_config,
   :include,
   :input,
-  :instruction,
-  :max_output_token,
-  :max_tool_call,
+  :instructions,
+  :max_output_tokens,
+  :max_tool_calls,
   :metadata,
-  :modality,
+  :modalities,
   :model,
-  :parallel_tool_call,
-  :plugin,
+  :models,
+  :parallel_tool_calls,
+  :plugins,
   :presence_penalty,
   :previous_response_id,
   :prompt,
   :prompt_cache_key,
-  :prompt_cache_option,
+  :prompt_cache_options,
   :provider,
   :reasoning,
   :route,
@@ -4157,10 +5021,10 @@ OpenResponsesResultCreateData = Struct.new(
   :stream,
   :temperature,
   :text,
-  :tool,
   :tool_choice,
+  :tools,
   :top_k,
-  :top_logprob,
+  :top_logprobs,
   :top_p,
   :trace,
   :truncation,
@@ -4226,10 +5090,10 @@ OrganizationListMatch = Struct.new(
 # @!attribute [rw] creator_user_id
 #   @return [Object]
 #
-# @!attribute [rw] data
+# @!attribute [rw] description
 #   @return [Object]
 #
-# @!attribute [rw] description
+# @!attribute [rw] designated_version
 #   @return [Object]
 #
 # @!attribute [rw] designated_version_id
@@ -4258,8 +5122,8 @@ OrganizationListMatch = Struct.new(
 Preset = Struct.new(
   :created_at,
   :creator_user_id,
-  :data,
   :description,
+  :designated_version,
   :designated_version_id,
   :id,
   :name,
@@ -4288,10 +5152,10 @@ PresetLoadMatch = Struct.new(
 # @!attribute [rw] creator_user_id
 #   @return [Object, nil]
 #
-# @!attribute [rw] data
+# @!attribute [rw] description
 #   @return [Object, nil]
 #
-# @!attribute [rw] description
+# @!attribute [rw] designated_version
 #   @return [Object, nil]
 #
 # @!attribute [rw] designated_version_id
@@ -4320,8 +5184,8 @@ PresetLoadMatch = Struct.new(
 PresetListMatch = Struct.new(
   :created_at,
   :creator_user_id,
-  :data,
   :description,
+  :designated_version,
   :designated_version_id,
   :id,
   :name,
@@ -4335,10 +5199,38 @@ PresetListMatch = Struct.new(
 
 # PresetVersion entity data model.
 #
-# @!attribute [rw] data
+# @!attribute [rw] config
+#   @return [Hash]
+#
+# @!attribute [rw] created_at
+#   @return [String]
+#
+# @!attribute [rw] creator_id
+#   @return [String]
+#
+# @!attribute [rw] id
+#   @return [String]
+#
+# @!attribute [rw] preset_id
+#   @return [String]
+#
+# @!attribute [rw] system_prompt
 #   @return [Object]
+#
+# @!attribute [rw] updated_at
+#   @return [String]
+#
+# @!attribute [rw] version
+#   @return [Integer]
 PresetVersion = Struct.new(
-  :data,
+  :config,
+  :created_at,
+  :creator_id,
+  :id,
+  :preset_id,
+  :system_prompt,
+  :updated_at,
+  :version,
   keyword_init: true
 )
 
@@ -4357,10 +5249,10 @@ PresetVersionLoadMatch = Struct.new(
 
 # Provider entity data model.
 #
-# @!attribute [rw] datacenter
+# @!attribute [rw] datacenters
 #   @return [Object, nil]
 #
-# @!attribute [rw] headquarter
+# @!attribute [rw] headquarters
 #   @return [Object, nil]
 #
 # @!attribute [rw] name
@@ -4378,8 +5270,8 @@ PresetVersionLoadMatch = Struct.new(
 # @!attribute [rw] terms_of_service_url
 #   @return [Object, nil]
 Provider = Struct.new(
-  :datacenter,
-  :headquarter,
+  :datacenters,
+  :headquarters,
   :name,
   :privacy_policy_url,
   :slug,
@@ -4390,10 +5282,10 @@ Provider = Struct.new(
 
 # Request payload for Provider#list.
 #
-# @!attribute [rw] datacenter
+# @!attribute [rw] datacenters
 #   @return [Object, nil]
 #
-# @!attribute [rw] headquarter
+# @!attribute [rw] headquarters
 #   @return [Object, nil]
 #
 # @!attribute [rw] name
@@ -4411,8 +5303,8 @@ Provider = Struct.new(
 # @!attribute [rw] terms_of_service_url
 #   @return [Object, nil]
 ProviderListMatch = Struct.new(
-  :datacenter,
-  :headquarter,
+  :datacenters,
+  :headquarters,
   :name,
   :privacy_policy_url,
   :slug,
@@ -4433,12 +5325,12 @@ end
 # @!attribute [rw] model_permaslug
 #   @return [String]
 #
-# @!attribute [rw] total_token
+# @!attribute [rw] total_tokens
 #   @return [String]
 RankingsDaily = Struct.new(
   :date,
   :model_permaslug,
-  :total_token,
+  :total_tokens,
   keyword_init: true
 )
 
@@ -4450,12 +5342,12 @@ RankingsDaily = Struct.new(
 # @!attribute [rw] model_permaslug
 #   @return [String, nil]
 #
-# @!attribute [rw] total_token
+# @!attribute [rw] total_tokens
 #   @return [String, nil]
 RankingsDailyListMatch = Struct.new(
   :date,
   :model_permaslug,
-  :total_token,
+  :total_tokens,
   keyword_init: true
 )
 
@@ -4465,7 +5357,7 @@ end
 
 # Rerank entity data model.
 #
-# @!attribute [rw] document
+# @!attribute [rw] documents
 #   @return [Array]
 #
 # @!attribute [rw] id
@@ -4480,7 +5372,7 @@ end
 # @!attribute [rw] query
 #   @return [String]
 #
-# @!attribute [rw] result
+# @!attribute [rw] results
 #   @return [Array]
 #
 # @!attribute [rw] top_n
@@ -4489,12 +5381,12 @@ end
 # @!attribute [rw] usage
 #   @return [Hash, nil]
 Rerank = Struct.new(
-  :document,
+  :documents,
   :id,
   :model,
   :provider,
   :query,
-  :result,
+  :results,
   :top_n,
   :usage,
   keyword_init: true
@@ -4502,7 +5394,7 @@ Rerank = Struct.new(
 
 # Request payload for Rerank#create.
 #
-# @!attribute [rw] document
+# @!attribute [rw] documents
 #   @return [Array]
 #
 # @!attribute [rw] id
@@ -4517,7 +5409,7 @@ Rerank = Struct.new(
 # @!attribute [rw] query
 #   @return [String]
 #
-# @!attribute [rw] result
+# @!attribute [rw] results
 #   @return [Array]
 #
 # @!attribute [rw] top_n
@@ -4526,12 +5418,12 @@ Rerank = Struct.new(
 # @!attribute [rw] usage
 #   @return [Hash, nil]
 RerankCreateData = Struct.new(
-  :document,
+  :documents,
   :id,
   :model,
   :provider,
   :query,
-  :result,
+  :results,
   :top_n,
   :usage,
   keyword_init: true
@@ -4565,7 +5457,7 @@ end
 # @!attribute [rw] response_format
 #   @return [String, nil]
 #
-# @!attribute [rw] segment
+# @!attribute [rw] segments
 #   @return [Array, nil]
 #
 # @!attribute [rw] task
@@ -4577,13 +5469,13 @@ end
 # @!attribute [rw] text
 #   @return [String]
 #
-# @!attribute [rw] timestamp_granularity
+# @!attribute [rw] timestamp_granularities
 #   @return [Array, nil]
 #
 # @!attribute [rw] usage
 #   @return [Hash, nil]
 #
-# @!attribute [rw] word
+# @!attribute [rw] words
 #   @return [Array, nil]
 Stt = Struct.new(
   :duration,
@@ -4592,13 +5484,13 @@ Stt = Struct.new(
   :model,
   :provider,
   :response_format,
-  :segment,
+  :segments,
   :task,
   :temperature,
   :text,
-  :timestamp_granularity,
+  :timestamp_granularities,
   :usage,
-  :word,
+  :words,
   keyword_init: true
 )
 
@@ -4622,7 +5514,7 @@ Stt = Struct.new(
 # @!attribute [rw] response_format
 #   @return [String, nil]
 #
-# @!attribute [rw] segment
+# @!attribute [rw] segments
 #   @return [Array, nil]
 #
 # @!attribute [rw] task
@@ -4634,13 +5526,13 @@ Stt = Struct.new(
 # @!attribute [rw] text
 #   @return [String]
 #
-# @!attribute [rw] timestamp_granularity
+# @!attribute [rw] timestamp_granularities
 #   @return [Array, nil]
 #
 # @!attribute [rw] usage
 #   @return [Hash, nil]
 #
-# @!attribute [rw] word
+# @!attribute [rw] words
 #   @return [Array, nil]
 SttCreateData = Struct.new(
   :duration,
@@ -4649,13 +5541,13 @@ SttCreateData = Struct.new(
   :model,
   :provider,
   :response_format,
-  :segment,
+  :segments,
   :task,
   :temperature,
   :text,
-  :timestamp_granularity,
+  :timestamp_granularities,
   :usage,
-  :word,
+  :words,
   keyword_init: true
 )
 
@@ -4667,16 +5559,16 @@ SttCreateData = Struct.new(
 # @!attribute [rw] comment
 #   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash]
-#
 # @!attribute [rw] generation_id
 #   @return [String]
+#
+# @!attribute [rw] success
+#   @return [Boolean]
 SubmitGenerationFeedback = Struct.new(
   :category,
   :comment,
-  :data,
   :generation_id,
+  :success,
   keyword_init: true
 )
 
@@ -4688,34 +5580,58 @@ SubmitGenerationFeedback = Struct.new(
 # @!attribute [rw] comment
 #   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash]
-#
 # @!attribute [rw] generation_id
 #   @return [String]
+#
+# @!attribute [rw] success
+#   @return [Boolean]
 SubmitGenerationFeedbackCreateData = Struct.new(
   :category,
   :comment,
-  :data,
   :generation_id,
+  :success,
   keyword_init: true
 )
 
 # Task entity data model.
 #
-# @!attribute [rw] data
-#   @return [Hash]
+# @!attribute [rw] as_of
+#   @return [String]
+#
+# @!attribute [rw] classifications
+#   @return [Array]
+#
+# @!attribute [rw] macro_categories
+#   @return [Array]
+#
+# @!attribute [rw] window_days
+#   @return [Integer]
 Task = Struct.new(
-  :data,
+  :as_of,
+  :classifications,
+  :macro_categories,
+  :window_days,
   keyword_init: true
 )
 
 # Request payload for Task#load.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
+# @!attribute [rw] as_of
+#   @return [String, nil]
+#
+# @!attribute [rw] classifications
+#   @return [Array, nil]
+#
+# @!attribute [rw] macro_categories
+#   @return [Array, nil]
+#
+# @!attribute [rw] window_days
+#   @return [Integer, nil]
 TaskLoadMatch = Struct.new(
-  :data,
+  :as_of,
+  :classifications,
+  :macro_categories,
+  :window_days,
   keyword_init: true
 )
 
@@ -4809,14 +5725,11 @@ UnifiedBenchmarkListMatch = Struct.new(
 
 # UpdateByokKey entity data model.
 #
-# @!attribute [rw] allowed_model
+# @!attribute [rw] allowed_models
 #   @return [Object, nil]
 #
-# @!attribute [rw] allowed_user_id
+# @!attribute [rw] allowed_user_ids
 #   @return [Object, nil]
-#
-# @!attribute [rw] data
-#   @return [Object]
 #
 # @!attribute [rw] disabled
 #   @return [Boolean, nil]
@@ -4830,9 +5743,8 @@ UnifiedBenchmarkListMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [Object, nil]
 UpdateByokKey = Struct.new(
-  :allowed_model,
-  :allowed_user_id,
-  :data,
+  :allowed_models,
+  :allowed_user_ids,
   :disabled,
   :is_fallback,
   :key,
@@ -4844,27 +5756,48 @@ UpdateByokKey = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] allowed_models
+#   @return [Object, nil]
+#
+# @!attribute [rw] allowed_user_ids
+#   @return [Object, nil]
+#
+# @!attribute [rw] disabled
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] is_fallback
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] key
+#   @return [String, nil]
+#
+# @!attribute [rw] name
+#   @return [Object, nil]
 UpdateByokKeyUpdateData = Struct.new(
   :id,
+  :allowed_models,
+  :allowed_user_ids,
+  :disabled,
+  :is_fallback,
+  :key,
+  :name,
   keyword_init: true
 )
 
 # UpdateGuardrail entity data model.
 #
-# @!attribute [rw] allowed_model
+# @!attribute [rw] allowed_models
 #   @return [Object, nil]
 #
-# @!attribute [rw] allowed_provider
+# @!attribute [rw] allowed_providers
 #   @return [Object, nil]
 #
-# @!attribute [rw] content_filter
+# @!attribute [rw] content_filter_builtins
 #   @return [Object, nil]
 #
-# @!attribute [rw] content_filter_builtin
+# @!attribute [rw] content_filters
 #   @return [Object, nil]
-#
-# @!attribute [rw] data
-#   @return [Object]
 #
 # @!attribute [rw] description
 #   @return [Object, nil]
@@ -4887,10 +5820,10 @@ UpdateByokKeyUpdateData = Struct.new(
 # @!attribute [rw] enforce_zdr_xai
 #   @return [Object, nil]
 #
-# @!attribute [rw] ignored_model
+# @!attribute [rw] ignored_models
 #   @return [Object, nil]
 #
-# @!attribute [rw] ignored_provider
+# @!attribute [rw] ignored_providers
 #   @return [Object, nil]
 #
 # @!attribute [rw] limit_usd
@@ -4902,11 +5835,10 @@ UpdateByokKeyUpdateData = Struct.new(
 # @!attribute [rw] reset_interval
 #   @return [Object, nil]
 UpdateGuardrail = Struct.new(
-  :allowed_model,
-  :allowed_provider,
-  :content_filter,
-  :content_filter_builtin,
-  :data,
+  :allowed_models,
+  :allowed_providers,
+  :content_filter_builtins,
+  :content_filters,
   :description,
   :enforce_zdr,
   :enforce_zdr_anthropic,
@@ -4914,8 +5846,8 @@ UpdateGuardrail = Struct.new(
   :enforce_zdr_openai,
   :enforce_zdr_other,
   :enforce_zdr_xai,
-  :ignored_model,
-  :ignored_provider,
+  :ignored_models,
+  :ignored_providers,
   :limit_usd,
   :name,
   :reset_interval,
@@ -4926,26 +5858,87 @@ UpdateGuardrail = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] allowed_models
+#   @return [Object, nil]
+#
+# @!attribute [rw] allowed_providers
+#   @return [Object, nil]
+#
+# @!attribute [rw] content_filter_builtins
+#   @return [Object, nil]
+#
+# @!attribute [rw] content_filters
+#   @return [Object, nil]
+#
+# @!attribute [rw] description
+#   @return [Object, nil]
+#
+# @!attribute [rw] enforce_zdr
+#   @return [Object, nil]
+#
+# @!attribute [rw] enforce_zdr_anthropic
+#   @return [Object, nil]
+#
+# @!attribute [rw] enforce_zdr_google
+#   @return [Object, nil]
+#
+# @!attribute [rw] enforce_zdr_openai
+#   @return [Object, nil]
+#
+# @!attribute [rw] enforce_zdr_other
+#   @return [Object, nil]
+#
+# @!attribute [rw] enforce_zdr_xai
+#   @return [Object, nil]
+#
+# @!attribute [rw] ignored_models
+#   @return [Object, nil]
+#
+# @!attribute [rw] ignored_providers
+#   @return [Object, nil]
+#
+# @!attribute [rw] limit_usd
+#   @return [Object, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] reset_interval
+#   @return [Object, nil]
 UpdateGuardrailUpdateData = Struct.new(
   :id,
+  :allowed_models,
+  :allowed_providers,
+  :content_filter_builtins,
+  :content_filters,
+  :description,
+  :enforce_zdr,
+  :enforce_zdr_anthropic,
+  :enforce_zdr_google,
+  :enforce_zdr_openai,
+  :enforce_zdr_other,
+  :enforce_zdr_xai,
+  :ignored_models,
+  :ignored_providers,
+  :limit_usd,
+  :name,
+  :reset_interval,
   keyword_init: true
 )
 
 # UpdateObservabilityDestination entity data model.
 #
-# @!attribute [rw] api_key_hash
+# @!attribute [rw] api_key_hashes
 #   @return [Object, nil]
 #
 # @!attribute [rw] config
 #   @return [Hash, nil]
 #
-# @!attribute [rw] data
-#   @return [Object]
-#
 # @!attribute [rw] enabled
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] filter_rule
+# @!attribute [rw] filter_rules
 #   @return [Object, nil]
 #
 # @!attribute [rw] name
@@ -4957,11 +5950,10 @@ UpdateGuardrailUpdateData = Struct.new(
 # @!attribute [rw] sampling_rate
 #   @return [Float, nil]
 UpdateObservabilityDestination = Struct.new(
-  :api_key_hash,
+  :api_key_hashes,
   :config,
-  :data,
   :enabled,
-  :filter_rule,
+  :filter_rules,
   :name,
   :privacy_mode,
   :sampling_rate,
@@ -4972,8 +5964,36 @@ UpdateObservabilityDestination = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] api_key_hashes
+#   @return [Object, nil]
+#
+# @!attribute [rw] config
+#   @return [Hash, nil]
+#
+# @!attribute [rw] enabled
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] filter_rules
+#   @return [Object, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] privacy_mode
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] sampling_rate
+#   @return [Float, nil]
 UpdateObservabilityDestinationUpdateData = Struct.new(
   :id,
+  :api_key_hashes,
+  :config,
+  :enabled,
+  :filter_rules,
+  :name,
+  :privacy_mode,
+  :sampling_rate,
   keyword_init: true
 )
 
@@ -4983,9 +6003,6 @@ UpdateObservabilityDestinationUpdateData = Struct.new(
 #   @return [String]
 #
 # @!attribute [rw] created_by
-#   @return [Object]
-#
-# @!attribute [rw] data
 #   @return [Object]
 #
 # @!attribute [rw] default_image_model
@@ -5003,7 +6020,7 @@ UpdateObservabilityDestinationUpdateData = Struct.new(
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] io_logging_api_key_id
+# @!attribute [rw] io_logging_api_key_ids
 #   @return [Object, nil]
 #
 # @!attribute [rw] io_logging_sampling_rate
@@ -5029,13 +6046,12 @@ UpdateObservabilityDestinationUpdateData = Struct.new(
 UpdateWorkspace = Struct.new(
   :created_at,
   :created_by,
-  :data,
   :default_image_model,
   :default_provider_sort,
   :default_text_model,
   :description,
   :id,
-  :io_logging_api_key_id,
+  :io_logging_api_key_ids,
   :io_logging_sampling_rate,
   :is_data_discount_logging_enabled,
   :is_observability_broadcast_enabled,
@@ -5054,9 +6070,6 @@ UpdateWorkspace = Struct.new(
 # @!attribute [rw] created_by
 #   @return [Object, nil]
 #
-# @!attribute [rw] data
-#   @return [Object, nil]
-#
 # @!attribute [rw] default_image_model
 #   @return [Object, nil]
 #
@@ -5072,7 +6085,7 @@ UpdateWorkspace = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] io_logging_api_key_id
+# @!attribute [rw] io_logging_api_key_ids
 #   @return [Object, nil]
 #
 # @!attribute [rw] io_logging_sampling_rate
@@ -5098,13 +6111,12 @@ UpdateWorkspace = Struct.new(
 UpdateWorkspaceListMatch = Struct.new(
   :created_at,
   :created_by,
-  :data,
   :default_image_model,
   :default_provider_sort,
   :default_text_model,
   :description,
   :id,
-  :io_logging_api_key_id,
+  :io_logging_api_key_ids,
   :io_logging_sampling_rate,
   :is_data_discount_logging_enabled,
   :is_observability_broadcast_enabled,
@@ -5123,9 +6135,6 @@ UpdateWorkspaceListMatch = Struct.new(
 # @!attribute [rw] created_by
 #   @return [Object]
 #
-# @!attribute [rw] data
-#   @return [Object]
-#
 # @!attribute [rw] default_image_model
 #   @return [Object, nil]
 #
@@ -5141,7 +6150,7 @@ UpdateWorkspaceListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] io_logging_api_key_id
+# @!attribute [rw] io_logging_api_key_ids
 #   @return [Object, nil]
 #
 # @!attribute [rw] io_logging_sampling_rate
@@ -5167,13 +6176,12 @@ UpdateWorkspaceListMatch = Struct.new(
 UpdateWorkspaceCreateData = Struct.new(
   :created_at,
   :created_by,
-  :data,
   :default_image_model,
   :default_provider_sort,
   :default_text_model,
   :description,
   :id,
-  :io_logging_api_key_id,
+  :io_logging_api_key_ids,
   :io_logging_sampling_rate,
   :is_data_discount_logging_enabled,
   :is_observability_broadcast_enabled,
@@ -5188,20 +6196,72 @@ UpdateWorkspaceCreateData = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] created_at
+#   @return [String, nil]
+#
+# @!attribute [rw] created_by
+#   @return [Object, nil]
+#
+# @!attribute [rw] default_image_model
+#   @return [Object, nil]
+#
+# @!attribute [rw] default_provider_sort
+#   @return [Object, nil]
+#
+# @!attribute [rw] default_text_model
+#   @return [Object, nil]
+#
+# @!attribute [rw] description
+#   @return [Object, nil]
+#
+# @!attribute [rw] io_logging_api_key_ids
+#   @return [Object, nil]
+#
+# @!attribute [rw] io_logging_sampling_rate
+#   @return [Float, nil]
+#
+# @!attribute [rw] is_data_discount_logging_enabled
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] is_observability_broadcast_enabled
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] is_observability_io_logging_enabled
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] slug
+#   @return [String, nil]
+#
+# @!attribute [rw] updated_at
+#   @return [Object, nil]
 UpdateWorkspaceUpdateData = Struct.new(
   :id,
+  :created_at,
+  :created_by,
+  :default_image_model,
+  :default_provider_sort,
+  :default_text_model,
+  :description,
+  :io_logging_api_key_ids,
+  :io_logging_sampling_rate,
+  :is_data_discount_logging_enabled,
+  :is_observability_broadcast_enabled,
+  :is_observability_io_logging_enabled,
+  :name,
+  :slug,
+  :updated_at,
   keyword_init: true
 )
 
 # UpsertWorkspaceBudget entity data model.
 #
-# @!attribute [rw] data
-#   @return [Object]
-#
 # @!attribute [rw] limit_usd
 #   @return [Float]
 UpsertWorkspaceBudget = Struct.new(
-  :data,
   :limit_usd,
   keyword_init: true
 )
@@ -5213,9 +6273,13 @@ UpsertWorkspaceBudget = Struct.new(
 #
 # @!attribute [rw] workspace_id
 #   @return [String]
+#
+# @!attribute [rw] limit_usd
+#   @return [Float, nil]
 UpsertWorkspaceBudgetUpdateData = Struct.new(
   :id,
   :workspace_id,
+  :limit_usd,
   keyword_init: true
 )
 
@@ -5241,7 +6305,7 @@ end
 # @!attribute [rw] error
 #   @return [String, nil]
 #
-# @!attribute [rw] frame_image
+# @!attribute [rw] frame_images
 #   @return [Array, nil]
 #
 # @!attribute [rw] generate_audio
@@ -5253,7 +6317,7 @@ end
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] input_reference
+# @!attribute [rw] input_references
 #   @return [Array, nil]
 #
 # @!attribute [rw] model
@@ -5280,7 +6344,7 @@ end
 # @!attribute [rw] status
 #   @return [String]
 #
-# @!attribute [rw] unsigned_url
+# @!attribute [rw] unsigned_urls
 #   @return [Array, nil]
 #
 # @!attribute [rw] usage
@@ -5290,11 +6354,11 @@ Video = Struct.new(
   :callback_url,
   :duration,
   :error,
-  :frame_image,
+  :frame_images,
   :generate_audio,
   :generation_id,
   :id,
-  :input_reference,
+  :input_references,
   :model,
   :polling_url,
   :prompt,
@@ -5303,7 +6367,7 @@ Video = Struct.new(
   :seed,
   :size,
   :status,
-  :unsigned_url,
+  :unsigned_urls,
   :usage,
   keyword_init: true
 )
@@ -5331,7 +6395,7 @@ VideoLoadMatch = Struct.new(
 # @!attribute [rw] error
 #   @return [String, nil]
 #
-# @!attribute [rw] frame_image
+# @!attribute [rw] frame_images
 #   @return [Array, nil]
 #
 # @!attribute [rw] generate_audio
@@ -5343,7 +6407,7 @@ VideoLoadMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] input_reference
+# @!attribute [rw] input_references
 #   @return [Array, nil]
 #
 # @!attribute [rw] model
@@ -5370,7 +6434,7 @@ VideoLoadMatch = Struct.new(
 # @!attribute [rw] status
 #   @return [String]
 #
-# @!attribute [rw] unsigned_url
+# @!attribute [rw] unsigned_urls
 #   @return [Array, nil]
 #
 # @!attribute [rw] usage
@@ -5380,11 +6444,11 @@ VideoCreateData = Struct.new(
   :callback_url,
   :duration,
   :error,
-  :frame_image,
+  :frame_images,
   :generate_audio,
   :generation_id,
   :id,
-  :input_reference,
+  :input_references,
   :model,
   :polling_url,
   :prompt,
@@ -5393,7 +6457,7 @@ VideoCreateData = Struct.new(
   :seed,
   :size,
   :status,
-  :unsigned_url,
+  :unsigned_urls,
   :usage,
   keyword_init: true
 )
@@ -5413,7 +6477,7 @@ VideoGenerationLoadMatch = Struct.new(
 
 # VideoModelsList entity data model.
 #
-# @!attribute [rw] allowed_passthrough_parameter
+# @!attribute [rw] allowed_passthrough_parameters
 #   @return [Array]
 #
 # @!attribute [rw] canonical_slug
@@ -5443,22 +6507,22 @@ VideoGenerationLoadMatch = Struct.new(
 # @!attribute [rw] seed
 #   @return [Object]
 #
-# @!attribute [rw] supported_aspect_ratio
+# @!attribute [rw] supported_aspect_ratios
 #   @return [Object]
 #
-# @!attribute [rw] supported_duration
+# @!attribute [rw] supported_durations
 #   @return [Object]
 #
-# @!attribute [rw] supported_frame_image
+# @!attribute [rw] supported_frame_images
 #   @return [Object]
 #
-# @!attribute [rw] supported_resolution
+# @!attribute [rw] supported_resolutions
 #   @return [Object]
 #
-# @!attribute [rw] supported_size
+# @!attribute [rw] supported_sizes
 #   @return [Object]
 VideoModelsList = Struct.new(
-  :allowed_passthrough_parameter,
+  :allowed_passthrough_parameters,
   :canonical_slug,
   :created,
   :description,
@@ -5468,17 +6532,17 @@ VideoModelsList = Struct.new(
   :name,
   :pricing_skus,
   :seed,
-  :supported_aspect_ratio,
-  :supported_duration,
-  :supported_frame_image,
-  :supported_resolution,
-  :supported_size,
+  :supported_aspect_ratios,
+  :supported_durations,
+  :supported_frame_images,
+  :supported_resolutions,
+  :supported_sizes,
   keyword_init: true
 )
 
 # Request payload for VideoModelsList#list.
 #
-# @!attribute [rw] allowed_passthrough_parameter
+# @!attribute [rw] allowed_passthrough_parameters
 #   @return [Array, nil]
 #
 # @!attribute [rw] canonical_slug
@@ -5508,22 +6572,22 @@ VideoModelsList = Struct.new(
 # @!attribute [rw] seed
 #   @return [Object, nil]
 #
-# @!attribute [rw] supported_aspect_ratio
+# @!attribute [rw] supported_aspect_ratios
 #   @return [Object, nil]
 #
-# @!attribute [rw] supported_duration
+# @!attribute [rw] supported_durations
 #   @return [Object, nil]
 #
-# @!attribute [rw] supported_frame_image
+# @!attribute [rw] supported_frame_images
 #   @return [Object, nil]
 #
-# @!attribute [rw] supported_resolution
+# @!attribute [rw] supported_resolutions
 #   @return [Object, nil]
 #
-# @!attribute [rw] supported_size
+# @!attribute [rw] supported_sizes
 #   @return [Object, nil]
 VideoModelsListListMatch = Struct.new(
-  :allowed_passthrough_parameter,
+  :allowed_passthrough_parameters,
   :canonical_slug,
   :created,
   :description,
@@ -5533,20 +6597,76 @@ VideoModelsListListMatch = Struct.new(
   :name,
   :pricing_skus,
   :seed,
-  :supported_aspect_ratio,
-  :supported_duration,
-  :supported_frame_image,
-  :supported_resolution,
-  :supported_size,
+  :supported_aspect_ratios,
+  :supported_durations,
+  :supported_frame_images,
+  :supported_resolutions,
+  :supported_sizes,
   keyword_init: true
 )
 
 # Workspace entity data model.
 #
-# @!attribute [rw] data
+# @!attribute [rw] created_at
+#   @return [String]
+#
+# @!attribute [rw] created_by
+#   @return [Object]
+#
+# @!attribute [rw] default_image_model
+#   @return [Object]
+#
+# @!attribute [rw] default_provider_sort
+#   @return [Object]
+#
+# @!attribute [rw] default_text_model
+#   @return [Object]
+#
+# @!attribute [rw] description
+#   @return [Object]
+#
+# @!attribute [rw] id
+#   @return [String]
+#
+# @!attribute [rw] io_logging_api_key_ids
+#   @return [Object]
+#
+# @!attribute [rw] io_logging_sampling_rate
+#   @return [Float]
+#
+# @!attribute [rw] is_data_discount_logging_enabled
+#   @return [Boolean]
+#
+# @!attribute [rw] is_observability_broadcast_enabled
+#   @return [Boolean]
+#
+# @!attribute [rw] is_observability_io_logging_enabled
+#   @return [Boolean]
+#
+# @!attribute [rw] name
+#   @return [String]
+#
+# @!attribute [rw] slug
+#   @return [String]
+#
+# @!attribute [rw] updated_at
 #   @return [Object]
 Workspace = Struct.new(
-  :data,
+  :created_at,
+  :created_by,
+  :default_image_model,
+  :default_provider_sort,
+  :default_text_model,
+  :description,
+  :id,
+  :io_logging_api_key_ids,
+  :io_logging_sampling_rate,
+  :is_data_discount_logging_enabled,
+  :is_observability_broadcast_enabled,
+  :is_observability_io_logging_enabled,
+  :name,
+  :slug,
+  :updated_at,
   keyword_init: true
 )
 

@@ -37,7 +37,7 @@ class VideoModelsListEntity extends OpenrouterModelsEntityBase<VideoModelsList> 
 
 
 
-  async list(this: any, reqmatch?: VideoModelsListListMatch, ctrl?: Control): Promise<VideoModelsList[]> {
+  async list(this: any, reqmatch?: VideoModelsListListMatch, ctrl?: Control): Promise<VideoModelsListEntity[]> {
 
     const utility = this._utility
 

@@ -26,7 +26,7 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "frame_image"
+      name: "frame_images"
       req: false
       type: "`$ARRAY`"
     }
@@ -46,7 +46,7 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "input_reference"
+      name: "input_references"
       req: false
       type: "`$ARRAY`"
     }
@@ -91,7 +91,7 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
-      name: "unsigned_url"
+      name: "unsigned_urls"
       req: false
       type: "`$ARRAY`"
     }

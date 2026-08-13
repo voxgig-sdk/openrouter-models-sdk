@@ -53,7 +53,7 @@ Endpoint is nested under author, so provide the `author`.
 
 ```php
 try {
-    // load() returns the bare Endpoint record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Endpoint record (throws on error).
     $endpoint = $client->Endpoint()->load(["author" => "example_author", "slug" => "example_slug"]);
     print_r($endpoint);
 } catch (\Throwable $err) {
@@ -69,7 +69,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $activitys = $client->Activity()->list();
+    $organizations = $client->Organization()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -141,9 +141,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = OpenrouterModelsSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$activity = $client->Activity()->list();
-print_r($activity);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$organization = $client->Organization()->list();
+print_r($organization);
 ```
 
 ### Use a custom fetch function
@@ -331,7 +332,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -354,15 +355,15 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `byok_usage_inference` |  |
-| `completion_token` |  |
+| `completion_tokens` |  |
 | `date` |  |
 | `endpoint_id` |  |
 | `model` |  |
 | `model_permaslug` |  |
-| `prompt_token` |  |
+| `prompt_tokens` |  |
 | `provider_name` |  |
-| `reasoning_token` |  |
-| `request` |  |
+| `reasoning_tokens` |  |
+| `requests` |  |
 | `usage` |  |
 
 Operations: List.
@@ -388,16 +389,19 @@ API path: ``
 | `byok_usage_weekly` |  |
 | `created_at` |  |
 | `creator_user_id` |  |
-| `data` |  |
 | `disabled` |  |
 | `expires_at` |  |
 | `hash` |  |
 | `include_byok_in_limit` |  |
+| `is_free_tier` |  |
+| `is_management_key` |  |
+| `is_provisioning_key` |  |
 | `label` |  |
 | `limit` |  |
 | `limit_remaining` |  |
 | `limit_reset` |  |
 | `name` |  |
+| `rate_limit` |  |
 | `updated_at` |  |
 | `usage` |  |
 | `usage_daily` |  |
@@ -416,8 +420,8 @@ API path: `/keys`
 | `app_id` |  |
 | `app_name` |  |
 | `rank` |  |
-| `total_request` |  |
-| `total_token` |  |
+| `total_requests` |  |
+| `total_tokens` |  |
 
 Operations: List.
 
@@ -436,17 +440,22 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `classifier_dimension` |  |
-| `classifier_filter` |  |
+| `cachedAt` |  |
+| `classifier_dimensions` |  |
+| `classifier_filters` |  |
 | `data` |  |
-| `dimension` |  |
-| `filter` |  |
+| `dimensions` |  |
+| `filters` |  |
+| `granularities` |  |
 | `granularity` |  |
 | `group_limit` |  |
 | `limit` |  |
-| `metric` |  |
+| `metadata` |  |
+| `metrics` |  |
+| `operators` |  |
 | `order_by` |  |
 | `time_range` |  |
+| `warnings` |  |
 
 Operations: Create, Load.
 
@@ -467,7 +476,7 @@ API path: ``
 | --- | --- |
 | `added_count` |  |
 | `data` |  |
-| `user_id` |  |
+| `user_ids` |  |
 
 Operations: Create.
 
@@ -478,7 +487,7 @@ API path: `/workspaces/{id}/members/add`
 | Field | Description |
 | --- | --- |
 | `assigned_count` |  |
-| `key_hash` |  |
+| `key_hashes` |  |
 
 Operations: Create.
 
@@ -489,7 +498,7 @@ API path: `/guardrails/{id}/assignments/keys`
 | Field | Description |
 | --- | --- |
 | `assigned_count` |  |
-| `member_user_id` |  |
+| `member_user_ids` |  |
 
 Operations: Create.
 
@@ -500,7 +509,7 @@ API path: `/guardrails/{id}/assignments/members`
 | Field | Description |
 | --- | --- |
 | `removed_count` |  |
-| `user_id` |  |
+| `user_ids` |  |
 
 Operations: Create.
 
@@ -510,7 +519,7 @@ API path: `/workspaces/{id}/members/remove`
 
 | Field | Description |
 | --- | --- |
-| `key_hash` |  |
+| `key_hashes` |  |
 | `unassigned_count` |  |
 
 Operations: Create.
@@ -521,7 +530,7 @@ API path: `/guardrails/{id}/assignments/keys/remove`
 
 | Field | Description |
 | --- | --- |
-| `member_user_id` |  |
+| `member_user_ids` |  |
 | `unassigned_count` |  |
 
 Operations: Create.
@@ -532,11 +541,10 @@ API path: `/guardrails/{id}/assignments/members/remove`
 
 | Field | Description |
 | --- | --- |
-| `allowed_api_key_hash` |  |
-| `allowed_model` |  |
-| `allowed_user_id` |  |
+| `allowed_api_key_hashes` |  |
+| `allowed_models` |  |
+| `allowed_user_ids` |  |
 | `created_at` |  |
-| `data` |  |
 | `disabled` |  |
 | `id` |  |
 | `is_fallback` |  |
@@ -556,29 +564,30 @@ API path: `/byok`
 | Field | Description |
 | --- | --- |
 | `cache_control` |  |
-| `choice` |  |
+| `choices` |  |
 | `created` |  |
 | `debug` |  |
 | `frequency_penalty` |  |
 | `id` |  |
 | `image_config` |  |
-| `logit_bia` |  |
-| `logprob` |  |
-| `max_completion_token` |  |
-| `max_token` |  |
-| `message` |  |
+| `logit_bias` |  |
+| `logprobs` |  |
+| `max_completion_tokens` |  |
+| `max_tokens` |  |
+| `messages` |  |
 | `metadata` |  |
 | `min_p` |  |
-| `modality` |  |
+| `modalities` |  |
 | `model` |  |
+| `models` |  |
 | `object` |  |
 | `openrouter_metadata` |  |
-| `parallel_tool_call` |  |
-| `plugin` |  |
+| `parallel_tool_calls` |  |
+| `plugins` |  |
 | `prediction` |  |
 | `presence_penalty` |  |
 | `prompt_cache_key` |  |
-| `prompt_cache_option` |  |
+| `prompt_cache_options` |  |
 | `provider` |  |
 | `reasoning` |  |
 | `reasoning_effort` |  |
@@ -591,14 +600,14 @@ API path: `/byok`
 | `stop` |  |
 | `stop_server_tools_when` |  |
 | `stream` |  |
-| `stream_option` |  |
+| `stream_options` |  |
 | `system_fingerprint` |  |
 | `temperature` |  |
-| `tool` |  |
 | `tool_choice` |  |
+| `tools` |  |
 | `top_a` |  |
 | `top_k` |  |
-| `top_logprob` |  |
+| `top_logprobs` |  |
 | `top_p` |  |
 | `trace` |  |
 | `usage` |  |
@@ -675,10 +684,10 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `api_key_hash` |  |
+| `api_key_hashes` |  |
 | `config` |  |
 | `enabled` |  |
-| `filter_rule` |  |
+| `filter_rules` |  |
 | `name` |  |
 | `privacy_mode` |  |
 | `sampling_rate` |  |
@@ -696,34 +705,34 @@ API path: `/observability/destinations`
 | `background` |  |
 | `cache_control` |  |
 | `context_management` |  |
-| `data` |  |
 | `debug` |  |
-| `fallback` |  |
+| `fallbacks` |  |
 | `frequency_penalty` |  |
 | `image_config` |  |
 | `include` |  |
 | `input` |  |
-| `instruction` |  |
-| `logit_bia` |  |
-| `logprob` |  |
-| `max_completion_token` |  |
-| `max_output_token` |  |
-| `max_token` |  |
-| `max_tool_call` |  |
-| `message` |  |
+| `instructions` |  |
+| `logit_bias` |  |
+| `logprobs` |  |
+| `max_completion_tokens` |  |
+| `max_output_tokens` |  |
+| `max_tokens` |  |
+| `max_tool_calls` |  |
+| `messages` |  |
 | `metadata` |  |
 | `min_p` |  |
-| `modality` |  |
+| `modalities` |  |
 | `model` |  |
+| `models` |  |
 | `output_config` |  |
-| `parallel_tool_call` |  |
-| `plugin` |  |
+| `parallel_tool_calls` |  |
+| `plugins` |  |
 | `prediction` |  |
 | `presence_penalty` |  |
 | `previous_response_id` |  |
 | `prompt` |  |
 | `prompt_cache_key` |  |
-| `prompt_cache_option` |  |
+| `prompt_cache_options` |  |
 | `provider` |  |
 | `reasoning` |  |
 | `reasoning_effort` |  |
@@ -736,20 +745,20 @@ API path: `/observability/destinations`
 | `session_id` |  |
 | `speed` |  |
 | `stop` |  |
-| `stop_sequence` |  |
+| `stop_sequences` |  |
 | `stop_server_tools_when` |  |
 | `store` |  |
 | `stream` |  |
-| `stream_option` |  |
+| `stream_options` |  |
 | `system` |  |
 | `temperature` |  |
 | `text` |  |
 | `thinking` |  |
-| `tool` |  |
 | `tool_choice` |  |
+| `tools` |  |
 | `top_a` |  |
 | `top_k` |  |
-| `top_logprob` |  |
+| `top_logprobs` |  |
 | `top_p` |  |
 | `trace` |  |
 | `truncation` |  |
@@ -772,7 +781,8 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `total_credits` |  |
+| `total_usage` |  |
 
 Operations: Create, Load.
 
@@ -792,7 +802,7 @@ API path: ``
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `dimension` |  |
+| `dimensions` |  |
 | `encoding_format` |  |
 | `id` |  |
 | `input` |  |
@@ -812,32 +822,32 @@ API path: `/embeddings`
 | Field | Description |
 | --- | --- |
 | `architecture` |  |
-| `benchmark` |  |
+| `benchmarks` |  |
 | `canonical_slug` |  |
 | `context_length` |  |
 | `created` |  |
-| `data` |  |
-| `default_parameter` |  |
+| `default_parameters` |  |
 | `description` |  |
+| `endpoints` |  |
 | `expiration_date` |  |
 | `hugging_face_id` |  |
 | `id` |  |
 | `knowledge_cutoff` |  |
 | `latency_last_30m` |  |
-| `link` |  |
-| `max_completion_token` |  |
-| `max_prompt_token` |  |
+| `links` |  |
+| `max_completion_tokens` |  |
+| `max_prompt_tokens` |  |
 | `model_id` |  |
 | `model_name` |  |
 | `name` |  |
-| `per_request_limit` |  |
+| `per_request_limits` |  |
 | `pricing` |  |
 | `provider_name` |  |
 | `quantization` |  |
 | `reasoning` |  |
 | `status` |  |
-| `supported_parameter` |  |
-| `supported_voice` |  |
+| `supported_parameters` |  |
+| `supported_voices` |  |
 | `supports_implicit_caching` |  |
 | `tag` |  |
 | `throughput_last_30m` |  |
@@ -868,7 +878,7 @@ API path: ``
 | `filename` |  |
 | `id` |  |
 | `mime_type` |  |
-| `size_byte` |  |
+| `size_bytes` |  |
 | `type` |  |
 
 Operations: Create, List, Load, Remove.
@@ -879,7 +889,50 @@ API path: `/files`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `api_type` |  |
+| `app_id` |  |
+| `cache_discount` |  |
+| `cancelled` |  |
+| `created_at` |  |
+| `data_region` |  |
+| `external_user` |  |
+| `finish_reason` |  |
+| `generation_time` |  |
+| `http_referer` |  |
+| `id` |  |
+| `is_byok` |  |
+| `latency` |  |
+| `model` |  |
+| `moderation_latency` |  |
+| `native_finish_reason` |  |
+| `native_tokens_cached` |  |
+| `native_tokens_completion` |  |
+| `native_tokens_completion_images` |  |
+| `native_tokens_prompt` |  |
+| `native_tokens_reasoning` |  |
+| `num_fetches` |  |
+| `num_input_audio_prompt` |  |
+| `num_media_completion` |  |
+| `num_media_prompt` |  |
+| `num_search_results` |  |
+| `origin` |  |
+| `preset_id` |  |
+| `provider_name` |  |
+| `provider_responses` |  |
+| `request_id` |  |
+| `response_cache_source_id` |  |
+| `router` |  |
+| `service_tier` |  |
+| `session_id` |  |
+| `streamed` |  |
+| `tokens_completion` |  |
+| `tokens_prompt` |  |
+| `total_cost` |  |
+| `upstream_id` |  |
+| `upstream_inference_cost` |  |
+| `usage` |  |
+| `user_agent` |  |
+| `web_search_engine` |  |
 
 Operations: Load.
 
@@ -889,7 +942,8 @@ API path: `/generation`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `input` |  |
+| `output` |  |
 
 Operations: Load.
 
@@ -899,12 +953,11 @@ API path: `/generation/content`
 
 | Field | Description |
 | --- | --- |
-| `allowed_model` |  |
-| `allowed_provider` |  |
-| `content_filter` |  |
-| `content_filter_builtin` |  |
+| `allowed_models` |  |
+| `allowed_providers` |  |
+| `content_filter_builtins` |  |
+| `content_filters` |  |
 | `created_at` |  |
-| `data` |  |
 | `description` |  |
 | `enforce_zdr` |  |
 | `enforce_zdr_anthropic` |  |
@@ -913,8 +966,8 @@ API path: `/generation/content`
 | `enforce_zdr_other` |  |
 | `enforce_zdr_xai` |  |
 | `id` |  |
-| `ignored_model` |  |
-| `ignored_provider` |  |
+| `ignored_models` |  |
+| `ignored_providers` |  |
 | `limit_usd` |  |
 | `name` |  |
 | `reset_interval` |  |
@@ -933,7 +986,7 @@ API path: `/guardrails`
 | `background` |  |
 | `created` |  |
 | `data` |  |
-| `input_reference` |  |
+| `input_references` |  |
 | `model` |  |
 | `n` |  |
 | `output_compression` |  |
@@ -955,12 +1008,12 @@ API path: `/images`
 
 | Field | Description |
 | --- | --- |
-| `allowed_passthrough_parameter` |  |
+| `allowed_passthrough_parameters` |  |
 | `pricing` |  |
 | `provider_name` |  |
 | `provider_slug` |  |
 | `provider_tag` |  |
-| `supported_parameter` |  |
+| `supported_parameters` |  |
 | `supports_streaming` |  |
 
 Operations: List.
@@ -974,10 +1027,10 @@ API path: `/images/models/{author}/{slug}/endpoints`
 | `architecture` |  |
 | `created` |  |
 | `description` |  |
-| `endpoint` |  |
+| `endpoints` |  |
 | `id` |  |
 | `name` |  |
-| `supported_parameter` |  |
+| `supported_parameters` |  |
 | `supports_streaming` |  |
 
 Operations: List.
@@ -1132,26 +1185,27 @@ API path: ``
 | --- | --- |
 | `cache_control` |  |
 | `context_management` |  |
-| `fallback` |  |
-| `max_token` |  |
-| `message` |  |
+| `fallbacks` |  |
+| `max_tokens` |  |
+| `messages` |  |
 | `metadata` |  |
 | `model` |  |
+| `models` |  |
 | `output_config` |  |
-| `plugin` |  |
+| `plugins` |  |
 | `provider` |  |
 | `route` |  |
 | `service_tier` |  |
 | `session_id` |  |
 | `speed` |  |
-| `stop_sequence` |  |
+| `stop_sequences` |  |
 | `stop_server_tools_when` |  |
 | `stream` |  |
 | `system` |  |
 | `temperature` |  |
 | `thinking` |  |
-| `tool` |  |
 | `tool_choice` |  |
+| `tools` |  |
 | `top_k` |  |
 | `top_p` |  |
 | `trace` |  |
@@ -1175,24 +1229,23 @@ API path: ``
 | Field | Description |
 | --- | --- |
 | `architecture` |  |
-| `benchmark` |  |
+| `benchmarks` |  |
 | `canonical_slug` |  |
 | `context_length` |  |
 | `created` |  |
-| `data` |  |
-| `default_parameter` |  |
+| `default_parameters` |  |
 | `description` |  |
 | `expiration_date` |  |
 | `hugging_face_id` |  |
 | `id` |  |
 | `knowledge_cutoff` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
-| `per_request_limit` |  |
+| `per_request_limits` |  |
 | `pricing` |  |
 | `reasoning` |  |
-| `supported_parameter` |  |
-| `supported_voice` |  |
+| `supported_parameters` |  |
+| `supported_voices` |  |
 | `top_provider` |  |
 
 Operations: List, Load.
@@ -1203,7 +1256,7 @@ API path: `/embeddings/models`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `count` |  |
 
 Operations: Load.
 
@@ -1214,23 +1267,23 @@ API path: `/models/count`
 | Field | Description |
 | --- | --- |
 | `architecture` |  |
-| `benchmark` |  |
+| `benchmarks` |  |
 | `canonical_slug` |  |
 | `context_length` |  |
 | `created` |  |
-| `default_parameter` |  |
+| `default_parameters` |  |
 | `description` |  |
 | `expiration_date` |  |
 | `hugging_face_id` |  |
 | `id` |  |
 | `knowledge_cutoff` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
-| `per_request_limit` |  |
+| `per_request_limits` |  |
 | `pricing` |  |
 | `reasoning` |  |
-| `supported_parameter` |  |
-| `supported_voice` |  |
+| `supported_parameters` |  |
+| `supported_voices` |  |
 | `top_provider` |  |
 
 Operations: List.
@@ -1241,13 +1294,15 @@ API path: `/models/user`
 
 | Field | Description |
 | --- | --- |
+| `app_id` |  |
 | `callback_url` |  |
 | `code` |  |
 | `code_challenge` |  |
 | `code_challenge_method` |  |
 | `code_verifier` |  |
-| `data` |  |
+| `created_at` |  |
 | `expires_at` |  |
+| `id` |  |
 | `key` |  |
 | `key_label` |  |
 | `limit` |  |
@@ -1282,19 +1337,20 @@ API path: `/observability/destinations/{id}`
 | `image_config` |  |
 | `include` |  |
 | `input` |  |
-| `instruction` |  |
-| `max_output_token` |  |
-| `max_tool_call` |  |
+| `instructions` |  |
+| `max_output_tokens` |  |
+| `max_tool_calls` |  |
 | `metadata` |  |
-| `modality` |  |
+| `modalities` |  |
 | `model` |  |
-| `parallel_tool_call` |  |
-| `plugin` |  |
+| `models` |  |
+| `parallel_tool_calls` |  |
+| `plugins` |  |
 | `presence_penalty` |  |
 | `previous_response_id` |  |
 | `prompt` |  |
 | `prompt_cache_key` |  |
-| `prompt_cache_option` |  |
+| `prompt_cache_options` |  |
 | `provider` |  |
 | `reasoning` |  |
 | `route` |  |
@@ -1306,10 +1362,10 @@ API path: `/observability/destinations/{id}`
 | `stream` |  |
 | `temperature` |  |
 | `text` |  |
-| `tool` |  |
 | `tool_choice` |  |
+| `tools` |  |
 | `top_k` |  |
-| `top_logprob` |  |
+| `top_logprobs` |  |
 | `top_p` |  |
 | `trace` |  |
 | `truncation` |  |
@@ -1339,8 +1395,8 @@ API path: `/organization/members`
 | --- | --- |
 | `created_at` |  |
 | `creator_user_id` |  |
-| `data` |  |
 | `description` |  |
+| `designated_version` |  |
 | `designated_version_id` |  |
 | `id` |  |
 | `name` |  |
@@ -1358,7 +1414,14 @@ API path: `/presets`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `config` |  |
+| `created_at` |  |
+| `creator_id` |  |
+| `id` |  |
+| `preset_id` |  |
+| `system_prompt` |  |
+| `updated_at` |  |
+| `version` |  |
 
 Operations: Load.
 
@@ -1368,8 +1431,8 @@ API path: `/presets/{slug}/versions/{version}`
 
 | Field | Description |
 | --- | --- |
-| `datacenter` |  |
-| `headquarter` |  |
+| `datacenters` |  |
+| `headquarters` |  |
 | `name` |  |
 | `privacy_policy_url` |  |
 | `slug` |  |
@@ -1395,7 +1458,7 @@ API path: ``
 | --- | --- |
 | `date` |  |
 | `model_permaslug` |  |
-| `total_token` |  |
+| `total_tokens` |  |
 
 Operations: List.
 
@@ -1414,12 +1477,12 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `document` |  |
+| `documents` |  |
 | `id` |  |
 | `model` |  |
 | `provider` |  |
 | `query` |  |
-| `result` |  |
+| `results` |  |
 | `top_n` |  |
 | `usage` |  |
 
@@ -1455,13 +1518,13 @@ API path: ``
 | `model` |  |
 | `provider` |  |
 | `response_format` |  |
-| `segment` |  |
+| `segments` |  |
 | `task` |  |
 | `temperature` |  |
 | `text` |  |
-| `timestamp_granularity` |  |
+| `timestamp_granularities` |  |
 | `usage` |  |
-| `word` |  |
+| `words` |  |
 
 Operations: Create.
 
@@ -1473,8 +1536,8 @@ API path: `/audio/transcriptions`
 | --- | --- |
 | `category` |  |
 | `comment` |  |
-| `data` |  |
 | `generation_id` |  |
+| `success` |  |
 
 Operations: Create.
 
@@ -1484,7 +1547,10 @@ API path: `/generation/feedback`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `as_of` |  |
+| `classifications` |  |
+| `macro_categories` |  |
+| `window_days` |  |
 
 Operations: Load.
 
@@ -1529,9 +1595,8 @@ API path: `/benchmarks`
 
 | Field | Description |
 | --- | --- |
-| `allowed_model` |  |
-| `allowed_user_id` |  |
-| `data` |  |
+| `allowed_models` |  |
+| `allowed_user_ids` |  |
 | `disabled` |  |
 | `is_fallback` |  |
 | `key` |  |
@@ -1545,11 +1610,10 @@ API path: `/byok/{id}`
 
 | Field | Description |
 | --- | --- |
-| `allowed_model` |  |
-| `allowed_provider` |  |
-| `content_filter` |  |
-| `content_filter_builtin` |  |
-| `data` |  |
+| `allowed_models` |  |
+| `allowed_providers` |  |
+| `content_filter_builtins` |  |
+| `content_filters` |  |
 | `description` |  |
 | `enforce_zdr` |  |
 | `enforce_zdr_anthropic` |  |
@@ -1557,8 +1621,8 @@ API path: `/byok/{id}`
 | `enforce_zdr_openai` |  |
 | `enforce_zdr_other` |  |
 | `enforce_zdr_xai` |  |
-| `ignored_model` |  |
-| `ignored_provider` |  |
+| `ignored_models` |  |
+| `ignored_providers` |  |
 | `limit_usd` |  |
 | `name` |  |
 | `reset_interval` |  |
@@ -1571,11 +1635,10 @@ API path: `/guardrails/{id}`
 
 | Field | Description |
 | --- | --- |
-| `api_key_hash` |  |
+| `api_key_hashes` |  |
 | `config` |  |
-| `data` |  |
 | `enabled` |  |
-| `filter_rule` |  |
+| `filter_rules` |  |
 | `name` |  |
 | `privacy_mode` |  |
 | `sampling_rate` |  |
@@ -1590,13 +1653,12 @@ API path: `/observability/destinations/{id}`
 | --- | --- |
 | `created_at` |  |
 | `created_by` |  |
-| `data` |  |
 | `default_image_model` |  |
 | `default_provider_sort` |  |
 | `default_text_model` |  |
 | `description` |  |
 | `id` |  |
-| `io_logging_api_key_id` |  |
+| `io_logging_api_key_ids` |  |
 | `io_logging_sampling_rate` |  |
 | `is_data_discount_logging_enabled` |  |
 | `is_observability_broadcast_enabled` |  |
@@ -1613,7 +1675,6 @@ API path: `/workspaces`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `limit_usd` |  |
 
 Operations: Update.
@@ -1646,11 +1707,11 @@ API path: ``
 | `callback_url` |  |
 | `duration` |  |
 | `error` |  |
-| `frame_image` |  |
+| `frame_images` |  |
 | `generate_audio` |  |
 | `generation_id` |  |
 | `id` |  |
-| `input_reference` |  |
+| `input_references` |  |
 | `model` |  |
 | `polling_url` |  |
 | `prompt` |  |
@@ -1659,7 +1720,7 @@ API path: ``
 | `seed` |  |
 | `size` |  |
 | `status` |  |
-| `unsigned_url` |  |
+| `unsigned_urls` |  |
 | `usage` |  |
 
 Operations: Create, Load.
@@ -1679,7 +1740,7 @@ API path: `/videos/{jobId}/content`
 
 | Field | Description |
 | --- | --- |
-| `allowed_passthrough_parameter` |  |
+| `allowed_passthrough_parameters` |  |
 | `canonical_slug` |  |
 | `created` |  |
 | `description` |  |
@@ -1689,11 +1750,11 @@ API path: `/videos/{jobId}/content`
 | `name` |  |
 | `pricing_skus` |  |
 | `seed` |  |
-| `supported_aspect_ratio` |  |
-| `supported_duration` |  |
-| `supported_frame_image` |  |
-| `supported_resolution` |  |
-| `supported_size` |  |
+| `supported_aspect_ratios` |  |
+| `supported_durations` |  |
+| `supported_frame_images` |  |
+| `supported_resolutions` |  |
+| `supported_sizes` |  |
 
 Operations: List.
 
@@ -1703,7 +1764,21 @@ API path: `/videos/models`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `created_at` |  |
+| `created_by` |  |
+| `default_image_model` |  |
+| `default_provider_sort` |  |
+| `default_text_model` |  |
+| `description` |  |
+| `id` |  |
+| `io_logging_api_key_ids` |  |
+| `io_logging_sampling_rate` |  |
+| `is_data_discount_logging_enabled` |  |
+| `is_observability_broadcast_enabled` |  |
+| `is_observability_io_logging_enabled` |  |
+| `name` |  |
+| `slug` |  |
+| `updated_at` |  |
 
 Operations: Load, Remove.
 
@@ -1747,15 +1822,15 @@ Create an instance: `$activity = $client->Activity();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `byok_usage_inference` | `float` |  |
-| `completion_token` | `int` |  |
+| `completion_tokens` | `int` |  |
 | `date` | `string` |  |
 | `endpoint_id` | `string` |  |
 | `model` | `string` |  |
 | `model_permaslug` | `string` |  |
-| `prompt_token` | `int` |  |
+| `prompt_tokens` | `int` |  |
 | `provider_name` | `string` |  |
-| `reasoning_token` | `int` |  |
-| `request` | `int` |  |
+| `reasoning_tokens` | `int` |  |
+| `requests` | `int` |  |
 | `usage` | `float` |  |
 
 #### Example: List
@@ -1795,16 +1870,19 @@ Create an instance: `$api_key = $client->ApiKey();`
 | `byok_usage_weekly` | `float` |  |
 | `created_at` | `string` |  |
 | `creator_user_id` | `mixed` |  |
-| `data` | `array` |  |
 | `disabled` | `bool` |  |
 | `expires_at` | `mixed` |  |
 | `hash` | `string` |  |
 | `include_byok_in_limit` | `bool` |  |
+| `is_free_tier` | `bool` |  |
+| `is_management_key` | `bool` |  |
+| `is_provisioning_key` | `bool` |  |
 | `label` | `string` |  |
 | `limit` | `mixed` |  |
 | `limit_remaining` | `mixed` |  |
 | `limit_reset` | `mixed` |  |
 | `name` | `string` |  |
+| `rate_limit` | `array` |  |
 | `updated_at` | `mixed` |  |
 | `usage` | `float` |  |
 | `usage_daily` | `float` |  |
@@ -1815,7 +1893,7 @@ Create an instance: `$api_key = $client->ApiKey();`
 #### Example: Load
 
 ```php
-// load() returns the bare ApiKey record (throws on error).
+// load() returns the ENTITY — call data_get() for the ApiKey record (throws on error).
 $api_key = $client->ApiKey()->load(["id" => "api_key_id"]);
 ```
 
@@ -1835,16 +1913,25 @@ $api_key = $client->ApiKey()->create([
     "byok_usage_monthly" => null, // float
     "byok_usage_weekly" => null, // float
     "created_at" => null, // string
-    "data" => null, // array
+    "creator_user_id" => null, // mixed
+    "disabled" => null, // bool
     "hash" => null, // string
+    "include_byok_in_limit" => null, // bool
+    "is_free_tier" => null, // bool
+    "is_management_key" => null, // bool
+    "is_provisioning_key" => null, // bool
     "label" => null, // string
+    "limit" => null, // mixed
     "limit_remaining" => null, // mixed
+    "limit_reset" => null, // mixed
     "name" => null, // string
+    "rate_limit" => null, // array
     "updated_at" => null, // mixed
     "usage" => null, // float
     "usage_daily" => null, // float
     "usage_monthly" => null, // float
     "usage_weekly" => null, // float
+    "workspace_id" => null, // string
 ]);
 ```
 
@@ -1866,8 +1953,8 @@ Create an instance: `$app_ranking = $client->AppRanking();`
 | `app_id` | `int` |  |
 | `app_name` | `string` |  |
 | `rank` | `int` |  |
-| `total_request` | `int` |  |
-| `total_token` | `string` |  |
+| `total_requests` | `int` |  |
+| `total_tokens` | `string` |  |
 
 #### Example: List
 
@@ -1897,22 +1984,27 @@ Create an instance: `$beta_analytics = $client->BetaAnalytics();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `classifier_dimension` | `array` |  |
-| `classifier_filter` | `array` |  |
+| `cachedAt` | `float` |  |
+| `classifier_dimensions` | `array` |  |
+| `classifier_filters` | `array` |  |
 | `data` | `array` |  |
-| `dimension` | `array` |  |
-| `filter` | `array` |  |
+| `dimensions` | `array` |  |
+| `filters` | `array` |  |
+| `granularities` | `array` |  |
 | `granularity` | `string` |  |
 | `group_limit` | `int` |  |
 | `limit` | `int` |  |
-| `metric` | `array` |  |
+| `metadata` | `array` |  |
+| `metrics` | `array` |  |
+| `operators` | `array` |  |
 | `order_by` | `array` |  |
 | `time_range` | `array` |  |
+| `warnings` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare BetaAnalytics record (throws on error).
+// load() returns the ENTITY — call data_get() for the BetaAnalytics record (throws on error).
 $beta_analytics = $client->BetaAnalytics()->load();
 ```
 
@@ -1920,10 +2012,14 @@ $beta_analytics = $client->BetaAnalytics()->load();
 
 ```php
 $beta_analytics = $client->BetaAnalytics()->create([
-    "classifier_dimension" => null, // array
-    "classifier_filter" => null, // array
+    "classifier_dimensions" => null, // array
+    "classifier_filters" => null, // array
     "data" => null, // array
-    "metric" => null, // array
+    "dimensions" => null, // array
+    "granularities" => null, // array
+    "metadata" => null, // array
+    "metrics" => null, // array
+    "operators" => null, // array
     "order_by" => null, // array
     "time_range" => null, // array
 ]);
@@ -1951,13 +2047,16 @@ Create an instance: `$bulk_add_workspace_member = $client->BulkAddWorkspaceMembe
 | --- | --- | --- |
 | `added_count` | `int` |  |
 | `data` | `array` |  |
-| `user_id` | `array` |  |
+| `user_ids` | `array` |  |
 
 #### Example: Create
 
 ```php
 $bulk_add_workspace_member = $client->BulkAddWorkspaceMember()->create([
     "workspace_id" => null, // string
+    "added_count" => null, // int
+    "data" => null, // array
+    "user_ids" => null, // array
 ]);
 ```
 
@@ -1977,13 +2076,15 @@ Create an instance: `$bulk_assign_key = $client->BulkAssignKey();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `assigned_count` | `int` |  |
-| `key_hash` | `array` |  |
+| `key_hashes` | `array` |  |
 
 #### Example: Create
 
 ```php
 $bulk_assign_key = $client->BulkAssignKey()->create([
     "guardrail_id" => null, // string
+    "assigned_count" => null, // int
+    "key_hashes" => null, // array
 ]);
 ```
 
@@ -2003,13 +2104,15 @@ Create an instance: `$bulk_assign_member = $client->BulkAssignMember();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `assigned_count` | `int` |  |
-| `member_user_id` | `array` |  |
+| `member_user_ids` | `array` |  |
 
 #### Example: Create
 
 ```php
 $bulk_assign_member = $client->BulkAssignMember()->create([
     "guardrail_id" => null, // string
+    "assigned_count" => null, // int
+    "member_user_ids" => null, // array
 ]);
 ```
 
@@ -2029,13 +2132,15 @@ Create an instance: `$bulk_remove_workspace_member = $client->BulkRemoveWorkspac
 | Field | Type | Description |
 | --- | --- | --- |
 | `removed_count` | `int` |  |
-| `user_id` | `array` |  |
+| `user_ids` | `array` |  |
 
 #### Example: Create
 
 ```php
 $bulk_remove_workspace_member = $client->BulkRemoveWorkspaceMember()->create([
     "workspace_id" => null, // string
+    "removed_count" => null, // int
+    "user_ids" => null, // array
 ]);
 ```
 
@@ -2054,7 +2159,7 @@ Create an instance: `$bulk_unassign_key = $client->BulkUnassignKey();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `key_hash` | `array` |  |
+| `key_hashes` | `array` |  |
 | `unassigned_count` | `int` |  |
 
 #### Example: Create
@@ -2062,6 +2167,8 @@ Create an instance: `$bulk_unassign_key = $client->BulkUnassignKey();`
 ```php
 $bulk_unassign_key = $client->BulkUnassignKey()->create([
     "guardrail_id" => null, // string
+    "key_hashes" => null, // array
+    "unassigned_count" => null, // int
 ]);
 ```
 
@@ -2080,7 +2187,7 @@ Create an instance: `$bulk_unassign_member = $client->BulkUnassignMember();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `member_user_id` | `array` |  |
+| `member_user_ids` | `array` |  |
 | `unassigned_count` | `int` |  |
 
 #### Example: Create
@@ -2088,6 +2195,8 @@ Create an instance: `$bulk_unassign_member = $client->BulkUnassignMember();`
 ```php
 $bulk_unassign_member = $client->BulkUnassignMember()->create([
     "guardrail_id" => null, // string
+    "member_user_ids" => null, // array
+    "unassigned_count" => null, // int
 ]);
 ```
 
@@ -2109,11 +2218,10 @@ Create an instance: `$byok = $client->Byok();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_api_key_hash` | `mixed` |  |
-| `allowed_model` | `mixed` |  |
-| `allowed_user_id` | `mixed` |  |
+| `allowed_api_key_hashes` | `mixed` |  |
+| `allowed_models` | `mixed` |  |
+| `allowed_user_ids` | `mixed` |  |
 | `created_at` | `string` |  |
-| `data` | `mixed` |  |
 | `disabled` | `bool` |  |
 | `id` | `string` |  |
 | `is_fallback` | `bool` |  |
@@ -2127,7 +2235,7 @@ Create an instance: `$byok = $client->Byok();`
 #### Example: Load
 
 ```php
-// load() returns the bare Byok record (throws on error).
+// load() returns the ENTITY — call data_get() for the Byok record (throws on error).
 $byok = $client->Byok()->load(["id" => "byok_id"]);
 ```
 
@@ -2142,14 +2250,18 @@ $byoks = $client->Byok()->list();
 
 ```php
 $byok = $client->Byok()->create([
-    "allowed_api_key_hash" => null, // mixed
+    "allowed_api_key_hashes" => null, // mixed
+    "allowed_models" => null, // mixed
+    "allowed_user_ids" => null, // mixed
     "created_at" => null, // string
-    "data" => null, // mixed
+    "disabled" => null, // bool
     "id" => null, // string
+    "is_fallback" => null, // bool
     "key" => null, // string
     "label" => null, // string
     "provider" => null, // string
     "sort_order" => null, // int
+    "workspace_id" => null, // string
 ]);
 ```
 
@@ -2169,29 +2281,30 @@ Create an instance: `$chat_result = $client->ChatResult();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cache_control` | `array` |  |
-| `choice` | `array` |  |
+| `choices` | `array` |  |
 | `created` | `int` |  |
 | `debug` | `array` |  |
 | `frequency_penalty` | `mixed` |  |
 | `id` | `string` |  |
 | `image_config` | `array` |  |
-| `logit_bia` | `mixed` |  |
-| `logprob` | `mixed` |  |
-| `max_completion_token` | `mixed` |  |
-| `max_token` | `mixed` |  |
-| `message` | `array` |  |
+| `logit_bias` | `mixed` |  |
+| `logprobs` | `mixed` |  |
+| `max_completion_tokens` | `mixed` |  |
+| `max_tokens` | `mixed` |  |
+| `messages` | `array` |  |
 | `metadata` | `array` |  |
 | `min_p` | `mixed` |  |
-| `modality` | `array` |  |
+| `modalities` | `array` |  |
 | `model` | `string` |  |
+| `models` | `array` |  |
 | `object` | `string` |  |
 | `openrouter_metadata` | `array` |  |
-| `parallel_tool_call` | `mixed` |  |
-| `plugin` | `array` |  |
+| `parallel_tool_calls` | `mixed` |  |
+| `plugins` | `array` |  |
 | `prediction` | `mixed` |  |
 | `presence_penalty` | `mixed` |  |
 | `prompt_cache_key` | `mixed` |  |
-| `prompt_cache_option` | `mixed` |  |
+| `prompt_cache_options` | `mixed` |  |
 | `provider` | `mixed` |  |
 | `reasoning` | `array` |  |
 | `reasoning_effort` | `mixed` |  |
@@ -2204,14 +2317,14 @@ Create an instance: `$chat_result = $client->ChatResult();`
 | `stop` | `mixed` |  |
 | `stop_server_tools_when` | `array` |  |
 | `stream` | `bool` |  |
-| `stream_option` | `mixed` |  |
+| `stream_options` | `mixed` |  |
 | `system_fingerprint` | `mixed` |  |
 | `temperature` | `mixed` |  |
-| `tool` | `array` |  |
 | `tool_choice` | `mixed` |  |
+| `tools` | `array` |  |
 | `top_a` | `mixed` |  |
 | `top_k` | `mixed` |  |
-| `top_logprob` | `mixed` |  |
+| `top_logprobs` | `mixed` |  |
 | `top_p` | `mixed` |  |
 | `trace` | `array` |  |
 | `usage` | `array` |  |
@@ -2222,15 +2335,15 @@ Create an instance: `$chat_result = $client->ChatResult();`
 ```php
 $chat_result = $client->ChatResult()->create([
     "cache_control" => null, // array
-    "choice" => null, // array
+    "choices" => null, // array
     "created" => null, // int
     "id" => null, // string
-    "message" => null, // array
+    "messages" => null, // array
     "model" => null, // string
     "object" => null, // string
     "openrouter_metadata" => null, // array
     "prediction" => null, // mixed
-    "prompt_cache_option" => null, // mixed
+    "prompt_cache_options" => null, // mixed
     "system_fingerprint" => null, // mixed
     "usage" => null, // array
 ]);
@@ -2286,10 +2399,10 @@ Create an instance: `$create_observability_destination = $client->CreateObservab
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key_hash` | `mixed` |  |
+| `api_key_hashes` | `mixed` |  |
 | `config` | `array` |  |
 | `enabled` | `bool` |  |
-| `filter_rule` | `mixed` |  |
+| `filter_rules` | `mixed` |  |
 | `name` | `string` |  |
 | `privacy_mode` | `bool` |  |
 | `sampling_rate` | `float` |  |
@@ -2301,7 +2414,7 @@ Create an instance: `$create_observability_destination = $client->CreateObservab
 ```php
 $create_observability_destination = $client->CreateObservabilityDestination()->create([
     "config" => null, // array
-    "filter_rule" => null, // mixed
+    "filter_rules" => null, // mixed
     "name" => null, // string
     "type" => null, // string
 ]);
@@ -2325,34 +2438,34 @@ Create an instance: `$create_preset_from_inference = $client->CreatePresetFromIn
 | `background` | `mixed` |  |
 | `cache_control` | `array` |  |
 | `context_management` | `mixed` |  |
-| `data` | `mixed` |  |
 | `debug` | `array` |  |
-| `fallback` | `mixed` |  |
+| `fallbacks` | `mixed` |  |
 | `frequency_penalty` | `mixed` |  |
 | `image_config` | `array` |  |
 | `include` | `mixed` |  |
 | `input` | `mixed` |  |
-| `instruction` | `mixed` |  |
-| `logit_bia` | `mixed` |  |
-| `logprob` | `mixed` |  |
-| `max_completion_token` | `mixed` |  |
-| `max_output_token` | `mixed` |  |
-| `max_token` | `mixed` |  |
-| `max_tool_call` | `mixed` |  |
-| `message` | `array` |  |
+| `instructions` | `mixed` |  |
+| `logit_bias` | `mixed` |  |
+| `logprobs` | `mixed` |  |
+| `max_completion_tokens` | `mixed` |  |
+| `max_output_tokens` | `mixed` |  |
+| `max_tokens` | `mixed` |  |
+| `max_tool_calls` | `mixed` |  |
+| `messages` | `array` |  |
 | `metadata` | `array` |  |
 | `min_p` | `mixed` |  |
-| `modality` | `array` |  |
+| `modalities` | `array` |  |
 | `model` | `string` |  |
+| `models` | `array` |  |
 | `output_config` | `array` |  |
-| `parallel_tool_call` | `mixed` |  |
-| `plugin` | `array` |  |
+| `parallel_tool_calls` | `mixed` |  |
+| `plugins` | `array` |  |
 | `prediction` | `mixed` |  |
 | `presence_penalty` | `mixed` |  |
 | `previous_response_id` | `string` |  |
 | `prompt` | `mixed` |  |
 | `prompt_cache_key` | `mixed` |  |
-| `prompt_cache_option` | `mixed` |  |
+| `prompt_cache_options` | `mixed` |  |
 | `provider` | `mixed` |  |
 | `reasoning` | `array` |  |
 | `reasoning_effort` | `mixed` |  |
@@ -2365,20 +2478,20 @@ Create an instance: `$create_preset_from_inference = $client->CreatePresetFromIn
 | `session_id` | `string` |  |
 | `speed` | `mixed` |  |
 | `stop` | `mixed` |  |
-| `stop_sequence` | `array` |  |
+| `stop_sequences` | `array` |  |
 | `stop_server_tools_when` | `array` |  |
 | `store` | `bool` |  |
 | `stream` | `bool` |  |
-| `stream_option` | `mixed` |  |
+| `stream_options` | `mixed` |  |
 | `system` | `mixed` |  |
 | `temperature` | `mixed` |  |
 | `text` | `mixed` |  |
 | `thinking` | `mixed` |  |
-| `tool` | `array` |  |
 | `tool_choice` | `mixed` |  |
+| `tools` | `array` |  |
 | `top_a` | `mixed` |  |
 | `top_k` | `mixed` |  |
-| `top_logprob` | `mixed` |  |
+| `top_logprobs` | `mixed` |  |
 | `top_p` | `mixed` |  |
 | `trace` | `array` |  |
 | `truncation` | `mixed` |  |
@@ -2389,6 +2502,11 @@ Create an instance: `$create_preset_from_inference = $client->CreatePresetFromIn
 ```php
 $create_preset_from_inference = $client->CreatePresetFromInference()->create([
     "slug" => null, // string
+    "cache_control" => null, // array
+    "messages" => null, // array
+    "prediction" => null, // mixed
+    "prompt" => null, // mixed
+    "prompt_cache_options" => null, // mixed
 ]);
 ```
 
@@ -2413,12 +2531,13 @@ Create an instance: `$credit = $client->Credit();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
+| `total_credits` | `float` |  |
+| `total_usage` | `float` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Credit record (throws on error).
+// load() returns the ENTITY — call data_get() for the Credit record (throws on error).
 $credit = $client->Credit()->load();
 ```
 
@@ -2426,7 +2545,8 @@ $credit = $client->Credit()->load();
 
 ```php
 $credit = $client->Credit()->create([
-    "data" => null, // array
+    "total_credits" => null, // float
+    "total_usage" => null, // float
 ]);
 ```
 
@@ -2451,7 +2571,7 @@ Create an instance: `$embedding = $client->Embedding();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `array` |  |
-| `dimension` | `int` |  |
+| `dimensions` | `int` |  |
 | `encoding_format` | `string` |  |
 | `id` | `string` |  |
 | `input` | `mixed` |  |
@@ -2490,33 +2610,33 @@ Create an instance: `$endpoint = $client->Endpoint();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `architecture` | `array` |  |
-| `benchmark` | `array` |  |
+| `architecture` | `mixed` |  |
+| `benchmarks` | `array` |  |
 | `canonical_slug` | `string` |  |
 | `context_length` | `mixed` |  |
 | `created` | `int` |  |
-| `data` | `array` |  |
-| `default_parameter` | `mixed` |  |
+| `default_parameters` | `mixed` |  |
 | `description` | `string` |  |
+| `endpoints` | `array` |  |
 | `expiration_date` | `mixed` |  |
 | `hugging_face_id` | `mixed` |  |
 | `id` | `string` |  |
 | `knowledge_cutoff` | `mixed` |  |
 | `latency_last_30m` | `mixed` |  |
-| `link` | `array` |  |
-| `max_completion_token` | `mixed` |  |
-| `max_prompt_token` | `mixed` |  |
+| `links` | `array` |  |
+| `max_completion_tokens` | `mixed` |  |
+| `max_prompt_tokens` | `mixed` |  |
 | `model_id` | `string` |  |
 | `model_name` | `string` |  |
 | `name` | `string` |  |
-| `per_request_limit` | `mixed` |  |
+| `per_request_limits` | `mixed` |  |
 | `pricing` | `array` |  |
 | `provider_name` | `string` |  |
 | `quantization` | `mixed` |  |
 | `reasoning` | `array` |  |
 | `status` | `int` |  |
-| `supported_parameter` | `array` |  |
-| `supported_voice` | `mixed` |  |
+| `supported_parameters` | `array` |  |
+| `supported_voices` | `mixed` |  |
 | `supports_implicit_caching` | `bool` |  |
 | `tag` | `string` |  |
 | `throughput_last_30m` | `mixed` |  |
@@ -2528,7 +2648,7 @@ Create an instance: `$endpoint = $client->Endpoint();`
 #### Example: Load
 
 ```php
-// load() returns the bare Endpoint record (throws on error).
+// load() returns the ENTITY — call data_get() for the Endpoint record (throws on error).
 $endpoint = $client->Endpoint()->load(["author" => "author", "slug" => "slug"]);
 ```
 
@@ -2567,13 +2687,13 @@ Create an instance: `$file = $client->File();`
 | `filename` | `string` |  |
 | `id` | `string` |  |
 | `mime_type` | `string` |  |
-| `size_byte` | `int` |  |
+| `size_bytes` | `int` |  |
 | `type` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare File record (throws on error).
+// load() returns the ENTITY — call data_get() for the File record (throws on error).
 $file = $client->File()->load(["id" => "file_id"]);
 ```
 
@@ -2593,7 +2713,7 @@ $file = $client->File()->create([
     "filename" => null, // string
     "id" => null, // string
     "mime_type" => null, // string
-    "size_byte" => null, // int
+    "size_bytes" => null, // int
     "type" => null, // string
 ]);
 ```
@@ -2613,13 +2733,56 @@ Create an instance: `$generation = $client->Generation();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
+| `api_type` | `mixed` |  |
+| `app_id` | `mixed` |  |
+| `cache_discount` | `mixed` |  |
+| `cancelled` | `mixed` |  |
+| `created_at` | `string` |  |
+| `data_region` | `string` |  |
+| `external_user` | `mixed` |  |
+| `finish_reason` | `mixed` |  |
+| `generation_time` | `mixed` |  |
+| `http_referer` | `mixed` |  |
+| `id` | `string` |  |
+| `is_byok` | `bool` |  |
+| `latency` | `mixed` |  |
+| `model` | `string` |  |
+| `moderation_latency` | `mixed` |  |
+| `native_finish_reason` | `mixed` |  |
+| `native_tokens_cached` | `mixed` |  |
+| `native_tokens_completion` | `mixed` |  |
+| `native_tokens_completion_images` | `mixed` |  |
+| `native_tokens_prompt` | `mixed` |  |
+| `native_tokens_reasoning` | `mixed` |  |
+| `num_fetches` | `mixed` |  |
+| `num_input_audio_prompt` | `mixed` |  |
+| `num_media_completion` | `mixed` |  |
+| `num_media_prompt` | `mixed` |  |
+| `num_search_results` | `mixed` |  |
+| `origin` | `string` |  |
+| `preset_id` | `mixed` |  |
+| `provider_name` | `mixed` |  |
+| `provider_responses` | `mixed` |  |
+| `request_id` | `mixed` |  |
+| `response_cache_source_id` | `mixed` |  |
+| `router` | `mixed` |  |
+| `service_tier` | `mixed` |  |
+| `session_id` | `mixed` |  |
+| `streamed` | `mixed` |  |
+| `tokens_completion` | `mixed` |  |
+| `tokens_prompt` | `mixed` |  |
+| `total_cost` | `float` |  |
+| `upstream_id` | `mixed` |  |
+| `upstream_inference_cost` | `mixed` |  |
+| `usage` | `float` |  |
+| `user_agent` | `mixed` |  |
+| `web_search_engine` | `mixed` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Generation record (throws on error).
-$generation = $client->Generation()->load();
+// load() returns the ENTITY — call data_get() for the Generation record (throws on error).
+$generation = $client->Generation()->load(["id" => "generation_id"]);
 ```
 
 
@@ -2637,12 +2800,13 @@ Create an instance: `$generation_content = $client->GenerationContent();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
+| `input` | `mixed` |  |
+| `output` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare GenerationContent record (throws on error).
+// load() returns the ENTITY — call data_get() for the GenerationContent record (throws on error).
 $generation_content = $client->GenerationContent()->load();
 ```
 
@@ -2664,12 +2828,11 @@ Create an instance: `$guardrail = $client->Guardrail();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_model` | `mixed` |  |
-| `allowed_provider` | `mixed` |  |
-| `content_filter` | `mixed` |  |
-| `content_filter_builtin` | `mixed` |  |
+| `allowed_models` | `mixed` |  |
+| `allowed_providers` | `mixed` |  |
+| `content_filter_builtins` | `mixed` |  |
+| `content_filters` | `mixed` |  |
 | `created_at` | `string` |  |
-| `data` | `mixed` |  |
 | `description` | `mixed` |  |
 | `enforce_zdr` | `mixed` |  |
 | `enforce_zdr_anthropic` | `mixed` |  |
@@ -2678,8 +2841,8 @@ Create an instance: `$guardrail = $client->Guardrail();`
 | `enforce_zdr_other` | `mixed` |  |
 | `enforce_zdr_xai` | `mixed` |  |
 | `id` | `string` |  |
-| `ignored_model` | `mixed` |  |
-| `ignored_provider` | `mixed` |  |
+| `ignored_models` | `mixed` |  |
+| `ignored_providers` | `mixed` |  |
 | `limit_usd` | `mixed` |  |
 | `name` | `string` |  |
 | `reset_interval` | `mixed` |  |
@@ -2689,7 +2852,7 @@ Create an instance: `$guardrail = $client->Guardrail();`
 #### Example: Load
 
 ```php
-// load() returns the bare Guardrail record (throws on error).
+// load() returns the ENTITY — call data_get() for the Guardrail record (throws on error).
 $guardrail = $client->Guardrail()->load(["id" => "guardrail_id"]);
 ```
 
@@ -2705,9 +2868,9 @@ $guardrails = $client->Guardrail()->list();
 ```php
 $guardrail = $client->Guardrail()->create([
     "created_at" => null, // string
-    "data" => null, // mixed
     "id" => null, // string
     "name" => null, // string
+    "workspace_id" => null, // string
 ]);
 ```
 
@@ -2730,7 +2893,7 @@ Create an instance: `$image = $client->Image();`
 | `background` | `string` |  |
 | `created` | `int` |  |
 | `data` | `array` |  |
-| `input_reference` | `array` |  |
+| `input_references` | `array` |  |
 | `model` | `string` |  |
 | `n` | `int` |  |
 | `output_compression` | `int` |  |
@@ -2771,12 +2934,12 @@ Create an instance: `$image_model_endpoint = $client->ImageModelEndpoint();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_passthrough_parameter` | `array` |  |
+| `allowed_passthrough_parameters` | `array` |  |
 | `pricing` | `array` |  |
 | `provider_name` | `string` |  |
 | `provider_slug` | `string` |  |
 | `provider_tag` | `mixed` |  |
-| `supported_parameter` | `mixed` |  |
+| `supported_parameters` | `mixed` |  |
 | `supports_streaming` | `bool` |  |
 
 #### Example: List
@@ -2804,10 +2967,10 @@ Create an instance: `$image_models_list = $client->ImageModelsList();`
 | `architecture` | `array` |  |
 | `created` | `int` |  |
 | `description` | `string` |  |
-| `endpoint` | `string` |  |
+| `endpoints` | `string` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `supported_parameter` | `array` |  |
+| `supported_parameters` | `array` |  |
 | `supports_streaming` | `bool` |  |
 
 #### Example: List
@@ -3036,26 +3199,27 @@ Create an instance: `$message = $client->Message();`
 | --- | --- | --- |
 | `cache_control` | `array` |  |
 | `context_management` | `mixed` |  |
-| `fallback` | `mixed` |  |
-| `max_token` | `int` |  |
-| `message` | `mixed` |  |
+| `fallbacks` | `mixed` |  |
+| `max_tokens` | `int` |  |
+| `messages` | `mixed` |  |
 | `metadata` | `array` |  |
 | `model` | `string` |  |
+| `models` | `array` |  |
 | `output_config` | `array` |  |
-| `plugin` | `array` |  |
+| `plugins` | `array` |  |
 | `provider` | `mixed` |  |
 | `route` | `mixed` |  |
 | `service_tier` | `string` |  |
 | `session_id` | `string` |  |
 | `speed` | `mixed` |  |
-| `stop_sequence` | `array` |  |
+| `stop_sequences` | `array` |  |
 | `stop_server_tools_when` | `array` |  |
 | `stream` | `bool` |  |
 | `system` | `mixed` |  |
 | `temperature` | `float` |  |
 | `thinking` | `mixed` |  |
-| `tool` | `array` |  |
 | `tool_choice` | `mixed` |  |
+| `tools` | `array` |  |
 | `top_k` | `int` |  |
 | `top_p` | `float` |  |
 | `trace` | `array` |  |
@@ -3066,7 +3230,7 @@ Create an instance: `$message = $client->Message();`
 ```php
 $message = $client->Message()->create([
     "cache_control" => null, // array
-    "message" => null, // mixed
+    "messages" => null, // mixed
     "model" => null, // string
 ]);
 ```
@@ -3093,30 +3257,29 @@ Create an instance: `$model = $client->Model();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `architecture` | `array` |  |
-| `benchmark` | `array` |  |
+| `benchmarks` | `array` |  |
 | `canonical_slug` | `string` |  |
 | `context_length` | `mixed` |  |
 | `created` | `int` |  |
-| `data` | `array` |  |
-| `default_parameter` | `mixed` |  |
+| `default_parameters` | `mixed` |  |
 | `description` | `string` |  |
 | `expiration_date` | `mixed` |  |
 | `hugging_face_id` | `mixed` |  |
 | `id` | `string` |  |
 | `knowledge_cutoff` | `mixed` |  |
-| `link` | `array` |  |
+| `links` | `array` |  |
 | `name` | `string` |  |
-| `per_request_limit` | `mixed` |  |
+| `per_request_limits` | `mixed` |  |
 | `pricing` | `array` |  |
 | `reasoning` | `array` |  |
-| `supported_parameter` | `array` |  |
-| `supported_voice` | `mixed` |  |
+| `supported_parameters` | `array` |  |
+| `supported_voices` | `mixed` |  |
 | `top_provider` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Model record (throws on error).
+// load() returns the ENTITY — call data_get() for the Model record (throws on error).
 $model = $client->Model()->load(["author" => "author", "slug" => "slug"]);
 ```
 
@@ -3142,12 +3305,12 @@ Create an instance: `$models_count = $client->ModelsCount();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
+| `count` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare ModelsCount record (throws on error).
+// load() returns the ENTITY — call data_get() for the ModelsCount record (throws on error).
 $models_count = $client->ModelsCount()->load();
 ```
 
@@ -3167,23 +3330,23 @@ Create an instance: `$models_list = $client->ModelsList();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `architecture` | `array` |  |
-| `benchmark` | `array` |  |
+| `benchmarks` | `array` |  |
 | `canonical_slug` | `string` |  |
 | `context_length` | `mixed` |  |
 | `created` | `int` |  |
-| `default_parameter` | `mixed` |  |
+| `default_parameters` | `mixed` |  |
 | `description` | `string` |  |
 | `expiration_date` | `mixed` |  |
 | `hugging_face_id` | `mixed` |  |
 | `id` | `string` |  |
 | `knowledge_cutoff` | `mixed` |  |
-| `link` | `array` |  |
+| `links` | `array` |  |
 | `name` | `string` |  |
-| `per_request_limit` | `mixed` |  |
+| `per_request_limits` | `mixed` |  |
 | `pricing` | `array` |  |
 | `reasoning` | `array` |  |
-| `supported_parameter` | `array` |  |
-| `supported_voice` | `mixed` |  |
+| `supported_parameters` | `array` |  |
+| `supported_voices` | `mixed` |  |
 | `top_provider` | `array` |  |
 
 #### Example: List
@@ -3208,13 +3371,15 @@ Create an instance: `$o_auth = $client->OAuth();`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `app_id` | `int` |  |
 | `callback_url` | `string` |  |
 | `code` | `string` |  |
 | `code_challenge` | `string` |  |
 | `code_challenge_method` | `mixed` |  |
 | `code_verifier` | `string` |  |
-| `data` | `array` |  |
+| `created_at` | `string` |  |
 | `expires_at` | `mixed` |  |
+| `id` | `string` |  |
 | `key` | `string` |  |
 | `key_label` | `string` |  |
 | `limit` | `float` |  |
@@ -3228,9 +3393,11 @@ Create an instance: `$o_auth = $client->OAuth();`
 
 ```php
 $o_auth = $client->OAuth()->create([
+    "app_id" => null, // int
     "callback_url" => null, // string
     "code" => null, // string
-    "data" => null, // array
+    "created_at" => null, // string
+    "id" => null, // string
     "key" => null, // string
     "user_id" => null, // mixed
 ]);
@@ -3252,12 +3419,12 @@ Create an instance: `$observability_destination = $client->ObservabilityDestinat
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `mixed` |  |
+| `data` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare ObservabilityDestination record (throws on error).
+// load() returns the ENTITY — call data_get() for the ObservabilityDestination record (throws on error).
 $observability_destination = $client->ObservabilityDestination()->load(["id" => "observability_destination_id"]);
 ```
 
@@ -3283,19 +3450,20 @@ Create an instance: `$open_responses_result = $client->OpenResponsesResult();`
 | `image_config` | `array` |  |
 | `include` | `mixed` |  |
 | `input` | `mixed` |  |
-| `instruction` | `mixed` |  |
-| `max_output_token` | `mixed` |  |
-| `max_tool_call` | `mixed` |  |
+| `instructions` | `mixed` |  |
+| `max_output_tokens` | `mixed` |  |
+| `max_tool_calls` | `mixed` |  |
 | `metadata` | `mixed` |  |
-| `modality` | `array` |  |
+| `modalities` | `array` |  |
 | `model` | `string` |  |
-| `parallel_tool_call` | `mixed` |  |
-| `plugin` | `array` |  |
+| `models` | `array` |  |
+| `parallel_tool_calls` | `mixed` |  |
+| `plugins` | `array` |  |
 | `presence_penalty` | `mixed` |  |
 | `previous_response_id` | `string` |  |
 | `prompt` | `mixed` |  |
 | `prompt_cache_key` | `mixed` |  |
-| `prompt_cache_option` | `mixed` |  |
+| `prompt_cache_options` | `mixed` |  |
 | `provider` | `mixed` |  |
 | `reasoning` | `mixed` |  |
 | `route` | `mixed` |  |
@@ -3307,10 +3475,10 @@ Create an instance: `$open_responses_result = $client->OpenResponsesResult();`
 | `stream` | `bool` |  |
 | `temperature` | `mixed` |  |
 | `text` | `mixed` |  |
-| `tool` | `array` |  |
 | `tool_choice` | `mixed` |  |
+| `tools` | `array` |  |
 | `top_k` | `int` |  |
-| `top_logprob` | `mixed` |  |
+| `top_logprobs` | `mixed` |  |
 | `top_p` | `mixed` |  |
 | `trace` | `array` |  |
 | `truncation` | `mixed` |  |
@@ -3322,7 +3490,7 @@ Create an instance: `$open_responses_result = $client->OpenResponsesResult();`
 $open_responses_result = $client->OpenResponsesResult()->create([
     "cache_control" => null, // array
     "prompt" => null, // mixed
-    "prompt_cache_option" => null, // mixed
+    "prompt_cache_options" => null, // mixed
 ]);
 ```
 
@@ -3372,8 +3540,8 @@ Create an instance: `$preset = $client->Preset();`
 | --- | --- | --- |
 | `created_at` | `string` |  |
 | `creator_user_id` | `mixed` |  |
-| `data` | `mixed` |  |
 | `description` | `mixed` |  |
+| `designated_version` | `mixed` |  |
 | `designated_version_id` | `mixed` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
@@ -3386,7 +3554,7 @@ Create an instance: `$preset = $client->Preset();`
 #### Example: Load
 
 ```php
-// load() returns the bare Preset record (throws on error).
+// load() returns the ENTITY — call data_get() for the Preset record (throws on error).
 $preset = $client->Preset()->load(["id" => "preset_id"]);
 ```
 
@@ -3412,12 +3580,19 @@ Create an instance: `$preset_version = $client->PresetVersion();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `mixed` |  |
+| `config` | `array` |  |
+| `created_at` | `string` |  |
+| `creator_id` | `string` |  |
+| `id` | `string` |  |
+| `preset_id` | `string` |  |
+| `system_prompt` | `mixed` |  |
+| `updated_at` | `string` |  |
+| `version` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare PresetVersion record (throws on error).
+// load() returns the ENTITY — call data_get() for the PresetVersion record (throws on error).
 $preset_version = $client->PresetVersion()->load(["id" => "preset_version_id", "slug" => "slug"]);
 ```
 
@@ -3436,8 +3611,8 @@ Create an instance: `$provider = $client->Provider();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datacenter` | `mixed` |  |
-| `headquarter` | `mixed` |  |
+| `datacenters` | `mixed` |  |
+| `headquarters` | `mixed` |  |
 | `name` | `string` |  |
 | `privacy_policy_url` | `mixed` |  |
 | `slug` | `string` |  |
@@ -3473,7 +3648,7 @@ Create an instance: `$rankings_daily = $client->RankingsDaily();`
 | --- | --- | --- |
 | `date` | `string` |  |
 | `model_permaslug` | `string` |  |
-| `total_token` | `string` |  |
+| `total_tokens` | `string` |  |
 
 #### Example: List
 
@@ -3502,12 +3677,12 @@ Create an instance: `$rerank = $client->Rerank();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `document` | `array` |  |
+| `documents` | `array` |  |
 | `id` | `string` |  |
 | `model` | `string` |  |
 | `provider` | `string` |  |
 | `query` | `string` |  |
-| `result` | `array` |  |
+| `results` | `array` |  |
 | `top_n` | `int` |  |
 | `usage` | `array` |  |
 
@@ -3515,10 +3690,10 @@ Create an instance: `$rerank = $client->Rerank();`
 
 ```php
 $rerank = $client->Rerank()->create([
-    "document" => null, // array
+    "documents" => null, // array
     "model" => null, // string
     "query" => null, // string
-    "result" => null, // array
+    "results" => null, // array
 ]);
 ```
 
@@ -3553,13 +3728,13 @@ Create an instance: `$stt = $client->Stt();`
 | `model` | `string` |  |
 | `provider` | `array` |  |
 | `response_format` | `string` |  |
-| `segment` | `array` |  |
+| `segments` | `array` |  |
 | `task` | `string` |  |
 | `temperature` | `float` |  |
 | `text` | `string` |  |
-| `timestamp_granularity` | `array` |  |
+| `timestamp_granularities` | `array` |  |
 | `usage` | `array` |  |
-| `word` | `array` |  |
+| `words` | `array` |  |
 
 #### Example: Create
 
@@ -3588,16 +3763,16 @@ Create an instance: `$submit_generation_feedback = $client->SubmitGenerationFeed
 | --- | --- | --- |
 | `category` | `string` |  |
 | `comment` | `string` |  |
-| `data` | `array` |  |
 | `generation_id` | `string` |  |
+| `success` | `bool` |  |
 
 #### Example: Create
 
 ```php
 $submit_generation_feedback = $client->SubmitGenerationFeedback()->create([
     "category" => null, // string
-    "data" => null, // array
     "generation_id" => null, // string
+    "success" => null, // bool
 ]);
 ```
 
@@ -3616,12 +3791,15 @@ Create an instance: `$task = $client->Task();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
+| `as_of` | `string` |  |
+| `classifications` | `array` |  |
+| `macro_categories` | `array` |  |
+| `window_days` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Task record (throws on error).
+// load() returns the ENTITY — call data_get() for the Task record (throws on error).
 $task = $client->Task()->load();
 ```
 
@@ -3702,9 +3880,8 @@ Create an instance: `$update_byok_key = $client->UpdateByokKey();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_model` | `mixed` |  |
-| `allowed_user_id` | `mixed` |  |
-| `data` | `mixed` |  |
+| `allowed_models` | `mixed` |  |
+| `allowed_user_ids` | `mixed` |  |
 | `disabled` | `bool` |  |
 | `is_fallback` | `bool` |  |
 | `key` | `string` |  |
@@ -3725,11 +3902,10 @@ Create an instance: `$update_guardrail = $client->UpdateGuardrail();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_model` | `mixed` |  |
-| `allowed_provider` | `mixed` |  |
-| `content_filter` | `mixed` |  |
-| `content_filter_builtin` | `mixed` |  |
-| `data` | `mixed` |  |
+| `allowed_models` | `mixed` |  |
+| `allowed_providers` | `mixed` |  |
+| `content_filter_builtins` | `mixed` |  |
+| `content_filters` | `mixed` |  |
 | `description` | `mixed` |  |
 | `enforce_zdr` | `mixed` |  |
 | `enforce_zdr_anthropic` | `mixed` |  |
@@ -3737,8 +3913,8 @@ Create an instance: `$update_guardrail = $client->UpdateGuardrail();`
 | `enforce_zdr_openai` | `mixed` |  |
 | `enforce_zdr_other` | `mixed` |  |
 | `enforce_zdr_xai` | `mixed` |  |
-| `ignored_model` | `mixed` |  |
-| `ignored_provider` | `mixed` |  |
+| `ignored_models` | `mixed` |  |
+| `ignored_providers` | `mixed` |  |
 | `limit_usd` | `mixed` |  |
 | `name` | `string` |  |
 | `reset_interval` | `mixed` |  |
@@ -3758,11 +3934,10 @@ Create an instance: `$update_observability_destination = $client->UpdateObservab
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key_hash` | `mixed` |  |
+| `api_key_hashes` | `mixed` |  |
 | `config` | `array` |  |
-| `data` | `mixed` |  |
 | `enabled` | `bool` |  |
-| `filter_rule` | `mixed` |  |
+| `filter_rules` | `mixed` |  |
 | `name` | `string` |  |
 | `privacy_mode` | `bool` |  |
 | `sampling_rate` | `float` |  |
@@ -3786,13 +3961,12 @@ Create an instance: `$update_workspace = $client->UpdateWorkspace();`
 | --- | --- | --- |
 | `created_at` | `string` |  |
 | `created_by` | `mixed` |  |
-| `data` | `mixed` |  |
 | `default_image_model` | `mixed` |  |
 | `default_provider_sort` | `mixed` |  |
 | `default_text_model` | `mixed` |  |
 | `description` | `mixed` |  |
 | `id` | `string` |  |
-| `io_logging_api_key_id` | `mixed` |  |
+| `io_logging_api_key_ids` | `mixed` |  |
 | `io_logging_sampling_rate` | `float` |  |
 | `is_data_discount_logging_enabled` | `bool` |  |
 | `is_observability_broadcast_enabled` | `bool` |  |
@@ -3814,7 +3988,6 @@ $update_workspaces = $client->UpdateWorkspace()->list();
 $update_workspace = $client->UpdateWorkspace()->create([
     "created_at" => null, // string
     "created_by" => null, // mixed
-    "data" => null, // mixed
     "id" => null, // string
     "name" => null, // string
     "slug" => null, // string
@@ -3837,7 +4010,6 @@ Create an instance: `$upsert_workspace_budget = $client->UpsertWorkspaceBudget()
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `mixed` |  |
 | `limit_usd` | `float` |  |
 
 
@@ -3870,11 +4042,11 @@ Create an instance: `$video = $client->Video();`
 | `callback_url` | `string` |  |
 | `duration` | `int` |  |
 | `error` | `string` |  |
-| `frame_image` | `array` |  |
+| `frame_images` | `array` |  |
 | `generate_audio` | `bool` |  |
 | `generation_id` | `string` |  |
 | `id` | `string` |  |
-| `input_reference` | `array` |  |
+| `input_references` | `array` |  |
 | `model` | `string` |  |
 | `polling_url` | `string` |  |
 | `prompt` | `string` |  |
@@ -3883,13 +4055,13 @@ Create an instance: `$video = $client->Video();`
 | `seed` | `int` |  |
 | `size` | `string` |  |
 | `status` | `string` |  |
-| `unsigned_url` | `array` |  |
+| `unsigned_urls` | `array` |  |
 | `usage` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Video record (throws on error).
+// load() returns the ENTITY — call data_get() for the Video record (throws on error).
 $video = $client->Video()->load(["id" => "video_id"]);
 ```
 
@@ -3918,7 +4090,7 @@ Create an instance: `$video_generation = $client->VideoGeneration();`
 #### Example: Load
 
 ```php
-// load() returns the bare VideoGeneration record (throws on error).
+// load() returns the ENTITY — call data_get() for the VideoGeneration record (throws on error).
 $video_generation = $client->VideoGeneration()->load(["id" => "video_generation_id"]);
 ```
 
@@ -3937,7 +4109,7 @@ Create an instance: `$video_models_list = $client->VideoModelsList();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_passthrough_parameter` | `array` |  |
+| `allowed_passthrough_parameters` | `array` |  |
 | `canonical_slug` | `string` |  |
 | `created` | `int` |  |
 | `description` | `string` |  |
@@ -3947,11 +4119,11 @@ Create an instance: `$video_models_list = $client->VideoModelsList();`
 | `name` | `string` |  |
 | `pricing_skus` | `mixed` |  |
 | `seed` | `mixed` |  |
-| `supported_aspect_ratio` | `mixed` |  |
-| `supported_duration` | `mixed` |  |
-| `supported_frame_image` | `mixed` |  |
-| `supported_resolution` | `mixed` |  |
-| `supported_size` | `mixed` |  |
+| `supported_aspect_ratios` | `mixed` |  |
+| `supported_durations` | `mixed` |  |
+| `supported_frame_images` | `mixed` |  |
+| `supported_resolutions` | `mixed` |  |
+| `supported_sizes` | `mixed` |  |
 
 #### Example: List
 
@@ -3976,12 +4148,26 @@ Create an instance: `$workspace = $client->Workspace();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `mixed` |  |
+| `created_at` | `string` |  |
+| `created_by` | `mixed` |  |
+| `default_image_model` | `mixed` |  |
+| `default_provider_sort` | `mixed` |  |
+| `default_text_model` | `mixed` |  |
+| `description` | `mixed` |  |
+| `id` | `string` |  |
+| `io_logging_api_key_ids` | `mixed` |  |
+| `io_logging_sampling_rate` | `float` |  |
+| `is_data_discount_logging_enabled` | `bool` |  |
+| `is_observability_broadcast_enabled` | `bool` |  |
+| `is_observability_io_logging_enabled` | `bool` |  |
+| `name` | `string` |  |
+| `slug` | `string` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Workspace record (throws on error).
+// load() returns the ENTITY — call data_get() for the Workspace record (throws on error).
 $workspace = $client->Workspace()->load(["id" => "workspace_id"]);
 ```
 
@@ -4078,11 +4264,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$activity = $client->Activity();
-$activity->list();
+$organization = $client->Organization();
+$organization->list();
 
-// $activity->data_get() now returns the activity data from the last list
-// $activity->match_get() returns the last match criteria
+// $organization->data_get() now returns the organization data from the last list
+// $organization->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

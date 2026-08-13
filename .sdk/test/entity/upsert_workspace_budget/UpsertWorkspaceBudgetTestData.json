@@ -2,20 +2,17 @@
   "existing": {
     "upsert_workspace_budget": {
       "UPSERT_WORKSPACE_BUDGET00": {
-        "data": "s14",
-        "limit_usd": 21,
+        "limit_usd": 10,
         "workspace_id": "WORKSPACE01",
         "id": "UPSERT_WORKSPACE_BUDGET00"
       },
       "UPSERT_WORKSPACE_BUDGET01": {
-        "data": "s28",
-        "limit_usd": 41,
+        "limit_usd": 20,
         "workspace_id": "WORKSPACE01",
         "id": "UPSERT_WORKSPACE_BUDGET01"
       },
       "UPSERT_WORKSPACE_BUDGET02": {
-        "data": "s3c",
-        "limit_usd": 61,
+        "limit_usd": 30,
         "workspace_id": "WORKSPACE01",
         "id": "UPSERT_WORKSPACE_BUDGET02"
       }
@@ -24,8 +21,7 @@
   "new": {
     "upsert_workspace_budget": {
       "upsert_workspace_budget_ref01": {
-        "data": "s50",
-        "limit_usd": 81
+        "limit_usd": 40
       }
     }
   }

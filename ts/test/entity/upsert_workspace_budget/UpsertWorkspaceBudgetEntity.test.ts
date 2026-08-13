@@ -26,8 +26,8 @@ import {
 describe('UpsertWorkspaceBudgetEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -64,7 +64,7 @@ describe('UpsertWorkspaceBudgetEntity', async () => {
     const upsert_workspace_budget_ref01_data_up0: any = {}
     upsert_workspace_budget_ref01_data_up0 ['workspace_id'] = setup.idmap['workspace_id']
 
-    const upsert_workspace_budget_ref01_resdata_up0 = await upsert_workspace_budget_ref01_ent.update(upsert_workspace_budget_ref01_data_up0)
+    const upsert_workspace_budget_ref01_resdata_up0 = (await upsert_workspace_budget_ref01_ent.update(upsert_workspace_budget_ref01_data_up0)).data()
     assert(null != upsert_workspace_budget_ref01_resdata_up0)
 
 

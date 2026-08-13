@@ -2,23 +2,75 @@
   "existing": {
     "workspace": {
       "WORKSPACE00": {
-        "data": "sa",
-        "id": "WORKSPACE00"
+        "created_at": "s96",
+        "created_by": "s97",
+        "default_image_model": "s98",
+        "default_provider_sort": "s99",
+        "default_text_model": "s9a",
+        "description": "s9b",
+        "id": "WORKSPACE00",
+        "io_logging_api_key_ids": "s9d",
+        "io_logging_sampling_rate": 158,
+        "is_data_discount_logging_enabled": false,
+        "is_observability_broadcast_enabled": true,
+        "is_observability_io_logging_enabled": false,
+        "name": "sa2",
+        "slug": "sa3",
+        "updated_at": "sa4"
       },
       "WORKSPACE01": {
-        "data": "s14",
-        "id": "WORKSPACE01"
+        "created_at": "s12c",
+        "created_by": "s12d",
+        "default_image_model": "s12e",
+        "default_provider_sort": "s12f",
+        "default_text_model": "s130",
+        "description": "s131",
+        "id": "WORKSPACE01",
+        "io_logging_api_key_ids": "s133",
+        "io_logging_sampling_rate": 308,
+        "is_data_discount_logging_enabled": false,
+        "is_observability_broadcast_enabled": true,
+        "is_observability_io_logging_enabled": false,
+        "name": "s138",
+        "slug": "s139",
+        "updated_at": "s13a"
       },
       "WORKSPACE02": {
-        "data": "s1e",
-        "id": "WORKSPACE02"
+        "created_at": "s1c2",
+        "created_by": "s1c3",
+        "default_image_model": "s1c4",
+        "default_provider_sort": "s1c5",
+        "default_text_model": "s1c6",
+        "description": "s1c7",
+        "id": "WORKSPACE02",
+        "io_logging_api_key_ids": "s1c9",
+        "io_logging_sampling_rate": 458,
+        "is_data_discount_logging_enabled": false,
+        "is_observability_broadcast_enabled": true,
+        "is_observability_io_logging_enabled": false,
+        "name": "s1ce",
+        "slug": "s1cf",
+        "updated_at": "s1d0"
       }
     }
   },
   "new": {
     "workspace": {
       "workspace_ref01": {
-        "data": "s28"
+        "created_at": "s258",
+        "created_by": "s259",
+        "default_image_model": "s25a",
+        "default_provider_sort": "s25b",
+        "default_text_model": "s25c",
+        "description": "s25d",
+        "io_logging_api_key_ids": "s25f",
+        "io_logging_sampling_rate": 608,
+        "is_data_discount_logging_enabled": false,
+        "is_observability_broadcast_enabled": true,
+        "is_observability_io_logging_enabled": false,
+        "name": "s264",
+        "slug": "s265",
+        "updated_at": "s266"
       }
     }
   }

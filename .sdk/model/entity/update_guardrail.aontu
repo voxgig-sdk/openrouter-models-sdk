@@ -6,7 +6,7 @@ main: kit: entity: update_guardrail: {
 
   fields: [
     {
-      name: "allowed_model"
+      name: "allowed_models"
       req: false
       type: [
         "`$ONE`"
@@ -17,7 +17,7 @@ main: kit: entity: update_guardrail: {
       ]
     }
     {
-      name: "allowed_provider"
+      name: "allowed_providers"
       req: false
       type: [
         "`$ONE`"
@@ -28,7 +28,7 @@ main: kit: entity: update_guardrail: {
       ]
     }
     {
-      name: "content_filter"
+      name: "content_filter_builtins"
       req: false
       type: [
         "`$ONE`"
@@ -39,7 +39,7 @@ main: kit: entity: update_guardrail: {
       ]
     }
     {
-      name: "content_filter_builtin"
+      name: "content_filters"
       req: false
       type: [
         "`$ONE`"
@@ -48,11 +48,6 @@ main: kit: entity: update_guardrail: {
           "`$NULL`"
         ]
       ]
-    }
-    {
-      name: "data"
-      req: true
-      type: "`$ANY`"
     }
     {
       name: "description"
@@ -132,7 +127,7 @@ main: kit: entity: update_guardrail: {
       ]
     }
     {
-      name: "ignored_model"
+      name: "ignored_models"
       req: false
       type: [
         "`$ONE`"
@@ -143,7 +138,7 @@ main: kit: entity: update_guardrail: {
       ]
     }
     {
-      name: "ignored_provider"
+      name: "ignored_providers"
       req: false
       type: [
         "`$ONE`"
@@ -239,7 +234,7 @@ main: kit: entity: update_guardrail: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

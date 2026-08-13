@@ -11,7 +11,7 @@ main: kit: entity: bulk_remove_workspace_member: {
       type: "`$INTEGER`"
     }
     {
-      name: "user_id"
+      name: "user_ids"
       req: true
       type: "`$ARRAY`"
     }

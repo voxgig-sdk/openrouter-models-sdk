@@ -2,15 +2,24 @@
   "existing": {
     "task": {
       "TASK00": {
-        "data": {},
+        "as_of": "s28",
+        "classifications": [],
+        "macro_categories": [],
+        "window_days": "s2b",
         "id": "TASK00"
       },
       "TASK01": {
-        "data": {},
+        "as_of": "s50",
+        "classifications": [],
+        "macro_categories": [],
+        "window_days": "s53",
         "id": "TASK01"
       },
       "TASK02": {
-        "data": {},
+        "as_of": "s78",
+        "classifications": [],
+        "macro_categories": [],
+        "window_days": "s7b",
         "id": "TASK02"
       }
     }
@@ -18,7 +27,10 @@
   "new": {
     "task": {
       "task_ref01": {
-        "data": {}
+        "as_of": "sa0",
+        "classifications": [],
+        "macro_categories": [],
+        "window_days": "sa3"
       }
     }
   }

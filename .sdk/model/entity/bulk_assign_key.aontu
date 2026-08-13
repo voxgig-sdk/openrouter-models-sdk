@@ -11,7 +11,7 @@ main: kit: entity: bulk_assign_key: {
       type: "`$INTEGER`"
     }
     {
-      name: "key_hash"
+      name: "key_hashes"
       req: true
       type: "`$ARRAY`"
     }

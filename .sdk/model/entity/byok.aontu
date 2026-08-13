@@ -6,7 +6,7 @@ main: kit: entity: byok: {
 
   fields: [
     {
-      name: "allowed_api_key_hash"
+      name: "allowed_api_key_hashes"
       req: true
       type: [
         "`$ONE`"
@@ -17,10 +17,10 @@ main: kit: entity: byok: {
       ]
     }
     {
-      name: "allowed_model"
+      name: "allowed_models"
       op: {
-        list: {
-          req: true
+        create: {
+          req: false
           type: [
             "`$ONE`"
             [
@@ -30,7 +30,7 @@ main: kit: entity: byok: {
           ]
         }
       }
-      req: false
+      req: true
       type: [
         "`$ONE`"
         [
@@ -40,10 +40,10 @@ main: kit: entity: byok: {
       ]
     }
     {
-      name: "allowed_user_id"
+      name: "allowed_user_ids"
       op: {
-        list: {
-          req: true
+        create: {
+          req: false
           type: [
             "`$ONE`"
             [
@@ -53,7 +53,7 @@ main: kit: entity: byok: {
           ]
         }
       }
-      req: false
+      req: true
       type: [
         "`$ONE`"
         [
@@ -68,19 +68,14 @@ main: kit: entity: byok: {
       type: "`$STRING`"
     }
     {
-      name: "data"
-      req: true
-      type: "`$ANY`"
-    }
-    {
       name: "disabled"
       op: {
-        list: {
-          req: true
+        create: {
+          req: false
           type: "`$BOOLEAN`"
         }
       }
-      req: false
+      req: true
       type: "`$BOOLEAN`"
     }
     {
@@ -91,12 +86,12 @@ main: kit: entity: byok: {
     {
       name: "is_fallback"
       op: {
-        list: {
-          req: true
+        create: {
+          req: false
           type: "`$BOOLEAN`"
         }
       }
-      req: false
+      req: true
       type: "`$BOOLEAN`"
     }
     {
@@ -133,12 +128,12 @@ main: kit: entity: byok: {
     {
       name: "workspace_id"
       op: {
-        list: {
-          req: true
+        create: {
+          req: false
           type: "`$STRING`"
         }
       }
-      req: false
+      req: true
       type: "`$STRING`"
     }
   ]
@@ -193,7 +188,7 @@ main: kit: entity: byok: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -285,7 +280,7 @@ main: kit: entity: byok: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -345,7 +340,7 @@ main: kit: entity: byok: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

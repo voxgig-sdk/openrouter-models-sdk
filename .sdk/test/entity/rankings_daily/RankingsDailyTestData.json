@@ -4,17 +4,17 @@
       "RANKINGS_DAILY00": {
         "date": "s1e",
         "model_permaslug": "s1f",
-        "total_token": "s20"
+        "total_tokens": "s20"
       },
       "RANKINGS_DAILY01": {
         "date": "s3c",
         "model_permaslug": "s3d",
-        "total_token": "s3e"
+        "total_tokens": "s3e"
       },
       "RANKINGS_DAILY02": {
         "date": "s5a",
         "model_permaslug": "s5b",
-        "total_token": "s5c"
+        "total_tokens": "s5c"
       }
     }
   },
@@ -23,7 +23,7 @@
       "rankings_daily_ref01": {
         "date": "s78",
         "model_permaslug": "s79",
-        "total_token": "s7a"
+        "total_tokens": "s7a"
       }
     }
   }

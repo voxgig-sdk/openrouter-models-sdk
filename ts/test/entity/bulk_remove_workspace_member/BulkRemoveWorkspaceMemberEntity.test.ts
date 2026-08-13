@@ -26,8 +26,8 @@ import {
 describe('BulkRemoveWorkspaceMemberEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -63,7 +63,7 @@ describe('BulkRemoveWorkspaceMemberEntity', async () => {
     let bulk_remove_workspace_member_ref01_data = setup.data.new.bulk_remove_workspace_member['bulk_remove_workspace_member_ref01']
     bulk_remove_workspace_member_ref01_data['workspace_id'] = setup.idmap['workspace01']
 
-    bulk_remove_workspace_member_ref01_data = await bulk_remove_workspace_member_ref01_ent.create(bulk_remove_workspace_member_ref01_data)
+    bulk_remove_workspace_member_ref01_data = (await bulk_remove_workspace_member_ref01_ent.create(bulk_remove_workspace_member_ref01_data)).data()
     assert(null != bulk_remove_workspace_member_ref01_data)
 
 

@@ -26,8 +26,8 @@ import {
 describe('OpenResponsesResultEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -62,7 +62,7 @@ describe('OpenResponsesResultEntity', async () => {
     const open_responses_result_ref01_ent = client.OpenResponsesResult()
     let open_responses_result_ref01_data = setup.data.new.open_responses_result['open_responses_result_ref01']
 
-    open_responses_result_ref01_data = await open_responses_result_ref01_ent.create(open_responses_result_ref01_data)
+    open_responses_result_ref01_data = (await open_responses_result_ref01_ent.create(open_responses_result_ref01_data)).data()
     assert(null != open_responses_result_ref01_data)
 
 

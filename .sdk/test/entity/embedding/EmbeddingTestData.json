@@ -3,7 +3,7 @@
     "embedding": {
       "EMBEDDING00": {
         "data": [],
-        "dimension": "s6f",
+        "dimensions": "s6f",
         "encoding_format": "s70",
         "id": "EMBEDDING00",
         "input": "s72",
@@ -16,7 +16,7 @@
       },
       "EMBEDDING01": {
         "data": [],
-        "dimension": "sdd",
+        "dimensions": "sdd",
         "encoding_format": "sde",
         "id": "EMBEDDING01",
         "input": "se0",
@@ -29,7 +29,7 @@
       },
       "EMBEDDING02": {
         "data": [],
-        "dimension": "s14b",
+        "dimensions": "s14b",
         "encoding_format": "s14c",
         "id": "EMBEDDING02",
         "input": "s14e",
@@ -46,7 +46,7 @@
     "embedding": {
       "embedding_ref01": {
         "data": [],
-        "dimension": "s1b9",
+        "dimensions": "s1b9",
         "encoding_format": "s1ba",
         "input": "s1bc",
         "input_type": "s1bd",

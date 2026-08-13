@@ -8,6 +8,7 @@ guide: {
   entity: activity: {
     path: "/activity": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
@@ -20,15 +21,20 @@ guide: {
   entity: api_key: {
     path: "/key": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/keys": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/keys/{hash}": {
       rename: param: "hash": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
       op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.data`")|top
       op: remove: method: *DELETE
     }
   }
@@ -47,9 +53,11 @@ guide: {
   entity: beta_analytics: {
     path: "/analytics/meta": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/analytics/query": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
   }
 
@@ -105,10 +113,13 @@ guide: {
   entity: byok: {
     path: "/byok": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/byok/{id}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
       op: remove: method: *DELETE
     }
   }
@@ -155,18 +166,22 @@ guide: {
   entity: create_observability_destination: {
     path: "/observability/destinations": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
   }
 
   entity: create_preset_from_inference: {
     path: "/presets/{slug}/chat/completions": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
     path: "/presets/{slug}/messages": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
     path: "/presets/{slug}/responses": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
   }
 
@@ -176,6 +191,7 @@ guide: {
   entity: credit: {
     path: "/credits": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/credits/coinbase": {
       action: "coinbase": {}
@@ -200,6 +216,7 @@ guide: {
     path: "/endpoints/zdr": {
       action: "zdr": {}
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/images/models/{author}/{slug}/endpoints": {
       rename: param: "author": *"model_id"
@@ -209,6 +226,7 @@ guide: {
     }
     path: "/models/{author}/{slug}/endpoints": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
@@ -221,6 +239,7 @@ guide: {
     path: "/files": {
       op: create: method: *POST
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/files/{file_id}": {
       rename: param: "file_id": *"id"
@@ -237,22 +256,27 @@ guide: {
   entity: generation: {
     path: "/generation": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
   entity: generation_content: {
     path: "/generation/content": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
   entity: guardrail: {
     path: "/guardrails": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/guardrails/{id}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
       op: remove: method: *DELETE
     }
   }
@@ -267,12 +291,14 @@ guide: {
     path: "/images/models/{author}/{slug}/endpoints": {
       rename: param: "author": *"model_id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.endpoints`")|top
     }
   }
 
   entity: image_models_list: {
     path: "/images/models": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
@@ -300,26 +326,31 @@ guide: {
   entity: list_key_assignment: {
     path: "/guardrails/assignments/keys": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/guardrails/{id}/assignments/keys": {
       rename: param: "id": *"guardrail_id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
   entity: list_member_assignment: {
     path: "/guardrails/assignments/members": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/guardrails/{id}/assignments/members": {
       rename: param: "id": *"guardrail_id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
   entity: list_observability_destination: {
     path: "/observability/destinations": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
@@ -329,6 +360,7 @@ guide: {
   entity: list_preset_version: {
     path: "/presets/{slug}/versions": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
@@ -339,6 +371,7 @@ guide: {
     path: "/workspaces/{id}/budgets": {
       rename: param: "id": *"workspace_id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
@@ -346,6 +379,7 @@ guide: {
     path: "/workspaces/{id}/members": {
       rename: param: "id": *"workspace_id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
@@ -378,6 +412,7 @@ guide: {
     }
     path: "/model/{author}/{slug}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/videos/models": {
     }
@@ -386,6 +421,7 @@ guide: {
   entity: models_count: {
     path: "/models/count": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
@@ -401,12 +437,14 @@ guide: {
     }
     path: "/auth/keys/code": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
   }
 
   entity: observability_destination: {
     path: "/observability/destinations/{id}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
       op: remove: method: *DELETE
     }
   }
@@ -421,16 +459,19 @@ guide: {
     path: "/organization/members": {
       action: "member": {}
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
   entity: preset: {
     path: "/presets": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/presets/{slug}": {
       rename: param: "slug": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/presets/{slug}/messages": {
       action: "message": {}
@@ -447,12 +488,14 @@ guide: {
     path: "/presets/{slug}/versions/{version}": {
       rename: param: "version": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
   entity: provider: {
     path: "/providers": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
@@ -504,12 +547,14 @@ guide: {
   entity: submit_generation_feedback: {
     path: "/generation/feedback": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
   }
 
   entity: task: {
     path: "/classifications/task": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
@@ -533,28 +578,34 @@ guide: {
   entity: update_byok_key: {
     path: "/byok/{id}": {
       op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.data`")|top
     }
   }
 
   entity: update_guardrail: {
     path: "/guardrails/{id}": {
       op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.data`")|top
     }
   }
 
   entity: update_observability_destination: {
     path: "/observability/destinations/{id}": {
       op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.data`")|top
     }
   }
 
   entity: update_workspace: {
     path: "/workspaces": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/workspaces/{id}": {
       op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.data`")|top
     }
   }
 
@@ -563,6 +614,7 @@ guide: {
       rename: param: "id": *"workspace_id"
       rename: param: "interval": *"id"
       op: update: method: *PUT
+      op: update: transform: res: *("`body.data`")|top
     }
   }
 
@@ -602,12 +654,14 @@ guide: {
   entity: video_models_list: {
     path: "/videos/models": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
   entity: workspace: {
     path: "/workspaces/{id}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
       op: remove: method: *DELETE
     }
     path: "/workspaces/{id}/budgets": {

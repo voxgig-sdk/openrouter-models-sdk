@@ -26,8 +26,8 @@ import {
 describe('BetaAnalyticsEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -62,13 +62,13 @@ describe('BetaAnalyticsEntity', async () => {
     const beta_analytics_ref01_ent = client.BetaAnalytics()
     let beta_analytics_ref01_data = setup.data.new.beta_analytics['beta_analytics_ref01']
 
-    beta_analytics_ref01_data = await beta_analytics_ref01_ent.create(beta_analytics_ref01_data)
+    beta_analytics_ref01_data = (await beta_analytics_ref01_ent.create(beta_analytics_ref01_data)).data()
     assert(null != beta_analytics_ref01_data)
 
 
     // LOAD
     const beta_analytics_ref01_match_dt0: any = {}
-    const beta_analytics_ref01_data_dt0 = await beta_analytics_ref01_ent.load(beta_analytics_ref01_match_dt0)
+    const beta_analytics_ref01_data_dt0 = (await beta_analytics_ref01_ent.load(beta_analytics_ref01_match_dt0)).data()
     assert(null != beta_analytics_ref01_data_dt0)
 
 

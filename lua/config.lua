@@ -121,7 +121,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "completion_token",
+            ["name"] = "completion_tokens",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
             ["index$"] = 1,
@@ -156,7 +156,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "prompt_token",
+            ["name"] = "prompt_tokens",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
             ["index$"] = 6,
@@ -170,14 +170,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "reasoning_token",
+            ["name"] = "reasoning_tokens",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
             ["index$"] = 8,
           },
           {
             ["active"] = true,
-            ["name"] = "request",
+            ["name"] = "requests",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
             ["index$"] = 9,
@@ -255,6 +255,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/activity",
                 ["parts"] = {
@@ -272,7 +273,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -337,8 +338,8 @@ local function make_config()
             ["active"] = true,
             ["name"] = "creator_user_id",
             ["op"] = {
-              ["list"] = {
-                ["req"] = true,
+              ["create"] = {
+                ["req"] = false,
                 ["type"] = {
                   "`$ONE`",
                   {
@@ -348,7 +349,7 @@ local function make_config()
                 },
               },
             },
-            ["req"] = false,
+            ["req"] = true,
             ["type"] = {
               "`$ONE`",
               {
@@ -360,23 +361,16 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "data",
-            ["req"] = true,
-            ["type"] = "`$OBJECT`",
-            ["index$"] = 6,
-          },
-          {
-            ["active"] = true,
             ["name"] = "disabled",
             ["op"] = {
-              ["list"] = {
-                ["req"] = true,
+              ["update"] = {
+                ["req"] = false,
                 ["type"] = "`$BOOLEAN`",
               },
             },
-            ["req"] = false,
+            ["req"] = true,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 7,
+            ["index$"] = 6,
           },
           {
             ["active"] = true,
@@ -389,41 +383,76 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 8,
+            ["index$"] = 7,
           },
           {
             ["active"] = true,
             ["name"] = "hash",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 9,
+            ["index$"] = 8,
           },
           {
             ["active"] = true,
             ["name"] = "include_byok_in_limit",
             ["op"] = {
-              ["list"] = {
-                ["req"] = true,
+              ["create"] = {
+                ["req"] = false,
+                ["type"] = "`$BOOLEAN`",
+              },
+              ["update"] = {
+                ["req"] = false,
                 ["type"] = "`$BOOLEAN`",
               },
             },
-            ["req"] = false,
+            ["req"] = true,
+            ["type"] = "`$BOOLEAN`",
+            ["index$"] = 9,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "is_free_tier",
+            ["req"] = true,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 10,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "is_management_key",
+            ["req"] = true,
+            ["type"] = "`$BOOLEAN`",
+            ["index$"] = 11,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "is_provisioning_key",
+            ["req"] = true,
+            ["type"] = "`$BOOLEAN`",
+            ["index$"] = 12,
           },
           {
             ["active"] = true,
             ["name"] = "label",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 11,
+            ["index$"] = 13,
           },
           {
             ["active"] = true,
             ["name"] = "limit",
             ["op"] = {
-              ["list"] = {
-                ["req"] = true,
+              ["create"] = {
+                ["req"] = false,
+                ["type"] = {
+                  "`$ONE`",
+                  {
+                    "`$NUMBER`",
+                    "`$NULL`",
+                  },
+                },
+              },
+              ["update"] = {
+                ["req"] = false,
                 ["type"] = {
                   "`$ONE`",
                   {
@@ -433,7 +462,7 @@ local function make_config()
                 },
               },
             },
-            ["req"] = false,
+            ["req"] = true,
             ["type"] = {
               "`$ONE`",
               {
@@ -441,7 +470,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 12,
+            ["index$"] = 14,
           },
           {
             ["active"] = true,
@@ -454,14 +483,24 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 13,
+            ["index$"] = 15,
           },
           {
             ["active"] = true,
             ["name"] = "limit_reset",
             ["op"] = {
-              ["list"] = {
-                ["req"] = true,
+              ["create"] = {
+                ["req"] = false,
+                ["type"] = {
+                  "`$ONE`",
+                  {
+                    "`$STRING`",
+                    "`$NULL`",
+                  },
+                },
+              },
+              ["update"] = {
+                ["req"] = false,
                 ["type"] = {
                   "`$ONE`",
                   {
@@ -471,32 +510,6 @@ local function make_config()
                 },
               },
             },
-            ["req"] = false,
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$STRING`",
-                "`$NULL`",
-              },
-            },
-            ["index$"] = 14,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "name",
-            ["op"] = {
-              ["update"] = {
-                ["req"] = false,
-                ["type"] = "`$STRING`",
-              },
-            },
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-            ["index$"] = 15,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "updated_at",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -509,44 +522,77 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "usage",
+            ["name"] = "name",
+            ["op"] = {
+              ["update"] = {
+                ["req"] = false,
+                ["type"] = "`$STRING`",
+              },
+            },
             ["req"] = true,
-            ["type"] = "`$NUMBER`",
+            ["type"] = "`$STRING`",
             ["index$"] = 17,
           },
           {
             ["active"] = true,
-            ["name"] = "usage_daily",
+            ["name"] = "rate_limit",
             ["req"] = true,
-            ["type"] = "`$NUMBER`",
+            ["type"] = "`$OBJECT`",
             ["index$"] = 18,
           },
           {
             ["active"] = true,
-            ["name"] = "usage_monthly",
+            ["name"] = "updated_at",
             ["req"] = true,
-            ["type"] = "`$NUMBER`",
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
             ["index$"] = 19,
           },
           {
             ["active"] = true,
-            ["name"] = "usage_weekly",
+            ["name"] = "usage",
             ["req"] = true,
             ["type"] = "`$NUMBER`",
             ["index$"] = 20,
           },
           {
             ["active"] = true,
+            ["name"] = "usage_daily",
+            ["req"] = true,
+            ["type"] = "`$NUMBER`",
+            ["index$"] = 21,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "usage_monthly",
+            ["req"] = true,
+            ["type"] = "`$NUMBER`",
+            ["index$"] = 22,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "usage_weekly",
+            ["req"] = true,
+            ["type"] = "`$NUMBER`",
+            ["index$"] = 23,
+          },
+          {
+            ["active"] = true,
             ["name"] = "workspace_id",
             ["op"] = {
-              ["list"] = {
-                ["req"] = true,
+              ["create"] = {
+                ["req"] = false,
                 ["type"] = "`$STRING`",
               },
             },
-            ["req"] = false,
+            ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 21,
+            ["index$"] = 24,
           },
         },
         ["name"] = "api_key",
@@ -585,6 +631,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/keys",
                 ["parts"] = {
@@ -599,7 +646,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -675,6 +722,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/keys",
                 ["parts"] = {
@@ -692,7 +740,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -745,6 +793,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/keys/{hash}",
                 ["parts"] = {
@@ -766,7 +815,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -800,6 +849,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/key",
                 ["parts"] = {
@@ -814,7 +864,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 1,
               },
@@ -867,6 +917,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/keys/{hash}",
                 ["parts"] = {
@@ -941,6 +992,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "PATCH",
                 ["orig"] = "/keys/{hash}",
                 ["parts"] = {
@@ -962,7 +1014,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -999,14 +1051,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "total_request",
+            ["name"] = "total_requests",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "total_token",
+            ["name"] = "total_tokens",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 4,
@@ -1119,6 +1171,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/datasets/app-rankings",
                 ["parts"] = {
@@ -1165,80 +1218,121 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "classifier_dimension",
-            ["req"] = true,
-            ["type"] = "`$OBJECT`",
+            ["name"] = "cachedAt",
+            ["req"] = false,
+            ["type"] = "`$NUMBER`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "classifier_filter",
+            ["name"] = "classifier_dimensions",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "data",
+            ["name"] = "classifier_filters",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "dimension",
-            ["req"] = false,
+            ["name"] = "data",
+            ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "filter",
-            ["req"] = false,
+            ["name"] = "dimensions",
+            ["op"] = {
+              ["create"] = {
+                ["req"] = false,
+                ["type"] = "`$ARRAY`",
+              },
+            },
+            ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 4,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "filters",
+            ["req"] = false,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 5,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "granularities",
+            ["req"] = true,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 6,
           },
           {
             ["active"] = true,
             ["name"] = "granularity",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 5,
+            ["index$"] = 7,
           },
           {
             ["active"] = true,
             ["name"] = "group_limit",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 6,
+            ["index$"] = 8,
           },
           {
             ["active"] = true,
             ["name"] = "limit",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 7,
+            ["index$"] = 9,
           },
           {
             ["active"] = true,
-            ["name"] = "metric",
+            ["name"] = "metadata",
+            ["req"] = true,
+            ["type"] = "`$OBJECT`",
+            ["index$"] = 10,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "metrics",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 8,
+            ["index$"] = 11,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "operators",
+            ["req"] = true,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 12,
           },
           {
             ["active"] = true,
             ["name"] = "order_by",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 9,
+            ["index$"] = 13,
           },
           {
             ["active"] = true,
             ["name"] = "time_range",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 10,
+            ["index$"] = 14,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "warnings",
+            ["req"] = false,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 15,
           },
         },
         ["name"] = "beta_analytics",
@@ -1277,6 +1371,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/analytics/query",
                 ["parts"] = {
@@ -1292,7 +1387,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -1333,6 +1428,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/analytics/meta",
                 ["parts"] = {
@@ -1348,7 +1444,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -1390,7 +1486,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "user_id",
+            ["name"] = "user_ids",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 2,
@@ -1444,6 +1540,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/workspaces/{id}/members/add",
                 ["parts"] = {
@@ -1494,7 +1591,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "key_hash",
+            ["name"] = "key_hashes",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
@@ -1548,6 +1645,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/guardrails/{id}/assignments/keys",
                 ["parts"] = {
@@ -1598,7 +1696,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "member_user_id",
+            ["name"] = "member_user_ids",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
@@ -1652,6 +1750,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/guardrails/{id}/assignments/members",
                 ["parts"] = {
@@ -1702,7 +1801,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "user_id",
+            ["name"] = "user_ids",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
@@ -1756,6 +1855,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/workspaces/{id}/members/remove",
                 ["parts"] = {
@@ -1799,7 +1899,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "key_hash",
+            ["name"] = "key_hashes",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -1860,6 +1960,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/guardrails/{id}/assignments/keys/remove",
                 ["parts"] = {
@@ -1904,7 +2005,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "member_user_id",
+            ["name"] = "member_user_ids",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -1965,6 +2066,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/guardrails/{id}/assignments/members/remove",
                 ["parts"] = {
@@ -2009,7 +2111,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "allowed_api_key_hash",
+            ["name"] = "allowed_api_key_hashes",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -2022,10 +2124,10 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "allowed_model",
+            ["name"] = "allowed_models",
             ["op"] = {
-              ["list"] = {
-                ["req"] = true,
+              ["create"] = {
+                ["req"] = false,
                 ["type"] = {
                   "`$ONE`",
                   {
@@ -2035,7 +2137,7 @@ local function make_config()
                 },
               },
             },
-            ["req"] = false,
+            ["req"] = true,
             ["type"] = {
               "`$ONE`",
               {
@@ -2047,10 +2149,10 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "allowed_user_id",
+            ["name"] = "allowed_user_ids",
             ["op"] = {
-              ["list"] = {
-                ["req"] = true,
+              ["create"] = {
+                ["req"] = false,
                 ["type"] = {
                   "`$ONE`",
                   {
@@ -2060,7 +2162,7 @@ local function make_config()
                 },
               },
             },
-            ["req"] = false,
+            ["req"] = true,
             ["type"] = {
               "`$ONE`",
               {
@@ -2079,57 +2181,50 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "data",
-            ["req"] = true,
-            ["type"] = "`$ANY`",
-            ["index$"] = 4,
-          },
-          {
-            ["active"] = true,
             ["name"] = "disabled",
             ["op"] = {
-              ["list"] = {
-                ["req"] = true,
+              ["create"] = {
+                ["req"] = false,
                 ["type"] = "`$BOOLEAN`",
               },
             },
-            ["req"] = false,
+            ["req"] = true,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 5,
+            ["index$"] = 4,
           },
           {
             ["active"] = true,
             ["name"] = "id",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 6,
+            ["index$"] = 5,
           },
           {
             ["active"] = true,
             ["name"] = "is_fallback",
             ["op"] = {
-              ["list"] = {
-                ["req"] = true,
+              ["create"] = {
+                ["req"] = false,
                 ["type"] = "`$BOOLEAN`",
               },
             },
-            ["req"] = false,
+            ["req"] = true,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 7,
+            ["index$"] = 6,
           },
           {
             ["active"] = true,
             ["name"] = "key",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 8,
+            ["index$"] = 7,
           },
           {
             ["active"] = true,
             ["name"] = "label",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 9,
+            ["index$"] = 8,
           },
           {
             ["active"] = true,
@@ -2142,34 +2237,34 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 10,
+            ["index$"] = 9,
           },
           {
             ["active"] = true,
             ["name"] = "provider",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 11,
+            ["index$"] = 10,
           },
           {
             ["active"] = true,
             ["name"] = "sort_order",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 12,
+            ["index$"] = 11,
           },
           {
             ["active"] = true,
             ["name"] = "workspace_id",
             ["op"] = {
-              ["list"] = {
-                ["req"] = true,
+              ["create"] = {
+                ["req"] = false,
                 ["type"] = "`$STRING`",
               },
             },
-            ["req"] = false,
+            ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 13,
+            ["index$"] = 12,
           },
         },
         ["name"] = "byok",
@@ -2208,6 +2303,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/byok",
                 ["parts"] = {
@@ -2222,7 +2318,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -2307,6 +2403,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/byok",
                 ["parts"] = {
@@ -2325,7 +2422,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -2378,6 +2475,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/byok/{id}",
                 ["parts"] = {
@@ -2394,7 +2492,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -2447,6 +2545,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/byok/{id}",
                 ["parts"] = {
@@ -2486,7 +2585,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "choice",
+            ["name"] = "choices",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
@@ -2534,7 +2633,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "logit_bia",
+            ["name"] = "logit_bias",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -2547,7 +2646,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "logprob",
+            ["name"] = "logprobs",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -2560,7 +2659,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "max_completion_token",
+            ["name"] = "max_completion_tokens",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -2573,7 +2672,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "max_token",
+            ["name"] = "max_tokens",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -2586,7 +2685,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "message",
+            ["name"] = "messages",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 11,
@@ -2613,7 +2712,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "modality",
+            ["name"] = "modalities",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 14,
@@ -2624,7 +2723,7 @@ local function make_config()
             ["op"] = {
               ["create"] = {
                 ["req"] = false,
-                ["type"] = "`$ARRAY`",
+                ["type"] = "`$STRING`",
               },
             },
             ["req"] = true,
@@ -2633,21 +2732,28 @@ local function make_config()
           },
           {
             ["active"] = true,
+            ["name"] = "models",
+            ["req"] = false,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 16,
+          },
+          {
+            ["active"] = true,
             ["name"] = "object",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 16,
+            ["index$"] = 17,
           },
           {
             ["active"] = true,
             ["name"] = "openrouter_metadata",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 17,
+            ["index$"] = 18,
           },
           {
             ["active"] = true,
-            ["name"] = "parallel_tool_call",
+            ["name"] = "parallel_tool_calls",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -2656,14 +2762,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 18,
+            ["index$"] = 19,
           },
           {
             ["active"] = true,
-            ["name"] = "plugin",
+            ["name"] = "plugins",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 19,
+            ["index$"] = 20,
           },
           {
             ["active"] = true,
@@ -2676,7 +2782,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 20,
+            ["index$"] = 21,
           },
           {
             ["active"] = true,
@@ -2689,7 +2795,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 21,
+            ["index$"] = 22,
           },
           {
             ["active"] = true,
@@ -2702,11 +2808,11 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 22,
+            ["index$"] = 23,
           },
           {
             ["active"] = true,
-            ["name"] = "prompt_cache_option",
+            ["name"] = "prompt_cache_options",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -2715,7 +2821,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 23,
+            ["index$"] = 24,
           },
           {
             ["active"] = true,
@@ -2728,14 +2834,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 24,
+            ["index$"] = 25,
           },
           {
             ["active"] = true,
             ["name"] = "reasoning",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 25,
+            ["index$"] = 26,
           },
           {
             ["active"] = true,
@@ -2748,7 +2854,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 26,
+            ["index$"] = 27,
           },
           {
             ["active"] = true,
@@ -2761,14 +2867,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 27,
+            ["index$"] = 28,
           },
           {
             ["active"] = true,
             ["name"] = "response_format",
             ["req"] = false,
             ["type"] = "`$ANY`",
-            ["index$"] = 28,
+            ["index$"] = 29,
           },
           {
             ["active"] = true,
@@ -2781,7 +2887,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 29,
+            ["index$"] = 30,
           },
           {
             ["active"] = true,
@@ -2794,7 +2900,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 30,
+            ["index$"] = 31,
           },
           {
             ["active"] = true,
@@ -2807,39 +2913,39 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 31,
+            ["index$"] = 32,
           },
           {
             ["active"] = true,
             ["name"] = "session_id",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 32,
+            ["index$"] = 33,
           },
           {
             ["active"] = true,
             ["name"] = "stop",
             ["req"] = false,
             ["type"] = "`$ANY`",
-            ["index$"] = 33,
+            ["index$"] = 34,
           },
           {
             ["active"] = true,
             ["name"] = "stop_server_tools_when",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 34,
+            ["index$"] = 35,
           },
           {
             ["active"] = true,
             ["name"] = "stream",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 35,
+            ["index$"] = 36,
           },
           {
             ["active"] = true,
-            ["name"] = "stream_option",
+            ["name"] = "stream_options",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -2848,7 +2954,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 36,
+            ["index$"] = 37,
           },
           {
             ["active"] = true,
@@ -2861,7 +2967,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 37,
+            ["index$"] = 38,
           },
           {
             ["active"] = true,
@@ -2874,13 +2980,6 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 38,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "tool",
-            ["req"] = false,
-            ["type"] = "`$ARRAY`",
             ["index$"] = 39,
           },
           {
@@ -2889,6 +2988,13 @@ local function make_config()
             ["req"] = false,
             ["type"] = "`$ANY`",
             ["index$"] = 40,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "tools",
+            ["req"] = false,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 41,
           },
           {
             ["active"] = true,
@@ -2901,7 +3007,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 41,
+            ["index$"] = 42,
           },
           {
             ["active"] = true,
@@ -2914,11 +3020,11 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 42,
+            ["index$"] = 43,
           },
           {
             ["active"] = true,
-            ["name"] = "top_logprob",
+            ["name"] = "top_logprobs",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -2927,7 +3033,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 43,
+            ["index$"] = 44,
           },
           {
             ["active"] = true,
@@ -2940,28 +3046,28 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 44,
+            ["index$"] = 45,
           },
           {
             ["active"] = true,
             ["name"] = "trace",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 45,
+            ["index$"] = 46,
           },
           {
             ["active"] = true,
             ["name"] = "usage",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 46,
+            ["index$"] = 47,
           },
           {
             ["active"] = true,
             ["name"] = "user",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 47,
+            ["index$"] = 48,
           },
         },
         ["name"] = "chat_result",
@@ -3009,6 +3115,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/chat/completions",
                 ["parts"] = {
@@ -3101,7 +3208,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "api_key_hash",
+            ["name"] = "api_key_hashes",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3128,7 +3235,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "filter_rule",
+            ["name"] = "filter_rules",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -3211,6 +3318,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/observability/destinations",
                 ["parts"] = {
@@ -3226,7 +3334,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -3275,21 +3383,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "data",
-            ["req"] = true,
-            ["type"] = "`$ANY`",
+            ["name"] = "debug",
+            ["req"] = false,
+            ["type"] = "`$OBJECT`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "debug",
-            ["req"] = false,
-            ["type"] = "`$OBJECT`",
-            ["index$"] = 4,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "fallback",
+            ["name"] = "fallbacks",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3298,7 +3399,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 5,
+            ["index$"] = 4,
           },
           {
             ["active"] = true,
@@ -3311,14 +3412,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 6,
+            ["index$"] = 5,
           },
           {
             ["active"] = true,
             ["name"] = "image_config",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 7,
+            ["index$"] = 6,
           },
           {
             ["active"] = true,
@@ -3331,18 +3432,18 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 8,
+            ["index$"] = 7,
           },
           {
             ["active"] = true,
             ["name"] = "input",
             ["req"] = false,
             ["type"] = "`$ANY`",
-            ["index$"] = 9,
+            ["index$"] = 8,
           },
           {
             ["active"] = true,
-            ["name"] = "instruction",
+            ["name"] = "instructions",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3351,11 +3452,11 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 10,
+            ["index$"] = 9,
           },
           {
             ["active"] = true,
-            ["name"] = "logit_bia",
+            ["name"] = "logit_bias",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3364,11 +3465,11 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 11,
+            ["index$"] = 10,
           },
           {
             ["active"] = true,
-            ["name"] = "logprob",
+            ["name"] = "logprobs",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3377,11 +3478,24 @@ local function make_config()
                 "`$NULL`",
               },
             },
+            ["index$"] = 11,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "max_completion_tokens",
+            ["req"] = false,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
             ["index$"] = 12,
           },
           {
             ["active"] = true,
-            ["name"] = "max_completion_token",
+            ["name"] = "max_output_tokens",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3394,7 +3508,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "max_output_token",
+            ["name"] = "max_tokens",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3407,7 +3521,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "max_token",
+            ["name"] = "max_tool_calls",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3420,30 +3534,17 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "max_tool_call",
-            ["req"] = false,
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$INTEGER`",
-                "`$NULL`",
-              },
-            },
-            ["index$"] = 16,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "message",
+            ["name"] = "messages",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 17,
+            ["index$"] = 16,
           },
           {
             ["active"] = true,
             ["name"] = "metadata",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 18,
+            ["index$"] = 17,
           },
           {
             ["active"] = true,
@@ -3456,14 +3557,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 19,
+            ["index$"] = 18,
           },
           {
             ["active"] = true,
-            ["name"] = "modality",
+            ["name"] = "modalities",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 20,
+            ["index$"] = 19,
           },
           {
             ["active"] = true,
@@ -3476,6 +3577,13 @@ local function make_config()
             },
             ["req"] = false,
             ["type"] = "`$STRING`",
+            ["index$"] = 20,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "models",
+            ["req"] = false,
+            ["type"] = "`$ARRAY`",
             ["index$"] = 21,
           },
           {
@@ -3487,7 +3595,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "parallel_tool_call",
+            ["name"] = "parallel_tool_calls",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3500,7 +3608,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "plugin",
+            ["name"] = "plugins",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 24,
@@ -3566,7 +3674,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "prompt_cache_option",
+            ["name"] = "prompt_cache_options",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -3705,7 +3813,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "stop_sequence",
+            ["name"] = "stop_sequences",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 43,
@@ -3733,7 +3841,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "stream_option",
+            ["name"] = "stream_options",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3780,16 +3888,16 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "tool",
+            ["name"] = "tool_choice",
             ["req"] = false,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$ANY`",
             ["index$"] = 52,
           },
           {
             ["active"] = true,
-            ["name"] = "tool_choice",
+            ["name"] = "tools",
             ["req"] = false,
-            ["type"] = "`$ANY`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 53,
           },
           {
@@ -3820,7 +3928,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "top_logprob",
+            ["name"] = "top_logprobs",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -3920,6 +4028,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/presets/{slug}/chat/completions",
                 ["parts"] = {
@@ -3938,7 +4047,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -3984,6 +4093,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/presets/{slug}/messages",
                 ["parts"] = {
@@ -4001,7 +4111,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 1,
               },
@@ -4047,6 +4157,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/presets/{slug}/responses",
                 ["parts"] = {
@@ -4064,7 +4175,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 2,
               },
@@ -4092,10 +4203,17 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "data",
+            ["name"] = "total_credits",
             ["req"] = true,
-            ["type"] = "`$OBJECT`",
+            ["type"] = "`$NUMBER`",
             ["index$"] = 0,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "total_usage",
+            ["req"] = true,
+            ["type"] = "`$NUMBER`",
+            ["index$"] = 1,
           },
         },
         ["name"] = "credit",
@@ -4134,6 +4252,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/credits/coinbase",
                 ["parts"] = {
@@ -4191,6 +4310,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/credits",
                 ["parts"] = {
@@ -4205,7 +4325,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -4236,7 +4356,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "dimension",
+            ["name"] = "dimensions",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 1,
@@ -4341,6 +4461,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/embeddings",
                 ["parts"] = {
@@ -4373,12 +4494,12 @@ local function make_config()
             ["active"] = true,
             ["name"] = "architecture",
             ["req"] = true,
-            ["type"] = "`$OBJECT`",
+            ["type"] = "`$ANY`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "benchmark",
+            ["name"] = "benchmarks",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 1,
@@ -4412,14 +4533,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "data",
-            ["req"] = true,
-            ["type"] = "`$OBJECT`",
-            ["index$"] = 5,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "default_parameter",
+            ["name"] = "default_parameters",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -4428,13 +4542,26 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 6,
+            ["index$"] = 5,
           },
           {
             ["active"] = true,
             ["name"] = "description",
-            ["req"] = false,
+            ["op"] = {
+              ["list"] = {
+                ["req"] = false,
+                ["type"] = "`$STRING`",
+              },
+            },
+            ["req"] = true,
             ["type"] = "`$STRING`",
+            ["index$"] = 6,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "endpoints",
+            ["req"] = true,
+            ["type"] = "`$ARRAY`",
             ["index$"] = 7,
           },
           {
@@ -4498,14 +4625,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "link",
+            ["name"] = "links",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 13,
           },
           {
             ["active"] = true,
-            ["name"] = "max_completion_token",
+            ["name"] = "max_completion_tokens",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -4518,7 +4645,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "max_prompt_token",
+            ["name"] = "max_prompt_tokens",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -4552,7 +4679,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "per_request_limit",
+            ["name"] = "per_request_limits",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -4600,14 +4727,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "supported_parameter",
+            ["name"] = "supported_parameters",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 25,
           },
           {
             ["active"] = true,
-            ["name"] = "supported_voice",
+            ["name"] = "supported_voices",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -5075,6 +5202,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/models",
                 ["parts"] = {
@@ -5152,6 +5280,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/endpoints/zdr",
                 ["parts"] = {
@@ -5168,7 +5297,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 1,
               },
@@ -5231,6 +5360,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/models/{author}/{slug}/endpoints",
                 ["parts"] = {
@@ -5250,7 +5380,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -5313,7 +5443,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "size_byte",
+            ["name"] = "size_bytes",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
             ["index$"] = 5,
@@ -5373,6 +5503,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/files",
                 ["parts"] = {
@@ -5458,6 +5589,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/files",
                 ["parts"] = {
@@ -5475,7 +5607,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -5539,6 +5671,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/files/{file_id}",
                 ["parts"] = {
@@ -5617,6 +5750,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/files/{file_id}/content",
                 ["parts"] = {
@@ -5705,6 +5839,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/files/{file_id}",
                 ["parts"] = {
@@ -5743,10 +5878,527 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "data",
+            ["name"] = "api_type",
             ["req"] = true,
-            ["type"] = "`$OBJECT`",
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
             ["index$"] = 0,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "app_id",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 1,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "cache_discount",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$NUMBER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 2,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "cancelled",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$BOOLEAN`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 3,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "created_at",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 4,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "data_region",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 5,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "external_user",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 6,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "finish_reason",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 7,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "generation_time",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$NUMBER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 8,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "http_referer",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 9,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "id",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 10,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "is_byok",
+            ["req"] = true,
+            ["type"] = "`$BOOLEAN`",
+            ["index$"] = 11,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "latency",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$NUMBER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 12,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "model",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 13,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "moderation_latency",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$NUMBER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 14,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "native_finish_reason",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 15,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "native_tokens_cached",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 16,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "native_tokens_completion",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 17,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "native_tokens_completion_images",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 18,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "native_tokens_prompt",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 19,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "native_tokens_reasoning",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 20,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "num_fetches",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 21,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "num_input_audio_prompt",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 22,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "num_media_completion",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 23,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "num_media_prompt",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 24,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "num_search_results",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 25,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "origin",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 26,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "preset_id",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 27,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "provider_name",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 28,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "provider_responses",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$ARRAY`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 29,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "request_id",
+            ["req"] = false,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 30,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "response_cache_source_id",
+            ["req"] = false,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 31,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "router",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 32,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "service_tier",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 33,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "session_id",
+            ["req"] = false,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 34,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "streamed",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$BOOLEAN`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 35,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "tokens_completion",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 36,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "tokens_prompt",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$INTEGER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 37,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "total_cost",
+            ["req"] = true,
+            ["type"] = "`$NUMBER`",
+            ["index$"] = 38,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "upstream_id",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 39,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "upstream_inference_cost",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$NUMBER`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 40,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "usage",
+            ["req"] = true,
+            ["type"] = "`$NUMBER`",
+            ["index$"] = 41,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "user_agent",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 42,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "web_search_engine",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 43,
           },
         },
         ["name"] = "generation",
@@ -5796,6 +6448,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/generation",
                 ["parts"] = {
@@ -5811,7 +6464,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -5827,10 +6480,17 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "data",
+            ["name"] = "input",
+            ["req"] = true,
+            ["type"] = "`$ANY`",
+            ["index$"] = 0,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "output",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 0,
+            ["index$"] = 1,
           },
         },
         ["name"] = "generation_content",
@@ -5880,6 +6540,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/generation/content",
                 ["parts"] = {
@@ -5896,7 +6557,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -5912,7 +6573,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "allowed_model",
+            ["name"] = "allowed_models",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -5925,7 +6586,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "allowed_provider",
+            ["name"] = "allowed_providers",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -5938,7 +6599,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "content_filter",
+            ["name"] = "content_filter_builtins",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -5951,7 +6612,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "content_filter_builtin",
+            ["name"] = "content_filters",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -5971,13 +6632,6 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "data",
-            ["req"] = true,
-            ["type"] = "`$ANY`",
-            ["index$"] = 5,
-          },
-          {
-            ["active"] = true,
             ["name"] = "description",
             ["req"] = false,
             ["type"] = {
@@ -5987,7 +6641,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 6,
+            ["index$"] = 5,
           },
           {
             ["active"] = true,
@@ -6000,7 +6654,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 7,
+            ["index$"] = 6,
           },
           {
             ["active"] = true,
@@ -6013,7 +6667,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 8,
+            ["index$"] = 7,
           },
           {
             ["active"] = true,
@@ -6026,7 +6680,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 9,
+            ["index$"] = 8,
           },
           {
             ["active"] = true,
@@ -6039,7 +6693,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 10,
+            ["index$"] = 9,
           },
           {
             ["active"] = true,
@@ -6052,7 +6706,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 11,
+            ["index$"] = 10,
           },
           {
             ["active"] = true,
@@ -6065,18 +6719,31 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 12,
+            ["index$"] = 11,
           },
           {
             ["active"] = true,
             ["name"] = "id",
             ["req"] = true,
             ["type"] = "`$STRING`",
+            ["index$"] = 12,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "ignored_models",
+            ["req"] = false,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$ARRAY`",
+                "`$NULL`",
+              },
+            },
             ["index$"] = 13,
           },
           {
             ["active"] = true,
-            ["name"] = "ignored_model",
+            ["name"] = "ignored_providers",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -6089,19 +6756,6 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "ignored_provider",
-            ["req"] = false,
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$ARRAY`",
-                "`$NULL`",
-              },
-            },
-            ["index$"] = 15,
-          },
-          {
-            ["active"] = true,
             ["name"] = "limit_usd",
             ["req"] = false,
             ["type"] = {
@@ -6111,14 +6765,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 16,
+            ["index$"] = 15,
           },
           {
             ["active"] = true,
             ["name"] = "name",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 17,
+            ["index$"] = 16,
           },
           {
             ["active"] = true,
@@ -6131,7 +6785,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 18,
+            ["index$"] = 17,
           },
           {
             ["active"] = true,
@@ -6144,20 +6798,20 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 19,
+            ["index$"] = 18,
           },
           {
             ["active"] = true,
             ["name"] = "workspace_id",
             ["op"] = {
-              ["list"] = {
-                ["req"] = true,
+              ["create"] = {
+                ["req"] = false,
                 ["type"] = "`$STRING`",
               },
             },
-            ["req"] = false,
+            ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 20,
+            ["index$"] = 19,
           },
         },
         ["name"] = "guardrail",
@@ -6196,6 +6850,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/guardrails",
                 ["parts"] = {
@@ -6210,7 +6865,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -6286,6 +6941,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/guardrails",
                 ["parts"] = {
@@ -6303,7 +6959,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -6356,6 +7012,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/guardrails/{id}",
                 ["parts"] = {
@@ -6372,7 +7029,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -6425,6 +7082,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/guardrails/{id}",
                 ["parts"] = {
@@ -6485,7 +7143,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "input_reference",
+            ["name"] = "input_references",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 4,
@@ -6611,6 +7269,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/images",
                 ["parts"] = {
@@ -6641,7 +7300,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "allowed_passthrough_parameter",
+            ["name"] = "allowed_passthrough_parameters",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -6682,7 +7341,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "supported_parameter",
+            ["name"] = "supported_parameters",
             ["req"] = true,
             ["type"] = "`$ANY`",
             ["index$"] = 5,
@@ -6753,6 +7412,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images/models/{author}/{slug}/endpoints",
                 ["parts"] = {
@@ -6778,7 +7438,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.endpoints`",
                 },
                 ["index$"] = 0,
               },
@@ -6819,7 +7479,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "endpoint",
+            ["name"] = "endpoints",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 3,
@@ -6840,7 +7500,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "supported_parameter",
+            ["name"] = "supported_parameters",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 6,
@@ -6889,6 +7549,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images/models",
                 ["parts"] = {
@@ -6904,7 +7565,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -7076,6 +7737,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/guardrails/{id}/assignments/keys",
                 ["parts"] = {
@@ -7101,7 +7763,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -7161,6 +7823,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/guardrails/assignments/keys",
                 ["parts"] = {
@@ -7179,7 +7842,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 1,
               },
@@ -7320,6 +7983,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/guardrails/{id}/assignments/members",
                 ["parts"] = {
@@ -7345,7 +8009,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -7405,6 +8069,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/guardrails/assignments/members",
                 ["parts"] = {
@@ -7423,7 +8088,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 1,
               },
@@ -7527,6 +8192,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/observability/destinations",
                 ["parts"] = {
@@ -7545,7 +8211,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -7704,6 +8370,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/presets/{slug}/versions",
                 ["parts"] = {
@@ -7723,7 +8390,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -7846,6 +8513,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/workspaces/{id}/budgets",
                 ["parts"] = {
@@ -7868,7 +8536,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -7996,6 +8664,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/workspaces/{id}/members",
                 ["parts"] = {
@@ -8020,7 +8689,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -8072,7 +8741,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "fallback",
+            ["name"] = "fallbacks",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -8085,14 +8754,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "max_token",
+            ["name"] = "max_tokens",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "message",
+            ["name"] = "messages",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -8113,29 +8782,30 @@ local function make_config()
           {
             ["active"] = true,
             ["name"] = "model",
-            ["op"] = {
-              ["create"] = {
-                ["req"] = false,
-                ["type"] = "`$ARRAY`",
-              },
-            },
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 6,
           },
           {
             ["active"] = true,
-            ["name"] = "output_config",
+            ["name"] = "models",
             ["req"] = false,
-            ["type"] = "`$OBJECT`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 7,
           },
           {
             ["active"] = true,
-            ["name"] = "plugin",
+            ["name"] = "output_config",
+            ["req"] = false,
+            ["type"] = "`$OBJECT`",
+            ["index$"] = 8,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "plugins",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 8,
+            ["index$"] = 9,
           },
           {
             ["active"] = true,
@@ -8148,7 +8818,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 9,
+            ["index$"] = 10,
           },
           {
             ["active"] = true,
@@ -8161,76 +8831,69 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 10,
+            ["index$"] = 11,
           },
           {
             ["active"] = true,
             ["name"] = "service_tier",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 11,
+            ["index$"] = 12,
           },
           {
             ["active"] = true,
             ["name"] = "session_id",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 12,
+            ["index$"] = 13,
           },
           {
             ["active"] = true,
             ["name"] = "speed",
             ["req"] = false,
             ["type"] = "`$ANY`",
-            ["index$"] = 13,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "stop_sequence",
-            ["req"] = false,
-            ["type"] = "`$ARRAY`",
             ["index$"] = 14,
           },
           {
             ["active"] = true,
-            ["name"] = "stop_server_tools_when",
+            ["name"] = "stop_sequences",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 15,
           },
           {
             ["active"] = true,
+            ["name"] = "stop_server_tools_when",
+            ["req"] = false,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 16,
+          },
+          {
+            ["active"] = true,
             ["name"] = "stream",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 16,
+            ["index$"] = 17,
           },
           {
             ["active"] = true,
             ["name"] = "system",
             ["req"] = false,
             ["type"] = "`$ANY`",
-            ["index$"] = 17,
+            ["index$"] = 18,
           },
           {
             ["active"] = true,
             ["name"] = "temperature",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 18,
+            ["index$"] = 19,
           },
           {
             ["active"] = true,
             ["name"] = "thinking",
             ["req"] = false,
             ["type"] = "`$ANY`",
-            ["index$"] = 19,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "tool",
-            ["req"] = false,
-            ["type"] = "`$ARRAY`",
             ["index$"] = 20,
           },
           {
@@ -8242,31 +8905,38 @@ local function make_config()
           },
           {
             ["active"] = true,
+            ["name"] = "tools",
+            ["req"] = false,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 22,
+          },
+          {
+            ["active"] = true,
             ["name"] = "top_k",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 22,
+            ["index$"] = 23,
           },
           {
             ["active"] = true,
             ["name"] = "top_p",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 23,
+            ["index$"] = 24,
           },
           {
             ["active"] = true,
             ["name"] = "trace",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 24,
+            ["index$"] = 25,
           },
           {
             ["active"] = true,
             ["name"] = "user",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 25,
+            ["index$"] = 26,
           },
         },
         ["name"] = "message",
@@ -8314,6 +8984,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/messages",
                 ["parts"] = {
@@ -8360,7 +9031,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "benchmark",
+            ["name"] = "benchmarks",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 1,
@@ -8394,14 +9065,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "data",
-            ["req"] = true,
-            ["type"] = "`$OBJECT`",
-            ["index$"] = 5,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "default_parameter",
+            ["name"] = "default_parameters",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -8410,14 +9074,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 6,
+            ["index$"] = 5,
           },
           {
             ["active"] = true,
             ["name"] = "description",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 7,
+            ["index$"] = 6,
           },
           {
             ["active"] = true,
@@ -8430,7 +9094,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 8,
+            ["index$"] = 7,
           },
           {
             ["active"] = true,
@@ -8443,14 +9107,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 9,
+            ["index$"] = 8,
           },
           {
             ["active"] = true,
             ["name"] = "id",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 10,
+            ["index$"] = 9,
           },
           {
             ["active"] = true,
@@ -8463,25 +9127,25 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 11,
+            ["index$"] = 10,
           },
           {
             ["active"] = true,
-            ["name"] = "link",
+            ["name"] = "links",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 12,
+            ["index$"] = 11,
           },
           {
             ["active"] = true,
             ["name"] = "name",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 13,
+            ["index$"] = 12,
           },
           {
             ["active"] = true,
-            ["name"] = "per_request_limit",
+            ["name"] = "per_request_limits",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -8490,32 +9154,32 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 14,
+            ["index$"] = 13,
           },
           {
             ["active"] = true,
             ["name"] = "pricing",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 15,
+            ["index$"] = 14,
           },
           {
             ["active"] = true,
             ["name"] = "reasoning",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
+            ["index$"] = 15,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "supported_parameters",
+            ["req"] = true,
+            ["type"] = "`$ARRAY`",
             ["index$"] = 16,
           },
           {
             ["active"] = true,
-            ["name"] = "supported_parameter",
-            ["req"] = true,
-            ["type"] = "`$ARRAY`",
-            ["index$"] = 17,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "supported_voice",
+            ["name"] = "supported_voices",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -8524,14 +9188,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 18,
+            ["index$"] = 17,
           },
           {
             ["active"] = true,
             ["name"] = "top_provider",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 19,
+            ["index$"] = 18,
           },
         },
         ["name"] = "model",
@@ -8596,6 +9260,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/embeddings/models",
                 ["parts"] = {
@@ -8676,6 +9341,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/model/{author}/{slug}",
                 ["parts"] = {
@@ -8694,7 +9360,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -8714,9 +9380,9 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "data",
+            ["name"] = "count",
             ["req"] = true,
-            ["type"] = "`$OBJECT`",
+            ["type"] = "`$INTEGER`",
             ["index$"] = 0,
           },
         },
@@ -8767,6 +9433,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/models/count",
                 ["parts"] = {
@@ -8783,7 +9450,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -8806,7 +9473,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "benchmark",
+            ["name"] = "benchmarks",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 1,
@@ -8840,7 +9507,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "default_parameter",
+            ["name"] = "default_parameters",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -8906,7 +9573,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "link",
+            ["name"] = "links",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 11,
@@ -8920,7 +9587,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "per_request_limit",
+            ["name"] = "per_request_limits",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -8947,14 +9614,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "supported_parameter",
+            ["name"] = "supported_parameters",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 16,
           },
           {
             ["active"] = true,
-            ["name"] = "supported_voice",
+            ["name"] = "supported_voices",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -9035,6 +9702,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/models/user",
                 ["parts"] = {
@@ -9068,24 +9736,31 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "callback_url",
+            ["name"] = "app_id",
             ["req"] = true,
-            ["type"] = "`$STRING`",
+            ["type"] = "`$INTEGER`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "code",
+            ["name"] = "callback_url",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
+            ["name"] = "code",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 2,
+          },
+          {
+            ["active"] = true,
             ["name"] = "code_challenge",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 2,
+            ["index$"] = 3,
           },
           {
             ["active"] = true,
@@ -9098,21 +9773,21 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 3,
+            ["index$"] = 4,
           },
           {
             ["active"] = true,
             ["name"] = "code_verifier",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 4,
+            ["index$"] = 5,
           },
           {
             ["active"] = true,
-            ["name"] = "data",
+            ["name"] = "created_at",
             ["req"] = true,
-            ["type"] = "`$OBJECT`",
-            ["index$"] = 5,
+            ["type"] = "`$STRING`",
+            ["index$"] = 6,
           },
           {
             ["active"] = true,
@@ -9125,49 +9800,56 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 6,
+            ["index$"] = 7,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "id",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 8,
           },
           {
             ["active"] = true,
             ["name"] = "key",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 7,
+            ["index$"] = 9,
           },
           {
             ["active"] = true,
             ["name"] = "key_label",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 8,
+            ["index$"] = 10,
           },
           {
             ["active"] = true,
             ["name"] = "limit",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 9,
+            ["index$"] = 11,
           },
           {
             ["active"] = true,
             ["name"] = "spawn_agent",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 10,
+            ["index$"] = 12,
           },
           {
             ["active"] = true,
             ["name"] = "spawn_cloud",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 11,
+            ["index$"] = 13,
           },
           {
             ["active"] = true,
             ["name"] = "usage_limit_type",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 12,
+            ["index$"] = 14,
           },
           {
             ["active"] = true,
@@ -9180,14 +9862,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 13,
+            ["index$"] = 15,
           },
           {
             ["active"] = true,
             ["name"] = "workspace_id",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 14,
+            ["index$"] = 16,
           },
         },
         ["name"] = "o_auth",
@@ -9226,6 +9908,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/auth/keys",
                 ["parts"] = {
@@ -9275,6 +9958,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/auth/keys/code",
                 ["parts"] = {
@@ -9291,7 +9975,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 1,
               },
@@ -9308,8 +9992,8 @@ local function make_config()
           {
             ["active"] = true,
             ["name"] = "data",
-            ["req"] = true,
-            ["type"] = "`$ANY`",
+            ["req"] = false,
+            ["type"] = "`$OBJECT`",
             ["index$"] = 0,
           },
         },
@@ -9361,6 +10045,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/observability/destinations/{id}",
                 ["parts"] = {
@@ -9378,7 +10063,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -9431,6 +10116,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/observability/destinations/{id}",
                 ["parts"] = {
@@ -9531,7 +10217,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "instruction",
+            ["name"] = "instructions",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -9544,7 +10230,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "max_output_token",
+            ["name"] = "max_output_tokens",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -9557,7 +10243,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "max_tool_call",
+            ["name"] = "max_tool_calls",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -9583,7 +10269,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "modality",
+            ["name"] = "modalities",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 11,
@@ -9597,7 +10283,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "parallel_tool_call",
+            ["name"] = "models",
+            ["req"] = false,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 13,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "parallel_tool_calls",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -9606,14 +10299,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 13,
+            ["index$"] = 14,
           },
           {
             ["active"] = true,
-            ["name"] = "plugin",
+            ["name"] = "plugins",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 14,
+            ["index$"] = 15,
           },
           {
             ["active"] = true,
@@ -9626,14 +10319,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 15,
+            ["index$"] = 16,
           },
           {
             ["active"] = true,
             ["name"] = "previous_response_id",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 16,
+            ["index$"] = 17,
           },
           {
             ["active"] = true,
@@ -9646,7 +10339,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 17,
+            ["index$"] = 18,
           },
           {
             ["active"] = true,
@@ -9659,11 +10352,11 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 18,
+            ["index$"] = 19,
           },
           {
             ["active"] = true,
-            ["name"] = "prompt_cache_option",
+            ["name"] = "prompt_cache_options",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -9672,7 +10365,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 19,
+            ["index$"] = 20,
           },
           {
             ["active"] = true,
@@ -9685,14 +10378,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 20,
+            ["index$"] = 21,
           },
           {
             ["active"] = true,
             ["name"] = "reasoning",
             ["req"] = false,
             ["type"] = "`$ANY`",
-            ["index$"] = 21,
+            ["index$"] = 22,
           },
           {
             ["active"] = true,
@@ -9705,7 +10398,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 22,
+            ["index$"] = 23,
           },
           {
             ["active"] = true,
@@ -9718,7 +10411,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 23,
+            ["index$"] = 24,
           },
           {
             ["active"] = true,
@@ -9731,35 +10424,35 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 24,
+            ["index$"] = 25,
           },
           {
             ["active"] = true,
             ["name"] = "session_id",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 25,
+            ["index$"] = 26,
           },
           {
             ["active"] = true,
             ["name"] = "stop_server_tools_when",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 26,
+            ["index$"] = 27,
           },
           {
             ["active"] = true,
             ["name"] = "store",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 27,
+            ["index$"] = 28,
           },
           {
             ["active"] = true,
             ["name"] = "stream",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 28,
+            ["index$"] = 29,
           },
           {
             ["active"] = true,
@@ -9772,20 +10465,13 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 29,
+            ["index$"] = 30,
           },
           {
             ["active"] = true,
             ["name"] = "text",
             ["req"] = false,
             ["type"] = "`$ANY`",
-            ["index$"] = 30,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "tool",
-            ["req"] = false,
-            ["type"] = "`$ARRAY`",
             ["index$"] = 31,
           },
           {
@@ -9797,14 +10483,21 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "top_k",
+            ["name"] = "tools",
             ["req"] = false,
-            ["type"] = "`$INTEGER`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 33,
           },
           {
             ["active"] = true,
-            ["name"] = "top_logprob",
+            ["name"] = "top_k",
+            ["req"] = false,
+            ["type"] = "`$INTEGER`",
+            ["index$"] = 34,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "top_logprobs",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -9813,7 +10506,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 34,
+            ["index$"] = 35,
           },
           {
             ["active"] = true,
@@ -9826,14 +10519,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 35,
+            ["index$"] = 36,
           },
           {
             ["active"] = true,
             ["name"] = "trace",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 36,
+            ["index$"] = 37,
           },
           {
             ["active"] = true,
@@ -9846,14 +10539,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 37,
+            ["index$"] = 38,
           },
           {
             ["active"] = true,
             ["name"] = "user",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 38,
+            ["index$"] = 39,
           },
         },
         ["name"] = "open_responses_result",
@@ -9901,6 +10594,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/responses",
                 ["parts"] = {
@@ -10040,6 +10734,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/organization/members",
                 ["parts"] = {
@@ -10058,7 +10753,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -10094,19 +10789,25 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "data",
-            ["req"] = true,
-            ["type"] = "`$ANY`",
-            ["index$"] = 2,
-          },
-          {
-            ["active"] = true,
             ["name"] = "description",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
               {
                 "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 2,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "designated_version",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$OBJECT`",
                 "`$NULL`",
               },
             },
@@ -10249,6 +10950,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/presets",
                 ["parts"] = {
@@ -10265,7 +10967,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -10318,6 +11020,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/presets/{slug}",
                 ["parts"] = {
@@ -10339,7 +11042,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -10359,16 +11062,65 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "data",
+            ["name"] = "config",
+            ["req"] = true,
+            ["type"] = "`$OBJECT`",
+            ["index$"] = 0,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "created_at",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 1,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "creator_id",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 2,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "id",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 3,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "preset_id",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 4,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "system_prompt",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
               {
-                "`$OBJECT`",
+                "`$STRING`",
                 "`$NULL`",
               },
             },
-            ["index$"] = 0,
+            ["index$"] = 5,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "updated_at",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 6,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "version",
+            ["req"] = true,
+            ["type"] = "`$INTEGER`",
+            ["index$"] = 7,
           },
         },
         ["name"] = "preset_version",
@@ -10429,6 +11181,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/presets/{slug}/versions/{version}",
                 ["parts"] = {
@@ -10453,7 +11206,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -10473,7 +11226,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "datacenter",
+            ["name"] = "datacenters",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -10486,7 +11239,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "headquarter",
+            ["name"] = "headquarters",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -10587,6 +11340,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/providers",
                 ["parts"] = {
@@ -10601,7 +11355,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -10639,7 +11393,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "total_token",
+            ["name"] = "total_tokens",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 2,
@@ -10746,6 +11500,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/datasets/rankings-daily",
                 ["parts"] = {
@@ -10799,7 +11554,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "document",
+            ["name"] = "documents",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -10834,7 +11589,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "result",
+            ["name"] = "results",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 5,
@@ -10890,6 +11645,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/rerank",
                 ["parts"] = {
@@ -10978,7 +11734,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "segment",
+            ["name"] = "segments",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 6,
@@ -11006,7 +11762,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "timestamp_granularity",
+            ["name"] = "timestamp_granularities",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 10,
@@ -11020,7 +11776,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "word",
+            ["name"] = "words",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 12,
@@ -11062,6 +11818,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/audio/transcriptions",
                 ["parts"] = {
@@ -11107,16 +11864,16 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "data",
+            ["name"] = "generation_id",
             ["req"] = true,
-            ["type"] = "`$OBJECT`",
+            ["type"] = "`$STRING`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "generation_id",
+            ["name"] = "success",
             ["req"] = true,
-            ["type"] = "`$STRING`",
+            ["type"] = "`$BOOLEAN`",
             ["index$"] = 3,
           },
         },
@@ -11156,6 +11913,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/generation/feedback",
                 ["parts"] = {
@@ -11171,7 +11929,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -11187,10 +11945,31 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "data",
+            ["name"] = "as_of",
             ["req"] = true,
-            ["type"] = "`$OBJECT`",
+            ["type"] = "`$STRING`",
             ["index$"] = 0,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "classifications",
+            ["req"] = true,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 1,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "macro_categories",
+            ["req"] = true,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 2,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "window_days",
+            ["req"] = true,
+            ["type"] = "`$INTEGER`",
+            ["index$"] = 3,
           },
         },
         ["name"] = "task",
@@ -11240,6 +12019,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/classifications/task",
                 ["parts"] = {
@@ -11256,7 +12036,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -11357,6 +12137,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/audio/speech",
                 ["parts"] = {
@@ -11484,6 +12265,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/benchmarks",
                 ["parts"] = {
@@ -11519,7 +12301,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "allowed_model",
+            ["name"] = "allowed_models",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -11532,7 +12314,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "allowed_user_id",
+            ["name"] = "allowed_user_ids",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -11545,31 +12327,24 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "data",
-            ["req"] = true,
-            ["type"] = "`$ANY`",
-            ["index$"] = 2,
-          },
-          {
-            ["active"] = true,
             ["name"] = "disabled",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 3,
+            ["index$"] = 2,
           },
           {
             ["active"] = true,
             ["name"] = "is_fallback",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 4,
+            ["index$"] = 3,
           },
           {
             ["active"] = true,
             ["name"] = "key",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 5,
+            ["index$"] = 4,
           },
           {
             ["active"] = true,
@@ -11582,7 +12357,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 6,
+            ["index$"] = 5,
           },
         },
         ["name"] = "update_byok_key",
@@ -11633,6 +12408,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "PATCH",
                 ["orig"] = "/byok/{id}",
                 ["parts"] = {
@@ -11649,7 +12425,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -11665,7 +12441,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "allowed_model",
+            ["name"] = "allowed_models",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -11678,7 +12454,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "allowed_provider",
+            ["name"] = "allowed_providers",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -11691,7 +12467,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "content_filter",
+            ["name"] = "content_filter_builtins",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -11704,7 +12480,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "content_filter_builtin",
+            ["name"] = "content_filters",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -11717,13 +12493,6 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "data",
-            ["req"] = true,
-            ["type"] = "`$ANY`",
-            ["index$"] = 4,
-          },
-          {
-            ["active"] = true,
             ["name"] = "description",
             ["req"] = false,
             ["type"] = {
@@ -11733,7 +12502,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 5,
+            ["index$"] = 4,
           },
           {
             ["active"] = true,
@@ -11746,7 +12515,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 6,
+            ["index$"] = 5,
           },
           {
             ["active"] = true,
@@ -11759,7 +12528,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 7,
+            ["index$"] = 6,
           },
           {
             ["active"] = true,
@@ -11772,7 +12541,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 8,
+            ["index$"] = 7,
           },
           {
             ["active"] = true,
@@ -11785,7 +12554,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 9,
+            ["index$"] = 8,
           },
           {
             ["active"] = true,
@@ -11798,7 +12567,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 10,
+            ["index$"] = 9,
           },
           {
             ["active"] = true,
@@ -11811,11 +12580,24 @@ local function make_config()
                 "`$NULL`",
               },
             },
+            ["index$"] = 10,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "ignored_models",
+            ["req"] = false,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$ARRAY`",
+                "`$NULL`",
+              },
+            },
             ["index$"] = 11,
           },
           {
             ["active"] = true,
-            ["name"] = "ignored_model",
+            ["name"] = "ignored_providers",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -11828,19 +12610,6 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "ignored_provider",
-            ["req"] = false,
-            ["type"] = {
-              "`$ONE`",
-              {
-                "`$ARRAY`",
-                "`$NULL`",
-              },
-            },
-            ["index$"] = 13,
-          },
-          {
-            ["active"] = true,
             ["name"] = "limit_usd",
             ["req"] = false,
             ["type"] = {
@@ -11850,14 +12619,14 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 14,
+            ["index$"] = 13,
           },
           {
             ["active"] = true,
             ["name"] = "name",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 15,
+            ["index$"] = 14,
           },
           {
             ["active"] = true,
@@ -11870,7 +12639,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 16,
+            ["index$"] = 15,
           },
         },
         ["name"] = "update_guardrail",
@@ -11921,6 +12690,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "PATCH",
                 ["orig"] = "/guardrails/{id}",
                 ["parts"] = {
@@ -11937,7 +12707,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -11953,7 +12723,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "api_key_hash",
+            ["name"] = "api_key_hashes",
             ["req"] = false,
             ["type"] = {
               "`$ONE`",
@@ -11973,45 +12743,38 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "data",
-            ["req"] = true,
-            ["type"] = "`$ANY`",
+            ["name"] = "enabled",
+            ["req"] = false,
+            ["type"] = "`$BOOLEAN`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "enabled",
-            ["req"] = false,
-            ["type"] = "`$BOOLEAN`",
-            ["index$"] = 3,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "filter_rule",
+            ["name"] = "filter_rules",
             ["req"] = false,
             ["type"] = "`$ANY`",
-            ["index$"] = 4,
+            ["index$"] = 3,
           },
           {
             ["active"] = true,
             ["name"] = "name",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 5,
+            ["index$"] = 4,
           },
           {
             ["active"] = true,
             ["name"] = "privacy_mode",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 6,
+            ["index$"] = 5,
           },
           {
             ["active"] = true,
             ["name"] = "sampling_rate",
             ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 7,
+            ["index$"] = 6,
           },
         },
         ["name"] = "update_observability_destination",
@@ -12062,6 +12825,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "PATCH",
                 ["orig"] = "/observability/destinations/{id}",
                 ["parts"] = {
@@ -12079,7 +12843,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -12115,13 +12879,6 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "data",
-            ["req"] = true,
-            ["type"] = "`$ANY`",
-            ["index$"] = 2,
-          },
-          {
-            ["active"] = true,
             ["name"] = "default_image_model",
             ["op"] = {
               ["list"] = {
@@ -12143,7 +12900,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 3,
+            ["index$"] = 2,
           },
           {
             ["active"] = true,
@@ -12168,7 +12925,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 4,
+            ["index$"] = 3,
           },
           {
             ["active"] = true,
@@ -12193,7 +12950,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 5,
+            ["index$"] = 4,
           },
           {
             ["active"] = true,
@@ -12218,18 +12975,18 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 6,
+            ["index$"] = 5,
           },
           {
             ["active"] = true,
             ["name"] = "id",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 7,
+            ["index$"] = 6,
           },
           {
             ["active"] = true,
-            ["name"] = "io_logging_api_key_id",
+            ["name"] = "io_logging_api_key_ids",
             ["op"] = {
               ["list"] = {
                 ["req"] = true,
@@ -12250,7 +13007,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 8,
+            ["index$"] = 7,
           },
           {
             ["active"] = true,
@@ -12263,7 +13020,7 @@ local function make_config()
             },
             ["req"] = false,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 9,
+            ["index$"] = 8,
           },
           {
             ["active"] = true,
@@ -12276,7 +13033,7 @@ local function make_config()
             },
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 10,
+            ["index$"] = 9,
           },
           {
             ["active"] = true,
@@ -12289,7 +13046,7 @@ local function make_config()
             },
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 11,
+            ["index$"] = 10,
           },
           {
             ["active"] = true,
@@ -12302,7 +13059,7 @@ local function make_config()
             },
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 12,
+            ["index$"] = 11,
           },
           {
             ["active"] = true,
@@ -12315,7 +13072,7 @@ local function make_config()
             },
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 13,
+            ["index$"] = 12,
           },
           {
             ["active"] = true,
@@ -12328,7 +13085,7 @@ local function make_config()
             },
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 14,
+            ["index$"] = 13,
           },
           {
             ["active"] = true,
@@ -12341,7 +13098,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
-            ["index$"] = 15,
+            ["index$"] = 14,
           },
         },
         ["name"] = "update_workspace",
@@ -12380,6 +13137,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/workspaces",
                 ["parts"] = {
@@ -12394,7 +13152,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -12461,6 +13219,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/workspaces",
                 ["parts"] = {
@@ -12477,7 +13236,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -12530,6 +13289,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "PATCH",
                 ["orig"] = "/workspaces/{id}",
                 ["parts"] = {
@@ -12546,7 +13306,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -12562,17 +13322,10 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "data",
-            ["req"] = true,
-            ["type"] = "`$ANY`",
-            ["index$"] = 0,
-          },
-          {
-            ["active"] = true,
             ["name"] = "limit_usd",
             ["req"] = true,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 1,
+            ["index$"] = 0,
           },
         },
         ["name"] = "upsert_workspace_budget",
@@ -12633,6 +13386,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/workspaces/{id}/budgets/{interval}",
                 ["parts"] = {
@@ -12658,7 +13412,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -12726,7 +13480,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "frame_image",
+            ["name"] = "frame_images",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 4,
@@ -12754,7 +13508,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "input_reference",
+            ["name"] = "input_references",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 8,
@@ -12817,7 +13571,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "unsigned_url",
+            ["name"] = "unsigned_urls",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 17,
@@ -12866,6 +13620,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/videos",
                 ["parts"] = {
@@ -12933,6 +13688,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/videos/{jobId}",
                 ["parts"] = {
@@ -13033,6 +13789,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/videos/{jobId}/content",
                 ["parts"] = {
@@ -13073,7 +13830,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "allowed_passthrough_parameter",
+            ["name"] = "allowed_passthrough_parameters",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -13167,7 +13924,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "supported_aspect_ratio",
+            ["name"] = "supported_aspect_ratios",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -13180,7 +13937,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "supported_duration",
+            ["name"] = "supported_durations",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -13193,7 +13950,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "supported_frame_image",
+            ["name"] = "supported_frame_images",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -13206,7 +13963,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "supported_resolution",
+            ["name"] = "supported_resolutions",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -13219,7 +13976,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "supported_size",
+            ["name"] = "supported_sizes",
             ["req"] = true,
             ["type"] = {
               "`$ONE`",
@@ -13267,6 +14024,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/videos/models",
                 ["parts"] = {
@@ -13282,7 +14040,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -13298,10 +14056,150 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "data",
+            ["name"] = "created_at",
             ["req"] = true,
-            ["type"] = "`$ANY`",
+            ["type"] = "`$STRING`",
             ["index$"] = 0,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "created_by",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 1,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "default_image_model",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 2,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "default_provider_sort",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 3,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "default_text_model",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 4,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "description",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 5,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "id",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 6,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "io_logging_api_key_ids",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$ARRAY`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 7,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "io_logging_sampling_rate",
+            ["req"] = true,
+            ["type"] = "`$NUMBER`",
+            ["index$"] = 8,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "is_data_discount_logging_enabled",
+            ["req"] = true,
+            ["type"] = "`$BOOLEAN`",
+            ["index$"] = 9,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "is_observability_broadcast_enabled",
+            ["req"] = true,
+            ["type"] = "`$BOOLEAN`",
+            ["index$"] = 10,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "is_observability_io_logging_enabled",
+            ["req"] = true,
+            ["type"] = "`$BOOLEAN`",
+            ["index$"] = 11,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "name",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 12,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "slug",
+            ["req"] = true,
+            ["type"] = "`$STRING`",
+            ["index$"] = 13,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "updated_at",
+            ["req"] = true,
+            ["type"] = {
+              "`$ONE`",
+              {
+                "`$STRING`",
+                "`$NULL`",
+              },
+            },
+            ["index$"] = 14,
           },
         },
         ["name"] = "workspace",
@@ -13352,6 +14250,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/workspaces/{id}",
                 ["parts"] = {
@@ -13368,7 +14267,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -13421,6 +14320,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/workspaces/{id}",
                 ["parts"] = {
@@ -13509,6 +14409,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/workspaces/{id}/budgets/{interval}",
                 ["parts"] = {

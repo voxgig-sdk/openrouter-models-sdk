@@ -6,17 +6,57 @@ main: kit: entity: preset_version: {
 
   fields: [
     {
-      name: "data"
+      name: "config"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "created_at"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "creator_id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "preset_id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "system_prompt"
       req: true
       type: [
         "`$ONE`"
         [
-          "`$OBJECT`"
+          "`$STRING`"
           "`$NULL`"
         ]
       ]
     }
+    {
+      name: "updated_at"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "version"
+      req: true
+      type: "`$INTEGER`"
+    }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "preset_version"
   op: {
@@ -91,7 +131,7 @@ main: kit: entity: preset_version: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

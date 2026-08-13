@@ -6,6 +6,11 @@ main: kit: entity: o_auth: {
 
   fields: [
     {
+      name: "app_id"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
       name: "callback_url"
       req: true
       type: "`$STRING`"
@@ -37,9 +42,9 @@ main: kit: entity: o_auth: {
       type: "`$STRING`"
     }
     {
-      name: "data"
+      name: "created_at"
       req: true
-      type: "`$OBJECT`"
+      type: "`$STRING`"
     }
     {
       name: "expires_at"
@@ -51,6 +56,11 @@ main: kit: entity: o_auth: {
           "`$NULL`"
         ]
       ]
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
     }
     {
       name: "key"
@@ -99,6 +109,11 @@ main: kit: entity: o_auth: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "o_auth"
   op: {
@@ -191,7 +206,7 @@ main: kit: entity: o_auth: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

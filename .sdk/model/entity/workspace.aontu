@@ -6,11 +6,128 @@ main: kit: entity: workspace: {
 
   fields: [
     {
-      name: "data"
+      name: "created_at"
       req: true
-      type: "`$ANY`"
+      type: "`$STRING`"
+    }
+    {
+      name: "created_by"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "default_image_model"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "default_provider_sort"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "default_text_model"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "description"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "io_logging_api_key_ids"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "io_logging_sampling_rate"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "is_data_discount_logging_enabled"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_observability_broadcast_enabled"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_observability_io_logging_enabled"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "slug"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "updated_at"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "workspace"
   op: {
@@ -69,7 +186,7 @@ main: kit: entity: workspace: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

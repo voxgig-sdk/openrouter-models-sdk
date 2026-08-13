@@ -16,11 +16,11 @@
 import pytest
 
 from openroutermodels_sdk import OpenrouterModelsSDK
-from core.error import OpenrouterModelsError
-from core.result import OpenrouterModelsResult
-from core.response import OpenrouterModelsResponse
-from core.spec import OpenrouterModelsSpec
-from feature.base_feature import OpenrouterModelsBaseFeature
+from openroutermodels_sdk.core.error import OpenrouterModelsError
+from openroutermodels_sdk.core.result import OpenrouterModelsResult
+from openroutermodels_sdk.core.response import OpenrouterModelsResponse
+from openroutermodels_sdk.core.spec import OpenrouterModelsSpec
+from openroutermodels_sdk.feature.base_feature import OpenrouterModelsBaseFeature
 
 
 def _client():

@@ -6,35 +6,39 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/openrouter-models-sdk/go/core"
+)
 
 // Activity is the typed data model for the activity entity.
 type Activity struct {
 	ByokUsageInference float64 `json:"byok_usage_inference"`
-	CompletionToken int `json:"completion_token"`
+	CompletionTokens int `json:"completion_tokens"`
 	Date string `json:"date"`
 	EndpointId string `json:"endpoint_id"`
 	Model string `json:"model"`
 	ModelPermaslug string `json:"model_permaslug"`
-	PromptToken int `json:"prompt_token"`
+	PromptTokens int `json:"prompt_tokens"`
 	ProviderName string `json:"provider_name"`
-	ReasoningToken int `json:"reasoning_token"`
-	Request int `json:"request"`
+	ReasoningTokens int `json:"reasoning_tokens"`
+	Requests int `json:"requests"`
 	Usage float64 `json:"usage"`
 }
 
 // ActivityListMatch is the typed request payload for Activity.ListTyped.
 type ActivityListMatch struct {
 	ByokUsageInference *float64 `json:"byok_usage_inference,omitempty"`
-	CompletionToken *int `json:"completion_token,omitempty"`
+	CompletionTokens *int `json:"completion_tokens,omitempty"`
 	Date *string `json:"date,omitempty"`
 	EndpointId *string `json:"endpoint_id,omitempty"`
 	Model *string `json:"model,omitempty"`
 	ModelPermaslug *string `json:"model_permaslug,omitempty"`
-	PromptToken *int `json:"prompt_token,omitempty"`
+	PromptTokens *int `json:"prompt_tokens,omitempty"`
 	ProviderName *string `json:"provider_name,omitempty"`
-	ReasoningToken *int `json:"reasoning_token,omitempty"`
-	Request *int `json:"request,omitempty"`
+	ReasoningTokens *int `json:"reasoning_tokens,omitempty"`
+	Requests *int `json:"requests,omitempty"`
 	Usage *float64 `json:"usage,omitempty"`
 }
 
@@ -49,23 +53,26 @@ type ApiKey struct {
 	ByokUsageMonthly float64 `json:"byok_usage_monthly"`
 	ByokUsageWeekly float64 `json:"byok_usage_weekly"`
 	CreatedAt string `json:"created_at"`
-	CreatorUserId *any `json:"creator_user_id,omitempty"`
-	Data map[string]any `json:"data"`
-	Disabled *bool `json:"disabled,omitempty"`
+	CreatorUserId any `json:"creator_user_id"`
+	Disabled bool `json:"disabled"`
 	ExpiresAt *any `json:"expires_at,omitempty"`
 	Hash string `json:"hash"`
-	IncludeByokInLimit *bool `json:"include_byok_in_limit,omitempty"`
+	IncludeByokInLimit bool `json:"include_byok_in_limit"`
+	IsFreeTier bool `json:"is_free_tier"`
+	IsManagementKey bool `json:"is_management_key"`
+	IsProvisioningKey bool `json:"is_provisioning_key"`
 	Label string `json:"label"`
-	Limit *any `json:"limit,omitempty"`
+	Limit any `json:"limit"`
 	LimitRemaining any `json:"limit_remaining"`
-	LimitReset *any `json:"limit_reset,omitempty"`
+	LimitReset any `json:"limit_reset"`
 	Name string `json:"name"`
+	RateLimit map[string]any `json:"rate_limit"`
 	UpdatedAt any `json:"updated_at"`
 	Usage float64 `json:"usage"`
 	UsageDaily float64 `json:"usage_daily"`
 	UsageMonthly float64 `json:"usage_monthly"`
 	UsageWeekly float64 `json:"usage_weekly"`
-	WorkspaceId *string `json:"workspace_id,omitempty"`
+	WorkspaceId string `json:"workspace_id"`
 }
 
 // ApiKeyLoadMatch is the typed request payload for ApiKey.LoadTyped.
@@ -81,16 +88,19 @@ type ApiKeyListMatch struct {
 	ByokUsageWeekly *float64 `json:"byok_usage_weekly,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatorUserId *any `json:"creator_user_id,omitempty"`
-	Data *map[string]any `json:"data,omitempty"`
 	Disabled *bool `json:"disabled,omitempty"`
 	ExpiresAt *any `json:"expires_at,omitempty"`
 	Hash *string `json:"hash,omitempty"`
 	IncludeByokInLimit *bool `json:"include_byok_in_limit,omitempty"`
+	IsFreeTier *bool `json:"is_free_tier,omitempty"`
+	IsManagementKey *bool `json:"is_management_key,omitempty"`
+	IsProvisioningKey *bool `json:"is_provisioning_key,omitempty"`
 	Label *string `json:"label,omitempty"`
 	Limit *any `json:"limit,omitempty"`
 	LimitRemaining *any `json:"limit_remaining,omitempty"`
 	LimitReset *any `json:"limit_reset,omitempty"`
 	Name *string `json:"name,omitempty"`
+	RateLimit *map[string]any `json:"rate_limit,omitempty"`
 	UpdatedAt *any `json:"updated_at,omitempty"`
 	Usage *float64 `json:"usage,omitempty"`
 	UsageDaily *float64 `json:"usage_daily,omitempty"`
@@ -106,28 +116,56 @@ type ApiKeyCreateData struct {
 	ByokUsageMonthly float64 `json:"byok_usage_monthly"`
 	ByokUsageWeekly float64 `json:"byok_usage_weekly"`
 	CreatedAt string `json:"created_at"`
-	CreatorUserId *any `json:"creator_user_id,omitempty"`
-	Data map[string]any `json:"data"`
-	Disabled *bool `json:"disabled,omitempty"`
+	CreatorUserId any `json:"creator_user_id"`
+	Disabled bool `json:"disabled"`
 	ExpiresAt *any `json:"expires_at,omitempty"`
 	Hash string `json:"hash"`
-	IncludeByokInLimit *bool `json:"include_byok_in_limit,omitempty"`
+	IncludeByokInLimit bool `json:"include_byok_in_limit"`
+	IsFreeTier bool `json:"is_free_tier"`
+	IsManagementKey bool `json:"is_management_key"`
+	IsProvisioningKey bool `json:"is_provisioning_key"`
 	Label string `json:"label"`
-	Limit *any `json:"limit,omitempty"`
+	Limit any `json:"limit"`
 	LimitRemaining any `json:"limit_remaining"`
-	LimitReset *any `json:"limit_reset,omitempty"`
+	LimitReset any `json:"limit_reset"`
 	Name string `json:"name"`
+	RateLimit map[string]any `json:"rate_limit"`
 	UpdatedAt any `json:"updated_at"`
 	Usage float64 `json:"usage"`
 	UsageDaily float64 `json:"usage_daily"`
 	UsageMonthly float64 `json:"usage_monthly"`
 	UsageWeekly float64 `json:"usage_weekly"`
-	WorkspaceId *string `json:"workspace_id,omitempty"`
+	WorkspaceId string `json:"workspace_id"`
 }
 
 // ApiKeyUpdateData is the typed request payload for ApiKey.UpdateTyped.
 type ApiKeyUpdateData struct {
 	Id string `json:"id"`
+	ByokUsage *float64 `json:"byok_usage,omitempty"`
+	ByokUsageDaily *float64 `json:"byok_usage_daily,omitempty"`
+	ByokUsageMonthly *float64 `json:"byok_usage_monthly,omitempty"`
+	ByokUsageWeekly *float64 `json:"byok_usage_weekly,omitempty"`
+	CreatedAt *string `json:"created_at,omitempty"`
+	CreatorUserId *any `json:"creator_user_id,omitempty"`
+	Disabled *bool `json:"disabled,omitempty"`
+	ExpiresAt *any `json:"expires_at,omitempty"`
+	Hash *string `json:"hash,omitempty"`
+	IncludeByokInLimit *bool `json:"include_byok_in_limit,omitempty"`
+	IsFreeTier *bool `json:"is_free_tier,omitempty"`
+	IsManagementKey *bool `json:"is_management_key,omitempty"`
+	IsProvisioningKey *bool `json:"is_provisioning_key,omitempty"`
+	Label *string `json:"label,omitempty"`
+	Limit *any `json:"limit,omitempty"`
+	LimitRemaining *any `json:"limit_remaining,omitempty"`
+	LimitReset *any `json:"limit_reset,omitempty"`
+	Name *string `json:"name,omitempty"`
+	RateLimit *map[string]any `json:"rate_limit,omitempty"`
+	UpdatedAt *any `json:"updated_at,omitempty"`
+	Usage *float64 `json:"usage,omitempty"`
+	UsageDaily *float64 `json:"usage_daily,omitempty"`
+	UsageMonthly *float64 `json:"usage_monthly,omitempty"`
+	UsageWeekly *float64 `json:"usage_weekly,omitempty"`
+	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
 // ApiKeyRemoveMatch is the typed request payload for ApiKey.RemoveTyped.
@@ -140,8 +178,8 @@ type AppRanking struct {
 	AppId int `json:"app_id"`
 	AppName string `json:"app_name"`
 	Rank int `json:"rank"`
-	TotalRequest int `json:"total_request"`
-	TotalToken string `json:"total_token"`
+	TotalRequests int `json:"total_requests"`
+	TotalTokens string `json:"total_tokens"`
 }
 
 // AppRankingListMatch is the typed request payload for AppRanking.ListTyped.
@@ -149,8 +187,8 @@ type AppRankingListMatch struct {
 	AppId *int `json:"app_id,omitempty"`
 	AppName *string `json:"app_name,omitempty"`
 	Rank *int `json:"rank,omitempty"`
-	TotalRequest *int `json:"total_request,omitempty"`
-	TotalToken *string `json:"total_token,omitempty"`
+	TotalRequests *int `json:"total_requests,omitempty"`
+	TotalTokens *string `json:"total_tokens,omitempty"`
 }
 
 // Benchmark is the typed data model for the benchmark entity.
@@ -159,47 +197,62 @@ type Benchmark struct {
 
 // BetaAnalytics is the typed data model for the beta_analytics entity.
 type BetaAnalytics struct {
-	ClassifierDimension map[string]any `json:"classifier_dimension"`
-	ClassifierFilter map[string]any `json:"classifier_filter"`
-	Data map[string]any `json:"data"`
-	Dimension *[]any `json:"dimension,omitempty"`
-	Filter *[]any `json:"filter,omitempty"`
+	CachedAt *float64 `json:"cachedAt,omitempty"`
+	ClassifierDimensions map[string]any `json:"classifier_dimensions"`
+	ClassifierFilters map[string]any `json:"classifier_filters"`
+	Data []any `json:"data"`
+	Dimensions []any `json:"dimensions"`
+	Filters *[]any `json:"filters,omitempty"`
+	Granularities []any `json:"granularities"`
 	Granularity *string `json:"granularity,omitempty"`
 	GroupLimit *int `json:"group_limit,omitempty"`
 	Limit *int `json:"limit,omitempty"`
-	Metric []any `json:"metric"`
+	Metadata map[string]any `json:"metadata"`
+	Metrics []any `json:"metrics"`
+	Operators []any `json:"operators"`
 	OrderBy map[string]any `json:"order_by"`
 	TimeRange map[string]any `json:"time_range"`
+	Warnings *[]any `json:"warnings,omitempty"`
 }
 
 // BetaAnalyticsLoadMatch is the typed request payload for BetaAnalytics.LoadTyped.
 type BetaAnalyticsLoadMatch struct {
-	ClassifierDimension *map[string]any `json:"classifier_dimension,omitempty"`
-	ClassifierFilter *map[string]any `json:"classifier_filter,omitempty"`
-	Data *map[string]any `json:"data,omitempty"`
-	Dimension *[]any `json:"dimension,omitempty"`
-	Filter *[]any `json:"filter,omitempty"`
+	CachedAt *float64 `json:"cachedAt,omitempty"`
+	ClassifierDimensions *map[string]any `json:"classifier_dimensions,omitempty"`
+	ClassifierFilters *map[string]any `json:"classifier_filters,omitempty"`
+	Data *[]any `json:"data,omitempty"`
+	Dimensions *[]any `json:"dimensions,omitempty"`
+	Filters *[]any `json:"filters,omitempty"`
+	Granularities *[]any `json:"granularities,omitempty"`
 	Granularity *string `json:"granularity,omitempty"`
 	GroupLimit *int `json:"group_limit,omitempty"`
 	Limit *int `json:"limit,omitempty"`
-	Metric *[]any `json:"metric,omitempty"`
+	Metadata *map[string]any `json:"metadata,omitempty"`
+	Metrics *[]any `json:"metrics,omitempty"`
+	Operators *[]any `json:"operators,omitempty"`
 	OrderBy *map[string]any `json:"order_by,omitempty"`
 	TimeRange *map[string]any `json:"time_range,omitempty"`
+	Warnings *[]any `json:"warnings,omitempty"`
 }
 
 // BetaAnalyticsCreateData is the typed request payload for BetaAnalytics.CreateTyped.
 type BetaAnalyticsCreateData struct {
-	ClassifierDimension map[string]any `json:"classifier_dimension"`
-	ClassifierFilter map[string]any `json:"classifier_filter"`
-	Data map[string]any `json:"data"`
-	Dimension *[]any `json:"dimension,omitempty"`
-	Filter *[]any `json:"filter,omitempty"`
+	CachedAt *float64 `json:"cachedAt,omitempty"`
+	ClassifierDimensions map[string]any `json:"classifier_dimensions"`
+	ClassifierFilters map[string]any `json:"classifier_filters"`
+	Data []any `json:"data"`
+	Dimensions []any `json:"dimensions"`
+	Filters *[]any `json:"filters,omitempty"`
+	Granularities []any `json:"granularities"`
 	Granularity *string `json:"granularity,omitempty"`
 	GroupLimit *int `json:"group_limit,omitempty"`
 	Limit *int `json:"limit,omitempty"`
-	Metric []any `json:"metric"`
+	Metadata map[string]any `json:"metadata"`
+	Metrics []any `json:"metrics"`
+	Operators []any `json:"operators"`
 	OrderBy map[string]any `json:"order_by"`
 	TimeRange map[string]any `json:"time_range"`
+	Warnings *[]any `json:"warnings,omitempty"`
 }
 
 // Budget is the typed data model for the budget entity.
@@ -210,85 +263,97 @@ type Budget struct {
 type BulkAddWorkspaceMember struct {
 	AddedCount int `json:"added_count"`
 	Data []any `json:"data"`
-	UserId []any `json:"user_id"`
+	UserIds []any `json:"user_ids"`
 }
 
 // BulkAddWorkspaceMemberCreateData is the typed request payload for BulkAddWorkspaceMember.CreateTyped.
 type BulkAddWorkspaceMemberCreateData struct {
 	WorkspaceId string `json:"workspace_id"`
+	AddedCount int `json:"added_count"`
+	Data []any `json:"data"`
+	UserIds []any `json:"user_ids"`
 }
 
 // BulkAssignKey is the typed data model for the bulk_assign_key entity.
 type BulkAssignKey struct {
 	AssignedCount int `json:"assigned_count"`
-	KeyHash []any `json:"key_hash"`
+	KeyHashes []any `json:"key_hashes"`
 }
 
 // BulkAssignKeyCreateData is the typed request payload for BulkAssignKey.CreateTyped.
 type BulkAssignKeyCreateData struct {
 	GuardrailId string `json:"guardrail_id"`
+	AssignedCount int `json:"assigned_count"`
+	KeyHashes []any `json:"key_hashes"`
 }
 
 // BulkAssignMember is the typed data model for the bulk_assign_member entity.
 type BulkAssignMember struct {
 	AssignedCount int `json:"assigned_count"`
-	MemberUserId []any `json:"member_user_id"`
+	MemberUserIds []any `json:"member_user_ids"`
 }
 
 // BulkAssignMemberCreateData is the typed request payload for BulkAssignMember.CreateTyped.
 type BulkAssignMemberCreateData struct {
 	GuardrailId string `json:"guardrail_id"`
+	AssignedCount int `json:"assigned_count"`
+	MemberUserIds []any `json:"member_user_ids"`
 }
 
 // BulkRemoveWorkspaceMember is the typed data model for the bulk_remove_workspace_member entity.
 type BulkRemoveWorkspaceMember struct {
 	RemovedCount int `json:"removed_count"`
-	UserId []any `json:"user_id"`
+	UserIds []any `json:"user_ids"`
 }
 
 // BulkRemoveWorkspaceMemberCreateData is the typed request payload for BulkRemoveWorkspaceMember.CreateTyped.
 type BulkRemoveWorkspaceMemberCreateData struct {
 	WorkspaceId string `json:"workspace_id"`
+	RemovedCount int `json:"removed_count"`
+	UserIds []any `json:"user_ids"`
 }
 
 // BulkUnassignKey is the typed data model for the bulk_unassign_key entity.
 type BulkUnassignKey struct {
-	KeyHash []any `json:"key_hash"`
+	KeyHashes []any `json:"key_hashes"`
 	UnassignedCount int `json:"unassigned_count"`
 }
 
 // BulkUnassignKeyCreateData is the typed request payload for BulkUnassignKey.CreateTyped.
 type BulkUnassignKeyCreateData struct {
 	GuardrailId string `json:"guardrail_id"`
+	KeyHashes []any `json:"key_hashes"`
+	UnassignedCount int `json:"unassigned_count"`
 }
 
 // BulkUnassignMember is the typed data model for the bulk_unassign_member entity.
 type BulkUnassignMember struct {
-	MemberUserId []any `json:"member_user_id"`
+	MemberUserIds []any `json:"member_user_ids"`
 	UnassignedCount int `json:"unassigned_count"`
 }
 
 // BulkUnassignMemberCreateData is the typed request payload for BulkUnassignMember.CreateTyped.
 type BulkUnassignMemberCreateData struct {
 	GuardrailId string `json:"guardrail_id"`
+	MemberUserIds []any `json:"member_user_ids"`
+	UnassignedCount int `json:"unassigned_count"`
 }
 
 // Byok is the typed data model for the byok entity.
 type Byok struct {
-	AllowedApiKeyHash any `json:"allowed_api_key_hash"`
-	AllowedModel *any `json:"allowed_model,omitempty"`
-	AllowedUserId *any `json:"allowed_user_id,omitempty"`
+	AllowedApiKeyHashes any `json:"allowed_api_key_hashes"`
+	AllowedModels any `json:"allowed_models"`
+	AllowedUserIds any `json:"allowed_user_ids"`
 	CreatedAt string `json:"created_at"`
-	Data any `json:"data"`
-	Disabled *bool `json:"disabled,omitempty"`
+	Disabled bool `json:"disabled"`
 	Id string `json:"id"`
-	IsFallback *bool `json:"is_fallback,omitempty"`
+	IsFallback bool `json:"is_fallback"`
 	Key string `json:"key"`
 	Label string `json:"label"`
 	Name *any `json:"name,omitempty"`
 	Provider string `json:"provider"`
 	SortOrder int `json:"sort_order"`
-	WorkspaceId *string `json:"workspace_id,omitempty"`
+	WorkspaceId string `json:"workspace_id"`
 }
 
 // ByokLoadMatch is the typed request payload for Byok.LoadTyped.
@@ -298,11 +363,10 @@ type ByokLoadMatch struct {
 
 // ByokListMatch is the typed request payload for Byok.ListTyped.
 type ByokListMatch struct {
-	AllowedApiKeyHash *any `json:"allowed_api_key_hash,omitempty"`
-	AllowedModel *any `json:"allowed_model,omitempty"`
-	AllowedUserId *any `json:"allowed_user_id,omitempty"`
+	AllowedApiKeyHashes *any `json:"allowed_api_key_hashes,omitempty"`
+	AllowedModels *any `json:"allowed_models,omitempty"`
+	AllowedUserIds *any `json:"allowed_user_ids,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
-	Data *any `json:"data,omitempty"`
 	Disabled *bool `json:"disabled,omitempty"`
 	Id *string `json:"id,omitempty"`
 	IsFallback *bool `json:"is_fallback,omitempty"`
@@ -316,20 +380,19 @@ type ByokListMatch struct {
 
 // ByokCreateData is the typed request payload for Byok.CreateTyped.
 type ByokCreateData struct {
-	AllowedApiKeyHash any `json:"allowed_api_key_hash"`
-	AllowedModel *any `json:"allowed_model,omitempty"`
-	AllowedUserId *any `json:"allowed_user_id,omitempty"`
+	AllowedApiKeyHashes any `json:"allowed_api_key_hashes"`
+	AllowedModels any `json:"allowed_models"`
+	AllowedUserIds any `json:"allowed_user_ids"`
 	CreatedAt string `json:"created_at"`
-	Data any `json:"data"`
-	Disabled *bool `json:"disabled,omitempty"`
+	Disabled bool `json:"disabled"`
 	Id string `json:"id"`
-	IsFallback *bool `json:"is_fallback,omitempty"`
+	IsFallback bool `json:"is_fallback"`
 	Key string `json:"key"`
 	Label string `json:"label"`
 	Name *any `json:"name,omitempty"`
 	Provider string `json:"provider"`
 	SortOrder int `json:"sort_order"`
-	WorkspaceId *string `json:"workspace_id,omitempty"`
+	WorkspaceId string `json:"workspace_id"`
 }
 
 // ByokRemoveMatch is the typed request payload for Byok.RemoveTyped.
@@ -340,29 +403,30 @@ type ByokRemoveMatch struct {
 // ChatResult is the typed data model for the chat_result entity.
 type ChatResult struct {
 	CacheControl map[string]any `json:"cache_control"`
-	Choice []any `json:"choice"`
+	Choices []any `json:"choices"`
 	Created int `json:"created"`
 	Debug *map[string]any `json:"debug,omitempty"`
 	FrequencyPenalty *any `json:"frequency_penalty,omitempty"`
 	Id string `json:"id"`
 	ImageConfig *map[string]any `json:"image_config,omitempty"`
-	LogitBia *any `json:"logit_bia,omitempty"`
-	Logprob *any `json:"logprob,omitempty"`
-	MaxCompletionToken *any `json:"max_completion_token,omitempty"`
-	MaxToken *any `json:"max_token,omitempty"`
-	Message []any `json:"message"`
+	LogitBias *any `json:"logit_bias,omitempty"`
+	Logprobs *any `json:"logprobs,omitempty"`
+	MaxCompletionTokens *any `json:"max_completion_tokens,omitempty"`
+	MaxTokens *any `json:"max_tokens,omitempty"`
+	Messages []any `json:"messages"`
 	Metadata *map[string]any `json:"metadata,omitempty"`
 	MinP *any `json:"min_p,omitempty"`
-	Modality *[]any `json:"modality,omitempty"`
+	Modalities *[]any `json:"modalities,omitempty"`
 	Model string `json:"model"`
+	Models *[]any `json:"models,omitempty"`
 	Object string `json:"object"`
 	OpenrouterMetadata map[string]any `json:"openrouter_metadata"`
-	ParallelToolCall *any `json:"parallel_tool_call,omitempty"`
-	Plugin *[]any `json:"plugin,omitempty"`
+	ParallelToolCalls *any `json:"parallel_tool_calls,omitempty"`
+	Plugins *[]any `json:"plugins,omitempty"`
 	Prediction any `json:"prediction"`
 	PresencePenalty *any `json:"presence_penalty,omitempty"`
 	PromptCacheKey *any `json:"prompt_cache_key,omitempty"`
-	PromptCacheOption any `json:"prompt_cache_option"`
+	PromptCacheOptions any `json:"prompt_cache_options"`
 	Provider *any `json:"provider,omitempty"`
 	Reasoning *map[string]any `json:"reasoning,omitempty"`
 	ReasoningEffort *any `json:"reasoning_effort,omitempty"`
@@ -375,14 +439,14 @@ type ChatResult struct {
 	Stop *any `json:"stop,omitempty"`
 	StopServerToolsWhen *[]any `json:"stop_server_tools_when,omitempty"`
 	Stream *bool `json:"stream,omitempty"`
-	StreamOption *any `json:"stream_option,omitempty"`
+	StreamOptions *any `json:"stream_options,omitempty"`
 	SystemFingerprint any `json:"system_fingerprint"`
 	Temperature *any `json:"temperature,omitempty"`
-	Tool *[]any `json:"tool,omitempty"`
 	ToolChoice *any `json:"tool_choice,omitempty"`
+	Tools *[]any `json:"tools,omitempty"`
 	TopA *any `json:"top_a,omitempty"`
 	TopK *any `json:"top_k,omitempty"`
-	TopLogprob *any `json:"top_logprob,omitempty"`
+	TopLogprobs *any `json:"top_logprobs,omitempty"`
 	TopP *any `json:"top_p,omitempty"`
 	Trace *map[string]any `json:"trace,omitempty"`
 	Usage map[string]any `json:"usage"`
@@ -392,29 +456,30 @@ type ChatResult struct {
 // ChatResultCreateData is the typed request payload for ChatResult.CreateTyped.
 type ChatResultCreateData struct {
 	CacheControl map[string]any `json:"cache_control"`
-	Choice []any `json:"choice"`
+	Choices []any `json:"choices"`
 	Created int `json:"created"`
 	Debug *map[string]any `json:"debug,omitempty"`
 	FrequencyPenalty *any `json:"frequency_penalty,omitempty"`
 	Id string `json:"id"`
 	ImageConfig *map[string]any `json:"image_config,omitempty"`
-	LogitBia *any `json:"logit_bia,omitempty"`
-	Logprob *any `json:"logprob,omitempty"`
-	MaxCompletionToken *any `json:"max_completion_token,omitempty"`
-	MaxToken *any `json:"max_token,omitempty"`
-	Message []any `json:"message"`
+	LogitBias *any `json:"logit_bias,omitempty"`
+	Logprobs *any `json:"logprobs,omitempty"`
+	MaxCompletionTokens *any `json:"max_completion_tokens,omitempty"`
+	MaxTokens *any `json:"max_tokens,omitempty"`
+	Messages []any `json:"messages"`
 	Metadata *map[string]any `json:"metadata,omitempty"`
 	MinP *any `json:"min_p,omitempty"`
-	Modality *[]any `json:"modality,omitempty"`
+	Modalities *[]any `json:"modalities,omitempty"`
 	Model string `json:"model"`
+	Models *[]any `json:"models,omitempty"`
 	Object string `json:"object"`
 	OpenrouterMetadata map[string]any `json:"openrouter_metadata"`
-	ParallelToolCall *any `json:"parallel_tool_call,omitempty"`
-	Plugin *[]any `json:"plugin,omitempty"`
+	ParallelToolCalls *any `json:"parallel_tool_calls,omitempty"`
+	Plugins *[]any `json:"plugins,omitempty"`
 	Prediction any `json:"prediction"`
 	PresencePenalty *any `json:"presence_penalty,omitempty"`
 	PromptCacheKey *any `json:"prompt_cache_key,omitempty"`
-	PromptCacheOption any `json:"prompt_cache_option"`
+	PromptCacheOptions any `json:"prompt_cache_options"`
 	Provider *any `json:"provider,omitempty"`
 	Reasoning *map[string]any `json:"reasoning,omitempty"`
 	ReasoningEffort *any `json:"reasoning_effort,omitempty"`
@@ -427,14 +492,14 @@ type ChatResultCreateData struct {
 	Stop *any `json:"stop,omitempty"`
 	StopServerToolsWhen *[]any `json:"stop_server_tools_when,omitempty"`
 	Stream *bool `json:"stream,omitempty"`
-	StreamOption *any `json:"stream_option,omitempty"`
+	StreamOptions *any `json:"stream_options,omitempty"`
 	SystemFingerprint any `json:"system_fingerprint"`
 	Temperature *any `json:"temperature,omitempty"`
-	Tool *[]any `json:"tool,omitempty"`
 	ToolChoice *any `json:"tool_choice,omitempty"`
+	Tools *[]any `json:"tools,omitempty"`
 	TopA *any `json:"top_a,omitempty"`
 	TopK *any `json:"top_k,omitempty"`
-	TopLogprob *any `json:"top_logprob,omitempty"`
+	TopLogprobs *any `json:"top_logprobs,omitempty"`
 	TopP *any `json:"top_p,omitempty"`
 	Trace *map[string]any `json:"trace,omitempty"`
 	Usage map[string]any `json:"usage"`
@@ -471,10 +536,10 @@ type CreateGuardrail struct {
 
 // CreateObservabilityDestination is the typed data model for the create_observability_destination entity.
 type CreateObservabilityDestination struct {
-	ApiKeyHash *any `json:"api_key_hash,omitempty"`
+	ApiKeyHashes *any `json:"api_key_hashes,omitempty"`
 	Config map[string]any `json:"config"`
 	Enabled *bool `json:"enabled,omitempty"`
-	FilterRule any `json:"filter_rule"`
+	FilterRules any `json:"filter_rules"`
 	Name string `json:"name"`
 	PrivacyMode *bool `json:"privacy_mode,omitempty"`
 	SamplingRate *float64 `json:"sampling_rate,omitempty"`
@@ -484,10 +549,10 @@ type CreateObservabilityDestination struct {
 
 // CreateObservabilityDestinationCreateData is the typed request payload for CreateObservabilityDestination.CreateTyped.
 type CreateObservabilityDestinationCreateData struct {
-	ApiKeyHash *any `json:"api_key_hash,omitempty"`
+	ApiKeyHashes *any `json:"api_key_hashes,omitempty"`
 	Config map[string]any `json:"config"`
 	Enabled *bool `json:"enabled,omitempty"`
-	FilterRule any `json:"filter_rule"`
+	FilterRules any `json:"filter_rules"`
 	Name string `json:"name"`
 	PrivacyMode *bool `json:"privacy_mode,omitempty"`
 	SamplingRate *float64 `json:"sampling_rate,omitempty"`
@@ -500,34 +565,34 @@ type CreatePresetFromInference struct {
 	Background *any `json:"background,omitempty"`
 	CacheControl map[string]any `json:"cache_control"`
 	ContextManagement *any `json:"context_management,omitempty"`
-	Data any `json:"data"`
 	Debug *map[string]any `json:"debug,omitempty"`
-	Fallback *any `json:"fallback,omitempty"`
+	Fallbacks *any `json:"fallbacks,omitempty"`
 	FrequencyPenalty *any `json:"frequency_penalty,omitempty"`
 	ImageConfig *map[string]any `json:"image_config,omitempty"`
 	Include *any `json:"include,omitempty"`
 	Input *any `json:"input,omitempty"`
-	Instruction *any `json:"instruction,omitempty"`
-	LogitBia *any `json:"logit_bia,omitempty"`
-	Logprob *any `json:"logprob,omitempty"`
-	MaxCompletionToken *any `json:"max_completion_token,omitempty"`
-	MaxOutputToken *any `json:"max_output_token,omitempty"`
-	MaxToken *any `json:"max_token,omitempty"`
-	MaxToolCall *any `json:"max_tool_call,omitempty"`
-	Message []any `json:"message"`
+	Instructions *any `json:"instructions,omitempty"`
+	LogitBias *any `json:"logit_bias,omitempty"`
+	Logprobs *any `json:"logprobs,omitempty"`
+	MaxCompletionTokens *any `json:"max_completion_tokens,omitempty"`
+	MaxOutputTokens *any `json:"max_output_tokens,omitempty"`
+	MaxTokens *any `json:"max_tokens,omitempty"`
+	MaxToolCalls *any `json:"max_tool_calls,omitempty"`
+	Messages []any `json:"messages"`
 	Metadata *map[string]any `json:"metadata,omitempty"`
 	MinP *any `json:"min_p,omitempty"`
-	Modality *[]any `json:"modality,omitempty"`
+	Modalities *[]any `json:"modalities,omitempty"`
 	Model *string `json:"model,omitempty"`
+	Models *[]any `json:"models,omitempty"`
 	OutputConfig *map[string]any `json:"output_config,omitempty"`
-	ParallelToolCall *any `json:"parallel_tool_call,omitempty"`
-	Plugin *[]any `json:"plugin,omitempty"`
+	ParallelToolCalls *any `json:"parallel_tool_calls,omitempty"`
+	Plugins *[]any `json:"plugins,omitempty"`
 	Prediction any `json:"prediction"`
 	PresencePenalty *any `json:"presence_penalty,omitempty"`
 	PreviousResponseId *string `json:"previous_response_id,omitempty"`
 	Prompt any `json:"prompt"`
 	PromptCacheKey *any `json:"prompt_cache_key,omitempty"`
-	PromptCacheOption any `json:"prompt_cache_option"`
+	PromptCacheOptions any `json:"prompt_cache_options"`
 	Provider *any `json:"provider,omitempty"`
 	Reasoning *map[string]any `json:"reasoning,omitempty"`
 	ReasoningEffort *any `json:"reasoning_effort,omitempty"`
@@ -540,20 +605,20 @@ type CreatePresetFromInference struct {
 	SessionId *string `json:"session_id,omitempty"`
 	Speed *any `json:"speed,omitempty"`
 	Stop *any `json:"stop,omitempty"`
-	StopSequence *[]any `json:"stop_sequence,omitempty"`
+	StopSequences *[]any `json:"stop_sequences,omitempty"`
 	StopServerToolsWhen *[]any `json:"stop_server_tools_when,omitempty"`
 	Store *bool `json:"store,omitempty"`
 	Stream *bool `json:"stream,omitempty"`
-	StreamOption *any `json:"stream_option,omitempty"`
+	StreamOptions *any `json:"stream_options,omitempty"`
 	System *any `json:"system,omitempty"`
 	Temperature *any `json:"temperature,omitempty"`
 	Text *any `json:"text,omitempty"`
 	Thinking *any `json:"thinking,omitempty"`
-	Tool *[]any `json:"tool,omitempty"`
 	ToolChoice *any `json:"tool_choice,omitempty"`
+	Tools *[]any `json:"tools,omitempty"`
 	TopA *any `json:"top_a,omitempty"`
 	TopK *any `json:"top_k,omitempty"`
-	TopLogprob *any `json:"top_logprob,omitempty"`
+	TopLogprobs *any `json:"top_logprobs,omitempty"`
 	TopP *any `json:"top_p,omitempty"`
 	Trace *map[string]any `json:"trace,omitempty"`
 	Truncation *any `json:"truncation,omitempty"`
@@ -563,6 +628,67 @@ type CreatePresetFromInference struct {
 // CreatePresetFromInferenceCreateData is the typed request payload for CreatePresetFromInference.CreateTyped.
 type CreatePresetFromInferenceCreateData struct {
 	Slug string `json:"slug"`
+	Background *any `json:"background,omitempty"`
+	CacheControl map[string]any `json:"cache_control"`
+	ContextManagement *any `json:"context_management,omitempty"`
+	Debug *map[string]any `json:"debug,omitempty"`
+	Fallbacks *any `json:"fallbacks,omitempty"`
+	FrequencyPenalty *any `json:"frequency_penalty,omitempty"`
+	ImageConfig *map[string]any `json:"image_config,omitempty"`
+	Include *any `json:"include,omitempty"`
+	Input *any `json:"input,omitempty"`
+	Instructions *any `json:"instructions,omitempty"`
+	LogitBias *any `json:"logit_bias,omitempty"`
+	Logprobs *any `json:"logprobs,omitempty"`
+	MaxCompletionTokens *any `json:"max_completion_tokens,omitempty"`
+	MaxOutputTokens *any `json:"max_output_tokens,omitempty"`
+	MaxTokens *any `json:"max_tokens,omitempty"`
+	MaxToolCalls *any `json:"max_tool_calls,omitempty"`
+	Messages []any `json:"messages"`
+	Metadata *map[string]any `json:"metadata,omitempty"`
+	MinP *any `json:"min_p,omitempty"`
+	Modalities *[]any `json:"modalities,omitempty"`
+	Model *string `json:"model,omitempty"`
+	Models *[]any `json:"models,omitempty"`
+	OutputConfig *map[string]any `json:"output_config,omitempty"`
+	ParallelToolCalls *any `json:"parallel_tool_calls,omitempty"`
+	Plugins *[]any `json:"plugins,omitempty"`
+	Prediction any `json:"prediction"`
+	PresencePenalty *any `json:"presence_penalty,omitempty"`
+	PreviousResponseId *string `json:"previous_response_id,omitempty"`
+	Prompt any `json:"prompt"`
+	PromptCacheKey *any `json:"prompt_cache_key,omitempty"`
+	PromptCacheOptions any `json:"prompt_cache_options"`
+	Provider *any `json:"provider,omitempty"`
+	Reasoning *map[string]any `json:"reasoning,omitempty"`
+	ReasoningEffort *any `json:"reasoning_effort,omitempty"`
+	RepetitionPenalty *any `json:"repetition_penalty,omitempty"`
+	ResponseFormat *any `json:"response_format,omitempty"`
+	Route *any `json:"route,omitempty"`
+	SafetyIdentifier *any `json:"safety_identifier,omitempty"`
+	Seed *any `json:"seed,omitempty"`
+	ServiceTier *any `json:"service_tier,omitempty"`
+	SessionId *string `json:"session_id,omitempty"`
+	Speed *any `json:"speed,omitempty"`
+	Stop *any `json:"stop,omitempty"`
+	StopSequences *[]any `json:"stop_sequences,omitempty"`
+	StopServerToolsWhen *[]any `json:"stop_server_tools_when,omitempty"`
+	Store *bool `json:"store,omitempty"`
+	Stream *bool `json:"stream,omitempty"`
+	StreamOptions *any `json:"stream_options,omitempty"`
+	System *any `json:"system,omitempty"`
+	Temperature *any `json:"temperature,omitempty"`
+	Text *any `json:"text,omitempty"`
+	Thinking *any `json:"thinking,omitempty"`
+	ToolChoice *any `json:"tool_choice,omitempty"`
+	Tools *[]any `json:"tools,omitempty"`
+	TopA *any `json:"top_a,omitempty"`
+	TopK *any `json:"top_k,omitempty"`
+	TopLogprobs *any `json:"top_logprobs,omitempty"`
+	TopP *any `json:"top_p,omitempty"`
+	Trace *map[string]any `json:"trace,omitempty"`
+	Truncation *any `json:"truncation,omitempty"`
+	User *string `json:"user,omitempty"`
 }
 
 // CreateWorkspace is the typed data model for the create_workspace entity.
@@ -571,17 +697,20 @@ type CreateWorkspace struct {
 
 // Credit is the typed data model for the credit entity.
 type Credit struct {
-	Data map[string]any `json:"data"`
+	TotalCredits float64 `json:"total_credits"`
+	TotalUsage float64 `json:"total_usage"`
 }
 
 // CreditLoadMatch is the typed request payload for Credit.LoadTyped.
 type CreditLoadMatch struct {
-	Data *map[string]any `json:"data,omitempty"`
+	TotalCredits *float64 `json:"total_credits,omitempty"`
+	TotalUsage *float64 `json:"total_usage,omitempty"`
 }
 
 // CreditCreateData is the typed request payload for Credit.CreateTyped.
 type CreditCreateData struct {
-	Data map[string]any `json:"data"`
+	TotalCredits float64 `json:"total_credits"`
+	TotalUsage float64 `json:"total_usage"`
 }
 
 // Destination is the typed data model for the destination entity.
@@ -591,7 +720,7 @@ type Destination struct {
 // Embedding is the typed data model for the embedding entity.
 type Embedding struct {
 	Data []any `json:"data"`
-	Dimension *int `json:"dimension,omitempty"`
+	Dimensions *int `json:"dimensions,omitempty"`
 	EncodingFormat *string `json:"encoding_format,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Input any `json:"input"`
@@ -606,7 +735,7 @@ type Embedding struct {
 // EmbeddingCreateData is the typed request payload for Embedding.CreateTyped.
 type EmbeddingCreateData struct {
 	Data []any `json:"data"`
-	Dimension *int `json:"dimension,omitempty"`
+	Dimensions *int `json:"dimensions,omitempty"`
 	EncodingFormat *string `json:"encoding_format,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Input any `json:"input"`
@@ -620,33 +749,33 @@ type EmbeddingCreateData struct {
 
 // Endpoint is the typed data model for the endpoint entity.
 type Endpoint struct {
-	Architecture map[string]any `json:"architecture"`
-	Benchmark map[string]any `json:"benchmark"`
+	Architecture any `json:"architecture"`
+	Benchmarks map[string]any `json:"benchmarks"`
 	CanonicalSlug string `json:"canonical_slug"`
 	ContextLength any `json:"context_length"`
 	Created int `json:"created"`
-	Data map[string]any `json:"data"`
-	DefaultParameter any `json:"default_parameter"`
-	Description *string `json:"description,omitempty"`
+	DefaultParameters any `json:"default_parameters"`
+	Description string `json:"description"`
+	Endpoints []any `json:"endpoints"`
 	ExpirationDate *any `json:"expiration_date,omitempty"`
 	HuggingFaceId *any `json:"hugging_face_id,omitempty"`
 	Id string `json:"id"`
 	KnowledgeCutoff *any `json:"knowledge_cutoff,omitempty"`
 	LatencyLast30m any `json:"latency_last_30m"`
-	Link map[string]any `json:"link"`
-	MaxCompletionToken any `json:"max_completion_token"`
-	MaxPromptToken any `json:"max_prompt_token"`
+	Links map[string]any `json:"links"`
+	MaxCompletionTokens any `json:"max_completion_tokens"`
+	MaxPromptTokens any `json:"max_prompt_tokens"`
 	ModelId string `json:"model_id"`
 	ModelName string `json:"model_name"`
 	Name string `json:"name"`
-	PerRequestLimit any `json:"per_request_limit"`
+	PerRequestLimits any `json:"per_request_limits"`
 	Pricing map[string]any `json:"pricing"`
 	ProviderName string `json:"provider_name"`
 	Quantization any `json:"quantization"`
 	Reasoning map[string]any `json:"reasoning"`
 	Status *int `json:"status,omitempty"`
-	SupportedParameter []any `json:"supported_parameter"`
-	SupportedVoice any `json:"supported_voice"`
+	SupportedParameters []any `json:"supported_parameters"`
+	SupportedVoices any `json:"supported_voices"`
 	SupportsImplicitCaching bool `json:"supports_implicit_caching"`
 	Tag string `json:"tag"`
 	ThroughputLast30m any `json:"throughput_last_30m"`
@@ -664,33 +793,33 @@ type EndpointLoadMatch struct {
 
 // EndpointListMatch is the typed request payload for Endpoint.ListTyped.
 type EndpointListMatch struct {
-	Architecture *map[string]any `json:"architecture,omitempty"`
-	Benchmark *map[string]any `json:"benchmark,omitempty"`
+	Architecture *any `json:"architecture,omitempty"`
+	Benchmarks *map[string]any `json:"benchmarks,omitempty"`
 	CanonicalSlug *string `json:"canonical_slug,omitempty"`
 	ContextLength *any `json:"context_length,omitempty"`
 	Created *int `json:"created,omitempty"`
-	Data *map[string]any `json:"data,omitempty"`
-	DefaultParameter *any `json:"default_parameter,omitempty"`
+	DefaultParameters *any `json:"default_parameters,omitempty"`
 	Description *string `json:"description,omitempty"`
+	Endpoints *[]any `json:"endpoints,omitempty"`
 	ExpirationDate *any `json:"expiration_date,omitempty"`
 	HuggingFaceId *any `json:"hugging_face_id,omitempty"`
 	Id *string `json:"id,omitempty"`
 	KnowledgeCutoff *any `json:"knowledge_cutoff,omitempty"`
 	LatencyLast30m *any `json:"latency_last_30m,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
-	MaxCompletionToken *any `json:"max_completion_token,omitempty"`
-	MaxPromptToken *any `json:"max_prompt_token,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
+	MaxCompletionTokens *any `json:"max_completion_tokens,omitempty"`
+	MaxPromptTokens *any `json:"max_prompt_tokens,omitempty"`
 	ModelId *string `json:"model_id,omitempty"`
 	ModelName *string `json:"model_name,omitempty"`
 	Name *string `json:"name,omitempty"`
-	PerRequestLimit *any `json:"per_request_limit,omitempty"`
+	PerRequestLimits *any `json:"per_request_limits,omitempty"`
 	Pricing *map[string]any `json:"pricing,omitempty"`
 	ProviderName *string `json:"provider_name,omitempty"`
 	Quantization *any `json:"quantization,omitempty"`
 	Reasoning *map[string]any `json:"reasoning,omitempty"`
 	Status *int `json:"status,omitempty"`
-	SupportedParameter *[]any `json:"supported_parameter,omitempty"`
-	SupportedVoice *any `json:"supported_voice,omitempty"`
+	SupportedParameters *[]any `json:"supported_parameters,omitempty"`
+	SupportedVoices *any `json:"supported_voices,omitempty"`
 	SupportsImplicitCaching *bool `json:"supports_implicit_caching,omitempty"`
 	Tag *string `json:"tag,omitempty"`
 	ThroughputLast30m *any `json:"throughput_last_30m,omitempty"`
@@ -711,7 +840,7 @@ type File struct {
 	Filename string `json:"filename"`
 	Id string `json:"id"`
 	MimeType string `json:"mime_type"`
-	SizeByte int `json:"size_byte"`
+	SizeBytes int `json:"size_bytes"`
 	Type string `json:"type"`
 }
 
@@ -727,7 +856,7 @@ type FileListMatch struct {
 	Filename *string `json:"filename,omitempty"`
 	Id *string `json:"id,omitempty"`
 	MimeType *string `json:"mime_type,omitempty"`
-	SizeByte *int `json:"size_byte,omitempty"`
+	SizeBytes *int `json:"size_bytes,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
 
@@ -738,7 +867,7 @@ type FileCreateData struct {
 	Filename string `json:"filename"`
 	Id string `json:"id"`
 	MimeType string `json:"mime_type"`
-	SizeByte int `json:"size_byte"`
+	SizeBytes int `json:"size_bytes"`
 	Type string `json:"type"`
 }
 
@@ -749,32 +878,119 @@ type FileRemoveMatch struct {
 
 // Generation is the typed data model for the generation entity.
 type Generation struct {
-	Data map[string]any `json:"data"`
+	ApiType any `json:"api_type"`
+	AppId any `json:"app_id"`
+	CacheDiscount any `json:"cache_discount"`
+	Cancelled any `json:"cancelled"`
+	CreatedAt string `json:"created_at"`
+	DataRegion string `json:"data_region"`
+	ExternalUser any `json:"external_user"`
+	FinishReason any `json:"finish_reason"`
+	GenerationTime any `json:"generation_time"`
+	HttpReferer any `json:"http_referer"`
+	Id string `json:"id"`
+	IsByok bool `json:"is_byok"`
+	Latency any `json:"latency"`
+	Model string `json:"model"`
+	ModerationLatency any `json:"moderation_latency"`
+	NativeFinishReason any `json:"native_finish_reason"`
+	NativeTokensCached any `json:"native_tokens_cached"`
+	NativeTokensCompletion any `json:"native_tokens_completion"`
+	NativeTokensCompletionImages any `json:"native_tokens_completion_images"`
+	NativeTokensPrompt any `json:"native_tokens_prompt"`
+	NativeTokensReasoning any `json:"native_tokens_reasoning"`
+	NumFetches any `json:"num_fetches"`
+	NumInputAudioPrompt any `json:"num_input_audio_prompt"`
+	NumMediaCompletion any `json:"num_media_completion"`
+	NumMediaPrompt any `json:"num_media_prompt"`
+	NumSearchResults any `json:"num_search_results"`
+	Origin string `json:"origin"`
+	PresetId any `json:"preset_id"`
+	ProviderName any `json:"provider_name"`
+	ProviderResponses any `json:"provider_responses"`
+	RequestId *any `json:"request_id,omitempty"`
+	ResponseCacheSourceId *any `json:"response_cache_source_id,omitempty"`
+	Router any `json:"router"`
+	ServiceTier any `json:"service_tier"`
+	SessionId *any `json:"session_id,omitempty"`
+	Streamed any `json:"streamed"`
+	TokensCompletion any `json:"tokens_completion"`
+	TokensPrompt any `json:"tokens_prompt"`
+	TotalCost float64 `json:"total_cost"`
+	UpstreamId any `json:"upstream_id"`
+	UpstreamInferenceCost any `json:"upstream_inference_cost"`
+	Usage float64 `json:"usage"`
+	UserAgent any `json:"user_agent"`
+	WebSearchEngine any `json:"web_search_engine"`
 }
 
 // GenerationLoadMatch is the typed request payload for Generation.LoadTyped.
 type GenerationLoadMatch struct {
-	Data *map[string]any `json:"data,omitempty"`
+	ApiType *any `json:"api_type,omitempty"`
+	AppId *any `json:"app_id,omitempty"`
+	CacheDiscount *any `json:"cache_discount,omitempty"`
+	Cancelled *any `json:"cancelled,omitempty"`
+	CreatedAt *string `json:"created_at,omitempty"`
+	DataRegion *string `json:"data_region,omitempty"`
+	ExternalUser *any `json:"external_user,omitempty"`
+	FinishReason *any `json:"finish_reason,omitempty"`
+	GenerationTime *any `json:"generation_time,omitempty"`
+	HttpReferer *any `json:"http_referer,omitempty"`
+	Id string `json:"id"`
+	IsByok *bool `json:"is_byok,omitempty"`
+	Latency *any `json:"latency,omitempty"`
+	Model *string `json:"model,omitempty"`
+	ModerationLatency *any `json:"moderation_latency,omitempty"`
+	NativeFinishReason *any `json:"native_finish_reason,omitempty"`
+	NativeTokensCached *any `json:"native_tokens_cached,omitempty"`
+	NativeTokensCompletion *any `json:"native_tokens_completion,omitempty"`
+	NativeTokensCompletionImages *any `json:"native_tokens_completion_images,omitempty"`
+	NativeTokensPrompt *any `json:"native_tokens_prompt,omitempty"`
+	NativeTokensReasoning *any `json:"native_tokens_reasoning,omitempty"`
+	NumFetches *any `json:"num_fetches,omitempty"`
+	NumInputAudioPrompt *any `json:"num_input_audio_prompt,omitempty"`
+	NumMediaCompletion *any `json:"num_media_completion,omitempty"`
+	NumMediaPrompt *any `json:"num_media_prompt,omitempty"`
+	NumSearchResults *any `json:"num_search_results,omitempty"`
+	Origin *string `json:"origin,omitempty"`
+	PresetId *any `json:"preset_id,omitempty"`
+	ProviderName *any `json:"provider_name,omitempty"`
+	ProviderResponses *any `json:"provider_responses,omitempty"`
+	RequestId *any `json:"request_id,omitempty"`
+	ResponseCacheSourceId *any `json:"response_cache_source_id,omitempty"`
+	Router *any `json:"router,omitempty"`
+	ServiceTier *any `json:"service_tier,omitempty"`
+	SessionId *any `json:"session_id,omitempty"`
+	Streamed *any `json:"streamed,omitempty"`
+	TokensCompletion *any `json:"tokens_completion,omitempty"`
+	TokensPrompt *any `json:"tokens_prompt,omitempty"`
+	TotalCost *float64 `json:"total_cost,omitempty"`
+	UpstreamId *any `json:"upstream_id,omitempty"`
+	UpstreamInferenceCost *any `json:"upstream_inference_cost,omitempty"`
+	Usage *float64 `json:"usage,omitempty"`
+	UserAgent *any `json:"user_agent,omitempty"`
+	WebSearchEngine *any `json:"web_search_engine,omitempty"`
 }
 
 // GenerationContent is the typed data model for the generation_content entity.
 type GenerationContent struct {
-	Data map[string]any `json:"data"`
+	Input any `json:"input"`
+	Output map[string]any `json:"output"`
 }
 
 // GenerationContentLoadMatch is the typed request payload for GenerationContent.LoadTyped.
 type GenerationContentLoadMatch struct {
-	Data *map[string]any `json:"data,omitempty"`
+	Input *any `json:"input,omitempty"`
+	Output *map[string]any `json:"output,omitempty"`
 }
 
 // Guardrail is the typed data model for the guardrail entity.
 type Guardrail struct {
-	AllowedModel *any `json:"allowed_model,omitempty"`
-	AllowedProvider *any `json:"allowed_provider,omitempty"`
-	ContentFilter *any `json:"content_filter,omitempty"`
-	ContentFilterBuiltin *any `json:"content_filter_builtin,omitempty"`
+	AllowedModels *any `json:"allowed_models,omitempty"`
+	AllowedProviders *any `json:"allowed_providers,omitempty"`
+	ContentFilterBuiltins *any `json:"content_filter_builtins,omitempty"`
+	ContentFilters *any `json:"content_filters,omitempty"`
 	CreatedAt string `json:"created_at"`
-	Data any `json:"data"`
 	Description *any `json:"description,omitempty"`
 	EnforceZdr *any `json:"enforce_zdr,omitempty"`
 	EnforceZdrAnthropic *any `json:"enforce_zdr_anthropic,omitempty"`
@@ -783,13 +999,13 @@ type Guardrail struct {
 	EnforceZdrOther *any `json:"enforce_zdr_other,omitempty"`
 	EnforceZdrXai *any `json:"enforce_zdr_xai,omitempty"`
 	Id string `json:"id"`
-	IgnoredModel *any `json:"ignored_model,omitempty"`
-	IgnoredProvider *any `json:"ignored_provider,omitempty"`
+	IgnoredModels *any `json:"ignored_models,omitempty"`
+	IgnoredProviders *any `json:"ignored_providers,omitempty"`
 	LimitUsd *any `json:"limit_usd,omitempty"`
 	Name string `json:"name"`
 	ResetInterval *any `json:"reset_interval,omitempty"`
 	UpdatedAt *any `json:"updated_at,omitempty"`
-	WorkspaceId *string `json:"workspace_id,omitempty"`
+	WorkspaceId string `json:"workspace_id"`
 }
 
 // GuardrailLoadMatch is the typed request payload for Guardrail.LoadTyped.
@@ -799,12 +1015,11 @@ type GuardrailLoadMatch struct {
 
 // GuardrailListMatch is the typed request payload for Guardrail.ListTyped.
 type GuardrailListMatch struct {
-	AllowedModel *any `json:"allowed_model,omitempty"`
-	AllowedProvider *any `json:"allowed_provider,omitempty"`
-	ContentFilter *any `json:"content_filter,omitempty"`
-	ContentFilterBuiltin *any `json:"content_filter_builtin,omitempty"`
+	AllowedModels *any `json:"allowed_models,omitempty"`
+	AllowedProviders *any `json:"allowed_providers,omitempty"`
+	ContentFilterBuiltins *any `json:"content_filter_builtins,omitempty"`
+	ContentFilters *any `json:"content_filters,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
-	Data *any `json:"data,omitempty"`
 	Description *any `json:"description,omitempty"`
 	EnforceZdr *any `json:"enforce_zdr,omitempty"`
 	EnforceZdrAnthropic *any `json:"enforce_zdr_anthropic,omitempty"`
@@ -813,8 +1028,8 @@ type GuardrailListMatch struct {
 	EnforceZdrOther *any `json:"enforce_zdr_other,omitempty"`
 	EnforceZdrXai *any `json:"enforce_zdr_xai,omitempty"`
 	Id *string `json:"id,omitempty"`
-	IgnoredModel *any `json:"ignored_model,omitempty"`
-	IgnoredProvider *any `json:"ignored_provider,omitempty"`
+	IgnoredModels *any `json:"ignored_models,omitempty"`
+	IgnoredProviders *any `json:"ignored_providers,omitempty"`
 	LimitUsd *any `json:"limit_usd,omitempty"`
 	Name *string `json:"name,omitempty"`
 	ResetInterval *any `json:"reset_interval,omitempty"`
@@ -824,12 +1039,11 @@ type GuardrailListMatch struct {
 
 // GuardrailCreateData is the typed request payload for Guardrail.CreateTyped.
 type GuardrailCreateData struct {
-	AllowedModel *any `json:"allowed_model,omitempty"`
-	AllowedProvider *any `json:"allowed_provider,omitempty"`
-	ContentFilter *any `json:"content_filter,omitempty"`
-	ContentFilterBuiltin *any `json:"content_filter_builtin,omitempty"`
+	AllowedModels *any `json:"allowed_models,omitempty"`
+	AllowedProviders *any `json:"allowed_providers,omitempty"`
+	ContentFilterBuiltins *any `json:"content_filter_builtins,omitempty"`
+	ContentFilters *any `json:"content_filters,omitempty"`
 	CreatedAt string `json:"created_at"`
-	Data any `json:"data"`
 	Description *any `json:"description,omitempty"`
 	EnforceZdr *any `json:"enforce_zdr,omitempty"`
 	EnforceZdrAnthropic *any `json:"enforce_zdr_anthropic,omitempty"`
@@ -838,13 +1052,13 @@ type GuardrailCreateData struct {
 	EnforceZdrOther *any `json:"enforce_zdr_other,omitempty"`
 	EnforceZdrXai *any `json:"enforce_zdr_xai,omitempty"`
 	Id string `json:"id"`
-	IgnoredModel *any `json:"ignored_model,omitempty"`
-	IgnoredProvider *any `json:"ignored_provider,omitempty"`
+	IgnoredModels *any `json:"ignored_models,omitempty"`
+	IgnoredProviders *any `json:"ignored_providers,omitempty"`
 	LimitUsd *any `json:"limit_usd,omitempty"`
 	Name string `json:"name"`
 	ResetInterval *any `json:"reset_interval,omitempty"`
 	UpdatedAt *any `json:"updated_at,omitempty"`
-	WorkspaceId *string `json:"workspace_id,omitempty"`
+	WorkspaceId string `json:"workspace_id"`
 }
 
 // GuardrailRemoveMatch is the typed request payload for Guardrail.RemoveTyped.
@@ -858,7 +1072,7 @@ type Image struct {
 	Background *string `json:"background,omitempty"`
 	Created int `json:"created"`
 	Data []any `json:"data"`
-	InputReference *[]any `json:"input_reference,omitempty"`
+	InputReferences *[]any `json:"input_references,omitempty"`
 	Model string `json:"model"`
 	N *int `json:"n,omitempty"`
 	OutputCompression *int `json:"output_compression,omitempty"`
@@ -879,7 +1093,7 @@ type ImageCreateData struct {
 	Background *string `json:"background,omitempty"`
 	Created int `json:"created"`
 	Data []any `json:"data"`
-	InputReference *[]any `json:"input_reference,omitempty"`
+	InputReferences *[]any `json:"input_references,omitempty"`
 	Model string `json:"model"`
 	N *int `json:"n,omitempty"`
 	OutputCompression *int `json:"output_compression,omitempty"`
@@ -896,12 +1110,12 @@ type ImageCreateData struct {
 
 // ImageModelEndpoint is the typed data model for the image_model_endpoint entity.
 type ImageModelEndpoint struct {
-	AllowedPassthroughParameter []any `json:"allowed_passthrough_parameter"`
+	AllowedPassthroughParameters []any `json:"allowed_passthrough_parameters"`
 	Pricing []any `json:"pricing"`
 	ProviderName string `json:"provider_name"`
 	ProviderSlug string `json:"provider_slug"`
 	ProviderTag any `json:"provider_tag"`
-	SupportedParameter any `json:"supported_parameter"`
+	SupportedParameters any `json:"supported_parameters"`
 	SupportsStreaming bool `json:"supports_streaming"`
 }
 
@@ -916,10 +1130,10 @@ type ImageModelsList struct {
 	Architecture map[string]any `json:"architecture"`
 	Created int `json:"created"`
 	Description string `json:"description"`
-	Endpoint string `json:"endpoint"`
+	Endpoints string `json:"endpoints"`
 	Id string `json:"id"`
 	Name string `json:"name"`
-	SupportedParameter map[string]any `json:"supported_parameter"`
+	SupportedParameters map[string]any `json:"supported_parameters"`
 	SupportsStreaming bool `json:"supports_streaming"`
 }
 
@@ -928,10 +1142,10 @@ type ImageModelsListListMatch struct {
 	Architecture *map[string]any `json:"architecture,omitempty"`
 	Created *int `json:"created,omitempty"`
 	Description *string `json:"description,omitempty"`
-	Endpoint *string `json:"endpoint,omitempty"`
+	Endpoints *string `json:"endpoints,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
-	SupportedParameter *map[string]any `json:"supported_parameter,omitempty"`
+	SupportedParameters *map[string]any `json:"supported_parameters,omitempty"`
 	SupportsStreaming *bool `json:"supports_streaming,omitempty"`
 }
 
@@ -1052,26 +1266,27 @@ type Member struct {
 type Message struct {
 	CacheControl map[string]any `json:"cache_control"`
 	ContextManagement *any `json:"context_management,omitempty"`
-	Fallback *any `json:"fallback,omitempty"`
-	MaxToken *int `json:"max_token,omitempty"`
-	Message any `json:"message"`
+	Fallbacks *any `json:"fallbacks,omitempty"`
+	MaxTokens *int `json:"max_tokens,omitempty"`
+	Messages any `json:"messages"`
 	Metadata *map[string]any `json:"metadata,omitempty"`
 	Model string `json:"model"`
+	Models *[]any `json:"models,omitempty"`
 	OutputConfig *map[string]any `json:"output_config,omitempty"`
-	Plugin *[]any `json:"plugin,omitempty"`
+	Plugins *[]any `json:"plugins,omitempty"`
 	Provider *any `json:"provider,omitempty"`
 	Route *any `json:"route,omitempty"`
 	ServiceTier *string `json:"service_tier,omitempty"`
 	SessionId *string `json:"session_id,omitempty"`
 	Speed *any `json:"speed,omitempty"`
-	StopSequence *[]any `json:"stop_sequence,omitempty"`
+	StopSequences *[]any `json:"stop_sequences,omitempty"`
 	StopServerToolsWhen *[]any `json:"stop_server_tools_when,omitempty"`
 	Stream *bool `json:"stream,omitempty"`
 	System *any `json:"system,omitempty"`
 	Temperature *float64 `json:"temperature,omitempty"`
 	Thinking *any `json:"thinking,omitempty"`
-	Tool *[]any `json:"tool,omitempty"`
 	ToolChoice *any `json:"tool_choice,omitempty"`
+	Tools *[]any `json:"tools,omitempty"`
 	TopK *int `json:"top_k,omitempty"`
 	TopP *float64 `json:"top_p,omitempty"`
 	Trace *map[string]any `json:"trace,omitempty"`
@@ -1082,26 +1297,27 @@ type Message struct {
 type MessageCreateData struct {
 	CacheControl map[string]any `json:"cache_control"`
 	ContextManagement *any `json:"context_management,omitempty"`
-	Fallback *any `json:"fallback,omitempty"`
-	MaxToken *int `json:"max_token,omitempty"`
-	Message any `json:"message"`
+	Fallbacks *any `json:"fallbacks,omitempty"`
+	MaxTokens *int `json:"max_tokens,omitempty"`
+	Messages any `json:"messages"`
 	Metadata *map[string]any `json:"metadata,omitempty"`
 	Model string `json:"model"`
+	Models *[]any `json:"models,omitempty"`
 	OutputConfig *map[string]any `json:"output_config,omitempty"`
-	Plugin *[]any `json:"plugin,omitempty"`
+	Plugins *[]any `json:"plugins,omitempty"`
 	Provider *any `json:"provider,omitempty"`
 	Route *any `json:"route,omitempty"`
 	ServiceTier *string `json:"service_tier,omitempty"`
 	SessionId *string `json:"session_id,omitempty"`
 	Speed *any `json:"speed,omitempty"`
-	StopSequence *[]any `json:"stop_sequence,omitempty"`
+	StopSequences *[]any `json:"stop_sequences,omitempty"`
 	StopServerToolsWhen *[]any `json:"stop_server_tools_when,omitempty"`
 	Stream *bool `json:"stream,omitempty"`
 	System *any `json:"system,omitempty"`
 	Temperature *float64 `json:"temperature,omitempty"`
 	Thinking *any `json:"thinking,omitempty"`
-	Tool *[]any `json:"tool,omitempty"`
 	ToolChoice *any `json:"tool_choice,omitempty"`
+	Tools *[]any `json:"tools,omitempty"`
 	TopK *int `json:"top_k,omitempty"`
 	TopP *float64 `json:"top_p,omitempty"`
 	Trace *map[string]any `json:"trace,omitempty"`
@@ -1115,24 +1331,23 @@ type Meta struct {
 // Model is the typed data model for the model entity.
 type Model struct {
 	Architecture map[string]any `json:"architecture"`
-	Benchmark map[string]any `json:"benchmark"`
+	Benchmarks map[string]any `json:"benchmarks"`
 	CanonicalSlug string `json:"canonical_slug"`
 	ContextLength any `json:"context_length"`
 	Created int `json:"created"`
-	Data map[string]any `json:"data"`
-	DefaultParameter any `json:"default_parameter"`
+	DefaultParameters any `json:"default_parameters"`
 	Description *string `json:"description,omitempty"`
 	ExpirationDate *any `json:"expiration_date,omitempty"`
 	HuggingFaceId *any `json:"hugging_face_id,omitempty"`
 	Id string `json:"id"`
 	KnowledgeCutoff *any `json:"knowledge_cutoff,omitempty"`
-	Link map[string]any `json:"link"`
+	Links map[string]any `json:"links"`
 	Name string `json:"name"`
-	PerRequestLimit any `json:"per_request_limit"`
+	PerRequestLimits any `json:"per_request_limits"`
 	Pricing map[string]any `json:"pricing"`
 	Reasoning map[string]any `json:"reasoning"`
-	SupportedParameter []any `json:"supported_parameter"`
-	SupportedVoice any `json:"supported_voice"`
+	SupportedParameters []any `json:"supported_parameters"`
+	SupportedVoices any `json:"supported_voices"`
 	TopProvider map[string]any `json:"top_provider"`
 }
 
@@ -1145,92 +1360,93 @@ type ModelLoadMatch struct {
 // ModelListMatch is the typed request payload for Model.ListTyped.
 type ModelListMatch struct {
 	Architecture *map[string]any `json:"architecture,omitempty"`
-	Benchmark *map[string]any `json:"benchmark,omitempty"`
+	Benchmarks *map[string]any `json:"benchmarks,omitempty"`
 	CanonicalSlug *string `json:"canonical_slug,omitempty"`
 	ContextLength *any `json:"context_length,omitempty"`
 	Created *int `json:"created,omitempty"`
-	Data *map[string]any `json:"data,omitempty"`
-	DefaultParameter *any `json:"default_parameter,omitempty"`
+	DefaultParameters *any `json:"default_parameters,omitempty"`
 	Description *string `json:"description,omitempty"`
 	ExpirationDate *any `json:"expiration_date,omitempty"`
 	HuggingFaceId *any `json:"hugging_face_id,omitempty"`
 	Id *string `json:"id,omitempty"`
 	KnowledgeCutoff *any `json:"knowledge_cutoff,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
-	PerRequestLimit *any `json:"per_request_limit,omitempty"`
+	PerRequestLimits *any `json:"per_request_limits,omitempty"`
 	Pricing *map[string]any `json:"pricing,omitempty"`
 	Reasoning *map[string]any `json:"reasoning,omitempty"`
-	SupportedParameter *[]any `json:"supported_parameter,omitempty"`
-	SupportedVoice *any `json:"supported_voice,omitempty"`
+	SupportedParameters *[]any `json:"supported_parameters,omitempty"`
+	SupportedVoices *any `json:"supported_voices,omitempty"`
 	TopProvider *map[string]any `json:"top_provider,omitempty"`
 }
 
 // ModelsCount is the typed data model for the models_count entity.
 type ModelsCount struct {
-	Data map[string]any `json:"data"`
+	Count int `json:"count"`
 }
 
 // ModelsCountLoadMatch is the typed request payload for ModelsCount.LoadTyped.
 type ModelsCountLoadMatch struct {
-	Data *map[string]any `json:"data,omitempty"`
+	Count *int `json:"count,omitempty"`
 }
 
 // ModelsList is the typed data model for the models_list entity.
 type ModelsList struct {
 	Architecture map[string]any `json:"architecture"`
-	Benchmark map[string]any `json:"benchmark"`
+	Benchmarks map[string]any `json:"benchmarks"`
 	CanonicalSlug string `json:"canonical_slug"`
 	ContextLength any `json:"context_length"`
 	Created int `json:"created"`
-	DefaultParameter any `json:"default_parameter"`
+	DefaultParameters any `json:"default_parameters"`
 	Description *string `json:"description,omitempty"`
 	ExpirationDate *any `json:"expiration_date,omitempty"`
 	HuggingFaceId *any `json:"hugging_face_id,omitempty"`
 	Id string `json:"id"`
 	KnowledgeCutoff *any `json:"knowledge_cutoff,omitempty"`
-	Link map[string]any `json:"link"`
+	Links map[string]any `json:"links"`
 	Name string `json:"name"`
-	PerRequestLimit any `json:"per_request_limit"`
+	PerRequestLimits any `json:"per_request_limits"`
 	Pricing map[string]any `json:"pricing"`
 	Reasoning map[string]any `json:"reasoning"`
-	SupportedParameter []any `json:"supported_parameter"`
-	SupportedVoice any `json:"supported_voice"`
+	SupportedParameters []any `json:"supported_parameters"`
+	SupportedVoices any `json:"supported_voices"`
 	TopProvider map[string]any `json:"top_provider"`
 }
 
 // ModelsListListMatch is the typed request payload for ModelsList.ListTyped.
 type ModelsListListMatch struct {
 	Architecture *map[string]any `json:"architecture,omitempty"`
-	Benchmark *map[string]any `json:"benchmark,omitempty"`
+	Benchmarks *map[string]any `json:"benchmarks,omitempty"`
 	CanonicalSlug *string `json:"canonical_slug,omitempty"`
 	ContextLength *any `json:"context_length,omitempty"`
 	Created *int `json:"created,omitempty"`
-	DefaultParameter *any `json:"default_parameter,omitempty"`
+	DefaultParameters *any `json:"default_parameters,omitempty"`
 	Description *string `json:"description,omitempty"`
 	ExpirationDate *any `json:"expiration_date,omitempty"`
 	HuggingFaceId *any `json:"hugging_face_id,omitempty"`
 	Id *string `json:"id,omitempty"`
 	KnowledgeCutoff *any `json:"knowledge_cutoff,omitempty"`
-	Link *map[string]any `json:"link,omitempty"`
+	Links *map[string]any `json:"links,omitempty"`
 	Name *string `json:"name,omitempty"`
-	PerRequestLimit *any `json:"per_request_limit,omitempty"`
+	PerRequestLimits *any `json:"per_request_limits,omitempty"`
 	Pricing *map[string]any `json:"pricing,omitempty"`
 	Reasoning *map[string]any `json:"reasoning,omitempty"`
-	SupportedParameter *[]any `json:"supported_parameter,omitempty"`
-	SupportedVoice *any `json:"supported_voice,omitempty"`
+	SupportedParameters *[]any `json:"supported_parameters,omitempty"`
+	SupportedVoices *any `json:"supported_voices,omitempty"`
 	TopProvider *map[string]any `json:"top_provider,omitempty"`
 }
 
 // OAuth is the typed data model for the o_auth entity.
 type OAuth struct {
+	AppId int `json:"app_id"`
 	CallbackUrl string `json:"callback_url"`
 	Code string `json:"code"`
 	CodeChallenge *string `json:"code_challenge,omitempty"`
 	CodeChallengeMethod *any `json:"code_challenge_method,omitempty"`
 	CodeVerifier *string `json:"code_verifier,omitempty"`
-	Data map[string]any `json:"data"`
+	CreatedAt string `json:"created_at"`
 	ExpiresAt *any `json:"expires_at,omitempty"`
+	Id string `json:"id"`
 	Key string `json:"key"`
 	KeyLabel *string `json:"key_label,omitempty"`
 	Limit *float64 `json:"limit,omitempty"`
@@ -1243,13 +1459,15 @@ type OAuth struct {
 
 // OAuthCreateData is the typed request payload for OAuth.CreateTyped.
 type OAuthCreateData struct {
+	AppId int `json:"app_id"`
 	CallbackUrl string `json:"callback_url"`
 	Code string `json:"code"`
 	CodeChallenge *string `json:"code_challenge,omitempty"`
 	CodeChallengeMethod *any `json:"code_challenge_method,omitempty"`
 	CodeVerifier *string `json:"code_verifier,omitempty"`
-	Data map[string]any `json:"data"`
+	CreatedAt string `json:"created_at"`
 	ExpiresAt *any `json:"expires_at,omitempty"`
+	Id string `json:"id"`
 	Key string `json:"key"`
 	KeyLabel *string `json:"key_label,omitempty"`
 	Limit *float64 `json:"limit,omitempty"`
@@ -1262,7 +1480,7 @@ type OAuthCreateData struct {
 
 // ObservabilityDestination is the typed data model for the observability_destination entity.
 type ObservabilityDestination struct {
-	Data any `json:"data"`
+	Data *map[string]any `json:"data,omitempty"`
 }
 
 // ObservabilityDestinationLoadMatch is the typed request payload for ObservabilityDestination.LoadTyped.
@@ -1284,19 +1502,20 @@ type OpenResponsesResult struct {
 	ImageConfig *map[string]any `json:"image_config,omitempty"`
 	Include *any `json:"include,omitempty"`
 	Input *any `json:"input,omitempty"`
-	Instruction *any `json:"instruction,omitempty"`
-	MaxOutputToken *any `json:"max_output_token,omitempty"`
-	MaxToolCall *any `json:"max_tool_call,omitempty"`
+	Instructions *any `json:"instructions,omitempty"`
+	MaxOutputTokens *any `json:"max_output_tokens,omitempty"`
+	MaxToolCalls *any `json:"max_tool_calls,omitempty"`
 	Metadata *any `json:"metadata,omitempty"`
-	Modality *[]any `json:"modality,omitempty"`
+	Modalities *[]any `json:"modalities,omitempty"`
 	Model *string `json:"model,omitempty"`
-	ParallelToolCall *any `json:"parallel_tool_call,omitempty"`
-	Plugin *[]any `json:"plugin,omitempty"`
+	Models *[]any `json:"models,omitempty"`
+	ParallelToolCalls *any `json:"parallel_tool_calls,omitempty"`
+	Plugins *[]any `json:"plugins,omitempty"`
 	PresencePenalty *any `json:"presence_penalty,omitempty"`
 	PreviousResponseId *string `json:"previous_response_id,omitempty"`
 	Prompt any `json:"prompt"`
 	PromptCacheKey *any `json:"prompt_cache_key,omitempty"`
-	PromptCacheOption any `json:"prompt_cache_option"`
+	PromptCacheOptions any `json:"prompt_cache_options"`
 	Provider *any `json:"provider,omitempty"`
 	Reasoning *any `json:"reasoning,omitempty"`
 	Route *any `json:"route,omitempty"`
@@ -1308,10 +1527,10 @@ type OpenResponsesResult struct {
 	Stream *bool `json:"stream,omitempty"`
 	Temperature *any `json:"temperature,omitempty"`
 	Text *any `json:"text,omitempty"`
-	Tool *[]any `json:"tool,omitempty"`
 	ToolChoice *any `json:"tool_choice,omitempty"`
+	Tools *[]any `json:"tools,omitempty"`
 	TopK *int `json:"top_k,omitempty"`
-	TopLogprob *any `json:"top_logprob,omitempty"`
+	TopLogprobs *any `json:"top_logprobs,omitempty"`
 	TopP *any `json:"top_p,omitempty"`
 	Trace *map[string]any `json:"trace,omitempty"`
 	Truncation *any `json:"truncation,omitempty"`
@@ -1327,19 +1546,20 @@ type OpenResponsesResultCreateData struct {
 	ImageConfig *map[string]any `json:"image_config,omitempty"`
 	Include *any `json:"include,omitempty"`
 	Input *any `json:"input,omitempty"`
-	Instruction *any `json:"instruction,omitempty"`
-	MaxOutputToken *any `json:"max_output_token,omitempty"`
-	MaxToolCall *any `json:"max_tool_call,omitempty"`
+	Instructions *any `json:"instructions,omitempty"`
+	MaxOutputTokens *any `json:"max_output_tokens,omitempty"`
+	MaxToolCalls *any `json:"max_tool_calls,omitempty"`
 	Metadata *any `json:"metadata,omitempty"`
-	Modality *[]any `json:"modality,omitempty"`
+	Modalities *[]any `json:"modalities,omitempty"`
 	Model *string `json:"model,omitempty"`
-	ParallelToolCall *any `json:"parallel_tool_call,omitempty"`
-	Plugin *[]any `json:"plugin,omitempty"`
+	Models *[]any `json:"models,omitempty"`
+	ParallelToolCalls *any `json:"parallel_tool_calls,omitempty"`
+	Plugins *[]any `json:"plugins,omitempty"`
 	PresencePenalty *any `json:"presence_penalty,omitempty"`
 	PreviousResponseId *string `json:"previous_response_id,omitempty"`
 	Prompt any `json:"prompt"`
 	PromptCacheKey *any `json:"prompt_cache_key,omitempty"`
-	PromptCacheOption any `json:"prompt_cache_option"`
+	PromptCacheOptions any `json:"prompt_cache_options"`
 	Provider *any `json:"provider,omitempty"`
 	Reasoning *any `json:"reasoning,omitempty"`
 	Route *any `json:"route,omitempty"`
@@ -1351,10 +1571,10 @@ type OpenResponsesResultCreateData struct {
 	Stream *bool `json:"stream,omitempty"`
 	Temperature *any `json:"temperature,omitempty"`
 	Text *any `json:"text,omitempty"`
-	Tool *[]any `json:"tool,omitempty"`
 	ToolChoice *any `json:"tool_choice,omitempty"`
+	Tools *[]any `json:"tools,omitempty"`
 	TopK *int `json:"top_k,omitempty"`
-	TopLogprob *any `json:"top_logprob,omitempty"`
+	TopLogprobs *any `json:"top_logprobs,omitempty"`
 	TopP *any `json:"top_p,omitempty"`
 	Trace *map[string]any `json:"trace,omitempty"`
 	Truncation *any `json:"truncation,omitempty"`
@@ -1383,8 +1603,8 @@ type OrganizationListMatch struct {
 type Preset struct {
 	CreatedAt string `json:"created_at"`
 	CreatorUserId any `json:"creator_user_id"`
-	Data any `json:"data"`
 	Description any `json:"description"`
+	DesignatedVersion any `json:"designated_version"`
 	DesignatedVersionId any `json:"designated_version_id"`
 	Id string `json:"id"`
 	Name string `json:"name"`
@@ -1404,8 +1624,8 @@ type PresetLoadMatch struct {
 type PresetListMatch struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatorUserId *any `json:"creator_user_id,omitempty"`
-	Data *any `json:"data,omitempty"`
 	Description *any `json:"description,omitempty"`
+	DesignatedVersion *any `json:"designated_version,omitempty"`
 	DesignatedVersionId *any `json:"designated_version_id,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -1418,7 +1638,14 @@ type PresetListMatch struct {
 
 // PresetVersion is the typed data model for the preset_version entity.
 type PresetVersion struct {
-	Data any `json:"data"`
+	Config map[string]any `json:"config"`
+	CreatedAt string `json:"created_at"`
+	CreatorId string `json:"creator_id"`
+	Id string `json:"id"`
+	PresetId string `json:"preset_id"`
+	SystemPrompt any `json:"system_prompt"`
+	UpdatedAt string `json:"updated_at"`
+	Version int `json:"version"`
 }
 
 // PresetVersionLoadMatch is the typed request payload for PresetVersion.LoadTyped.
@@ -1429,8 +1656,8 @@ type PresetVersionLoadMatch struct {
 
 // Provider is the typed data model for the provider entity.
 type Provider struct {
-	Datacenter *any `json:"datacenter,omitempty"`
-	Headquarter *any `json:"headquarter,omitempty"`
+	Datacenters *any `json:"datacenters,omitempty"`
+	Headquarters *any `json:"headquarters,omitempty"`
 	Name string `json:"name"`
 	PrivacyPolicyUrl any `json:"privacy_policy_url"`
 	Slug string `json:"slug"`
@@ -1440,8 +1667,8 @@ type Provider struct {
 
 // ProviderListMatch is the typed request payload for Provider.ListTyped.
 type ProviderListMatch struct {
-	Datacenter *any `json:"datacenter,omitempty"`
-	Headquarter *any `json:"headquarter,omitempty"`
+	Datacenters *any `json:"datacenters,omitempty"`
+	Headquarters *any `json:"headquarters,omitempty"`
 	Name *string `json:"name,omitempty"`
 	PrivacyPolicyUrl *any `json:"privacy_policy_url,omitempty"`
 	Slug *string `json:"slug,omitempty"`
@@ -1457,14 +1684,14 @@ type Query struct {
 type RankingsDaily struct {
 	Date string `json:"date"`
 	ModelPermaslug string `json:"model_permaslug"`
-	TotalToken string `json:"total_token"`
+	TotalTokens string `json:"total_tokens"`
 }
 
 // RankingsDailyListMatch is the typed request payload for RankingsDaily.ListTyped.
 type RankingsDailyListMatch struct {
 	Date *string `json:"date,omitempty"`
 	ModelPermaslug *string `json:"model_permaslug,omitempty"`
-	TotalToken *string `json:"total_token,omitempty"`
+	TotalTokens *string `json:"total_tokens,omitempty"`
 }
 
 // Remove is the typed data model for the remove entity.
@@ -1473,24 +1700,24 @@ type Remove struct {
 
 // Rerank is the typed data model for the rerank entity.
 type Rerank struct {
-	Document []any `json:"document"`
+	Documents []any `json:"documents"`
 	Id *string `json:"id,omitempty"`
 	Model string `json:"model"`
 	Provider *string `json:"provider,omitempty"`
 	Query string `json:"query"`
-	Result []any `json:"result"`
+	Results []any `json:"results"`
 	TopN *int `json:"top_n,omitempty"`
 	Usage *map[string]any `json:"usage,omitempty"`
 }
 
 // RerankCreateData is the typed request payload for Rerank.CreateTyped.
 type RerankCreateData struct {
-	Document []any `json:"document"`
+	Documents []any `json:"documents"`
 	Id *string `json:"id,omitempty"`
 	Model string `json:"model"`
 	Provider *string `json:"provider,omitempty"`
 	Query string `json:"query"`
-	Result []any `json:"result"`
+	Results []any `json:"results"`
 	TopN *int `json:"top_n,omitempty"`
 	Usage *map[string]any `json:"usage,omitempty"`
 }
@@ -1511,13 +1738,13 @@ type Stt struct {
 	Model string `json:"model"`
 	Provider *map[string]any `json:"provider,omitempty"`
 	ResponseFormat *string `json:"response_format,omitempty"`
-	Segment *[]any `json:"segment,omitempty"`
+	Segments *[]any `json:"segments,omitempty"`
 	Task *string `json:"task,omitempty"`
 	Temperature *float64 `json:"temperature,omitempty"`
 	Text string `json:"text"`
-	TimestampGranularity *[]any `json:"timestamp_granularity,omitempty"`
+	TimestampGranularities *[]any `json:"timestamp_granularities,omitempty"`
 	Usage *map[string]any `json:"usage,omitempty"`
-	Word *[]any `json:"word,omitempty"`
+	Words *[]any `json:"words,omitempty"`
 }
 
 // SttCreateData is the typed request payload for Stt.CreateTyped.
@@ -1528,39 +1755,45 @@ type SttCreateData struct {
 	Model string `json:"model"`
 	Provider *map[string]any `json:"provider,omitempty"`
 	ResponseFormat *string `json:"response_format,omitempty"`
-	Segment *[]any `json:"segment,omitempty"`
+	Segments *[]any `json:"segments,omitempty"`
 	Task *string `json:"task,omitempty"`
 	Temperature *float64 `json:"temperature,omitempty"`
 	Text string `json:"text"`
-	TimestampGranularity *[]any `json:"timestamp_granularity,omitempty"`
+	TimestampGranularities *[]any `json:"timestamp_granularities,omitempty"`
 	Usage *map[string]any `json:"usage,omitempty"`
-	Word *[]any `json:"word,omitempty"`
+	Words *[]any `json:"words,omitempty"`
 }
 
 // SubmitGenerationFeedback is the typed data model for the submit_generation_feedback entity.
 type SubmitGenerationFeedback struct {
 	Category string `json:"category"`
 	Comment *string `json:"comment,omitempty"`
-	Data map[string]any `json:"data"`
 	GenerationId string `json:"generation_id"`
+	Success bool `json:"success"`
 }
 
 // SubmitGenerationFeedbackCreateData is the typed request payload for SubmitGenerationFeedback.CreateTyped.
 type SubmitGenerationFeedbackCreateData struct {
 	Category string `json:"category"`
 	Comment *string `json:"comment,omitempty"`
-	Data map[string]any `json:"data"`
 	GenerationId string `json:"generation_id"`
+	Success bool `json:"success"`
 }
 
 // Task is the typed data model for the task entity.
 type Task struct {
-	Data map[string]any `json:"data"`
+	AsOf string `json:"as_of"`
+	Classifications []any `json:"classifications"`
+	MacroCategories []any `json:"macro_categories"`
+	WindowDays int `json:"window_days"`
 }
 
 // TaskLoadMatch is the typed request payload for Task.LoadTyped.
 type TaskLoadMatch struct {
-	Data *map[string]any `json:"data,omitempty"`
+	AsOf *string `json:"as_of,omitempty"`
+	Classifications *[]any `json:"classifications,omitempty"`
+	MacroCategories *[]any `json:"macro_categories,omitempty"`
+	WindowDays *int `json:"window_days,omitempty"`
 }
 
 // Transcription is the typed data model for the transcription entity.
@@ -1601,9 +1834,8 @@ type UnifiedBenchmarkListMatch struct {
 
 // UpdateByokKey is the typed data model for the update_byok_key entity.
 type UpdateByokKey struct {
-	AllowedModel *any `json:"allowed_model,omitempty"`
-	AllowedUserId *any `json:"allowed_user_id,omitempty"`
-	Data any `json:"data"`
+	AllowedModels *any `json:"allowed_models,omitempty"`
+	AllowedUserIds *any `json:"allowed_user_ids,omitempty"`
 	Disabled *bool `json:"disabled,omitempty"`
 	IsFallback *bool `json:"is_fallback,omitempty"`
 	Key *string `json:"key,omitempty"`
@@ -1613,15 +1845,20 @@ type UpdateByokKey struct {
 // UpdateByokKeyUpdateData is the typed request payload for UpdateByokKey.UpdateTyped.
 type UpdateByokKeyUpdateData struct {
 	Id string `json:"id"`
+	AllowedModels *any `json:"allowed_models,omitempty"`
+	AllowedUserIds *any `json:"allowed_user_ids,omitempty"`
+	Disabled *bool `json:"disabled,omitempty"`
+	IsFallback *bool `json:"is_fallback,omitempty"`
+	Key *string `json:"key,omitempty"`
+	Name *any `json:"name,omitempty"`
 }
 
 // UpdateGuardrail is the typed data model for the update_guardrail entity.
 type UpdateGuardrail struct {
-	AllowedModel *any `json:"allowed_model,omitempty"`
-	AllowedProvider *any `json:"allowed_provider,omitempty"`
-	ContentFilter *any `json:"content_filter,omitempty"`
-	ContentFilterBuiltin *any `json:"content_filter_builtin,omitempty"`
-	Data any `json:"data"`
+	AllowedModels *any `json:"allowed_models,omitempty"`
+	AllowedProviders *any `json:"allowed_providers,omitempty"`
+	ContentFilterBuiltins *any `json:"content_filter_builtins,omitempty"`
+	ContentFilters *any `json:"content_filters,omitempty"`
 	Description *any `json:"description,omitempty"`
 	EnforceZdr *any `json:"enforce_zdr,omitempty"`
 	EnforceZdrAnthropic *any `json:"enforce_zdr_anthropic,omitempty"`
@@ -1629,8 +1866,8 @@ type UpdateGuardrail struct {
 	EnforceZdrOpenai *any `json:"enforce_zdr_openai,omitempty"`
 	EnforceZdrOther *any `json:"enforce_zdr_other,omitempty"`
 	EnforceZdrXai *any `json:"enforce_zdr_xai,omitempty"`
-	IgnoredModel *any `json:"ignored_model,omitempty"`
-	IgnoredProvider *any `json:"ignored_provider,omitempty"`
+	IgnoredModels *any `json:"ignored_models,omitempty"`
+	IgnoredProviders *any `json:"ignored_providers,omitempty"`
 	LimitUsd *any `json:"limit_usd,omitempty"`
 	Name *string `json:"name,omitempty"`
 	ResetInterval *any `json:"reset_interval,omitempty"`
@@ -1639,15 +1876,30 @@ type UpdateGuardrail struct {
 // UpdateGuardrailUpdateData is the typed request payload for UpdateGuardrail.UpdateTyped.
 type UpdateGuardrailUpdateData struct {
 	Id string `json:"id"`
+	AllowedModels *any `json:"allowed_models,omitempty"`
+	AllowedProviders *any `json:"allowed_providers,omitempty"`
+	ContentFilterBuiltins *any `json:"content_filter_builtins,omitempty"`
+	ContentFilters *any `json:"content_filters,omitempty"`
+	Description *any `json:"description,omitempty"`
+	EnforceZdr *any `json:"enforce_zdr,omitempty"`
+	EnforceZdrAnthropic *any `json:"enforce_zdr_anthropic,omitempty"`
+	EnforceZdrGoogle *any `json:"enforce_zdr_google,omitempty"`
+	EnforceZdrOpenai *any `json:"enforce_zdr_openai,omitempty"`
+	EnforceZdrOther *any `json:"enforce_zdr_other,omitempty"`
+	EnforceZdrXai *any `json:"enforce_zdr_xai,omitempty"`
+	IgnoredModels *any `json:"ignored_models,omitempty"`
+	IgnoredProviders *any `json:"ignored_providers,omitempty"`
+	LimitUsd *any `json:"limit_usd,omitempty"`
+	Name *string `json:"name,omitempty"`
+	ResetInterval *any `json:"reset_interval,omitempty"`
 }
 
 // UpdateObservabilityDestination is the typed data model for the update_observability_destination entity.
 type UpdateObservabilityDestination struct {
-	ApiKeyHash *any `json:"api_key_hash,omitempty"`
+	ApiKeyHashes *any `json:"api_key_hashes,omitempty"`
 	Config *map[string]any `json:"config,omitempty"`
-	Data any `json:"data"`
 	Enabled *bool `json:"enabled,omitempty"`
-	FilterRule *any `json:"filter_rule,omitempty"`
+	FilterRules *any `json:"filter_rules,omitempty"`
 	Name *string `json:"name,omitempty"`
 	PrivacyMode *bool `json:"privacy_mode,omitempty"`
 	SamplingRate *float64 `json:"sampling_rate,omitempty"`
@@ -1656,19 +1908,25 @@ type UpdateObservabilityDestination struct {
 // UpdateObservabilityDestinationUpdateData is the typed request payload for UpdateObservabilityDestination.UpdateTyped.
 type UpdateObservabilityDestinationUpdateData struct {
 	Id string `json:"id"`
+	ApiKeyHashes *any `json:"api_key_hashes,omitempty"`
+	Config *map[string]any `json:"config,omitempty"`
+	Enabled *bool `json:"enabled,omitempty"`
+	FilterRules *any `json:"filter_rules,omitempty"`
+	Name *string `json:"name,omitempty"`
+	PrivacyMode *bool `json:"privacy_mode,omitempty"`
+	SamplingRate *float64 `json:"sampling_rate,omitempty"`
 }
 
 // UpdateWorkspace is the typed data model for the update_workspace entity.
 type UpdateWorkspace struct {
 	CreatedAt string `json:"created_at"`
 	CreatedBy any `json:"created_by"`
-	Data any `json:"data"`
 	DefaultImageModel *any `json:"default_image_model,omitempty"`
 	DefaultProviderSort *any `json:"default_provider_sort,omitempty"`
 	DefaultTextModel *any `json:"default_text_model,omitempty"`
 	Description *any `json:"description,omitempty"`
 	Id string `json:"id"`
-	IoLoggingApiKeyId *any `json:"io_logging_api_key_id,omitempty"`
+	IoLoggingApiKeyIds *any `json:"io_logging_api_key_ids,omitempty"`
 	IoLoggingSamplingRate *float64 `json:"io_logging_sampling_rate,omitempty"`
 	IsDataDiscountLoggingEnabled *bool `json:"is_data_discount_logging_enabled,omitempty"`
 	IsObservabilityBroadcastEnabled *bool `json:"is_observability_broadcast_enabled,omitempty"`
@@ -1682,13 +1940,12 @@ type UpdateWorkspace struct {
 type UpdateWorkspaceListMatch struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *any `json:"created_by,omitempty"`
-	Data *any `json:"data,omitempty"`
 	DefaultImageModel *any `json:"default_image_model,omitempty"`
 	DefaultProviderSort *any `json:"default_provider_sort,omitempty"`
 	DefaultTextModel *any `json:"default_text_model,omitempty"`
 	Description *any `json:"description,omitempty"`
 	Id *string `json:"id,omitempty"`
-	IoLoggingApiKeyId *any `json:"io_logging_api_key_id,omitempty"`
+	IoLoggingApiKeyIds *any `json:"io_logging_api_key_ids,omitempty"`
 	IoLoggingSamplingRate *float64 `json:"io_logging_sampling_rate,omitempty"`
 	IsDataDiscountLoggingEnabled *bool `json:"is_data_discount_logging_enabled,omitempty"`
 	IsObservabilityBroadcastEnabled *bool `json:"is_observability_broadcast_enabled,omitempty"`
@@ -1702,13 +1959,12 @@ type UpdateWorkspaceListMatch struct {
 type UpdateWorkspaceCreateData struct {
 	CreatedAt string `json:"created_at"`
 	CreatedBy any `json:"created_by"`
-	Data any `json:"data"`
 	DefaultImageModel *any `json:"default_image_model,omitempty"`
 	DefaultProviderSort *any `json:"default_provider_sort,omitempty"`
 	DefaultTextModel *any `json:"default_text_model,omitempty"`
 	Description *any `json:"description,omitempty"`
 	Id string `json:"id"`
-	IoLoggingApiKeyId *any `json:"io_logging_api_key_id,omitempty"`
+	IoLoggingApiKeyIds *any `json:"io_logging_api_key_ids,omitempty"`
 	IoLoggingSamplingRate *float64 `json:"io_logging_sampling_rate,omitempty"`
 	IsDataDiscountLoggingEnabled *bool `json:"is_data_discount_logging_enabled,omitempty"`
 	IsObservabilityBroadcastEnabled *bool `json:"is_observability_broadcast_enabled,omitempty"`
@@ -1721,11 +1977,24 @@ type UpdateWorkspaceCreateData struct {
 // UpdateWorkspaceUpdateData is the typed request payload for UpdateWorkspace.UpdateTyped.
 type UpdateWorkspaceUpdateData struct {
 	Id string `json:"id"`
+	CreatedAt *string `json:"created_at,omitempty"`
+	CreatedBy *any `json:"created_by,omitempty"`
+	DefaultImageModel *any `json:"default_image_model,omitempty"`
+	DefaultProviderSort *any `json:"default_provider_sort,omitempty"`
+	DefaultTextModel *any `json:"default_text_model,omitempty"`
+	Description *any `json:"description,omitempty"`
+	IoLoggingApiKeyIds *any `json:"io_logging_api_key_ids,omitempty"`
+	IoLoggingSamplingRate *float64 `json:"io_logging_sampling_rate,omitempty"`
+	IsDataDiscountLoggingEnabled *bool `json:"is_data_discount_logging_enabled,omitempty"`
+	IsObservabilityBroadcastEnabled *bool `json:"is_observability_broadcast_enabled,omitempty"`
+	IsObservabilityIoLoggingEnabled *bool `json:"is_observability_io_logging_enabled,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Slug *string `json:"slug,omitempty"`
+	UpdatedAt *any `json:"updated_at,omitempty"`
 }
 
 // UpsertWorkspaceBudget is the typed data model for the upsert_workspace_budget entity.
 type UpsertWorkspaceBudget struct {
-	Data any `json:"data"`
 	LimitUsd float64 `json:"limit_usd"`
 }
 
@@ -1733,6 +2002,7 @@ type UpsertWorkspaceBudget struct {
 type UpsertWorkspaceBudgetUpdateData struct {
 	Id string `json:"id"`
 	WorkspaceId string `json:"workspace_id"`
+	LimitUsd *float64 `json:"limit_usd,omitempty"`
 }
 
 // User is the typed data model for the user entity.
@@ -1749,11 +2019,11 @@ type Video struct {
 	CallbackUrl *string `json:"callback_url,omitempty"`
 	Duration *int `json:"duration,omitempty"`
 	Error *string `json:"error,omitempty"`
-	FrameImage *[]any `json:"frame_image,omitempty"`
+	FrameImages *[]any `json:"frame_images,omitempty"`
 	GenerateAudio *bool `json:"generate_audio,omitempty"`
 	GenerationId *string `json:"generation_id,omitempty"`
 	Id string `json:"id"`
-	InputReference *[]any `json:"input_reference,omitempty"`
+	InputReferences *[]any `json:"input_references,omitempty"`
 	Model string `json:"model"`
 	PollingUrl string `json:"polling_url"`
 	Prompt *string `json:"prompt,omitempty"`
@@ -1762,7 +2032,7 @@ type Video struct {
 	Seed *int `json:"seed,omitempty"`
 	Size *string `json:"size,omitempty"`
 	Status string `json:"status"`
-	UnsignedUrl *[]any `json:"unsigned_url,omitempty"`
+	UnsignedUrls *[]any `json:"unsigned_urls,omitempty"`
 	Usage *map[string]any `json:"usage,omitempty"`
 }
 
@@ -1777,11 +2047,11 @@ type VideoCreateData struct {
 	CallbackUrl *string `json:"callback_url,omitempty"`
 	Duration *int `json:"duration,omitempty"`
 	Error *string `json:"error,omitempty"`
-	FrameImage *[]any `json:"frame_image,omitempty"`
+	FrameImages *[]any `json:"frame_images,omitempty"`
 	GenerateAudio *bool `json:"generate_audio,omitempty"`
 	GenerationId *string `json:"generation_id,omitempty"`
 	Id string `json:"id"`
-	InputReference *[]any `json:"input_reference,omitempty"`
+	InputReferences *[]any `json:"input_references,omitempty"`
 	Model string `json:"model"`
 	PollingUrl string `json:"polling_url"`
 	Prompt *string `json:"prompt,omitempty"`
@@ -1790,7 +2060,7 @@ type VideoCreateData struct {
 	Seed *int `json:"seed,omitempty"`
 	Size *string `json:"size,omitempty"`
 	Status string `json:"status"`
-	UnsignedUrl *[]any `json:"unsigned_url,omitempty"`
+	UnsignedUrls *[]any `json:"unsigned_urls,omitempty"`
 	Usage *map[string]any `json:"usage,omitempty"`
 }
 
@@ -1805,7 +2075,7 @@ type VideoGenerationLoadMatch struct {
 
 // VideoModelsList is the typed data model for the video_models_list entity.
 type VideoModelsList struct {
-	AllowedPassthroughParameter []any `json:"allowed_passthrough_parameter"`
+	AllowedPassthroughParameters []any `json:"allowed_passthrough_parameters"`
 	CanonicalSlug string `json:"canonical_slug"`
 	Created int `json:"created"`
 	Description *string `json:"description,omitempty"`
@@ -1815,16 +2085,16 @@ type VideoModelsList struct {
 	Name string `json:"name"`
 	PricingSkus *any `json:"pricing_skus,omitempty"`
 	Seed any `json:"seed"`
-	SupportedAspectRatio any `json:"supported_aspect_ratio"`
-	SupportedDuration any `json:"supported_duration"`
-	SupportedFrameImage any `json:"supported_frame_image"`
-	SupportedResolution any `json:"supported_resolution"`
-	SupportedSize any `json:"supported_size"`
+	SupportedAspectRatios any `json:"supported_aspect_ratios"`
+	SupportedDurations any `json:"supported_durations"`
+	SupportedFrameImages any `json:"supported_frame_images"`
+	SupportedResolutions any `json:"supported_resolutions"`
+	SupportedSizes any `json:"supported_sizes"`
 }
 
 // VideoModelsListListMatch is the typed request payload for VideoModelsList.ListTyped.
 type VideoModelsListListMatch struct {
-	AllowedPassthroughParameter *[]any `json:"allowed_passthrough_parameter,omitempty"`
+	AllowedPassthroughParameters *[]any `json:"allowed_passthrough_parameters,omitempty"`
 	CanonicalSlug *string `json:"canonical_slug,omitempty"`
 	Created *int `json:"created,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -1834,16 +2104,30 @@ type VideoModelsListListMatch struct {
 	Name *string `json:"name,omitempty"`
 	PricingSkus *any `json:"pricing_skus,omitempty"`
 	Seed *any `json:"seed,omitempty"`
-	SupportedAspectRatio *any `json:"supported_aspect_ratio,omitempty"`
-	SupportedDuration *any `json:"supported_duration,omitempty"`
-	SupportedFrameImage *any `json:"supported_frame_image,omitempty"`
-	SupportedResolution *any `json:"supported_resolution,omitempty"`
-	SupportedSize *any `json:"supported_size,omitempty"`
+	SupportedAspectRatios *any `json:"supported_aspect_ratios,omitempty"`
+	SupportedDurations *any `json:"supported_durations,omitempty"`
+	SupportedFrameImages *any `json:"supported_frame_images,omitempty"`
+	SupportedResolutions *any `json:"supported_resolutions,omitempty"`
+	SupportedSizes *any `json:"supported_sizes,omitempty"`
 }
 
 // Workspace is the typed data model for the workspace entity.
 type Workspace struct {
-	Data any `json:"data"`
+	CreatedAt string `json:"created_at"`
+	CreatedBy any `json:"created_by"`
+	DefaultImageModel any `json:"default_image_model"`
+	DefaultProviderSort any `json:"default_provider_sort"`
+	DefaultTextModel any `json:"default_text_model"`
+	Description any `json:"description"`
+	Id string `json:"id"`
+	IoLoggingApiKeyIds any `json:"io_logging_api_key_ids"`
+	IoLoggingSamplingRate float64 `json:"io_logging_sampling_rate"`
+	IsDataDiscountLoggingEnabled bool `json:"is_data_discount_logging_enabled"`
+	IsObservabilityBroadcastEnabled bool `json:"is_observability_broadcast_enabled"`
+	IsObservabilityIoLoggingEnabled bool `json:"is_observability_io_logging_enabled"`
+	Name string `json:"name"`
+	Slug string `json:"slug"`
+	UpdatedAt any `json:"updated_at"`
 }
 
 // WorkspaceLoadMatch is the typed request payload for Workspace.LoadTyped.
@@ -1882,12 +2166,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -1899,12 +2197,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

@@ -26,8 +26,8 @@ import {
 describe('BulkAddWorkspaceMemberEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -63,7 +63,7 @@ describe('BulkAddWorkspaceMemberEntity', async () => {
     let bulk_add_workspace_member_ref01_data = setup.data.new.bulk_add_workspace_member['bulk_add_workspace_member_ref01']
     bulk_add_workspace_member_ref01_data['workspace_id'] = setup.idmap['workspace01']
 
-    bulk_add_workspace_member_ref01_data = await bulk_add_workspace_member_ref01_ent.create(bulk_add_workspace_member_ref01_data)
+    bulk_add_workspace_member_ref01_data = (await bulk_add_workspace_member_ref01_ent.create(bulk_add_workspace_member_ref01_data)).data()
     assert(null != bulk_add_workspace_member_ref01_data)
 
 

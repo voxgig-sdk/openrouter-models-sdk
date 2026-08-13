@@ -26,8 +26,8 @@ import {
 describe('FileEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -62,14 +62,14 @@ describe('FileEntity', async () => {
     const file_ref01_ent = client.File()
     let file_ref01_data = setup.data.new.file['file_ref01']
 
-    file_ref01_data = await file_ref01_ent.create(file_ref01_data)
+    file_ref01_data = (await file_ref01_ent.create(file_ref01_data)).data()
     assert(null != file_ref01_data.id)
 
 
     // LIST
     const file_ref01_match: any = {}
 
-    const file_ref01_list = await file_ref01_ent.list(file_ref01_match)
+    const file_ref01_list = (await file_ref01_ent.list(file_ref01_match)).map((e: any) => e.data())
 
     assert(!isempty(select(file_ref01_list, { id: file_ref01_data.id })))
 
@@ -77,7 +77,7 @@ describe('FileEntity', async () => {
     // LOAD
     const file_ref01_match_dt0: any = {}
     file_ref01_match_dt0.id = file_ref01_data.id
-    const file_ref01_data_dt0 = await file_ref01_ent.load(file_ref01_match_dt0)
+    const file_ref01_data_dt0 = (await file_ref01_ent.load(file_ref01_match_dt0)).data()
     assert(file_ref01_data_dt0.id === file_ref01_data.id)
 
 
@@ -89,7 +89,7 @@ describe('FileEntity', async () => {
     // LIST
     const file_ref01_match_rt0: any = {}
 
-    const file_ref01_list_rt0 = await file_ref01_ent.list(file_ref01_match_rt0)
+    const file_ref01_list_rt0 = (await file_ref01_ent.list(file_ref01_match_rt0)).map((e: any) => e.data())
 
     assert(isempty(select(file_ref01_list_rt0, { id: file_ref01_data.id })))
 

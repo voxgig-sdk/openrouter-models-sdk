@@ -11,7 +11,7 @@ main: kit: entity: embedding: {
       type: "`$ARRAY`"
     }
     {
-      name: "dimension"
+      name: "dimensions"
       req: false
       type: "`$INTEGER`"
     }

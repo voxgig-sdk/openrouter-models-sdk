@@ -231,8 +231,29 @@ class OpenrouterModelsSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('OpenrouterModelsSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -293,605 +314,831 @@ class OpenrouterModelsSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('OpenrouterModelsSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('OpenrouterModelsSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.Activity().list()` / `client.Activity().load({ id })`.
-  Activity(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Activity(entopts?: Record<string, any>) {
     const self = this
-    return new ActivityEntity(self,data)
+    return new ActivityEntity(self, entopts)
   }
 
 
   // Entity access: `client.Add().list()` / `client.Add().load({ id })`.
-  Add(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Add(entopts?: Record<string, any>) {
     const self = this
-    return new AddEntity(self,data)
+    return new AddEntity(self, entopts)
   }
 
 
   // Entity access: `client.ApiKey().list()` / `client.ApiKey().load({ id })`.
-  ApiKey(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ApiKey(entopts?: Record<string, any>) {
     const self = this
-    return new ApiKeyEntity(self,data)
+    return new ApiKeyEntity(self, entopts)
   }
 
 
   // Entity access: `client.AppRanking().list()` / `client.AppRanking().load({ id })`.
-  AppRanking(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  AppRanking(entopts?: Record<string, any>) {
     const self = this
-    return new AppRankingEntity(self,data)
+    return new AppRankingEntity(self, entopts)
   }
 
 
   // Entity access: `client.Benchmark().list()` / `client.Benchmark().load({ id })`.
-  Benchmark(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Benchmark(entopts?: Record<string, any>) {
     const self = this
-    return new BenchmarkEntity(self,data)
+    return new BenchmarkEntity(self, entopts)
   }
 
 
   // Entity access: `client.BetaAnalytics().list()` / `client.BetaAnalytics().load({ id })`.
-  BetaAnalytics(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  BetaAnalytics(entopts?: Record<string, any>) {
     const self = this
-    return new BetaAnalyticsEntity(self,data)
+    return new BetaAnalyticsEntity(self, entopts)
   }
 
 
   // Entity access: `client.Budget().list()` / `client.Budget().load({ id })`.
-  Budget(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Budget(entopts?: Record<string, any>) {
     const self = this
-    return new BudgetEntity(self,data)
+    return new BudgetEntity(self, entopts)
   }
 
 
   // Entity access: `client.BulkAddWorkspaceMember().list()` / `client.BulkAddWorkspaceMember().load({ id })`.
-  BulkAddWorkspaceMember(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  BulkAddWorkspaceMember(entopts?: Record<string, any>) {
     const self = this
-    return new BulkAddWorkspaceMemberEntity(self,data)
+    return new BulkAddWorkspaceMemberEntity(self, entopts)
   }
 
 
   // Entity access: `client.BulkAssignKey().list()` / `client.BulkAssignKey().load({ id })`.
-  BulkAssignKey(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  BulkAssignKey(entopts?: Record<string, any>) {
     const self = this
-    return new BulkAssignKeyEntity(self,data)
+    return new BulkAssignKeyEntity(self, entopts)
   }
 
 
   // Entity access: `client.BulkAssignMember().list()` / `client.BulkAssignMember().load({ id })`.
-  BulkAssignMember(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  BulkAssignMember(entopts?: Record<string, any>) {
     const self = this
-    return new BulkAssignMemberEntity(self,data)
+    return new BulkAssignMemberEntity(self, entopts)
   }
 
 
   // Entity access: `client.BulkRemoveWorkspaceMember().list()` / `client.BulkRemoveWorkspaceMember().load({ id })`.
-  BulkRemoveWorkspaceMember(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  BulkRemoveWorkspaceMember(entopts?: Record<string, any>) {
     const self = this
-    return new BulkRemoveWorkspaceMemberEntity(self,data)
+    return new BulkRemoveWorkspaceMemberEntity(self, entopts)
   }
 
 
   // Entity access: `client.BulkUnassignKey().list()` / `client.BulkUnassignKey().load({ id })`.
-  BulkUnassignKey(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  BulkUnassignKey(entopts?: Record<string, any>) {
     const self = this
-    return new BulkUnassignKeyEntity(self,data)
+    return new BulkUnassignKeyEntity(self, entopts)
   }
 
 
   // Entity access: `client.BulkUnassignMember().list()` / `client.BulkUnassignMember().load({ id })`.
-  BulkUnassignMember(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  BulkUnassignMember(entopts?: Record<string, any>) {
     const self = this
-    return new BulkUnassignMemberEntity(self,data)
+    return new BulkUnassignMemberEntity(self, entopts)
   }
 
 
   // Entity access: `client.Byok().list()` / `client.Byok().load({ id })`.
-  Byok(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Byok(entopts?: Record<string, any>) {
     const self = this
-    return new ByokEntity(self,data)
+    return new ByokEntity(self, entopts)
   }
 
 
   // Entity access: `client.ChatResult().list()` / `client.ChatResult().load({ id })`.
-  ChatResult(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ChatResult(entopts?: Record<string, any>) {
     const self = this
-    return new ChatResultEntity(self,data)
+    return new ChatResultEntity(self, entopts)
   }
 
 
   // Entity access: `client.Code().list()` / `client.Code().load({ id })`.
-  Code(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Code(entopts?: Record<string, any>) {
     const self = this
-    return new CodeEntity(self,data)
+    return new CodeEntity(self, entopts)
   }
 
 
   // Entity access: `client.Coinbase().list()` / `client.Coinbase().load({ id })`.
-  Coinbase(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Coinbase(entopts?: Record<string, any>) {
     const self = this
-    return new CoinbaseEntity(self,data)
+    return new CoinbaseEntity(self, entopts)
   }
 
 
   // Entity access: `client.Completion().list()` / `client.Completion().load({ id })`.
-  Completion(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Completion(entopts?: Record<string, any>) {
     const self = this
-    return new CompletionEntity(self,data)
+    return new CompletionEntity(self, entopts)
   }
 
 
   // Entity access: `client.Content().list()` / `client.Content().load({ id })`.
-  Content(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Content(entopts?: Record<string, any>) {
     const self = this
-    return new ContentEntity(self,data)
+    return new ContentEntity(self, entopts)
   }
 
 
   // Entity access: `client.Count().list()` / `client.Count().load({ id })`.
-  Count(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Count(entopts?: Record<string, any>) {
     const self = this
-    return new CountEntity(self,data)
+    return new CountEntity(self, entopts)
   }
 
 
   // Entity access: `client.CreateByokKey().list()` / `client.CreateByokKey().load({ id })`.
-  CreateByokKey(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CreateByokKey(entopts?: Record<string, any>) {
     const self = this
-    return new CreateByokKeyEntity(self,data)
+    return new CreateByokKeyEntity(self, entopts)
   }
 
 
   // Entity access: `client.CreateGuardrail().list()` / `client.CreateGuardrail().load({ id })`.
-  CreateGuardrail(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CreateGuardrail(entopts?: Record<string, any>) {
     const self = this
-    return new CreateGuardrailEntity(self,data)
+    return new CreateGuardrailEntity(self, entopts)
   }
 
 
   // Entity access: `client.CreateObservabilityDestination().list()` / `client.CreateObservabilityDestination().load({ id })`.
-  CreateObservabilityDestination(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CreateObservabilityDestination(entopts?: Record<string, any>) {
     const self = this
-    return new CreateObservabilityDestinationEntity(self,data)
+    return new CreateObservabilityDestinationEntity(self, entopts)
   }
 
 
   // Entity access: `client.CreatePresetFromInference().list()` / `client.CreatePresetFromInference().load({ id })`.
-  CreatePresetFromInference(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CreatePresetFromInference(entopts?: Record<string, any>) {
     const self = this
-    return new CreatePresetFromInferenceEntity(self,data)
+    return new CreatePresetFromInferenceEntity(self, entopts)
   }
 
 
   // Entity access: `client.CreateWorkspace().list()` / `client.CreateWorkspace().load({ id })`.
-  CreateWorkspace(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CreateWorkspace(entopts?: Record<string, any>) {
     const self = this
-    return new CreateWorkspaceEntity(self,data)
+    return new CreateWorkspaceEntity(self, entopts)
   }
 
 
   // Entity access: `client.Credit().list()` / `client.Credit().load({ id })`.
-  Credit(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Credit(entopts?: Record<string, any>) {
     const self = this
-    return new CreditEntity(self,data)
+    return new CreditEntity(self, entopts)
   }
 
 
   // Entity access: `client.Destination().list()` / `client.Destination().load({ id })`.
-  Destination(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Destination(entopts?: Record<string, any>) {
     const self = this
-    return new DestinationEntity(self,data)
+    return new DestinationEntity(self, entopts)
   }
 
 
   // Entity access: `client.Embedding().list()` / `client.Embedding().load({ id })`.
-  Embedding(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Embedding(entopts?: Record<string, any>) {
     const self = this
-    return new EmbeddingEntity(self,data)
+    return new EmbeddingEntity(self, entopts)
   }
 
 
   // Entity access: `client.Endpoint().list()` / `client.Endpoint().load({ id })`.
-  Endpoint(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Endpoint(entopts?: Record<string, any>) {
     const self = this
-    return new EndpointEntity(self,data)
+    return new EndpointEntity(self, entopts)
   }
 
 
   // Entity access: `client.Feedback().list()` / `client.Feedback().load({ id })`.
-  Feedback(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Feedback(entopts?: Record<string, any>) {
     const self = this
-    return new FeedbackEntity(self,data)
+    return new FeedbackEntity(self, entopts)
   }
 
 
   // Entity access: `client.File().list()` / `client.File().load({ id })`.
-  File(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  File(entopts?: Record<string, any>) {
     const self = this
-    return new FileEntity(self,data)
+    return new FileEntity(self, entopts)
   }
 
 
   // Entity access: `client.Generation().list()` / `client.Generation().load({ id })`.
-  Generation(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Generation(entopts?: Record<string, any>) {
     const self = this
-    return new GenerationEntity(self,data)
+    return new GenerationEntity(self, entopts)
   }
 
 
   // Entity access: `client.GenerationContent().list()` / `client.GenerationContent().load({ id })`.
-  GenerationContent(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  GenerationContent(entopts?: Record<string, any>) {
     const self = this
-    return new GenerationContentEntity(self,data)
+    return new GenerationContentEntity(self, entopts)
   }
 
 
   // Entity access: `client.Guardrail().list()` / `client.Guardrail().load({ id })`.
-  Guardrail(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Guardrail(entopts?: Record<string, any>) {
     const self = this
-    return new GuardrailEntity(self,data)
+    return new GuardrailEntity(self, entopts)
   }
 
 
   // Entity access: `client.Image().list()` / `client.Image().load({ id })`.
-  Image(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Image(entopts?: Record<string, any>) {
     const self = this
-    return new ImageEntity(self,data)
+    return new ImageEntity(self, entopts)
   }
 
 
   // Entity access: `client.ImageModelEndpoint().list()` / `client.ImageModelEndpoint().load({ id })`.
-  ImageModelEndpoint(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ImageModelEndpoint(entopts?: Record<string, any>) {
     const self = this
-    return new ImageModelEndpointEntity(self,data)
+    return new ImageModelEndpointEntity(self, entopts)
   }
 
 
   // Entity access: `client.ImageModelsList().list()` / `client.ImageModelsList().load({ id })`.
-  ImageModelsList(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ImageModelsList(entopts?: Record<string, any>) {
     const self = this
-    return new ImageModelsListEntity(self,data)
+    return new ImageModelsListEntity(self, entopts)
   }
 
 
   // Entity access: `client.Key().list()` / `client.Key().load({ id })`.
-  Key(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Key(entopts?: Record<string, any>) {
     const self = this
-    return new KeyEntity(self,data)
+    return new KeyEntity(self, entopts)
   }
 
 
   // Entity access: `client.ListByokKey().list()` / `client.ListByokKey().load({ id })`.
-  ListByokKey(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ListByokKey(entopts?: Record<string, any>) {
     const self = this
-    return new ListByokKeyEntity(self,data)
+    return new ListByokKeyEntity(self, entopts)
   }
 
 
   // Entity access: `client.ListGuardrail().list()` / `client.ListGuardrail().load({ id })`.
-  ListGuardrail(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ListGuardrail(entopts?: Record<string, any>) {
     const self = this
-    return new ListGuardrailEntity(self,data)
+    return new ListGuardrailEntity(self, entopts)
   }
 
 
   // Entity access: `client.ListKeyAssignment().list()` / `client.ListKeyAssignment().load({ id })`.
-  ListKeyAssignment(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ListKeyAssignment(entopts?: Record<string, any>) {
     const self = this
-    return new ListKeyAssignmentEntity(self,data)
+    return new ListKeyAssignmentEntity(self, entopts)
   }
 
 
   // Entity access: `client.ListMemberAssignment().list()` / `client.ListMemberAssignment().load({ id })`.
-  ListMemberAssignment(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ListMemberAssignment(entopts?: Record<string, any>) {
     const self = this
-    return new ListMemberAssignmentEntity(self,data)
+    return new ListMemberAssignmentEntity(self, entopts)
   }
 
 
   // Entity access: `client.ListObservabilityDestination().list()` / `client.ListObservabilityDestination().load({ id })`.
-  ListObservabilityDestination(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ListObservabilityDestination(entopts?: Record<string, any>) {
     const self = this
-    return new ListObservabilityDestinationEntity(self,data)
+    return new ListObservabilityDestinationEntity(self, entopts)
   }
 
 
   // Entity access: `client.ListPreset().list()` / `client.ListPreset().load({ id })`.
-  ListPreset(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ListPreset(entopts?: Record<string, any>) {
     const self = this
-    return new ListPresetEntity(self,data)
+    return new ListPresetEntity(self, entopts)
   }
 
 
   // Entity access: `client.ListPresetVersion().list()` / `client.ListPresetVersion().load({ id })`.
-  ListPresetVersion(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ListPresetVersion(entopts?: Record<string, any>) {
     const self = this
-    return new ListPresetVersionEntity(self,data)
+    return new ListPresetVersionEntity(self, entopts)
   }
 
 
   // Entity access: `client.ListWorkspace().list()` / `client.ListWorkspace().load({ id })`.
-  ListWorkspace(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ListWorkspace(entopts?: Record<string, any>) {
     const self = this
-    return new ListWorkspaceEntity(self,data)
+    return new ListWorkspaceEntity(self, entopts)
   }
 
 
   // Entity access: `client.ListWorkspaceBudget().list()` / `client.ListWorkspaceBudget().load({ id })`.
-  ListWorkspaceBudget(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ListWorkspaceBudget(entopts?: Record<string, any>) {
     const self = this
-    return new ListWorkspaceBudgetEntity(self,data)
+    return new ListWorkspaceBudgetEntity(self, entopts)
   }
 
 
   // Entity access: `client.ListWorkspaceMember().list()` / `client.ListWorkspaceMember().load({ id })`.
-  ListWorkspaceMember(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ListWorkspaceMember(entopts?: Record<string, any>) {
     const self = this
-    return new ListWorkspaceMemberEntity(self,data)
+    return new ListWorkspaceMemberEntity(self, entopts)
   }
 
 
   // Entity access: `client.Member().list()` / `client.Member().load({ id })`.
-  Member(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Member(entopts?: Record<string, any>) {
     const self = this
-    return new MemberEntity(self,data)
+    return new MemberEntity(self, entopts)
   }
 
 
   // Entity access: `client.Message().list()` / `client.Message().load({ id })`.
-  Message(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Message(entopts?: Record<string, any>) {
     const self = this
-    return new MessageEntity(self,data)
+    return new MessageEntity(self, entopts)
   }
 
 
   // Entity access: `client.Meta().list()` / `client.Meta().load({ id })`.
-  Meta(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Meta(entopts?: Record<string, any>) {
     const self = this
-    return new MetaEntity(self,data)
+    return new MetaEntity(self, entopts)
   }
 
 
   // Entity access: `client.Model().list()` / `client.Model().load({ id })`.
-  Model(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Model(entopts?: Record<string, any>) {
     const self = this
-    return new ModelEntity(self,data)
+    return new ModelEntity(self, entopts)
   }
 
 
   // Entity access: `client.ModelsCount().list()` / `client.ModelsCount().load({ id })`.
-  ModelsCount(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ModelsCount(entopts?: Record<string, any>) {
     const self = this
-    return new ModelsCountEntity(self,data)
+    return new ModelsCountEntity(self, entopts)
   }
 
 
   // Entity access: `client.ModelsList().list()` / `client.ModelsList().load({ id })`.
-  ModelsList(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ModelsList(entopts?: Record<string, any>) {
     const self = this
-    return new ModelsListEntity(self,data)
+    return new ModelsListEntity(self, entopts)
   }
 
 
   // Entity access: `client.OAuth().list()` / `client.OAuth().load({ id })`.
-  OAuth(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  OAuth(entopts?: Record<string, any>) {
     const self = this
-    return new OAuthEntity(self,data)
+    return new OAuthEntity(self, entopts)
   }
 
 
   // Entity access: `client.ObservabilityDestination().list()` / `client.ObservabilityDestination().load({ id })`.
-  ObservabilityDestination(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ObservabilityDestination(entopts?: Record<string, any>) {
     const self = this
-    return new ObservabilityDestinationEntity(self,data)
+    return new ObservabilityDestinationEntity(self, entopts)
   }
 
 
   // Entity access: `client.OpenResponsesResult().list()` / `client.OpenResponsesResult().load({ id })`.
-  OpenResponsesResult(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  OpenResponsesResult(entopts?: Record<string, any>) {
     const self = this
-    return new OpenResponsesResultEntity(self,data)
+    return new OpenResponsesResultEntity(self, entopts)
   }
 
 
   // Entity access: `client.Organization().list()` / `client.Organization().load({ id })`.
-  Organization(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Organization(entopts?: Record<string, any>) {
     const self = this
-    return new OrganizationEntity(self,data)
+    return new OrganizationEntity(self, entopts)
   }
 
 
   // Entity access: `client.Preset().list()` / `client.Preset().load({ id })`.
-  Preset(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Preset(entopts?: Record<string, any>) {
     const self = this
-    return new PresetEntity(self,data)
+    return new PresetEntity(self, entopts)
   }
 
 
   // Entity access: `client.PresetVersion().list()` / `client.PresetVersion().load({ id })`.
-  PresetVersion(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  PresetVersion(entopts?: Record<string, any>) {
     const self = this
-    return new PresetVersionEntity(self,data)
+    return new PresetVersionEntity(self, entopts)
   }
 
 
   // Entity access: `client.Provider().list()` / `client.Provider().load({ id })`.
-  Provider(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Provider(entopts?: Record<string, any>) {
     const self = this
-    return new ProviderEntity(self,data)
+    return new ProviderEntity(self, entopts)
   }
 
 
   // Entity access: `client.Query().list()` / `client.Query().load({ id })`.
-  Query(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Query(entopts?: Record<string, any>) {
     const self = this
-    return new QueryEntity(self,data)
+    return new QueryEntity(self, entopts)
   }
 
 
   // Entity access: `client.RankingsDaily().list()` / `client.RankingsDaily().load({ id })`.
-  RankingsDaily(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  RankingsDaily(entopts?: Record<string, any>) {
     const self = this
-    return new RankingsDailyEntity(self,data)
+    return new RankingsDailyEntity(self, entopts)
   }
 
 
   // Entity access: `client.Remove().list()` / `client.Remove().load({ id })`.
-  Remove(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Remove(entopts?: Record<string, any>) {
     const self = this
-    return new RemoveEntity(self,data)
+    return new RemoveEntity(self, entopts)
   }
 
 
   // Entity access: `client.Rerank().list()` / `client.Rerank().load({ id })`.
-  Rerank(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Rerank(entopts?: Record<string, any>) {
     const self = this
-    return new RerankEntity(self,data)
+    return new RerankEntity(self, entopts)
   }
 
 
   // Entity access: `client.Response().list()` / `client.Response().load({ id })`.
-  Response(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Response(entopts?: Record<string, any>) {
     const self = this
-    return new ResponseEntity(self,data)
+    return new ResponseEntity(self, entopts)
   }
 
 
   // Entity access: `client.Speech().list()` / `client.Speech().load({ id })`.
-  Speech(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Speech(entopts?: Record<string, any>) {
     const self = this
-    return new SpeechEntity(self,data)
+    return new SpeechEntity(self, entopts)
   }
 
 
   // Entity access: `client.Stt().list()` / `client.Stt().load({ id })`.
-  Stt(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Stt(entopts?: Record<string, any>) {
     const self = this
-    return new SttEntity(self,data)
+    return new SttEntity(self, entopts)
   }
 
 
   // Entity access: `client.SubmitGenerationFeedback().list()` / `client.SubmitGenerationFeedback().load({ id })`.
-  SubmitGenerationFeedback(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  SubmitGenerationFeedback(entopts?: Record<string, any>) {
     const self = this
-    return new SubmitGenerationFeedbackEntity(self,data)
+    return new SubmitGenerationFeedbackEntity(self, entopts)
   }
 
 
   // Entity access: `client.Task().list()` / `client.Task().load({ id })`.
-  Task(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Task(entopts?: Record<string, any>) {
     const self = this
-    return new TaskEntity(self,data)
+    return new TaskEntity(self, entopts)
   }
 
 
   // Entity access: `client.Transcription().list()` / `client.Transcription().load({ id })`.
-  Transcription(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Transcription(entopts?: Record<string, any>) {
     const self = this
-    return new TranscriptionEntity(self,data)
+    return new TranscriptionEntity(self, entopts)
   }
 
 
   // Entity access: `client.Tts().list()` / `client.Tts().load({ id })`.
-  Tts(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Tts(entopts?: Record<string, any>) {
     const self = this
-    return new TtsEntity(self,data)
+    return new TtsEntity(self, entopts)
   }
 
 
   // Entity access: `client.UnifiedBenchmark().list()` / `client.UnifiedBenchmark().load({ id })`.
-  UnifiedBenchmark(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  UnifiedBenchmark(entopts?: Record<string, any>) {
     const self = this
-    return new UnifiedBenchmarkEntity(self,data)
+    return new UnifiedBenchmarkEntity(self, entopts)
   }
 
 
   // Entity access: `client.UpdateByokKey().list()` / `client.UpdateByokKey().load({ id })`.
-  UpdateByokKey(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  UpdateByokKey(entopts?: Record<string, any>) {
     const self = this
-    return new UpdateByokKeyEntity(self,data)
+    return new UpdateByokKeyEntity(self, entopts)
   }
 
 
   // Entity access: `client.UpdateGuardrail().list()` / `client.UpdateGuardrail().load({ id })`.
-  UpdateGuardrail(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  UpdateGuardrail(entopts?: Record<string, any>) {
     const self = this
-    return new UpdateGuardrailEntity(self,data)
+    return new UpdateGuardrailEntity(self, entopts)
   }
 
 
   // Entity access: `client.UpdateObservabilityDestination().list()` / `client.UpdateObservabilityDestination().load({ id })`.
-  UpdateObservabilityDestination(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  UpdateObservabilityDestination(entopts?: Record<string, any>) {
     const self = this
-    return new UpdateObservabilityDestinationEntity(self,data)
+    return new UpdateObservabilityDestinationEntity(self, entopts)
   }
 
 
   // Entity access: `client.UpdateWorkspace().list()` / `client.UpdateWorkspace().load({ id })`.
-  UpdateWorkspace(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  UpdateWorkspace(entopts?: Record<string, any>) {
     const self = this
-    return new UpdateWorkspaceEntity(self,data)
+    return new UpdateWorkspaceEntity(self, entopts)
   }
 
 
   // Entity access: `client.UpsertWorkspaceBudget().list()` / `client.UpsertWorkspaceBudget().load({ id })`.
-  UpsertWorkspaceBudget(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  UpsertWorkspaceBudget(entopts?: Record<string, any>) {
     const self = this
-    return new UpsertWorkspaceBudgetEntity(self,data)
+    return new UpsertWorkspaceBudgetEntity(self, entopts)
   }
 
 
   // Entity access: `client.User().list()` / `client.User().load({ id })`.
-  User(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  User(entopts?: Record<string, any>) {
     const self = this
-    return new UserEntity(self,data)
+    return new UserEntity(self, entopts)
   }
 
 
   // Entity access: `client.Version().list()` / `client.Version().load({ id })`.
-  Version(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Version(entopts?: Record<string, any>) {
     const self = this
-    return new VersionEntity(self,data)
+    return new VersionEntity(self, entopts)
   }
 
 
   // Entity access: `client.Video().list()` / `client.Video().load({ id })`.
-  Video(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Video(entopts?: Record<string, any>) {
     const self = this
-    return new VideoEntity(self,data)
+    return new VideoEntity(self, entopts)
   }
 
 
   // Entity access: `client.VideoGeneration().list()` / `client.VideoGeneration().load({ id })`.
-  VideoGeneration(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  VideoGeneration(entopts?: Record<string, any>) {
     const self = this
-    return new VideoGenerationEntity(self,data)
+    return new VideoGenerationEntity(self, entopts)
   }
 
 
   // Entity access: `client.VideoModelsList().list()` / `client.VideoModelsList().load({ id })`.
-  VideoModelsList(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  VideoModelsList(entopts?: Record<string, any>) {
     const self = this
-    return new VideoModelsListEntity(self,data)
+    return new VideoModelsListEntity(self, entopts)
   }
 
 
   // Entity access: `client.Workspace().list()` / `client.Workspace().load({ id })`.
-  Workspace(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Workspace(entopts?: Record<string, any>) {
     const self = this
-    return new WorkspaceEntity(self,data)
+    return new WorkspaceEntity(self, entopts)
   }
 
 
   // Entity access: `client.WorkspaceBudget().list()` / `client.WorkspaceBudget().load({ id })`.
-  WorkspaceBudget(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  WorkspaceBudget(entopts?: Record<string, any>) {
     const self = this
-    return new WorkspaceBudgetEntity(self,data)
+    return new WorkspaceBudgetEntity(self, entopts)
   }
 
 
   // Entity access: `client.Zdr().list()` / `client.Zdr().load({ id })`.
-  Zdr(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Zdr(entopts?: Record<string, any>) {
     const self = this
-    return new ZdrEntity(self,data)
+    return new ZdrEntity(self, entopts)
   }
 
 

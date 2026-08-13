@@ -6,7 +6,7 @@ main: kit: entity: bulk_unassign_key: {
 
   fields: [
     {
-      name: "key_hash"
+      name: "key_hashes"
       req: true
       type: "`$ARRAY`"
     }

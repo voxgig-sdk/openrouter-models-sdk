@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = OpenrouterModelsSDK.test()
-const activitys = await client.Activity().list()
-// activitys is an array of bare Activity records populated with mock data
-console.log(activitys)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = OpenrouterModelsSDK.test({
+  entity: {
+    organization: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const organizations = await client.Organization().list()
+// organizations is an array of Organization entities, populated with mock data
+// — call organizations[0].data() for the record itself
+console.log(organizations)
 ```
 
 ### Python
 
 ```python
 client = OpenrouterModelsSDK.test()
-activitys = client.Activity().list()
-print(activitys)
+organizations = client.Organization().list()
+print(organizations)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(activitys)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = OpenrouterModelsSDK::test([
-    "entity" => ["activity" => ["test01" => []]],
+    "entity" => ["organization" => ["test01" => []]],
 ]);
-$activitys = $client->Activity()->list();
+$organizations = $client->Organization()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Activity(nil).List(
+result, err := client.Organization(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Activity(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = OpenrouterModelsSDK.test({
-  "entity" => { "activity" => { "test01" => {} } },
+  "entity" => { "organization" => { "test01" => {} } },
 })
-activitys = client.Activity.list()
+organizations = client.Organization.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Activity():list()
+local results, err = client:Organization():list()
 ```
 
 ## Packages
@@ -112,7 +121,7 @@ const client = new OpenrouterModelsSDK({
   apikey: process.env.OPENROUTER_MODELS_APIKEY,
 })
 
-// List all activitys (returns Activity[])
+// List all activitys (returns ActivityEntity[] — .data() for the record)
 const activitys = await client.Activity().list()
 for (const activity of activitys) {
   console.log(activity)
@@ -169,7 +178,7 @@ The API exposes 86 entities:
 | **ApiKey** | The ApiKey entity (create, list, load, remove, update). | `/keys` |
 | **AppRanking** | The AppRanking entity (list). | `/datasets/app-rankings` |
 | **Benchmark** | The Benchmark entity. | `` |
-| **BetaAnalytics** | The BetaAnalytics entity (create, load). | `/analytics/query` |
+| **BetaAnalytics** | The BetaAnalytics entity (create, load). | `/analytics/meta` |
 | **Budget** | The Budget entity. | `` |
 | **BulkAddWorkspaceMember** | The BulkAddWorkspaceMember entity (create). | `/workspaces/{id}/members/add` |
 | **BulkAssignKey** | The BulkAssignKey entity (create). | `/guardrails/{id}/assignments/keys` |
@@ -189,7 +198,7 @@ The API exposes 86 entities:
 | **CreateObservabilityDestination** | The CreateObservabilityDestination entity (create). | `/observability/destinations` |
 | **CreatePresetFromInference** | The CreatePresetFromInference entity (create). | `/presets/{slug}/chat/completions` |
 | **CreateWorkspace** | The CreateWorkspace entity. | `` |
-| **Credit** | The Credit entity (create, load). | `/credits/coinbase` |
+| **Credit** | The Credit entity (create, load). | `/credits` |
 | **Destination** | The Destination entity. | `` |
 | **Embedding** | The Embedding entity (create). | `/embeddings` |
 | **Endpoint** | The Endpoint entity (list, load). | `/models` |
@@ -244,7 +253,7 @@ The API exposes 86 entities:
 | **UpsertWorkspaceBudget** | The UpsertWorkspaceBudget entity (update). | `/workspaces/{id}/budgets/{interval}` |
 | **User** | The User entity. | `` |
 | **Version** | The Version entity. | `` |
-| **Video** | The Video entity (create, load). | `/videos` |
+| **Video** | The Video entity (create, load). | `/videos/{jobId}` |
 | **VideoGeneration** | The VideoGeneration entity (load). | `/videos/{jobId}/content` |
 | **VideoModelsList** | The VideoModelsList entity (list). | `/videos/models` |
 | **Workspace** | The Workspace entity (load, remove). | `/workspaces/{id}` |
@@ -457,6 +466,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://openrouter.ai/docs](https://openrouter.ai/docs)
 

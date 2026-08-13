@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ OpenrouterModelsUtility.registrar = ->(u) {
   u.prepare_params = OpenrouterModelsUtilities::PrepareParams
   u.prepare_path = OpenrouterModelsUtilities::PreparePath
   u.prepare_query = OpenrouterModelsUtilities::PrepareQuery
+  u.graphql_body = OpenrouterModelsUtilities::GraphqlBody
+  u.graphql_errors = OpenrouterModelsUtilities::GraphqlErrors
   u.result_basic = OpenrouterModelsUtilities::ResultBasic
   u.result_body = OpenrouterModelsUtilities::ResultBody
   u.result_headers = OpenrouterModelsUtilities::ResultHeaders

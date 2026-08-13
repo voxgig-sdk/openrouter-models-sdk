@@ -43,8 +43,8 @@ class OpenrouterModelsTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('OPENROUTERMODELS_TEST_LIVE');
-        $override = self::getenv('OPENROUTERMODELS_TEST_OVERRIDE');
+        $live = self::getenv('OPENROUTER_MODELS_TEST_LIVE');
+        $override = self::getenv('OPENROUTER_MODELS_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class OpenrouterModelsTestRunner
             }
         }
 
-        $explain = self::getenv('OPENROUTERMODELS_TEST_EXPLAIN');
+        $explain = self::getenv('OPENROUTER_MODELS_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['OPENROUTERMODELS_TEST_EXPLAIN'] = $explain;
+            $m['OPENROUTER_MODELS_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

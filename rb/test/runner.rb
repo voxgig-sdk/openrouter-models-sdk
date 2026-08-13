@@ -23,8 +23,8 @@ module OpenrouterModelsTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("OPENROUTERMODELS_TEST_LIVE")
-    override = getenv("OPENROUTERMODELS_TEST_OVERRIDE")
+    live = getenv("OPENROUTER_MODELS_TEST_LIVE")
+    override = getenv("OPENROUTER_MODELS_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module OpenrouterModelsTestRunner
       end
     end
 
-    explain = getenv("OPENROUTERMODELS_TEST_EXPLAIN")
-    m["OPENROUTERMODELS_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("OPENROUTER_MODELS_TEST_EXPLAIN")
+    m["OPENROUTER_MODELS_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

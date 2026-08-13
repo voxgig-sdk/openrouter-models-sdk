@@ -27,19 +27,6 @@ main: kit: flow: BasicWorkspaceFlow:
         }
       ]
     }
-
-    {
-      input: {
-        ref: "workspace_ref01",
-        suffix: "_rm0"
-      }
-
-      match: {
-        id: "workspace01"
-      }
-
-      op: "remove"
-    }
   ],
   "key$": "BasicWorkspaceFlow"
 }

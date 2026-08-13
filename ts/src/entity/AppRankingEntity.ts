@@ -37,7 +37,7 @@ class AppRankingEntity extends OpenrouterModelsEntityBase<AppRanking> {
 
 
 
-  async list(this: any, reqmatch?: AppRankingListMatch, ctrl?: Control): Promise<AppRanking[]> {
+  async list(this: any, reqmatch?: AppRankingListMatch, ctrl?: Control): Promise<AppRankingEntity[]> {
 
     const utility = this._utility
 

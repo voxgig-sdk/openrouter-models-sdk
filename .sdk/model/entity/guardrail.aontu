@@ -6,7 +6,7 @@ main: kit: entity: guardrail: {
 
   fields: [
     {
-      name: "allowed_model"
+      name: "allowed_models"
       req: false
       type: [
         "`$ONE`"
@@ -17,7 +17,7 @@ main: kit: entity: guardrail: {
       ]
     }
     {
-      name: "allowed_provider"
+      name: "allowed_providers"
       req: false
       type: [
         "`$ONE`"
@@ -28,7 +28,7 @@ main: kit: entity: guardrail: {
       ]
     }
     {
-      name: "content_filter"
+      name: "content_filter_builtins"
       req: false
       type: [
         "`$ONE`"
@@ -39,7 +39,7 @@ main: kit: entity: guardrail: {
       ]
     }
     {
-      name: "content_filter_builtin"
+      name: "content_filters"
       req: false
       type: [
         "`$ONE`"
@@ -53,11 +53,6 @@ main: kit: entity: guardrail: {
       name: "created_at"
       req: true
       type: "`$STRING`"
-    }
-    {
-      name: "data"
-      req: true
-      type: "`$ANY`"
     }
     {
       name: "description"
@@ -142,7 +137,7 @@ main: kit: entity: guardrail: {
       type: "`$STRING`"
     }
     {
-      name: "ignored_model"
+      name: "ignored_models"
       req: false
       type: [
         "`$ONE`"
@@ -153,7 +148,7 @@ main: kit: entity: guardrail: {
       ]
     }
     {
-      name: "ignored_provider"
+      name: "ignored_providers"
       req: false
       type: [
         "`$ONE`"
@@ -204,12 +199,12 @@ main: kit: entity: guardrail: {
     {
       name: "workspace_id"
       op: {
-        list: {
-          req: true
+        create: {
+          req: false
           type: "`$STRING`"
         }
       }
-      req: false
+      req: true
       type: "`$STRING`"
     }
   ]
@@ -264,7 +259,7 @@ main: kit: entity: guardrail: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -347,7 +342,7 @@ main: kit: entity: guardrail: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -407,7 +402,7 @@ main: kit: entity: guardrail: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

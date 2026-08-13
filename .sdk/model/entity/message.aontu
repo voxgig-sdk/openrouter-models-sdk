@@ -22,7 +22,7 @@ main: kit: entity: message: {
       ]
     }
     {
-      name: "fallback"
+      name: "fallbacks"
       req: false
       type: [
         "`$ONE`"
@@ -33,12 +33,12 @@ main: kit: entity: message: {
       ]
     }
     {
-      name: "max_token"
+      name: "max_tokens"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "message"
+      name: "messages"
       req: true
       type: [
         "`$ONE`"
@@ -55,14 +55,13 @@ main: kit: entity: message: {
     }
     {
       name: "model"
-      op: {
-        create: {
-          req: false
-          type: "`$ARRAY`"
-        }
-      }
       req: true
       type: "`$STRING`"
+    }
+    {
+      name: "models"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "output_config"
@@ -70,7 +69,7 @@ main: kit: entity: message: {
       type: "`$OBJECT`"
     }
     {
-      name: "plugin"
+      name: "plugins"
       req: false
       type: "`$ARRAY`"
     }
@@ -112,7 +111,7 @@ main: kit: entity: message: {
       type: "`$ANY`"
     }
     {
-      name: "stop_sequence"
+      name: "stop_sequences"
       req: false
       type: "`$ARRAY`"
     }
@@ -142,14 +141,14 @@ main: kit: entity: message: {
       type: "`$ANY`"
     }
     {
-      name: "tool"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
       name: "tool_choice"
       req: false
       type: "`$ANY`"
+    }
+    {
+      name: "tools"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "top_k"

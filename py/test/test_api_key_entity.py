@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from openroutermodels_sdk.utility.voxgig_struct import voxgig_struct as vs
 from openroutermodels_sdk import OpenrouterModelsSDK
-from core import helpers
+from openroutermodels_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -42,7 +42,7 @@ class TestApiKeyEntity:
         assert len(seen) == 3
 
         # Inbound: streaming active -> yields each item from the feature.
-        from config import make_config
+        from openroutermodels_sdk.config import make_config
         cfg = make_config()
         if isinstance(cfg.get("feature"), dict) and "streaming" in cfg["feature"]:
             sdk = OpenrouterModelsSDK.test(
@@ -70,7 +70,7 @@ class TestApiKeyEntity:
         # without an *_ENTID env override, those IDs hit the live API and 4xx.
         if setup.get("synthetic_only"):
             pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set OPENROUTERMODELS_TEST_API_KEY_ENTID JSON to run live")
+                        "set OPENROUTER_MODELS_TEST_API_KEY_ENTID JSON to run live")
         client = setup["client"]
 
         # CREATE
@@ -78,7 +78,7 @@ class TestApiKeyEntity:
         api_key_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.api_key"), "api_key_ref01"))
 
-        api_key_ref01_data = helpers.to_map(api_key_ref01_ent.create(api_key_ref01_data, None))
+        api_key_ref01_data = helpers.to_map(runner.entity_data(api_key_ref01_ent.create(api_key_ref01_data, None)))
         assert api_key_ref01_data is not None
 
         # LIST
@@ -86,11 +86,6 @@ class TestApiKeyEntity:
 
         api_key_ref01_list_result = api_key_ref01_ent.list(api_key_ref01_match, None)
         assert isinstance(api_key_ref01_list_result, list)
-
-        found_item = vs.select(
-            runner.entity_list_to_data(api_key_ref01_list_result),
-            {"id": api_key_ref01_data["id"]})
-        assert not vs.isempty(found_item)
 
         # UPDATE
         api_key_ref01_data_up0_up = {
@@ -100,7 +95,7 @@ class TestApiKeyEntity:
         api_key_ref01_markdef_up0_value = "Mark01-api_key_ref01_" + str(setup["now"])
         api_key_ref01_data_up0_up[api_key_ref01_markdef_up0_name] = api_key_ref01_markdef_up0_value
 
-        api_key_ref01_resdata_up0 = helpers.to_map(api_key_ref01_ent.update(api_key_ref01_data_up0_up, None))
+        api_key_ref01_resdata_up0 = helpers.to_map(runner.entity_data(api_key_ref01_ent.update(api_key_ref01_data_up0_up, None)))
         assert api_key_ref01_resdata_up0 is not None
         assert api_key_ref01_resdata_up0[api_key_ref01_markdef_up0_name] == api_key_ref01_markdef_up0_value
 
@@ -109,22 +104,12 @@ class TestApiKeyEntity:
         api_key_ref01_data_dt0_loaded = api_key_ref01_ent.load(api_key_ref01_match_dt0, None)
         assert api_key_ref01_data_dt0_loaded is not None
 
-        # REMOVE
-        api_key_ref01_match_rm0 = {
-            "id": api_key_ref01_data["id"],
-        }
-        api_key_ref01_ent.remove(api_key_ref01_match_rm0, None)
 
         # LIST
         api_key_ref01_match_rt0 = {}
 
         api_key_ref01_list_rt0_result = api_key_ref01_ent.list(api_key_ref01_match_rt0, None)
         assert isinstance(api_key_ref01_list_rt0_result, list)
-
-        not_found_item = vs.select(
-            runner.entity_list_to_data(api_key_ref01_list_rt0_result),
-            {"id": api_key_ref01_data["id"]})
-        assert vs.isempty(not_found_item)
 
 
 
@@ -157,37 +142,37 @@ def _api_key_basic_setup(extra):
     # mode is on without a real override, the basic test runs against synthetic
     # IDs from the fixture and 4xx's. We surface this so the test can skip.
     _entid_env_raw = os.environ.get(
-        "OPENROUTERMODELS_TEST_API_KEY_ENTID")
+        "OPENROUTER_MODELS_TEST_API_KEY_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")
 
     env = runner.env_override({
-        "OPENROUTERMODELS_TEST_API_KEY_ENTID": idmap,
-        "OPENROUTERMODELS_TEST_LIVE": "FALSE",
-        "OPENROUTERMODELS_TEST_EXPLAIN": "FALSE",
-        "OPENROUTERMODELS_APIKEY": "NONE",
+        "OPENROUTER_MODELS_TEST_API_KEY_ENTID": idmap,
+        "OPENROUTER_MODELS_TEST_LIVE": "FALSE",
+        "OPENROUTER_MODELS_TEST_EXPLAIN": "FALSE",
+        "OPENROUTER_MODELS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
-        env.get("OPENROUTERMODELS_TEST_API_KEY_ENTID"))
+        env.get("OPENROUTER_MODELS_TEST_API_KEY_ENTID"))
     if idmap_resolved is None:
         idmap_resolved = helpers.to_map(idmap)
 
-    if env.get("OPENROUTERMODELS_TEST_LIVE") == "TRUE":
+    if env.get("OPENROUTER_MODELS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("OPENROUTERMODELS_APIKEY"),
+                "apikey": env.get("OPENROUTER_MODELS_APIKEY"),
             },
             extra or {},
         ])
         client = OpenrouterModelsSDK(helpers.to_map(merged_opts))
 
-    _live = env.get("OPENROUTERMODELS_TEST_LIVE") == "TRUE"
+    _live = env.get("OPENROUTER_MODELS_TEST_LIVE") == "TRUE"
     return {
         "client": client,
         "data": entity_data,
         "idmap": idmap_resolved,
         "env": env,
-        "explain": env.get("OPENROUTERMODELS_TEST_EXPLAIN") == "TRUE",
+        "explain": env.get("OPENROUTER_MODELS_TEST_EXPLAIN") == "TRUE",
         "live": _live,
         "synthetic_only": _live and not _idmap_overridden,
         "now": int(time.time() * 1000),

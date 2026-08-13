@@ -7,8 +7,8 @@ main: kit: entity: observability_destination: {
   fields: [
     {
       name: "data"
-      req: true
-      type: "`$ANY`"
+      req: false
+      type: "`$OBJECT`"
     }
   ]
 
@@ -70,7 +70,7 @@ main: kit: entity: observability_destination: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

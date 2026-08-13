@@ -6,7 +6,7 @@ main: kit: entity: image_model_endpoint: {
 
   fields: [
     {
-      name: "allowed_passthrough_parameter"
+      name: "allowed_passthrough_parameters"
       req: true
       type: "`$ARRAY`"
     }
@@ -37,7 +37,7 @@ main: kit: entity: image_model_endpoint: {
       ]
     }
     {
-      name: "supported_parameter"
+      name: "supported_parameters"
       req: true
       type: "`$ANY`"
     }
@@ -122,7 +122,7 @@ main: kit: entity: image_model_endpoint: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.endpoints`"
           }
         }
       ]

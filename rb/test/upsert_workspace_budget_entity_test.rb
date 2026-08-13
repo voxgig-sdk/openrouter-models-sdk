@@ -26,7 +26,7 @@ class UpsertWorkspaceBudgetEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set OPENROUTERMODELS_TEST_UPSERT_WORKSPACE_BUDGET_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set OPENROUTER_MODELS_TEST_UPSERT_WORKSPACE_BUDGET_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -46,7 +46,7 @@ class UpsertWorkspaceBudgetEntityTest < Minitest::Test
     }
 
     upsert_workspace_budget_ref01_resdata_up0_result = upsert_workspace_budget_ref01_ent.update(upsert_workspace_budget_ref01_data_up0_up, nil)
-    upsert_workspace_budget_ref01_resdata_up0 = Helpers.to_map(upsert_workspace_budget_ref01_resdata_up0_result)
+    upsert_workspace_budget_ref01_resdata_up0 = Helpers.to_map(upsert_workspace_budget_ref01_resdata_up0_result.respond_to?(:data_get) ? upsert_workspace_budget_ref01_resdata_up0_result.data_get : upsert_workspace_budget_ref01_resdata_up0_result)
     assert !upsert_workspace_budget_ref01_resdata_up0.nil?
 
   end
@@ -78,18 +78,18 @@ def upsert_workspace_budget_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["OPENROUTERMODELS_TEST_UPSERT_WORKSPACE_BUDGET_ENTID"]
+  entid_env_raw = ENV["OPENROUTER_MODELS_TEST_UPSERT_WORKSPACE_BUDGET_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "OPENROUTERMODELS_TEST_UPSERT_WORKSPACE_BUDGET_ENTID" => idmap,
-    "OPENROUTERMODELS_TEST_LIVE" => "FALSE",
-    "OPENROUTERMODELS_TEST_EXPLAIN" => "FALSE",
-    "OPENROUTERMODELS_APIKEY" => "NONE",
+    "OPENROUTER_MODELS_TEST_UPSERT_WORKSPACE_BUDGET_ENTID" => idmap,
+    "OPENROUTER_MODELS_TEST_LIVE" => "FALSE",
+    "OPENROUTER_MODELS_TEST_EXPLAIN" => "FALSE",
+    "OPENROUTER_MODELS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["OPENROUTERMODELS_TEST_UPSERT_WORKSPACE_BUDGET_ENTID"])
+    env["OPENROUTER_MODELS_TEST_UPSERT_WORKSPACE_BUDGET_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
@@ -97,23 +97,23 @@ def upsert_workspace_budget_basic_setup(extra)
     idmap_resolved["workspace_id"] = idmap_resolved["workspace01"]
   end
 
-  if env["OPENROUTERMODELS_TEST_LIVE"] == "TRUE"
+  if env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["OPENROUTERMODELS_APIKEY"],
+        "apikey" => env["OPENROUTER_MODELS_APIKEY"],
       },
       extra || {},
     ])
     client = OpenrouterModelsSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["OPENROUTERMODELS_TEST_LIVE"] == "TRUE"
+  live = env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["OPENROUTERMODELS_TEST_EXPLAIN"] == "TRUE",
+    explain: env["OPENROUTER_MODELS_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

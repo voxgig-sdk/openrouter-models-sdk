@@ -37,7 +37,7 @@ class ActivityEntity extends OpenrouterModelsEntityBase<Activity> {
 
 
 
-  async list(this: any, reqmatch?: ActivityListMatch, ctrl?: Control): Promise<Activity[]> {
+  async list(this: any, reqmatch?: ActivityListMatch, ctrl?: Control): Promise<ActivityEntity[]> {
 
     const utility = this._utility
 

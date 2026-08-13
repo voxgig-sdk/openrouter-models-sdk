@@ -26,8 +26,8 @@ import {
 describe('AppRankingEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -63,7 +63,7 @@ describe('AppRankingEntity', async () => {
     const app_ranking_ref01_ent = client.AppRanking()
     const app_ranking_ref01_match: any = {}
 
-    const app_ranking_ref01_list = await app_ranking_ref01_ent.list(app_ranking_ref01_match)
+    const app_ranking_ref01_list = (await app_ranking_ref01_ent.list(app_ranking_ref01_match)).map((e: any) => e.data())
 
 
   })

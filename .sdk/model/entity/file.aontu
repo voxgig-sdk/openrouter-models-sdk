@@ -31,7 +31,7 @@ main: kit: entity: file: {
       type: "`$STRING`"
     }
     {
-      name: "size_byte"
+      name: "size_bytes"
       req: true
       type: "`$INTEGER`"
     }
@@ -180,7 +180,7 @@ main: kit: entity: file: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

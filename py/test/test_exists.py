@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# OpenrouterModels SDK exists test
 
 import pytest
 from openroutermodels_sdk import OpenrouterModelsSDK

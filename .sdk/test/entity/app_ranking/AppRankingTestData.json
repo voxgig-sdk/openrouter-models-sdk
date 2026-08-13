@@ -5,22 +5,22 @@
         "app_id": "APP01",
         "app_name": "s33",
         "rank": "s34",
-        "total_request": "s35",
-        "total_token": "s36"
+        "total_requests": "s35",
+        "total_tokens": "s36"
       },
       "APP_RANKING01": {
         "app_id": "APP01",
         "app_name": "s65",
         "rank": "s66",
-        "total_request": "s67",
-        "total_token": "s68"
+        "total_requests": "s67",
+        "total_tokens": "s68"
       },
       "APP_RANKING02": {
         "app_id": "APP01",
         "app_name": "s97",
         "rank": "s98",
-        "total_request": "s99",
-        "total_token": "s9a"
+        "total_requests": "s99",
+        "total_tokens": "s9a"
       }
     }
   },
@@ -30,8 +30,8 @@
         "app_id": "APP01",
         "app_name": "sc9",
         "rank": "sca",
-        "total_request": "scb",
-        "total_token": "scc"
+        "total_requests": "scb",
+        "total_tokens": "scc"
       }
     }
   }

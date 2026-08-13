@@ -2,34 +2,34 @@
   "existing": {
     "image_model_endpoint": {
       "IMAGE_MODEL_ENDPOINT00": {
-        "allowed_passthrough_parameter": [],
+        "allowed_passthrough_parameters": [],
         "pricing": [],
         "provider_name": "s48",
         "provider_slug": "s49",
         "provider_tag": "s4a",
-        "supported_parameter": "s4b",
+        "supported_parameters": "s4b",
         "supports_streaming": true,
         "model_id": "MODEL01",
         "slug": "SLUG01"
       },
       "IMAGE_MODEL_ENDPOINT01": {
-        "allowed_passthrough_parameter": [],
+        "allowed_passthrough_parameters": [],
         "pricing": [],
         "provider_name": "s8e",
         "provider_slug": "s8f",
         "provider_tag": "s90",
-        "supported_parameter": "s91",
+        "supported_parameters": "s91",
         "supports_streaming": true,
         "model_id": "MODEL01",
         "slug": "SLUG01"
       },
       "IMAGE_MODEL_ENDPOINT02": {
-        "allowed_passthrough_parameter": [],
+        "allowed_passthrough_parameters": [],
         "pricing": [],
         "provider_name": "sd4",
         "provider_slug": "sd5",
         "provider_tag": "sd6",
-        "supported_parameter": "sd7",
+        "supported_parameters": "sd7",
         "supports_streaming": true,
         "model_id": "MODEL01",
         "slug": "SLUG01"
@@ -39,12 +39,12 @@
   "new": {
     "image_model_endpoint": {
       "image_model_endpoint_ref01": {
-        "allowed_passthrough_parameter": [],
+        "allowed_passthrough_parameters": [],
         "pricing": [],
         "provider_name": "s11a",
         "provider_slug": "s11b",
         "provider_tag": "s11c",
-        "supported_parameter": "s11d",
+        "supported_parameters": "s11d",
         "supports_streaming": true
       }
     }

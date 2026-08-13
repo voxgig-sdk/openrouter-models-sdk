@@ -27,19 +27,6 @@ main: kit: flow: BasicObservabilityDestinationFlow:
         }
       ]
     }
-
-    {
-      input: {
-        ref: "observability_destination_ref01",
-        suffix: "_rm0"
-      }
-
-      match: {
-        id: "observability_destination01"
-      }
-
-      op: "remove"
-    }
   ],
   "key$": "BasicObservabilityDestinationFlow"
 }

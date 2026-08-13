@@ -70,7 +70,7 @@ describe("ApiKeyEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set OPENROUTERMODELS_TEST_API_KEY_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set OPENROUTER_MODELS_TEST_API_KEY_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -82,7 +82,7 @@ describe("ApiKeyEntity", function()
 
     local api_key_ref01_data_result, err = api_key_ref01_ent:create(api_key_ref01_data, nil)
     assert.is_nil(err)
-    api_key_ref01_data = helpers.to_map(api_key_ref01_data_result)
+    api_key_ref01_data = helpers.to_map(type(api_key_ref01_data_result) == 'table' and api_key_ref01_data_result.data_get and api_key_ref01_data_result:data_get() or api_key_ref01_data_result)
     assert.is_not_nil(api_key_ref01_data)
 
     -- LIST
@@ -91,11 +91,6 @@ describe("ApiKeyEntity", function()
     local api_key_ref01_list_result, err = api_key_ref01_ent:list(api_key_ref01_match, nil)
     assert.is_nil(err)
     assert.is_table(api_key_ref01_list_result)
-
-    local found_item = vs.select(
-      runner.entity_list_to_data(api_key_ref01_list_result),
-      { id = api_key_ref01_data["id"] })
-    assert.is_false(vs.isempty(found_item))
 
     -- UPDATE
     local api_key_ref01_data_up0_up = {
@@ -107,7 +102,7 @@ describe("ApiKeyEntity", function()
 
     local api_key_ref01_resdata_up0_result, err = api_key_ref01_ent:update(api_key_ref01_data_up0_up, nil)
     assert.is_nil(err)
-    local api_key_ref01_resdata_up0 = helpers.to_map(api_key_ref01_resdata_up0_result)
+    local api_key_ref01_resdata_up0 = helpers.to_map(type(api_key_ref01_resdata_up0_result) == 'table' and api_key_ref01_resdata_up0_result.data_get and api_key_ref01_resdata_up0_result:data_get() or api_key_ref01_resdata_up0_result)
     assert.is_not_nil(api_key_ref01_resdata_up0)
     assert.are.equal(api_key_ref01_resdata_up0[api_key_ref01_markdef_up0_name], api_key_ref01_markdef_up0_value)
 
@@ -117,12 +112,6 @@ describe("ApiKeyEntity", function()
     assert.is_nil(err)
     assert.is_not_nil(api_key_ref01_data_dt0_loaded)
 
-    -- REMOVE
-    local api_key_ref01_match_rm0 = {
-      id = api_key_ref01_data["id"],
-    }
-    local _, err = api_key_ref01_ent:remove(api_key_ref01_match_rm0, nil)
-    assert.is_nil(err)
 
     -- LIST
     local api_key_ref01_match_rt0 = {}
@@ -130,11 +119,6 @@ describe("ApiKeyEntity", function()
     local api_key_ref01_list_rt0_result, err = api_key_ref01_ent:list(api_key_ref01_match_rt0, nil)
     assert.is_nil(err)
     assert.is_table(api_key_ref01_list_rt0_result)
-
-    local not_found_item = vs.select(
-      runner.entity_list_to_data(api_key_ref01_list_rt0_result),
-      { id = api_key_ref01_data["id"] })
-    assert.is_true(vs.isempty(not_found_item))
 
   end)
 end)
@@ -171,39 +155,39 @@ function api_key_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("OPENROUTERMODELS_TEST_API_KEY_ENTID")
+  local entid_env_raw = os.getenv("OPENROUTER_MODELS_TEST_API_KEY_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["OPENROUTERMODELS_TEST_API_KEY_ENTID"] = idmap,
-    ["OPENROUTERMODELS_TEST_LIVE"] = "FALSE",
-    ["OPENROUTERMODELS_TEST_EXPLAIN"] = "FALSE",
-    ["OPENROUTERMODELS_APIKEY"] = "NONE",
+    ["OPENROUTER_MODELS_TEST_API_KEY_ENTID"] = idmap,
+    ["OPENROUTER_MODELS_TEST_LIVE"] = "FALSE",
+    ["OPENROUTER_MODELS_TEST_EXPLAIN"] = "FALSE",
+    ["OPENROUTER_MODELS_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["OPENROUTERMODELS_TEST_API_KEY_ENTID"])
+    env["OPENROUTER_MODELS_TEST_API_KEY_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["OPENROUTERMODELS_TEST_LIVE"] == "TRUE" then
+  if env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["OPENROUTERMODELS_APIKEY"],
+        apikey = env["OPENROUTER_MODELS_APIKEY"],
       },
       extra or {},
     })
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["OPENROUTERMODELS_TEST_LIVE"] == "TRUE"
+  local live = env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["OPENROUTERMODELS_TEST_EXPLAIN"] == "TRUE",
+    explain = env["OPENROUTER_MODELS_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

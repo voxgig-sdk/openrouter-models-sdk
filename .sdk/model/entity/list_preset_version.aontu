@@ -142,7 +142,7 @@ main: kit: entity: list_preset_version: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

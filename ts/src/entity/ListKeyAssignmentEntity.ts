@@ -37,7 +37,7 @@ class ListKeyAssignmentEntity extends OpenrouterModelsEntityBase<ListKeyAssignme
 
 
 
-  async list(this: any, reqmatch?: ListKeyAssignmentListMatch, ctrl?: Control): Promise<ListKeyAssignment[]> {
+  async list(this: any, reqmatch?: ListKeyAssignmentListMatch, ctrl?: Control): Promise<ListKeyAssignmentEntity[]> {
 
     const utility = this._utility
 

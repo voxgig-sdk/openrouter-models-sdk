@@ -92,7 +92,7 @@ func TestModelEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set OPENROUTERMODELS_TEST_MODEL_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set OPENROUTER_MODELS_TEST_MODEL_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -128,7 +128,7 @@ func TestModelEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		modelRef01DataDt0LoadResult := core.ToMapAny(modelRef01DataDt0Loaded)
+		modelRef01DataDt0LoadResult := core.ToMapAny(entityData(modelRef01DataDt0Loaded))
 		if modelRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}
@@ -176,38 +176,38 @@ func modelBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("OPENROUTERMODELS_TEST_MODEL_ENTID")
+	entidEnvRaw := os.Getenv("OPENROUTER_MODELS_TEST_MODEL_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"OPENROUTERMODELS_TEST_MODEL_ENTID": idmap,
-		"OPENROUTERMODELS_TEST_LIVE":      "FALSE",
-		"OPENROUTERMODELS_TEST_EXPLAIN":   "FALSE",
-		"OPENROUTERMODELS_APIKEY":         "NONE",
+		"OPENROUTER_MODELS_TEST_MODEL_ENTID": idmap,
+		"OPENROUTER_MODELS_TEST_LIVE":      "FALSE",
+		"OPENROUTER_MODELS_TEST_EXPLAIN":   "FALSE",
+		"OPENROUTER_MODELS_APIKEY":         "NONE",
 	})
 
-	idmapResolved := core.ToMapAny(env["OPENROUTERMODELS_TEST_MODEL_ENTID"])
+	idmapResolved := core.ToMapAny(env["OPENROUTER_MODELS_TEST_MODEL_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["OPENROUTERMODELS_TEST_LIVE"] == "TRUE" {
+	if env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["OPENROUTERMODELS_APIKEY"],
+				"apikey": env["OPENROUTER_MODELS_APIKEY"],
 			},
 			extra,
 		})
 		client = sdk.NewOpenrouterModelsSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["OPENROUTERMODELS_TEST_LIVE"] == "TRUE"
+	live := env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["OPENROUTERMODELS_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["OPENROUTER_MODELS_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

@@ -5,20 +5,5 @@ main: kit: flow: BasicWorkspaceBudgetFlow:
   entity: "workspace_budget",
   kind: "basic",
   name: "BasicWorkspaceBudgetFlow",
-  step: [
-    {
-      input: {
-        ref: "workspace_budget_ref01",
-        suffix: "_rm0"
-      }
-
-      match: {
-        id: "workspace_budget01",
-        workspace_id: "workspace01"
-      }
-
-      op: "remove"
-    }
-  ],
   "key$": "BasicWorkspaceBudgetFlow"
 }

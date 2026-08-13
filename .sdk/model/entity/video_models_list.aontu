@@ -6,7 +6,7 @@ main: kit: entity: video_models_list: {
 
   fields: [
     {
-      name: "allowed_passthrough_parameter"
+      name: "allowed_passthrough_parameters"
       req: true
       type: "`$ARRAY`"
     }
@@ -80,7 +80,7 @@ main: kit: entity: video_models_list: {
       ]
     }
     {
-      name: "supported_aspect_ratio"
+      name: "supported_aspect_ratios"
       req: true
       type: [
         "`$ONE`"
@@ -91,7 +91,7 @@ main: kit: entity: video_models_list: {
       ]
     }
     {
-      name: "supported_duration"
+      name: "supported_durations"
       req: true
       type: [
         "`$ONE`"
@@ -102,7 +102,7 @@ main: kit: entity: video_models_list: {
       ]
     }
     {
-      name: "supported_frame_image"
+      name: "supported_frame_images"
       req: true
       type: [
         "`$ONE`"
@@ -113,7 +113,7 @@ main: kit: entity: video_models_list: {
       ]
     }
     {
-      name: "supported_resolution"
+      name: "supported_resolutions"
       req: true
       type: [
         "`$ONE`"
@@ -124,7 +124,7 @@ main: kit: entity: video_models_list: {
       ]
     }
     {
-      name: "supported_size"
+      name: "supported_sizes"
       req: true
       type: [
         "`$ONE`"
@@ -187,7 +187,7 @@ main: kit: entity: video_models_list: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

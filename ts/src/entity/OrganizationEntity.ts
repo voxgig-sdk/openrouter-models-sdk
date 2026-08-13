@@ -37,7 +37,7 @@ class OrganizationEntity extends OpenrouterModelsEntityBase<Organization> {
 
 
 
-  async list(this: any, reqmatch?: OrganizationListMatch, ctrl?: Control): Promise<Organization[]> {
+  async list(this: any, reqmatch?: OrganizationListMatch, ctrl?: Control): Promise<OrganizationEntity[]> {
 
     const utility = this._utility
 

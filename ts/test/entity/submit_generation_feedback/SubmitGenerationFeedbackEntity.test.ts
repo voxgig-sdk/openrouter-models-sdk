@@ -26,8 +26,8 @@ import {
 describe('SubmitGenerationFeedbackEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -62,7 +62,7 @@ describe('SubmitGenerationFeedbackEntity', async () => {
     const submit_generation_feedback_ref01_ent = client.SubmitGenerationFeedback()
     let submit_generation_feedback_ref01_data = setup.data.new.submit_generation_feedback['submit_generation_feedback_ref01']
 
-    submit_generation_feedback_ref01_data = await submit_generation_feedback_ref01_ent.create(submit_generation_feedback_ref01_data)
+    submit_generation_feedback_ref01_data = (await submit_generation_feedback_ref01_ent.create(submit_generation_feedback_ref01_data)).data()
     assert(null != submit_generation_feedback_ref01_data)
 
 

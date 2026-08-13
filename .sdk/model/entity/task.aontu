@@ -6,9 +6,24 @@ main: kit: entity: task: {
 
   fields: [
     {
-      name: "data"
+      name: "as_of"
       req: true
-      type: "`$OBJECT`"
+      type: "`$STRING`"
+    }
+    {
+      name: "classifications"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "macro_categories"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "window_days"
+      req: true
+      type: "`$INTEGER`"
     }
   ]
 
@@ -69,7 +84,7 @@ main: kit: entity: task: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

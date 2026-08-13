@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from openroutermodels_sdk.utility.voxgig_struct import voxgig_struct as vs
 from openroutermodels_sdk import OpenrouterModelsSDK
-from core import helpers
+from openroutermodels_sdk.core import helpers
 from test import runner
 
 
@@ -70,16 +70,16 @@ def _list_workspace_budget_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "OPENROUTERMODELS_TEST_LIST_WORKSPACE_BUDGET_ENTID": {},
-        "OPENROUTERMODELS_TEST_LIVE": "FALSE",
-        "OPENROUTERMODELS_APIKEY": "NONE",
+        "OPENROUTER_MODELS_TEST_LIST_WORKSPACE_BUDGET_ENTID": {},
+        "OPENROUTER_MODELS_TEST_LIVE": "FALSE",
+        "OPENROUTER_MODELS_APIKEY": "NONE",
     })
 
-    live = env.get("OPENROUTERMODELS_TEST_LIVE") == "TRUE"
+    live = env.get("OPENROUTER_MODELS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("OPENROUTERMODELS_APIKEY"),
+            "apikey": env.get("OPENROUTER_MODELS_APIKEY"),
         }
         client = OpenrouterModelsSDK(merged_opts)
         return {

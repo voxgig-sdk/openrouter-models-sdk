@@ -26,8 +26,8 @@ import {
 describe('OAuthEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -62,8 +62,8 @@ describe('OAuthEntity', async () => {
     const o_auth_ref01_ent = client.OAuth()
     let o_auth_ref01_data = setup.data.new.o_auth['o_auth_ref01']
 
-    o_auth_ref01_data = await o_auth_ref01_ent.create(o_auth_ref01_data)
-    assert(null != o_auth_ref01_data)
+    o_auth_ref01_data = (await o_auth_ref01_ent.create(o_auth_ref01_data)).data()
+    assert(null != o_auth_ref01_data.id)
 
 
   })

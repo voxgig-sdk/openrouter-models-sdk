@@ -33,17 +33,12 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
-      name: "data"
-      req: true
-      type: "`$ANY`"
-    }
-    {
       name: "debug"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "fallback"
+      name: "fallbacks"
       req: false
       type: [
         "`$ONE`"
@@ -86,7 +81,7 @@ main: kit: entity: create_preset_from_inference: {
       type: "`$ANY`"
     }
     {
-      name: "instruction"
+      name: "instructions"
       req: false
       type: [
         "`$ONE`"
@@ -97,7 +92,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
-      name: "logit_bia"
+      name: "logit_bias"
       req: false
       type: [
         "`$ONE`"
@@ -108,7 +103,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
-      name: "logprob"
+      name: "logprobs"
       req: false
       type: [
         "`$ONE`"
@@ -119,7 +114,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
-      name: "max_completion_token"
+      name: "max_completion_tokens"
       req: false
       type: [
         "`$ONE`"
@@ -130,7 +125,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
-      name: "max_output_token"
+      name: "max_output_tokens"
       req: false
       type: [
         "`$ONE`"
@@ -141,7 +136,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
-      name: "max_token"
+      name: "max_tokens"
       req: false
       type: [
         "`$ONE`"
@@ -152,7 +147,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
-      name: "max_tool_call"
+      name: "max_tool_calls"
       req: false
       type: [
         "`$ONE`"
@@ -163,7 +158,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
-      name: "message"
+      name: "messages"
       req: true
       type: "`$ARRAY`"
     }
@@ -184,7 +179,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
-      name: "modality"
+      name: "modalities"
       req: false
       type: "`$ARRAY`"
     }
@@ -200,12 +195,17 @@ main: kit: entity: create_preset_from_inference: {
       type: "`$STRING`"
     }
     {
+      name: "models"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
       name: "output_config"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "parallel_tool_call"
+      name: "parallel_tool_calls"
       req: false
       type: [
         "`$ONE`"
@@ -216,7 +216,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
-      name: "plugin"
+      name: "plugins"
       req: false
       type: "`$ARRAY`"
     }
@@ -270,7 +270,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
-      name: "prompt_cache_option"
+      name: "prompt_cache_options"
       req: true
       type: [
         "`$ONE`"
@@ -383,7 +383,7 @@ main: kit: entity: create_preset_from_inference: {
       type: "`$ANY`"
     }
     {
-      name: "stop_sequence"
+      name: "stop_sequences"
       req: false
       type: "`$ARRAY`"
     }
@@ -403,7 +403,7 @@ main: kit: entity: create_preset_from_inference: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "stream_option"
+      name: "stream_options"
       req: false
       type: [
         "`$ONE`"
@@ -440,14 +440,14 @@ main: kit: entity: create_preset_from_inference: {
       type: "`$ANY`"
     }
     {
-      name: "tool"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
       name: "tool_choice"
       req: false
       type: "`$ANY`"
+    }
+    {
+      name: "tools"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "top_a"
@@ -472,7 +472,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
-      name: "top_logprob"
+      name: "top_logprobs"
       req: false
       type: [
         "`$ONE`"
@@ -575,7 +575,7 @@ main: kit: entity: create_preset_from_inference: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -631,7 +631,7 @@ main: kit: entity: create_preset_from_inference: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -687,7 +687,7 @@ main: kit: entity: create_preset_from_inference: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

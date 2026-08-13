@@ -22,11 +22,6 @@ main: kit: entity: update_workspace: {
       ]
     }
     {
-      name: "data"
-      req: true
-      type: "`$ANY`"
-    }
-    {
       name: "default_image_model"
       op: {
         list: {
@@ -124,7 +119,7 @@ main: kit: entity: update_workspace: {
       type: "`$STRING`"
     }
     {
-      name: "io_logging_api_key_id"
+      name: "io_logging_api_key_ids"
       op: {
         list: {
           req: true
@@ -275,7 +270,7 @@ main: kit: entity: update_workspace: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -349,7 +344,7 @@ main: kit: entity: update_workspace: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -409,7 +404,7 @@ main: kit: entity: update_workspace: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

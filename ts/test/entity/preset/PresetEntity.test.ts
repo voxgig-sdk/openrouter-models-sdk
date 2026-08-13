@@ -26,8 +26,8 @@ import {
 describe('PresetEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -63,13 +63,13 @@ describe('PresetEntity', async () => {
     const preset_ref01_ent = client.Preset()
     const preset_ref01_match: any = {}
 
-    const preset_ref01_list = await preset_ref01_ent.list(preset_ref01_match)
+    const preset_ref01_list = (await preset_ref01_ent.list(preset_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const preset_ref01_match_dt0: any = {}
     preset_ref01_match_dt0.id = preset_ref01_data.id
-    const preset_ref01_data_dt0 = await preset_ref01_ent.load(preset_ref01_match_dt0)
+    const preset_ref01_data_dt0 = (await preset_ref01_ent.load(preset_ref01_match_dt0)).data()
     assert(preset_ref01_data_dt0.id === preset_ref01_data.id)
 
 

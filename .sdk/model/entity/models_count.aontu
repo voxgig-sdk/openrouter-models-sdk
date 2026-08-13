@@ -6,9 +6,9 @@ main: kit: entity: models_count: {
 
   fields: [
     {
-      name: "data"
+      name: "count"
       req: true
-      type: "`$OBJECT`"
+      type: "`$INTEGER`"
     }
   ]
 
@@ -69,7 +69,7 @@ main: kit: entity: models_count: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

@@ -26,8 +26,8 @@ import {
 describe('ImageModelEndpointEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -65,7 +65,7 @@ describe('ImageModelEndpointEntity', async () => {
     image_model_endpoint_ref01_match['model_id'] = setup.idmap['model01']
     image_model_endpoint_ref01_match['slug'] = setup.idmap['slug01']
 
-    const image_model_endpoint_ref01_list = await image_model_endpoint_ref01_ent.list(image_model_endpoint_ref01_match)
+    const image_model_endpoint_ref01_list = (await image_model_endpoint_ref01_ent.list(image_model_endpoint_ref01_match)).map((e: any) => e.data())
 
 
   })

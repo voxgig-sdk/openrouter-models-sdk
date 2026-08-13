@@ -72,7 +72,7 @@ class ApiKeyEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set OPENROUTERMODELS_TEST_API_KEY_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set OPENROUTER_MODELS_TEST_API_KEY_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -83,7 +83,7 @@ class ApiKeyEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.api_key"), "api_key_ref01"));
 
         $api_key_ref01_data_result = $api_key_ref01_ent->create($api_key_ref01_data, null);
-        $api_key_ref01_data = Helpers::to_map($api_key_ref01_data_result);
+        $api_key_ref01_data = Helpers::to_map(is_object($api_key_ref01_data_result) && method_exists($api_key_ref01_data_result, 'data_get') ? $api_key_ref01_data_result->data_get() : $api_key_ref01_data_result);
         $this->assertNotNull($api_key_ref01_data);
 
         // LIST
@@ -91,11 +91,6 @@ class ApiKeyEntityTest extends TestCase
 
         $api_key_ref01_list_result = $api_key_ref01_ent->list($api_key_ref01_match, null);
         $this->assertIsArray($api_key_ref01_list_result);
-
-        $found_item = sdk_select(
-            Runner::entity_list_to_data($api_key_ref01_list_result),
-            ["id" => $api_key_ref01_data["id"]]);
-        $this->assertNotEmpty($found_item);
 
         // UPDATE
         $api_key_ref01_data_up0_up = [
@@ -106,7 +101,7 @@ class ApiKeyEntityTest extends TestCase
         $api_key_ref01_data_up0_up[$api_key_ref01_markdef_up0_name] = $api_key_ref01_markdef_up0_value;
 
         $api_key_ref01_resdata_up0_result = $api_key_ref01_ent->update($api_key_ref01_data_up0_up, null);
-        $api_key_ref01_resdata_up0 = Helpers::to_map($api_key_ref01_resdata_up0_result);
+        $api_key_ref01_resdata_up0 = Helpers::to_map(is_object($api_key_ref01_resdata_up0_result) && method_exists($api_key_ref01_resdata_up0_result, 'data_get') ? $api_key_ref01_resdata_up0_result->data_get() : $api_key_ref01_resdata_up0_result);
         $this->assertNotNull($api_key_ref01_resdata_up0);
         $this->assertEquals($api_key_ref01_resdata_up0[$api_key_ref01_markdef_up0_name], $api_key_ref01_markdef_up0_value);
 
@@ -115,22 +110,12 @@ class ApiKeyEntityTest extends TestCase
         $api_key_ref01_data_dt0_loaded = $api_key_ref01_ent->load($api_key_ref01_match_dt0, null);
         $this->assertNotNull($api_key_ref01_data_dt0_loaded);
 
-        // REMOVE
-        $api_key_ref01_match_rm0 = [
-            "id" => $api_key_ref01_data["id"],
-        ];
-        $api_key_ref01_ent->remove($api_key_ref01_match_rm0, null);
 
         // LIST
         $api_key_ref01_match_rt0 = [];
 
         $api_key_ref01_list_rt0_result = $api_key_ref01_ent->list($api_key_ref01_match_rt0, null);
         $this->assertIsArray($api_key_ref01_list_rt0_result);
-
-        $not_found_item = sdk_select(
-            Runner::entity_list_to_data($api_key_ref01_list_rt0_result),
-            ["id" => $api_key_ref01_data["id"]]);
-        $this->assertEmpty($not_found_item);
 
     }
 }
@@ -157,39 +142,39 @@ function api_key_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("OPENROUTERMODELS_TEST_API_KEY_ENTID");
+    $entid_env_raw = getenv("OPENROUTER_MODELS_TEST_API_KEY_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "OPENROUTERMODELS_TEST_API_KEY_ENTID" => $idmap,
-        "OPENROUTERMODELS_TEST_LIVE" => "FALSE",
-        "OPENROUTERMODELS_TEST_EXPLAIN" => "FALSE",
-        "OPENROUTERMODELS_APIKEY" => "NONE",
+        "OPENROUTER_MODELS_TEST_API_KEY_ENTID" => $idmap,
+        "OPENROUTER_MODELS_TEST_LIVE" => "FALSE",
+        "OPENROUTER_MODELS_TEST_EXPLAIN" => "FALSE",
+        "OPENROUTER_MODELS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["OPENROUTERMODELS_TEST_API_KEY_ENTID"]);
+        $env["OPENROUTER_MODELS_TEST_API_KEY_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["OPENROUTERMODELS_TEST_LIVE"] === "TRUE") {
+    if ($env["OPENROUTER_MODELS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["OPENROUTERMODELS_APIKEY"],
+                "apikey" => $env["OPENROUTER_MODELS_APIKEY"],
             ],
             $extra ?? [],
         ]);
         $client = new OpenrouterModelsSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["OPENROUTERMODELS_TEST_LIVE"] === "TRUE";
+    $live = $env["OPENROUTER_MODELS_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["OPENROUTERMODELS_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["OPENROUTER_MODELS_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

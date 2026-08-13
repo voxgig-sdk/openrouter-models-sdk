@@ -21,12 +21,12 @@ main: kit: entity: app_ranking: {
       type: "`$INTEGER`"
     }
     {
-      name: "total_request"
+      name: "total_requests"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "total_token"
+      name: "total_tokens"
       req: true
       type: "`$STRING`"
     }

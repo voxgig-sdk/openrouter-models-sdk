@@ -435,15 +435,15 @@ activity = client.Activity
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `byok_usage_inference` | `Float` | Yes |  |
-| `completion_token` | `Integer` | Yes |  |
+| `completion_tokens` | `Integer` | Yes |  |
 | `date` | `String` | Yes |  |
 | `endpoint_id` | `String` | Yes |  |
 | `model` | `String` | Yes |  |
 | `model_permaslug` | `String` | Yes |  |
-| `prompt_token` | `Integer` | Yes |  |
+| `prompt_tokens` | `Integer` | Yes |  |
 | `provider_name` | `String` | Yes |  |
-| `reasoning_token` | `Integer` | Yes |  |
-| `request` | `Integer` | Yes |  |
+| `reasoning_tokens` | `Integer` | Yes |  |
+| `requests` | `Integer` | Yes |  |
 | `usage` | `Float` | Yes |  |
 
 ### Operations
@@ -537,23 +537,26 @@ api_key = client.ApiKey
 | `byok_usage_monthly` | `Float` | Yes |  |
 | `byok_usage_weekly` | `Float` | Yes |  |
 | `created_at` | `String` | Yes |  |
-| `creator_user_id` | `Object` | No |  |
-| `data` | `Hash` | Yes |  |
-| `disabled` | `Boolean` | No |  |
+| `creator_user_id` | `Object` | Yes |  |
+| `disabled` | `Boolean` | Yes |  |
 | `expires_at` | `Object` | No |  |
 | `hash` | `String` | Yes |  |
-| `include_byok_in_limit` | `Boolean` | No |  |
+| `include_byok_in_limit` | `Boolean` | Yes |  |
+| `is_free_tier` | `Boolean` | Yes |  |
+| `is_management_key` | `Boolean` | Yes |  |
+| `is_provisioning_key` | `Boolean` | Yes |  |
 | `label` | `String` | Yes |  |
-| `limit` | `Object` | No |  |
+| `limit` | `Object` | Yes |  |
 | `limit_remaining` | `Object` | Yes |  |
-| `limit_reset` | `Object` | No |  |
+| `limit_reset` | `Object` | Yes |  |
 | `name` | `String` | Yes |  |
+| `rate_limit` | `Hash` | Yes |  |
 | `updated_at` | `Object` | Yes |  |
 | `usage` | `Float` | Yes |  |
 | `usage_daily` | `Float` | Yes |  |
 | `usage_monthly` | `Float` | Yes |  |
 | `usage_weekly` | `Float` | Yes |  |
-| `workspace_id` | `String` | No |  |
+| `workspace_id` | `String` | Yes |  |
 
 ### Field Usage by Operation
 
@@ -564,23 +567,26 @@ api_key = client.ApiKey
 | `byok_usage_monthly` | - | - | - | - | - |
 | `byok_usage_weekly` | - | - | - | - | - |
 | `created_at` | - | - | - | - | - |
-| `creator_user_id` | - | Yes | - | - | - |
-| `data` | - | - | - | - | - |
-| `disabled` | - | Yes | - | - | - |
+| `creator_user_id` | - | - | Yes | - | - |
+| `disabled` | - | - | - | Yes | - |
 | `expires_at` | - | - | - | - | - |
 | `hash` | - | - | - | - | - |
-| `include_byok_in_limit` | - | Yes | - | - | - |
+| `include_byok_in_limit` | - | - | Yes | Yes | - |
+| `is_free_tier` | - | - | - | - | - |
+| `is_management_key` | - | - | - | - | - |
+| `is_provisioning_key` | - | - | - | - | - |
 | `label` | - | - | - | - | - |
-| `limit` | - | Yes | - | - | - |
+| `limit` | - | - | Yes | Yes | - |
 | `limit_remaining` | - | - | - | - | - |
-| `limit_reset` | - | Yes | - | - | - |
+| `limit_reset` | - | - | Yes | Yes | - |
 | `name` | - | - | - | Yes | - |
+| `rate_limit` | - | - | - | - | - |
 | `updated_at` | - | - | - | - | - |
 | `usage` | - | - | - | - | - |
 | `usage_daily` | - | - | - | - | - |
 | `usage_monthly` | - | - | - | - | - |
 | `usage_weekly` | - | - | - | - | - |
-| `workspace_id` | - | Yes | - | - | - |
+| `workspace_id` | - | - | Yes | - | - |
 
 ### Operations
 
@@ -595,16 +601,25 @@ result = client.ApiKey.create({
   "byok_usage_monthly" => 1, # Float
   "byok_usage_weekly" => 1, # Float
   "created_at" => "example_created_at", # String
-  "data" => {}, # Hash
+  "creator_user_id" => "example_creator_user_id", # Object
+  "disabled" => true, # Boolean
   "hash" => "example_hash", # String
+  "include_byok_in_limit" => true, # Boolean
+  "is_free_tier" => true, # Boolean
+  "is_management_key" => true, # Boolean
+  "is_provisioning_key" => true, # Boolean
   "label" => "example_label", # String
+  "limit" => "example_limit", # Object
   "limit_remaining" => "example_limit_remaining", # Object
+  "limit_reset" => "example_limit_reset", # Object
   "name" => "example_name", # String
+  "rate_limit" => {}, # Hash
   "updated_at" => "example_updated_at", # Object
   "usage" => 1, # Float
   "usage_daily" => 1, # Float
   "usage_monthly" => 1, # Float
   "usage_weekly" => 1, # Float
+  "workspace_id" => "example_workspace_id", # String
 })
 ```
 
@@ -686,8 +701,8 @@ app_ranking = client.AppRanking
 | `app_id` | `Integer` | Yes |  |
 | `app_name` | `String` | Yes |  |
 | `rank` | `Integer` | Yes |  |
-| `total_request` | `Integer` | Yes |  |
-| `total_token` | `String` | Yes |  |
+| `total_requests` | `Integer` | Yes |  |
+| `total_tokens` | `String` | Yes |  |
 
 ### Operations
 
@@ -775,17 +790,43 @@ beta_analytics = client.BetaAnalytics
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `classifier_dimension` | `Hash` | Yes |  |
-| `classifier_filter` | `Hash` | Yes |  |
-| `data` | `Hash` | Yes |  |
-| `dimension` | `Array` | No |  |
-| `filter` | `Array` | No |  |
+| `cachedAt` | `Float` | No |  |
+| `classifier_dimensions` | `Hash` | Yes |  |
+| `classifier_filters` | `Hash` | Yes |  |
+| `data` | `Array` | Yes |  |
+| `dimensions` | `Array` | Yes |  |
+| `filters` | `Array` | No |  |
+| `granularities` | `Array` | Yes |  |
 | `granularity` | `String` | No |  |
 | `group_limit` | `Integer` | No |  |
 | `limit` | `Integer` | No |  |
-| `metric` | `Array` | Yes |  |
+| `metadata` | `Hash` | Yes |  |
+| `metrics` | `Array` | Yes |  |
+| `operators` | `Array` | Yes |  |
 | `order_by` | `Hash` | Yes |  |
 | `time_range` | `Hash` | Yes |  |
+| `warnings` | `Array` | No |  |
+
+### Field Usage by Operation
+
+| Field | load | create |
+| --- | --- | --- |
+| `cachedAt` | - | - |
+| `classifier_dimensions` | - | - |
+| `classifier_filters` | - | - |
+| `data` | - | - |
+| `dimensions` | - | Yes |
+| `filters` | - | - |
+| `granularities` | - | - |
+| `granularity` | - | - |
+| `group_limit` | - | - |
+| `limit` | - | - |
+| `metadata` | - | - |
+| `metrics` | - | - |
+| `operators` | - | - |
+| `order_by` | - | - |
+| `time_range` | - | - |
+| `warnings` | - | - |
 
 ### Operations
 
@@ -795,10 +836,14 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.BetaAnalytics.create({
-  "classifier_dimension" => {}, # Hash
-  "classifier_filter" => {}, # Hash
-  "data" => {}, # Hash
-  "metric" => [], # Array
+  "classifier_dimensions" => {}, # Hash
+  "classifier_filters" => {}, # Hash
+  "data" => [], # Array
+  "dimensions" => [], # Array
+  "granularities" => [], # Array
+  "metadata" => {}, # Hash
+  "metrics" => [], # Array
+  "operators" => [], # Array
   "order_by" => {}, # Hash
   "time_range" => {}, # Hash
 })
@@ -890,7 +935,7 @@ bulk_add_workspace_member = client.BulkAddWorkspaceMember
 | --- | --- | --- | --- |
 | `added_count` | `Integer` | Yes |  |
 | `data` | `Array` | Yes |  |
-| `user_id` | `Array` | Yes |  |
+| `user_ids` | `Array` | Yes |  |
 
 ### Operations
 
@@ -901,6 +946,9 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.BulkAddWorkspaceMember.create({
   "workspace_id" => "example_workspace_id", # String
+  "added_count" => 1, # Integer
+  "data" => [], # Array
+  "user_ids" => [], # Array
 })
 ```
 
@@ -945,7 +993,7 @@ bulk_assign_key = client.BulkAssignKey
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `assigned_count` | `Integer` | Yes |  |
-| `key_hash` | `Array` | Yes |  |
+| `key_hashes` | `Array` | Yes |  |
 
 ### Operations
 
@@ -956,6 +1004,8 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.BulkAssignKey.create({
   "guardrail_id" => "example_guardrail_id", # String
+  "assigned_count" => 1, # Integer
+  "key_hashes" => [], # Array
 })
 ```
 
@@ -1000,7 +1050,7 @@ bulk_assign_member = client.BulkAssignMember
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `assigned_count` | `Integer` | Yes |  |
-| `member_user_id` | `Array` | Yes |  |
+| `member_user_ids` | `Array` | Yes |  |
 
 ### Operations
 
@@ -1011,6 +1061,8 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.BulkAssignMember.create({
   "guardrail_id" => "example_guardrail_id", # String
+  "assigned_count" => 1, # Integer
+  "member_user_ids" => [], # Array
 })
 ```
 
@@ -1055,7 +1107,7 @@ bulk_remove_workspace_member = client.BulkRemoveWorkspaceMember
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `removed_count` | `Integer` | Yes |  |
-| `user_id` | `Array` | Yes |  |
+| `user_ids` | `Array` | Yes |  |
 
 ### Operations
 
@@ -1066,6 +1118,8 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.BulkRemoveWorkspaceMember.create({
   "workspace_id" => "example_workspace_id", # String
+  "removed_count" => 1, # Integer
+  "user_ids" => [], # Array
 })
 ```
 
@@ -1109,7 +1163,7 @@ bulk_unassign_key = client.BulkUnassignKey
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key_hash` | `Array` | Yes |  |
+| `key_hashes` | `Array` | Yes |  |
 | `unassigned_count` | `Integer` | Yes |  |
 
 ### Operations
@@ -1121,6 +1175,8 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.BulkUnassignKey.create({
   "guardrail_id" => "example_guardrail_id", # String
+  "key_hashes" => [], # Array
+  "unassigned_count" => 1, # Integer
 })
 ```
 
@@ -1164,7 +1220,7 @@ bulk_unassign_member = client.BulkUnassignMember
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `member_user_id` | `Array` | Yes |  |
+| `member_user_ids` | `Array` | Yes |  |
 | `unassigned_count` | `Integer` | Yes |  |
 
 ### Operations
@@ -1176,6 +1232,8 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.BulkUnassignMember.create({
   "guardrail_id" => "example_guardrail_id", # String
+  "member_user_ids" => [], # Array
+  "unassigned_count" => 1, # Integer
 })
 ```
 
@@ -1219,39 +1277,37 @@ byok = client.Byok
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_api_key_hash` | `Object` | Yes |  |
-| `allowed_model` | `Object` | No |  |
-| `allowed_user_id` | `Object` | No |  |
+| `allowed_api_key_hashes` | `Object` | Yes |  |
+| `allowed_models` | `Object` | Yes |  |
+| `allowed_user_ids` | `Object` | Yes |  |
 | `created_at` | `String` | Yes |  |
-| `data` | `Object` | Yes |  |
-| `disabled` | `Boolean` | No |  |
+| `disabled` | `Boolean` | Yes |  |
 | `id` | `String` | Yes |  |
-| `is_fallback` | `Boolean` | No |  |
+| `is_fallback` | `Boolean` | Yes |  |
 | `key` | `String` | Yes |  |
 | `label` | `String` | Yes |  |
 | `name` | `Object` | No |  |
 | `provider` | `String` | Yes |  |
 | `sort_order` | `Integer` | Yes |  |
-| `workspace_id` | `String` | No |  |
+| `workspace_id` | `String` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | load | list | create | remove |
 | --- | --- | --- | --- | --- |
-| `allowed_api_key_hash` | - | - | - | - |
-| `allowed_model` | - | Yes | - | - |
-| `allowed_user_id` | - | Yes | - | - |
+| `allowed_api_key_hashes` | - | - | - | - |
+| `allowed_models` | - | - | Yes | - |
+| `allowed_user_ids` | - | - | Yes | - |
 | `created_at` | - | - | - | - |
-| `data` | - | - | - | - |
-| `disabled` | - | Yes | - | - |
+| `disabled` | - | - | Yes | - |
 | `id` | - | - | - | - |
-| `is_fallback` | - | Yes | - | - |
+| `is_fallback` | - | - | Yes | - |
 | `key` | - | - | - | - |
 | `label` | - | - | - | - |
 | `name` | - | - | - | - |
 | `provider` | - | - | - | - |
 | `sort_order` | - | - | - | - |
-| `workspace_id` | - | Yes | - | - |
+| `workspace_id` | - | - | Yes | - |
 
 ### Operations
 
@@ -1261,14 +1317,18 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Byok.create({
-  "allowed_api_key_hash" => "example_allowed_api_key_hash", # Object
+  "allowed_api_key_hashes" => "example_allowed_api_key_hashes", # Object
+  "allowed_models" => "example_allowed_models", # Object
+  "allowed_user_ids" => "example_allowed_user_ids", # Object
   "created_at" => "example_created_at", # String
-  "data" => "example_data", # Object
+  "disabled" => true, # Boolean
   "id" => "example_id", # String
+  "is_fallback" => true, # Boolean
   "key" => "example_key", # String
   "label" => "example_label", # String
   "provider" => "example_provider", # String
   "sort_order" => 1, # Integer
+  "workspace_id" => "example_workspace_id", # String
 })
 ```
 
@@ -1337,29 +1397,30 @@ chat_result = client.ChatResult
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cache_control` | `Hash` | Yes |  |
-| `choice` | `Array` | Yes |  |
+| `choices` | `Array` | Yes |  |
 | `created` | `Integer` | Yes |  |
 | `debug` | `Hash` | No |  |
 | `frequency_penalty` | `Object` | No |  |
 | `id` | `String` | Yes |  |
 | `image_config` | `Hash` | No |  |
-| `logit_bia` | `Object` | No |  |
-| `logprob` | `Object` | No |  |
-| `max_completion_token` | `Object` | No |  |
-| `max_token` | `Object` | No |  |
-| `message` | `Array` | Yes |  |
+| `logit_bias` | `Object` | No |  |
+| `logprobs` | `Object` | No |  |
+| `max_completion_tokens` | `Object` | No |  |
+| `max_tokens` | `Object` | No |  |
+| `messages` | `Array` | Yes |  |
 | `metadata` | `Hash` | No |  |
 | `min_p` | `Object` | No |  |
-| `modality` | `Array` | No |  |
+| `modalities` | `Array` | No |  |
 | `model` | `String` | Yes |  |
+| `models` | `Array` | No |  |
 | `object` | `String` | Yes |  |
 | `openrouter_metadata` | `Hash` | Yes |  |
-| `parallel_tool_call` | `Object` | No |  |
-| `plugin` | `Array` | No |  |
+| `parallel_tool_calls` | `Object` | No |  |
+| `plugins` | `Array` | No |  |
 | `prediction` | `Object` | Yes |  |
 | `presence_penalty` | `Object` | No |  |
 | `prompt_cache_key` | `Object` | No |  |
-| `prompt_cache_option` | `Object` | Yes |  |
+| `prompt_cache_options` | `Object` | Yes |  |
 | `provider` | `Object` | No |  |
 | `reasoning` | `Hash` | No |  |
 | `reasoning_effort` | `Object` | No |  |
@@ -1372,14 +1433,14 @@ chat_result = client.ChatResult
 | `stop` | `Object` | No |  |
 | `stop_server_tools_when` | `Array` | No |  |
 | `stream` | `Boolean` | No |  |
-| `stream_option` | `Object` | No |  |
+| `stream_options` | `Object` | No |  |
 | `system_fingerprint` | `Object` | Yes |  |
 | `temperature` | `Object` | No |  |
-| `tool` | `Array` | No |  |
 | `tool_choice` | `Object` | No |  |
+| `tools` | `Array` | No |  |
 | `top_a` | `Object` | No |  |
 | `top_k` | `Object` | No |  |
-| `top_logprob` | `Object` | No |  |
+| `top_logprobs` | `Object` | No |  |
 | `top_p` | `Object` | No |  |
 | `trace` | `Hash` | No |  |
 | `usage` | `Hash` | Yes |  |
@@ -1390,29 +1451,30 @@ chat_result = client.ChatResult
 | Field | create |
 | --- | --- |
 | `cache_control` | - |
-| `choice` | - |
+| `choices` | - |
 | `created` | - |
 | `debug` | - |
 | `frequency_penalty` | - |
 | `id` | - |
 | `image_config` | - |
-| `logit_bia` | - |
-| `logprob` | - |
-| `max_completion_token` | - |
-| `max_token` | - |
-| `message` | - |
+| `logit_bias` | - |
+| `logprobs` | - |
+| `max_completion_tokens` | - |
+| `max_tokens` | - |
+| `messages` | - |
 | `metadata` | - |
 | `min_p` | - |
-| `modality` | - |
+| `modalities` | - |
 | `model` | Yes |
+| `models` | - |
 | `object` | - |
 | `openrouter_metadata` | - |
-| `parallel_tool_call` | - |
-| `plugin` | - |
+| `parallel_tool_calls` | - |
+| `plugins` | - |
 | `prediction` | - |
 | `presence_penalty` | - |
 | `prompt_cache_key` | - |
-| `prompt_cache_option` | - |
+| `prompt_cache_options` | - |
 | `provider` | - |
 | `reasoning` | - |
 | `reasoning_effort` | - |
@@ -1425,14 +1487,14 @@ chat_result = client.ChatResult
 | `stop` | - |
 | `stop_server_tools_when` | - |
 | `stream` | - |
-| `stream_option` | - |
+| `stream_options` | - |
 | `system_fingerprint` | - |
 | `temperature` | - |
-| `tool` | - |
 | `tool_choice` | - |
+| `tools` | - |
 | `top_a` | - |
 | `top_k` | - |
-| `top_logprob` | - |
+| `top_logprobs` | - |
 | `top_p` | - |
 | `trace` | - |
 | `usage` | - |
@@ -1447,15 +1509,15 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.ChatResult.create({
   "cache_control" => {}, # Hash
-  "choice" => [], # Array
+  "choices" => [], # Array
   "created" => 1, # Integer
   "id" => "example_id", # String
-  "message" => [], # Array
+  "messages" => [], # Array
   "model" => "example_model", # String
   "object" => "example_object", # String
   "openrouter_metadata" => {}, # Hash
   "prediction" => "example_prediction", # Object
-  "prompt_cache_option" => "example_prompt_cache_option", # Object
+  "prompt_cache_options" => "example_prompt_cache_options", # Object
   "system_fingerprint" => "example_system_fingerprint", # Object
   "usage" => {}, # Hash
 })
@@ -1753,10 +1815,10 @@ create_observability_destination = client.CreateObservabilityDestination
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hash` | `Object` | No |  |
+| `api_key_hashes` | `Object` | No |  |
 | `config` | `Hash` | Yes |  |
 | `enabled` | `Boolean` | No |  |
-| `filter_rule` | `Object` | Yes |  |
+| `filter_rules` | `Object` | Yes |  |
 | `name` | `String` | Yes |  |
 | `privacy_mode` | `Boolean` | No |  |
 | `sampling_rate` | `Float` | No |  |
@@ -1772,7 +1834,7 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.CreateObservabilityDestination.create({
   "config" => {}, # Hash
-  "filter_rule" => "example_filter_rule", # Object
+  "filter_rules" => "example_filter_rules", # Object
   "name" => "example_name", # String
   "type" => "example_type", # String
 })
@@ -1821,34 +1883,34 @@ create_preset_from_inference = client.CreatePresetFromInference
 | `background` | `Object` | No |  |
 | `cache_control` | `Hash` | Yes |  |
 | `context_management` | `Object` | No |  |
-| `data` | `Object` | Yes |  |
 | `debug` | `Hash` | No |  |
-| `fallback` | `Object` | No |  |
+| `fallbacks` | `Object` | No |  |
 | `frequency_penalty` | `Object` | No |  |
 | `image_config` | `Hash` | No |  |
 | `include` | `Object` | No |  |
 | `input` | `Object` | No |  |
-| `instruction` | `Object` | No |  |
-| `logit_bia` | `Object` | No |  |
-| `logprob` | `Object` | No |  |
-| `max_completion_token` | `Object` | No |  |
-| `max_output_token` | `Object` | No |  |
-| `max_token` | `Object` | No |  |
-| `max_tool_call` | `Object` | No |  |
-| `message` | `Array` | Yes |  |
+| `instructions` | `Object` | No |  |
+| `logit_bias` | `Object` | No |  |
+| `logprobs` | `Object` | No |  |
+| `max_completion_tokens` | `Object` | No |  |
+| `max_output_tokens` | `Object` | No |  |
+| `max_tokens` | `Object` | No |  |
+| `max_tool_calls` | `Object` | No |  |
+| `messages` | `Array` | Yes |  |
 | `metadata` | `Hash` | No |  |
 | `min_p` | `Object` | No |  |
-| `modality` | `Array` | No |  |
+| `modalities` | `Array` | No |  |
 | `model` | `String` | No |  |
+| `models` | `Array` | No |  |
 | `output_config` | `Hash` | No |  |
-| `parallel_tool_call` | `Object` | No |  |
-| `plugin` | `Array` | No |  |
+| `parallel_tool_calls` | `Object` | No |  |
+| `plugins` | `Array` | No |  |
 | `prediction` | `Object` | Yes |  |
 | `presence_penalty` | `Object` | No |  |
 | `previous_response_id` | `String` | No |  |
 | `prompt` | `Object` | Yes |  |
 | `prompt_cache_key` | `Object` | No |  |
-| `prompt_cache_option` | `Object` | Yes |  |
+| `prompt_cache_options` | `Object` | Yes |  |
 | `provider` | `Object` | No |  |
 | `reasoning` | `Hash` | No |  |
 | `reasoning_effort` | `Object` | No |  |
@@ -1861,20 +1923,20 @@ create_preset_from_inference = client.CreatePresetFromInference
 | `session_id` | `String` | No |  |
 | `speed` | `Object` | No |  |
 | `stop` | `Object` | No |  |
-| `stop_sequence` | `Array` | No |  |
+| `stop_sequences` | `Array` | No |  |
 | `stop_server_tools_when` | `Array` | No |  |
 | `store` | `Boolean` | No |  |
 | `stream` | `Boolean` | No |  |
-| `stream_option` | `Object` | No |  |
+| `stream_options` | `Object` | No |  |
 | `system` | `Object` | No |  |
 | `temperature` | `Object` | No |  |
 | `text` | `Object` | No |  |
 | `thinking` | `Object` | No |  |
-| `tool` | `Array` | No |  |
 | `tool_choice` | `Object` | No |  |
+| `tools` | `Array` | No |  |
 | `top_a` | `Object` | No |  |
 | `top_k` | `Object` | No |  |
-| `top_logprob` | `Object` | No |  |
+| `top_logprobs` | `Object` | No |  |
 | `top_p` | `Object` | No |  |
 | `trace` | `Hash` | No |  |
 | `truncation` | `Object` | No |  |
@@ -1887,34 +1949,34 @@ create_preset_from_inference = client.CreatePresetFromInference
 | `background` | - |
 | `cache_control` | - |
 | `context_management` | - |
-| `data` | - |
 | `debug` | - |
-| `fallback` | - |
+| `fallbacks` | - |
 | `frequency_penalty` | - |
 | `image_config` | - |
 | `include` | - |
 | `input` | - |
-| `instruction` | - |
-| `logit_bia` | - |
-| `logprob` | - |
-| `max_completion_token` | - |
-| `max_output_token` | - |
-| `max_token` | - |
-| `max_tool_call` | - |
-| `message` | - |
+| `instructions` | - |
+| `logit_bias` | - |
+| `logprobs` | - |
+| `max_completion_tokens` | - |
+| `max_output_tokens` | - |
+| `max_tokens` | - |
+| `max_tool_calls` | - |
+| `messages` | - |
 | `metadata` | - |
 | `min_p` | - |
-| `modality` | - |
+| `modalities` | - |
 | `model` | Yes |
+| `models` | - |
 | `output_config` | - |
-| `parallel_tool_call` | - |
-| `plugin` | - |
+| `parallel_tool_calls` | - |
+| `plugins` | - |
 | `prediction` | - |
 | `presence_penalty` | - |
 | `previous_response_id` | - |
 | `prompt` | - |
 | `prompt_cache_key` | - |
-| `prompt_cache_option` | - |
+| `prompt_cache_options` | - |
 | `provider` | - |
 | `reasoning` | - |
 | `reasoning_effort` | - |
@@ -1927,20 +1989,20 @@ create_preset_from_inference = client.CreatePresetFromInference
 | `session_id` | - |
 | `speed` | - |
 | `stop` | - |
-| `stop_sequence` | - |
+| `stop_sequences` | - |
 | `stop_server_tools_when` | - |
 | `store` | - |
 | `stream` | - |
-| `stream_option` | - |
+| `stream_options` | - |
 | `system` | - |
 | `temperature` | - |
 | `text` | - |
 | `thinking` | - |
-| `tool` | - |
 | `tool_choice` | - |
+| `tools` | - |
 | `top_a` | - |
 | `top_k` | - |
-| `top_logprob` | - |
+| `top_logprobs` | - |
 | `top_p` | - |
 | `trace` | - |
 | `truncation` | - |
@@ -1955,6 +2017,11 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.CreatePresetFromInference.create({
   "slug" => "example_slug", # String
+  "cache_control" => {}, # Hash
+  "messages" => [], # Array
+  "prediction" => "example_prediction", # Object
+  "prompt" => "example_prompt", # Object
+  "prompt_cache_options" => "example_prompt_cache_options", # Object
 })
 ```
 
@@ -2034,7 +2101,8 @@ credit = client.Credit
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | Yes |  |
+| `total_credits` | `Float` | Yes |  |
+| `total_usage` | `Float` | Yes |  |
 
 ### Operations
 
@@ -2044,7 +2112,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Credit.create({
-  "data" => {}, # Hash
+  "total_credits" => 1, # Float
+  "total_usage" => 1, # Float
 })
 ```
 
@@ -2133,7 +2202,7 @@ embedding = client.Embedding
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `Array` | Yes |  |
-| `dimension` | `Integer` | No |  |
+| `dimensions` | `Integer` | No |  |
 | `encoding_format` | `String` | No |  |
 | `id` | `String` | No |  |
 | `input` | `Object` | Yes |  |
@@ -2200,33 +2269,33 @@ endpoint = client.Endpoint
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `architecture` | `Hash` | Yes |  |
-| `benchmark` | `Hash` | Yes |  |
+| `architecture` | `Object` | Yes |  |
+| `benchmarks` | `Hash` | Yes |  |
 | `canonical_slug` | `String` | Yes |  |
 | `context_length` | `Object` | Yes |  |
 | `created` | `Integer` | Yes |  |
-| `data` | `Hash` | Yes |  |
-| `default_parameter` | `Object` | Yes |  |
-| `description` | `String` | No |  |
+| `default_parameters` | `Object` | Yes |  |
+| `description` | `String` | Yes |  |
+| `endpoints` | `Array` | Yes |  |
 | `expiration_date` | `Object` | No |  |
 | `hugging_face_id` | `Object` | No |  |
 | `id` | `String` | Yes |  |
 | `knowledge_cutoff` | `Object` | No |  |
 | `latency_last_30m` | `Object` | Yes |  |
-| `link` | `Hash` | Yes |  |
-| `max_completion_token` | `Object` | Yes |  |
-| `max_prompt_token` | `Object` | Yes |  |
+| `links` | `Hash` | Yes |  |
+| `max_completion_tokens` | `Object` | Yes |  |
+| `max_prompt_tokens` | `Object` | Yes |  |
 | `model_id` | `String` | Yes |  |
 | `model_name` | `String` | Yes |  |
 | `name` | `String` | Yes |  |
-| `per_request_limit` | `Object` | Yes |  |
+| `per_request_limits` | `Object` | Yes |  |
 | `pricing` | `Hash` | Yes |  |
 | `provider_name` | `String` | Yes |  |
 | `quantization` | `Object` | Yes |  |
 | `reasoning` | `Hash` | Yes |  |
 | `status` | `Integer` | No |  |
-| `supported_parameter` | `Array` | Yes |  |
-| `supported_voice` | `Object` | Yes |  |
+| `supported_parameters` | `Array` | Yes |  |
+| `supported_voices` | `Object` | Yes |  |
 | `supports_implicit_caching` | `Boolean` | Yes |  |
 | `tag` | `String` | Yes |  |
 | `throughput_last_30m` | `Object` | Yes |  |
@@ -2234,6 +2303,45 @@ endpoint = client.Endpoint
 | `uptime_last_1d` | `Object` | Yes |  |
 | `uptime_last_30m` | `Object` | Yes |  |
 | `uptime_last_5m` | `Object` | Yes |  |
+
+### Field Usage by Operation
+
+| Field | load | list |
+| --- | --- | --- |
+| `architecture` | - | - |
+| `benchmarks` | - | - |
+| `canonical_slug` | - | - |
+| `context_length` | - | - |
+| `created` | - | - |
+| `default_parameters` | - | - |
+| `description` | - | Yes |
+| `endpoints` | - | - |
+| `expiration_date` | - | - |
+| `hugging_face_id` | - | - |
+| `id` | - | - |
+| `knowledge_cutoff` | - | - |
+| `latency_last_30m` | - | - |
+| `links` | - | - |
+| `max_completion_tokens` | - | - |
+| `max_prompt_tokens` | - | - |
+| `model_id` | - | - |
+| `model_name` | - | - |
+| `name` | - | - |
+| `per_request_limits` | - | - |
+| `pricing` | - | - |
+| `provider_name` | - | - |
+| `quantization` | - | - |
+| `reasoning` | - | - |
+| `status` | - | - |
+| `supported_parameters` | - | - |
+| `supported_voices` | - | - |
+| `supports_implicit_caching` | - | - |
+| `tag` | - | - |
+| `throughput_last_30m` | - | - |
+| `top_provider` | - | - |
+| `uptime_last_1d` | - | - |
+| `uptime_last_30m` | - | - |
+| `uptime_last_5m` | - | - |
 
 ### Operations
 
@@ -2334,7 +2442,7 @@ file = client.File
 | `filename` | `String` | Yes |  |
 | `id` | `String` | Yes |  |
 | `mime_type` | `String` | Yes |  |
-| `size_byte` | `Integer` | Yes |  |
+| `size_bytes` | `Integer` | Yes |  |
 | `type` | `String` | Yes |  |
 
 ### Operations
@@ -2350,7 +2458,7 @@ result = client.File.create({
   "filename" => "example_filename", # String
   "id" => "example_id", # String
   "mime_type" => "example_mime_type", # String
-  "size_byte" => 1, # Integer
+  "size_bytes" => 1, # Integer
   "type" => "example_type", # String
 })
 ```
@@ -2419,7 +2527,50 @@ generation = client.Generation
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | Yes |  |
+| `api_type` | `Object` | Yes |  |
+| `app_id` | `Object` | Yes |  |
+| `cache_discount` | `Object` | Yes |  |
+| `cancelled` | `Object` | Yes |  |
+| `created_at` | `String` | Yes |  |
+| `data_region` | `String` | Yes |  |
+| `external_user` | `Object` | Yes |  |
+| `finish_reason` | `Object` | Yes |  |
+| `generation_time` | `Object` | Yes |  |
+| `http_referer` | `Object` | Yes |  |
+| `id` | `String` | Yes |  |
+| `is_byok` | `Boolean` | Yes |  |
+| `latency` | `Object` | Yes |  |
+| `model` | `String` | Yes |  |
+| `moderation_latency` | `Object` | Yes |  |
+| `native_finish_reason` | `Object` | Yes |  |
+| `native_tokens_cached` | `Object` | Yes |  |
+| `native_tokens_completion` | `Object` | Yes |  |
+| `native_tokens_completion_images` | `Object` | Yes |  |
+| `native_tokens_prompt` | `Object` | Yes |  |
+| `native_tokens_reasoning` | `Object` | Yes |  |
+| `num_fetches` | `Object` | Yes |  |
+| `num_input_audio_prompt` | `Object` | Yes |  |
+| `num_media_completion` | `Object` | Yes |  |
+| `num_media_prompt` | `Object` | Yes |  |
+| `num_search_results` | `Object` | Yes |  |
+| `origin` | `String` | Yes |  |
+| `preset_id` | `Object` | Yes |  |
+| `provider_name` | `Object` | Yes |  |
+| `provider_responses` | `Object` | Yes |  |
+| `request_id` | `Object` | No |  |
+| `response_cache_source_id` | `Object` | No |  |
+| `router` | `Object` | Yes |  |
+| `service_tier` | `Object` | Yes |  |
+| `session_id` | `Object` | No |  |
+| `streamed` | `Object` | Yes |  |
+| `tokens_completion` | `Object` | Yes |  |
+| `tokens_prompt` | `Object` | Yes |  |
+| `total_cost` | `Float` | Yes |  |
+| `upstream_id` | `Object` | Yes |  |
+| `upstream_inference_cost` | `Object` | Yes |  |
+| `usage` | `Float` | Yes |  |
+| `user_agent` | `Object` | Yes |  |
+| `web_search_engine` | `Object` | Yes |  |
 
 ### Operations
 
@@ -2428,7 +2579,7 @@ generation = client.Generation
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Generation.load()
+result = client.Generation.load({ "id" => "generation_id" })
 ```
 
 ### Common Methods
@@ -2471,7 +2622,8 @@ generation_content = client.GenerationContent
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | Yes |  |
+| `input` | `Object` | Yes |  |
+| `output` | `Hash` | Yes |  |
 
 ### Operations
 
@@ -2523,12 +2675,11 @@ guardrail = client.Guardrail
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `Object` | No |  |
-| `allowed_provider` | `Object` | No |  |
-| `content_filter` | `Object` | No |  |
-| `content_filter_builtin` | `Object` | No |  |
+| `allowed_models` | `Object` | No |  |
+| `allowed_providers` | `Object` | No |  |
+| `content_filter_builtins` | `Object` | No |  |
+| `content_filters` | `Object` | No |  |
 | `created_at` | `String` | Yes |  |
-| `data` | `Object` | Yes |  |
 | `description` | `Object` | No |  |
 | `enforce_zdr` | `Object` | No |  |
 | `enforce_zdr_anthropic` | `Object` | No |  |
@@ -2537,24 +2688,23 @@ guardrail = client.Guardrail
 | `enforce_zdr_other` | `Object` | No |  |
 | `enforce_zdr_xai` | `Object` | No |  |
 | `id` | `String` | Yes |  |
-| `ignored_model` | `Object` | No |  |
-| `ignored_provider` | `Object` | No |  |
+| `ignored_models` | `Object` | No |  |
+| `ignored_providers` | `Object` | No |  |
 | `limit_usd` | `Object` | No |  |
 | `name` | `String` | Yes |  |
 | `reset_interval` | `Object` | No |  |
 | `updated_at` | `Object` | No |  |
-| `workspace_id` | `String` | No |  |
+| `workspace_id` | `String` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | load | list | create | remove |
 | --- | --- | --- | --- | --- |
-| `allowed_model` | - | - | - | - |
-| `allowed_provider` | - | - | - | - |
-| `content_filter` | - | - | - | - |
-| `content_filter_builtin` | - | - | - | - |
+| `allowed_models` | - | - | - | - |
+| `allowed_providers` | - | - | - | - |
+| `content_filter_builtins` | - | - | - | - |
+| `content_filters` | - | - | - | - |
 | `created_at` | - | - | - | - |
-| `data` | - | - | - | - |
 | `description` | - | - | - | - |
 | `enforce_zdr` | - | - | - | - |
 | `enforce_zdr_anthropic` | - | - | - | - |
@@ -2563,13 +2713,13 @@ guardrail = client.Guardrail
 | `enforce_zdr_other` | - | - | - | - |
 | `enforce_zdr_xai` | - | - | - | - |
 | `id` | - | - | - | - |
-| `ignored_model` | - | - | - | - |
-| `ignored_provider` | - | - | - | - |
+| `ignored_models` | - | - | - | - |
+| `ignored_providers` | - | - | - | - |
 | `limit_usd` | - | - | - | - |
 | `name` | - | - | - | - |
 | `reset_interval` | - | - | - | - |
 | `updated_at` | - | - | - | - |
-| `workspace_id` | - | Yes | - | - |
+| `workspace_id` | - | - | Yes | - |
 
 ### Operations
 
@@ -2580,9 +2730,9 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.Guardrail.create({
   "created_at" => "example_created_at", # String
-  "data" => "example_data", # Object
   "id" => "example_id", # String
   "name" => "example_name", # String
+  "workspace_id" => "example_workspace_id", # String
 })
 ```
 
@@ -2654,7 +2804,7 @@ image = client.Image
 | `background` | `String` | No |  |
 | `created` | `Integer` | Yes |  |
 | `data` | `Array` | Yes |  |
-| `input_reference` | `Array` | No |  |
+| `input_references` | `Array` | No |  |
 | `model` | `String` | Yes |  |
 | `n` | `Integer` | No |  |
 | `output_compression` | `Integer` | No |  |
@@ -2724,12 +2874,12 @@ image_model_endpoint = client.ImageModelEndpoint
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameter` | `Array` | Yes |  |
+| `allowed_passthrough_parameters` | `Array` | Yes |  |
 | `pricing` | `Array` | Yes |  |
 | `provider_name` | `String` | Yes |  |
 | `provider_slug` | `String` | Yes |  |
 | `provider_tag` | `Object` | Yes |  |
-| `supported_parameter` | `Object` | Yes |  |
+| `supported_parameters` | `Object` | Yes |  |
 | `supports_streaming` | `Boolean` | Yes |  |
 
 ### Operations
@@ -2785,10 +2935,10 @@ image_models_list = client.ImageModelsList
 | `architecture` | `Hash` | Yes |  |
 | `created` | `Integer` | Yes |  |
 | `description` | `String` | Yes |  |
-| `endpoint` | `String` | Yes |  |
+| `endpoints` | `String` | Yes |  |
 | `id` | `String` | Yes |  |
 | `name` | `String` | Yes |  |
-| `supported_parameter` | `Hash` | Yes |  |
+| `supported_parameters` | `Hash` | Yes |  |
 | `supports_streaming` | `Boolean` | Yes |  |
 
 ### Operations
@@ -3399,61 +3549,31 @@ message = client.Message
 | --- | --- | --- | --- |
 | `cache_control` | `Hash` | Yes |  |
 | `context_management` | `Object` | No |  |
-| `fallback` | `Object` | No |  |
-| `max_token` | `Integer` | No |  |
-| `message` | `Object` | Yes |  |
+| `fallbacks` | `Object` | No |  |
+| `max_tokens` | `Integer` | No |  |
+| `messages` | `Object` | Yes |  |
 | `metadata` | `Hash` | No |  |
 | `model` | `String` | Yes |  |
+| `models` | `Array` | No |  |
 | `output_config` | `Hash` | No |  |
-| `plugin` | `Array` | No |  |
+| `plugins` | `Array` | No |  |
 | `provider` | `Object` | No |  |
 | `route` | `Object` | No |  |
 | `service_tier` | `String` | No |  |
 | `session_id` | `String` | No |  |
 | `speed` | `Object` | No |  |
-| `stop_sequence` | `Array` | No |  |
+| `stop_sequences` | `Array` | No |  |
 | `stop_server_tools_when` | `Array` | No |  |
 | `stream` | `Boolean` | No |  |
 | `system` | `Object` | No |  |
 | `temperature` | `Float` | No |  |
 | `thinking` | `Object` | No |  |
-| `tool` | `Array` | No |  |
 | `tool_choice` | `Object` | No |  |
+| `tools` | `Array` | No |  |
 | `top_k` | `Integer` | No |  |
 | `top_p` | `Float` | No |  |
 | `trace` | `Hash` | No |  |
 | `user` | `String` | No |  |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `cache_control` | - |
-| `context_management` | - |
-| `fallback` | - |
-| `max_token` | - |
-| `message` | - |
-| `metadata` | - |
-| `model` | Yes |
-| `output_config` | - |
-| `plugin` | - |
-| `provider` | - |
-| `route` | - |
-| `service_tier` | - |
-| `session_id` | - |
-| `speed` | - |
-| `stop_sequence` | - |
-| `stop_server_tools_when` | - |
-| `stream` | - |
-| `system` | - |
-| `temperature` | - |
-| `thinking` | - |
-| `tool` | - |
-| `tool_choice` | - |
-| `top_k` | - |
-| `top_p` | - |
-| `trace` | - |
-| `user` | - |
 
 ### Operations
 
@@ -3464,7 +3584,7 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.Message.create({
   "cache_control" => {}, # Hash
-  "message" => "example_message", # Object
+  "messages" => "example_messages", # Object
   "model" => "example_model", # String
 })
 ```
@@ -3546,24 +3666,23 @@ model = client.Model
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `Hash` | Yes |  |
-| `benchmark` | `Hash` | Yes |  |
+| `benchmarks` | `Hash` | Yes |  |
 | `canonical_slug` | `String` | Yes |  |
 | `context_length` | `Object` | Yes |  |
 | `created` | `Integer` | Yes |  |
-| `data` | `Hash` | Yes |  |
-| `default_parameter` | `Object` | Yes |  |
+| `default_parameters` | `Object` | Yes |  |
 | `description` | `String` | No |  |
 | `expiration_date` | `Object` | No |  |
 | `hugging_face_id` | `Object` | No |  |
 | `id` | `String` | Yes |  |
 | `knowledge_cutoff` | `Object` | No |  |
-| `link` | `Hash` | Yes |  |
+| `links` | `Hash` | Yes |  |
 | `name` | `String` | Yes |  |
-| `per_request_limit` | `Object` | Yes |  |
+| `per_request_limits` | `Object` | Yes |  |
 | `pricing` | `Hash` | Yes |  |
 | `reasoning` | `Hash` | Yes |  |
-| `supported_parameter` | `Array` | Yes |  |
-| `supported_voice` | `Object` | Yes |  |
+| `supported_parameters` | `Array` | Yes |  |
+| `supported_voices` | `Object` | Yes |  |
 | `top_provider` | `Hash` | Yes |  |
 
 ### Operations
@@ -3624,7 +3743,7 @@ models_count = client.ModelsCount
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | Yes |  |
+| `count` | `Integer` | Yes |  |
 
 ### Operations
 
@@ -3677,23 +3796,23 @@ models_list = client.ModelsList
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `Hash` | Yes |  |
-| `benchmark` | `Hash` | Yes |  |
+| `benchmarks` | `Hash` | Yes |  |
 | `canonical_slug` | `String` | Yes |  |
 | `context_length` | `Object` | Yes |  |
 | `created` | `Integer` | Yes |  |
-| `default_parameter` | `Object` | Yes |  |
+| `default_parameters` | `Object` | Yes |  |
 | `description` | `String` | No |  |
 | `expiration_date` | `Object` | No |  |
 | `hugging_face_id` | `Object` | No |  |
 | `id` | `String` | Yes |  |
 | `knowledge_cutoff` | `Object` | No |  |
-| `link` | `Hash` | Yes |  |
+| `links` | `Hash` | Yes |  |
 | `name` | `String` | Yes |  |
-| `per_request_limit` | `Object` | Yes |  |
+| `per_request_limits` | `Object` | Yes |  |
 | `pricing` | `Hash` | Yes |  |
 | `reasoning` | `Hash` | Yes |  |
-| `supported_parameter` | `Array` | Yes |  |
-| `supported_voice` | `Object` | Yes |  |
+| `supported_parameters` | `Array` | Yes |  |
+| `supported_voices` | `Object` | Yes |  |
 | `top_provider` | `Hash` | Yes |  |
 
 ### Operations
@@ -3746,13 +3865,15 @@ o_auth = client.OAuth
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `app_id` | `Integer` | Yes |  |
 | `callback_url` | `String` | Yes |  |
 | `code` | `String` | Yes |  |
 | `code_challenge` | `String` | No |  |
 | `code_challenge_method` | `Object` | No |  |
 | `code_verifier` | `String` | No |  |
-| `data` | `Hash` | Yes |  |
+| `created_at` | `String` | Yes |  |
 | `expires_at` | `Object` | No |  |
+| `id` | `String` | Yes |  |
 | `key` | `String` | Yes |  |
 | `key_label` | `String` | No |  |
 | `limit` | `Float` | No |  |
@@ -3770,9 +3891,11 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.OAuth.create({
+  "app_id" => 1, # Integer
   "callback_url" => "example_callback_url", # String
   "code" => "example_code", # String
-  "data" => {}, # Hash
+  "created_at" => "example_created_at", # String
+  "id" => "example_id", # String
   "key" => "example_key", # String
   "user_id" => "example_user_id", # Object
 })
@@ -3818,7 +3941,7 @@ observability_destination = client.ObservabilityDestination
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Object` | Yes |  |
+| `data` | `Hash` | No |  |
 
 ### Operations
 
@@ -3885,19 +4008,20 @@ open_responses_result = client.OpenResponsesResult
 | `image_config` | `Hash` | No |  |
 | `include` | `Object` | No |  |
 | `input` | `Object` | No |  |
-| `instruction` | `Object` | No |  |
-| `max_output_token` | `Object` | No |  |
-| `max_tool_call` | `Object` | No |  |
+| `instructions` | `Object` | No |  |
+| `max_output_tokens` | `Object` | No |  |
+| `max_tool_calls` | `Object` | No |  |
 | `metadata` | `Object` | No |  |
-| `modality` | `Array` | No |  |
+| `modalities` | `Array` | No |  |
 | `model` | `String` | No |  |
-| `parallel_tool_call` | `Object` | No |  |
-| `plugin` | `Array` | No |  |
+| `models` | `Array` | No |  |
+| `parallel_tool_calls` | `Object` | No |  |
+| `plugins` | `Array` | No |  |
 | `presence_penalty` | `Object` | No |  |
 | `previous_response_id` | `String` | No |  |
 | `prompt` | `Object` | Yes |  |
 | `prompt_cache_key` | `Object` | No |  |
-| `prompt_cache_option` | `Object` | Yes |  |
+| `prompt_cache_options` | `Object` | Yes |  |
 | `provider` | `Object` | No |  |
 | `reasoning` | `Object` | No |  |
 | `route` | `Object` | No |  |
@@ -3909,10 +4033,10 @@ open_responses_result = client.OpenResponsesResult
 | `stream` | `Boolean` | No |  |
 | `temperature` | `Object` | No |  |
 | `text` | `Object` | No |  |
-| `tool` | `Array` | No |  |
 | `tool_choice` | `Object` | No |  |
+| `tools` | `Array` | No |  |
 | `top_k` | `Integer` | No |  |
-| `top_logprob` | `Object` | No |  |
+| `top_logprobs` | `Object` | No |  |
 | `top_p` | `Object` | No |  |
 | `trace` | `Hash` | No |  |
 | `truncation` | `Object` | No |  |
@@ -3928,7 +4052,7 @@ Create a new entity with the given data. Raises on error.
 result = client.OpenResponsesResult.create({
   "cache_control" => {}, # Hash
   "prompt" => "example_prompt", # Object
-  "prompt_cache_option" => "example_prompt_cache_option", # Object
+  "prompt_cache_options" => "example_prompt_cache_options", # Object
 })
 ```
 
@@ -4030,8 +4154,8 @@ preset = client.Preset
 | --- | --- | --- | --- |
 | `created_at` | `String` | Yes |  |
 | `creator_user_id` | `Object` | Yes |  |
-| `data` | `Object` | Yes |  |
 | `description` | `Object` | Yes |  |
+| `designated_version` | `Object` | Yes |  |
 | `designated_version_id` | `Object` | Yes |  |
 | `id` | `String` | Yes |  |
 | `name` | `String` | Yes |  |
@@ -4099,7 +4223,14 @@ preset_version = client.PresetVersion
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Object` | Yes |  |
+| `config` | `Hash` | Yes |  |
+| `created_at` | `String` | Yes |  |
+| `creator_id` | `String` | Yes |  |
+| `id` | `String` | Yes |  |
+| `preset_id` | `String` | Yes |  |
+| `system_prompt` | `Object` | Yes |  |
+| `updated_at` | `String` | Yes |  |
+| `version` | `Integer` | Yes |  |
 
 ### Operations
 
@@ -4151,8 +4282,8 @@ provider = client.Provider
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datacenter` | `Object` | No |  |
-| `headquarter` | `Object` | No |  |
+| `datacenters` | `Object` | No |  |
+| `headquarters` | `Object` | No |  |
 | `name` | `String` | Yes |  |
 | `privacy_policy_url` | `Object` | Yes |  |
 | `slug` | `String` | Yes |  |
@@ -4247,7 +4378,7 @@ rankings_daily = client.RankingsDaily
 | --- | --- | --- | --- |
 | `date` | `String` | Yes |  |
 | `model_permaslug` | `String` | Yes |  |
-| `total_token` | `String` | Yes |  |
+| `total_tokens` | `String` | Yes |  |
 
 ### Operations
 
@@ -4335,12 +4466,12 @@ rerank = client.Rerank
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `document` | `Array` | Yes |  |
+| `documents` | `Array` | Yes |  |
 | `id` | `String` | No |  |
 | `model` | `String` | Yes |  |
 | `provider` | `String` | No |  |
 | `query` | `String` | Yes |  |
-| `result` | `Array` | Yes |  |
+| `results` | `Array` | Yes |  |
 | `top_n` | `Integer` | No |  |
 | `usage` | `Hash` | No |  |
 
@@ -4352,10 +4483,10 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Rerank.create({
-  "document" => [], # Array
+  "documents" => [], # Array
   "model" => "example_model", # String
   "query" => "example_query", # String
-  "result" => [], # Array
+  "results" => [], # Array
 })
 ```
 
@@ -4477,13 +4608,13 @@ stt = client.Stt
 | `model` | `String` | Yes |  |
 | `provider` | `Hash` | No |  |
 | `response_format` | `String` | No |  |
-| `segment` | `Array` | No |  |
+| `segments` | `Array` | No |  |
 | `task` | `String` | No |  |
 | `temperature` | `Float` | No |  |
 | `text` | `String` | Yes |  |
-| `timestamp_granularity` | `Array` | No |  |
+| `timestamp_granularities` | `Array` | No |  |
 | `usage` | `Hash` | No |  |
-| `word` | `Array` | No |  |
+| `words` | `Array` | No |  |
 
 ### Operations
 
@@ -4541,8 +4672,8 @@ submit_generation_feedback = client.SubmitGenerationFeedback
 | --- | --- | --- | --- |
 | `category` | `String` | Yes |  |
 | `comment` | `String` | No |  |
-| `data` | `Hash` | Yes |  |
 | `generation_id` | `String` | Yes |  |
+| `success` | `Boolean` | Yes |  |
 
 ### Operations
 
@@ -4553,8 +4684,8 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.SubmitGenerationFeedback.create({
   "category" => "example_category", # String
-  "data" => {}, # Hash
   "generation_id" => "example_generation_id", # String
+  "success" => true, # Boolean
 })
 ```
 
@@ -4598,7 +4729,10 @@ task = client.Task
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | Yes |  |
+| `as_of` | `String` | Yes |  |
+| `classifications` | `Array` | Yes |  |
+| `macro_categories` | `Array` | Yes |  |
+| `window_days` | `Integer` | Yes |  |
 
 ### Operations
 
@@ -4800,9 +4934,8 @@ update_byok_key = client.UpdateByokKey
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `Object` | No |  |
-| `allowed_user_id` | `Object` | No |  |
-| `data` | `Object` | Yes |  |
+| `allowed_models` | `Object` | No |  |
+| `allowed_user_ids` | `Object` | No |  |
 | `disabled` | `Boolean` | No |  |
 | `is_fallback` | `Boolean` | No |  |
 | `key` | `String` | No |  |
@@ -4861,11 +4994,10 @@ update_guardrail = client.UpdateGuardrail
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `Object` | No |  |
-| `allowed_provider` | `Object` | No |  |
-| `content_filter` | `Object` | No |  |
-| `content_filter_builtin` | `Object` | No |  |
-| `data` | `Object` | Yes |  |
+| `allowed_models` | `Object` | No |  |
+| `allowed_providers` | `Object` | No |  |
+| `content_filter_builtins` | `Object` | No |  |
+| `content_filters` | `Object` | No |  |
 | `description` | `Object` | No |  |
 | `enforce_zdr` | `Object` | No |  |
 | `enforce_zdr_anthropic` | `Object` | No |  |
@@ -4873,8 +5005,8 @@ update_guardrail = client.UpdateGuardrail
 | `enforce_zdr_openai` | `Object` | No |  |
 | `enforce_zdr_other` | `Object` | No |  |
 | `enforce_zdr_xai` | `Object` | No |  |
-| `ignored_model` | `Object` | No |  |
-| `ignored_provider` | `Object` | No |  |
+| `ignored_models` | `Object` | No |  |
+| `ignored_providers` | `Object` | No |  |
 | `limit_usd` | `Object` | No |  |
 | `name` | `String` | No |  |
 | `reset_interval` | `Object` | No |  |
@@ -4932,11 +5064,10 @@ update_observability_destination = client.UpdateObservabilityDestination
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hash` | `Object` | No |  |
+| `api_key_hashes` | `Object` | No |  |
 | `config` | `Hash` | No |  |
-| `data` | `Object` | Yes |  |
 | `enabled` | `Boolean` | No |  |
-| `filter_rule` | `Object` | No |  |
+| `filter_rules` | `Object` | No |  |
 | `name` | `String` | No |  |
 | `privacy_mode` | `Boolean` | No |  |
 | `sampling_rate` | `Float` | No |  |
@@ -4996,13 +5127,12 @@ update_workspace = client.UpdateWorkspace
 | --- | --- | --- | --- |
 | `created_at` | `String` | Yes |  |
 | `created_by` | `Object` | Yes |  |
-| `data` | `Object` | Yes |  |
 | `default_image_model` | `Object` | No |  |
 | `default_provider_sort` | `Object` | No |  |
 | `default_text_model` | `Object` | No |  |
 | `description` | `Object` | No |  |
 | `id` | `String` | Yes |  |
-| `io_logging_api_key_id` | `Object` | No |  |
+| `io_logging_api_key_ids` | `Object` | No |  |
 | `io_logging_sampling_rate` | `Float` | No |  |
 | `is_data_discount_logging_enabled` | `Boolean` | No |  |
 | `is_observability_broadcast_enabled` | `Boolean` | No |  |
@@ -5017,13 +5147,12 @@ update_workspace = client.UpdateWorkspace
 | --- | --- | --- | --- |
 | `created_at` | - | - | - |
 | `created_by` | - | - | - |
-| `data` | - | - | - |
 | `default_image_model` | Yes | - | - |
 | `default_provider_sort` | Yes | - | - |
 | `default_text_model` | Yes | - | - |
 | `description` | Yes | - | - |
 | `id` | - | - | - |
-| `io_logging_api_key_id` | Yes | - | - |
+| `io_logging_api_key_ids` | Yes | - | - |
 | `io_logging_sampling_rate` | Yes | - | - |
 | `is_data_discount_logging_enabled` | Yes | - | - |
 | `is_observability_broadcast_enabled` | Yes | - | - |
@@ -5042,7 +5171,6 @@ Create a new entity with the given data. Raises on error.
 result = client.UpdateWorkspace.create({
   "created_at" => "example_created_at", # String
   "created_by" => "example_created_by", # Object
-  "data" => "example_data", # Object
   "id" => "example_id", # String
   "name" => "example_name", # String
   "slug" => "example_slug", # String
@@ -5109,7 +5237,6 @@ upsert_workspace_budget = client.UpsertWorkspaceBudget
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Object` | Yes |  |
 | `limit_usd` | `Float` | Yes |  |
 
 ### Operations
@@ -5242,11 +5369,11 @@ video = client.Video
 | `callback_url` | `String` | No |  |
 | `duration` | `Integer` | No |  |
 | `error` | `String` | No |  |
-| `frame_image` | `Array` | No |  |
+| `frame_images` | `Array` | No |  |
 | `generate_audio` | `Boolean` | No |  |
 | `generation_id` | `String` | No |  |
 | `id` | `String` | Yes |  |
-| `input_reference` | `Array` | No |  |
+| `input_references` | `Array` | No |  |
 | `model` | `String` | Yes |  |
 | `polling_url` | `String` | Yes |  |
 | `prompt` | `String` | No |  |
@@ -5255,7 +5382,7 @@ video = client.Video
 | `seed` | `Integer` | No |  |
 | `size` | `String` | No |  |
 | `status` | `String` | Yes |  |
-| `unsigned_url` | `Array` | No |  |
+| `unsigned_urls` | `Array` | No |  |
 | `usage` | `Hash` | No |  |
 
 ### Operations
@@ -5367,7 +5494,7 @@ video_models_list = client.VideoModelsList
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameter` | `Array` | Yes |  |
+| `allowed_passthrough_parameters` | `Array` | Yes |  |
 | `canonical_slug` | `String` | Yes |  |
 | `created` | `Integer` | Yes |  |
 | `description` | `String` | No |  |
@@ -5377,11 +5504,11 @@ video_models_list = client.VideoModelsList
 | `name` | `String` | Yes |  |
 | `pricing_skus` | `Object` | No |  |
 | `seed` | `Object` | Yes |  |
-| `supported_aspect_ratio` | `Object` | Yes |  |
-| `supported_duration` | `Object` | Yes |  |
-| `supported_frame_image` | `Object` | Yes |  |
-| `supported_resolution` | `Object` | Yes |  |
-| `supported_size` | `Object` | Yes |  |
+| `supported_aspect_ratios` | `Object` | Yes |  |
+| `supported_durations` | `Object` | Yes |  |
+| `supported_frame_images` | `Object` | Yes |  |
+| `supported_resolutions` | `Object` | Yes |  |
+| `supported_sizes` | `Object` | Yes |  |
 
 ### Operations
 
@@ -5433,7 +5560,21 @@ workspace = client.Workspace
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Object` | Yes |  |
+| `created_at` | `String` | Yes |  |
+| `created_by` | `Object` | Yes |  |
+| `default_image_model` | `Object` | Yes |  |
+| `default_provider_sort` | `Object` | Yes |  |
+| `default_text_model` | `Object` | Yes |  |
+| `description` | `Object` | Yes |  |
+| `id` | `String` | Yes |  |
+| `io_logging_api_key_ids` | `Object` | Yes |  |
+| `io_logging_sampling_rate` | `Float` | Yes |  |
+| `is_data_discount_logging_enabled` | `Boolean` | Yes |  |
+| `is_observability_broadcast_enabled` | `Boolean` | Yes |  |
+| `is_observability_io_logging_enabled` | `Boolean` | Yes |  |
+| `name` | `String` | Yes |  |
+| `slug` | `String` | Yes |  |
+| `updated_at` | `Object` | Yes |  |
 
 ### Operations
 

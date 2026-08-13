@@ -434,15 +434,15 @@ $activity = $client->Activity();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `byok_usage_inference` | `float` | Yes |  |
-| `completion_token` | `int` | Yes |  |
+| `completion_tokens` | `int` | Yes |  |
 | `date` | `string` | Yes |  |
 | `endpoint_id` | `string` | Yes |  |
 | `model` | `string` | Yes |  |
 | `model_permaslug` | `string` | Yes |  |
-| `prompt_token` | `int` | Yes |  |
+| `prompt_tokens` | `int` | Yes |  |
 | `provider_name` | `string` | Yes |  |
-| `reasoning_token` | `int` | Yes |  |
-| `request` | `int` | Yes |  |
+| `reasoning_tokens` | `int` | Yes |  |
+| `requests` | `int` | Yes |  |
 | `usage` | `float` | Yes |  |
 
 ### Operations
@@ -536,23 +536,26 @@ $api_key = $client->ApiKey();
 | `byok_usage_monthly` | `float` | Yes |  |
 | `byok_usage_weekly` | `float` | Yes |  |
 | `created_at` | `string` | Yes |  |
-| `creator_user_id` | `mixed` | No |  |
-| `data` | `array` | Yes |  |
-| `disabled` | `bool` | No |  |
+| `creator_user_id` | `mixed` | Yes |  |
+| `disabled` | `bool` | Yes |  |
 | `expires_at` | `mixed` | No |  |
 | `hash` | `string` | Yes |  |
-| `include_byok_in_limit` | `bool` | No |  |
+| `include_byok_in_limit` | `bool` | Yes |  |
+| `is_free_tier` | `bool` | Yes |  |
+| `is_management_key` | `bool` | Yes |  |
+| `is_provisioning_key` | `bool` | Yes |  |
 | `label` | `string` | Yes |  |
-| `limit` | `mixed` | No |  |
+| `limit` | `mixed` | Yes |  |
 | `limit_remaining` | `mixed` | Yes |  |
-| `limit_reset` | `mixed` | No |  |
+| `limit_reset` | `mixed` | Yes |  |
 | `name` | `string` | Yes |  |
+| `rate_limit` | `array` | Yes |  |
 | `updated_at` | `mixed` | Yes |  |
 | `usage` | `float` | Yes |  |
 | `usage_daily` | `float` | Yes |  |
 | `usage_monthly` | `float` | Yes |  |
 | `usage_weekly` | `float` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `workspace_id` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
@@ -563,23 +566,26 @@ $api_key = $client->ApiKey();
 | `byok_usage_monthly` | - | - | - | - | - |
 | `byok_usage_weekly` | - | - | - | - | - |
 | `created_at` | - | - | - | - | - |
-| `creator_user_id` | - | Yes | - | - | - |
-| `data` | - | - | - | - | - |
-| `disabled` | - | Yes | - | - | - |
+| `creator_user_id` | - | - | Yes | - | - |
+| `disabled` | - | - | - | Yes | - |
 | `expires_at` | - | - | - | - | - |
 | `hash` | - | - | - | - | - |
-| `include_byok_in_limit` | - | Yes | - | - | - |
+| `include_byok_in_limit` | - | - | Yes | Yes | - |
+| `is_free_tier` | - | - | - | - | - |
+| `is_management_key` | - | - | - | - | - |
+| `is_provisioning_key` | - | - | - | - | - |
 | `label` | - | - | - | - | - |
-| `limit` | - | Yes | - | - | - |
+| `limit` | - | - | Yes | Yes | - |
 | `limit_remaining` | - | - | - | - | - |
-| `limit_reset` | - | Yes | - | - | - |
+| `limit_reset` | - | - | Yes | Yes | - |
 | `name` | - | - | - | Yes | - |
+| `rate_limit` | - | - | - | - | - |
 | `updated_at` | - | - | - | - | - |
 | `usage` | - | - | - | - | - |
 | `usage_daily` | - | - | - | - | - |
 | `usage_monthly` | - | - | - | - | - |
 | `usage_weekly` | - | - | - | - | - |
-| `workspace_id` | - | Yes | - | - | - |
+| `workspace_id` | - | - | Yes | - | - |
 
 ### Operations
 
@@ -594,16 +600,25 @@ $result = $client->ApiKey()->create([
   "byok_usage_monthly" => null, // float
   "byok_usage_weekly" => null, // float
   "created_at" => null, // string
-  "data" => null, // array
+  "creator_user_id" => null, // mixed
+  "disabled" => null, // bool
   "hash" => null, // string
+  "include_byok_in_limit" => null, // bool
+  "is_free_tier" => null, // bool
+  "is_management_key" => null, // bool
+  "is_provisioning_key" => null, // bool
   "label" => null, // string
+  "limit" => null, // mixed
   "limit_remaining" => null, // mixed
+  "limit_reset" => null, // mixed
   "name" => null, // string
+  "rate_limit" => null, // array
   "updated_at" => null, // mixed
   "usage" => null, // float
   "usage_daily" => null, // float
   "usage_monthly" => null, // float
   "usage_weekly" => null, // float
+  "workspace_id" => null, // string
 ]);
 ```
 
@@ -685,8 +700,8 @@ $app_ranking = $client->AppRanking();
 | `app_id` | `int` | Yes |  |
 | `app_name` | `string` | Yes |  |
 | `rank` | `int` | Yes |  |
-| `total_request` | `int` | Yes |  |
-| `total_token` | `string` | Yes |  |
+| `total_requests` | `int` | Yes |  |
+| `total_tokens` | `string` | Yes |  |
 
 ### Operations
 
@@ -774,17 +789,43 @@ $beta_analytics = $client->BetaAnalytics();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `classifier_dimension` | `array` | Yes |  |
-| `classifier_filter` | `array` | Yes |  |
+| `cachedAt` | `float` | No |  |
+| `classifier_dimensions` | `array` | Yes |  |
+| `classifier_filters` | `array` | Yes |  |
 | `data` | `array` | Yes |  |
-| `dimension` | `array` | No |  |
-| `filter` | `array` | No |  |
+| `dimensions` | `array` | Yes |  |
+| `filters` | `array` | No |  |
+| `granularities` | `array` | Yes |  |
 | `granularity` | `string` | No |  |
 | `group_limit` | `int` | No |  |
 | `limit` | `int` | No |  |
-| `metric` | `array` | Yes |  |
+| `metadata` | `array` | Yes |  |
+| `metrics` | `array` | Yes |  |
+| `operators` | `array` | Yes |  |
 | `order_by` | `array` | Yes |  |
 | `time_range` | `array` | Yes |  |
+| `warnings` | `array` | No |  |
+
+### Field Usage by Operation
+
+| Field | load | create |
+| --- | --- | --- |
+| `cachedAt` | - | - |
+| `classifier_dimensions` | - | - |
+| `classifier_filters` | - | - |
+| `data` | - | - |
+| `dimensions` | - | Yes |
+| `filters` | - | - |
+| `granularities` | - | - |
+| `granularity` | - | - |
+| `group_limit` | - | - |
+| `limit` | - | - |
+| `metadata` | - | - |
+| `metrics` | - | - |
+| `operators` | - | - |
+| `order_by` | - | - |
+| `time_range` | - | - |
+| `warnings` | - | - |
 
 ### Operations
 
@@ -794,10 +835,14 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->BetaAnalytics()->create([
-  "classifier_dimension" => null, // array
-  "classifier_filter" => null, // array
+  "classifier_dimensions" => null, // array
+  "classifier_filters" => null, // array
   "data" => null, // array
-  "metric" => null, // array
+  "dimensions" => null, // array
+  "granularities" => null, // array
+  "metadata" => null, // array
+  "metrics" => null, // array
+  "operators" => null, // array
   "order_by" => null, // array
   "time_range" => null, // array
 ]);
@@ -889,7 +934,7 @@ $bulk_add_workspace_member = $client->BulkAddWorkspaceMember();
 | --- | --- | --- | --- |
 | `added_count` | `int` | Yes |  |
 | `data` | `array` | Yes |  |
-| `user_id` | `array` | Yes |  |
+| `user_ids` | `array` | Yes |  |
 
 ### Operations
 
@@ -900,6 +945,9 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->BulkAddWorkspaceMember()->create([
   "workspace_id" => null, // string
+  "added_count" => null, // int
+  "data" => null, // array
+  "user_ids" => null, // array
 ]);
 ```
 
@@ -944,7 +992,7 @@ $bulk_assign_key = $client->BulkAssignKey();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `assigned_count` | `int` | Yes |  |
-| `key_hash` | `array` | Yes |  |
+| `key_hashes` | `array` | Yes |  |
 
 ### Operations
 
@@ -955,6 +1003,8 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->BulkAssignKey()->create([
   "guardrail_id" => null, // string
+  "assigned_count" => null, // int
+  "key_hashes" => null, // array
 ]);
 ```
 
@@ -999,7 +1049,7 @@ $bulk_assign_member = $client->BulkAssignMember();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `assigned_count` | `int` | Yes |  |
-| `member_user_id` | `array` | Yes |  |
+| `member_user_ids` | `array` | Yes |  |
 
 ### Operations
 
@@ -1010,6 +1060,8 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->BulkAssignMember()->create([
   "guardrail_id" => null, // string
+  "assigned_count" => null, // int
+  "member_user_ids" => null, // array
 ]);
 ```
 
@@ -1054,7 +1106,7 @@ $bulk_remove_workspace_member = $client->BulkRemoveWorkspaceMember();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `removed_count` | `int` | Yes |  |
-| `user_id` | `array` | Yes |  |
+| `user_ids` | `array` | Yes |  |
 
 ### Operations
 
@@ -1065,6 +1117,8 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->BulkRemoveWorkspaceMember()->create([
   "workspace_id" => null, // string
+  "removed_count" => null, // int
+  "user_ids" => null, // array
 ]);
 ```
 
@@ -1108,7 +1162,7 @@ $bulk_unassign_key = $client->BulkUnassignKey();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key_hash` | `array` | Yes |  |
+| `key_hashes` | `array` | Yes |  |
 | `unassigned_count` | `int` | Yes |  |
 
 ### Operations
@@ -1120,6 +1174,8 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->BulkUnassignKey()->create([
   "guardrail_id" => null, // string
+  "key_hashes" => null, // array
+  "unassigned_count" => null, // int
 ]);
 ```
 
@@ -1163,7 +1219,7 @@ $bulk_unassign_member = $client->BulkUnassignMember();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `member_user_id` | `array` | Yes |  |
+| `member_user_ids` | `array` | Yes |  |
 | `unassigned_count` | `int` | Yes |  |
 
 ### Operations
@@ -1175,6 +1231,8 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->BulkUnassignMember()->create([
   "guardrail_id" => null, // string
+  "member_user_ids" => null, // array
+  "unassigned_count" => null, // int
 ]);
 ```
 
@@ -1218,39 +1276,37 @@ $byok = $client->Byok();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_api_key_hash` | `mixed` | Yes |  |
-| `allowed_model` | `mixed` | No |  |
-| `allowed_user_id` | `mixed` | No |  |
+| `allowed_api_key_hashes` | `mixed` | Yes |  |
+| `allowed_models` | `mixed` | Yes |  |
+| `allowed_user_ids` | `mixed` | Yes |  |
 | `created_at` | `string` | Yes |  |
-| `data` | `mixed` | Yes |  |
-| `disabled` | `bool` | No |  |
+| `disabled` | `bool` | Yes |  |
 | `id` | `string` | Yes |  |
-| `is_fallback` | `bool` | No |  |
+| `is_fallback` | `bool` | Yes |  |
 | `key` | `string` | Yes |  |
 | `label` | `string` | Yes |  |
 | `name` | `mixed` | No |  |
 | `provider` | `string` | Yes |  |
 | `sort_order` | `int` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `workspace_id` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | load | list | create | remove |
 | --- | --- | --- | --- | --- |
-| `allowed_api_key_hash` | - | - | - | - |
-| `allowed_model` | - | Yes | - | - |
-| `allowed_user_id` | - | Yes | - | - |
+| `allowed_api_key_hashes` | - | - | - | - |
+| `allowed_models` | - | - | Yes | - |
+| `allowed_user_ids` | - | - | Yes | - |
 | `created_at` | - | - | - | - |
-| `data` | - | - | - | - |
-| `disabled` | - | Yes | - | - |
+| `disabled` | - | - | Yes | - |
 | `id` | - | - | - | - |
-| `is_fallback` | - | Yes | - | - |
+| `is_fallback` | - | - | Yes | - |
 | `key` | - | - | - | - |
 | `label` | - | - | - | - |
 | `name` | - | - | - | - |
 | `provider` | - | - | - | - |
 | `sort_order` | - | - | - | - |
-| `workspace_id` | - | Yes | - | - |
+| `workspace_id` | - | - | Yes | - |
 
 ### Operations
 
@@ -1260,14 +1316,18 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Byok()->create([
-  "allowed_api_key_hash" => null, // mixed
+  "allowed_api_key_hashes" => null, // mixed
+  "allowed_models" => null, // mixed
+  "allowed_user_ids" => null, // mixed
   "created_at" => null, // string
-  "data" => null, // mixed
+  "disabled" => null, // bool
   "id" => null, // string
+  "is_fallback" => null, // bool
   "key" => null, // string
   "label" => null, // string
   "provider" => null, // string
   "sort_order" => null, // int
+  "workspace_id" => null, // string
 ]);
 ```
 
@@ -1336,29 +1396,30 @@ $chat_result = $client->ChatResult();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cache_control` | `array` | Yes |  |
-| `choice` | `array` | Yes |  |
+| `choices` | `array` | Yes |  |
 | `created` | `int` | Yes |  |
 | `debug` | `array` | No |  |
 | `frequency_penalty` | `mixed` | No |  |
 | `id` | `string` | Yes |  |
 | `image_config` | `array` | No |  |
-| `logit_bia` | `mixed` | No |  |
-| `logprob` | `mixed` | No |  |
-| `max_completion_token` | `mixed` | No |  |
-| `max_token` | `mixed` | No |  |
-| `message` | `array` | Yes |  |
+| `logit_bias` | `mixed` | No |  |
+| `logprobs` | `mixed` | No |  |
+| `max_completion_tokens` | `mixed` | No |  |
+| `max_tokens` | `mixed` | No |  |
+| `messages` | `array` | Yes |  |
 | `metadata` | `array` | No |  |
 | `min_p` | `mixed` | No |  |
-| `modality` | `array` | No |  |
+| `modalities` | `array` | No |  |
 | `model` | `string` | Yes |  |
+| `models` | `array` | No |  |
 | `object` | `string` | Yes |  |
 | `openrouter_metadata` | `array` | Yes |  |
-| `parallel_tool_call` | `mixed` | No |  |
-| `plugin` | `array` | No |  |
+| `parallel_tool_calls` | `mixed` | No |  |
+| `plugins` | `array` | No |  |
 | `prediction` | `mixed` | Yes |  |
 | `presence_penalty` | `mixed` | No |  |
 | `prompt_cache_key` | `mixed` | No |  |
-| `prompt_cache_option` | `mixed` | Yes |  |
+| `prompt_cache_options` | `mixed` | Yes |  |
 | `provider` | `mixed` | No |  |
 | `reasoning` | `array` | No |  |
 | `reasoning_effort` | `mixed` | No |  |
@@ -1371,14 +1432,14 @@ $chat_result = $client->ChatResult();
 | `stop` | `mixed` | No |  |
 | `stop_server_tools_when` | `array` | No |  |
 | `stream` | `bool` | No |  |
-| `stream_option` | `mixed` | No |  |
+| `stream_options` | `mixed` | No |  |
 | `system_fingerprint` | `mixed` | Yes |  |
 | `temperature` | `mixed` | No |  |
-| `tool` | `array` | No |  |
 | `tool_choice` | `mixed` | No |  |
+| `tools` | `array` | No |  |
 | `top_a` | `mixed` | No |  |
 | `top_k` | `mixed` | No |  |
-| `top_logprob` | `mixed` | No |  |
+| `top_logprobs` | `mixed` | No |  |
 | `top_p` | `mixed` | No |  |
 | `trace` | `array` | No |  |
 | `usage` | `array` | Yes |  |
@@ -1389,29 +1450,30 @@ $chat_result = $client->ChatResult();
 | Field | create |
 | --- | --- |
 | `cache_control` | - |
-| `choice` | - |
+| `choices` | - |
 | `created` | - |
 | `debug` | - |
 | `frequency_penalty` | - |
 | `id` | - |
 | `image_config` | - |
-| `logit_bia` | - |
-| `logprob` | - |
-| `max_completion_token` | - |
-| `max_token` | - |
-| `message` | - |
+| `logit_bias` | - |
+| `logprobs` | - |
+| `max_completion_tokens` | - |
+| `max_tokens` | - |
+| `messages` | - |
 | `metadata` | - |
 | `min_p` | - |
-| `modality` | - |
+| `modalities` | - |
 | `model` | Yes |
+| `models` | - |
 | `object` | - |
 | `openrouter_metadata` | - |
-| `parallel_tool_call` | - |
-| `plugin` | - |
+| `parallel_tool_calls` | - |
+| `plugins` | - |
 | `prediction` | - |
 | `presence_penalty` | - |
 | `prompt_cache_key` | - |
-| `prompt_cache_option` | - |
+| `prompt_cache_options` | - |
 | `provider` | - |
 | `reasoning` | - |
 | `reasoning_effort` | - |
@@ -1424,14 +1486,14 @@ $chat_result = $client->ChatResult();
 | `stop` | - |
 | `stop_server_tools_when` | - |
 | `stream` | - |
-| `stream_option` | - |
+| `stream_options` | - |
 | `system_fingerprint` | - |
 | `temperature` | - |
-| `tool` | - |
 | `tool_choice` | - |
+| `tools` | - |
 | `top_a` | - |
 | `top_k` | - |
-| `top_logprob` | - |
+| `top_logprobs` | - |
 | `top_p` | - |
 | `trace` | - |
 | `usage` | - |
@@ -1446,15 +1508,15 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->ChatResult()->create([
   "cache_control" => null, // array
-  "choice" => null, // array
+  "choices" => null, // array
   "created" => null, // int
   "id" => null, // string
-  "message" => null, // array
+  "messages" => null, // array
   "model" => null, // string
   "object" => null, // string
   "openrouter_metadata" => null, // array
   "prediction" => null, // mixed
-  "prompt_cache_option" => null, // mixed
+  "prompt_cache_options" => null, // mixed
   "system_fingerprint" => null, // mixed
   "usage" => null, // array
 ]);
@@ -1752,10 +1814,10 @@ $create_observability_destination = $client->CreateObservabilityDestination();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hash` | `mixed` | No |  |
+| `api_key_hashes` | `mixed` | No |  |
 | `config` | `array` | Yes |  |
 | `enabled` | `bool` | No |  |
-| `filter_rule` | `mixed` | Yes |  |
+| `filter_rules` | `mixed` | Yes |  |
 | `name` | `string` | Yes |  |
 | `privacy_mode` | `bool` | No |  |
 | `sampling_rate` | `float` | No |  |
@@ -1771,7 +1833,7 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->CreateObservabilityDestination()->create([
   "config" => null, // array
-  "filter_rule" => null, // mixed
+  "filter_rules" => null, // mixed
   "name" => null, // string
   "type" => null, // string
 ]);
@@ -1820,34 +1882,34 @@ $create_preset_from_inference = $client->CreatePresetFromInference();
 | `background` | `mixed` | No |  |
 | `cache_control` | `array` | Yes |  |
 | `context_management` | `mixed` | No |  |
-| `data` | `mixed` | Yes |  |
 | `debug` | `array` | No |  |
-| `fallback` | `mixed` | No |  |
+| `fallbacks` | `mixed` | No |  |
 | `frequency_penalty` | `mixed` | No |  |
 | `image_config` | `array` | No |  |
 | `include` | `mixed` | No |  |
 | `input` | `mixed` | No |  |
-| `instruction` | `mixed` | No |  |
-| `logit_bia` | `mixed` | No |  |
-| `logprob` | `mixed` | No |  |
-| `max_completion_token` | `mixed` | No |  |
-| `max_output_token` | `mixed` | No |  |
-| `max_token` | `mixed` | No |  |
-| `max_tool_call` | `mixed` | No |  |
-| `message` | `array` | Yes |  |
+| `instructions` | `mixed` | No |  |
+| `logit_bias` | `mixed` | No |  |
+| `logprobs` | `mixed` | No |  |
+| `max_completion_tokens` | `mixed` | No |  |
+| `max_output_tokens` | `mixed` | No |  |
+| `max_tokens` | `mixed` | No |  |
+| `max_tool_calls` | `mixed` | No |  |
+| `messages` | `array` | Yes |  |
 | `metadata` | `array` | No |  |
 | `min_p` | `mixed` | No |  |
-| `modality` | `array` | No |  |
+| `modalities` | `array` | No |  |
 | `model` | `string` | No |  |
+| `models` | `array` | No |  |
 | `output_config` | `array` | No |  |
-| `parallel_tool_call` | `mixed` | No |  |
-| `plugin` | `array` | No |  |
+| `parallel_tool_calls` | `mixed` | No |  |
+| `plugins` | `array` | No |  |
 | `prediction` | `mixed` | Yes |  |
 | `presence_penalty` | `mixed` | No |  |
 | `previous_response_id` | `string` | No |  |
 | `prompt` | `mixed` | Yes |  |
 | `prompt_cache_key` | `mixed` | No |  |
-| `prompt_cache_option` | `mixed` | Yes |  |
+| `prompt_cache_options` | `mixed` | Yes |  |
 | `provider` | `mixed` | No |  |
 | `reasoning` | `array` | No |  |
 | `reasoning_effort` | `mixed` | No |  |
@@ -1860,20 +1922,20 @@ $create_preset_from_inference = $client->CreatePresetFromInference();
 | `session_id` | `string` | No |  |
 | `speed` | `mixed` | No |  |
 | `stop` | `mixed` | No |  |
-| `stop_sequence` | `array` | No |  |
+| `stop_sequences` | `array` | No |  |
 | `stop_server_tools_when` | `array` | No |  |
 | `store` | `bool` | No |  |
 | `stream` | `bool` | No |  |
-| `stream_option` | `mixed` | No |  |
+| `stream_options` | `mixed` | No |  |
 | `system` | `mixed` | No |  |
 | `temperature` | `mixed` | No |  |
 | `text` | `mixed` | No |  |
 | `thinking` | `mixed` | No |  |
-| `tool` | `array` | No |  |
 | `tool_choice` | `mixed` | No |  |
+| `tools` | `array` | No |  |
 | `top_a` | `mixed` | No |  |
 | `top_k` | `mixed` | No |  |
-| `top_logprob` | `mixed` | No |  |
+| `top_logprobs` | `mixed` | No |  |
 | `top_p` | `mixed` | No |  |
 | `trace` | `array` | No |  |
 | `truncation` | `mixed` | No |  |
@@ -1886,34 +1948,34 @@ $create_preset_from_inference = $client->CreatePresetFromInference();
 | `background` | - |
 | `cache_control` | - |
 | `context_management` | - |
-| `data` | - |
 | `debug` | - |
-| `fallback` | - |
+| `fallbacks` | - |
 | `frequency_penalty` | - |
 | `image_config` | - |
 | `include` | - |
 | `input` | - |
-| `instruction` | - |
-| `logit_bia` | - |
-| `logprob` | - |
-| `max_completion_token` | - |
-| `max_output_token` | - |
-| `max_token` | - |
-| `max_tool_call` | - |
-| `message` | - |
+| `instructions` | - |
+| `logit_bias` | - |
+| `logprobs` | - |
+| `max_completion_tokens` | - |
+| `max_output_tokens` | - |
+| `max_tokens` | - |
+| `max_tool_calls` | - |
+| `messages` | - |
 | `metadata` | - |
 | `min_p` | - |
-| `modality` | - |
+| `modalities` | - |
 | `model` | Yes |
+| `models` | - |
 | `output_config` | - |
-| `parallel_tool_call` | - |
-| `plugin` | - |
+| `parallel_tool_calls` | - |
+| `plugins` | - |
 | `prediction` | - |
 | `presence_penalty` | - |
 | `previous_response_id` | - |
 | `prompt` | - |
 | `prompt_cache_key` | - |
-| `prompt_cache_option` | - |
+| `prompt_cache_options` | - |
 | `provider` | - |
 | `reasoning` | - |
 | `reasoning_effort` | - |
@@ -1926,20 +1988,20 @@ $create_preset_from_inference = $client->CreatePresetFromInference();
 | `session_id` | - |
 | `speed` | - |
 | `stop` | - |
-| `stop_sequence` | - |
+| `stop_sequences` | - |
 | `stop_server_tools_when` | - |
 | `store` | - |
 | `stream` | - |
-| `stream_option` | - |
+| `stream_options` | - |
 | `system` | - |
 | `temperature` | - |
 | `text` | - |
 | `thinking` | - |
-| `tool` | - |
 | `tool_choice` | - |
+| `tools` | - |
 | `top_a` | - |
 | `top_k` | - |
-| `top_logprob` | - |
+| `top_logprobs` | - |
 | `top_p` | - |
 | `trace` | - |
 | `truncation` | - |
@@ -1954,6 +2016,11 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->CreatePresetFromInference()->create([
   "slug" => null, // string
+  "cache_control" => null, // array
+  "messages" => null, // array
+  "prediction" => null, // mixed
+  "prompt" => null, // mixed
+  "prompt_cache_options" => null, // mixed
 ]);
 ```
 
@@ -2033,7 +2100,8 @@ $credit = $client->Credit();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | Yes |  |
+| `total_credits` | `float` | Yes |  |
+| `total_usage` | `float` | Yes |  |
 
 ### Operations
 
@@ -2043,7 +2111,8 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Credit()->create([
-  "data" => null, // array
+  "total_credits" => null, // float
+  "total_usage" => null, // float
 ]);
 ```
 
@@ -2132,7 +2201,7 @@ $embedding = $client->Embedding();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `array` | Yes |  |
-| `dimension` | `int` | No |  |
+| `dimensions` | `int` | No |  |
 | `encoding_format` | `string` | No |  |
 | `id` | `string` | No |  |
 | `input` | `mixed` | Yes |  |
@@ -2199,33 +2268,33 @@ $endpoint = $client->Endpoint();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `architecture` | `array` | Yes |  |
-| `benchmark` | `array` | Yes |  |
+| `architecture` | `mixed` | Yes |  |
+| `benchmarks` | `array` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
 | `context_length` | `mixed` | Yes |  |
 | `created` | `int` | Yes |  |
-| `data` | `array` | Yes |  |
-| `default_parameter` | `mixed` | Yes |  |
-| `description` | `string` | No |  |
+| `default_parameters` | `mixed` | Yes |  |
+| `description` | `string` | Yes |  |
+| `endpoints` | `array` | Yes |  |
 | `expiration_date` | `mixed` | No |  |
 | `hugging_face_id` | `mixed` | No |  |
 | `id` | `string` | Yes |  |
 | `knowledge_cutoff` | `mixed` | No |  |
 | `latency_last_30m` | `mixed` | Yes |  |
-| `link` | `array` | Yes |  |
-| `max_completion_token` | `mixed` | Yes |  |
-| `max_prompt_token` | `mixed` | Yes |  |
+| `links` | `array` | Yes |  |
+| `max_completion_tokens` | `mixed` | Yes |  |
+| `max_prompt_tokens` | `mixed` | Yes |  |
 | `model_id` | `string` | Yes |  |
 | `model_name` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `per_request_limit` | `mixed` | Yes |  |
+| `per_request_limits` | `mixed` | Yes |  |
 | `pricing` | `array` | Yes |  |
 | `provider_name` | `string` | Yes |  |
 | `quantization` | `mixed` | Yes |  |
 | `reasoning` | `array` | Yes |  |
 | `status` | `int` | No |  |
-| `supported_parameter` | `array` | Yes |  |
-| `supported_voice` | `mixed` | Yes |  |
+| `supported_parameters` | `array` | Yes |  |
+| `supported_voices` | `mixed` | Yes |  |
 | `supports_implicit_caching` | `bool` | Yes |  |
 | `tag` | `string` | Yes |  |
 | `throughput_last_30m` | `mixed` | Yes |  |
@@ -2233,6 +2302,45 @@ $endpoint = $client->Endpoint();
 | `uptime_last_1d` | `mixed` | Yes |  |
 | `uptime_last_30m` | `mixed` | Yes |  |
 | `uptime_last_5m` | `mixed` | Yes |  |
+
+### Field Usage by Operation
+
+| Field | load | list |
+| --- | --- | --- |
+| `architecture` | - | - |
+| `benchmarks` | - | - |
+| `canonical_slug` | - | - |
+| `context_length` | - | - |
+| `created` | - | - |
+| `default_parameters` | - | - |
+| `description` | - | Yes |
+| `endpoints` | - | - |
+| `expiration_date` | - | - |
+| `hugging_face_id` | - | - |
+| `id` | - | - |
+| `knowledge_cutoff` | - | - |
+| `latency_last_30m` | - | - |
+| `links` | - | - |
+| `max_completion_tokens` | - | - |
+| `max_prompt_tokens` | - | - |
+| `model_id` | - | - |
+| `model_name` | - | - |
+| `name` | - | - |
+| `per_request_limits` | - | - |
+| `pricing` | - | - |
+| `provider_name` | - | - |
+| `quantization` | - | - |
+| `reasoning` | - | - |
+| `status` | - | - |
+| `supported_parameters` | - | - |
+| `supported_voices` | - | - |
+| `supports_implicit_caching` | - | - |
+| `tag` | - | - |
+| `throughput_last_30m` | - | - |
+| `top_provider` | - | - |
+| `uptime_last_1d` | - | - |
+| `uptime_last_30m` | - | - |
+| `uptime_last_5m` | - | - |
 
 ### Operations
 
@@ -2333,7 +2441,7 @@ $file = $client->File();
 | `filename` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
 | `mime_type` | `string` | Yes |  |
-| `size_byte` | `int` | Yes |  |
+| `size_bytes` | `int` | Yes |  |
 | `type` | `string` | Yes |  |
 
 ### Operations
@@ -2349,7 +2457,7 @@ $result = $client->File()->create([
   "filename" => null, // string
   "id" => null, // string
   "mime_type" => null, // string
-  "size_byte" => null, // int
+  "size_bytes" => null, // int
   "type" => null, // string
 ]);
 ```
@@ -2418,7 +2526,50 @@ $generation = $client->Generation();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | Yes |  |
+| `api_type` | `mixed` | Yes |  |
+| `app_id` | `mixed` | Yes |  |
+| `cache_discount` | `mixed` | Yes |  |
+| `cancelled` | `mixed` | Yes |  |
+| `created_at` | `string` | Yes |  |
+| `data_region` | `string` | Yes |  |
+| `external_user` | `mixed` | Yes |  |
+| `finish_reason` | `mixed` | Yes |  |
+| `generation_time` | `mixed` | Yes |  |
+| `http_referer` | `mixed` | Yes |  |
+| `id` | `string` | Yes |  |
+| `is_byok` | `bool` | Yes |  |
+| `latency` | `mixed` | Yes |  |
+| `model` | `string` | Yes |  |
+| `moderation_latency` | `mixed` | Yes |  |
+| `native_finish_reason` | `mixed` | Yes |  |
+| `native_tokens_cached` | `mixed` | Yes |  |
+| `native_tokens_completion` | `mixed` | Yes |  |
+| `native_tokens_completion_images` | `mixed` | Yes |  |
+| `native_tokens_prompt` | `mixed` | Yes |  |
+| `native_tokens_reasoning` | `mixed` | Yes |  |
+| `num_fetches` | `mixed` | Yes |  |
+| `num_input_audio_prompt` | `mixed` | Yes |  |
+| `num_media_completion` | `mixed` | Yes |  |
+| `num_media_prompt` | `mixed` | Yes |  |
+| `num_search_results` | `mixed` | Yes |  |
+| `origin` | `string` | Yes |  |
+| `preset_id` | `mixed` | Yes |  |
+| `provider_name` | `mixed` | Yes |  |
+| `provider_responses` | `mixed` | Yes |  |
+| `request_id` | `mixed` | No |  |
+| `response_cache_source_id` | `mixed` | No |  |
+| `router` | `mixed` | Yes |  |
+| `service_tier` | `mixed` | Yes |  |
+| `session_id` | `mixed` | No |  |
+| `streamed` | `mixed` | Yes |  |
+| `tokens_completion` | `mixed` | Yes |  |
+| `tokens_prompt` | `mixed` | Yes |  |
+| `total_cost` | `float` | Yes |  |
+| `upstream_id` | `mixed` | Yes |  |
+| `upstream_inference_cost` | `mixed` | Yes |  |
+| `usage` | `float` | Yes |  |
+| `user_agent` | `mixed` | Yes |  |
+| `web_search_engine` | `mixed` | Yes |  |
 
 ### Operations
 
@@ -2427,7 +2578,7 @@ $generation = $client->Generation();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Generation()->load();
+$result = $client->Generation()->load(["id" => "generation_id"]);
 ```
 
 ### Common Methods
@@ -2470,7 +2621,8 @@ $generation_content = $client->GenerationContent();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | Yes |  |
+| `input` | `mixed` | Yes |  |
+| `output` | `array` | Yes |  |
 
 ### Operations
 
@@ -2522,12 +2674,11 @@ $guardrail = $client->Guardrail();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `mixed` | No |  |
-| `allowed_provider` | `mixed` | No |  |
-| `content_filter` | `mixed` | No |  |
-| `content_filter_builtin` | `mixed` | No |  |
+| `allowed_models` | `mixed` | No |  |
+| `allowed_providers` | `mixed` | No |  |
+| `content_filter_builtins` | `mixed` | No |  |
+| `content_filters` | `mixed` | No |  |
 | `created_at` | `string` | Yes |  |
-| `data` | `mixed` | Yes |  |
 | `description` | `mixed` | No |  |
 | `enforce_zdr` | `mixed` | No |  |
 | `enforce_zdr_anthropic` | `mixed` | No |  |
@@ -2536,24 +2687,23 @@ $guardrail = $client->Guardrail();
 | `enforce_zdr_other` | `mixed` | No |  |
 | `enforce_zdr_xai` | `mixed` | No |  |
 | `id` | `string` | Yes |  |
-| `ignored_model` | `mixed` | No |  |
-| `ignored_provider` | `mixed` | No |  |
+| `ignored_models` | `mixed` | No |  |
+| `ignored_providers` | `mixed` | No |  |
 | `limit_usd` | `mixed` | No |  |
 | `name` | `string` | Yes |  |
 | `reset_interval` | `mixed` | No |  |
 | `updated_at` | `mixed` | No |  |
-| `workspace_id` | `string` | No |  |
+| `workspace_id` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | load | list | create | remove |
 | --- | --- | --- | --- | --- |
-| `allowed_model` | - | - | - | - |
-| `allowed_provider` | - | - | - | - |
-| `content_filter` | - | - | - | - |
-| `content_filter_builtin` | - | - | - | - |
+| `allowed_models` | - | - | - | - |
+| `allowed_providers` | - | - | - | - |
+| `content_filter_builtins` | - | - | - | - |
+| `content_filters` | - | - | - | - |
 | `created_at` | - | - | - | - |
-| `data` | - | - | - | - |
 | `description` | - | - | - | - |
 | `enforce_zdr` | - | - | - | - |
 | `enforce_zdr_anthropic` | - | - | - | - |
@@ -2562,13 +2712,13 @@ $guardrail = $client->Guardrail();
 | `enforce_zdr_other` | - | - | - | - |
 | `enforce_zdr_xai` | - | - | - | - |
 | `id` | - | - | - | - |
-| `ignored_model` | - | - | - | - |
-| `ignored_provider` | - | - | - | - |
+| `ignored_models` | - | - | - | - |
+| `ignored_providers` | - | - | - | - |
 | `limit_usd` | - | - | - | - |
 | `name` | - | - | - | - |
 | `reset_interval` | - | - | - | - |
 | `updated_at` | - | - | - | - |
-| `workspace_id` | - | Yes | - | - |
+| `workspace_id` | - | - | Yes | - |
 
 ### Operations
 
@@ -2579,9 +2729,9 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->Guardrail()->create([
   "created_at" => null, // string
-  "data" => null, // mixed
   "id" => null, // string
   "name" => null, // string
+  "workspace_id" => null, // string
 ]);
 ```
 
@@ -2653,7 +2803,7 @@ $image = $client->Image();
 | `background` | `string` | No |  |
 | `created` | `int` | Yes |  |
 | `data` | `array` | Yes |  |
-| `input_reference` | `array` | No |  |
+| `input_references` | `array` | No |  |
 | `model` | `string` | Yes |  |
 | `n` | `int` | No |  |
 | `output_compression` | `int` | No |  |
@@ -2723,12 +2873,12 @@ $image_model_endpoint = $client->ImageModelEndpoint();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameter` | `array` | Yes |  |
+| `allowed_passthrough_parameters` | `array` | Yes |  |
 | `pricing` | `array` | Yes |  |
 | `provider_name` | `string` | Yes |  |
 | `provider_slug` | `string` | Yes |  |
 | `provider_tag` | `mixed` | Yes |  |
-| `supported_parameter` | `mixed` | Yes |  |
+| `supported_parameters` | `mixed` | Yes |  |
 | `supports_streaming` | `bool` | Yes |  |
 
 ### Operations
@@ -2784,10 +2934,10 @@ $image_models_list = $client->ImageModelsList();
 | `architecture` | `array` | Yes |  |
 | `created` | `int` | Yes |  |
 | `description` | `string` | Yes |  |
-| `endpoint` | `string` | Yes |  |
+| `endpoints` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `supported_parameter` | `array` | Yes |  |
+| `supported_parameters` | `array` | Yes |  |
 | `supports_streaming` | `bool` | Yes |  |
 
 ### Operations
@@ -3398,61 +3548,31 @@ $message = $client->Message();
 | --- | --- | --- | --- |
 | `cache_control` | `array` | Yes |  |
 | `context_management` | `mixed` | No |  |
-| `fallback` | `mixed` | No |  |
-| `max_token` | `int` | No |  |
-| `message` | `mixed` | Yes |  |
+| `fallbacks` | `mixed` | No |  |
+| `max_tokens` | `int` | No |  |
+| `messages` | `mixed` | Yes |  |
 | `metadata` | `array` | No |  |
 | `model` | `string` | Yes |  |
+| `models` | `array` | No |  |
 | `output_config` | `array` | No |  |
-| `plugin` | `array` | No |  |
+| `plugins` | `array` | No |  |
 | `provider` | `mixed` | No |  |
 | `route` | `mixed` | No |  |
 | `service_tier` | `string` | No |  |
 | `session_id` | `string` | No |  |
 | `speed` | `mixed` | No |  |
-| `stop_sequence` | `array` | No |  |
+| `stop_sequences` | `array` | No |  |
 | `stop_server_tools_when` | `array` | No |  |
 | `stream` | `bool` | No |  |
 | `system` | `mixed` | No |  |
 | `temperature` | `float` | No |  |
 | `thinking` | `mixed` | No |  |
-| `tool` | `array` | No |  |
 | `tool_choice` | `mixed` | No |  |
+| `tools` | `array` | No |  |
 | `top_k` | `int` | No |  |
 | `top_p` | `float` | No |  |
 | `trace` | `array` | No |  |
 | `user` | `string` | No |  |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `cache_control` | - |
-| `context_management` | - |
-| `fallback` | - |
-| `max_token` | - |
-| `message` | - |
-| `metadata` | - |
-| `model` | Yes |
-| `output_config` | - |
-| `plugin` | - |
-| `provider` | - |
-| `route` | - |
-| `service_tier` | - |
-| `session_id` | - |
-| `speed` | - |
-| `stop_sequence` | - |
-| `stop_server_tools_when` | - |
-| `stream` | - |
-| `system` | - |
-| `temperature` | - |
-| `thinking` | - |
-| `tool` | - |
-| `tool_choice` | - |
-| `top_k` | - |
-| `top_p` | - |
-| `trace` | - |
-| `user` | - |
 
 ### Operations
 
@@ -3463,7 +3583,7 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->Message()->create([
   "cache_control" => null, // array
-  "message" => null, // mixed
+  "messages" => null, // mixed
   "model" => null, // string
 ]);
 ```
@@ -3545,24 +3665,23 @@ $model = $client->Model();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `array` | Yes |  |
-| `benchmark` | `array` | Yes |  |
+| `benchmarks` | `array` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
 | `context_length` | `mixed` | Yes |  |
 | `created` | `int` | Yes |  |
-| `data` | `array` | Yes |  |
-| `default_parameter` | `mixed` | Yes |  |
+| `default_parameters` | `mixed` | Yes |  |
 | `description` | `string` | No |  |
 | `expiration_date` | `mixed` | No |  |
 | `hugging_face_id` | `mixed` | No |  |
 | `id` | `string` | Yes |  |
 | `knowledge_cutoff` | `mixed` | No |  |
-| `link` | `array` | Yes |  |
+| `links` | `array` | Yes |  |
 | `name` | `string` | Yes |  |
-| `per_request_limit` | `mixed` | Yes |  |
+| `per_request_limits` | `mixed` | Yes |  |
 | `pricing` | `array` | Yes |  |
 | `reasoning` | `array` | Yes |  |
-| `supported_parameter` | `array` | Yes |  |
-| `supported_voice` | `mixed` | Yes |  |
+| `supported_parameters` | `array` | Yes |  |
+| `supported_voices` | `mixed` | Yes |  |
 | `top_provider` | `array` | Yes |  |
 
 ### Operations
@@ -3623,7 +3742,7 @@ $models_count = $client->ModelsCount();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | Yes |  |
+| `count` | `int` | Yes |  |
 
 ### Operations
 
@@ -3676,23 +3795,23 @@ $models_list = $client->ModelsList();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `array` | Yes |  |
-| `benchmark` | `array` | Yes |  |
+| `benchmarks` | `array` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
 | `context_length` | `mixed` | Yes |  |
 | `created` | `int` | Yes |  |
-| `default_parameter` | `mixed` | Yes |  |
+| `default_parameters` | `mixed` | Yes |  |
 | `description` | `string` | No |  |
 | `expiration_date` | `mixed` | No |  |
 | `hugging_face_id` | `mixed` | No |  |
 | `id` | `string` | Yes |  |
 | `knowledge_cutoff` | `mixed` | No |  |
-| `link` | `array` | Yes |  |
+| `links` | `array` | Yes |  |
 | `name` | `string` | Yes |  |
-| `per_request_limit` | `mixed` | Yes |  |
+| `per_request_limits` | `mixed` | Yes |  |
 | `pricing` | `array` | Yes |  |
 | `reasoning` | `array` | Yes |  |
-| `supported_parameter` | `array` | Yes |  |
-| `supported_voice` | `mixed` | Yes |  |
+| `supported_parameters` | `array` | Yes |  |
+| `supported_voices` | `mixed` | Yes |  |
 | `top_provider` | `array` | Yes |  |
 
 ### Operations
@@ -3745,13 +3864,15 @@ $o_auth = $client->OAuth();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `app_id` | `int` | Yes |  |
 | `callback_url` | `string` | Yes |  |
 | `code` | `string` | Yes |  |
 | `code_challenge` | `string` | No |  |
 | `code_challenge_method` | `mixed` | No |  |
 | `code_verifier` | `string` | No |  |
-| `data` | `array` | Yes |  |
+| `created_at` | `string` | Yes |  |
 | `expires_at` | `mixed` | No |  |
+| `id` | `string` | Yes |  |
 | `key` | `string` | Yes |  |
 | `key_label` | `string` | No |  |
 | `limit` | `float` | No |  |
@@ -3769,9 +3890,11 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->OAuth()->create([
+  "app_id" => null, // int
   "callback_url" => null, // string
   "code" => null, // string
-  "data" => null, // array
+  "created_at" => null, // string
+  "id" => null, // string
   "key" => null, // string
   "user_id" => null, // mixed
 ]);
@@ -3817,7 +3940,7 @@ $observability_destination = $client->ObservabilityDestination();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `mixed` | Yes |  |
+| `data` | `array` | No |  |
 
 ### Operations
 
@@ -3884,19 +4007,20 @@ $open_responses_result = $client->OpenResponsesResult();
 | `image_config` | `array` | No |  |
 | `include` | `mixed` | No |  |
 | `input` | `mixed` | No |  |
-| `instruction` | `mixed` | No |  |
-| `max_output_token` | `mixed` | No |  |
-| `max_tool_call` | `mixed` | No |  |
+| `instructions` | `mixed` | No |  |
+| `max_output_tokens` | `mixed` | No |  |
+| `max_tool_calls` | `mixed` | No |  |
 | `metadata` | `mixed` | No |  |
-| `modality` | `array` | No |  |
+| `modalities` | `array` | No |  |
 | `model` | `string` | No |  |
-| `parallel_tool_call` | `mixed` | No |  |
-| `plugin` | `array` | No |  |
+| `models` | `array` | No |  |
+| `parallel_tool_calls` | `mixed` | No |  |
+| `plugins` | `array` | No |  |
 | `presence_penalty` | `mixed` | No |  |
 | `previous_response_id` | `string` | No |  |
 | `prompt` | `mixed` | Yes |  |
 | `prompt_cache_key` | `mixed` | No |  |
-| `prompt_cache_option` | `mixed` | Yes |  |
+| `prompt_cache_options` | `mixed` | Yes |  |
 | `provider` | `mixed` | No |  |
 | `reasoning` | `mixed` | No |  |
 | `route` | `mixed` | No |  |
@@ -3908,10 +4032,10 @@ $open_responses_result = $client->OpenResponsesResult();
 | `stream` | `bool` | No |  |
 | `temperature` | `mixed` | No |  |
 | `text` | `mixed` | No |  |
-| `tool` | `array` | No |  |
 | `tool_choice` | `mixed` | No |  |
+| `tools` | `array` | No |  |
 | `top_k` | `int` | No |  |
-| `top_logprob` | `mixed` | No |  |
+| `top_logprobs` | `mixed` | No |  |
 | `top_p` | `mixed` | No |  |
 | `trace` | `array` | No |  |
 | `truncation` | `mixed` | No |  |
@@ -3927,7 +4051,7 @@ Create a new entity with the given data. Throws on error.
 $result = $client->OpenResponsesResult()->create([
   "cache_control" => null, // array
   "prompt" => null, // mixed
-  "prompt_cache_option" => null, // mixed
+  "prompt_cache_options" => null, // mixed
 ]);
 ```
 
@@ -4029,8 +4153,8 @@ $preset = $client->Preset();
 | --- | --- | --- | --- |
 | `created_at` | `string` | Yes |  |
 | `creator_user_id` | `mixed` | Yes |  |
-| `data` | `mixed` | Yes |  |
 | `description` | `mixed` | Yes |  |
+| `designated_version` | `mixed` | Yes |  |
 | `designated_version_id` | `mixed` | Yes |  |
 | `id` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
@@ -4098,7 +4222,14 @@ $preset_version = $client->PresetVersion();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `mixed` | Yes |  |
+| `config` | `array` | Yes |  |
+| `created_at` | `string` | Yes |  |
+| `creator_id` | `string` | Yes |  |
+| `id` | `string` | Yes |  |
+| `preset_id` | `string` | Yes |  |
+| `system_prompt` | `mixed` | Yes |  |
+| `updated_at` | `string` | Yes |  |
+| `version` | `int` | Yes |  |
 
 ### Operations
 
@@ -4150,8 +4281,8 @@ $provider = $client->Provider();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datacenter` | `mixed` | No |  |
-| `headquarter` | `mixed` | No |  |
+| `datacenters` | `mixed` | No |  |
+| `headquarters` | `mixed` | No |  |
 | `name` | `string` | Yes |  |
 | `privacy_policy_url` | `mixed` | Yes |  |
 | `slug` | `string` | Yes |  |
@@ -4246,7 +4377,7 @@ $rankings_daily = $client->RankingsDaily();
 | --- | --- | --- | --- |
 | `date` | `string` | Yes |  |
 | `model_permaslug` | `string` | Yes |  |
-| `total_token` | `string` | Yes |  |
+| `total_tokens` | `string` | Yes |  |
 
 ### Operations
 
@@ -4334,12 +4465,12 @@ $rerank = $client->Rerank();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `document` | `array` | Yes |  |
+| `documents` | `array` | Yes |  |
 | `id` | `string` | No |  |
 | `model` | `string` | Yes |  |
 | `provider` | `string` | No |  |
 | `query` | `string` | Yes |  |
-| `result` | `array` | Yes |  |
+| `results` | `array` | Yes |  |
 | `top_n` | `int` | No |  |
 | `usage` | `array` | No |  |
 
@@ -4351,10 +4482,10 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Rerank()->create([
-  "document" => null, // array
+  "documents" => null, // array
   "model" => null, // string
   "query" => null, // string
-  "result" => null, // array
+  "results" => null, // array
 ]);
 ```
 
@@ -4476,13 +4607,13 @@ $stt = $client->Stt();
 | `model` | `string` | Yes |  |
 | `provider` | `array` | No |  |
 | `response_format` | `string` | No |  |
-| `segment` | `array` | No |  |
+| `segments` | `array` | No |  |
 | `task` | `string` | No |  |
 | `temperature` | `float` | No |  |
 | `text` | `string` | Yes |  |
-| `timestamp_granularity` | `array` | No |  |
+| `timestamp_granularities` | `array` | No |  |
 | `usage` | `array` | No |  |
-| `word` | `array` | No |  |
+| `words` | `array` | No |  |
 
 ### Operations
 
@@ -4540,8 +4671,8 @@ $submit_generation_feedback = $client->SubmitGenerationFeedback();
 | --- | --- | --- | --- |
 | `category` | `string` | Yes |  |
 | `comment` | `string` | No |  |
-| `data` | `array` | Yes |  |
 | `generation_id` | `string` | Yes |  |
+| `success` | `bool` | Yes |  |
 
 ### Operations
 
@@ -4552,8 +4683,8 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->SubmitGenerationFeedback()->create([
   "category" => null, // string
-  "data" => null, // array
   "generation_id" => null, // string
+  "success" => null, // bool
 ]);
 ```
 
@@ -4597,7 +4728,10 @@ $task = $client->Task();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | Yes |  |
+| `as_of` | `string` | Yes |  |
+| `classifications` | `array` | Yes |  |
+| `macro_categories` | `array` | Yes |  |
+| `window_days` | `int` | Yes |  |
 
 ### Operations
 
@@ -4799,9 +4933,8 @@ $update_byok_key = $client->UpdateByokKey();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `mixed` | No |  |
-| `allowed_user_id` | `mixed` | No |  |
-| `data` | `mixed` | Yes |  |
+| `allowed_models` | `mixed` | No |  |
+| `allowed_user_ids` | `mixed` | No |  |
 | `disabled` | `bool` | No |  |
 | `is_fallback` | `bool` | No |  |
 | `key` | `string` | No |  |
@@ -4860,11 +4993,10 @@ $update_guardrail = $client->UpdateGuardrail();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `mixed` | No |  |
-| `allowed_provider` | `mixed` | No |  |
-| `content_filter` | `mixed` | No |  |
-| `content_filter_builtin` | `mixed` | No |  |
-| `data` | `mixed` | Yes |  |
+| `allowed_models` | `mixed` | No |  |
+| `allowed_providers` | `mixed` | No |  |
+| `content_filter_builtins` | `mixed` | No |  |
+| `content_filters` | `mixed` | No |  |
 | `description` | `mixed` | No |  |
 | `enforce_zdr` | `mixed` | No |  |
 | `enforce_zdr_anthropic` | `mixed` | No |  |
@@ -4872,8 +5004,8 @@ $update_guardrail = $client->UpdateGuardrail();
 | `enforce_zdr_openai` | `mixed` | No |  |
 | `enforce_zdr_other` | `mixed` | No |  |
 | `enforce_zdr_xai` | `mixed` | No |  |
-| `ignored_model` | `mixed` | No |  |
-| `ignored_provider` | `mixed` | No |  |
+| `ignored_models` | `mixed` | No |  |
+| `ignored_providers` | `mixed` | No |  |
 | `limit_usd` | `mixed` | No |  |
 | `name` | `string` | No |  |
 | `reset_interval` | `mixed` | No |  |
@@ -4931,11 +5063,10 @@ $update_observability_destination = $client->UpdateObservabilityDestination();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hash` | `mixed` | No |  |
+| `api_key_hashes` | `mixed` | No |  |
 | `config` | `array` | No |  |
-| `data` | `mixed` | Yes |  |
 | `enabled` | `bool` | No |  |
-| `filter_rule` | `mixed` | No |  |
+| `filter_rules` | `mixed` | No |  |
 | `name` | `string` | No |  |
 | `privacy_mode` | `bool` | No |  |
 | `sampling_rate` | `float` | No |  |
@@ -4995,13 +5126,12 @@ $update_workspace = $client->UpdateWorkspace();
 | --- | --- | --- | --- |
 | `created_at` | `string` | Yes |  |
 | `created_by` | `mixed` | Yes |  |
-| `data` | `mixed` | Yes |  |
 | `default_image_model` | `mixed` | No |  |
 | `default_provider_sort` | `mixed` | No |  |
 | `default_text_model` | `mixed` | No |  |
 | `description` | `mixed` | No |  |
 | `id` | `string` | Yes |  |
-| `io_logging_api_key_id` | `mixed` | No |  |
+| `io_logging_api_key_ids` | `mixed` | No |  |
 | `io_logging_sampling_rate` | `float` | No |  |
 | `is_data_discount_logging_enabled` | `bool` | No |  |
 | `is_observability_broadcast_enabled` | `bool` | No |  |
@@ -5016,13 +5146,12 @@ $update_workspace = $client->UpdateWorkspace();
 | --- | --- | --- | --- |
 | `created_at` | - | - | - |
 | `created_by` | - | - | - |
-| `data` | - | - | - |
 | `default_image_model` | Yes | - | - |
 | `default_provider_sort` | Yes | - | - |
 | `default_text_model` | Yes | - | - |
 | `description` | Yes | - | - |
 | `id` | - | - | - |
-| `io_logging_api_key_id` | Yes | - | - |
+| `io_logging_api_key_ids` | Yes | - | - |
 | `io_logging_sampling_rate` | Yes | - | - |
 | `is_data_discount_logging_enabled` | Yes | - | - |
 | `is_observability_broadcast_enabled` | Yes | - | - |
@@ -5041,7 +5170,6 @@ Create a new entity with the given data. Throws on error.
 $result = $client->UpdateWorkspace()->create([
   "created_at" => null, // string
   "created_by" => null, // mixed
-  "data" => null, // mixed
   "id" => null, // string
   "name" => null, // string
   "slug" => null, // string
@@ -5108,7 +5236,6 @@ $upsert_workspace_budget = $client->UpsertWorkspaceBudget();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `mixed` | Yes |  |
 | `limit_usd` | `float` | Yes |  |
 
 ### Operations
@@ -5241,11 +5368,11 @@ $video = $client->Video();
 | `callback_url` | `string` | No |  |
 | `duration` | `int` | No |  |
 | `error` | `string` | No |  |
-| `frame_image` | `array` | No |  |
+| `frame_images` | `array` | No |  |
 | `generate_audio` | `bool` | No |  |
 | `generation_id` | `string` | No |  |
 | `id` | `string` | Yes |  |
-| `input_reference` | `array` | No |  |
+| `input_references` | `array` | No |  |
 | `model` | `string` | Yes |  |
 | `polling_url` | `string` | Yes |  |
 | `prompt` | `string` | No |  |
@@ -5254,7 +5381,7 @@ $video = $client->Video();
 | `seed` | `int` | No |  |
 | `size` | `string` | No |  |
 | `status` | `string` | Yes |  |
-| `unsigned_url` | `array` | No |  |
+| `unsigned_urls` | `array` | No |  |
 | `usage` | `array` | No |  |
 
 ### Operations
@@ -5366,7 +5493,7 @@ $video_models_list = $client->VideoModelsList();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameter` | `array` | Yes |  |
+| `allowed_passthrough_parameters` | `array` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
 | `created` | `int` | Yes |  |
 | `description` | `string` | No |  |
@@ -5376,11 +5503,11 @@ $video_models_list = $client->VideoModelsList();
 | `name` | `string` | Yes |  |
 | `pricing_skus` | `mixed` | No |  |
 | `seed` | `mixed` | Yes |  |
-| `supported_aspect_ratio` | `mixed` | Yes |  |
-| `supported_duration` | `mixed` | Yes |  |
-| `supported_frame_image` | `mixed` | Yes |  |
-| `supported_resolution` | `mixed` | Yes |  |
-| `supported_size` | `mixed` | Yes |  |
+| `supported_aspect_ratios` | `mixed` | Yes |  |
+| `supported_durations` | `mixed` | Yes |  |
+| `supported_frame_images` | `mixed` | Yes |  |
+| `supported_resolutions` | `mixed` | Yes |  |
+| `supported_sizes` | `mixed` | Yes |  |
 
 ### Operations
 
@@ -5432,7 +5559,21 @@ $workspace = $client->Workspace();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `mixed` | Yes |  |
+| `created_at` | `string` | Yes |  |
+| `created_by` | `mixed` | Yes |  |
+| `default_image_model` | `mixed` | Yes |  |
+| `default_provider_sort` | `mixed` | Yes |  |
+| `default_text_model` | `mixed` | Yes |  |
+| `description` | `mixed` | Yes |  |
+| `id` | `string` | Yes |  |
+| `io_logging_api_key_ids` | `mixed` | Yes |  |
+| `io_logging_sampling_rate` | `float` | Yes |  |
+| `is_data_discount_logging_enabled` | `bool` | Yes |  |
+| `is_observability_broadcast_enabled` | `bool` | Yes |  |
+| `is_observability_io_logging_enabled` | `bool` | Yes |  |
+| `name` | `string` | Yes |  |
+| `slug` | `string` | Yes |  |
+| `updated_at` | `mixed` | Yes |  |
 
 ### Operations
 

@@ -26,8 +26,8 @@ import {
 describe('BulkAssignMemberEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -63,7 +63,7 @@ describe('BulkAssignMemberEntity', async () => {
     let bulk_assign_member_ref01_data = setup.data.new.bulk_assign_member['bulk_assign_member_ref01']
     bulk_assign_member_ref01_data['guardrail_id'] = setup.idmap['guardrail01']
 
-    bulk_assign_member_ref01_data = await bulk_assign_member_ref01_ent.create(bulk_assign_member_ref01_data)
+    bulk_assign_member_ref01_data = (await bulk_assign_member_ref01_ent.create(bulk_assign_member_ref01_data)).data()
     assert(null != bulk_assign_member_ref01_data)
 
 

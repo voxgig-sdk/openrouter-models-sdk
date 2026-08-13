@@ -26,8 +26,8 @@ import {
 describe('VideoModelsListEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -63,7 +63,7 @@ describe('VideoModelsListEntity', async () => {
     const video_models_list_ref01_ent = client.VideoModelsList()
     const video_models_list_ref01_match: any = {}
 
-    const video_models_list_ref01_list = await video_models_list_ref01_ent.list(video_models_list_ref01_match)
+    const video_models_list_ref01_list = (await video_models_list_ref01_ent.list(video_models_list_ref01_match)).map((e: any) => e.data())
 
 
   })

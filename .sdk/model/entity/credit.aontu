@@ -6,9 +6,14 @@ main: kit: entity: credit: {
 
   fields: [
     {
-      name: "data"
+      name: "total_credits"
       req: true
-      type: "`$OBJECT`"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "total_usage"
+      req: true
+      type: "`$NUMBER`"
     }
   ]
 
@@ -107,7 +112,7 @@ main: kit: entity: credit: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

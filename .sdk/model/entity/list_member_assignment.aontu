@@ -138,7 +138,7 @@ main: kit: entity: list_member_assignment: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -209,7 +209,7 @@ main: kit: entity: list_member_assignment: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

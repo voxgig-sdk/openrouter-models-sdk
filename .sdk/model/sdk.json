@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "activity": {
           "active": true,
@@ -33,7 +38,7 @@
             },
             {
               "active": true,
-              "name": "completion_token",
+              "name": "completion_tokens",
               "req": true,
               "type": "`$INTEGER`"
             },
@@ -63,7 +68,7 @@
             },
             {
               "active": true,
-              "name": "prompt_token",
+              "name": "prompt_tokens",
               "req": true,
               "type": "`$INTEGER`"
             },
@@ -75,13 +80,13 @@
             },
             {
               "active": true,
-              "name": "reasoning_token",
+              "name": "reasoning_tokens",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "request",
+              "name": "requests",
               "req": true,
               "type": "`$INTEGER`"
             },
@@ -157,6 +162,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/activity",
                   "parts": [
@@ -174,7 +180,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -240,8 +246,8 @@
               "active": true,
               "name": "creator_user_id",
               "op": {
-                "list": {
-                  "req": true,
+                "create": {
+                  "req": false,
                   "type": [
                     "`$ONE`",
                     [
@@ -251,7 +257,7 @@
                   ]
                 }
               },
-              "req": false,
+              "req": true,
               "type": [
                 "`$ONE`",
                 [
@@ -262,20 +268,14 @@
             },
             {
               "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
               "name": "disabled",
               "op": {
-                "list": {
-                  "req": true,
+                "update": {
+                  "req": false,
                   "type": "`$BOOLEAN`"
                 }
               },
-              "req": false,
+              "req": true,
               "type": "`$BOOLEAN`"
             },
             {
@@ -300,12 +300,34 @@
               "active": true,
               "name": "include_byok_in_limit",
               "op": {
-                "list": {
-                  "req": true,
+                "create": {
+                  "req": false,
+                  "type": "`$BOOLEAN`"
+                },
+                "update": {
+                  "req": false,
                   "type": "`$BOOLEAN`"
                 }
               },
-              "req": false,
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "is_free_tier",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "is_management_key",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "is_provisioning_key",
+              "req": true,
               "type": "`$BOOLEAN`"
             },
             {
@@ -318,8 +340,18 @@
               "active": true,
               "name": "limit",
               "op": {
-                "list": {
-                  "req": true,
+                "create": {
+                  "req": false,
+                  "type": [
+                    "`$ONE`",
+                    [
+                      "`$NUMBER`",
+                      "`$NULL`"
+                    ]
+                  ]
+                },
+                "update": {
+                  "req": false,
                   "type": [
                     "`$ONE`",
                     [
@@ -329,7 +361,7 @@
                   ]
                 }
               },
-              "req": false,
+              "req": true,
               "type": [
                 "`$ONE`",
                 [
@@ -354,8 +386,18 @@
               "active": true,
               "name": "limit_reset",
               "op": {
-                "list": {
-                  "req": true,
+                "create": {
+                  "req": false,
+                  "type": [
+                    "`$ONE`",
+                    [
+                      "`$STRING`",
+                      "`$NULL`"
+                    ]
+                  ]
+                },
+                "update": {
+                  "req": false,
                   "type": [
                     "`$ONE`",
                     [
@@ -365,7 +407,7 @@
                   ]
                 }
               },
-              "req": false,
+              "req": true,
               "type": [
                 "`$ONE`",
                 [
@@ -385,6 +427,12 @@
               },
               "req": true,
               "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "rate_limit",
+              "req": true,
+              "type": "`$OBJECT`"
             },
             {
               "active": true,
@@ -426,12 +474,12 @@
               "active": true,
               "name": "workspace_id",
               "op": {
-                "list": {
-                  "req": true,
+                "create": {
+                  "req": false,
                   "type": "`$STRING`"
                 }
               },
-              "req": false,
+              "req": true,
               "type": "`$STRING`"
             }
           ],
@@ -471,6 +519,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/keys",
                   "parts": [
@@ -485,7 +534,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -559,6 +608,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/keys",
                   "parts": [
@@ -576,7 +626,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -626,6 +676,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/keys/{hash}",
                   "parts": [
@@ -647,7 +698,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 },
                 {
@@ -680,6 +731,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/key",
                   "parts": [
@@ -694,7 +746,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -744,6 +796,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "DELETE",
                   "orig": "/keys/{hash}",
                   "parts": [
@@ -815,6 +868,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "PATCH",
                   "orig": "/keys/{hash}",
                   "parts": [
@@ -836,7 +890,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -872,13 +926,13 @@
             },
             {
               "active": true,
-              "name": "total_request",
+              "name": "total_requests",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "total_token",
+              "name": "total_tokens",
               "req": true,
               "type": "`$STRING`"
             }
@@ -990,6 +1044,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/datasets/app-rankings",
                   "parts": [
@@ -1042,13 +1097,19 @@
           "fields": [
             {
               "active": true,
-              "name": "classifier_dimension",
+              "name": "cachedAt",
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "classifier_dimensions",
               "req": true,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "classifier_filter",
+              "name": "classifier_filters",
               "req": true,
               "type": "`$OBJECT`"
             },
@@ -1056,18 +1117,30 @@
               "active": true,
               "name": "data",
               "req": true,
-              "type": "`$OBJECT`"
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "dimension",
+              "name": "dimensions",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$ARRAY`"
+                }
+              },
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "filters",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "filter",
-              "req": false,
+              "name": "granularities",
+              "req": true,
               "type": "`$ARRAY`"
             },
             {
@@ -1090,7 +1163,19 @@
             },
             {
               "active": true,
-              "name": "metric",
+              "name": "metadata",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "metrics",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "operators",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -1105,6 +1190,12 @@
               "name": "time_range",
               "req": true,
               "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "warnings",
+              "req": false,
+              "type": "`$ARRAY`"
             }
           ],
           "name": "beta_analytics",
@@ -1143,6 +1234,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/analytics/query",
                   "parts": [
@@ -1158,7 +1250,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -1197,6 +1289,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/analytics/meta",
                   "parts": [
@@ -1212,7 +1305,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -1258,7 +1351,7 @@
             },
             {
               "active": true,
-              "name": "user_id",
+              "name": "user_ids",
               "req": true,
               "type": "`$ARRAY`"
             }
@@ -1310,6 +1403,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/workspaces/{id}/members/add",
                   "parts": [
@@ -1361,7 +1455,7 @@
             },
             {
               "active": true,
-              "name": "key_hash",
+              "name": "key_hashes",
               "req": true,
               "type": "`$ARRAY`"
             }
@@ -1413,6 +1507,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/guardrails/{id}/assignments/keys",
                   "parts": [
@@ -1464,7 +1559,7 @@
             },
             {
               "active": true,
-              "name": "member_user_id",
+              "name": "member_user_ids",
               "req": true,
               "type": "`$ARRAY`"
             }
@@ -1516,6 +1611,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/guardrails/{id}/assignments/members",
                   "parts": [
@@ -1567,7 +1663,7 @@
             },
             {
               "active": true,
-              "name": "user_id",
+              "name": "user_ids",
               "req": true,
               "type": "`$ARRAY`"
             }
@@ -1619,6 +1715,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/workspaces/{id}/members/remove",
                   "parts": [
@@ -1664,7 +1761,7 @@
           "fields": [
             {
               "active": true,
-              "name": "key_hash",
+              "name": "key_hashes",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -1722,6 +1819,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/guardrails/{id}/assignments/keys/remove",
                   "parts": [
@@ -1768,7 +1866,7 @@
           "fields": [
             {
               "active": true,
-              "name": "member_user_id",
+              "name": "member_user_ids",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -1826,6 +1924,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/guardrails/{id}/assignments/members/remove",
                   "parts": [
@@ -1872,7 +1971,7 @@
           "fields": [
             {
               "active": true,
-              "name": "allowed_api_key_hash",
+              "name": "allowed_api_key_hashes",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -1884,10 +1983,10 @@
             },
             {
               "active": true,
-              "name": "allowed_model",
+              "name": "allowed_models",
               "op": {
-                "list": {
-                  "req": true,
+                "create": {
+                  "req": false,
                   "type": [
                     "`$ONE`",
                     [
@@ -1897,7 +1996,7 @@
                   ]
                 }
               },
-              "req": false,
+              "req": true,
               "type": [
                 "`$ONE`",
                 [
@@ -1908,10 +2007,10 @@
             },
             {
               "active": true,
-              "name": "allowed_user_id",
+              "name": "allowed_user_ids",
               "op": {
-                "list": {
-                  "req": true,
+                "create": {
+                  "req": false,
                   "type": [
                     "`$ONE`",
                     [
@@ -1921,7 +2020,7 @@
                   ]
                 }
               },
-              "req": false,
+              "req": true,
               "type": [
                 "`$ONE`",
                 [
@@ -1938,20 +2037,14 @@
             },
             {
               "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$ANY`"
-            },
-            {
-              "active": true,
               "name": "disabled",
               "op": {
-                "list": {
-                  "req": true,
+                "create": {
+                  "req": false,
                   "type": "`$BOOLEAN`"
                 }
               },
-              "req": false,
+              "req": true,
               "type": "`$BOOLEAN`"
             },
             {
@@ -1964,12 +2057,12 @@
               "active": true,
               "name": "is_fallback",
               "op": {
-                "list": {
-                  "req": true,
+                "create": {
+                  "req": false,
                   "type": "`$BOOLEAN`"
                 }
               },
-              "req": false,
+              "req": true,
               "type": "`$BOOLEAN`"
             },
             {
@@ -2012,12 +2105,12 @@
               "active": true,
               "name": "workspace_id",
               "op": {
-                "list": {
-                  "req": true,
+                "create": {
+                  "req": false,
                   "type": "`$STRING`"
                 }
               },
-              "req": false,
+              "req": true,
               "type": "`$STRING`"
             }
           ],
@@ -2061,6 +2154,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/byok",
                   "parts": [
@@ -2075,7 +2169,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -2158,6 +2252,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/byok",
                   "parts": [
@@ -2176,7 +2271,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -2226,6 +2321,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/byok/{id}",
                   "parts": [
@@ -2242,7 +2338,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -2292,6 +2388,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "DELETE",
                   "orig": "/byok/{id}",
                   "parts": [
@@ -2332,7 +2429,7 @@
             },
             {
               "active": true,
-              "name": "choice",
+              "name": "choices",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -2374,7 +2471,7 @@
             },
             {
               "active": true,
-              "name": "logit_bia",
+              "name": "logit_bias",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -2386,7 +2483,7 @@
             },
             {
               "active": true,
-              "name": "logprob",
+              "name": "logprobs",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -2398,7 +2495,7 @@
             },
             {
               "active": true,
-              "name": "max_completion_token",
+              "name": "max_completion_tokens",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -2410,7 +2507,7 @@
             },
             {
               "active": true,
-              "name": "max_token",
+              "name": "max_tokens",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -2422,7 +2519,7 @@
             },
             {
               "active": true,
-              "name": "message",
+              "name": "messages",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -2446,7 +2543,7 @@
             },
             {
               "active": true,
-              "name": "modality",
+              "name": "modalities",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -2456,11 +2553,17 @@
               "op": {
                 "create": {
                   "req": false,
-                  "type": "`$ARRAY`"
+                  "type": "`$STRING`"
                 }
               },
               "req": true,
               "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "models",
+              "req": false,
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -2476,7 +2579,7 @@
             },
             {
               "active": true,
-              "name": "parallel_tool_call",
+              "name": "parallel_tool_calls",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -2488,7 +2591,7 @@
             },
             {
               "active": true,
-              "name": "plugin",
+              "name": "plugins",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -2530,7 +2633,7 @@
             },
             {
               "active": true,
-              "name": "prompt_cache_option",
+              "name": "prompt_cache_options",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -2650,7 +2753,7 @@
             },
             {
               "active": true,
-              "name": "stream_option",
+              "name": "stream_options",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -2686,15 +2789,15 @@
             },
             {
               "active": true,
-              "name": "tool",
-              "req": false,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
               "name": "tool_choice",
               "req": false,
               "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "tools",
+              "req": false,
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -2722,7 +2825,7 @@
             },
             {
               "active": true,
-              "name": "top_logprob",
+              "name": "top_logprobs",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -2812,6 +2915,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/chat/completions",
                   "parts": [
@@ -2934,7 +3038,7 @@
           "fields": [
             {
               "active": true,
-              "name": "api_key_hash",
+              "name": "api_key_hashes",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -2958,7 +3062,7 @@
             },
             {
               "active": true,
-              "name": "filter_rule",
+              "name": "filter_rules",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -3035,6 +3139,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/observability/destinations",
                   "parts": [
@@ -3050,7 +3155,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -3098,19 +3203,13 @@
             },
             {
               "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$ANY`"
-            },
-            {
-              "active": true,
               "name": "debug",
               "req": false,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "fallback",
+              "name": "fallbacks",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -3158,7 +3257,7 @@
             },
             {
               "active": true,
-              "name": "instruction",
+              "name": "instructions",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -3170,7 +3269,7 @@
             },
             {
               "active": true,
-              "name": "logit_bia",
+              "name": "logit_bias",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -3182,7 +3281,7 @@
             },
             {
               "active": true,
-              "name": "logprob",
+              "name": "logprobs",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -3194,7 +3293,7 @@
             },
             {
               "active": true,
-              "name": "max_completion_token",
+              "name": "max_completion_tokens",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -3206,7 +3305,7 @@
             },
             {
               "active": true,
-              "name": "max_output_token",
+              "name": "max_output_tokens",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -3218,7 +3317,7 @@
             },
             {
               "active": true,
-              "name": "max_token",
+              "name": "max_tokens",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -3230,7 +3329,7 @@
             },
             {
               "active": true,
-              "name": "max_tool_call",
+              "name": "max_tool_calls",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -3242,7 +3341,7 @@
             },
             {
               "active": true,
-              "name": "message",
+              "name": "messages",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -3266,7 +3365,7 @@
             },
             {
               "active": true,
-              "name": "modality",
+              "name": "modalities",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -3284,13 +3383,19 @@
             },
             {
               "active": true,
+              "name": "models",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
               "name": "output_config",
               "req": false,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "parallel_tool_call",
+              "name": "parallel_tool_calls",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -3302,7 +3407,7 @@
             },
             {
               "active": true,
-              "name": "plugin",
+              "name": "plugins",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -3362,7 +3467,7 @@
             },
             {
               "active": true,
-              "name": "prompt_cache_option",
+              "name": "prompt_cache_options",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -3488,7 +3593,7 @@
             },
             {
               "active": true,
-              "name": "stop_sequence",
+              "name": "stop_sequences",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -3512,7 +3617,7 @@
             },
             {
               "active": true,
-              "name": "stream_option",
+              "name": "stream_options",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -3554,15 +3659,15 @@
             },
             {
               "active": true,
-              "name": "tool",
-              "req": false,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
               "name": "tool_choice",
               "req": false,
               "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "tools",
+              "req": false,
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -3590,7 +3695,7 @@
             },
             {
               "active": true,
-              "name": "top_logprob",
+              "name": "top_logprobs",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -3684,6 +3789,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/presets/{slug}/chat/completions",
                   "parts": [
@@ -3702,7 +3808,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 },
                 {
@@ -3746,6 +3852,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/presets/{slug}/messages",
                   "parts": [
@@ -3763,7 +3870,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 },
                 {
@@ -3807,6 +3914,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/presets/{slug}/responses",
                   "parts": [
@@ -3824,7 +3932,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -3858,9 +3966,15 @@
           "fields": [
             {
               "active": true,
-              "name": "data",
+              "name": "total_credits",
               "req": true,
-              "type": "`$OBJECT`"
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "total_usage",
+              "req": true,
+              "type": "`$NUMBER`"
             }
           ],
           "name": "credit",
@@ -3899,6 +4013,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/credits/coinbase",
                   "parts": [
@@ -3954,6 +4069,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/credits",
                   "parts": [
@@ -3968,7 +4084,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -4004,7 +4120,7 @@
             },
             {
               "active": true,
-              "name": "dimension",
+              "name": "dimensions",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -4103,6 +4219,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/embeddings",
                   "parts": [
@@ -4137,11 +4254,11 @@
               "active": true,
               "name": "architecture",
               "req": true,
-              "type": "`$OBJECT`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "benchmark",
+              "name": "benchmarks",
               "req": true,
               "type": "`$OBJECT`"
             },
@@ -4171,13 +4288,7 @@
             },
             {
               "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "default_parameter",
+              "name": "default_parameters",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -4190,8 +4301,20 @@
             {
               "active": true,
               "name": "description",
-              "req": false,
+              "op": {
+                "list": {
+                  "req": false,
+                  "type": "`$STRING`"
+                }
+              },
+              "req": true,
               "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "endpoints",
+              "req": true,
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -4249,13 +4372,13 @@
             },
             {
               "active": true,
-              "name": "link",
+              "name": "links",
               "req": true,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "max_completion_token",
+              "name": "max_completion_tokens",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -4267,7 +4390,7 @@
             },
             {
               "active": true,
-              "name": "max_prompt_token",
+              "name": "max_prompt_tokens",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -4297,7 +4420,7 @@
             },
             {
               "active": true,
-              "name": "per_request_limit",
+              "name": "per_request_limits",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -4339,13 +4462,13 @@
             },
             {
               "active": true,
-              "name": "supported_parameter",
+              "name": "supported_parameters",
               "req": true,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "supported_voice",
+              "name": "supported_voices",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -4809,6 +4932,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/models",
                   "parts": [
@@ -4885,6 +5009,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/endpoints/zdr",
                   "parts": [
@@ -4901,7 +5026,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -4960,6 +5085,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/models/{author}/{slug}/endpoints",
                   "parts": [
@@ -4979,7 +5105,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -5043,7 +5169,7 @@
             },
             {
               "active": true,
-              "name": "size_byte",
+              "name": "size_bytes",
               "req": true,
               "type": "`$INTEGER`"
             },
@@ -5105,6 +5231,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/files",
                   "parts": [
@@ -5188,6 +5315,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/files",
                   "parts": [
@@ -5205,7 +5333,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -5266,6 +5394,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/files/{file_id}",
                   "parts": [
@@ -5343,6 +5472,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/files/{file_id}/content",
                   "parts": [
@@ -5428,6 +5558,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "DELETE",
                   "orig": "/files/{file_id}",
                   "parts": [
@@ -5468,11 +5599,489 @@
           "fields": [
             {
               "active": true,
-              "name": "data",
+              "name": "api_type",
               "req": true,
-              "type": "`$OBJECT`"
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "app_id",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "cache_discount",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "cancelled",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$BOOLEAN`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "created_at",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "data_region",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "external_user",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "finish_reason",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "generation_time",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "http_referer",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "id",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "is_byok",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "latency",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "model",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "moderation_latency",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "native_finish_reason",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "native_tokens_cached",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "native_tokens_completion",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "native_tokens_completion_images",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "native_tokens_prompt",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "native_tokens_reasoning",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "num_fetches",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "num_input_audio_prompt",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "num_media_completion",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "num_media_prompt",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "num_search_results",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "origin",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "preset_id",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "provider_name",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "provider_responses",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$ARRAY`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "request_id",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "response_cache_source_id",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "router",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "service_tier",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "session_id",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "streamed",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$BOOLEAN`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "tokens_completion",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "tokens_prompt",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "total_cost",
+              "req": true,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "upstream_id",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "upstream_inference_cost",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "usage",
+              "req": true,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "user_agent",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "web_search_engine",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "generation",
           "op": {
             "load": {
@@ -5520,6 +6129,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/generation",
                   "parts": [
@@ -5535,7 +6145,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -5553,7 +6163,13 @@
           "fields": [
             {
               "active": true,
-              "name": "data",
+              "name": "input",
+              "req": true,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "output",
               "req": true,
               "type": "`$OBJECT`"
             }
@@ -5605,6 +6221,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/generation/content",
                   "parts": [
@@ -5621,7 +6238,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -5639,7 +6256,7 @@
           "fields": [
             {
               "active": true,
-              "name": "allowed_model",
+              "name": "allowed_models",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -5651,7 +6268,7 @@
             },
             {
               "active": true,
-              "name": "allowed_provider",
+              "name": "allowed_providers",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -5663,7 +6280,7 @@
             },
             {
               "active": true,
-              "name": "content_filter",
+              "name": "content_filter_builtins",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -5675,7 +6292,7 @@
             },
             {
               "active": true,
-              "name": "content_filter_builtin",
+              "name": "content_filters",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -5690,12 +6307,6 @@
               "name": "created_at",
               "req": true,
               "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -5789,7 +6400,7 @@
             },
             {
               "active": true,
-              "name": "ignored_model",
+              "name": "ignored_models",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -5801,7 +6412,7 @@
             },
             {
               "active": true,
-              "name": "ignored_provider",
+              "name": "ignored_providers",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -5857,12 +6468,12 @@
               "active": true,
               "name": "workspace_id",
               "op": {
-                "list": {
-                  "req": true,
+                "create": {
+                  "req": false,
                   "type": "`$STRING`"
                 }
               },
-              "req": false,
+              "req": true,
               "type": "`$STRING`"
             }
           ],
@@ -5906,6 +6517,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/guardrails",
                   "parts": [
@@ -5920,7 +6532,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -5994,6 +6606,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/guardrails",
                   "parts": [
@@ -6011,7 +6624,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -6061,6 +6674,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/guardrails/{id}",
                   "parts": [
@@ -6077,7 +6691,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -6127,6 +6741,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "DELETE",
                   "orig": "/guardrails/{id}",
                   "parts": [
@@ -6185,7 +6800,7 @@
             },
             {
               "active": true,
-              "name": "input_reference",
+              "name": "input_references",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -6298,6 +6913,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/images",
                   "parts": [
@@ -6330,7 +6946,7 @@
           "fields": [
             {
               "active": true,
-              "name": "allowed_passthrough_parameter",
+              "name": "allowed_passthrough_parameters",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -6366,7 +6982,7 @@
             },
             {
               "active": true,
-              "name": "supported_parameter",
+              "name": "supported_parameters",
               "req": true,
               "type": "`$ANY`"
             },
@@ -6433,6 +7049,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/images/models/{author}/{slug}/endpoints",
                   "parts": [
@@ -6458,7 +7075,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.endpoints`"
                   }
                 }
               ]
@@ -6498,7 +7115,7 @@
             },
             {
               "active": true,
-              "name": "endpoint",
+              "name": "endpoints",
               "req": true,
               "type": "`$STRING`"
             },
@@ -6516,7 +7133,7 @@
             },
             {
               "active": true,
-              "name": "supported_parameter",
+              "name": "supported_parameters",
               "req": true,
               "type": "`$OBJECT`"
             },
@@ -6567,6 +7184,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/images/models",
                   "parts": [
@@ -6582,7 +7200,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -6764,6 +7382,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/guardrails/{id}/assignments/keys",
                   "parts": [
@@ -6789,7 +7408,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 },
                 {
@@ -6848,6 +7467,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/guardrails/assignments/keys",
                   "parts": [
@@ -6866,7 +7486,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -7006,6 +7626,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/guardrails/{id}/assignments/members",
                   "parts": [
@@ -7031,7 +7652,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 },
                 {
@@ -7090,6 +7711,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/guardrails/assignments/members",
                   "parts": [
@@ -7108,7 +7730,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -7212,6 +7834,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/observability/destinations",
                   "parts": [
@@ -7230,7 +7853,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -7390,6 +8013,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/presets/{slug}/versions",
                   "parts": [
@@ -7409,7 +8033,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -7535,6 +8159,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/workspaces/{id}/budgets",
                   "parts": [
@@ -7557,7 +8182,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -7685,6 +8310,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/workspaces/{id}/members",
                   "parts": [
@@ -7709,7 +8335,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -7765,7 +8391,7 @@
             },
             {
               "active": true,
-              "name": "fallback",
+              "name": "fallbacks",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -7777,13 +8403,13 @@
             },
             {
               "active": true,
-              "name": "max_token",
+              "name": "max_tokens",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "message",
+              "name": "messages",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -7802,14 +8428,14 @@
             {
               "active": true,
               "name": "model",
-              "op": {
-                "create": {
-                  "req": false,
-                  "type": "`$ARRAY`"
-                }
-              },
               "req": true,
               "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "models",
+              "req": false,
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -7819,7 +8445,7 @@
             },
             {
               "active": true,
-              "name": "plugin",
+              "name": "plugins",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -7867,7 +8493,7 @@
             },
             {
               "active": true,
-              "name": "stop_sequence",
+              "name": "stop_sequences",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -7903,15 +8529,15 @@
             },
             {
               "active": true,
-              "name": "tool",
-              "req": false,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
               "name": "tool_choice",
               "req": false,
               "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "tools",
+              "req": false,
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -7983,6 +8609,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/messages",
                   "parts": [
@@ -8034,7 +8661,7 @@
             },
             {
               "active": true,
-              "name": "benchmark",
+              "name": "benchmarks",
               "req": true,
               "type": "`$OBJECT`"
             },
@@ -8064,13 +8691,7 @@
             },
             {
               "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "default_parameter",
+              "name": "default_parameters",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -8130,7 +8751,7 @@
             },
             {
               "active": true,
-              "name": "link",
+              "name": "links",
               "req": true,
               "type": "`$OBJECT`"
             },
@@ -8142,7 +8763,7 @@
             },
             {
               "active": true,
-              "name": "per_request_limit",
+              "name": "per_request_limits",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -8166,13 +8787,13 @@
             },
             {
               "active": true,
-              "name": "supported_parameter",
+              "name": "supported_parameters",
               "req": true,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "supported_voice",
+              "name": "supported_voices",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -8255,6 +8876,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/embeddings/models",
                   "parts": [
@@ -8331,6 +8953,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/model/{author}/{slug}",
                   "parts": [
@@ -8349,7 +8972,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -8371,9 +8994,9 @@
           "fields": [
             {
               "active": true,
-              "name": "data",
+              "name": "count",
               "req": true,
-              "type": "`$OBJECT`"
+              "type": "`$INTEGER`"
             }
           ],
           "name": "models_count",
@@ -8423,6 +9046,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/models/count",
                   "parts": [
@@ -8439,7 +9063,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -8463,7 +9087,7 @@
             },
             {
               "active": true,
-              "name": "benchmark",
+              "name": "benchmarks",
               "req": true,
               "type": "`$OBJECT`"
             },
@@ -8493,7 +9117,7 @@
             },
             {
               "active": true,
-              "name": "default_parameter",
+              "name": "default_parameters",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -8553,7 +9177,7 @@
             },
             {
               "active": true,
-              "name": "link",
+              "name": "links",
               "req": true,
               "type": "`$OBJECT`"
             },
@@ -8565,7 +9189,7 @@
             },
             {
               "active": true,
-              "name": "per_request_limit",
+              "name": "per_request_limits",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -8589,13 +9213,13 @@
             },
             {
               "active": true,
-              "name": "supported_parameter",
+              "name": "supported_parameters",
               "req": true,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "supported_voice",
+              "name": "supported_voices",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -8678,6 +9302,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/models/user",
                   "parts": [
@@ -8711,6 +9336,12 @@
             "field": {}
           },
           "fields": [
+            {
+              "active": true,
+              "name": "app_id",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
             {
               "active": true,
               "name": "callback_url",
@@ -8749,9 +9380,9 @@
             },
             {
               "active": true,
-              "name": "data",
+              "name": "created_at",
               "req": true,
-              "type": "`$OBJECT`"
+              "type": "`$STRING`"
             },
             {
               "active": true,
@@ -8764,6 +9395,12 @@
                   "`$NULL`"
                 ]
               ]
+            },
+            {
+              "active": true,
+              "name": "id",
+              "req": true,
+              "type": "`$STRING`"
             },
             {
               "active": true,
@@ -8820,6 +9457,10 @@
               "type": "`$STRING`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "o_auth",
           "op": {
             "create": {
@@ -8856,6 +9497,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/auth/keys",
                   "parts": [
@@ -8904,6 +9546,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/auth/keys/code",
                   "parts": [
@@ -8920,7 +9563,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -8939,8 +9582,8 @@
             {
               "active": true,
               "name": "data",
-              "req": true,
-              "type": "`$ANY`"
+              "req": false,
+              "type": "`$OBJECT`"
             }
           ],
           "name": "observability_destination",
@@ -8990,6 +9633,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/observability/destinations/{id}",
                   "parts": [
@@ -9007,7 +9651,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -9057,6 +9701,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "DELETE",
                   "orig": "/observability/destinations/{id}",
                   "parts": [
@@ -9152,7 +9797,7 @@
             },
             {
               "active": true,
-              "name": "instruction",
+              "name": "instructions",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -9164,7 +9809,7 @@
             },
             {
               "active": true,
-              "name": "max_output_token",
+              "name": "max_output_tokens",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -9176,7 +9821,7 @@
             },
             {
               "active": true,
-              "name": "max_tool_call",
+              "name": "max_tool_calls",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -9200,7 +9845,7 @@
             },
             {
               "active": true,
-              "name": "modality",
+              "name": "modalities",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -9212,7 +9857,13 @@
             },
             {
               "active": true,
-              "name": "parallel_tool_call",
+              "name": "models",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "parallel_tool_calls",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -9224,7 +9875,7 @@
             },
             {
               "active": true,
-              "name": "plugin",
+              "name": "plugins",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -9272,7 +9923,7 @@
             },
             {
               "active": true,
-              "name": "prompt_cache_option",
+              "name": "prompt_cache_options",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -9380,15 +10031,15 @@
             },
             {
               "active": true,
-              "name": "tool",
-              "req": false,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
               "name": "tool_choice",
               "req": false,
               "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "tools",
+              "req": false,
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -9398,7 +10049,7 @@
             },
             {
               "active": true,
-              "name": "top_logprob",
+              "name": "top_logprobs",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -9490,6 +10141,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/responses",
                   "parts": [
@@ -9630,6 +10282,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/organization/members",
                   "parts": [
@@ -9648,7 +10301,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -9684,18 +10337,24 @@
             },
             {
               "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$ANY`"
-            },
-            {
-              "active": true,
               "name": "description",
               "req": true,
               "type": [
                 "`$ONE`",
                 [
                   "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "designated_version",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$OBJECT`",
                   "`$NULL`"
                 ]
               ]
@@ -9833,6 +10492,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/presets",
                   "parts": [
@@ -9849,7 +10509,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -9899,6 +10559,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/presets/{slug}",
                   "parts": [
@@ -9920,7 +10581,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -9942,17 +10603,63 @@
           "fields": [
             {
               "active": true,
-              "name": "data",
+              "name": "config",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "created_at",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "creator_id",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "id",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "preset_id",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "system_prompt",
               "req": true,
               "type": [
                 "`$ONE`",
                 [
-                  "`$OBJECT`",
+                  "`$STRING`",
                   "`$NULL`"
                 ]
               ]
+            },
+            {
+              "active": true,
+              "name": "updated_at",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "version",
+              "req": true,
+              "type": "`$INTEGER`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "preset_version",
           "op": {
             "load": {
@@ -10009,6 +10716,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/presets/{slug}/versions/{version}",
                   "parts": [
@@ -10033,7 +10741,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -10055,7 +10763,7 @@
           "fields": [
             {
               "active": true,
-              "name": "datacenter",
+              "name": "datacenters",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -10067,7 +10775,7 @@
             },
             {
               "active": true,
-              "name": "headquarter",
+              "name": "headquarters",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -10162,6 +10870,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/providers",
                   "parts": [
@@ -10176,7 +10885,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -10218,7 +10927,7 @@
             },
             {
               "active": true,
-              "name": "total_token",
+              "name": "total_tokens",
               "req": true,
               "type": "`$STRING`"
             }
@@ -10324,6 +11033,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/datasets/rankings-daily",
                   "parts": [
@@ -10383,7 +11093,7 @@
           "fields": [
             {
               "active": true,
-              "name": "document",
+              "name": "documents",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -10413,7 +11123,7 @@
             },
             {
               "active": true,
-              "name": "result",
+              "name": "results",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -10470,6 +11180,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/rerank",
                   "parts": [
@@ -10562,7 +11273,7 @@
             },
             {
               "active": true,
-              "name": "segment",
+              "name": "segments",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -10586,7 +11297,7 @@
             },
             {
               "active": true,
-              "name": "timestamp_granularity",
+              "name": "timestamp_granularities",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -10598,7 +11309,7 @@
             },
             {
               "active": true,
-              "name": "word",
+              "name": "words",
               "req": false,
               "type": "`$ARRAY`"
             }
@@ -10639,6 +11350,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/audio/transcriptions",
                   "parts": [
@@ -10684,15 +11396,15 @@
             },
             {
               "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
               "name": "generation_id",
               "req": true,
               "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "success",
+              "req": true,
+              "type": "`$BOOLEAN`"
             }
           ],
           "name": "submit_generation_feedback",
@@ -10731,6 +11443,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/generation/feedback",
                   "parts": [
@@ -10746,7 +11459,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -10764,9 +11477,27 @@
           "fields": [
             {
               "active": true,
-              "name": "data",
+              "name": "as_of",
               "req": true,
-              "type": "`$OBJECT`"
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "classifications",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "macro_categories",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "window_days",
+              "req": true,
+              "type": "`$INTEGER`"
             }
           ],
           "name": "task",
@@ -10816,6 +11547,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/classifications/task",
                   "parts": [
@@ -10832,7 +11564,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -10933,6 +11665,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/audio/speech",
                   "parts": [
@@ -11060,6 +11793,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/benchmarks",
                   "parts": [
@@ -11097,7 +11831,7 @@
           "fields": [
             {
               "active": true,
-              "name": "allowed_model",
+              "name": "allowed_models",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -11109,7 +11843,7 @@
             },
             {
               "active": true,
-              "name": "allowed_user_id",
+              "name": "allowed_user_ids",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -11118,12 +11852,6 @@
                   "`$NULL`"
                 ]
               ]
-            },
-            {
-              "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -11203,6 +11931,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "PATCH",
                   "orig": "/byok/{id}",
                   "parts": [
@@ -11219,7 +11948,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -11237,7 +11966,7 @@
           "fields": [
             {
               "active": true,
-              "name": "allowed_model",
+              "name": "allowed_models",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -11249,7 +11978,7 @@
             },
             {
               "active": true,
-              "name": "allowed_provider",
+              "name": "allowed_providers",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -11261,7 +11990,7 @@
             },
             {
               "active": true,
-              "name": "content_filter",
+              "name": "content_filter_builtins",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -11273,7 +12002,7 @@
             },
             {
               "active": true,
-              "name": "content_filter_builtin",
+              "name": "content_filters",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -11282,12 +12011,6 @@
                   "`$NULL`"
                 ]
               ]
-            },
-            {
-              "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -11375,7 +12098,7 @@
             },
             {
               "active": true,
-              "name": "ignored_model",
+              "name": "ignored_models",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -11387,7 +12110,7 @@
             },
             {
               "active": true,
-              "name": "ignored_provider",
+              "name": "ignored_providers",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -11475,6 +12198,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "PATCH",
                   "orig": "/guardrails/{id}",
                   "parts": [
@@ -11491,7 +12215,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -11509,7 +12233,7 @@
           "fields": [
             {
               "active": true,
-              "name": "api_key_hash",
+              "name": "api_key_hashes",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -11527,19 +12251,13 @@
             },
             {
               "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$ANY`"
-            },
-            {
-              "active": true,
               "name": "enabled",
               "req": false,
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
-              "name": "filter_rule",
+              "name": "filter_rules",
               "req": false,
               "type": "`$ANY`"
             },
@@ -11609,6 +12327,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "PATCH",
                   "orig": "/observability/destinations/{id}",
                   "parts": [
@@ -11626,7 +12345,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -11659,12 +12378,6 @@
                   "`$NULL`"
                 ]
               ]
-            },
-            {
-              "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -11770,7 +12483,7 @@
             },
             {
               "active": true,
-              "name": "io_logging_api_key_id",
+              "name": "io_logging_api_key_ids",
               "op": {
                 "list": {
                   "req": true,
@@ -11917,6 +12630,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/workspaces",
                   "parts": [
@@ -11931,7 +12645,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -11996,6 +12710,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/workspaces",
                   "parts": [
@@ -12012,7 +12727,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -12062,6 +12777,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "PATCH",
                   "orig": "/workspaces/{id}",
                   "parts": [
@@ -12078,7 +12794,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -12094,12 +12810,6 @@
             "field": {}
           },
           "fields": [
-            {
-              "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$ANY`"
-            },
             {
               "active": true,
               "name": "limit_usd",
@@ -12163,6 +12873,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "PUT",
                   "orig": "/workspaces/{id}/budgets/{interval}",
                   "parts": [
@@ -12188,7 +12899,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -12262,7 +12973,7 @@
             },
             {
               "active": true,
-              "name": "frame_image",
+              "name": "frame_images",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -12286,7 +12997,7 @@
             },
             {
               "active": true,
-              "name": "input_reference",
+              "name": "input_references",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -12340,7 +13051,7 @@
             },
             {
               "active": true,
-              "name": "unsigned_url",
+              "name": "unsigned_urls",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -12391,6 +13102,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/videos",
                   "parts": [
@@ -12455,6 +13167,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/videos/{jobId}",
                   "parts": [
@@ -12556,6 +13269,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/videos/{jobId}/content",
                   "parts": [
@@ -12598,7 +13312,7 @@
           "fields": [
             {
               "active": true,
-              "name": "allowed_passthrough_parameter",
+              "name": "allowed_passthrough_parameters",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -12682,7 +13396,7 @@
             },
             {
               "active": true,
-              "name": "supported_aspect_ratio",
+              "name": "supported_aspect_ratios",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -12694,7 +13408,7 @@
             },
             {
               "active": true,
-              "name": "supported_duration",
+              "name": "supported_durations",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -12706,7 +13420,7 @@
             },
             {
               "active": true,
-              "name": "supported_frame_image",
+              "name": "supported_frame_images",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -12718,7 +13432,7 @@
             },
             {
               "active": true,
-              "name": "supported_resolution",
+              "name": "supported_resolutions",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -12730,7 +13444,7 @@
             },
             {
               "active": true,
-              "name": "supported_size",
+              "name": "supported_sizes",
               "req": true,
               "type": [
                 "`$ONE`",
@@ -12781,6 +13495,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/videos/models",
                   "parts": [
@@ -12796,7 +13511,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -12814,11 +13529,141 @@
           "fields": [
             {
               "active": true,
-              "name": "data",
+              "name": "created_at",
               "req": true,
-              "type": "`$ANY`"
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "created_by",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "default_image_model",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "default_provider_sort",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "default_text_model",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "description",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "id",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "io_logging_api_key_ids",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$ARRAY`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "io_logging_sampling_rate",
+              "req": true,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "is_data_discount_logging_enabled",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "is_observability_broadcast_enabled",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "is_observability_io_logging_enabled",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "name",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "slug",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "updated_at",
+              "req": true,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "workspace",
           "op": {
             "load": {
@@ -12866,6 +13711,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/workspaces/{id}",
                   "parts": [
@@ -12882,7 +13728,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -12932,6 +13778,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "DELETE",
                   "orig": "/workspaces/{id}",
                   "parts": [
@@ -13020,6 +13867,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "DELETE",
                   "orig": "/workspaces/{id}/budgets/{interval}",
                   "parts": [
@@ -14610,20 +15458,6 @@
                   }
                 }
               ]
-            },
-            {
-              "active": true,
-              "data": {},
-              "input": {
-                "ref": "observability_destination_ref01",
-                "suffix": "_rm0"
-              },
-              "match": {
-                "id": "observability_destination01"
-              },
-              "op": "remove",
-              "spec": [],
-              "valid": []
             }
           ]
         },
@@ -15301,23 +16135,7 @@
           "kind": "basic",
           "name": "BasicWorkspaceBudgetFlow",
           "param": {},
-          "step": [
-            {
-              "active": true,
-              "data": {},
-              "input": {
-                "ref": "workspace_budget_ref01",
-                "suffix": "_rm0"
-              },
-              "match": {
-                "id": "workspace_budget01",
-                "workspace_id": "workspace01"
-              },
-              "op": "remove",
-              "spec": [],
-              "valid": []
-            }
-          ]
+          "step": []
         },
         "BasicWorkspaceFlow": {
           "active": true,
@@ -15348,20 +16166,6 @@
                   }
                 }
               ]
-            },
-            {
-              "active": true,
-              "data": {},
-              "input": {
-                "ref": "workspace_ref01",
-                "suffix": "_rm0"
-              },
-              "match": {
-                "id": "workspace01"
-              },
-              "op": "remove",
-              "spec": [],
-              "valid": []
             }
           ]
         },
@@ -15407,18 +16211,41 @@
         "website": "https://openrouter.ai/docs"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "openrouter-models"
+            "goversion": "",
+            "name": "openrouter-models",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -15440,22 +16267,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openrouter-models"
+            "goversion": "",
+            "name": "openrouter-models",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -15494,21 +16339,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openrouter-models"
+            "goversion": "",
+            "name": "openrouter-models",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -15547,12 +16410,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -15564,10 +16432,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openrouter-models"
+            "goversion": "",
+            "name": "openrouter-models",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -15589,22 +16470,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openrouter-models"
+            "goversion": "",
+            "name": "openrouter-models",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -15626,13 +16525,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -15644,10 +16548,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openrouter-models"
+            "goversion": "",
+            "name": "openrouter-models",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -15669,13 +16586,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -15692,10 +16614,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openrouter-models"
+            "goversion": "",
+            "name": "openrouter-models",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -15717,13 +16652,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -15746,10 +16686,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "openrouter-models"
+            "goversion": "",
+            "name": "openrouter-models",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -15771,9 +16724,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

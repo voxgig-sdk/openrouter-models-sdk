@@ -7,29 +7,29 @@
 
 export interface Activity {
   byok_usage_inference: number
-  completion_token: number
+  completion_tokens: number
   date: string
   endpoint_id: string
   model: string
   model_permaslug: string
-  prompt_token: number
+  prompt_tokens: number
   provider_name: string
-  reasoning_token: number
-  request: number
+  reasoning_tokens: number
+  requests: number
   usage: number
 }
 
 export interface ActivityListMatch {
   byok_usage_inference?: number
-  completion_token?: number
+  completion_tokens?: number
   date?: string
   endpoint_id?: string
   model?: string
   model_permaslug?: string
-  prompt_token?: number
+  prompt_tokens?: number
   provider_name?: string
-  reasoning_token?: number
-  request?: number
+  reasoning_tokens?: number
+  requests?: number
   usage?: number
 }
 
@@ -42,23 +42,26 @@ export interface ApiKey {
   byok_usage_monthly: number
   byok_usage_weekly: number
   created_at: string
-  creator_user_id?: any
-  data: Record<string, any>
-  disabled?: boolean
-  expires_at?: any
+  creator_user_id: string | null
+  disabled: boolean
+  expires_at?: string | null
   hash: string
-  include_byok_in_limit?: boolean
+  include_byok_in_limit: boolean
+  is_free_tier: boolean
+  is_management_key: boolean
+  is_provisioning_key: boolean
   label: string
-  limit?: any
-  limit_remaining: any
-  limit_reset?: any
+  limit: number | null
+  limit_remaining: number | null
+  limit_reset: string | null
   name: string
-  updated_at: any
+  rate_limit: Record<string, any>
+  updated_at: string | null
   usage: number
   usage_daily: number
   usage_monthly: number
   usage_weekly: number
-  workspace_id?: string
+  workspace_id: string
 }
 
 export interface ApiKeyLoadMatch {
@@ -71,18 +74,21 @@ export interface ApiKeyListMatch {
   byok_usage_monthly?: number
   byok_usage_weekly?: number
   created_at?: string
-  creator_user_id?: any
-  data?: Record<string, any>
+  creator_user_id?: string | null
   disabled?: boolean
-  expires_at?: any
+  expires_at?: string | null
   hash?: string
   include_byok_in_limit?: boolean
+  is_free_tier?: boolean
+  is_management_key?: boolean
+  is_provisioning_key?: boolean
   label?: string
-  limit?: any
-  limit_remaining?: any
-  limit_reset?: any
+  limit?: number | null
+  limit_remaining?: number | null
+  limit_reset?: string | null
   name?: string
-  updated_at?: any
+  rate_limit?: Record<string, any>
+  updated_at?: string | null
   usage?: number
   usage_daily?: number
   usage_monthly?: number
@@ -96,27 +102,55 @@ export interface ApiKeyCreateData {
   byok_usage_monthly: number
   byok_usage_weekly: number
   created_at: string
-  creator_user_id?: any
-  data: Record<string, any>
-  disabled?: boolean
-  expires_at?: any
+  creator_user_id: string | null
+  disabled: boolean
+  expires_at?: string | null
   hash: string
-  include_byok_in_limit?: boolean
+  include_byok_in_limit: boolean
+  is_free_tier: boolean
+  is_management_key: boolean
+  is_provisioning_key: boolean
   label: string
-  limit?: any
-  limit_remaining: any
-  limit_reset?: any
+  limit: number | null
+  limit_remaining: number | null
+  limit_reset: string | null
   name: string
-  updated_at: any
+  rate_limit: Record<string, any>
+  updated_at: string | null
   usage: number
   usage_daily: number
   usage_monthly: number
   usage_weekly: number
-  workspace_id?: string
+  workspace_id: string
 }
 
 export interface ApiKeyUpdateData {
   id: string
+  byok_usage?: number
+  byok_usage_daily?: number
+  byok_usage_monthly?: number
+  byok_usage_weekly?: number
+  created_at?: string
+  creator_user_id?: string | null
+  disabled?: boolean
+  expires_at?: string | null
+  hash?: string
+  include_byok_in_limit?: boolean
+  is_free_tier?: boolean
+  is_management_key?: boolean
+  is_provisioning_key?: boolean
+  label?: string
+  limit?: number | null
+  limit_remaining?: number | null
+  limit_reset?: string | null
+  name?: string
+  rate_limit?: Record<string, any>
+  updated_at?: string | null
+  usage?: number
+  usage_daily?: number
+  usage_monthly?: number
+  usage_weekly?: number
+  workspace_id?: string
 }
 
 export interface ApiKeyRemoveMatch {
@@ -127,61 +161,76 @@ export interface AppRanking {
   app_id: number
   app_name: string
   rank: number
-  total_request: number
-  total_token: string
+  total_requests: number
+  total_tokens: string
 }
 
 export interface AppRankingListMatch {
   app_id?: number
   app_name?: string
   rank?: number
-  total_request?: number
-  total_token?: string
+  total_requests?: number
+  total_tokens?: string
 }
 
 export interface Benchmark {
 }
 
 export interface BetaAnalytics {
-  classifier_dimension: Record<string, any>
-  classifier_filter: Record<string, any>
-  data: Record<string, any>
-  dimension?: any[]
-  filter?: any[]
+  cachedAt?: number
+  classifier_dimensions: Record<string, any>
+  classifier_filters: Record<string, any>
+  data: any[]
+  dimensions: any[]
+  filters?: any[]
+  granularities: any[]
   granularity?: string
   group_limit?: number
   limit?: number
-  metric: any[]
+  metadata: Record<string, any>
+  metrics: any[]
+  operators: any[]
   order_by: Record<string, any>
   time_range: Record<string, any>
+  warnings?: any[]
 }
 
 export interface BetaAnalyticsLoadMatch {
-  classifier_dimension?: Record<string, any>
-  classifier_filter?: Record<string, any>
-  data?: Record<string, any>
-  dimension?: any[]
-  filter?: any[]
+  cachedAt?: number
+  classifier_dimensions?: Record<string, any>
+  classifier_filters?: Record<string, any>
+  data?: any[]
+  dimensions?: any[]
+  filters?: any[]
+  granularities?: any[]
   granularity?: string
   group_limit?: number
   limit?: number
-  metric?: any[]
+  metadata?: Record<string, any>
+  metrics?: any[]
+  operators?: any[]
   order_by?: Record<string, any>
   time_range?: Record<string, any>
+  warnings?: any[]
 }
 
 export interface BetaAnalyticsCreateData {
-  classifier_dimension: Record<string, any>
-  classifier_filter: Record<string, any>
-  data: Record<string, any>
-  dimension?: any[]
-  filter?: any[]
+  cachedAt?: number
+  classifier_dimensions: Record<string, any>
+  classifier_filters: Record<string, any>
+  data: any[]
+  dimensions: any[]
+  filters?: any[]
+  granularities: any[]
   granularity?: string
   group_limit?: number
   limit?: number
-  metric: any[]
+  metadata: Record<string, any>
+  metrics: any[]
+  operators: any[]
   order_by: Record<string, any>
   time_range: Record<string, any>
+  warnings?: any[]
 }
 
 export interface Budget {
@@ -190,73 +239,85 @@ export interface Budget {
 export interface BulkAddWorkspaceMember {
   added_count: number
   data: any[]
-  user_id: any[]
+  user_ids: any[]
 }
 
 export interface BulkAddWorkspaceMemberCreateData {
   workspace_id: string
+  added_count: number
+  data: any[]
+  user_ids: any[]
 }
 
 export interface BulkAssignKey {
   assigned_count: number
-  key_hash: any[]
+  key_hashes: any[]
 }
 
 export interface BulkAssignKeyCreateData {
   guardrail_id: string
+  assigned_count: number
+  key_hashes: any[]
 }
 
 export interface BulkAssignMember {
   assigned_count: number
-  member_user_id: any[]
+  member_user_ids: any[]
 }
 
 export interface BulkAssignMemberCreateData {
   guardrail_id: string
+  assigned_count: number
+  member_user_ids: any[]
 }
 
 export interface BulkRemoveWorkspaceMember {
   removed_count: number
-  user_id: any[]
+  user_ids: any[]
 }
 
 export interface BulkRemoveWorkspaceMemberCreateData {
   workspace_id: string
+  removed_count: number
+  user_ids: any[]
 }
 
 export interface BulkUnassignKey {
-  key_hash: any[]
+  key_hashes: any[]
   unassigned_count: number
 }
 
 export interface BulkUnassignKeyCreateData {
   guardrail_id: string
+  key_hashes: any[]
+  unassigned_count: number
 }
 
 export interface BulkUnassignMember {
-  member_user_id: any[]
+  member_user_ids: any[]
   unassigned_count: number
 }
 
 export interface BulkUnassignMemberCreateData {
   guardrail_id: string
+  member_user_ids: any[]
+  unassigned_count: number
 }
 
 export interface Byok {
-  allowed_api_key_hash: any
-  allowed_model?: any
-  allowed_user_id?: any
+  allowed_api_key_hashes: any[] | null
+  allowed_models: any[] | null
+  allowed_user_ids: any[] | null
   created_at: string
-  data: any
-  disabled?: boolean
+  disabled: boolean
   id: string
-  is_fallback?: boolean
+  is_fallback: boolean
   key: string
   label: string
-  name?: any
+  name?: string | null
   provider: string
   sort_order: number
-  workspace_id?: string
+  workspace_id: string
 }
 
 export interface ByokLoadMatch {
@@ -264,37 +325,35 @@ export interface ByokLoadMatch {
 }
 
 export interface ByokListMatch {
-  allowed_api_key_hash?: any
-  allowed_model?: any
-  allowed_user_id?: any
+  allowed_api_key_hashes?: any[] | null
+  allowed_models?: any[] | null
+  allowed_user_ids?: any[] | null
   created_at?: string
-  data?: any
   disabled?: boolean
   id?: string
   is_fallback?: boolean
   key?: string
   label?: string
-  name?: any
+  name?: string | null
   provider?: string
   sort_order?: number
   workspace_id?: string
 }
 
 export interface ByokCreateData {
-  allowed_api_key_hash: any
-  allowed_model?: any
-  allowed_user_id?: any
+  allowed_api_key_hashes: any[] | null
+  allowed_models: any[] | null
+  allowed_user_ids: any[] | null
   created_at: string
-  data: any
-  disabled?: boolean
+  disabled: boolean
   id: string
-  is_fallback?: boolean
+  is_fallback: boolean
   key: string
   label: string
-  name?: any
+  name?: string | null
   provider: string
   sort_order: number
-  workspace_id?: string
+  workspace_id: string
 }
 
 export interface ByokRemoveMatch {
@@ -303,50 +362,51 @@ export interface ByokRemoveMatch {
 
 export interface ChatResult {
   cache_control: Record<string, any>
-  choice: any[]
+  choices: any[]
   created: number
   debug?: Record<string, any>
-  frequency_penalty?: any
+  frequency_penalty?: number | null
   id: string
   image_config?: Record<string, any>
-  logit_bia?: any
-  logprob?: any
-  max_completion_token?: any
-  max_token?: any
-  message: any[]
+  logit_bias?: Record<string, any> | null
+  logprobs?: boolean | null
+  max_completion_tokens?: number | null
+  max_tokens?: number | null
+  messages: any[]
   metadata?: Record<string, any>
-  min_p?: any
-  modality?: any[]
+  min_p?: number | null
+  modalities?: any[]
   model: string
+  models?: any[]
   object: string
   openrouter_metadata: Record<string, any>
-  parallel_tool_call?: any
-  plugin?: any[]
-  prediction: any
-  presence_penalty?: any
-  prompt_cache_key?: any
-  prompt_cache_option: any
-  provider?: any
+  parallel_tool_calls?: boolean | null
+  plugins?: any[]
+  prediction: Record<string, any> | null
+  presence_penalty?: number | null
+  prompt_cache_key?: string | null
+  prompt_cache_options: Record<string, any> | null
+  provider?: Record<string, any> | null
   reasoning?: Record<string, any>
-  reasoning_effort?: any
-  repetition_penalty?: any
+  reasoning_effort?: string | null
+  repetition_penalty?: number | null
   response_format?: any
-  route?: any
-  seed?: any
-  service_tier?: any
+  route?: string | null
+  seed?: number | null
+  service_tier?: string | null
   session_id?: string
   stop?: any
   stop_server_tools_when?: any[]
   stream?: boolean
-  stream_option?: any
-  system_fingerprint: any
-  temperature?: any
-  tool?: any[]
+  stream_options?: Record<string, any> | null
+  system_fingerprint: string | null
+  temperature?: number | null
   tool_choice?: any
-  top_a?: any
-  top_k?: any
-  top_logprob?: any
-  top_p?: any
+  tools?: any[]
+  top_a?: number | null
+  top_k?: number | null
+  top_logprobs?: number | null
+  top_p?: number | null
   trace?: Record<string, any>
   usage: Record<string, any>
   user?: string
@@ -354,50 +414,51 @@ export interface ChatResult {
 
 export interface ChatResultCreateData {
   cache_control: Record<string, any>
-  choice: any[]
+  choices: any[]
   created: number
   debug?: Record<string, any>
-  frequency_penalty?: any
+  frequency_penalty?: number | null
   id: string
   image_config?: Record<string, any>
-  logit_bia?: any
-  logprob?: any
-  max_completion_token?: any
-  max_token?: any
-  message: any[]
+  logit_bias?: Record<string, any> | null
+  logprobs?: boolean | null
+  max_completion_tokens?: number | null
+  max_tokens?: number | null
+  messages: any[]
   metadata?: Record<string, any>
-  min_p?: any
-  modality?: any[]
+  min_p?: number | null
+  modalities?: any[]
   model: string
+  models?: any[]
   object: string
   openrouter_metadata: Record<string, any>
-  parallel_tool_call?: any
-  plugin?: any[]
-  prediction: any
-  presence_penalty?: any
-  prompt_cache_key?: any
-  prompt_cache_option: any
-  provider?: any
+  parallel_tool_calls?: boolean | null
+  plugins?: any[]
+  prediction: Record<string, any> | null
+  presence_penalty?: number | null
+  prompt_cache_key?: string | null
+  prompt_cache_options: Record<string, any> | null
+  provider?: Record<string, any> | null
   reasoning?: Record<string, any>
-  reasoning_effort?: any
-  repetition_penalty?: any
+  reasoning_effort?: string | null
+  repetition_penalty?: number | null
   response_format?: any
-  route?: any
-  seed?: any
-  service_tier?: any
+  route?: string | null
+  seed?: number | null
+  service_tier?: string | null
   session_id?: string
   stop?: any
   stop_server_tools_when?: any[]
   stream?: boolean
-  stream_option?: any
-  system_fingerprint: any
-  temperature?: any
-  tool?: any[]
+  stream_options?: Record<string, any> | null
+  system_fingerprint: string | null
+  temperature?: number | null
   tool_choice?: any
-  top_a?: any
-  top_k?: any
-  top_logprob?: any
-  top_p?: any
+  tools?: any[]
+  top_a?: number | null
+  top_k?: number | null
+  top_logprobs?: number | null
+  top_p?: number | null
   trace?: Record<string, any>
   usage: Record<string, any>
   user?: string
@@ -425,10 +486,10 @@ export interface CreateGuardrail {
 }
 
 export interface CreateObservabilityDestination {
-  api_key_hash?: any
+  api_key_hashes?: any[] | null
   config: Record<string, any>
   enabled?: boolean
-  filter_rule: any
+  filter_rules: Record<string, any> | null
   name: string
   privacy_mode?: boolean
   sampling_rate?: number
@@ -437,10 +498,10 @@ export interface CreateObservabilityDestination {
 }
 
 export interface CreateObservabilityDestinationCreateData {
-  api_key_hash?: any
+  api_key_hashes?: any[] | null
   config: Record<string, any>
   enabled?: boolean
-  filter_rule: any
+  filter_rules: Record<string, any> | null
   name: string
   privacy_mode?: boolean
   sampling_rate?: number
@@ -449,86 +510,156 @@ export interface CreateObservabilityDestinationCreateData {
 }
 
 export interface CreatePresetFromInference {
-  background?: any
+  background?: boolean | null
   cache_control: Record<string, any>
-  context_management?: any
-  data: any
+  context_management?: Record<string, any> | null
   debug?: Record<string, any>
-  fallback?: any
-  frequency_penalty?: any
+  fallbacks?: any[] | null
+  frequency_penalty?: number | null
   image_config?: Record<string, any>
-  include?: any
+  include?: any[] | null
   input?: any
-  instruction?: any
-  logit_bia?: any
-  logprob?: any
-  max_completion_token?: any
-  max_output_token?: any
-  max_token?: any
-  max_tool_call?: any
-  message: any[]
+  instructions?: string | null
+  logit_bias?: Record<string, any> | null
+  logprobs?: boolean | null
+  max_completion_tokens?: number | null
+  max_output_tokens?: number | null
+  max_tokens?: number | null
+  max_tool_calls?: number | null
+  messages: any[]
   metadata?: Record<string, any>
-  min_p?: any
-  modality?: any[]
+  min_p?: number | null
+  modalities?: any[]
   model?: string
+  models?: any[]
   output_config?: Record<string, any>
-  parallel_tool_call?: any
-  plugin?: any[]
-  prediction: any
-  presence_penalty?: any
+  parallel_tool_calls?: boolean | null
+  plugins?: any[]
+  prediction: Record<string, any> | null
+  presence_penalty?: number | null
   previous_response_id?: string
-  prompt: any
-  prompt_cache_key?: any
-  prompt_cache_option: any
-  provider?: any
+  prompt: Record<string, any> | null
+  prompt_cache_key?: string | null
+  prompt_cache_options: Record<string, any> | null
+  provider?: Record<string, any> | null
   reasoning?: Record<string, any>
-  reasoning_effort?: any
-  repetition_penalty?: any
+  reasoning_effort?: string | null
+  repetition_penalty?: number | null
   response_format?: any
-  route?: any
-  safety_identifier?: any
-  seed?: any
-  service_tier?: any
+  route?: string | null
+  safety_identifier?: string | null
+  seed?: number | null
+  service_tier?: string | null
   session_id?: string
   speed?: any
   stop?: any
-  stop_sequence?: any[]
+  stop_sequences?: any[]
   stop_server_tools_when?: any[]
   store?: boolean
   stream?: boolean
-  stream_option?: any
+  stream_options?: Record<string, any> | null
   system?: any
-  temperature?: any
+  temperature?: number | null
   text?: any
   thinking?: any
-  tool?: any[]
   tool_choice?: any
-  top_a?: any
-  top_k?: any
-  top_logprob?: any
-  top_p?: any
+  tools?: any[]
+  top_a?: number | null
+  top_k?: number | null
+  top_logprobs?: number | null
+  top_p?: number | null
   trace?: Record<string, any>
-  truncation?: any
+  truncation?: string | null
   user?: string
 }
 
 export interface CreatePresetFromInferenceCreateData {
   slug: string
+  background?: boolean | null
+  cache_control: Record<string, any>
+  context_management?: Record<string, any> | null
+  debug?: Record<string, any>
+  fallbacks?: any[] | null
+  frequency_penalty?: number | null
+  image_config?: Record<string, any>
+  include?: any[] | null
+  input?: any
+  instructions?: string | null
+  logit_bias?: Record<string, any> | null
+  logprobs?: boolean | null
+  max_completion_tokens?: number | null
+  max_output_tokens?: number | null
+  max_tokens?: number | null
+  max_tool_calls?: number | null
+  messages: any[]
+  metadata?: Record<string, any>
+  min_p?: number | null
+  modalities?: any[]
+  model?: string
+  models?: any[]
+  output_config?: Record<string, any>
+  parallel_tool_calls?: boolean | null
+  plugins?: any[]
+  prediction: Record<string, any> | null
+  presence_penalty?: number | null
+  previous_response_id?: string
+  prompt: Record<string, any> | null
+  prompt_cache_key?: string | null
+  prompt_cache_options: Record<string, any> | null
+  provider?: Record<string, any> | null
+  reasoning?: Record<string, any>
+  reasoning_effort?: string | null
+  repetition_penalty?: number | null
+  response_format?: any
+  route?: string | null
+  safety_identifier?: string | null
+  seed?: number | null
+  service_tier?: string | null
+  session_id?: string
+  speed?: any
+  stop?: any
+  stop_sequences?: any[]
+  stop_server_tools_when?: any[]
+  store?: boolean
+  stream?: boolean
+  stream_options?: Record<string, any> | null
+  system?: any
+  temperature?: number | null
+  text?: any
+  thinking?: any
+  tool_choice?: any
+  tools?: any[]
+  top_a?: number | null
+  top_k?: number | null
+  top_logprobs?: number | null
+  top_p?: number | null
+  trace?: Record<string, any>
+  truncation?: string | null
+  user?: string
 }
 
 export interface CreateWorkspace {
 }
 
 export interface Credit {
-  data: Record<string, any>
+  total_credits: number
+  total_usage: number
 }
 
 export interface CreditLoadMatch {
-  data?: Record<string, any>
+  total_credits?: number
+  total_usage?: number
 }
 
 export interface CreditCreateData {
-  data: Record<string, any>
+  total_credits: number
+  total_usage: number
+
+  // Selects a custom action instead of the plain create:
+  //   'coinbase'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Destination {
@@ -536,7 +667,7 @@ export interface Destination {
 
 export interface Embedding {
   data: any[]
-  dimension?: number
+  dimensions?: number
   encoding_format?: string
   id?: string
   input: any
@@ -550,7 +681,7 @@ export interface Embedding {
 
 export interface EmbeddingCreateData {
   data: any[]
-  dimension?: number
+  dimensions?: number
   encoding_format?: string
   id?: string
   input: any
@@ -563,40 +694,40 @@ export interface EmbeddingCreateData {
 }
 
 export interface Endpoint {
-  architecture: Record<string, any>
-  benchmark: Record<string, any>
+  architecture: any
+  benchmarks: Record<string, any>
   canonical_slug: string
-  context_length: any
+  context_length: number | null
   created: number
-  data: Record<string, any>
-  default_parameter: any
-  description?: string
-  expiration_date?: any
-  hugging_face_id?: any
+  default_parameters: Record<string, any> | null
+  description: string
+  endpoints: any[]
+  expiration_date?: string | null
+  hugging_face_id?: string | null
   id: string
-  knowledge_cutoff?: any
-  latency_last_30m: any
-  link: Record<string, any>
-  max_completion_token: any
-  max_prompt_token: any
+  knowledge_cutoff?: string | null
+  latency_last_30m: Record<string, any> | null
+  links: Record<string, any>
+  max_completion_tokens: number | null
+  max_prompt_tokens: number | null
   model_id: string
   model_name: string
   name: string
-  per_request_limit: any
+  per_request_limits: Record<string, any> | null
   pricing: Record<string, any>
   provider_name: string
   quantization: any
   reasoning: Record<string, any>
   status?: number
-  supported_parameter: any[]
-  supported_voice: any
+  supported_parameters: any[]
+  supported_voices: any[] | null
   supports_implicit_caching: boolean
   tag: string
   throughput_last_30m: any
   top_provider: Record<string, any>
-  uptime_last_1d: any
-  uptime_last_30m: any
-  uptime_last_5m: any
+  uptime_last_1d: number | null
+  uptime_last_30m: number | null
+  uptime_last_5m: number | null
 }
 
 export interface EndpointLoadMatch {
@@ -605,40 +736,46 @@ export interface EndpointLoadMatch {
 }
 
 export interface EndpointListMatch {
-  architecture?: Record<string, any>
-  benchmark?: Record<string, any>
+  architecture?: any
+  benchmarks?: Record<string, any>
   canonical_slug?: string
-  context_length?: any
+  context_length?: number | null
   created?: number
-  data?: Record<string, any>
-  default_parameter?: any
+  default_parameters?: Record<string, any> | null
   description?: string
-  expiration_date?: any
-  hugging_face_id?: any
+  endpoints?: any[]
+  expiration_date?: string | null
+  hugging_face_id?: string | null
   id?: string
-  knowledge_cutoff?: any
-  latency_last_30m?: any
-  link?: Record<string, any>
-  max_completion_token?: any
-  max_prompt_token?: any
+  knowledge_cutoff?: string | null
+  latency_last_30m?: Record<string, any> | null
+  links?: Record<string, any>
+  max_completion_tokens?: number | null
+  max_prompt_tokens?: number | null
   model_id?: string
   model_name?: string
   name?: string
-  per_request_limit?: any
+  per_request_limits?: Record<string, any> | null
   pricing?: Record<string, any>
   provider_name?: string
   quantization?: any
   reasoning?: Record<string, any>
   status?: number
-  supported_parameter?: any[]
-  supported_voice?: any
+  supported_parameters?: any[]
+  supported_voices?: any[] | null
   supports_implicit_caching?: boolean
   tag?: string
   throughput_last_30m?: any
   top_provider?: Record<string, any>
-  uptime_last_1d?: any
-  uptime_last_30m?: any
-  uptime_last_5m?: any
+  uptime_last_1d?: number | null
+  uptime_last_30m?: number | null
+  uptime_last_5m?: number | null
+
+  // Selects a custom action instead of the plain list:
+  //   'zdr'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Feedback {
@@ -650,12 +787,18 @@ export interface File {
   filename: string
   id: string
   mime_type: string
-  size_byte: number
+  size_bytes: number
   type: string
 }
 
 export interface FileLoadMatch {
   id: string
+
+  // Selects a custom action instead of the plain load:
+  //   'content'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface FileListMatch {
@@ -664,7 +807,7 @@ export interface FileListMatch {
   filename?: string
   id?: string
   mime_type?: string
-  size_byte?: number
+  size_bytes?: number
   type?: string
 }
 
@@ -674,7 +817,7 @@ export interface FileCreateData {
   filename: string
   id: string
   mime_type: string
-  size_byte: number
+  size_bytes: number
   type: string
 }
 
@@ -683,43 +826,130 @@ export interface FileRemoveMatch {
 }
 
 export interface Generation {
-  data: Record<string, any>
+  api_type: string | null
+  app_id: number | null
+  cache_discount: number | null
+  cancelled: boolean | null
+  created_at: string
+  data_region: string
+  external_user: string | null
+  finish_reason: string | null
+  generation_time: number | null
+  http_referer: string | null
+  id: string
+  is_byok: boolean
+  latency: number | null
+  model: string
+  moderation_latency: number | null
+  native_finish_reason: string | null
+  native_tokens_cached: number | null
+  native_tokens_completion: number | null
+  native_tokens_completion_images: number | null
+  native_tokens_prompt: number | null
+  native_tokens_reasoning: number | null
+  num_fetches: number | null
+  num_input_audio_prompt: number | null
+  num_media_completion: number | null
+  num_media_prompt: number | null
+  num_search_results: number | null
+  origin: string
+  preset_id: string | null
+  provider_name: string | null
+  provider_responses: any[] | null
+  request_id?: string | null
+  response_cache_source_id?: string | null
+  router: string | null
+  service_tier: string | null
+  session_id?: string | null
+  streamed: boolean | null
+  tokens_completion: number | null
+  tokens_prompt: number | null
+  total_cost: number
+  upstream_id: string | null
+  upstream_inference_cost: number | null
+  usage: number
+  user_agent: string | null
+  web_search_engine: string | null
 }
 
 export interface GenerationLoadMatch {
-  data?: Record<string, any>
+  api_type?: string | null
+  app_id?: number | null
+  cache_discount?: number | null
+  cancelled?: boolean | null
+  created_at?: string
+  data_region?: string
+  external_user?: string | null
+  finish_reason?: string | null
+  generation_time?: number | null
+  http_referer?: string | null
+  id: string
+  is_byok?: boolean
+  latency?: number | null
+  model?: string
+  moderation_latency?: number | null
+  native_finish_reason?: string | null
+  native_tokens_cached?: number | null
+  native_tokens_completion?: number | null
+  native_tokens_completion_images?: number | null
+  native_tokens_prompt?: number | null
+  native_tokens_reasoning?: number | null
+  num_fetches?: number | null
+  num_input_audio_prompt?: number | null
+  num_media_completion?: number | null
+  num_media_prompt?: number | null
+  num_search_results?: number | null
+  origin?: string
+  preset_id?: string | null
+  provider_name?: string | null
+  provider_responses?: any[] | null
+  request_id?: string | null
+  response_cache_source_id?: string | null
+  router?: string | null
+  service_tier?: string | null
+  session_id?: string | null
+  streamed?: boolean | null
+  tokens_completion?: number | null
+  tokens_prompt?: number | null
+  total_cost?: number
+  upstream_id?: string | null
+  upstream_inference_cost?: number | null
+  usage?: number
+  user_agent?: string | null
+  web_search_engine?: string | null
 }
 
 export interface GenerationContent {
-  data: Record<string, any>
+  input: any
+  output: Record<string, any>
 }
 
 export interface GenerationContentLoadMatch {
-  data?: Record<string, any>
+  input?: any
+  output?: Record<string, any>
 }
 
 export interface Guardrail {
-  allowed_model?: any
-  allowed_provider?: any
-  content_filter?: any
-  content_filter_builtin?: any
+  allowed_models?: any[] | null
+  allowed_providers?: any[] | null
+  content_filter_builtins?: any[] | null
+  content_filters?: any[] | null
   created_at: string
-  data: any
-  description?: any
-  enforce_zdr?: any
-  enforce_zdr_anthropic?: any
-  enforce_zdr_google?: any
-  enforce_zdr_openai?: any
-  enforce_zdr_other?: any
-  enforce_zdr_xai?: any
+  description?: string | null
+  enforce_zdr?: boolean | null
+  enforce_zdr_anthropic?: boolean | null
+  enforce_zdr_google?: boolean | null
+  enforce_zdr_openai?: boolean | null
+  enforce_zdr_other?: boolean | null
+  enforce_zdr_xai?: boolean | null
   id: string
-  ignored_model?: any
-  ignored_provider?: any
-  limit_usd?: any
+  ignored_models?: any[] | null
+  ignored_providers?: any[] | null
+  limit_usd?: number | null
   name: string
-  reset_interval?: any
-  updated_at?: any
-  workspace_id?: string
+  reset_interval?: string | null
+  updated_at?: string | null
+  workspace_id: string
 }
 
 export interface GuardrailLoadMatch {
@@ -727,51 +957,49 @@ export interface GuardrailLoadMatch {
 }
 
 export interface GuardrailListMatch {
-  allowed_model?: any
-  allowed_provider?: any
-  content_filter?: any
-  content_filter_builtin?: any
+  allowed_models?: any[] | null
+  allowed_providers?: any[] | null
+  content_filter_builtins?: any[] | null
+  content_filters?: any[] | null
   created_at?: string
-  data?: any
-  description?: any
-  enforce_zdr?: any
-  enforce_zdr_anthropic?: any
-  enforce_zdr_google?: any
-  enforce_zdr_openai?: any
-  enforce_zdr_other?: any
-  enforce_zdr_xai?: any
+  description?: string | null
+  enforce_zdr?: boolean | null
+  enforce_zdr_anthropic?: boolean | null
+  enforce_zdr_google?: boolean | null
+  enforce_zdr_openai?: boolean | null
+  enforce_zdr_other?: boolean | null
+  enforce_zdr_xai?: boolean | null
   id?: string
-  ignored_model?: any
-  ignored_provider?: any
-  limit_usd?: any
+  ignored_models?: any[] | null
+  ignored_providers?: any[] | null
+  limit_usd?: number | null
   name?: string
-  reset_interval?: any
-  updated_at?: any
+  reset_interval?: string | null
+  updated_at?: string | null
   workspace_id?: string
 }
 
 export interface GuardrailCreateData {
-  allowed_model?: any
-  allowed_provider?: any
-  content_filter?: any
-  content_filter_builtin?: any
+  allowed_models?: any[] | null
+  allowed_providers?: any[] | null
+  content_filter_builtins?: any[] | null
+  content_filters?: any[] | null
   created_at: string
-  data: any
-  description?: any
-  enforce_zdr?: any
-  enforce_zdr_anthropic?: any
-  enforce_zdr_google?: any
-  enforce_zdr_openai?: any
-  enforce_zdr_other?: any
-  enforce_zdr_xai?: any
+  description?: string | null
+  enforce_zdr?: boolean | null
+  enforce_zdr_anthropic?: boolean | null
+  enforce_zdr_google?: boolean | null
+  enforce_zdr_openai?: boolean | null
+  enforce_zdr_other?: boolean | null
+  enforce_zdr_xai?: boolean | null
   id: string
-  ignored_model?: any
-  ignored_provider?: any
-  limit_usd?: any
+  ignored_models?: any[] | null
+  ignored_providers?: any[] | null
+  limit_usd?: number | null
   name: string
-  reset_interval?: any
-  updated_at?: any
-  workspace_id?: string
+  reset_interval?: string | null
+  updated_at?: string | null
+  workspace_id: string
 }
 
 export interface GuardrailRemoveMatch {
@@ -783,7 +1011,7 @@ export interface Image {
   background?: string
   created: number
   data: any[]
-  input_reference?: any[]
+  input_references?: any[]
   model: string
   n?: number
   output_compression?: number
@@ -803,7 +1031,7 @@ export interface ImageCreateData {
   background?: string
   created: number
   data: any[]
-  input_reference?: any[]
+  input_references?: any[]
   model: string
   n?: number
   output_compression?: number
@@ -819,12 +1047,12 @@ export interface ImageCreateData {
 }
 
 export interface ImageModelEndpoint {
-  allowed_passthrough_parameter: any[]
+  allowed_passthrough_parameters: any[]
   pricing: any[]
   provider_name: string
   provider_slug: string
-  provider_tag: any
-  supported_parameter: any
+  provider_tag: string | null
+  supported_parameters: any
   supports_streaming: boolean
 }
 
@@ -837,10 +1065,10 @@ export interface ImageModelsList {
   architecture: Record<string, any>
   created: number
   description: string
-  endpoint: string
+  endpoints: string
   id: string
   name: string
-  supported_parameter: Record<string, any>
+  supported_parameters: Record<string, any>
   supports_streaming: boolean
 }
 
@@ -848,10 +1076,10 @@ export interface ImageModelsListListMatch {
   architecture?: Record<string, any>
   created?: number
   description?: string
-  endpoint?: string
+  endpoints?: string
   id?: string
   name?: string
-  supported_parameter?: Record<string, any>
+  supported_parameters?: Record<string, any>
   supports_streaming?: boolean
 }
 
@@ -865,7 +1093,7 @@ export interface ListGuardrail {
 }
 
 export interface ListKeyAssignment {
-  assigned_by: any
+  assigned_by: string | null
   created_at: string
   guardrail_id: string
   id: string
@@ -879,7 +1107,7 @@ export interface ListKeyAssignmentListMatch {
 }
 
 export interface ListMemberAssignment {
-  assigned_by: any
+  assigned_by: string | null
   created_at: string
   guardrail_id: string
   id: string
@@ -910,7 +1138,7 @@ export interface ListPresetVersion {
   creator_id: string
   id: string
   preset_id: string
-  system_prompt: any
+  system_prompt: string | null
   updated_at: string
   version: number
 }
@@ -926,7 +1154,7 @@ export interface ListWorkspaceBudget {
   created_at: string
   id: string
   limit_usd: number
-  reset_interval: any
+  reset_interval: string | null
   updated_at: string
   workspace_id: string
 }
@@ -952,27 +1180,28 @@ export interface Member {
 
 export interface Message {
   cache_control: Record<string, any>
-  context_management?: any
-  fallback?: any
-  max_token?: number
-  message: any
+  context_management?: Record<string, any> | null
+  fallbacks?: any[] | null
+  max_tokens?: number
+  messages: any[] | null
   metadata?: Record<string, any>
   model: string
+  models?: any[]
   output_config?: Record<string, any>
-  plugin?: any[]
-  provider?: any
-  route?: any
+  plugins?: any[]
+  provider?: Record<string, any> | null
+  route?: string | null
   service_tier?: string
   session_id?: string
   speed?: any
-  stop_sequence?: any[]
+  stop_sequences?: any[]
   stop_server_tools_when?: any[]
   stream?: boolean
   system?: any
   temperature?: number
   thinking?: any
-  tool?: any[]
   tool_choice?: any
+  tools?: any[]
   top_k?: number
   top_p?: number
   trace?: Record<string, any>
@@ -981,27 +1210,28 @@ export interface Message {
 
 export interface MessageCreateData {
   cache_control: Record<string, any>
-  context_management?: any
-  fallback?: any
-  max_token?: number
-  message: any
+  context_management?: Record<string, any> | null
+  fallbacks?: any[] | null
+  max_tokens?: number
+  messages: any[] | null
   metadata?: Record<string, any>
   model: string
+  models?: any[]
   output_config?: Record<string, any>
-  plugin?: any[]
-  provider?: any
-  route?: any
+  plugins?: any[]
+  provider?: Record<string, any> | null
+  route?: string | null
   service_tier?: string
   session_id?: string
   speed?: any
-  stop_sequence?: any[]
+  stop_sequences?: any[]
   stop_server_tools_when?: any[]
   stream?: boolean
   system?: any
   temperature?: number
   thinking?: any
-  tool?: any[]
   tool_choice?: any
+  tools?: any[]
   top_k?: number
   top_p?: number
   trace?: Record<string, any>
@@ -1013,24 +1243,23 @@ export interface Meta {
 
 export interface Model {
   architecture: Record<string, any>
-  benchmark: Record<string, any>
+  benchmarks: Record<string, any>
   canonical_slug: string
-  context_length: any
+  context_length: number | null
   created: number
-  data: Record<string, any>
-  default_parameter: any
+  default_parameters: Record<string, any> | null
   description?: string
-  expiration_date?: any
-  hugging_face_id?: any
+  expiration_date?: string | null
+  hugging_face_id?: string | null
   id: string
-  knowledge_cutoff?: any
-  link: Record<string, any>
+  knowledge_cutoff?: string | null
+  links: Record<string, any>
   name: string
-  per_request_limit: any
+  per_request_limits: Record<string, any> | null
   pricing: Record<string, any>
   reasoning: Record<string, any>
-  supported_parameter: any[]
-  supported_voice: any
+  supported_parameters: any[]
+  supported_voices: any[] | null
   top_provider: Record<string, any>
 }
 
@@ -1041,117 +1270,120 @@ export interface ModelLoadMatch {
 
 export interface ModelListMatch {
   architecture?: Record<string, any>
-  benchmark?: Record<string, any>
+  benchmarks?: Record<string, any>
   canonical_slug?: string
-  context_length?: any
+  context_length?: number | null
   created?: number
-  data?: Record<string, any>
-  default_parameter?: any
+  default_parameters?: Record<string, any> | null
   description?: string
-  expiration_date?: any
-  hugging_face_id?: any
+  expiration_date?: string | null
+  hugging_face_id?: string | null
   id?: string
-  knowledge_cutoff?: any
-  link?: Record<string, any>
+  knowledge_cutoff?: string | null
+  links?: Record<string, any>
   name?: string
-  per_request_limit?: any
+  per_request_limits?: Record<string, any> | null
   pricing?: Record<string, any>
   reasoning?: Record<string, any>
-  supported_parameter?: any[]
-  supported_voice?: any
+  supported_parameters?: any[]
+  supported_voices?: any[] | null
   top_provider?: Record<string, any>
 }
 
 export interface ModelsCount {
-  data: Record<string, any>
+  count: number
 }
 
 export interface ModelsCountLoadMatch {
-  data?: Record<string, any>
+  count?: number
 }
 
 export interface ModelsList {
   architecture: Record<string, any>
-  benchmark: Record<string, any>
+  benchmarks: Record<string, any>
   canonical_slug: string
-  context_length: any
+  context_length: number | null
   created: number
-  default_parameter: any
+  default_parameters: Record<string, any> | null
   description?: string
-  expiration_date?: any
-  hugging_face_id?: any
+  expiration_date?: string | null
+  hugging_face_id?: string | null
   id: string
-  knowledge_cutoff?: any
-  link: Record<string, any>
+  knowledge_cutoff?: string | null
+  links: Record<string, any>
   name: string
-  per_request_limit: any
+  per_request_limits: Record<string, any> | null
   pricing: Record<string, any>
   reasoning: Record<string, any>
-  supported_parameter: any[]
-  supported_voice: any
+  supported_parameters: any[]
+  supported_voices: any[] | null
   top_provider: Record<string, any>
 }
 
 export interface ModelsListListMatch {
   architecture?: Record<string, any>
-  benchmark?: Record<string, any>
+  benchmarks?: Record<string, any>
   canonical_slug?: string
-  context_length?: any
+  context_length?: number | null
   created?: number
-  default_parameter?: any
+  default_parameters?: Record<string, any> | null
   description?: string
-  expiration_date?: any
-  hugging_face_id?: any
+  expiration_date?: string | null
+  hugging_face_id?: string | null
   id?: string
-  knowledge_cutoff?: any
-  link?: Record<string, any>
+  knowledge_cutoff?: string | null
+  links?: Record<string, any>
   name?: string
-  per_request_limit?: any
+  per_request_limits?: Record<string, any> | null
   pricing?: Record<string, any>
   reasoning?: Record<string, any>
-  supported_parameter?: any[]
-  supported_voice?: any
+  supported_parameters?: any[]
+  supported_voices?: any[] | null
   top_provider?: Record<string, any>
 }
 
 export interface OAuth {
+  app_id: number
   callback_url: string
   code: string
   code_challenge?: string
-  code_challenge_method?: any
+  code_challenge_method?: string | null
   code_verifier?: string
-  data: Record<string, any>
-  expires_at?: any
+  created_at: string
+  expires_at?: string | null
+  id: string
   key: string
   key_label?: string
   limit?: number
   spawn_agent?: string
   spawn_cloud?: string
   usage_limit_type?: string
-  user_id: any
+  user_id: string | null
   workspace_id?: string
 }
 
 export interface OAuthCreateData {
+  app_id: number
   callback_url: string
   code: string
   code_challenge?: string
-  code_challenge_method?: any
+  code_challenge_method?: string | null
   code_verifier?: string
-  data: Record<string, any>
-  expires_at?: any
+  created_at: string
+  expires_at?: string | null
+  id: string
   key: string
   key_label?: string
   limit?: number
   spawn_agent?: string
   spawn_cloud?: string
   usage_limit_type?: string
-  user_id: any
+  user_id: string | null
   workspace_id?: string
 }
 
 export interface ObservabilityDestination {
-  data: any
+  data?: Record<string, any>
 }
 
 export interface ObservabilityDestinationLoadMatch {
@@ -1163,118 +1395,126 @@ export interface ObservabilityDestinationRemoveMatch {
 }
 
 export interface OpenResponsesResult {
-  background?: any
+  background?: boolean | null
   cache_control: Record<string, any>
   debug?: Record<string, any>
-  frequency_penalty?: any
+  frequency_penalty?: number | null
   image_config?: Record<string, any>
-  include?: any
+  include?: any[] | null
   input?: any
-  instruction?: any
-  max_output_token?: any
-  max_tool_call?: any
-  metadata?: any
-  modality?: any[]
+  instructions?: string | null
+  max_output_tokens?: number | null
+  max_tool_calls?: number | null
+  metadata?: Record<string, any> | null
+  modalities?: any[]
   model?: string
-  parallel_tool_call?: any
-  plugin?: any[]
-  presence_penalty?: any
+  models?: any[]
+  parallel_tool_calls?: boolean | null
+  plugins?: any[]
+  presence_penalty?: number | null
   previous_response_id?: string
-  prompt: any
-  prompt_cache_key?: any
-  prompt_cache_option: any
-  provider?: any
+  prompt: Record<string, any> | null
+  prompt_cache_key?: string | null
+  prompt_cache_options: Record<string, any> | null
+  provider?: Record<string, any> | null
   reasoning?: any
-  route?: any
-  safety_identifier?: any
-  service_tier?: any
+  route?: string | null
+  safety_identifier?: string | null
+  service_tier?: string | null
   session_id?: string
   stop_server_tools_when?: any[]
   store?: boolean
   stream?: boolean
-  temperature?: any
+  temperature?: number | null
   text?: any
-  tool?: any[]
   tool_choice?: any
+  tools?: any[]
   top_k?: number
-  top_logprob?: any
-  top_p?: any
+  top_logprobs?: number | null
+  top_p?: number | null
   trace?: Record<string, any>
-  truncation?: any
+  truncation?: string | null
   user?: string
 }
 
 export interface OpenResponsesResultCreateData {
-  background?: any
+  background?: boolean | null
   cache_control: Record<string, any>
   debug?: Record<string, any>
-  frequency_penalty?: any
+  frequency_penalty?: number | null
   image_config?: Record<string, any>
-  include?: any
+  include?: any[] | null
   input?: any
-  instruction?: any
-  max_output_token?: any
-  max_tool_call?: any
-  metadata?: any
-  modality?: any[]
+  instructions?: string | null
+  max_output_tokens?: number | null
+  max_tool_calls?: number | null
+  metadata?: Record<string, any> | null
+  modalities?: any[]
   model?: string
-  parallel_tool_call?: any
-  plugin?: any[]
-  presence_penalty?: any
+  models?: any[]
+  parallel_tool_calls?: boolean | null
+  plugins?: any[]
+  presence_penalty?: number | null
   previous_response_id?: string
-  prompt: any
-  prompt_cache_key?: any
-  prompt_cache_option: any
-  provider?: any
+  prompt: Record<string, any> | null
+  prompt_cache_key?: string | null
+  prompt_cache_options: Record<string, any> | null
+  provider?: Record<string, any> | null
   reasoning?: any
-  route?: any
-  safety_identifier?: any
-  service_tier?: any
+  route?: string | null
+  safety_identifier?: string | null
+  service_tier?: string | null
   session_id?: string
   stop_server_tools_when?: any[]
   store?: boolean
   stream?: boolean
-  temperature?: any
+  temperature?: number | null
   text?: any
-  tool?: any[]
   tool_choice?: any
+  tools?: any[]
   top_k?: number
-  top_logprob?: any
-  top_p?: any
+  top_logprobs?: number | null
+  top_p?: number | null
   trace?: Record<string, any>
-  truncation?: any
+  truncation?: string | null
   user?: string
 }
 
 export interface Organization {
   email: string
-  first_name: any
+  first_name: string | null
   id: string
-  last_name: any
+  last_name: string | null
   role: string
 }
 
 export interface OrganizationListMatch {
   email?: string
-  first_name?: any
+  first_name?: string | null
   id?: string
-  last_name?: any
+  last_name?: string | null
   role?: string
+
+  // Selects a custom action instead of the plain list:
+  //   'member'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Preset {
   created_at: string
-  creator_user_id: any
-  data: any
-  description: any
-  designated_version_id: any
+  creator_user_id: string | null
+  description: string | null
+  designated_version: Record<string, any> | null
+  designated_version_id: string | null
   id: string
   name: string
   slug: string
   status: string
-  status_updated_at: any
+  status_updated_at: string | null
   updated_at: string
-  workspace_id: any
+  workspace_id: string | null
 }
 
 export interface PresetLoadMatch {
@@ -1283,21 +1523,28 @@ export interface PresetLoadMatch {
 
 export interface PresetListMatch {
   created_at?: string
-  creator_user_id?: any
-  data?: any
-  description?: any
-  designated_version_id?: any
+  creator_user_id?: string | null
+  description?: string | null
+  designated_version?: Record<string, any> | null
+  designated_version_id?: string | null
   id?: string
   name?: string
   slug?: string
   status?: string
-  status_updated_at?: any
+  status_updated_at?: string | null
   updated_at?: string
-  workspace_id?: any
+  workspace_id?: string | null
 }
 
 export interface PresetVersion {
-  data: any
+  config: Record<string, any>
+  created_at: string
+  creator_id: string
+  id: string
+  preset_id: string
+  system_prompt: string | null
+  updated_at: string
+  version: number
 }
 
 export interface PresetVersionLoadMatch {
@@ -1306,23 +1553,23 @@ export interface PresetVersionLoadMatch {
 }
 
 export interface Provider {
-  datacenter?: any
-  headquarter?: any
+  datacenters?: any[] | null
+  headquarters?: string | null
   name: string
-  privacy_policy_url: any
+  privacy_policy_url: string | null
   slug: string
-  status_page_url?: any
-  terms_of_service_url?: any
+  status_page_url?: string | null
+  terms_of_service_url?: string | null
 }
 
 export interface ProviderListMatch {
-  datacenter?: any
-  headquarter?: any
+  datacenters?: any[] | null
+  headquarters?: string | null
   name?: string
-  privacy_policy_url?: any
+  privacy_policy_url?: string | null
   slug?: string
-  status_page_url?: any
-  terms_of_service_url?: any
+  status_page_url?: string | null
+  terms_of_service_url?: string | null
 }
 
 export interface Query {
@@ -1331,36 +1578,36 @@ export interface Query {
 export interface RankingsDaily {
   date: string
   model_permaslug: string
-  total_token: string
+  total_tokens: string
 }
 
 export interface RankingsDailyListMatch {
   date?: string
   model_permaslug?: string
-  total_token?: string
+  total_tokens?: string
 }
 
 export interface Remove {
 }
 
 export interface Rerank {
-  document: any[]
+  documents: any[]
   id?: string
   model: string
   provider?: string
   query: string
-  result: any[]
+  results: any[]
   top_n?: number
   usage?: Record<string, any>
 }
 
 export interface RerankCreateData {
-  document: any[]
+  documents: any[]
   id?: string
   model: string
   provider?: string
   query: string
-  result: any[]
+  results: any[]
   top_n?: number
   usage?: Record<string, any>
 }
@@ -1378,13 +1625,13 @@ export interface Stt {
   model: string
   provider?: Record<string, any>
   response_format?: string
-  segment?: any[]
+  segments?: any[]
   task?: string
   temperature?: number
   text: string
-  timestamp_granularity?: any[]
+  timestamp_granularities?: any[]
   usage?: Record<string, any>
-  word?: any[]
+  words?: any[]
 }
 
 export interface SttCreateData {
@@ -1394,35 +1641,41 @@ export interface SttCreateData {
   model: string
   provider?: Record<string, any>
   response_format?: string
-  segment?: any[]
+  segments?: any[]
   task?: string
   temperature?: number
   text: string
-  timestamp_granularity?: any[]
+  timestamp_granularities?: any[]
   usage?: Record<string, any>
-  word?: any[]
+  words?: any[]
 }
 
 export interface SubmitGenerationFeedback {
   category: string
   comment?: string
-  data: Record<string, any>
   generation_id: string
+  success: boolean
 }
 
 export interface SubmitGenerationFeedbackCreateData {
   category: string
   comment?: string
-  data: Record<string, any>
   generation_id: string
+  success: boolean
 }
 
 export interface Task {
-  data: Record<string, any>
+  as_of: string
+  classifications: any[]
+  macro_categories: any[]
+  window_days: number
 }
 
 export interface TaskLoadMatch {
-  data?: Record<string, any>
+  as_of?: string
+  classifications?: any[]
+  macro_categories?: any[]
+  window_days?: number
 }
 
 export interface Transcription {
@@ -1457,49 +1710,68 @@ export interface UnifiedBenchmarkListMatch {
 }
 
 export interface UpdateByokKey {
-  allowed_model?: any
-  allowed_user_id?: any
-  data: any
+  allowed_models?: any[] | null
+  allowed_user_ids?: any[] | null
   disabled?: boolean
   is_fallback?: boolean
   key?: string
-  name?: any
+  name?: string | null
 }
 
 export interface UpdateByokKeyUpdateData {
   id: string
+  allowed_models?: any[] | null
+  allowed_user_ids?: any[] | null
+  disabled?: boolean
+  is_fallback?: boolean
+  key?: string
+  name?: string | null
 }
 
 export interface UpdateGuardrail {
-  allowed_model?: any
-  allowed_provider?: any
-  content_filter?: any
-  content_filter_builtin?: any
-  data: any
-  description?: any
-  enforce_zdr?: any
-  enforce_zdr_anthropic?: any
-  enforce_zdr_google?: any
-  enforce_zdr_openai?: any
-  enforce_zdr_other?: any
-  enforce_zdr_xai?: any
-  ignored_model?: any
-  ignored_provider?: any
-  limit_usd?: any
+  allowed_models?: any[] | null
+  allowed_providers?: any[] | null
+  content_filter_builtins?: any[] | null
+  content_filters?: any[] | null
+  description?: string | null
+  enforce_zdr?: boolean | null
+  enforce_zdr_anthropic?: boolean | null
+  enforce_zdr_google?: boolean | null
+  enforce_zdr_openai?: boolean | null
+  enforce_zdr_other?: boolean | null
+  enforce_zdr_xai?: boolean | null
+  ignored_models?: any[] | null
+  ignored_providers?: any[] | null
+  limit_usd?: number | null
   name?: string
-  reset_interval?: any
+  reset_interval?: string | null
 }
 
 export interface UpdateGuardrailUpdateData {
   id: string
+  allowed_models?: any[] | null
+  allowed_providers?: any[] | null
+  content_filter_builtins?: any[] | null
+  content_filters?: any[] | null
+  description?: string | null
+  enforce_zdr?: boolean | null
+  enforce_zdr_anthropic?: boolean | null
+  enforce_zdr_google?: boolean | null
+  enforce_zdr_openai?: boolean | null
+  enforce_zdr_other?: boolean | null
+  enforce_zdr_xai?: boolean | null
+  ignored_models?: any[] | null
+  ignored_providers?: any[] | null
+  limit_usd?: number | null
+  name?: string
+  reset_interval?: string | null
 }
 
 export interface UpdateObservabilityDestination {
-  api_key_hash?: any
+  api_key_hashes?: any[] | null
   config?: Record<string, any>
-  data: any
   enabled?: boolean
-  filter_rule?: any
+  filter_rules?: any
   name?: string
   privacy_mode?: boolean
   sampling_rate?: number
@@ -1507,77 +1779,95 @@ export interface UpdateObservabilityDestination {
 
 export interface UpdateObservabilityDestinationUpdateData {
   id: string
+  api_key_hashes?: any[] | null
+  config?: Record<string, any>
+  enabled?: boolean
+  filter_rules?: any
+  name?: string
+  privacy_mode?: boolean
+  sampling_rate?: number
 }
 
 export interface UpdateWorkspace {
   created_at: string
-  created_by: any
-  data: any
-  default_image_model?: any
-  default_provider_sort?: any
-  default_text_model?: any
-  description?: any
+  created_by: string | null
+  default_image_model?: string | null
+  default_provider_sort?: string | null
+  default_text_model?: string | null
+  description?: string | null
   id: string
-  io_logging_api_key_id?: any
+  io_logging_api_key_ids?: any[] | null
   io_logging_sampling_rate?: number
   is_data_discount_logging_enabled?: boolean
   is_observability_broadcast_enabled?: boolean
   is_observability_io_logging_enabled?: boolean
   name: string
   slug: string
-  updated_at: any
+  updated_at: string | null
 }
 
 export interface UpdateWorkspaceListMatch {
   created_at?: string
-  created_by?: any
-  data?: any
-  default_image_model?: any
-  default_provider_sort?: any
-  default_text_model?: any
-  description?: any
+  created_by?: string | null
+  default_image_model?: string | null
+  default_provider_sort?: string | null
+  default_text_model?: string | null
+  description?: string | null
   id?: string
-  io_logging_api_key_id?: any
+  io_logging_api_key_ids?: any[] | null
   io_logging_sampling_rate?: number
   is_data_discount_logging_enabled?: boolean
   is_observability_broadcast_enabled?: boolean
   is_observability_io_logging_enabled?: boolean
   name?: string
   slug?: string
-  updated_at?: any
+  updated_at?: string | null
 }
 
 export interface UpdateWorkspaceCreateData {
   created_at: string
-  created_by: any
-  data: any
-  default_image_model?: any
-  default_provider_sort?: any
-  default_text_model?: any
-  description?: any
+  created_by: string | null
+  default_image_model?: string | null
+  default_provider_sort?: string | null
+  default_text_model?: string | null
+  description?: string | null
   id: string
-  io_logging_api_key_id?: any
+  io_logging_api_key_ids?: any[] | null
   io_logging_sampling_rate?: number
   is_data_discount_logging_enabled?: boolean
   is_observability_broadcast_enabled?: boolean
   is_observability_io_logging_enabled?: boolean
   name: string
   slug: string
-  updated_at: any
+  updated_at: string | null
 }
 
 export interface UpdateWorkspaceUpdateData {
   id: string
+  created_at?: string
+  created_by?: string | null
+  default_image_model?: string | null
+  default_provider_sort?: string | null
+  default_text_model?: string | null
+  description?: string | null
+  io_logging_api_key_ids?: any[] | null
+  io_logging_sampling_rate?: number
+  is_data_discount_logging_enabled?: boolean
+  is_observability_broadcast_enabled?: boolean
+  is_observability_io_logging_enabled?: boolean
+  name?: string
+  slug?: string
+  updated_at?: string | null
 }
 
 export interface UpsertWorkspaceBudget {
-  data: any
   limit_usd: number
 }
 
 export interface UpsertWorkspaceBudgetUpdateData {
   id: string
   workspace_id: string
+  limit_usd?: number
 }
 
 export interface User {
@@ -1591,11 +1881,11 @@ export interface Video {
   callback_url?: string
   duration?: number
   error?: string
-  frame_image?: any[]
+  frame_images?: any[]
   generate_audio?: boolean
   generation_id?: string
   id: string
-  input_reference?: any[]
+  input_references?: any[]
   model: string
   polling_url: string
   prompt?: string
@@ -1604,7 +1894,7 @@ export interface Video {
   seed?: number
   size?: string
   status: string
-  unsigned_url?: any[]
+  unsigned_urls?: any[]
   usage?: Record<string, any>
 }
 
@@ -1617,11 +1907,11 @@ export interface VideoCreateData {
   callback_url?: string
   duration?: number
   error?: string
-  frame_image?: any[]
+  frame_images?: any[]
   generate_audio?: boolean
   generation_id?: string
   id: string
-  input_reference?: any[]
+  input_references?: any[]
   model: string
   polling_url: string
   prompt?: string
@@ -1630,7 +1920,7 @@ export interface VideoCreateData {
   seed?: number
   size?: string
   status: string
-  unsigned_url?: any[]
+  unsigned_urls?: any[]
   usage?: Record<string, any>
 }
 
@@ -1639,46 +1929,66 @@ export interface VideoGeneration {
 
 export interface VideoGenerationLoadMatch {
   id: string
+
+  // Selects a custom action instead of the plain load:
+  //   'content'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface VideoModelsList {
-  allowed_passthrough_parameter: any[]
+  allowed_passthrough_parameters: any[]
   canonical_slug: string
   created: number
   description?: string
-  generate_audio: any
-  hugging_face_id?: any
+  generate_audio: boolean | null
+  hugging_face_id?: string | null
   id: string
   name: string
-  pricing_skus?: any
-  seed: any
-  supported_aspect_ratio: any
-  supported_duration: any
-  supported_frame_image: any
-  supported_resolution: any
-  supported_size: any
+  pricing_skus?: Record<string, any> | null
+  seed: boolean | null
+  supported_aspect_ratios: any[] | null
+  supported_durations: any[] | null
+  supported_frame_images: any[] | null
+  supported_resolutions: any[] | null
+  supported_sizes: any[] | null
 }
 
 export interface VideoModelsListListMatch {
-  allowed_passthrough_parameter?: any[]
+  allowed_passthrough_parameters?: any[]
   canonical_slug?: string
   created?: number
   description?: string
-  generate_audio?: any
-  hugging_face_id?: any
+  generate_audio?: boolean | null
+  hugging_face_id?: string | null
   id?: string
   name?: string
-  pricing_skus?: any
-  seed?: any
-  supported_aspect_ratio?: any
-  supported_duration?: any
-  supported_frame_image?: any
-  supported_resolution?: any
-  supported_size?: any
+  pricing_skus?: Record<string, any> | null
+  seed?: boolean | null
+  supported_aspect_ratios?: any[] | null
+  supported_durations?: any[] | null
+  supported_frame_images?: any[] | null
+  supported_resolutions?: any[] | null
+  supported_sizes?: any[] | null
 }
 
 export interface Workspace {
-  data: any
+  created_at: string
+  created_by: string | null
+  default_image_model: string | null
+  default_provider_sort: string | null
+  default_text_model: string | null
+  description: string | null
+  id: string
+  io_logging_api_key_ids: any[] | null
+  io_logging_sampling_rate: number
+  is_data_discount_logging_enabled: boolean
+  is_observability_broadcast_enabled: boolean
+  is_observability_io_logging_enabled: boolean
+  name: string
+  slug: string
+  updated_at: string | null
 }
 
 export interface WorkspaceLoadMatch {

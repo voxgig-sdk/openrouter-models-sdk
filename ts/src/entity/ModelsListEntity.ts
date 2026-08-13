@@ -37,7 +37,7 @@ class ModelsListEntity extends OpenrouterModelsEntityBase<ModelsList> {
 
 
 
-  async list(this: any, reqmatch?: ModelsListListMatch, ctrl?: Control): Promise<ModelsList[]> {
+  async list(this: any, reqmatch?: ModelsListListMatch, ctrl?: Control): Promise<ModelsListEntity[]> {
 
     const utility = this._utility
 

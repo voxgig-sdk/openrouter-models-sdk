@@ -33,8 +33,8 @@ main: kit: entity: api_key: {
     {
       name: "creator_user_id"
       op: {
-        list: {
-          req: true
+        create: {
+          req: false
           type: [
             "`$ONE`"
             [
@@ -44,7 +44,7 @@ main: kit: entity: api_key: {
           ]
         }
       }
-      req: false
+      req: true
       type: [
         "`$ONE`"
         [
@@ -54,19 +54,14 @@ main: kit: entity: api_key: {
       ]
     }
     {
-      name: "data"
-      req: true
-      type: "`$OBJECT`"
-    }
-    {
       name: "disabled"
       op: {
-        list: {
-          req: true
+        update: {
+          req: false
           type: "`$BOOLEAN`"
         }
       }
-      req: false
+      req: true
       type: "`$BOOLEAN`"
     }
     {
@@ -88,12 +83,31 @@ main: kit: entity: api_key: {
     {
       name: "include_byok_in_limit"
       op: {
-        list: {
-          req: true
+        create: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+        update: {
+          req: false
           type: "`$BOOLEAN`"
         }
       }
-      req: false
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_free_tier"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_management_key"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_provisioning_key"
+      req: true
       type: "`$BOOLEAN`"
     }
     {
@@ -104,8 +118,18 @@ main: kit: entity: api_key: {
     {
       name: "limit"
       op: {
-        list: {
-          req: true
+        create: {
+          req: false
+          type: [
+            "`$ONE`"
+            [
+              "`$NUMBER`"
+              "`$NULL`"
+            ]
+          ]
+        }
+        update: {
+          req: false
           type: [
             "`$ONE`"
             [
@@ -115,7 +139,7 @@ main: kit: entity: api_key: {
           ]
         }
       }
-      req: false
+      req: true
       type: [
         "`$ONE`"
         [
@@ -138,8 +162,18 @@ main: kit: entity: api_key: {
     {
       name: "limit_reset"
       op: {
-        list: {
-          req: true
+        create: {
+          req: false
+          type: [
+            "`$ONE`"
+            [
+              "`$STRING`"
+              "`$NULL`"
+            ]
+          ]
+        }
+        update: {
+          req: false
           type: [
             "`$ONE`"
             [
@@ -149,7 +183,7 @@ main: kit: entity: api_key: {
           ]
         }
       }
-      req: false
+      req: true
       type: [
         "`$ONE`"
         [
@@ -168,6 +202,11 @@ main: kit: entity: api_key: {
       }
       req: true
       type: "`$STRING`"
+    }
+    {
+      name: "rate_limit"
+      req: true
+      type: "`$OBJECT`"
     }
     {
       name: "updated_at"
@@ -203,12 +242,12 @@ main: kit: entity: api_key: {
     {
       name: "workspace_id"
       op: {
-        list: {
-          req: true
+        create: {
+          req: false
           type: "`$STRING`"
         }
       }
-      req: false
+      req: true
       type: "`$STRING`"
     }
   ]
@@ -258,7 +297,7 @@ main: kit: entity: api_key: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -341,7 +380,7 @@ main: kit: entity: api_key: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -406,7 +445,7 @@ main: kit: entity: api_key: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -449,7 +488,7 @@ main: kit: entity: api_key: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -579,7 +618,7 @@ main: kit: entity: api_key: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

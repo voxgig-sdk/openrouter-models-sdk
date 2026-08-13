@@ -66,7 +66,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local activitys, err = client:Activity():list()
+local organizations, err = client:Organization():list()
 if err then error(err) end
 ```
 
@@ -124,7 +124,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Activity():list()
+local result, err = client:Organization():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -322,9 +322,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local activity, err = client:Activity():load()
+    local api_key, err = client:ApiKey():load({ id = "example_id" })
     if err then error(err) end
-    -- activity is the loaded record
+    -- api_key is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -336,15 +336,15 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `byok_usage_inference` |  |
-| `completion_token` |  |
+| `completion_tokens` |  |
 | `date` |  |
 | `endpoint_id` |  |
 | `model` |  |
 | `model_permaslug` |  |
-| `prompt_token` |  |
+| `prompt_tokens` |  |
 | `provider_name` |  |
-| `reasoning_token` |  |
-| `request` |  |
+| `reasoning_tokens` |  |
+| `requests` |  |
 | `usage` |  |
 
 Operations: List.
@@ -370,16 +370,19 @@ API path: ``
 | `byok_usage_weekly` |  |
 | `created_at` |  |
 | `creator_user_id` |  |
-| `data` |  |
 | `disabled` |  |
 | `expires_at` |  |
 | `hash` |  |
 | `include_byok_in_limit` |  |
+| `is_free_tier` |  |
+| `is_management_key` |  |
+| `is_provisioning_key` |  |
 | `label` |  |
 | `limit` |  |
 | `limit_remaining` |  |
 | `limit_reset` |  |
 | `name` |  |
+| `rate_limit` |  |
 | `updated_at` |  |
 | `usage` |  |
 | `usage_daily` |  |
@@ -398,8 +401,8 @@ API path: `/keys`
 | `app_id` |  |
 | `app_name` |  |
 | `rank` |  |
-| `total_request` |  |
-| `total_token` |  |
+| `total_requests` |  |
+| `total_tokens` |  |
 
 Operations: List.
 
@@ -418,17 +421,22 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `classifier_dimension` |  |
-| `classifier_filter` |  |
+| `cachedAt` |  |
+| `classifier_dimensions` |  |
+| `classifier_filters` |  |
 | `data` |  |
-| `dimension` |  |
-| `filter` |  |
+| `dimensions` |  |
+| `filters` |  |
+| `granularities` |  |
 | `granularity` |  |
 | `group_limit` |  |
 | `limit` |  |
-| `metric` |  |
+| `metadata` |  |
+| `metrics` |  |
+| `operators` |  |
 | `order_by` |  |
 | `time_range` |  |
+| `warnings` |  |
 
 Operations: Create, Load.
 
@@ -449,7 +457,7 @@ API path: ``
 | --- | --- |
 | `added_count` |  |
 | `data` |  |
-| `user_id` |  |
+| `user_ids` |  |
 
 Operations: Create.
 
@@ -460,7 +468,7 @@ API path: `/workspaces/{id}/members/add`
 | Field | Description |
 | --- | --- |
 | `assigned_count` |  |
-| `key_hash` |  |
+| `key_hashes` |  |
 
 Operations: Create.
 
@@ -471,7 +479,7 @@ API path: `/guardrails/{id}/assignments/keys`
 | Field | Description |
 | --- | --- |
 | `assigned_count` |  |
-| `member_user_id` |  |
+| `member_user_ids` |  |
 
 Operations: Create.
 
@@ -482,7 +490,7 @@ API path: `/guardrails/{id}/assignments/members`
 | Field | Description |
 | --- | --- |
 | `removed_count` |  |
-| `user_id` |  |
+| `user_ids` |  |
 
 Operations: Create.
 
@@ -492,7 +500,7 @@ API path: `/workspaces/{id}/members/remove`
 
 | Field | Description |
 | --- | --- |
-| `key_hash` |  |
+| `key_hashes` |  |
 | `unassigned_count` |  |
 
 Operations: Create.
@@ -503,7 +511,7 @@ API path: `/guardrails/{id}/assignments/keys/remove`
 
 | Field | Description |
 | --- | --- |
-| `member_user_id` |  |
+| `member_user_ids` |  |
 | `unassigned_count` |  |
 
 Operations: Create.
@@ -514,11 +522,10 @@ API path: `/guardrails/{id}/assignments/members/remove`
 
 | Field | Description |
 | --- | --- |
-| `allowed_api_key_hash` |  |
-| `allowed_model` |  |
-| `allowed_user_id` |  |
+| `allowed_api_key_hashes` |  |
+| `allowed_models` |  |
+| `allowed_user_ids` |  |
 | `created_at` |  |
-| `data` |  |
 | `disabled` |  |
 | `id` |  |
 | `is_fallback` |  |
@@ -538,29 +545,30 @@ API path: `/byok`
 | Field | Description |
 | --- | --- |
 | `cache_control` |  |
-| `choice` |  |
+| `choices` |  |
 | `created` |  |
 | `debug` |  |
 | `frequency_penalty` |  |
 | `id` |  |
 | `image_config` |  |
-| `logit_bia` |  |
-| `logprob` |  |
-| `max_completion_token` |  |
-| `max_token` |  |
-| `message` |  |
+| `logit_bias` |  |
+| `logprobs` |  |
+| `max_completion_tokens` |  |
+| `max_tokens` |  |
+| `messages` |  |
 | `metadata` |  |
 | `min_p` |  |
-| `modality` |  |
+| `modalities` |  |
 | `model` |  |
+| `models` |  |
 | `object` |  |
 | `openrouter_metadata` |  |
-| `parallel_tool_call` |  |
-| `plugin` |  |
+| `parallel_tool_calls` |  |
+| `plugins` |  |
 | `prediction` |  |
 | `presence_penalty` |  |
 | `prompt_cache_key` |  |
-| `prompt_cache_option` |  |
+| `prompt_cache_options` |  |
 | `provider` |  |
 | `reasoning` |  |
 | `reasoning_effort` |  |
@@ -573,14 +581,14 @@ API path: `/byok`
 | `stop` |  |
 | `stop_server_tools_when` |  |
 | `stream` |  |
-| `stream_option` |  |
+| `stream_options` |  |
 | `system_fingerprint` |  |
 | `temperature` |  |
-| `tool` |  |
 | `tool_choice` |  |
+| `tools` |  |
 | `top_a` |  |
 | `top_k` |  |
-| `top_logprob` |  |
+| `top_logprobs` |  |
 | `top_p` |  |
 | `trace` |  |
 | `usage` |  |
@@ -657,10 +665,10 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `api_key_hash` |  |
+| `api_key_hashes` |  |
 | `config` |  |
 | `enabled` |  |
-| `filter_rule` |  |
+| `filter_rules` |  |
 | `name` |  |
 | `privacy_mode` |  |
 | `sampling_rate` |  |
@@ -678,34 +686,34 @@ API path: `/observability/destinations`
 | `background` |  |
 | `cache_control` |  |
 | `context_management` |  |
-| `data` |  |
 | `debug` |  |
-| `fallback` |  |
+| `fallbacks` |  |
 | `frequency_penalty` |  |
 | `image_config` |  |
 | `include` |  |
 | `input` |  |
-| `instruction` |  |
-| `logit_bia` |  |
-| `logprob` |  |
-| `max_completion_token` |  |
-| `max_output_token` |  |
-| `max_token` |  |
-| `max_tool_call` |  |
-| `message` |  |
+| `instructions` |  |
+| `logit_bias` |  |
+| `logprobs` |  |
+| `max_completion_tokens` |  |
+| `max_output_tokens` |  |
+| `max_tokens` |  |
+| `max_tool_calls` |  |
+| `messages` |  |
 | `metadata` |  |
 | `min_p` |  |
-| `modality` |  |
+| `modalities` |  |
 | `model` |  |
+| `models` |  |
 | `output_config` |  |
-| `parallel_tool_call` |  |
-| `plugin` |  |
+| `parallel_tool_calls` |  |
+| `plugins` |  |
 | `prediction` |  |
 | `presence_penalty` |  |
 | `previous_response_id` |  |
 | `prompt` |  |
 | `prompt_cache_key` |  |
-| `prompt_cache_option` |  |
+| `prompt_cache_options` |  |
 | `provider` |  |
 | `reasoning` |  |
 | `reasoning_effort` |  |
@@ -718,20 +726,20 @@ API path: `/observability/destinations`
 | `session_id` |  |
 | `speed` |  |
 | `stop` |  |
-| `stop_sequence` |  |
+| `stop_sequences` |  |
 | `stop_server_tools_when` |  |
 | `store` |  |
 | `stream` |  |
-| `stream_option` |  |
+| `stream_options` |  |
 | `system` |  |
 | `temperature` |  |
 | `text` |  |
 | `thinking` |  |
-| `tool` |  |
 | `tool_choice` |  |
+| `tools` |  |
 | `top_a` |  |
 | `top_k` |  |
-| `top_logprob` |  |
+| `top_logprobs` |  |
 | `top_p` |  |
 | `trace` |  |
 | `truncation` |  |
@@ -754,7 +762,8 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `total_credits` |  |
+| `total_usage` |  |
 
 Operations: Create, Load.
 
@@ -774,7 +783,7 @@ API path: ``
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `dimension` |  |
+| `dimensions` |  |
 | `encoding_format` |  |
 | `id` |  |
 | `input` |  |
@@ -794,32 +803,32 @@ API path: `/embeddings`
 | Field | Description |
 | --- | --- |
 | `architecture` |  |
-| `benchmark` |  |
+| `benchmarks` |  |
 | `canonical_slug` |  |
 | `context_length` |  |
 | `created` |  |
-| `data` |  |
-| `default_parameter` |  |
+| `default_parameters` |  |
 | `description` |  |
+| `endpoints` |  |
 | `expiration_date` |  |
 | `hugging_face_id` |  |
 | `id` |  |
 | `knowledge_cutoff` |  |
 | `latency_last_30m` |  |
-| `link` |  |
-| `max_completion_token` |  |
-| `max_prompt_token` |  |
+| `links` |  |
+| `max_completion_tokens` |  |
+| `max_prompt_tokens` |  |
 | `model_id` |  |
 | `model_name` |  |
 | `name` |  |
-| `per_request_limit` |  |
+| `per_request_limits` |  |
 | `pricing` |  |
 | `provider_name` |  |
 | `quantization` |  |
 | `reasoning` |  |
 | `status` |  |
-| `supported_parameter` |  |
-| `supported_voice` |  |
+| `supported_parameters` |  |
+| `supported_voices` |  |
 | `supports_implicit_caching` |  |
 | `tag` |  |
 | `throughput_last_30m` |  |
@@ -850,7 +859,7 @@ API path: ``
 | `filename` |  |
 | `id` |  |
 | `mime_type` |  |
-| `size_byte` |  |
+| `size_bytes` |  |
 | `type` |  |
 
 Operations: Create, List, Load, Remove.
@@ -861,7 +870,50 @@ API path: `/files`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `api_type` |  |
+| `app_id` |  |
+| `cache_discount` |  |
+| `cancelled` |  |
+| `created_at` |  |
+| `data_region` |  |
+| `external_user` |  |
+| `finish_reason` |  |
+| `generation_time` |  |
+| `http_referer` |  |
+| `id` |  |
+| `is_byok` |  |
+| `latency` |  |
+| `model` |  |
+| `moderation_latency` |  |
+| `native_finish_reason` |  |
+| `native_tokens_cached` |  |
+| `native_tokens_completion` |  |
+| `native_tokens_completion_images` |  |
+| `native_tokens_prompt` |  |
+| `native_tokens_reasoning` |  |
+| `num_fetches` |  |
+| `num_input_audio_prompt` |  |
+| `num_media_completion` |  |
+| `num_media_prompt` |  |
+| `num_search_results` |  |
+| `origin` |  |
+| `preset_id` |  |
+| `provider_name` |  |
+| `provider_responses` |  |
+| `request_id` |  |
+| `response_cache_source_id` |  |
+| `router` |  |
+| `service_tier` |  |
+| `session_id` |  |
+| `streamed` |  |
+| `tokens_completion` |  |
+| `tokens_prompt` |  |
+| `total_cost` |  |
+| `upstream_id` |  |
+| `upstream_inference_cost` |  |
+| `usage` |  |
+| `user_agent` |  |
+| `web_search_engine` |  |
 
 Operations: Load.
 
@@ -871,7 +923,8 @@ API path: `/generation`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `input` |  |
+| `output` |  |
 
 Operations: Load.
 
@@ -881,12 +934,11 @@ API path: `/generation/content`
 
 | Field | Description |
 | --- | --- |
-| `allowed_model` |  |
-| `allowed_provider` |  |
-| `content_filter` |  |
-| `content_filter_builtin` |  |
+| `allowed_models` |  |
+| `allowed_providers` |  |
+| `content_filter_builtins` |  |
+| `content_filters` |  |
 | `created_at` |  |
-| `data` |  |
 | `description` |  |
 | `enforce_zdr` |  |
 | `enforce_zdr_anthropic` |  |
@@ -895,8 +947,8 @@ API path: `/generation/content`
 | `enforce_zdr_other` |  |
 | `enforce_zdr_xai` |  |
 | `id` |  |
-| `ignored_model` |  |
-| `ignored_provider` |  |
+| `ignored_models` |  |
+| `ignored_providers` |  |
 | `limit_usd` |  |
 | `name` |  |
 | `reset_interval` |  |
@@ -915,7 +967,7 @@ API path: `/guardrails`
 | `background` |  |
 | `created` |  |
 | `data` |  |
-| `input_reference` |  |
+| `input_references` |  |
 | `model` |  |
 | `n` |  |
 | `output_compression` |  |
@@ -937,12 +989,12 @@ API path: `/images`
 
 | Field | Description |
 | --- | --- |
-| `allowed_passthrough_parameter` |  |
+| `allowed_passthrough_parameters` |  |
 | `pricing` |  |
 | `provider_name` |  |
 | `provider_slug` |  |
 | `provider_tag` |  |
-| `supported_parameter` |  |
+| `supported_parameters` |  |
 | `supports_streaming` |  |
 
 Operations: List.
@@ -956,10 +1008,10 @@ API path: `/images/models/{author}/{slug}/endpoints`
 | `architecture` |  |
 | `created` |  |
 | `description` |  |
-| `endpoint` |  |
+| `endpoints` |  |
 | `id` |  |
 | `name` |  |
-| `supported_parameter` |  |
+| `supported_parameters` |  |
 | `supports_streaming` |  |
 
 Operations: List.
@@ -1114,26 +1166,27 @@ API path: ``
 | --- | --- |
 | `cache_control` |  |
 | `context_management` |  |
-| `fallback` |  |
-| `max_token` |  |
-| `message` |  |
+| `fallbacks` |  |
+| `max_tokens` |  |
+| `messages` |  |
 | `metadata` |  |
 | `model` |  |
+| `models` |  |
 | `output_config` |  |
-| `plugin` |  |
+| `plugins` |  |
 | `provider` |  |
 | `route` |  |
 | `service_tier` |  |
 | `session_id` |  |
 | `speed` |  |
-| `stop_sequence` |  |
+| `stop_sequences` |  |
 | `stop_server_tools_when` |  |
 | `stream` |  |
 | `system` |  |
 | `temperature` |  |
 | `thinking` |  |
-| `tool` |  |
 | `tool_choice` |  |
+| `tools` |  |
 | `top_k` |  |
 | `top_p` |  |
 | `trace` |  |
@@ -1157,24 +1210,23 @@ API path: ``
 | Field | Description |
 | --- | --- |
 | `architecture` |  |
-| `benchmark` |  |
+| `benchmarks` |  |
 | `canonical_slug` |  |
 | `context_length` |  |
 | `created` |  |
-| `data` |  |
-| `default_parameter` |  |
+| `default_parameters` |  |
 | `description` |  |
 | `expiration_date` |  |
 | `hugging_face_id` |  |
 | `id` |  |
 | `knowledge_cutoff` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
-| `per_request_limit` |  |
+| `per_request_limits` |  |
 | `pricing` |  |
 | `reasoning` |  |
-| `supported_parameter` |  |
-| `supported_voice` |  |
+| `supported_parameters` |  |
+| `supported_voices` |  |
 | `top_provider` |  |
 
 Operations: List, Load.
@@ -1185,7 +1237,7 @@ API path: `/embeddings/models`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `count` |  |
 
 Operations: Load.
 
@@ -1196,23 +1248,23 @@ API path: `/models/count`
 | Field | Description |
 | --- | --- |
 | `architecture` |  |
-| `benchmark` |  |
+| `benchmarks` |  |
 | `canonical_slug` |  |
 | `context_length` |  |
 | `created` |  |
-| `default_parameter` |  |
+| `default_parameters` |  |
 | `description` |  |
 | `expiration_date` |  |
 | `hugging_face_id` |  |
 | `id` |  |
 | `knowledge_cutoff` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
-| `per_request_limit` |  |
+| `per_request_limits` |  |
 | `pricing` |  |
 | `reasoning` |  |
-| `supported_parameter` |  |
-| `supported_voice` |  |
+| `supported_parameters` |  |
+| `supported_voices` |  |
 | `top_provider` |  |
 
 Operations: List.
@@ -1223,13 +1275,15 @@ API path: `/models/user`
 
 | Field | Description |
 | --- | --- |
+| `app_id` |  |
 | `callback_url` |  |
 | `code` |  |
 | `code_challenge` |  |
 | `code_challenge_method` |  |
 | `code_verifier` |  |
-| `data` |  |
+| `created_at` |  |
 | `expires_at` |  |
+| `id` |  |
 | `key` |  |
 | `key_label` |  |
 | `limit` |  |
@@ -1264,19 +1318,20 @@ API path: `/observability/destinations/{id}`
 | `image_config` |  |
 | `include` |  |
 | `input` |  |
-| `instruction` |  |
-| `max_output_token` |  |
-| `max_tool_call` |  |
+| `instructions` |  |
+| `max_output_tokens` |  |
+| `max_tool_calls` |  |
 | `metadata` |  |
-| `modality` |  |
+| `modalities` |  |
 | `model` |  |
-| `parallel_tool_call` |  |
-| `plugin` |  |
+| `models` |  |
+| `parallel_tool_calls` |  |
+| `plugins` |  |
 | `presence_penalty` |  |
 | `previous_response_id` |  |
 | `prompt` |  |
 | `prompt_cache_key` |  |
-| `prompt_cache_option` |  |
+| `prompt_cache_options` |  |
 | `provider` |  |
 | `reasoning` |  |
 | `route` |  |
@@ -1288,10 +1343,10 @@ API path: `/observability/destinations/{id}`
 | `stream` |  |
 | `temperature` |  |
 | `text` |  |
-| `tool` |  |
 | `tool_choice` |  |
+| `tools` |  |
 | `top_k` |  |
-| `top_logprob` |  |
+| `top_logprobs` |  |
 | `top_p` |  |
 | `trace` |  |
 | `truncation` |  |
@@ -1321,8 +1376,8 @@ API path: `/organization/members`
 | --- | --- |
 | `created_at` |  |
 | `creator_user_id` |  |
-| `data` |  |
 | `description` |  |
+| `designated_version` |  |
 | `designated_version_id` |  |
 | `id` |  |
 | `name` |  |
@@ -1340,7 +1395,14 @@ API path: `/presets`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `config` |  |
+| `created_at` |  |
+| `creator_id` |  |
+| `id` |  |
+| `preset_id` |  |
+| `system_prompt` |  |
+| `updated_at` |  |
+| `version` |  |
 
 Operations: Load.
 
@@ -1350,8 +1412,8 @@ API path: `/presets/{slug}/versions/{version}`
 
 | Field | Description |
 | --- | --- |
-| `datacenter` |  |
-| `headquarter` |  |
+| `datacenters` |  |
+| `headquarters` |  |
 | `name` |  |
 | `privacy_policy_url` |  |
 | `slug` |  |
@@ -1377,7 +1439,7 @@ API path: ``
 | --- | --- |
 | `date` |  |
 | `model_permaslug` |  |
-| `total_token` |  |
+| `total_tokens` |  |
 
 Operations: List.
 
@@ -1396,12 +1458,12 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `document` |  |
+| `documents` |  |
 | `id` |  |
 | `model` |  |
 | `provider` |  |
 | `query` |  |
-| `result` |  |
+| `results` |  |
 | `top_n` |  |
 | `usage` |  |
 
@@ -1437,13 +1499,13 @@ API path: ``
 | `model` |  |
 | `provider` |  |
 | `response_format` |  |
-| `segment` |  |
+| `segments` |  |
 | `task` |  |
 | `temperature` |  |
 | `text` |  |
-| `timestamp_granularity` |  |
+| `timestamp_granularities` |  |
 | `usage` |  |
-| `word` |  |
+| `words` |  |
 
 Operations: Create.
 
@@ -1455,8 +1517,8 @@ API path: `/audio/transcriptions`
 | --- | --- |
 | `category` |  |
 | `comment` |  |
-| `data` |  |
 | `generation_id` |  |
+| `success` |  |
 
 Operations: Create.
 
@@ -1466,7 +1528,10 @@ API path: `/generation/feedback`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `as_of` |  |
+| `classifications` |  |
+| `macro_categories` |  |
+| `window_days` |  |
 
 Operations: Load.
 
@@ -1511,9 +1576,8 @@ API path: `/benchmarks`
 
 | Field | Description |
 | --- | --- |
-| `allowed_model` |  |
-| `allowed_user_id` |  |
-| `data` |  |
+| `allowed_models` |  |
+| `allowed_user_ids` |  |
 | `disabled` |  |
 | `is_fallback` |  |
 | `key` |  |
@@ -1527,11 +1591,10 @@ API path: `/byok/{id}`
 
 | Field | Description |
 | --- | --- |
-| `allowed_model` |  |
-| `allowed_provider` |  |
-| `content_filter` |  |
-| `content_filter_builtin` |  |
-| `data` |  |
+| `allowed_models` |  |
+| `allowed_providers` |  |
+| `content_filter_builtins` |  |
+| `content_filters` |  |
 | `description` |  |
 | `enforce_zdr` |  |
 | `enforce_zdr_anthropic` |  |
@@ -1539,8 +1602,8 @@ API path: `/byok/{id}`
 | `enforce_zdr_openai` |  |
 | `enforce_zdr_other` |  |
 | `enforce_zdr_xai` |  |
-| `ignored_model` |  |
-| `ignored_provider` |  |
+| `ignored_models` |  |
+| `ignored_providers` |  |
 | `limit_usd` |  |
 | `name` |  |
 | `reset_interval` |  |
@@ -1553,11 +1616,10 @@ API path: `/guardrails/{id}`
 
 | Field | Description |
 | --- | --- |
-| `api_key_hash` |  |
+| `api_key_hashes` |  |
 | `config` |  |
-| `data` |  |
 | `enabled` |  |
-| `filter_rule` |  |
+| `filter_rules` |  |
 | `name` |  |
 | `privacy_mode` |  |
 | `sampling_rate` |  |
@@ -1572,13 +1634,12 @@ API path: `/observability/destinations/{id}`
 | --- | --- |
 | `created_at` |  |
 | `created_by` |  |
-| `data` |  |
 | `default_image_model` |  |
 | `default_provider_sort` |  |
 | `default_text_model` |  |
 | `description` |  |
 | `id` |  |
-| `io_logging_api_key_id` |  |
+| `io_logging_api_key_ids` |  |
 | `io_logging_sampling_rate` |  |
 | `is_data_discount_logging_enabled` |  |
 | `is_observability_broadcast_enabled` |  |
@@ -1595,7 +1656,6 @@ API path: `/workspaces`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `limit_usd` |  |
 
 Operations: Update.
@@ -1628,11 +1688,11 @@ API path: ``
 | `callback_url` |  |
 | `duration` |  |
 | `error` |  |
-| `frame_image` |  |
+| `frame_images` |  |
 | `generate_audio` |  |
 | `generation_id` |  |
 | `id` |  |
-| `input_reference` |  |
+| `input_references` |  |
 | `model` |  |
 | `polling_url` |  |
 | `prompt` |  |
@@ -1641,7 +1701,7 @@ API path: ``
 | `seed` |  |
 | `size` |  |
 | `status` |  |
-| `unsigned_url` |  |
+| `unsigned_urls` |  |
 | `usage` |  |
 
 Operations: Create, Load.
@@ -1661,7 +1721,7 @@ API path: `/videos/{jobId}/content`
 
 | Field | Description |
 | --- | --- |
-| `allowed_passthrough_parameter` |  |
+| `allowed_passthrough_parameters` |  |
 | `canonical_slug` |  |
 | `created` |  |
 | `description` |  |
@@ -1671,11 +1731,11 @@ API path: `/videos/{jobId}/content`
 | `name` |  |
 | `pricing_skus` |  |
 | `seed` |  |
-| `supported_aspect_ratio` |  |
-| `supported_duration` |  |
-| `supported_frame_image` |  |
-| `supported_resolution` |  |
-| `supported_size` |  |
+| `supported_aspect_ratios` |  |
+| `supported_durations` |  |
+| `supported_frame_images` |  |
+| `supported_resolutions` |  |
+| `supported_sizes` |  |
 
 Operations: List.
 
@@ -1685,7 +1745,21 @@ API path: `/videos/models`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `created_at` |  |
+| `created_by` |  |
+| `default_image_model` |  |
+| `default_provider_sort` |  |
+| `default_text_model` |  |
+| `description` |  |
+| `id` |  |
+| `io_logging_api_key_ids` |  |
+| `io_logging_sampling_rate` |  |
+| `is_data_discount_logging_enabled` |  |
+| `is_observability_broadcast_enabled` |  |
+| `is_observability_io_logging_enabled` |  |
+| `name` |  |
+| `slug` |  |
+| `updated_at` |  |
 
 Operations: Load, Remove.
 
@@ -1729,15 +1803,15 @@ Create an instance: `local activity = client:Activity(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `byok_usage_inference` | `number` |  |
-| `completion_token` | `number` |  |
+| `completion_tokens` | `number` |  |
 | `date` | `string` |  |
 | `endpoint_id` | `string` |  |
 | `model` | `string` |  |
 | `model_permaslug` | `string` |  |
-| `prompt_token` | `number` |  |
+| `prompt_tokens` | `number` |  |
 | `provider_name` | `string` |  |
-| `reasoning_token` | `number` |  |
-| `request` | `number` |  |
+| `reasoning_tokens` | `number` |  |
+| `requests` | `number` |  |
 | `usage` | `number` |  |
 
 #### Example: List
@@ -1775,18 +1849,21 @@ Create an instance: `local api_key = client:ApiKey(nil)`
 | `byok_usage_monthly` | `number` |  |
 | `byok_usage_weekly` | `number` |  |
 | `created_at` | `string` |  |
-| `creator_user_id` | `any` |  |
-| `data` | `table` |  |
+| `creator_user_id` | `string|nil` |  |
 | `disabled` | `boolean` |  |
-| `expires_at` | `any` |  |
+| `expires_at` | `string|nil` |  |
 | `hash` | `string` |  |
 | `include_byok_in_limit` | `boolean` |  |
+| `is_free_tier` | `boolean` |  |
+| `is_management_key` | `boolean` |  |
+| `is_provisioning_key` | `boolean` |  |
 | `label` | `string` |  |
-| `limit` | `any` |  |
-| `limit_remaining` | `any` |  |
-| `limit_reset` | `any` |  |
+| `limit` | `number|nil` |  |
+| `limit_remaining` | `number|nil` |  |
+| `limit_reset` | `string|nil` |  |
 | `name` | `string` |  |
-| `updated_at` | `any` |  |
+| `rate_limit` | `table` |  |
+| `updated_at` | `string|nil` |  |
 | `usage` | `number` |  |
 | `usage_daily` | `number` |  |
 | `usage_monthly` | `number` |  |
@@ -1814,16 +1891,25 @@ local api_key, err = client:ApiKey():create({
   byok_usage_monthly = 1, -- number
   byok_usage_weekly = 1, -- number
   created_at = "example_created_at", -- string
-  data = {}, -- table
+  creator_user_id = "example_creator_user_id", -- string|nil
+  disabled = true, -- boolean
   hash = "example_hash", -- string
+  include_byok_in_limit = true, -- boolean
+  is_free_tier = true, -- boolean
+  is_management_key = true, -- boolean
+  is_provisioning_key = true, -- boolean
   label = "example_label", -- string
-  limit_remaining = "example_limit_remaining", -- any
+  limit = "example_limit", -- number|nil
+  limit_remaining = "example_limit_remaining", -- number|nil
+  limit_reset = "example_limit_reset", -- string|nil
   name = "example_name", -- string
-  updated_at = "example_updated_at", -- any
+  rate_limit = {}, -- table
+  updated_at = "example_updated_at", -- string|nil
   usage = 1, -- number
   usage_daily = 1, -- number
   usage_monthly = 1, -- number
   usage_weekly = 1, -- number
+  workspace_id = "example_workspace_id", -- string
 })
 ```
 
@@ -1845,8 +1931,8 @@ Create an instance: `local app_ranking = client:AppRanking(nil)`
 | `app_id` | `number` |  |
 | `app_name` | `string` |  |
 | `rank` | `number` |  |
-| `total_request` | `number` |  |
-| `total_token` | `string` |  |
+| `total_requests` | `number` |  |
+| `total_tokens` | `string` |  |
 
 #### Example: List
 
@@ -1875,17 +1961,22 @@ Create an instance: `local beta_analytics = client:BetaAnalytics(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `classifier_dimension` | `table` |  |
-| `classifier_filter` | `table` |  |
+| `cachedAt` | `number` |  |
+| `classifier_dimensions` | `table` |  |
+| `classifier_filters` | `table` |  |
 | `data` | `table` |  |
-| `dimension` | `table` |  |
-| `filter` | `table` |  |
+| `dimensions` | `table` |  |
+| `filters` | `table` |  |
+| `granularities` | `table` |  |
 | `granularity` | `string` |  |
 | `group_limit` | `number` |  |
 | `limit` | `number` |  |
-| `metric` | `table` |  |
+| `metadata` | `table` |  |
+| `metrics` | `table` |  |
+| `operators` | `table` |  |
 | `order_by` | `table` |  |
 | `time_range` | `table` |  |
+| `warnings` | `table` |  |
 
 #### Example: Load
 
@@ -1897,10 +1988,14 @@ local beta_analytics, err = client:BetaAnalytics():load()
 
 ```lua
 local beta_analytics, err = client:BetaAnalytics():create({
-  classifier_dimension = {}, -- table
-  classifier_filter = {}, -- table
+  classifier_dimensions = {}, -- table
+  classifier_filters = {}, -- table
   data = {}, -- table
-  metric = {}, -- table
+  dimensions = {}, -- table
+  granularities = {}, -- table
+  metadata = {}, -- table
+  metrics = {}, -- table
+  operators = {}, -- table
   order_by = {}, -- table
   time_range = {}, -- table
 })
@@ -1928,13 +2023,16 @@ Create an instance: `local bulk_add_workspace_member = client:BulkAddWorkspaceMe
 | --- | --- | --- |
 | `added_count` | `number` |  |
 | `data` | `table` |  |
-| `user_id` | `table` |  |
+| `user_ids` | `table` |  |
 
 #### Example: Create
 
 ```lua
 local bulk_add_workspace_member, err = client:BulkAddWorkspaceMember():create({
   workspace_id = "example_workspace_id", -- string
+  added_count = 1, -- number
+  data = {}, -- table
+  user_ids = {}, -- table
 })
 ```
 
@@ -1954,13 +2052,15 @@ Create an instance: `local bulk_assign_key = client:BulkAssignKey(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `assigned_count` | `number` |  |
-| `key_hash` | `table` |  |
+| `key_hashes` | `table` |  |
 
 #### Example: Create
 
 ```lua
 local bulk_assign_key, err = client:BulkAssignKey():create({
   guardrail_id = "example_guardrail_id", -- string
+  assigned_count = 1, -- number
+  key_hashes = {}, -- table
 })
 ```
 
@@ -1980,13 +2080,15 @@ Create an instance: `local bulk_assign_member = client:BulkAssignMember(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `assigned_count` | `number` |  |
-| `member_user_id` | `table` |  |
+| `member_user_ids` | `table` |  |
 
 #### Example: Create
 
 ```lua
 local bulk_assign_member, err = client:BulkAssignMember():create({
   guardrail_id = "example_guardrail_id", -- string
+  assigned_count = 1, -- number
+  member_user_ids = {}, -- table
 })
 ```
 
@@ -2006,13 +2108,15 @@ Create an instance: `local bulk_remove_workspace_member = client:BulkRemoveWorks
 | Field | Type | Description |
 | --- | --- | --- |
 | `removed_count` | `number` |  |
-| `user_id` | `table` |  |
+| `user_ids` | `table` |  |
 
 #### Example: Create
 
 ```lua
 local bulk_remove_workspace_member, err = client:BulkRemoveWorkspaceMember():create({
   workspace_id = "example_workspace_id", -- string
+  removed_count = 1, -- number
+  user_ids = {}, -- table
 })
 ```
 
@@ -2031,7 +2135,7 @@ Create an instance: `local bulk_unassign_key = client:BulkUnassignKey(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `key_hash` | `table` |  |
+| `key_hashes` | `table` |  |
 | `unassigned_count` | `number` |  |
 
 #### Example: Create
@@ -2039,6 +2143,8 @@ Create an instance: `local bulk_unassign_key = client:BulkUnassignKey(nil)`
 ```lua
 local bulk_unassign_key, err = client:BulkUnassignKey():create({
   guardrail_id = "example_guardrail_id", -- string
+  key_hashes = {}, -- table
+  unassigned_count = 1, -- number
 })
 ```
 
@@ -2057,7 +2163,7 @@ Create an instance: `local bulk_unassign_member = client:BulkUnassignMember(nil)
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `member_user_id` | `table` |  |
+| `member_user_ids` | `table` |  |
 | `unassigned_count` | `number` |  |
 
 #### Example: Create
@@ -2065,6 +2171,8 @@ Create an instance: `local bulk_unassign_member = client:BulkUnassignMember(nil)
 ```lua
 local bulk_unassign_member, err = client:BulkUnassignMember():create({
   guardrail_id = "example_guardrail_id", -- string
+  member_user_ids = {}, -- table
+  unassigned_count = 1, -- number
 })
 ```
 
@@ -2086,17 +2194,16 @@ Create an instance: `local byok = client:Byok(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_api_key_hash` | `any` |  |
-| `allowed_model` | `any` |  |
-| `allowed_user_id` | `any` |  |
+| `allowed_api_key_hashes` | `table|nil` |  |
+| `allowed_models` | `table|nil` |  |
+| `allowed_user_ids` | `table|nil` |  |
 | `created_at` | `string` |  |
-| `data` | `any` |  |
 | `disabled` | `boolean` |  |
 | `id` | `string` |  |
 | `is_fallback` | `boolean` |  |
 | `key` | `string` |  |
 | `label` | `string` |  |
-| `name` | `any` |  |
+| `name` | `string|nil` |  |
 | `provider` | `string` |  |
 | `sort_order` | `number` |  |
 | `workspace_id` | `string` |  |
@@ -2117,14 +2224,18 @@ local byoks, err = client:Byok():list()
 
 ```lua
 local byok, err = client:Byok():create({
-  allowed_api_key_hash = "example_allowed_api_key_hash", -- any
+  allowed_api_key_hashes = "example_allowed_api_key_hashes", -- table|nil
+  allowed_models = "example_allowed_models", -- table|nil
+  allowed_user_ids = "example_allowed_user_ids", -- table|nil
   created_at = "example_created_at", -- string
-  data = "example_data", -- any
+  disabled = true, -- boolean
   id = "example_id", -- string
+  is_fallback = true, -- boolean
   key = "example_key", -- string
   label = "example_label", -- string
   provider = "example_provider", -- string
   sort_order = 1, -- number
+  workspace_id = "example_workspace_id", -- string
 })
 ```
 
@@ -2144,50 +2255,51 @@ Create an instance: `local chat_result = client:ChatResult(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cache_control` | `table` |  |
-| `choice` | `table` |  |
+| `choices` | `table` |  |
 | `created` | `number` |  |
 | `debug` | `table` |  |
-| `frequency_penalty` | `any` |  |
+| `frequency_penalty` | `number|nil` |  |
 | `id` | `string` |  |
 | `image_config` | `table` |  |
-| `logit_bia` | `any` |  |
-| `logprob` | `any` |  |
-| `max_completion_token` | `any` |  |
-| `max_token` | `any` |  |
-| `message` | `table` |  |
+| `logit_bias` | `table|nil` |  |
+| `logprobs` | `boolean|nil` |  |
+| `max_completion_tokens` | `number|nil` |  |
+| `max_tokens` | `number|nil` |  |
+| `messages` | `table` |  |
 | `metadata` | `table` |  |
-| `min_p` | `any` |  |
-| `modality` | `table` |  |
+| `min_p` | `number|nil` |  |
+| `modalities` | `table` |  |
 | `model` | `string` |  |
+| `models` | `table` |  |
 | `object` | `string` |  |
 | `openrouter_metadata` | `table` |  |
-| `parallel_tool_call` | `any` |  |
-| `plugin` | `table` |  |
-| `prediction` | `any` |  |
-| `presence_penalty` | `any` |  |
-| `prompt_cache_key` | `any` |  |
-| `prompt_cache_option` | `any` |  |
-| `provider` | `any` |  |
+| `parallel_tool_calls` | `boolean|nil` |  |
+| `plugins` | `table` |  |
+| `prediction` | `table|nil` |  |
+| `presence_penalty` | `number|nil` |  |
+| `prompt_cache_key` | `string|nil` |  |
+| `prompt_cache_options` | `table|nil` |  |
+| `provider` | `table|nil` |  |
 | `reasoning` | `table` |  |
-| `reasoning_effort` | `any` |  |
-| `repetition_penalty` | `any` |  |
+| `reasoning_effort` | `string|nil` |  |
+| `repetition_penalty` | `number|nil` |  |
 | `response_format` | `any` |  |
-| `route` | `any` |  |
-| `seed` | `any` |  |
-| `service_tier` | `any` |  |
+| `route` | `string|nil` |  |
+| `seed` | `number|nil` |  |
+| `service_tier` | `string|nil` |  |
 | `session_id` | `string` |  |
 | `stop` | `any` |  |
 | `stop_server_tools_when` | `table` |  |
 | `stream` | `boolean` |  |
-| `stream_option` | `any` |  |
-| `system_fingerprint` | `any` |  |
-| `temperature` | `any` |  |
-| `tool` | `table` |  |
+| `stream_options` | `table|nil` |  |
+| `system_fingerprint` | `string|nil` |  |
+| `temperature` | `number|nil` |  |
 | `tool_choice` | `any` |  |
-| `top_a` | `any` |  |
-| `top_k` | `any` |  |
-| `top_logprob` | `any` |  |
-| `top_p` | `any` |  |
+| `tools` | `table` |  |
+| `top_a` | `number|nil` |  |
+| `top_k` | `number|nil` |  |
+| `top_logprobs` | `number|nil` |  |
+| `top_p` | `number|nil` |  |
 | `trace` | `table` |  |
 | `usage` | `table` |  |
 | `user` | `string` |  |
@@ -2197,16 +2309,16 @@ Create an instance: `local chat_result = client:ChatResult(nil)`
 ```lua
 local chat_result, err = client:ChatResult():create({
   cache_control = {}, -- table
-  choice = {}, -- table
+  choices = {}, -- table
   created = 1, -- number
   id = "example_id", -- string
-  message = {}, -- table
+  messages = {}, -- table
   model = "example_model", -- string
   object = "example_object", -- string
   openrouter_metadata = {}, -- table
-  prediction = "example_prediction", -- any
-  prompt_cache_option = "example_prompt_cache_option", -- any
-  system_fingerprint = "example_system_fingerprint", -- any
+  prediction = "example_prediction", -- table|nil
+  prompt_cache_options = "example_prompt_cache_options", -- table|nil
+  system_fingerprint = "example_system_fingerprint", -- string|nil
   usage = {}, -- table
 })
 ```
@@ -2261,10 +2373,10 @@ Create an instance: `local create_observability_destination = client:CreateObser
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key_hash` | `any` |  |
+| `api_key_hashes` | `table|nil` |  |
 | `config` | `table` |  |
 | `enabled` | `boolean` |  |
-| `filter_rule` | `any` |  |
+| `filter_rules` | `table|nil` |  |
 | `name` | `string` |  |
 | `privacy_mode` | `boolean` |  |
 | `sampling_rate` | `number` |  |
@@ -2276,7 +2388,7 @@ Create an instance: `local create_observability_destination = client:CreateObser
 ```lua
 local create_observability_destination, err = client:CreateObservabilityDestination():create({
   config = {}, -- table
-  filter_rule = "example_filter_rule", -- any
+  filter_rules = "example_filter_rules", -- table|nil
   name = "example_name", -- string
   type = "example_type", -- string
 })
@@ -2297,66 +2409,66 @@ Create an instance: `local create_preset_from_inference = client:CreatePresetFro
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `background` | `any` |  |
+| `background` | `boolean|nil` |  |
 | `cache_control` | `table` |  |
-| `context_management` | `any` |  |
-| `data` | `any` |  |
+| `context_management` | `table|nil` |  |
 | `debug` | `table` |  |
-| `fallback` | `any` |  |
-| `frequency_penalty` | `any` |  |
+| `fallbacks` | `table|nil` |  |
+| `frequency_penalty` | `number|nil` |  |
 | `image_config` | `table` |  |
-| `include` | `any` |  |
+| `include` | `table|nil` |  |
 | `input` | `any` |  |
-| `instruction` | `any` |  |
-| `logit_bia` | `any` |  |
-| `logprob` | `any` |  |
-| `max_completion_token` | `any` |  |
-| `max_output_token` | `any` |  |
-| `max_token` | `any` |  |
-| `max_tool_call` | `any` |  |
-| `message` | `table` |  |
+| `instructions` | `string|nil` |  |
+| `logit_bias` | `table|nil` |  |
+| `logprobs` | `boolean|nil` |  |
+| `max_completion_tokens` | `number|nil` |  |
+| `max_output_tokens` | `number|nil` |  |
+| `max_tokens` | `number|nil` |  |
+| `max_tool_calls` | `number|nil` |  |
+| `messages` | `table` |  |
 | `metadata` | `table` |  |
-| `min_p` | `any` |  |
-| `modality` | `table` |  |
+| `min_p` | `number|nil` |  |
+| `modalities` | `table` |  |
 | `model` | `string` |  |
+| `models` | `table` |  |
 | `output_config` | `table` |  |
-| `parallel_tool_call` | `any` |  |
-| `plugin` | `table` |  |
-| `prediction` | `any` |  |
-| `presence_penalty` | `any` |  |
+| `parallel_tool_calls` | `boolean|nil` |  |
+| `plugins` | `table` |  |
+| `prediction` | `table|nil` |  |
+| `presence_penalty` | `number|nil` |  |
 | `previous_response_id` | `string` |  |
-| `prompt` | `any` |  |
-| `prompt_cache_key` | `any` |  |
-| `prompt_cache_option` | `any` |  |
-| `provider` | `any` |  |
+| `prompt` | `table|nil` |  |
+| `prompt_cache_key` | `string|nil` |  |
+| `prompt_cache_options` | `table|nil` |  |
+| `provider` | `table|nil` |  |
 | `reasoning` | `table` |  |
-| `reasoning_effort` | `any` |  |
-| `repetition_penalty` | `any` |  |
+| `reasoning_effort` | `string|nil` |  |
+| `repetition_penalty` | `number|nil` |  |
 | `response_format` | `any` |  |
-| `route` | `any` |  |
-| `safety_identifier` | `any` |  |
-| `seed` | `any` |  |
-| `service_tier` | `any` |  |
+| `route` | `string|nil` |  |
+| `safety_identifier` | `string|nil` |  |
+| `seed` | `number|nil` |  |
+| `service_tier` | `string|nil` |  |
 | `session_id` | `string` |  |
 | `speed` | `any` |  |
 | `stop` | `any` |  |
-| `stop_sequence` | `table` |  |
+| `stop_sequences` | `table` |  |
 | `stop_server_tools_when` | `table` |  |
 | `store` | `boolean` |  |
 | `stream` | `boolean` |  |
-| `stream_option` | `any` |  |
+| `stream_options` | `table|nil` |  |
 | `system` | `any` |  |
-| `temperature` | `any` |  |
+| `temperature` | `number|nil` |  |
 | `text` | `any` |  |
 | `thinking` | `any` |  |
-| `tool` | `table` |  |
 | `tool_choice` | `any` |  |
-| `top_a` | `any` |  |
-| `top_k` | `any` |  |
-| `top_logprob` | `any` |  |
-| `top_p` | `any` |  |
+| `tools` | `table` |  |
+| `top_a` | `number|nil` |  |
+| `top_k` | `number|nil` |  |
+| `top_logprobs` | `number|nil` |  |
+| `top_p` | `number|nil` |  |
 | `trace` | `table` |  |
-| `truncation` | `any` |  |
+| `truncation` | `string|nil` |  |
 | `user` | `string` |  |
 
 #### Example: Create
@@ -2364,6 +2476,11 @@ Create an instance: `local create_preset_from_inference = client:CreatePresetFro
 ```lua
 local create_preset_from_inference, err = client:CreatePresetFromInference():create({
   slug = "example_slug", -- string
+  cache_control = {}, -- table
+  messages = {}, -- table
+  prediction = "example_prediction", -- table|nil
+  prompt = "example_prompt", -- table|nil
+  prompt_cache_options = "example_prompt_cache_options", -- table|nil
 })
 ```
 
@@ -2388,7 +2505,8 @@ Create an instance: `local credit = client:Credit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
+| `total_credits` | `number` |  |
+| `total_usage` | `number` |  |
 
 #### Example: Load
 
@@ -2400,7 +2518,8 @@ local credit, err = client:Credit():load()
 
 ```lua
 local credit, err = client:Credit():create({
-  data = {}, -- table
+  total_credits = 1, -- number
+  total_usage = 1, -- number
 })
 ```
 
@@ -2425,7 +2544,7 @@ Create an instance: `local embedding = client:Embedding(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `table` |  |
-| `dimension` | `number` |  |
+| `dimensions` | `number` |  |
 | `encoding_format` | `string` |  |
 | `id` | `string` |  |
 | `input` | `any` |  |
@@ -2464,40 +2583,40 @@ Create an instance: `local endpoint = client:Endpoint(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `architecture` | `table` |  |
-| `benchmark` | `table` |  |
+| `architecture` | `any` |  |
+| `benchmarks` | `table` |  |
 | `canonical_slug` | `string` |  |
-| `context_length` | `any` |  |
+| `context_length` | `number|nil` |  |
 | `created` | `number` |  |
-| `data` | `table` |  |
-| `default_parameter` | `any` |  |
+| `default_parameters` | `table|nil` |  |
 | `description` | `string` |  |
-| `expiration_date` | `any` |  |
-| `hugging_face_id` | `any` |  |
+| `endpoints` | `table` |  |
+| `expiration_date` | `string|nil` |  |
+| `hugging_face_id` | `string|nil` |  |
 | `id` | `string` |  |
-| `knowledge_cutoff` | `any` |  |
-| `latency_last_30m` | `any` |  |
-| `link` | `table` |  |
-| `max_completion_token` | `any` |  |
-| `max_prompt_token` | `any` |  |
+| `knowledge_cutoff` | `string|nil` |  |
+| `latency_last_30m` | `table|nil` |  |
+| `links` | `table` |  |
+| `max_completion_tokens` | `number|nil` |  |
+| `max_prompt_tokens` | `number|nil` |  |
 | `model_id` | `string` |  |
 | `model_name` | `string` |  |
 | `name` | `string` |  |
-| `per_request_limit` | `any` |  |
+| `per_request_limits` | `table|nil` |  |
 | `pricing` | `table` |  |
 | `provider_name` | `string` |  |
 | `quantization` | `any` |  |
 | `reasoning` | `table` |  |
 | `status` | `number` |  |
-| `supported_parameter` | `table` |  |
-| `supported_voice` | `any` |  |
+| `supported_parameters` | `table` |  |
+| `supported_voices` | `table|nil` |  |
 | `supports_implicit_caching` | `boolean` |  |
 | `tag` | `string` |  |
 | `throughput_last_30m` | `any` |  |
 | `top_provider` | `table` |  |
-| `uptime_last_1d` | `any` |  |
-| `uptime_last_30m` | `any` |  |
-| `uptime_last_5m` | `any` |  |
+| `uptime_last_1d` | `number|nil` |  |
+| `uptime_last_30m` | `number|nil` |  |
+| `uptime_last_5m` | `number|nil` |  |
 
 #### Example: Load
 
@@ -2539,7 +2658,7 @@ Create an instance: `local file = client:File(nil)`
 | `filename` | `string` |  |
 | `id` | `string` |  |
 | `mime_type` | `string` |  |
-| `size_byte` | `number` |  |
+| `size_bytes` | `number` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -2563,7 +2682,7 @@ local file, err = client:File():create({
   filename = "example_filename", -- string
   id = "example_id", -- string
   mime_type = "example_mime_type", -- string
-  size_byte = 1, -- number
+  size_bytes = 1, -- number
   type = "example_type", -- string
 })
 ```
@@ -2583,12 +2702,55 @@ Create an instance: `local generation = client:Generation(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
+| `api_type` | `string|nil` |  |
+| `app_id` | `number|nil` |  |
+| `cache_discount` | `number|nil` |  |
+| `cancelled` | `boolean|nil` |  |
+| `created_at` | `string` |  |
+| `data_region` | `string` |  |
+| `external_user` | `string|nil` |  |
+| `finish_reason` | `string|nil` |  |
+| `generation_time` | `number|nil` |  |
+| `http_referer` | `string|nil` |  |
+| `id` | `string` |  |
+| `is_byok` | `boolean` |  |
+| `latency` | `number|nil` |  |
+| `model` | `string` |  |
+| `moderation_latency` | `number|nil` |  |
+| `native_finish_reason` | `string|nil` |  |
+| `native_tokens_cached` | `number|nil` |  |
+| `native_tokens_completion` | `number|nil` |  |
+| `native_tokens_completion_images` | `number|nil` |  |
+| `native_tokens_prompt` | `number|nil` |  |
+| `native_tokens_reasoning` | `number|nil` |  |
+| `num_fetches` | `number|nil` |  |
+| `num_input_audio_prompt` | `number|nil` |  |
+| `num_media_completion` | `number|nil` |  |
+| `num_media_prompt` | `number|nil` |  |
+| `num_search_results` | `number|nil` |  |
+| `origin` | `string` |  |
+| `preset_id` | `string|nil` |  |
+| `provider_name` | `string|nil` |  |
+| `provider_responses` | `table|nil` |  |
+| `request_id` | `string|nil` |  |
+| `response_cache_source_id` | `string|nil` |  |
+| `router` | `string|nil` |  |
+| `service_tier` | `string|nil` |  |
+| `session_id` | `string|nil` |  |
+| `streamed` | `boolean|nil` |  |
+| `tokens_completion` | `number|nil` |  |
+| `tokens_prompt` | `number|nil` |  |
+| `total_cost` | `number` |  |
+| `upstream_id` | `string|nil` |  |
+| `upstream_inference_cost` | `number|nil` |  |
+| `usage` | `number` |  |
+| `user_agent` | `string|nil` |  |
+| `web_search_engine` | `string|nil` |  |
 
 #### Example: Load
 
 ```lua
-local generation, err = client:Generation():load()
+local generation, err = client:Generation():load({ id = "generation_id" })
 ```
 
 
@@ -2606,7 +2768,8 @@ Create an instance: `local generation_content = client:GenerationContent(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
+| `input` | `any` |  |
+| `output` | `table` |  |
 
 #### Example: Load
 
@@ -2632,26 +2795,25 @@ Create an instance: `local guardrail = client:Guardrail(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_model` | `any` |  |
-| `allowed_provider` | `any` |  |
-| `content_filter` | `any` |  |
-| `content_filter_builtin` | `any` |  |
+| `allowed_models` | `table|nil` |  |
+| `allowed_providers` | `table|nil` |  |
+| `content_filter_builtins` | `table|nil` |  |
+| `content_filters` | `table|nil` |  |
 | `created_at` | `string` |  |
-| `data` | `any` |  |
-| `description` | `any` |  |
-| `enforce_zdr` | `any` |  |
-| `enforce_zdr_anthropic` | `any` |  |
-| `enforce_zdr_google` | `any` |  |
-| `enforce_zdr_openai` | `any` |  |
-| `enforce_zdr_other` | `any` |  |
-| `enforce_zdr_xai` | `any` |  |
+| `description` | `string|nil` |  |
+| `enforce_zdr` | `boolean|nil` |  |
+| `enforce_zdr_anthropic` | `boolean|nil` |  |
+| `enforce_zdr_google` | `boolean|nil` |  |
+| `enforce_zdr_openai` | `boolean|nil` |  |
+| `enforce_zdr_other` | `boolean|nil` |  |
+| `enforce_zdr_xai` | `boolean|nil` |  |
 | `id` | `string` |  |
-| `ignored_model` | `any` |  |
-| `ignored_provider` | `any` |  |
-| `limit_usd` | `any` |  |
+| `ignored_models` | `table|nil` |  |
+| `ignored_providers` | `table|nil` |  |
+| `limit_usd` | `number|nil` |  |
 | `name` | `string` |  |
-| `reset_interval` | `any` |  |
-| `updated_at` | `any` |  |
+| `reset_interval` | `string|nil` |  |
+| `updated_at` | `string|nil` |  |
 | `workspace_id` | `string` |  |
 
 #### Example: Load
@@ -2671,9 +2833,9 @@ local guardrails, err = client:Guardrail():list()
 ```lua
 local guardrail, err = client:Guardrail():create({
   created_at = "example_created_at", -- string
-  data = "example_data", -- any
   id = "example_id", -- string
   name = "example_name", -- string
+  workspace_id = "example_workspace_id", -- string
 })
 ```
 
@@ -2696,7 +2858,7 @@ Create an instance: `local image = client:Image(nil)`
 | `background` | `string` |  |
 | `created` | `number` |  |
 | `data` | `table` |  |
-| `input_reference` | `table` |  |
+| `input_references` | `table` |  |
 | `model` | `string` |  |
 | `n` | `number` |  |
 | `output_compression` | `number` |  |
@@ -2737,12 +2899,12 @@ Create an instance: `local image_model_endpoint = client:ImageModelEndpoint(nil)
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_passthrough_parameter` | `table` |  |
+| `allowed_passthrough_parameters` | `table` |  |
 | `pricing` | `table` |  |
 | `provider_name` | `string` |  |
 | `provider_slug` | `string` |  |
-| `provider_tag` | `any` |  |
-| `supported_parameter` | `any` |  |
+| `provider_tag` | `string|nil` |  |
+| `supported_parameters` | `any` |  |
 | `supports_streaming` | `boolean` |  |
 
 #### Example: List
@@ -2769,10 +2931,10 @@ Create an instance: `local image_models_list = client:ImageModelsList(nil)`
 | `architecture` | `table` |  |
 | `created` | `number` |  |
 | `description` | `string` |  |
-| `endpoint` | `string` |  |
+| `endpoints` | `string` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `supported_parameter` | `table` |  |
+| `supported_parameters` | `table` |  |
 | `supports_streaming` | `boolean` |  |
 
 #### Example: List
@@ -2811,7 +2973,7 @@ Create an instance: `local list_key_assignment = client:ListKeyAssignment(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assigned_by` | `any` |  |
+| `assigned_by` | `string|nil` |  |
 | `created_at` | `string` |  |
 | `guardrail_id` | `string` |  |
 | `id` | `string` |  |
@@ -2840,7 +3002,7 @@ Create an instance: `local list_member_assignment = client:ListMemberAssignment(
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assigned_by` | `any` |  |
+| `assigned_by` | `string|nil` |  |
 | `created_at` | `string` |  |
 | `guardrail_id` | `string` |  |
 | `id` | `string` |  |
@@ -2902,7 +3064,7 @@ Create an instance: `local list_preset_version = client:ListPresetVersion(nil)`
 | `creator_id` | `string` |  |
 | `id` | `string` |  |
 | `preset_id` | `string` |  |
-| `system_prompt` | `any` |  |
+| `system_prompt` | `string|nil` |  |
 | `updated_at` | `string` |  |
 | `version` | `number` |  |
 
@@ -2935,7 +3097,7 @@ Create an instance: `local list_workspace_budget = client:ListWorkspaceBudget(ni
 | `created_at` | `string` |  |
 | `id` | `string` |  |
 | `limit_usd` | `number` |  |
-| `reset_interval` | `any` |  |
+| `reset_interval` | `string|nil` |  |
 | `updated_at` | `string` |  |
 | `workspace_id` | `string` |  |
 
@@ -2993,27 +3155,28 @@ Create an instance: `local message = client:Message(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cache_control` | `table` |  |
-| `context_management` | `any` |  |
-| `fallback` | `any` |  |
-| `max_token` | `number` |  |
-| `message` | `any` |  |
+| `context_management` | `table|nil` |  |
+| `fallbacks` | `table|nil` |  |
+| `max_tokens` | `number` |  |
+| `messages` | `table|nil` |  |
 | `metadata` | `table` |  |
 | `model` | `string` |  |
+| `models` | `table` |  |
 | `output_config` | `table` |  |
-| `plugin` | `table` |  |
-| `provider` | `any` |  |
-| `route` | `any` |  |
+| `plugins` | `table` |  |
+| `provider` | `table|nil` |  |
+| `route` | `string|nil` |  |
 | `service_tier` | `string` |  |
 | `session_id` | `string` |  |
 | `speed` | `any` |  |
-| `stop_sequence` | `table` |  |
+| `stop_sequences` | `table` |  |
 | `stop_server_tools_when` | `table` |  |
 | `stream` | `boolean` |  |
 | `system` | `any` |  |
 | `temperature` | `number` |  |
 | `thinking` | `any` |  |
-| `tool` | `table` |  |
 | `tool_choice` | `any` |  |
+| `tools` | `table` |  |
 | `top_k` | `number` |  |
 | `top_p` | `number` |  |
 | `trace` | `table` |  |
@@ -3024,7 +3187,7 @@ Create an instance: `local message = client:Message(nil)`
 ```lua
 local message, err = client:Message():create({
   cache_control = {}, -- table
-  message = "example_message", -- any
+  messages = "example_messages", -- table|nil
   model = "example_model", -- string
 })
 ```
@@ -3051,24 +3214,23 @@ Create an instance: `local model = client:Model(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `architecture` | `table` |  |
-| `benchmark` | `table` |  |
+| `benchmarks` | `table` |  |
 | `canonical_slug` | `string` |  |
-| `context_length` | `any` |  |
+| `context_length` | `number|nil` |  |
 | `created` | `number` |  |
-| `data` | `table` |  |
-| `default_parameter` | `any` |  |
+| `default_parameters` | `table|nil` |  |
 | `description` | `string` |  |
-| `expiration_date` | `any` |  |
-| `hugging_face_id` | `any` |  |
+| `expiration_date` | `string|nil` |  |
+| `hugging_face_id` | `string|nil` |  |
 | `id` | `string` |  |
-| `knowledge_cutoff` | `any` |  |
-| `link` | `table` |  |
+| `knowledge_cutoff` | `string|nil` |  |
+| `links` | `table` |  |
 | `name` | `string` |  |
-| `per_request_limit` | `any` |  |
+| `per_request_limits` | `table|nil` |  |
 | `pricing` | `table` |  |
 | `reasoning` | `table` |  |
-| `supported_parameter` | `table` |  |
-| `supported_voice` | `any` |  |
+| `supported_parameters` | `table` |  |
+| `supported_voices` | `table|nil` |  |
 | `top_provider` | `table` |  |
 
 #### Example: Load
@@ -3098,7 +3260,7 @@ Create an instance: `local models_count = client:ModelsCount(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
+| `count` | `number` |  |
 
 #### Example: Load
 
@@ -3122,23 +3284,23 @@ Create an instance: `local models_list = client:ModelsList(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `architecture` | `table` |  |
-| `benchmark` | `table` |  |
+| `benchmarks` | `table` |  |
 | `canonical_slug` | `string` |  |
-| `context_length` | `any` |  |
+| `context_length` | `number|nil` |  |
 | `created` | `number` |  |
-| `default_parameter` | `any` |  |
+| `default_parameters` | `table|nil` |  |
 | `description` | `string` |  |
-| `expiration_date` | `any` |  |
-| `hugging_face_id` | `any` |  |
+| `expiration_date` | `string|nil` |  |
+| `hugging_face_id` | `string|nil` |  |
 | `id` | `string` |  |
-| `knowledge_cutoff` | `any` |  |
-| `link` | `table` |  |
+| `knowledge_cutoff` | `string|nil` |  |
+| `links` | `table` |  |
 | `name` | `string` |  |
-| `per_request_limit` | `any` |  |
+| `per_request_limits` | `table|nil` |  |
 | `pricing` | `table` |  |
 | `reasoning` | `table` |  |
-| `supported_parameter` | `table` |  |
-| `supported_voice` | `any` |  |
+| `supported_parameters` | `table` |  |
+| `supported_voices` | `table|nil` |  |
 | `top_provider` | `table` |  |
 
 #### Example: List
@@ -3162,31 +3324,35 @@ Create an instance: `local o_auth = client:OAuth(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `app_id` | `number` |  |
 | `callback_url` | `string` |  |
 | `code` | `string` |  |
 | `code_challenge` | `string` |  |
-| `code_challenge_method` | `any` |  |
+| `code_challenge_method` | `string|nil` |  |
 | `code_verifier` | `string` |  |
-| `data` | `table` |  |
-| `expires_at` | `any` |  |
+| `created_at` | `string` |  |
+| `expires_at` | `string|nil` |  |
+| `id` | `string` |  |
 | `key` | `string` |  |
 | `key_label` | `string` |  |
 | `limit` | `number` |  |
 | `spawn_agent` | `string` |  |
 | `spawn_cloud` | `string` |  |
 | `usage_limit_type` | `string` |  |
-| `user_id` | `any` |  |
+| `user_id` | `string|nil` |  |
 | `workspace_id` | `string` |  |
 
 #### Example: Create
 
 ```lua
 local o_auth, err = client:OAuth():create({
+  app_id = 1, -- number
   callback_url = "example_callback_url", -- string
   code = "example_code", -- string
-  data = {}, -- table
+  created_at = "example_created_at", -- string
+  id = "example_id", -- string
   key = "example_key", -- string
-  user_id = "example_user_id", -- any
+  user_id = "example_user_id", -- string|nil
 })
 ```
 
@@ -3206,7 +3372,7 @@ Create an instance: `local observability_destination = client:ObservabilityDesti
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `any` |  |
+| `data` | `table` |  |
 
 #### Example: Load
 
@@ -3229,44 +3395,45 @@ Create an instance: `local open_responses_result = client:OpenResponsesResult(ni
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `background` | `any` |  |
+| `background` | `boolean|nil` |  |
 | `cache_control` | `table` |  |
 | `debug` | `table` |  |
-| `frequency_penalty` | `any` |  |
+| `frequency_penalty` | `number|nil` |  |
 | `image_config` | `table` |  |
-| `include` | `any` |  |
+| `include` | `table|nil` |  |
 | `input` | `any` |  |
-| `instruction` | `any` |  |
-| `max_output_token` | `any` |  |
-| `max_tool_call` | `any` |  |
-| `metadata` | `any` |  |
-| `modality` | `table` |  |
+| `instructions` | `string|nil` |  |
+| `max_output_tokens` | `number|nil` |  |
+| `max_tool_calls` | `number|nil` |  |
+| `metadata` | `table|nil` |  |
+| `modalities` | `table` |  |
 | `model` | `string` |  |
-| `parallel_tool_call` | `any` |  |
-| `plugin` | `table` |  |
-| `presence_penalty` | `any` |  |
+| `models` | `table` |  |
+| `parallel_tool_calls` | `boolean|nil` |  |
+| `plugins` | `table` |  |
+| `presence_penalty` | `number|nil` |  |
 | `previous_response_id` | `string` |  |
-| `prompt` | `any` |  |
-| `prompt_cache_key` | `any` |  |
-| `prompt_cache_option` | `any` |  |
-| `provider` | `any` |  |
+| `prompt` | `table|nil` |  |
+| `prompt_cache_key` | `string|nil` |  |
+| `prompt_cache_options` | `table|nil` |  |
+| `provider` | `table|nil` |  |
 | `reasoning` | `any` |  |
-| `route` | `any` |  |
-| `safety_identifier` | `any` |  |
-| `service_tier` | `any` |  |
+| `route` | `string|nil` |  |
+| `safety_identifier` | `string|nil` |  |
+| `service_tier` | `string|nil` |  |
 | `session_id` | `string` |  |
 | `stop_server_tools_when` | `table` |  |
 | `store` | `boolean` |  |
 | `stream` | `boolean` |  |
-| `temperature` | `any` |  |
+| `temperature` | `number|nil` |  |
 | `text` | `any` |  |
-| `tool` | `table` |  |
 | `tool_choice` | `any` |  |
+| `tools` | `table` |  |
 | `top_k` | `number` |  |
-| `top_logprob` | `any` |  |
-| `top_p` | `any` |  |
+| `top_logprobs` | `number|nil` |  |
+| `top_p` | `number|nil` |  |
 | `trace` | `table` |  |
-| `truncation` | `any` |  |
+| `truncation` | `string|nil` |  |
 | `user` | `string` |  |
 
 #### Example: Create
@@ -3274,8 +3441,8 @@ Create an instance: `local open_responses_result = client:OpenResponsesResult(ni
 ```lua
 local open_responses_result, err = client:OpenResponsesResult():create({
   cache_control = {}, -- table
-  prompt = "example_prompt", -- any
-  prompt_cache_option = "example_prompt_cache_option", -- any
+  prompt = "example_prompt", -- table|nil
+  prompt_cache_options = "example_prompt_cache_options", -- table|nil
 })
 ```
 
@@ -3295,9 +3462,9 @@ Create an instance: `local organization = client:Organization(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `string` |  |
-| `first_name` | `any` |  |
+| `first_name` | `string|nil` |  |
 | `id` | `string` |  |
-| `last_name` | `any` |  |
+| `last_name` | `string|nil` |  |
 | `role` | `string` |  |
 
 #### Example: List
@@ -3323,17 +3490,17 @@ Create an instance: `local preset = client:Preset(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `created_at` | `string` |  |
-| `creator_user_id` | `any` |  |
-| `data` | `any` |  |
-| `description` | `any` |  |
-| `designated_version_id` | `any` |  |
+| `creator_user_id` | `string|nil` |  |
+| `description` | `string|nil` |  |
+| `designated_version` | `table|nil` |  |
+| `designated_version_id` | `string|nil` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
 | `slug` | `string` |  |
 | `status` | `string` |  |
-| `status_updated_at` | `any` |  |
+| `status_updated_at` | `string|nil` |  |
 | `updated_at` | `string` |  |
-| `workspace_id` | `any` |  |
+| `workspace_id` | `string|nil` |  |
 
 #### Example: Load
 
@@ -3362,7 +3529,14 @@ Create an instance: `local preset_version = client:PresetVersion(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `any` |  |
+| `config` | `table` |  |
+| `created_at` | `string` |  |
+| `creator_id` | `string` |  |
+| `id` | `string` |  |
+| `preset_id` | `string` |  |
+| `system_prompt` | `string|nil` |  |
+| `updated_at` | `string` |  |
+| `version` | `number` |  |
 
 #### Example: Load
 
@@ -3385,13 +3559,13 @@ Create an instance: `local provider = client:Provider(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datacenter` | `any` |  |
-| `headquarter` | `any` |  |
+| `datacenters` | `table|nil` |  |
+| `headquarters` | `string|nil` |  |
 | `name` | `string` |  |
-| `privacy_policy_url` | `any` |  |
+| `privacy_policy_url` | `string|nil` |  |
 | `slug` | `string` |  |
-| `status_page_url` | `any` |  |
-| `terms_of_service_url` | `any` |  |
+| `status_page_url` | `string|nil` |  |
+| `terms_of_service_url` | `string|nil` |  |
 
 #### Example: List
 
@@ -3421,7 +3595,7 @@ Create an instance: `local rankings_daily = client:RankingsDaily(nil)`
 | --- | --- | --- |
 | `date` | `string` |  |
 | `model_permaslug` | `string` |  |
-| `total_token` | `string` |  |
+| `total_tokens` | `string` |  |
 
 #### Example: List
 
@@ -3449,12 +3623,12 @@ Create an instance: `local rerank = client:Rerank(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `document` | `table` |  |
+| `documents` | `table` |  |
 | `id` | `string` |  |
 | `model` | `string` |  |
 | `provider` | `string` |  |
 | `query` | `string` |  |
-| `result` | `table` |  |
+| `results` | `table` |  |
 | `top_n` | `number` |  |
 | `usage` | `table` |  |
 
@@ -3462,10 +3636,10 @@ Create an instance: `local rerank = client:Rerank(nil)`
 
 ```lua
 local rerank, err = client:Rerank():create({
-  document = {}, -- table
+  documents = {}, -- table
   model = "example_model", -- string
   query = "example_query", -- string
-  result = {}, -- table
+  results = {}, -- table
 })
 ```
 
@@ -3500,13 +3674,13 @@ Create an instance: `local stt = client:Stt(nil)`
 | `model` | `string` |  |
 | `provider` | `table` |  |
 | `response_format` | `string` |  |
-| `segment` | `table` |  |
+| `segments` | `table` |  |
 | `task` | `string` |  |
 | `temperature` | `number` |  |
 | `text` | `string` |  |
-| `timestamp_granularity` | `table` |  |
+| `timestamp_granularities` | `table` |  |
 | `usage` | `table` |  |
-| `word` | `table` |  |
+| `words` | `table` |  |
 
 #### Example: Create
 
@@ -3535,16 +3709,16 @@ Create an instance: `local submit_generation_feedback = client:SubmitGenerationF
 | --- | --- | --- |
 | `category` | `string` |  |
 | `comment` | `string` |  |
-| `data` | `table` |  |
 | `generation_id` | `string` |  |
+| `success` | `boolean` |  |
 
 #### Example: Create
 
 ```lua
 local submit_generation_feedback, err = client:SubmitGenerationFeedback():create({
   category = "example_category", -- string
-  data = {}, -- table
   generation_id = "example_generation_id", -- string
+  success = true, -- boolean
 })
 ```
 
@@ -3563,7 +3737,10 @@ Create an instance: `local task = client:Task(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
+| `as_of` | `string` |  |
+| `classifications` | `table` |  |
+| `macro_categories` | `table` |  |
+| `window_days` | `number` |  |
 
 #### Example: Load
 
@@ -3647,13 +3824,12 @@ Create an instance: `local update_byok_key = client:UpdateByokKey(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_model` | `any` |  |
-| `allowed_user_id` | `any` |  |
-| `data` | `any` |  |
+| `allowed_models` | `table|nil` |  |
+| `allowed_user_ids` | `table|nil` |  |
 | `disabled` | `boolean` |  |
 | `is_fallback` | `boolean` |  |
 | `key` | `string` |  |
-| `name` | `any` |  |
+| `name` | `string|nil` |  |
 
 
 ### UpdateGuardrail
@@ -3670,23 +3846,22 @@ Create an instance: `local update_guardrail = client:UpdateGuardrail(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_model` | `any` |  |
-| `allowed_provider` | `any` |  |
-| `content_filter` | `any` |  |
-| `content_filter_builtin` | `any` |  |
-| `data` | `any` |  |
-| `description` | `any` |  |
-| `enforce_zdr` | `any` |  |
-| `enforce_zdr_anthropic` | `any` |  |
-| `enforce_zdr_google` | `any` |  |
-| `enforce_zdr_openai` | `any` |  |
-| `enforce_zdr_other` | `any` |  |
-| `enforce_zdr_xai` | `any` |  |
-| `ignored_model` | `any` |  |
-| `ignored_provider` | `any` |  |
-| `limit_usd` | `any` |  |
+| `allowed_models` | `table|nil` |  |
+| `allowed_providers` | `table|nil` |  |
+| `content_filter_builtins` | `table|nil` |  |
+| `content_filters` | `table|nil` |  |
+| `description` | `string|nil` |  |
+| `enforce_zdr` | `boolean|nil` |  |
+| `enforce_zdr_anthropic` | `boolean|nil` |  |
+| `enforce_zdr_google` | `boolean|nil` |  |
+| `enforce_zdr_openai` | `boolean|nil` |  |
+| `enforce_zdr_other` | `boolean|nil` |  |
+| `enforce_zdr_xai` | `boolean|nil` |  |
+| `ignored_models` | `table|nil` |  |
+| `ignored_providers` | `table|nil` |  |
+| `limit_usd` | `number|nil` |  |
 | `name` | `string` |  |
-| `reset_interval` | `any` |  |
+| `reset_interval` | `string|nil` |  |
 
 
 ### UpdateObservabilityDestination
@@ -3703,11 +3878,10 @@ Create an instance: `local update_observability_destination = client:UpdateObser
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key_hash` | `any` |  |
+| `api_key_hashes` | `table|nil` |  |
 | `config` | `table` |  |
-| `data` | `any` |  |
 | `enabled` | `boolean` |  |
-| `filter_rule` | `any` |  |
+| `filter_rules` | `any` |  |
 | `name` | `string` |  |
 | `privacy_mode` | `boolean` |  |
 | `sampling_rate` | `number` |  |
@@ -3730,21 +3904,20 @@ Create an instance: `local update_workspace = client:UpdateWorkspace(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `created_at` | `string` |  |
-| `created_by` | `any` |  |
-| `data` | `any` |  |
-| `default_image_model` | `any` |  |
-| `default_provider_sort` | `any` |  |
-| `default_text_model` | `any` |  |
-| `description` | `any` |  |
+| `created_by` | `string|nil` |  |
+| `default_image_model` | `string|nil` |  |
+| `default_provider_sort` | `string|nil` |  |
+| `default_text_model` | `string|nil` |  |
+| `description` | `string|nil` |  |
 | `id` | `string` |  |
-| `io_logging_api_key_id` | `any` |  |
+| `io_logging_api_key_ids` | `table|nil` |  |
 | `io_logging_sampling_rate` | `number` |  |
 | `is_data_discount_logging_enabled` | `boolean` |  |
 | `is_observability_broadcast_enabled` | `boolean` |  |
 | `is_observability_io_logging_enabled` | `boolean` |  |
 | `name` | `string` |  |
 | `slug` | `string` |  |
-| `updated_at` | `any` |  |
+| `updated_at` | `string|nil` |  |
 
 #### Example: List
 
@@ -3757,12 +3930,11 @@ local update_workspaces, err = client:UpdateWorkspace():list()
 ```lua
 local update_workspace, err = client:UpdateWorkspace():create({
   created_at = "example_created_at", -- string
-  created_by = "example_created_by", -- any
-  data = "example_data", -- any
+  created_by = "example_created_by", -- string|nil
   id = "example_id", -- string
   name = "example_name", -- string
   slug = "example_slug", -- string
-  updated_at = "example_updated_at", -- any
+  updated_at = "example_updated_at", -- string|nil
 })
 ```
 
@@ -3781,7 +3953,6 @@ Create an instance: `local upsert_workspace_budget = client:UpsertWorkspaceBudge
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `any` |  |
 | `limit_usd` | `number` |  |
 
 
@@ -3814,11 +3985,11 @@ Create an instance: `local video = client:Video(nil)`
 | `callback_url` | `string` |  |
 | `duration` | `number` |  |
 | `error` | `string` |  |
-| `frame_image` | `table` |  |
+| `frame_images` | `table` |  |
 | `generate_audio` | `boolean` |  |
 | `generation_id` | `string` |  |
 | `id` | `string` |  |
-| `input_reference` | `table` |  |
+| `input_references` | `table` |  |
 | `model` | `string` |  |
 | `polling_url` | `string` |  |
 | `prompt` | `string` |  |
@@ -3827,7 +3998,7 @@ Create an instance: `local video = client:Video(nil)`
 | `seed` | `number` |  |
 | `size` | `string` |  |
 | `status` | `string` |  |
-| `unsigned_url` | `table` |  |
+| `unsigned_urls` | `table` |  |
 | `usage` | `table` |  |
 
 #### Example: Load
@@ -3879,21 +4050,21 @@ Create an instance: `local video_models_list = client:VideoModelsList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_passthrough_parameter` | `table` |  |
+| `allowed_passthrough_parameters` | `table` |  |
 | `canonical_slug` | `string` |  |
 | `created` | `number` |  |
 | `description` | `string` |  |
-| `generate_audio` | `any` |  |
-| `hugging_face_id` | `any` |  |
+| `generate_audio` | `boolean|nil` |  |
+| `hugging_face_id` | `string|nil` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `pricing_skus` | `any` |  |
-| `seed` | `any` |  |
-| `supported_aspect_ratio` | `any` |  |
-| `supported_duration` | `any` |  |
-| `supported_frame_image` | `any` |  |
-| `supported_resolution` | `any` |  |
-| `supported_size` | `any` |  |
+| `pricing_skus` | `table|nil` |  |
+| `seed` | `boolean|nil` |  |
+| `supported_aspect_ratios` | `table|nil` |  |
+| `supported_durations` | `table|nil` |  |
+| `supported_frame_images` | `table|nil` |  |
+| `supported_resolutions` | `table|nil` |  |
+| `supported_sizes` | `table|nil` |  |
 
 #### Example: List
 
@@ -3917,7 +4088,21 @@ Create an instance: `local workspace = client:Workspace(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `any` |  |
+| `created_at` | `string` |  |
+| `created_by` | `string|nil` |  |
+| `default_image_model` | `string|nil` |  |
+| `default_provider_sort` | `string|nil` |  |
+| `default_text_model` | `string|nil` |  |
+| `description` | `string|nil` |  |
+| `id` | `string` |  |
+| `io_logging_api_key_ids` | `table|nil` |  |
+| `io_logging_sampling_rate` | `number` |  |
+| `is_data_discount_logging_enabled` | `boolean` |  |
+| `is_observability_broadcast_enabled` | `boolean` |  |
+| `is_observability_io_logging_enabled` | `boolean` |  |
+| `name` | `string` |  |
+| `slug` | `string` |  |
+| `updated_at` | `string|nil` |  |
 
 #### Example: Load
 
@@ -4018,11 +4203,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local activity = client:Activity()
-activity:list()
+local organization = client:Organization()
+organization:list()
 
--- activity:data_get() now returns the activity data from the last list
--- activity:match_get() returns the last match criteria
+-- organization:data_get() now returns the organization data from the last list
+-- organization:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

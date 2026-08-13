@@ -26,8 +26,8 @@ import {
 describe('PresetVersionEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -59,9 +59,12 @@ describe('PresetVersionEntity', async () => {
 
     let preset_version_ref01_data = Object.values(setup.data.existing.preset_version)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const preset_version_ref01_ent = client.PresetVersion()
+    const preset_version_ref01_match_dt0: any = {}
+    preset_version_ref01_match_dt0.id = preset_version_ref01_data.id
+    const preset_version_ref01_data_dt0 = (await preset_version_ref01_ent.load(preset_version_ref01_match_dt0)).data()
+    assert(preset_version_ref01_data_dt0.id === preset_version_ref01_data.id)
 
 
   })

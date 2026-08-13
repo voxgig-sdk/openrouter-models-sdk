@@ -37,7 +37,7 @@ class ImageModelEndpointEntity extends OpenrouterModelsEntityBase<ImageModelEndp
 
 
 
-  async list(this: any, reqmatch?: ImageModelEndpointListMatch, ctrl?: Control): Promise<ImageModelEndpoint[]> {
+  async list(this: any, reqmatch?: ImageModelEndpointListMatch, ctrl?: Control): Promise<ImageModelEndpointEntity[]> {
 
     const utility = this._utility
 

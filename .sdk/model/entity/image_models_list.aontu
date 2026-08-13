@@ -21,7 +21,7 @@ main: kit: entity: image_models_list: {
       type: "`$STRING`"
     }
     {
-      name: "endpoint"
+      name: "endpoints"
       req: true
       type: "`$STRING`"
     }
@@ -36,7 +36,7 @@ main: kit: entity: image_models_list: {
       type: "`$STRING`"
     }
     {
-      name: "supported_parameter"
+      name: "supported_parameters"
       req: true
       type: "`$OBJECT`"
     }
@@ -98,7 +98,7 @@ main: kit: entity: image_models_list: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

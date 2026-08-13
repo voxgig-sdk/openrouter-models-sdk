@@ -74,16 +74,16 @@ def list_preset_version_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "OPENROUTERMODELS_TEST_LIST_PRESET_VERSION_ENTID" => {},
-    "OPENROUTERMODELS_TEST_LIVE" => "FALSE",
-    "OPENROUTERMODELS_APIKEY" => "NONE",
+    "OPENROUTER_MODELS_TEST_LIST_PRESET_VERSION_ENTID" => {},
+    "OPENROUTER_MODELS_TEST_LIVE" => "FALSE",
+    "OPENROUTER_MODELS_APIKEY" => "NONE",
   })
 
-  live = env["OPENROUTERMODELS_TEST_LIVE"] == "TRUE"
+  live = env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["OPENROUTERMODELS_APIKEY"],
+      "apikey" => env["OPENROUTER_MODELS_APIKEY"],
     }
     client = OpenrouterModelsSDK.new(merged_opts)
     return {

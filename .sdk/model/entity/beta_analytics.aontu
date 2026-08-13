@@ -6,28 +6,44 @@ main: kit: entity: beta_analytics: {
 
   fields: [
     {
-      name: "classifier_dimension"
+      name: "cachedAt"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "classifier_dimensions"
       req: true
       type: "`$OBJECT`"
     }
     {
-      name: "classifier_filter"
+      name: "classifier_filters"
       req: true
       type: "`$OBJECT`"
     }
     {
       name: "data"
       req: true
-      type: "`$OBJECT`"
+      type: "`$ARRAY`"
     }
     {
-      name: "dimension"
+      name: "dimensions"
+      op: {
+        create: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "filters"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "filter"
-      req: false
+      name: "granularities"
+      req: true
       type: "`$ARRAY`"
     }
     {
@@ -46,7 +62,17 @@ main: kit: entity: beta_analytics: {
       type: "`$INTEGER`"
     }
     {
-      name: "metric"
+      name: "metadata"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "metrics"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "operators"
       req: true
       type: "`$ARRAY`"
     }
@@ -59,6 +85,11 @@ main: kit: entity: beta_analytics: {
       name: "time_range"
       req: true
       type: "`$OBJECT`"
+    }
+    {
+      name: "warnings"
+      req: false
+      type: "`$ARRAY`"
     }
   ]
 
@@ -108,7 +139,7 @@ main: kit: entity: beta_analytics: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -157,7 +188,7 @@ main: kit: entity: beta_analytics: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

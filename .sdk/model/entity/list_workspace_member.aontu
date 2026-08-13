@@ -126,7 +126,7 @@ main: kit: entity: list_workspace_member: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

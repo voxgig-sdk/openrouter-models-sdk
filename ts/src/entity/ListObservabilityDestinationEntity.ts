@@ -37,7 +37,7 @@ class ListObservabilityDestinationEntity extends OpenrouterModelsEntityBase<List
 
 
 
-  async list(this: any, reqmatch?: ListObservabilityDestinationListMatch, ctrl?: Control): Promise<ListObservabilityDestination[]> {
+  async list(this: any, reqmatch?: ListObservabilityDestinationListMatch, ctrl?: Control): Promise<ListObservabilityDestinationEntity[]> {
 
     const utility = this._utility
 

@@ -52,7 +52,7 @@ Endpoint is nested under author, so provide the `author`.
 
 ```ruby
 begin
-  # load returns the bare Endpoint record (raises on error).
+  # load returns the ENTITY — call data_get for the Endpoint record (raises on error).
   endpoint = client.Endpoint.load({ "author" => "example_author", "slug" => "example_slug" })
   puts endpoint
 rescue => err
@@ -67,7 +67,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  activitys = client.Activity.list()
+  organizations = client.Organization.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -135,9 +135,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = OpenrouterModelsSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-activity = client.Activity.list()
-puts activity
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+organization = client.Organization.list()
+puts organization
 ```
 
 ### Use a custom fetch function
@@ -344,15 +345,15 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `byok_usage_inference` |  |
-| `completion_token` |  |
+| `completion_tokens` |  |
 | `date` |  |
 | `endpoint_id` |  |
 | `model` |  |
 | `model_permaslug` |  |
-| `prompt_token` |  |
+| `prompt_tokens` |  |
 | `provider_name` |  |
-| `reasoning_token` |  |
-| `request` |  |
+| `reasoning_tokens` |  |
+| `requests` |  |
 | `usage` |  |
 
 Operations: List.
@@ -378,16 +379,19 @@ API path: ``
 | `byok_usage_weekly` |  |
 | `created_at` |  |
 | `creator_user_id` |  |
-| `data` |  |
 | `disabled` |  |
 | `expires_at` |  |
 | `hash` |  |
 | `include_byok_in_limit` |  |
+| `is_free_tier` |  |
+| `is_management_key` |  |
+| `is_provisioning_key` |  |
 | `label` |  |
 | `limit` |  |
 | `limit_remaining` |  |
 | `limit_reset` |  |
 | `name` |  |
+| `rate_limit` |  |
 | `updated_at` |  |
 | `usage` |  |
 | `usage_daily` |  |
@@ -406,8 +410,8 @@ API path: `/keys`
 | `app_id` |  |
 | `app_name` |  |
 | `rank` |  |
-| `total_request` |  |
-| `total_token` |  |
+| `total_requests` |  |
+| `total_tokens` |  |
 
 Operations: List.
 
@@ -426,17 +430,22 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `classifier_dimension` |  |
-| `classifier_filter` |  |
+| `cachedAt` |  |
+| `classifier_dimensions` |  |
+| `classifier_filters` |  |
 | `data` |  |
-| `dimension` |  |
-| `filter` |  |
+| `dimensions` |  |
+| `filters` |  |
+| `granularities` |  |
 | `granularity` |  |
 | `group_limit` |  |
 | `limit` |  |
-| `metric` |  |
+| `metadata` |  |
+| `metrics` |  |
+| `operators` |  |
 | `order_by` |  |
 | `time_range` |  |
+| `warnings` |  |
 
 Operations: Create, Load.
 
@@ -457,7 +466,7 @@ API path: ``
 | --- | --- |
 | `added_count` |  |
 | `data` |  |
-| `user_id` |  |
+| `user_ids` |  |
 
 Operations: Create.
 
@@ -468,7 +477,7 @@ API path: `/workspaces/{id}/members/add`
 | Field | Description |
 | --- | --- |
 | `assigned_count` |  |
-| `key_hash` |  |
+| `key_hashes` |  |
 
 Operations: Create.
 
@@ -479,7 +488,7 @@ API path: `/guardrails/{id}/assignments/keys`
 | Field | Description |
 | --- | --- |
 | `assigned_count` |  |
-| `member_user_id` |  |
+| `member_user_ids` |  |
 
 Operations: Create.
 
@@ -490,7 +499,7 @@ API path: `/guardrails/{id}/assignments/members`
 | Field | Description |
 | --- | --- |
 | `removed_count` |  |
-| `user_id` |  |
+| `user_ids` |  |
 
 Operations: Create.
 
@@ -500,7 +509,7 @@ API path: `/workspaces/{id}/members/remove`
 
 | Field | Description |
 | --- | --- |
-| `key_hash` |  |
+| `key_hashes` |  |
 | `unassigned_count` |  |
 
 Operations: Create.
@@ -511,7 +520,7 @@ API path: `/guardrails/{id}/assignments/keys/remove`
 
 | Field | Description |
 | --- | --- |
-| `member_user_id` |  |
+| `member_user_ids` |  |
 | `unassigned_count` |  |
 
 Operations: Create.
@@ -522,11 +531,10 @@ API path: `/guardrails/{id}/assignments/members/remove`
 
 | Field | Description |
 | --- | --- |
-| `allowed_api_key_hash` |  |
-| `allowed_model` |  |
-| `allowed_user_id` |  |
+| `allowed_api_key_hashes` |  |
+| `allowed_models` |  |
+| `allowed_user_ids` |  |
 | `created_at` |  |
-| `data` |  |
 | `disabled` |  |
 | `id` |  |
 | `is_fallback` |  |
@@ -546,29 +554,30 @@ API path: `/byok`
 | Field | Description |
 | --- | --- |
 | `cache_control` |  |
-| `choice` |  |
+| `choices` |  |
 | `created` |  |
 | `debug` |  |
 | `frequency_penalty` |  |
 | `id` |  |
 | `image_config` |  |
-| `logit_bia` |  |
-| `logprob` |  |
-| `max_completion_token` |  |
-| `max_token` |  |
-| `message` |  |
+| `logit_bias` |  |
+| `logprobs` |  |
+| `max_completion_tokens` |  |
+| `max_tokens` |  |
+| `messages` |  |
 | `metadata` |  |
 | `min_p` |  |
-| `modality` |  |
+| `modalities` |  |
 | `model` |  |
+| `models` |  |
 | `object` |  |
 | `openrouter_metadata` |  |
-| `parallel_tool_call` |  |
-| `plugin` |  |
+| `parallel_tool_calls` |  |
+| `plugins` |  |
 | `prediction` |  |
 | `presence_penalty` |  |
 | `prompt_cache_key` |  |
-| `prompt_cache_option` |  |
+| `prompt_cache_options` |  |
 | `provider` |  |
 | `reasoning` |  |
 | `reasoning_effort` |  |
@@ -581,14 +590,14 @@ API path: `/byok`
 | `stop` |  |
 | `stop_server_tools_when` |  |
 | `stream` |  |
-| `stream_option` |  |
+| `stream_options` |  |
 | `system_fingerprint` |  |
 | `temperature` |  |
-| `tool` |  |
 | `tool_choice` |  |
+| `tools` |  |
 | `top_a` |  |
 | `top_k` |  |
-| `top_logprob` |  |
+| `top_logprobs` |  |
 | `top_p` |  |
 | `trace` |  |
 | `usage` |  |
@@ -665,10 +674,10 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `api_key_hash` |  |
+| `api_key_hashes` |  |
 | `config` |  |
 | `enabled` |  |
-| `filter_rule` |  |
+| `filter_rules` |  |
 | `name` |  |
 | `privacy_mode` |  |
 | `sampling_rate` |  |
@@ -686,34 +695,34 @@ API path: `/observability/destinations`
 | `background` |  |
 | `cache_control` |  |
 | `context_management` |  |
-| `data` |  |
 | `debug` |  |
-| `fallback` |  |
+| `fallbacks` |  |
 | `frequency_penalty` |  |
 | `image_config` |  |
 | `include` |  |
 | `input` |  |
-| `instruction` |  |
-| `logit_bia` |  |
-| `logprob` |  |
-| `max_completion_token` |  |
-| `max_output_token` |  |
-| `max_token` |  |
-| `max_tool_call` |  |
-| `message` |  |
+| `instructions` |  |
+| `logit_bias` |  |
+| `logprobs` |  |
+| `max_completion_tokens` |  |
+| `max_output_tokens` |  |
+| `max_tokens` |  |
+| `max_tool_calls` |  |
+| `messages` |  |
 | `metadata` |  |
 | `min_p` |  |
-| `modality` |  |
+| `modalities` |  |
 | `model` |  |
+| `models` |  |
 | `output_config` |  |
-| `parallel_tool_call` |  |
-| `plugin` |  |
+| `parallel_tool_calls` |  |
+| `plugins` |  |
 | `prediction` |  |
 | `presence_penalty` |  |
 | `previous_response_id` |  |
 | `prompt` |  |
 | `prompt_cache_key` |  |
-| `prompt_cache_option` |  |
+| `prompt_cache_options` |  |
 | `provider` |  |
 | `reasoning` |  |
 | `reasoning_effort` |  |
@@ -726,20 +735,20 @@ API path: `/observability/destinations`
 | `session_id` |  |
 | `speed` |  |
 | `stop` |  |
-| `stop_sequence` |  |
+| `stop_sequences` |  |
 | `stop_server_tools_when` |  |
 | `store` |  |
 | `stream` |  |
-| `stream_option` |  |
+| `stream_options` |  |
 | `system` |  |
 | `temperature` |  |
 | `text` |  |
 | `thinking` |  |
-| `tool` |  |
 | `tool_choice` |  |
+| `tools` |  |
 | `top_a` |  |
 | `top_k` |  |
-| `top_logprob` |  |
+| `top_logprobs` |  |
 | `top_p` |  |
 | `trace` |  |
 | `truncation` |  |
@@ -762,7 +771,8 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `total_credits` |  |
+| `total_usage` |  |
 
 Operations: Create, Load.
 
@@ -782,7 +792,7 @@ API path: ``
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `dimension` |  |
+| `dimensions` |  |
 | `encoding_format` |  |
 | `id` |  |
 | `input` |  |
@@ -802,32 +812,32 @@ API path: `/embeddings`
 | Field | Description |
 | --- | --- |
 | `architecture` |  |
-| `benchmark` |  |
+| `benchmarks` |  |
 | `canonical_slug` |  |
 | `context_length` |  |
 | `created` |  |
-| `data` |  |
-| `default_parameter` |  |
+| `default_parameters` |  |
 | `description` |  |
+| `endpoints` |  |
 | `expiration_date` |  |
 | `hugging_face_id` |  |
 | `id` |  |
 | `knowledge_cutoff` |  |
 | `latency_last_30m` |  |
-| `link` |  |
-| `max_completion_token` |  |
-| `max_prompt_token` |  |
+| `links` |  |
+| `max_completion_tokens` |  |
+| `max_prompt_tokens` |  |
 | `model_id` |  |
 | `model_name` |  |
 | `name` |  |
-| `per_request_limit` |  |
+| `per_request_limits` |  |
 | `pricing` |  |
 | `provider_name` |  |
 | `quantization` |  |
 | `reasoning` |  |
 | `status` |  |
-| `supported_parameter` |  |
-| `supported_voice` |  |
+| `supported_parameters` |  |
+| `supported_voices` |  |
 | `supports_implicit_caching` |  |
 | `tag` |  |
 | `throughput_last_30m` |  |
@@ -858,7 +868,7 @@ API path: ``
 | `filename` |  |
 | `id` |  |
 | `mime_type` |  |
-| `size_byte` |  |
+| `size_bytes` |  |
 | `type` |  |
 
 Operations: Create, List, Load, Remove.
@@ -869,7 +879,50 @@ API path: `/files`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `api_type` |  |
+| `app_id` |  |
+| `cache_discount` |  |
+| `cancelled` |  |
+| `created_at` |  |
+| `data_region` |  |
+| `external_user` |  |
+| `finish_reason` |  |
+| `generation_time` |  |
+| `http_referer` |  |
+| `id` |  |
+| `is_byok` |  |
+| `latency` |  |
+| `model` |  |
+| `moderation_latency` |  |
+| `native_finish_reason` |  |
+| `native_tokens_cached` |  |
+| `native_tokens_completion` |  |
+| `native_tokens_completion_images` |  |
+| `native_tokens_prompt` |  |
+| `native_tokens_reasoning` |  |
+| `num_fetches` |  |
+| `num_input_audio_prompt` |  |
+| `num_media_completion` |  |
+| `num_media_prompt` |  |
+| `num_search_results` |  |
+| `origin` |  |
+| `preset_id` |  |
+| `provider_name` |  |
+| `provider_responses` |  |
+| `request_id` |  |
+| `response_cache_source_id` |  |
+| `router` |  |
+| `service_tier` |  |
+| `session_id` |  |
+| `streamed` |  |
+| `tokens_completion` |  |
+| `tokens_prompt` |  |
+| `total_cost` |  |
+| `upstream_id` |  |
+| `upstream_inference_cost` |  |
+| `usage` |  |
+| `user_agent` |  |
+| `web_search_engine` |  |
 
 Operations: Load.
 
@@ -879,7 +932,8 @@ API path: `/generation`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `input` |  |
+| `output` |  |
 
 Operations: Load.
 
@@ -889,12 +943,11 @@ API path: `/generation/content`
 
 | Field | Description |
 | --- | --- |
-| `allowed_model` |  |
-| `allowed_provider` |  |
-| `content_filter` |  |
-| `content_filter_builtin` |  |
+| `allowed_models` |  |
+| `allowed_providers` |  |
+| `content_filter_builtins` |  |
+| `content_filters` |  |
 | `created_at` |  |
-| `data` |  |
 | `description` |  |
 | `enforce_zdr` |  |
 | `enforce_zdr_anthropic` |  |
@@ -903,8 +956,8 @@ API path: `/generation/content`
 | `enforce_zdr_other` |  |
 | `enforce_zdr_xai` |  |
 | `id` |  |
-| `ignored_model` |  |
-| `ignored_provider` |  |
+| `ignored_models` |  |
+| `ignored_providers` |  |
 | `limit_usd` |  |
 | `name` |  |
 | `reset_interval` |  |
@@ -923,7 +976,7 @@ API path: `/guardrails`
 | `background` |  |
 | `created` |  |
 | `data` |  |
-| `input_reference` |  |
+| `input_references` |  |
 | `model` |  |
 | `n` |  |
 | `output_compression` |  |
@@ -945,12 +998,12 @@ API path: `/images`
 
 | Field | Description |
 | --- | --- |
-| `allowed_passthrough_parameter` |  |
+| `allowed_passthrough_parameters` |  |
 | `pricing` |  |
 | `provider_name` |  |
 | `provider_slug` |  |
 | `provider_tag` |  |
-| `supported_parameter` |  |
+| `supported_parameters` |  |
 | `supports_streaming` |  |
 
 Operations: List.
@@ -964,10 +1017,10 @@ API path: `/images/models/{author}/{slug}/endpoints`
 | `architecture` |  |
 | `created` |  |
 | `description` |  |
-| `endpoint` |  |
+| `endpoints` |  |
 | `id` |  |
 | `name` |  |
-| `supported_parameter` |  |
+| `supported_parameters` |  |
 | `supports_streaming` |  |
 
 Operations: List.
@@ -1122,26 +1175,27 @@ API path: ``
 | --- | --- |
 | `cache_control` |  |
 | `context_management` |  |
-| `fallback` |  |
-| `max_token` |  |
-| `message` |  |
+| `fallbacks` |  |
+| `max_tokens` |  |
+| `messages` |  |
 | `metadata` |  |
 | `model` |  |
+| `models` |  |
 | `output_config` |  |
-| `plugin` |  |
+| `plugins` |  |
 | `provider` |  |
 | `route` |  |
 | `service_tier` |  |
 | `session_id` |  |
 | `speed` |  |
-| `stop_sequence` |  |
+| `stop_sequences` |  |
 | `stop_server_tools_when` |  |
 | `stream` |  |
 | `system` |  |
 | `temperature` |  |
 | `thinking` |  |
-| `tool` |  |
 | `tool_choice` |  |
+| `tools` |  |
 | `top_k` |  |
 | `top_p` |  |
 | `trace` |  |
@@ -1165,24 +1219,23 @@ API path: ``
 | Field | Description |
 | --- | --- |
 | `architecture` |  |
-| `benchmark` |  |
+| `benchmarks` |  |
 | `canonical_slug` |  |
 | `context_length` |  |
 | `created` |  |
-| `data` |  |
-| `default_parameter` |  |
+| `default_parameters` |  |
 | `description` |  |
 | `expiration_date` |  |
 | `hugging_face_id` |  |
 | `id` |  |
 | `knowledge_cutoff` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
-| `per_request_limit` |  |
+| `per_request_limits` |  |
 | `pricing` |  |
 | `reasoning` |  |
-| `supported_parameter` |  |
-| `supported_voice` |  |
+| `supported_parameters` |  |
+| `supported_voices` |  |
 | `top_provider` |  |
 
 Operations: List, Load.
@@ -1193,7 +1246,7 @@ API path: `/embeddings/models`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `count` |  |
 
 Operations: Load.
 
@@ -1204,23 +1257,23 @@ API path: `/models/count`
 | Field | Description |
 | --- | --- |
 | `architecture` |  |
-| `benchmark` |  |
+| `benchmarks` |  |
 | `canonical_slug` |  |
 | `context_length` |  |
 | `created` |  |
-| `default_parameter` |  |
+| `default_parameters` |  |
 | `description` |  |
 | `expiration_date` |  |
 | `hugging_face_id` |  |
 | `id` |  |
 | `knowledge_cutoff` |  |
-| `link` |  |
+| `links` |  |
 | `name` |  |
-| `per_request_limit` |  |
+| `per_request_limits` |  |
 | `pricing` |  |
 | `reasoning` |  |
-| `supported_parameter` |  |
-| `supported_voice` |  |
+| `supported_parameters` |  |
+| `supported_voices` |  |
 | `top_provider` |  |
 
 Operations: List.
@@ -1231,13 +1284,15 @@ API path: `/models/user`
 
 | Field | Description |
 | --- | --- |
+| `app_id` |  |
 | `callback_url` |  |
 | `code` |  |
 | `code_challenge` |  |
 | `code_challenge_method` |  |
 | `code_verifier` |  |
-| `data` |  |
+| `created_at` |  |
 | `expires_at` |  |
+| `id` |  |
 | `key` |  |
 | `key_label` |  |
 | `limit` |  |
@@ -1272,19 +1327,20 @@ API path: `/observability/destinations/{id}`
 | `image_config` |  |
 | `include` |  |
 | `input` |  |
-| `instruction` |  |
-| `max_output_token` |  |
-| `max_tool_call` |  |
+| `instructions` |  |
+| `max_output_tokens` |  |
+| `max_tool_calls` |  |
 | `metadata` |  |
-| `modality` |  |
+| `modalities` |  |
 | `model` |  |
-| `parallel_tool_call` |  |
-| `plugin` |  |
+| `models` |  |
+| `parallel_tool_calls` |  |
+| `plugins` |  |
 | `presence_penalty` |  |
 | `previous_response_id` |  |
 | `prompt` |  |
 | `prompt_cache_key` |  |
-| `prompt_cache_option` |  |
+| `prompt_cache_options` |  |
 | `provider` |  |
 | `reasoning` |  |
 | `route` |  |
@@ -1296,10 +1352,10 @@ API path: `/observability/destinations/{id}`
 | `stream` |  |
 | `temperature` |  |
 | `text` |  |
-| `tool` |  |
 | `tool_choice` |  |
+| `tools` |  |
 | `top_k` |  |
-| `top_logprob` |  |
+| `top_logprobs` |  |
 | `top_p` |  |
 | `trace` |  |
 | `truncation` |  |
@@ -1329,8 +1385,8 @@ API path: `/organization/members`
 | --- | --- |
 | `created_at` |  |
 | `creator_user_id` |  |
-| `data` |  |
 | `description` |  |
+| `designated_version` |  |
 | `designated_version_id` |  |
 | `id` |  |
 | `name` |  |
@@ -1348,7 +1404,14 @@ API path: `/presets`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `config` |  |
+| `created_at` |  |
+| `creator_id` |  |
+| `id` |  |
+| `preset_id` |  |
+| `system_prompt` |  |
+| `updated_at` |  |
+| `version` |  |
 
 Operations: Load.
 
@@ -1358,8 +1421,8 @@ API path: `/presets/{slug}/versions/{version}`
 
 | Field | Description |
 | --- | --- |
-| `datacenter` |  |
-| `headquarter` |  |
+| `datacenters` |  |
+| `headquarters` |  |
 | `name` |  |
 | `privacy_policy_url` |  |
 | `slug` |  |
@@ -1385,7 +1448,7 @@ API path: ``
 | --- | --- |
 | `date` |  |
 | `model_permaslug` |  |
-| `total_token` |  |
+| `total_tokens` |  |
 
 Operations: List.
 
@@ -1404,12 +1467,12 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `document` |  |
+| `documents` |  |
 | `id` |  |
 | `model` |  |
 | `provider` |  |
 | `query` |  |
-| `result` |  |
+| `results` |  |
 | `top_n` |  |
 | `usage` |  |
 
@@ -1445,13 +1508,13 @@ API path: ``
 | `model` |  |
 | `provider` |  |
 | `response_format` |  |
-| `segment` |  |
+| `segments` |  |
 | `task` |  |
 | `temperature` |  |
 | `text` |  |
-| `timestamp_granularity` |  |
+| `timestamp_granularities` |  |
 | `usage` |  |
-| `word` |  |
+| `words` |  |
 
 Operations: Create.
 
@@ -1463,8 +1526,8 @@ API path: `/audio/transcriptions`
 | --- | --- |
 | `category` |  |
 | `comment` |  |
-| `data` |  |
 | `generation_id` |  |
+| `success` |  |
 
 Operations: Create.
 
@@ -1474,7 +1537,10 @@ API path: `/generation/feedback`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `as_of` |  |
+| `classifications` |  |
+| `macro_categories` |  |
+| `window_days` |  |
 
 Operations: Load.
 
@@ -1519,9 +1585,8 @@ API path: `/benchmarks`
 
 | Field | Description |
 | --- | --- |
-| `allowed_model` |  |
-| `allowed_user_id` |  |
-| `data` |  |
+| `allowed_models` |  |
+| `allowed_user_ids` |  |
 | `disabled` |  |
 | `is_fallback` |  |
 | `key` |  |
@@ -1535,11 +1600,10 @@ API path: `/byok/{id}`
 
 | Field | Description |
 | --- | --- |
-| `allowed_model` |  |
-| `allowed_provider` |  |
-| `content_filter` |  |
-| `content_filter_builtin` |  |
-| `data` |  |
+| `allowed_models` |  |
+| `allowed_providers` |  |
+| `content_filter_builtins` |  |
+| `content_filters` |  |
 | `description` |  |
 | `enforce_zdr` |  |
 | `enforce_zdr_anthropic` |  |
@@ -1547,8 +1611,8 @@ API path: `/byok/{id}`
 | `enforce_zdr_openai` |  |
 | `enforce_zdr_other` |  |
 | `enforce_zdr_xai` |  |
-| `ignored_model` |  |
-| `ignored_provider` |  |
+| `ignored_models` |  |
+| `ignored_providers` |  |
 | `limit_usd` |  |
 | `name` |  |
 | `reset_interval` |  |
@@ -1561,11 +1625,10 @@ API path: `/guardrails/{id}`
 
 | Field | Description |
 | --- | --- |
-| `api_key_hash` |  |
+| `api_key_hashes` |  |
 | `config` |  |
-| `data` |  |
 | `enabled` |  |
-| `filter_rule` |  |
+| `filter_rules` |  |
 | `name` |  |
 | `privacy_mode` |  |
 | `sampling_rate` |  |
@@ -1580,13 +1643,12 @@ API path: `/observability/destinations/{id}`
 | --- | --- |
 | `created_at` |  |
 | `created_by` |  |
-| `data` |  |
 | `default_image_model` |  |
 | `default_provider_sort` |  |
 | `default_text_model` |  |
 | `description` |  |
 | `id` |  |
-| `io_logging_api_key_id` |  |
+| `io_logging_api_key_ids` |  |
 | `io_logging_sampling_rate` |  |
 | `is_data_discount_logging_enabled` |  |
 | `is_observability_broadcast_enabled` |  |
@@ -1603,7 +1665,6 @@ API path: `/workspaces`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `limit_usd` |  |
 
 Operations: Update.
@@ -1636,11 +1697,11 @@ API path: ``
 | `callback_url` |  |
 | `duration` |  |
 | `error` |  |
-| `frame_image` |  |
+| `frame_images` |  |
 | `generate_audio` |  |
 | `generation_id` |  |
 | `id` |  |
-| `input_reference` |  |
+| `input_references` |  |
 | `model` |  |
 | `polling_url` |  |
 | `prompt` |  |
@@ -1649,7 +1710,7 @@ API path: ``
 | `seed` |  |
 | `size` |  |
 | `status` |  |
-| `unsigned_url` |  |
+| `unsigned_urls` |  |
 | `usage` |  |
 
 Operations: Create, Load.
@@ -1669,7 +1730,7 @@ API path: `/videos/{jobId}/content`
 
 | Field | Description |
 | --- | --- |
-| `allowed_passthrough_parameter` |  |
+| `allowed_passthrough_parameters` |  |
 | `canonical_slug` |  |
 | `created` |  |
 | `description` |  |
@@ -1679,11 +1740,11 @@ API path: `/videos/{jobId}/content`
 | `name` |  |
 | `pricing_skus` |  |
 | `seed` |  |
-| `supported_aspect_ratio` |  |
-| `supported_duration` |  |
-| `supported_frame_image` |  |
-| `supported_resolution` |  |
-| `supported_size` |  |
+| `supported_aspect_ratios` |  |
+| `supported_durations` |  |
+| `supported_frame_images` |  |
+| `supported_resolutions` |  |
+| `supported_sizes` |  |
 
 Operations: List.
 
@@ -1693,7 +1754,21 @@ API path: `/videos/models`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `created_at` |  |
+| `created_by` |  |
+| `default_image_model` |  |
+| `default_provider_sort` |  |
+| `default_text_model` |  |
+| `description` |  |
+| `id` |  |
+| `io_logging_api_key_ids` |  |
+| `io_logging_sampling_rate` |  |
+| `is_data_discount_logging_enabled` |  |
+| `is_observability_broadcast_enabled` |  |
+| `is_observability_io_logging_enabled` |  |
+| `name` |  |
+| `slug` |  |
+| `updated_at` |  |
 
 Operations: Load, Remove.
 
@@ -1737,15 +1812,15 @@ Create an instance: `activity = client.Activity`
 | Field | Type | Description |
 | --- | --- | --- |
 | `byok_usage_inference` | `Float` |  |
-| `completion_token` | `Integer` |  |
+| `completion_tokens` | `Integer` |  |
 | `date` | `String` |  |
 | `endpoint_id` | `String` |  |
 | `model` | `String` |  |
 | `model_permaslug` | `String` |  |
-| `prompt_token` | `Integer` |  |
+| `prompt_tokens` | `Integer` |  |
 | `provider_name` | `String` |  |
-| `reasoning_token` | `Integer` |  |
-| `request` | `Integer` |  |
+| `reasoning_tokens` | `Integer` |  |
+| `requests` | `Integer` |  |
 | `usage` | `Float` |  |
 
 #### Example: List
@@ -1785,16 +1860,19 @@ Create an instance: `api_key = client.ApiKey`
 | `byok_usage_weekly` | `Float` |  |
 | `created_at` | `String` |  |
 | `creator_user_id` | `Object` |  |
-| `data` | `Hash` |  |
 | `disabled` | `Boolean` |  |
 | `expires_at` | `Object` |  |
 | `hash` | `String` |  |
 | `include_byok_in_limit` | `Boolean` |  |
+| `is_free_tier` | `Boolean` |  |
+| `is_management_key` | `Boolean` |  |
+| `is_provisioning_key` | `Boolean` |  |
 | `label` | `String` |  |
 | `limit` | `Object` |  |
 | `limit_remaining` | `Object` |  |
 | `limit_reset` | `Object` |  |
 | `name` | `String` |  |
+| `rate_limit` | `Hash` |  |
 | `updated_at` | `Object` |  |
 | `usage` | `Float` |  |
 | `usage_daily` | `Float` |  |
@@ -1805,7 +1883,7 @@ Create an instance: `api_key = client.ApiKey`
 #### Example: Load
 
 ```ruby
-# load returns the bare ApiKey record (raises on error).
+# load returns the ENTITY — call data_get for the ApiKey record (raises on error).
 api_key = client.ApiKey.load({ "id" => "api_key_id" })
 ```
 
@@ -1825,16 +1903,25 @@ api_key = client.ApiKey.create({
   "byok_usage_monthly" => 1, # Float
   "byok_usage_weekly" => 1, # Float
   "created_at" => "example_created_at", # String
-  "data" => {}, # Hash
+  "creator_user_id" => "example_creator_user_id", # Object
+  "disabled" => true, # Boolean
   "hash" => "example_hash", # String
+  "include_byok_in_limit" => true, # Boolean
+  "is_free_tier" => true, # Boolean
+  "is_management_key" => true, # Boolean
+  "is_provisioning_key" => true, # Boolean
   "label" => "example_label", # String
+  "limit" => "example_limit", # Object
   "limit_remaining" => "example_limit_remaining", # Object
+  "limit_reset" => "example_limit_reset", # Object
   "name" => "example_name", # String
+  "rate_limit" => {}, # Hash
   "updated_at" => "example_updated_at", # Object
   "usage" => 1, # Float
   "usage_daily" => 1, # Float
   "usage_monthly" => 1, # Float
   "usage_weekly" => 1, # Float
+  "workspace_id" => "example_workspace_id", # String
 })
 ```
 
@@ -1856,8 +1943,8 @@ Create an instance: `app_ranking = client.AppRanking`
 | `app_id` | `Integer` |  |
 | `app_name` | `String` |  |
 | `rank` | `Integer` |  |
-| `total_request` | `Integer` |  |
-| `total_token` | `String` |  |
+| `total_requests` | `Integer` |  |
+| `total_tokens` | `String` |  |
 
 #### Example: List
 
@@ -1887,22 +1974,27 @@ Create an instance: `beta_analytics = client.BetaAnalytics`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `classifier_dimension` | `Hash` |  |
-| `classifier_filter` | `Hash` |  |
-| `data` | `Hash` |  |
-| `dimension` | `Array` |  |
-| `filter` | `Array` |  |
+| `cachedAt` | `Float` |  |
+| `classifier_dimensions` | `Hash` |  |
+| `classifier_filters` | `Hash` |  |
+| `data` | `Array` |  |
+| `dimensions` | `Array` |  |
+| `filters` | `Array` |  |
+| `granularities` | `Array` |  |
 | `granularity` | `String` |  |
 | `group_limit` | `Integer` |  |
 | `limit` | `Integer` |  |
-| `metric` | `Array` |  |
+| `metadata` | `Hash` |  |
+| `metrics` | `Array` |  |
+| `operators` | `Array` |  |
 | `order_by` | `Hash` |  |
 | `time_range` | `Hash` |  |
+| `warnings` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare BetaAnalytics record (raises on error).
+# load returns the ENTITY — call data_get for the BetaAnalytics record (raises on error).
 beta_analytics = client.BetaAnalytics.load()
 ```
 
@@ -1910,10 +2002,14 @@ beta_analytics = client.BetaAnalytics.load()
 
 ```ruby
 beta_analytics = client.BetaAnalytics.create({
-  "classifier_dimension" => {}, # Hash
-  "classifier_filter" => {}, # Hash
-  "data" => {}, # Hash
-  "metric" => [], # Array
+  "classifier_dimensions" => {}, # Hash
+  "classifier_filters" => {}, # Hash
+  "data" => [], # Array
+  "dimensions" => [], # Array
+  "granularities" => [], # Array
+  "metadata" => {}, # Hash
+  "metrics" => [], # Array
+  "operators" => [], # Array
   "order_by" => {}, # Hash
   "time_range" => {}, # Hash
 })
@@ -1941,13 +2037,16 @@ Create an instance: `bulk_add_workspace_member = client.BulkAddWorkspaceMember`
 | --- | --- | --- |
 | `added_count` | `Integer` |  |
 | `data` | `Array` |  |
-| `user_id` | `Array` |  |
+| `user_ids` | `Array` |  |
 
 #### Example: Create
 
 ```ruby
 bulk_add_workspace_member = client.BulkAddWorkspaceMember.create({
   "workspace_id" => "example_workspace_id", # String
+  "added_count" => 1, # Integer
+  "data" => [], # Array
+  "user_ids" => [], # Array
 })
 ```
 
@@ -1967,13 +2066,15 @@ Create an instance: `bulk_assign_key = client.BulkAssignKey`
 | Field | Type | Description |
 | --- | --- | --- |
 | `assigned_count` | `Integer` |  |
-| `key_hash` | `Array` |  |
+| `key_hashes` | `Array` |  |
 
 #### Example: Create
 
 ```ruby
 bulk_assign_key = client.BulkAssignKey.create({
   "guardrail_id" => "example_guardrail_id", # String
+  "assigned_count" => 1, # Integer
+  "key_hashes" => [], # Array
 })
 ```
 
@@ -1993,13 +2094,15 @@ Create an instance: `bulk_assign_member = client.BulkAssignMember`
 | Field | Type | Description |
 | --- | --- | --- |
 | `assigned_count` | `Integer` |  |
-| `member_user_id` | `Array` |  |
+| `member_user_ids` | `Array` |  |
 
 #### Example: Create
 
 ```ruby
 bulk_assign_member = client.BulkAssignMember.create({
   "guardrail_id" => "example_guardrail_id", # String
+  "assigned_count" => 1, # Integer
+  "member_user_ids" => [], # Array
 })
 ```
 
@@ -2019,13 +2122,15 @@ Create an instance: `bulk_remove_workspace_member = client.BulkRemoveWorkspaceMe
 | Field | Type | Description |
 | --- | --- | --- |
 | `removed_count` | `Integer` |  |
-| `user_id` | `Array` |  |
+| `user_ids` | `Array` |  |
 
 #### Example: Create
 
 ```ruby
 bulk_remove_workspace_member = client.BulkRemoveWorkspaceMember.create({
   "workspace_id" => "example_workspace_id", # String
+  "removed_count" => 1, # Integer
+  "user_ids" => [], # Array
 })
 ```
 
@@ -2044,7 +2149,7 @@ Create an instance: `bulk_unassign_key = client.BulkUnassignKey`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `key_hash` | `Array` |  |
+| `key_hashes` | `Array` |  |
 | `unassigned_count` | `Integer` |  |
 
 #### Example: Create
@@ -2052,6 +2157,8 @@ Create an instance: `bulk_unassign_key = client.BulkUnassignKey`
 ```ruby
 bulk_unassign_key = client.BulkUnassignKey.create({
   "guardrail_id" => "example_guardrail_id", # String
+  "key_hashes" => [], # Array
+  "unassigned_count" => 1, # Integer
 })
 ```
 
@@ -2070,7 +2177,7 @@ Create an instance: `bulk_unassign_member = client.BulkUnassignMember`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `member_user_id` | `Array` |  |
+| `member_user_ids` | `Array` |  |
 | `unassigned_count` | `Integer` |  |
 
 #### Example: Create
@@ -2078,6 +2185,8 @@ Create an instance: `bulk_unassign_member = client.BulkUnassignMember`
 ```ruby
 bulk_unassign_member = client.BulkUnassignMember.create({
   "guardrail_id" => "example_guardrail_id", # String
+  "member_user_ids" => [], # Array
+  "unassigned_count" => 1, # Integer
 })
 ```
 
@@ -2099,11 +2208,10 @@ Create an instance: `byok = client.Byok`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_api_key_hash` | `Object` |  |
-| `allowed_model` | `Object` |  |
-| `allowed_user_id` | `Object` |  |
+| `allowed_api_key_hashes` | `Object` |  |
+| `allowed_models` | `Object` |  |
+| `allowed_user_ids` | `Object` |  |
 | `created_at` | `String` |  |
-| `data` | `Object` |  |
 | `disabled` | `Boolean` |  |
 | `id` | `String` |  |
 | `is_fallback` | `Boolean` |  |
@@ -2117,7 +2225,7 @@ Create an instance: `byok = client.Byok`
 #### Example: Load
 
 ```ruby
-# load returns the bare Byok record (raises on error).
+# load returns the ENTITY — call data_get for the Byok record (raises on error).
 byok = client.Byok.load({ "id" => "byok_id" })
 ```
 
@@ -2132,14 +2240,18 @@ byoks = client.Byok.list
 
 ```ruby
 byok = client.Byok.create({
-  "allowed_api_key_hash" => "example_allowed_api_key_hash", # Object
+  "allowed_api_key_hashes" => "example_allowed_api_key_hashes", # Object
+  "allowed_models" => "example_allowed_models", # Object
+  "allowed_user_ids" => "example_allowed_user_ids", # Object
   "created_at" => "example_created_at", # String
-  "data" => "example_data", # Object
+  "disabled" => true, # Boolean
   "id" => "example_id", # String
+  "is_fallback" => true, # Boolean
   "key" => "example_key", # String
   "label" => "example_label", # String
   "provider" => "example_provider", # String
   "sort_order" => 1, # Integer
+  "workspace_id" => "example_workspace_id", # String
 })
 ```
 
@@ -2159,29 +2271,30 @@ Create an instance: `chat_result = client.ChatResult`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cache_control` | `Hash` |  |
-| `choice` | `Array` |  |
+| `choices` | `Array` |  |
 | `created` | `Integer` |  |
 | `debug` | `Hash` |  |
 | `frequency_penalty` | `Object` |  |
 | `id` | `String` |  |
 | `image_config` | `Hash` |  |
-| `logit_bia` | `Object` |  |
-| `logprob` | `Object` |  |
-| `max_completion_token` | `Object` |  |
-| `max_token` | `Object` |  |
-| `message` | `Array` |  |
+| `logit_bias` | `Object` |  |
+| `logprobs` | `Object` |  |
+| `max_completion_tokens` | `Object` |  |
+| `max_tokens` | `Object` |  |
+| `messages` | `Array` |  |
 | `metadata` | `Hash` |  |
 | `min_p` | `Object` |  |
-| `modality` | `Array` |  |
+| `modalities` | `Array` |  |
 | `model` | `String` |  |
+| `models` | `Array` |  |
 | `object` | `String` |  |
 | `openrouter_metadata` | `Hash` |  |
-| `parallel_tool_call` | `Object` |  |
-| `plugin` | `Array` |  |
+| `parallel_tool_calls` | `Object` |  |
+| `plugins` | `Array` |  |
 | `prediction` | `Object` |  |
 | `presence_penalty` | `Object` |  |
 | `prompt_cache_key` | `Object` |  |
-| `prompt_cache_option` | `Object` |  |
+| `prompt_cache_options` | `Object` |  |
 | `provider` | `Object` |  |
 | `reasoning` | `Hash` |  |
 | `reasoning_effort` | `Object` |  |
@@ -2194,14 +2307,14 @@ Create an instance: `chat_result = client.ChatResult`
 | `stop` | `Object` |  |
 | `stop_server_tools_when` | `Array` |  |
 | `stream` | `Boolean` |  |
-| `stream_option` | `Object` |  |
+| `stream_options` | `Object` |  |
 | `system_fingerprint` | `Object` |  |
 | `temperature` | `Object` |  |
-| `tool` | `Array` |  |
 | `tool_choice` | `Object` |  |
+| `tools` | `Array` |  |
 | `top_a` | `Object` |  |
 | `top_k` | `Object` |  |
-| `top_logprob` | `Object` |  |
+| `top_logprobs` | `Object` |  |
 | `top_p` | `Object` |  |
 | `trace` | `Hash` |  |
 | `usage` | `Hash` |  |
@@ -2212,15 +2325,15 @@ Create an instance: `chat_result = client.ChatResult`
 ```ruby
 chat_result = client.ChatResult.create({
   "cache_control" => {}, # Hash
-  "choice" => [], # Array
+  "choices" => [], # Array
   "created" => 1, # Integer
   "id" => "example_id", # String
-  "message" => [], # Array
+  "messages" => [], # Array
   "model" => "example_model", # String
   "object" => "example_object", # String
   "openrouter_metadata" => {}, # Hash
   "prediction" => "example_prediction", # Object
-  "prompt_cache_option" => "example_prompt_cache_option", # Object
+  "prompt_cache_options" => "example_prompt_cache_options", # Object
   "system_fingerprint" => "example_system_fingerprint", # Object
   "usage" => {}, # Hash
 })
@@ -2276,10 +2389,10 @@ Create an instance: `create_observability_destination = client.CreateObservabili
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key_hash` | `Object` |  |
+| `api_key_hashes` | `Object` |  |
 | `config` | `Hash` |  |
 | `enabled` | `Boolean` |  |
-| `filter_rule` | `Object` |  |
+| `filter_rules` | `Object` |  |
 | `name` | `String` |  |
 | `privacy_mode` | `Boolean` |  |
 | `sampling_rate` | `Float` |  |
@@ -2291,7 +2404,7 @@ Create an instance: `create_observability_destination = client.CreateObservabili
 ```ruby
 create_observability_destination = client.CreateObservabilityDestination.create({
   "config" => {}, # Hash
-  "filter_rule" => "example_filter_rule", # Object
+  "filter_rules" => "example_filter_rules", # Object
   "name" => "example_name", # String
   "type" => "example_type", # String
 })
@@ -2315,34 +2428,34 @@ Create an instance: `create_preset_from_inference = client.CreatePresetFromInfer
 | `background` | `Object` |  |
 | `cache_control` | `Hash` |  |
 | `context_management` | `Object` |  |
-| `data` | `Object` |  |
 | `debug` | `Hash` |  |
-| `fallback` | `Object` |  |
+| `fallbacks` | `Object` |  |
 | `frequency_penalty` | `Object` |  |
 | `image_config` | `Hash` |  |
 | `include` | `Object` |  |
 | `input` | `Object` |  |
-| `instruction` | `Object` |  |
-| `logit_bia` | `Object` |  |
-| `logprob` | `Object` |  |
-| `max_completion_token` | `Object` |  |
-| `max_output_token` | `Object` |  |
-| `max_token` | `Object` |  |
-| `max_tool_call` | `Object` |  |
-| `message` | `Array` |  |
+| `instructions` | `Object` |  |
+| `logit_bias` | `Object` |  |
+| `logprobs` | `Object` |  |
+| `max_completion_tokens` | `Object` |  |
+| `max_output_tokens` | `Object` |  |
+| `max_tokens` | `Object` |  |
+| `max_tool_calls` | `Object` |  |
+| `messages` | `Array` |  |
 | `metadata` | `Hash` |  |
 | `min_p` | `Object` |  |
-| `modality` | `Array` |  |
+| `modalities` | `Array` |  |
 | `model` | `String` |  |
+| `models` | `Array` |  |
 | `output_config` | `Hash` |  |
-| `parallel_tool_call` | `Object` |  |
-| `plugin` | `Array` |  |
+| `parallel_tool_calls` | `Object` |  |
+| `plugins` | `Array` |  |
 | `prediction` | `Object` |  |
 | `presence_penalty` | `Object` |  |
 | `previous_response_id` | `String` |  |
 | `prompt` | `Object` |  |
 | `prompt_cache_key` | `Object` |  |
-| `prompt_cache_option` | `Object` |  |
+| `prompt_cache_options` | `Object` |  |
 | `provider` | `Object` |  |
 | `reasoning` | `Hash` |  |
 | `reasoning_effort` | `Object` |  |
@@ -2355,20 +2468,20 @@ Create an instance: `create_preset_from_inference = client.CreatePresetFromInfer
 | `session_id` | `String` |  |
 | `speed` | `Object` |  |
 | `stop` | `Object` |  |
-| `stop_sequence` | `Array` |  |
+| `stop_sequences` | `Array` |  |
 | `stop_server_tools_when` | `Array` |  |
 | `store` | `Boolean` |  |
 | `stream` | `Boolean` |  |
-| `stream_option` | `Object` |  |
+| `stream_options` | `Object` |  |
 | `system` | `Object` |  |
 | `temperature` | `Object` |  |
 | `text` | `Object` |  |
 | `thinking` | `Object` |  |
-| `tool` | `Array` |  |
 | `tool_choice` | `Object` |  |
+| `tools` | `Array` |  |
 | `top_a` | `Object` |  |
 | `top_k` | `Object` |  |
-| `top_logprob` | `Object` |  |
+| `top_logprobs` | `Object` |  |
 | `top_p` | `Object` |  |
 | `trace` | `Hash` |  |
 | `truncation` | `Object` |  |
@@ -2379,6 +2492,11 @@ Create an instance: `create_preset_from_inference = client.CreatePresetFromInfer
 ```ruby
 create_preset_from_inference = client.CreatePresetFromInference.create({
   "slug" => "example_slug", # String
+  "cache_control" => {}, # Hash
+  "messages" => [], # Array
+  "prediction" => "example_prediction", # Object
+  "prompt" => "example_prompt", # Object
+  "prompt_cache_options" => "example_prompt_cache_options", # Object
 })
 ```
 
@@ -2403,12 +2521,13 @@ Create an instance: `credit = client.Credit`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
+| `total_credits` | `Float` |  |
+| `total_usage` | `Float` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Credit record (raises on error).
+# load returns the ENTITY — call data_get for the Credit record (raises on error).
 credit = client.Credit.load()
 ```
 
@@ -2416,7 +2535,8 @@ credit = client.Credit.load()
 
 ```ruby
 credit = client.Credit.create({
-  "data" => {}, # Hash
+  "total_credits" => 1, # Float
+  "total_usage" => 1, # Float
 })
 ```
 
@@ -2441,7 +2561,7 @@ Create an instance: `embedding = client.Embedding`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `Array` |  |
-| `dimension` | `Integer` |  |
+| `dimensions` | `Integer` |  |
 | `encoding_format` | `String` |  |
 | `id` | `String` |  |
 | `input` | `Object` |  |
@@ -2480,33 +2600,33 @@ Create an instance: `endpoint = client.Endpoint`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `architecture` | `Hash` |  |
-| `benchmark` | `Hash` |  |
+| `architecture` | `Object` |  |
+| `benchmarks` | `Hash` |  |
 | `canonical_slug` | `String` |  |
 | `context_length` | `Object` |  |
 | `created` | `Integer` |  |
-| `data` | `Hash` |  |
-| `default_parameter` | `Object` |  |
+| `default_parameters` | `Object` |  |
 | `description` | `String` |  |
+| `endpoints` | `Array` |  |
 | `expiration_date` | `Object` |  |
 | `hugging_face_id` | `Object` |  |
 | `id` | `String` |  |
 | `knowledge_cutoff` | `Object` |  |
 | `latency_last_30m` | `Object` |  |
-| `link` | `Hash` |  |
-| `max_completion_token` | `Object` |  |
-| `max_prompt_token` | `Object` |  |
+| `links` | `Hash` |  |
+| `max_completion_tokens` | `Object` |  |
+| `max_prompt_tokens` | `Object` |  |
 | `model_id` | `String` |  |
 | `model_name` | `String` |  |
 | `name` | `String` |  |
-| `per_request_limit` | `Object` |  |
+| `per_request_limits` | `Object` |  |
 | `pricing` | `Hash` |  |
 | `provider_name` | `String` |  |
 | `quantization` | `Object` |  |
 | `reasoning` | `Hash` |  |
 | `status` | `Integer` |  |
-| `supported_parameter` | `Array` |  |
-| `supported_voice` | `Object` |  |
+| `supported_parameters` | `Array` |  |
+| `supported_voices` | `Object` |  |
 | `supports_implicit_caching` | `Boolean` |  |
 | `tag` | `String` |  |
 | `throughput_last_30m` | `Object` |  |
@@ -2518,7 +2638,7 @@ Create an instance: `endpoint = client.Endpoint`
 #### Example: Load
 
 ```ruby
-# load returns the bare Endpoint record (raises on error).
+# load returns the ENTITY — call data_get for the Endpoint record (raises on error).
 endpoint = client.Endpoint.load({ "author" => "author", "slug" => "slug" })
 ```
 
@@ -2557,13 +2677,13 @@ Create an instance: `file = client.File`
 | `filename` | `String` |  |
 | `id` | `String` |  |
 | `mime_type` | `String` |  |
-| `size_byte` | `Integer` |  |
+| `size_bytes` | `Integer` |  |
 | `type` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare File record (raises on error).
+# load returns the ENTITY — call data_get for the File record (raises on error).
 file = client.File.load({ "id" => "file_id" })
 ```
 
@@ -2583,7 +2703,7 @@ file = client.File.create({
   "filename" => "example_filename", # String
   "id" => "example_id", # String
   "mime_type" => "example_mime_type", # String
-  "size_byte" => 1, # Integer
+  "size_bytes" => 1, # Integer
   "type" => "example_type", # String
 })
 ```
@@ -2603,13 +2723,56 @@ Create an instance: `generation = client.Generation`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
+| `api_type` | `Object` |  |
+| `app_id` | `Object` |  |
+| `cache_discount` | `Object` |  |
+| `cancelled` | `Object` |  |
+| `created_at` | `String` |  |
+| `data_region` | `String` |  |
+| `external_user` | `Object` |  |
+| `finish_reason` | `Object` |  |
+| `generation_time` | `Object` |  |
+| `http_referer` | `Object` |  |
+| `id` | `String` |  |
+| `is_byok` | `Boolean` |  |
+| `latency` | `Object` |  |
+| `model` | `String` |  |
+| `moderation_latency` | `Object` |  |
+| `native_finish_reason` | `Object` |  |
+| `native_tokens_cached` | `Object` |  |
+| `native_tokens_completion` | `Object` |  |
+| `native_tokens_completion_images` | `Object` |  |
+| `native_tokens_prompt` | `Object` |  |
+| `native_tokens_reasoning` | `Object` |  |
+| `num_fetches` | `Object` |  |
+| `num_input_audio_prompt` | `Object` |  |
+| `num_media_completion` | `Object` |  |
+| `num_media_prompt` | `Object` |  |
+| `num_search_results` | `Object` |  |
+| `origin` | `String` |  |
+| `preset_id` | `Object` |  |
+| `provider_name` | `Object` |  |
+| `provider_responses` | `Object` |  |
+| `request_id` | `Object` |  |
+| `response_cache_source_id` | `Object` |  |
+| `router` | `Object` |  |
+| `service_tier` | `Object` |  |
+| `session_id` | `Object` |  |
+| `streamed` | `Object` |  |
+| `tokens_completion` | `Object` |  |
+| `tokens_prompt` | `Object` |  |
+| `total_cost` | `Float` |  |
+| `upstream_id` | `Object` |  |
+| `upstream_inference_cost` | `Object` |  |
+| `usage` | `Float` |  |
+| `user_agent` | `Object` |  |
+| `web_search_engine` | `Object` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Generation record (raises on error).
-generation = client.Generation.load()
+# load returns the ENTITY — call data_get for the Generation record (raises on error).
+generation = client.Generation.load({ "id" => "generation_id" })
 ```
 
 
@@ -2627,12 +2790,13 @@ Create an instance: `generation_content = client.GenerationContent`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
+| `input` | `Object` |  |
+| `output` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare GenerationContent record (raises on error).
+# load returns the ENTITY — call data_get for the GenerationContent record (raises on error).
 generation_content = client.GenerationContent.load()
 ```
 
@@ -2654,12 +2818,11 @@ Create an instance: `guardrail = client.Guardrail`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_model` | `Object` |  |
-| `allowed_provider` | `Object` |  |
-| `content_filter` | `Object` |  |
-| `content_filter_builtin` | `Object` |  |
+| `allowed_models` | `Object` |  |
+| `allowed_providers` | `Object` |  |
+| `content_filter_builtins` | `Object` |  |
+| `content_filters` | `Object` |  |
 | `created_at` | `String` |  |
-| `data` | `Object` |  |
 | `description` | `Object` |  |
 | `enforce_zdr` | `Object` |  |
 | `enforce_zdr_anthropic` | `Object` |  |
@@ -2668,8 +2831,8 @@ Create an instance: `guardrail = client.Guardrail`
 | `enforce_zdr_other` | `Object` |  |
 | `enforce_zdr_xai` | `Object` |  |
 | `id` | `String` |  |
-| `ignored_model` | `Object` |  |
-| `ignored_provider` | `Object` |  |
+| `ignored_models` | `Object` |  |
+| `ignored_providers` | `Object` |  |
 | `limit_usd` | `Object` |  |
 | `name` | `String` |  |
 | `reset_interval` | `Object` |  |
@@ -2679,7 +2842,7 @@ Create an instance: `guardrail = client.Guardrail`
 #### Example: Load
 
 ```ruby
-# load returns the bare Guardrail record (raises on error).
+# load returns the ENTITY — call data_get for the Guardrail record (raises on error).
 guardrail = client.Guardrail.load({ "id" => "guardrail_id" })
 ```
 
@@ -2695,9 +2858,9 @@ guardrails = client.Guardrail.list
 ```ruby
 guardrail = client.Guardrail.create({
   "created_at" => "example_created_at", # String
-  "data" => "example_data", # Object
   "id" => "example_id", # String
   "name" => "example_name", # String
+  "workspace_id" => "example_workspace_id", # String
 })
 ```
 
@@ -2720,7 +2883,7 @@ Create an instance: `image = client.Image`
 | `background` | `String` |  |
 | `created` | `Integer` |  |
 | `data` | `Array` |  |
-| `input_reference` | `Array` |  |
+| `input_references` | `Array` |  |
 | `model` | `String` |  |
 | `n` | `Integer` |  |
 | `output_compression` | `Integer` |  |
@@ -2761,12 +2924,12 @@ Create an instance: `image_model_endpoint = client.ImageModelEndpoint`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_passthrough_parameter` | `Array` |  |
+| `allowed_passthrough_parameters` | `Array` |  |
 | `pricing` | `Array` |  |
 | `provider_name` | `String` |  |
 | `provider_slug` | `String` |  |
 | `provider_tag` | `Object` |  |
-| `supported_parameter` | `Object` |  |
+| `supported_parameters` | `Object` |  |
 | `supports_streaming` | `Boolean` |  |
 
 #### Example: List
@@ -2794,10 +2957,10 @@ Create an instance: `image_models_list = client.ImageModelsList`
 | `architecture` | `Hash` |  |
 | `created` | `Integer` |  |
 | `description` | `String` |  |
-| `endpoint` | `String` |  |
+| `endpoints` | `String` |  |
 | `id` | `String` |  |
 | `name` | `String` |  |
-| `supported_parameter` | `Hash` |  |
+| `supported_parameters` | `Hash` |  |
 | `supports_streaming` | `Boolean` |  |
 
 #### Example: List
@@ -3026,26 +3189,27 @@ Create an instance: `message = client.Message`
 | --- | --- | --- |
 | `cache_control` | `Hash` |  |
 | `context_management` | `Object` |  |
-| `fallback` | `Object` |  |
-| `max_token` | `Integer` |  |
-| `message` | `Object` |  |
+| `fallbacks` | `Object` |  |
+| `max_tokens` | `Integer` |  |
+| `messages` | `Object` |  |
 | `metadata` | `Hash` |  |
 | `model` | `String` |  |
+| `models` | `Array` |  |
 | `output_config` | `Hash` |  |
-| `plugin` | `Array` |  |
+| `plugins` | `Array` |  |
 | `provider` | `Object` |  |
 | `route` | `Object` |  |
 | `service_tier` | `String` |  |
 | `session_id` | `String` |  |
 | `speed` | `Object` |  |
-| `stop_sequence` | `Array` |  |
+| `stop_sequences` | `Array` |  |
 | `stop_server_tools_when` | `Array` |  |
 | `stream` | `Boolean` |  |
 | `system` | `Object` |  |
 | `temperature` | `Float` |  |
 | `thinking` | `Object` |  |
-| `tool` | `Array` |  |
 | `tool_choice` | `Object` |  |
+| `tools` | `Array` |  |
 | `top_k` | `Integer` |  |
 | `top_p` | `Float` |  |
 | `trace` | `Hash` |  |
@@ -3056,7 +3220,7 @@ Create an instance: `message = client.Message`
 ```ruby
 message = client.Message.create({
   "cache_control" => {}, # Hash
-  "message" => "example_message", # Object
+  "messages" => "example_messages", # Object
   "model" => "example_model", # String
 })
 ```
@@ -3083,30 +3247,29 @@ Create an instance: `model = client.Model`
 | Field | Type | Description |
 | --- | --- | --- |
 | `architecture` | `Hash` |  |
-| `benchmark` | `Hash` |  |
+| `benchmarks` | `Hash` |  |
 | `canonical_slug` | `String` |  |
 | `context_length` | `Object` |  |
 | `created` | `Integer` |  |
-| `data` | `Hash` |  |
-| `default_parameter` | `Object` |  |
+| `default_parameters` | `Object` |  |
 | `description` | `String` |  |
 | `expiration_date` | `Object` |  |
 | `hugging_face_id` | `Object` |  |
 | `id` | `String` |  |
 | `knowledge_cutoff` | `Object` |  |
-| `link` | `Hash` |  |
+| `links` | `Hash` |  |
 | `name` | `String` |  |
-| `per_request_limit` | `Object` |  |
+| `per_request_limits` | `Object` |  |
 | `pricing` | `Hash` |  |
 | `reasoning` | `Hash` |  |
-| `supported_parameter` | `Array` |  |
-| `supported_voice` | `Object` |  |
+| `supported_parameters` | `Array` |  |
+| `supported_voices` | `Object` |  |
 | `top_provider` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Model record (raises on error).
+# load returns the ENTITY — call data_get for the Model record (raises on error).
 model = client.Model.load({ "author" => "author", "slug" => "slug" })
 ```
 
@@ -3132,12 +3295,12 @@ Create an instance: `models_count = client.ModelsCount`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
+| `count` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare ModelsCount record (raises on error).
+# load returns the ENTITY — call data_get for the ModelsCount record (raises on error).
 models_count = client.ModelsCount.load()
 ```
 
@@ -3157,23 +3320,23 @@ Create an instance: `models_list = client.ModelsList`
 | Field | Type | Description |
 | --- | --- | --- |
 | `architecture` | `Hash` |  |
-| `benchmark` | `Hash` |  |
+| `benchmarks` | `Hash` |  |
 | `canonical_slug` | `String` |  |
 | `context_length` | `Object` |  |
 | `created` | `Integer` |  |
-| `default_parameter` | `Object` |  |
+| `default_parameters` | `Object` |  |
 | `description` | `String` |  |
 | `expiration_date` | `Object` |  |
 | `hugging_face_id` | `Object` |  |
 | `id` | `String` |  |
 | `knowledge_cutoff` | `Object` |  |
-| `link` | `Hash` |  |
+| `links` | `Hash` |  |
 | `name` | `String` |  |
-| `per_request_limit` | `Object` |  |
+| `per_request_limits` | `Object` |  |
 | `pricing` | `Hash` |  |
 | `reasoning` | `Hash` |  |
-| `supported_parameter` | `Array` |  |
-| `supported_voice` | `Object` |  |
+| `supported_parameters` | `Array` |  |
+| `supported_voices` | `Object` |  |
 | `top_provider` | `Hash` |  |
 
 #### Example: List
@@ -3198,13 +3361,15 @@ Create an instance: `o_auth = client.OAuth`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `app_id` | `Integer` |  |
 | `callback_url` | `String` |  |
 | `code` | `String` |  |
 | `code_challenge` | `String` |  |
 | `code_challenge_method` | `Object` |  |
 | `code_verifier` | `String` |  |
-| `data` | `Hash` |  |
+| `created_at` | `String` |  |
 | `expires_at` | `Object` |  |
+| `id` | `String` |  |
 | `key` | `String` |  |
 | `key_label` | `String` |  |
 | `limit` | `Float` |  |
@@ -3218,9 +3383,11 @@ Create an instance: `o_auth = client.OAuth`
 
 ```ruby
 o_auth = client.OAuth.create({
+  "app_id" => 1, # Integer
   "callback_url" => "example_callback_url", # String
   "code" => "example_code", # String
-  "data" => {}, # Hash
+  "created_at" => "example_created_at", # String
+  "id" => "example_id", # String
   "key" => "example_key", # String
   "user_id" => "example_user_id", # Object
 })
@@ -3242,12 +3409,12 @@ Create an instance: `observability_destination = client.ObservabilityDestination
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Object` |  |
+| `data` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare ObservabilityDestination record (raises on error).
+# load returns the ENTITY — call data_get for the ObservabilityDestination record (raises on error).
 observability_destination = client.ObservabilityDestination.load({ "id" => "observability_destination_id" })
 ```
 
@@ -3273,19 +3440,20 @@ Create an instance: `open_responses_result = client.OpenResponsesResult`
 | `image_config` | `Hash` |  |
 | `include` | `Object` |  |
 | `input` | `Object` |  |
-| `instruction` | `Object` |  |
-| `max_output_token` | `Object` |  |
-| `max_tool_call` | `Object` |  |
+| `instructions` | `Object` |  |
+| `max_output_tokens` | `Object` |  |
+| `max_tool_calls` | `Object` |  |
 | `metadata` | `Object` |  |
-| `modality` | `Array` |  |
+| `modalities` | `Array` |  |
 | `model` | `String` |  |
-| `parallel_tool_call` | `Object` |  |
-| `plugin` | `Array` |  |
+| `models` | `Array` |  |
+| `parallel_tool_calls` | `Object` |  |
+| `plugins` | `Array` |  |
 | `presence_penalty` | `Object` |  |
 | `previous_response_id` | `String` |  |
 | `prompt` | `Object` |  |
 | `prompt_cache_key` | `Object` |  |
-| `prompt_cache_option` | `Object` |  |
+| `prompt_cache_options` | `Object` |  |
 | `provider` | `Object` |  |
 | `reasoning` | `Object` |  |
 | `route` | `Object` |  |
@@ -3297,10 +3465,10 @@ Create an instance: `open_responses_result = client.OpenResponsesResult`
 | `stream` | `Boolean` |  |
 | `temperature` | `Object` |  |
 | `text` | `Object` |  |
-| `tool` | `Array` |  |
 | `tool_choice` | `Object` |  |
+| `tools` | `Array` |  |
 | `top_k` | `Integer` |  |
-| `top_logprob` | `Object` |  |
+| `top_logprobs` | `Object` |  |
 | `top_p` | `Object` |  |
 | `trace` | `Hash` |  |
 | `truncation` | `Object` |  |
@@ -3312,7 +3480,7 @@ Create an instance: `open_responses_result = client.OpenResponsesResult`
 open_responses_result = client.OpenResponsesResult.create({
   "cache_control" => {}, # Hash
   "prompt" => "example_prompt", # Object
-  "prompt_cache_option" => "example_prompt_cache_option", # Object
+  "prompt_cache_options" => "example_prompt_cache_options", # Object
 })
 ```
 
@@ -3362,8 +3530,8 @@ Create an instance: `preset = client.Preset`
 | --- | --- | --- |
 | `created_at` | `String` |  |
 | `creator_user_id` | `Object` |  |
-| `data` | `Object` |  |
 | `description` | `Object` |  |
+| `designated_version` | `Object` |  |
 | `designated_version_id` | `Object` |  |
 | `id` | `String` |  |
 | `name` | `String` |  |
@@ -3376,7 +3544,7 @@ Create an instance: `preset = client.Preset`
 #### Example: Load
 
 ```ruby
-# load returns the bare Preset record (raises on error).
+# load returns the ENTITY — call data_get for the Preset record (raises on error).
 preset = client.Preset.load({ "id" => "preset_id" })
 ```
 
@@ -3402,12 +3570,19 @@ Create an instance: `preset_version = client.PresetVersion`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Object` |  |
+| `config` | `Hash` |  |
+| `created_at` | `String` |  |
+| `creator_id` | `String` |  |
+| `id` | `String` |  |
+| `preset_id` | `String` |  |
+| `system_prompt` | `Object` |  |
+| `updated_at` | `String` |  |
+| `version` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare PresetVersion record (raises on error).
+# load returns the ENTITY — call data_get for the PresetVersion record (raises on error).
 preset_version = client.PresetVersion.load({ "id" => "preset_version_id", "slug" => "slug" })
 ```
 
@@ -3426,8 +3601,8 @@ Create an instance: `provider = client.Provider`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datacenter` | `Object` |  |
-| `headquarter` | `Object` |  |
+| `datacenters` | `Object` |  |
+| `headquarters` | `Object` |  |
 | `name` | `String` |  |
 | `privacy_policy_url` | `Object` |  |
 | `slug` | `String` |  |
@@ -3463,7 +3638,7 @@ Create an instance: `rankings_daily = client.RankingsDaily`
 | --- | --- | --- |
 | `date` | `String` |  |
 | `model_permaslug` | `String` |  |
-| `total_token` | `String` |  |
+| `total_tokens` | `String` |  |
 
 #### Example: List
 
@@ -3492,12 +3667,12 @@ Create an instance: `rerank = client.Rerank`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `document` | `Array` |  |
+| `documents` | `Array` |  |
 | `id` | `String` |  |
 | `model` | `String` |  |
 | `provider` | `String` |  |
 | `query` | `String` |  |
-| `result` | `Array` |  |
+| `results` | `Array` |  |
 | `top_n` | `Integer` |  |
 | `usage` | `Hash` |  |
 
@@ -3505,10 +3680,10 @@ Create an instance: `rerank = client.Rerank`
 
 ```ruby
 rerank = client.Rerank.create({
-  "document" => [], # Array
+  "documents" => [], # Array
   "model" => "example_model", # String
   "query" => "example_query", # String
-  "result" => [], # Array
+  "results" => [], # Array
 })
 ```
 
@@ -3543,13 +3718,13 @@ Create an instance: `stt = client.Stt`
 | `model` | `String` |  |
 | `provider` | `Hash` |  |
 | `response_format` | `String` |  |
-| `segment` | `Array` |  |
+| `segments` | `Array` |  |
 | `task` | `String` |  |
 | `temperature` | `Float` |  |
 | `text` | `String` |  |
-| `timestamp_granularity` | `Array` |  |
+| `timestamp_granularities` | `Array` |  |
 | `usage` | `Hash` |  |
-| `word` | `Array` |  |
+| `words` | `Array` |  |
 
 #### Example: Create
 
@@ -3578,16 +3753,16 @@ Create an instance: `submit_generation_feedback = client.SubmitGenerationFeedbac
 | --- | --- | --- |
 | `category` | `String` |  |
 | `comment` | `String` |  |
-| `data` | `Hash` |  |
 | `generation_id` | `String` |  |
+| `success` | `Boolean` |  |
 
 #### Example: Create
 
 ```ruby
 submit_generation_feedback = client.SubmitGenerationFeedback.create({
   "category" => "example_category", # String
-  "data" => {}, # Hash
   "generation_id" => "example_generation_id", # String
+  "success" => true, # Boolean
 })
 ```
 
@@ -3606,12 +3781,15 @@ Create an instance: `task = client.Task`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
+| `as_of` | `String` |  |
+| `classifications` | `Array` |  |
+| `macro_categories` | `Array` |  |
+| `window_days` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Task record (raises on error).
+# load returns the ENTITY — call data_get for the Task record (raises on error).
 task = client.Task.load()
 ```
 
@@ -3692,9 +3870,8 @@ Create an instance: `update_byok_key = client.UpdateByokKey`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_model` | `Object` |  |
-| `allowed_user_id` | `Object` |  |
-| `data` | `Object` |  |
+| `allowed_models` | `Object` |  |
+| `allowed_user_ids` | `Object` |  |
 | `disabled` | `Boolean` |  |
 | `is_fallback` | `Boolean` |  |
 | `key` | `String` |  |
@@ -3715,11 +3892,10 @@ Create an instance: `update_guardrail = client.UpdateGuardrail`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_model` | `Object` |  |
-| `allowed_provider` | `Object` |  |
-| `content_filter` | `Object` |  |
-| `content_filter_builtin` | `Object` |  |
-| `data` | `Object` |  |
+| `allowed_models` | `Object` |  |
+| `allowed_providers` | `Object` |  |
+| `content_filter_builtins` | `Object` |  |
+| `content_filters` | `Object` |  |
 | `description` | `Object` |  |
 | `enforce_zdr` | `Object` |  |
 | `enforce_zdr_anthropic` | `Object` |  |
@@ -3727,8 +3903,8 @@ Create an instance: `update_guardrail = client.UpdateGuardrail`
 | `enforce_zdr_openai` | `Object` |  |
 | `enforce_zdr_other` | `Object` |  |
 | `enforce_zdr_xai` | `Object` |  |
-| `ignored_model` | `Object` |  |
-| `ignored_provider` | `Object` |  |
+| `ignored_models` | `Object` |  |
+| `ignored_providers` | `Object` |  |
 | `limit_usd` | `Object` |  |
 | `name` | `String` |  |
 | `reset_interval` | `Object` |  |
@@ -3748,11 +3924,10 @@ Create an instance: `update_observability_destination = client.UpdateObservabili
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key_hash` | `Object` |  |
+| `api_key_hashes` | `Object` |  |
 | `config` | `Hash` |  |
-| `data` | `Object` |  |
 | `enabled` | `Boolean` |  |
-| `filter_rule` | `Object` |  |
+| `filter_rules` | `Object` |  |
 | `name` | `String` |  |
 | `privacy_mode` | `Boolean` |  |
 | `sampling_rate` | `Float` |  |
@@ -3776,13 +3951,12 @@ Create an instance: `update_workspace = client.UpdateWorkspace`
 | --- | --- | --- |
 | `created_at` | `String` |  |
 | `created_by` | `Object` |  |
-| `data` | `Object` |  |
 | `default_image_model` | `Object` |  |
 | `default_provider_sort` | `Object` |  |
 | `default_text_model` | `Object` |  |
 | `description` | `Object` |  |
 | `id` | `String` |  |
-| `io_logging_api_key_id` | `Object` |  |
+| `io_logging_api_key_ids` | `Object` |  |
 | `io_logging_sampling_rate` | `Float` |  |
 | `is_data_discount_logging_enabled` | `Boolean` |  |
 | `is_observability_broadcast_enabled` | `Boolean` |  |
@@ -3804,7 +3978,6 @@ update_workspaces = client.UpdateWorkspace.list
 update_workspace = client.UpdateWorkspace.create({
   "created_at" => "example_created_at", # String
   "created_by" => "example_created_by", # Object
-  "data" => "example_data", # Object
   "id" => "example_id", # String
   "name" => "example_name", # String
   "slug" => "example_slug", # String
@@ -3827,7 +4000,6 @@ Create an instance: `upsert_workspace_budget = client.UpsertWorkspaceBudget`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Object` |  |
 | `limit_usd` | `Float` |  |
 
 
@@ -3860,11 +4032,11 @@ Create an instance: `video = client.Video`
 | `callback_url` | `String` |  |
 | `duration` | `Integer` |  |
 | `error` | `String` |  |
-| `frame_image` | `Array` |  |
+| `frame_images` | `Array` |  |
 | `generate_audio` | `Boolean` |  |
 | `generation_id` | `String` |  |
 | `id` | `String` |  |
-| `input_reference` | `Array` |  |
+| `input_references` | `Array` |  |
 | `model` | `String` |  |
 | `polling_url` | `String` |  |
 | `prompt` | `String` |  |
@@ -3873,13 +4045,13 @@ Create an instance: `video = client.Video`
 | `seed` | `Integer` |  |
 | `size` | `String` |  |
 | `status` | `String` |  |
-| `unsigned_url` | `Array` |  |
+| `unsigned_urls` | `Array` |  |
 | `usage` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Video record (raises on error).
+# load returns the ENTITY — call data_get for the Video record (raises on error).
 video = client.Video.load({ "id" => "video_id" })
 ```
 
@@ -3908,7 +4080,7 @@ Create an instance: `video_generation = client.VideoGeneration`
 #### Example: Load
 
 ```ruby
-# load returns the bare VideoGeneration record (raises on error).
+# load returns the ENTITY — call data_get for the VideoGeneration record (raises on error).
 video_generation = client.VideoGeneration.load({ "id" => "video_generation_id" })
 ```
 
@@ -3927,7 +4099,7 @@ Create an instance: `video_models_list = client.VideoModelsList`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_passthrough_parameter` | `Array` |  |
+| `allowed_passthrough_parameters` | `Array` |  |
 | `canonical_slug` | `String` |  |
 | `created` | `Integer` |  |
 | `description` | `String` |  |
@@ -3937,11 +4109,11 @@ Create an instance: `video_models_list = client.VideoModelsList`
 | `name` | `String` |  |
 | `pricing_skus` | `Object` |  |
 | `seed` | `Object` |  |
-| `supported_aspect_ratio` | `Object` |  |
-| `supported_duration` | `Object` |  |
-| `supported_frame_image` | `Object` |  |
-| `supported_resolution` | `Object` |  |
-| `supported_size` | `Object` |  |
+| `supported_aspect_ratios` | `Object` |  |
+| `supported_durations` | `Object` |  |
+| `supported_frame_images` | `Object` |  |
+| `supported_resolutions` | `Object` |  |
+| `supported_sizes` | `Object` |  |
 
 #### Example: List
 
@@ -3966,12 +4138,26 @@ Create an instance: `workspace = client.Workspace`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Object` |  |
+| `created_at` | `String` |  |
+| `created_by` | `Object` |  |
+| `default_image_model` | `Object` |  |
+| `default_provider_sort` | `Object` |  |
+| `default_text_model` | `Object` |  |
+| `description` | `Object` |  |
+| `id` | `String` |  |
+| `io_logging_api_key_ids` | `Object` |  |
+| `io_logging_sampling_rate` | `Float` |  |
+| `is_data_discount_logging_enabled` | `Boolean` |  |
+| `is_observability_broadcast_enabled` | `Boolean` |  |
+| `is_observability_io_logging_enabled` | `Boolean` |  |
+| `name` | `String` |  |
+| `slug` | `String` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Workspace record (raises on error).
+# load returns the ENTITY — call data_get for the Workspace record (raises on error).
 workspace = client.Workspace.load({ "id" => "workspace_id" })
 ```
 
@@ -4068,11 +4254,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-activity = client.Activity
-activity.list()
+organization = client.Organization
+organization.list()
 
-# activity.data_get now returns the activity data from the last list
-# activity.match_get returns the last match criteria
+# organization.data_get now returns the organization data from the last list
+# organization.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

@@ -8,10 +8,10 @@ main: kit: entity: endpoint: {
     {
       name: "architecture"
       req: true
-      type: "`$OBJECT`"
+      type: "`$ANY`"
     }
     {
-      name: "benchmark"
+      name: "benchmarks"
       req: true
       type: "`$OBJECT`"
     }
@@ -37,12 +37,7 @@ main: kit: entity: endpoint: {
       type: "`$INTEGER`"
     }
     {
-      name: "data"
-      req: true
-      type: "`$OBJECT`"
-    }
-    {
-      name: "default_parameter"
+      name: "default_parameters"
       req: true
       type: [
         "`$ONE`"
@@ -54,8 +49,19 @@ main: kit: entity: endpoint: {
     }
     {
       name: "description"
-      req: false
+      op: {
+        list: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
       type: "`$STRING`"
+    }
+    {
+      name: "endpoints"
+      req: true
+      type: "`$ARRAY`"
     }
     {
       name: "expiration_date"
@@ -107,12 +113,12 @@ main: kit: entity: endpoint: {
       ]
     }
     {
-      name: "link"
+      name: "links"
       req: true
       type: "`$OBJECT`"
     }
     {
-      name: "max_completion_token"
+      name: "max_completion_tokens"
       req: true
       type: [
         "`$ONE`"
@@ -123,7 +129,7 @@ main: kit: entity: endpoint: {
       ]
     }
     {
-      name: "max_prompt_token"
+      name: "max_prompt_tokens"
       req: true
       type: [
         "`$ONE`"
@@ -149,7 +155,7 @@ main: kit: entity: endpoint: {
       type: "`$STRING`"
     }
     {
-      name: "per_request_limit"
+      name: "per_request_limits"
       req: true
       type: [
         "`$ONE`"
@@ -185,12 +191,12 @@ main: kit: entity: endpoint: {
       type: "`$INTEGER`"
     }
     {
-      name: "supported_parameter"
+      name: "supported_parameters"
       req: true
       type: "`$ARRAY`"
     }
     {
-      name: "supported_voice"
+      name: "supported_voices"
       req: true
       type: [
         "`$ONE`"
@@ -703,7 +709,7 @@ main: kit: entity: endpoint: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -774,7 +780,7 @@ main: kit: entity: endpoint: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

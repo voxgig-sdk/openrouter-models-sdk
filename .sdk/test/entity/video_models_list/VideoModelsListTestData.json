@@ -2,7 +2,7 @@
   "existing": {
     "video_models_list": {
       "VIDEO_MODELS_LIST00": {
-        "allowed_passthrough_parameter": [],
+        "allowed_passthrough_parameters": [],
         "canonical_slug": "s97",
         "created": "s98",
         "description": "s99",
@@ -12,14 +12,14 @@
         "name": "s9d",
         "pricing_skus": "s9e",
         "seed": "s9f",
-        "supported_aspect_ratio": "sa0",
-        "supported_duration": "sa1",
-        "supported_frame_image": "sa2",
-        "supported_resolution": "sa3",
-        "supported_size": "sa4"
+        "supported_aspect_ratios": "sa0",
+        "supported_durations": "sa1",
+        "supported_frame_images": "sa2",
+        "supported_resolutions": "sa3",
+        "supported_sizes": "sa4"
       },
       "VIDEO_MODELS_LIST01": {
-        "allowed_passthrough_parameter": [],
+        "allowed_passthrough_parameters": [],
         "canonical_slug": "s12d",
         "created": "s12e",
         "description": "s12f",
@@ -29,14 +29,14 @@
         "name": "s133",
         "pricing_skus": "s134",
         "seed": "s135",
-        "supported_aspect_ratio": "s136",
-        "supported_duration": "s137",
-        "supported_frame_image": "s138",
-        "supported_resolution": "s139",
-        "supported_size": "s13a"
+        "supported_aspect_ratios": "s136",
+        "supported_durations": "s137",
+        "supported_frame_images": "s138",
+        "supported_resolutions": "s139",
+        "supported_sizes": "s13a"
       },
       "VIDEO_MODELS_LIST02": {
-        "allowed_passthrough_parameter": [],
+        "allowed_passthrough_parameters": [],
         "canonical_slug": "s1c3",
         "created": "s1c4",
         "description": "s1c5",
@@ -46,18 +46,18 @@
         "name": "s1c9",
         "pricing_skus": "s1ca",
         "seed": "s1cb",
-        "supported_aspect_ratio": "s1cc",
-        "supported_duration": "s1cd",
-        "supported_frame_image": "s1ce",
-        "supported_resolution": "s1cf",
-        "supported_size": "s1d0"
+        "supported_aspect_ratios": "s1cc",
+        "supported_durations": "s1cd",
+        "supported_frame_images": "s1ce",
+        "supported_resolutions": "s1cf",
+        "supported_sizes": "s1d0"
       }
     }
   },
   "new": {
     "video_models_list": {
       "video_models_list_ref01": {
-        "allowed_passthrough_parameter": [],
+        "allowed_passthrough_parameters": [],
         "canonical_slug": "s259",
         "created": "s25a",
         "description": "s25b",
@@ -66,11 +66,11 @@
         "name": "s25f",
         "pricing_skus": "s260",
         "seed": "s261",
-        "supported_aspect_ratio": "s262",
-        "supported_duration": "s263",
-        "supported_frame_image": "s264",
-        "supported_resolution": "s265",
-        "supported_size": "s266"
+        "supported_aspect_ratios": "s262",
+        "supported_durations": "s263",
+        "supported_frame_images": "s264",
+        "supported_resolutions": "s265",
+        "supported_sizes": "s266"
       }
     }
   }

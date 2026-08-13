@@ -37,7 +37,7 @@ class UnifiedBenchmarkEntity extends OpenrouterModelsEntityBase<UnifiedBenchmark
 
 
 
-  async list(this: any, reqmatch?: UnifiedBenchmarkListMatch, ctrl?: Control): Promise<UnifiedBenchmark[]> {
+  async list(this: any, reqmatch?: UnifiedBenchmarkListMatch, ctrl?: Control): Promise<UnifiedBenchmarkEntity[]> {
 
     const utility = this._utility
 

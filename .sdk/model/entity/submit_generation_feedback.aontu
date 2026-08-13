@@ -16,14 +16,14 @@ main: kit: entity: submit_generation_feedback: {
       type: "`$STRING`"
     }
     {
-      name: "data"
-      req: true
-      type: "`$OBJECT`"
-    }
-    {
       name: "generation_id"
       req: true
       type: "`$STRING`"
+    }
+    {
+      name: "success"
+      req: true
+      type: "`$BOOLEAN`"
     }
   ]
 
@@ -73,7 +73,7 @@ main: kit: entity: submit_generation_feedback: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

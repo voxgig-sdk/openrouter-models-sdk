@@ -5,30 +5,30 @@
         "architecture": {},
         "created": "s51",
         "description": "s52",
-        "endpoint": "s53",
+        "endpoints": "s53",
         "id": "IMAGE_MODELS_LIST00",
         "name": "s55",
-        "supported_parameter": {},
+        "supported_parameters": {},
         "supports_streaming": false
       },
       "IMAGE_MODELS_LIST01": {
         "architecture": {},
         "created": "sa1",
         "description": "sa2",
-        "endpoint": "sa3",
+        "endpoints": "sa3",
         "id": "IMAGE_MODELS_LIST01",
         "name": "sa5",
-        "supported_parameter": {},
+        "supported_parameters": {},
         "supports_streaming": false
       },
       "IMAGE_MODELS_LIST02": {
         "architecture": {},
         "created": "sf1",
         "description": "sf2",
-        "endpoint": "sf3",
+        "endpoints": "sf3",
         "id": "IMAGE_MODELS_LIST02",
         "name": "sf5",
-        "supported_parameter": {},
+        "supported_parameters": {},
         "supports_streaming": false
       }
     }
@@ -39,9 +39,9 @@
         "architecture": {},
         "created": "s141",
         "description": "s142",
-        "endpoint": "s143",
+        "endpoints": "s143",
         "name": "s145",
-        "supported_parameter": {},
+        "supported_parameters": {},
         "supports_streaming": false
       }
     }

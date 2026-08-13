@@ -11,7 +11,7 @@ main: kit: entity: chat_result: {
       type: "`$OBJECT`"
     }
     {
-      name: "choice"
+      name: "choices"
       req: true
       type: "`$ARRAY`"
     }
@@ -47,7 +47,7 @@ main: kit: entity: chat_result: {
       type: "`$OBJECT`"
     }
     {
-      name: "logit_bia"
+      name: "logit_bias"
       req: false
       type: [
         "`$ONE`"
@@ -58,7 +58,7 @@ main: kit: entity: chat_result: {
       ]
     }
     {
-      name: "logprob"
+      name: "logprobs"
       req: false
       type: [
         "`$ONE`"
@@ -69,7 +69,7 @@ main: kit: entity: chat_result: {
       ]
     }
     {
-      name: "max_completion_token"
+      name: "max_completion_tokens"
       req: false
       type: [
         "`$ONE`"
@@ -80,7 +80,7 @@ main: kit: entity: chat_result: {
       ]
     }
     {
-      name: "max_token"
+      name: "max_tokens"
       req: false
       type: [
         "`$ONE`"
@@ -91,7 +91,7 @@ main: kit: entity: chat_result: {
       ]
     }
     {
-      name: "message"
+      name: "messages"
       req: true
       type: "`$ARRAY`"
     }
@@ -112,7 +112,7 @@ main: kit: entity: chat_result: {
       ]
     }
     {
-      name: "modality"
+      name: "modalities"
       req: false
       type: "`$ARRAY`"
     }
@@ -121,11 +121,16 @@ main: kit: entity: chat_result: {
       op: {
         create: {
           req: false
-          type: "`$ARRAY`"
+          type: "`$STRING`"
         }
       }
       req: true
       type: "`$STRING`"
+    }
+    {
+      name: "models"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "object"
@@ -138,7 +143,7 @@ main: kit: entity: chat_result: {
       type: "`$OBJECT`"
     }
     {
-      name: "parallel_tool_call"
+      name: "parallel_tool_calls"
       req: false
       type: [
         "`$ONE`"
@@ -149,7 +154,7 @@ main: kit: entity: chat_result: {
       ]
     }
     {
-      name: "plugin"
+      name: "plugins"
       req: false
       type: "`$ARRAY`"
     }
@@ -187,7 +192,7 @@ main: kit: entity: chat_result: {
       ]
     }
     {
-      name: "prompt_cache_option"
+      name: "prompt_cache_options"
       req: true
       type: [
         "`$ONE`"
@@ -294,7 +299,7 @@ main: kit: entity: chat_result: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "stream_option"
+      name: "stream_options"
       req: false
       type: [
         "`$ONE`"
@@ -327,14 +332,14 @@ main: kit: entity: chat_result: {
       ]
     }
     {
-      name: "tool"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
       name: "tool_choice"
       req: false
       type: "`$ANY`"
+    }
+    {
+      name: "tools"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "top_a"
@@ -359,7 +364,7 @@ main: kit: entity: chat_result: {
       ]
     }
     {
-      name: "top_logprob"
+      name: "top_logprobs"
       req: false
       type: [
         "`$ONE`"

@@ -37,7 +37,7 @@ class EndpointEntity extends OpenrouterModelsEntityBase<Endpoint> {
 
 
 
-  async load(this: any, reqmatch?: EndpointLoadMatch, ctrl?: Control): Promise<Endpoint> {
+  async load(this: any, reqmatch?: EndpointLoadMatch, ctrl?: Control): Promise<EndpointEntity> {
 
     const utility = this._utility
 
@@ -128,7 +128,15 @@ class EndpointEntity extends OpenrouterModelsEntityBase<Endpoint> {
         }
       }
 
-      return done(ctx)
+      const out = done(ctx)
+
+      // An operation resolves to the ENTITY, not the raw data — the record
+      // has just been absorbed into this instance and is reached through
+      // data(). `done` still runs: it completes the pipeline and raises on
+      // failure, and when throwing is disabled it hands back the error
+      // payload, which passes through unchanged. See AGENTS.md "Entity
+      // operations return ENTITIES".
+      return (ctx.result && ctx.result.ok) ? this : out
     }
     catch (err: any) {
 
@@ -150,7 +158,7 @@ class EndpointEntity extends OpenrouterModelsEntityBase<Endpoint> {
 
 
 
-  async list(this: any, reqmatch?: EndpointListMatch, ctrl?: Control): Promise<Endpoint[]> {
+  async list(this: any, reqmatch?: EndpointListMatch, ctrl?: Control): Promise<EndpointEntity[]> {
 
     const utility = this._utility
 

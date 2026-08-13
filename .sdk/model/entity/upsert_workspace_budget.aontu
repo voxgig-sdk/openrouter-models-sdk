@@ -6,11 +6,6 @@ main: kit: entity: upsert_workspace_budget: {
 
   fields: [
     {
-      name: "data"
-      req: true
-      type: "`$ANY`"
-    }
-    {
       name: "limit_usd"
       req: true
       type: "`$NUMBER`"
@@ -91,7 +86,7 @@ main: kit: entity: upsert_workspace_budget: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

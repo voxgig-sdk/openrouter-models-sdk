@@ -432,15 +432,15 @@ local activity = client:Activity(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `byok_usage_inference` | `number` | Yes |  |
-| `completion_token` | `number` | Yes |  |
+| `completion_tokens` | `number` | Yes |  |
 | `date` | `string` | Yes |  |
 | `endpoint_id` | `string` | Yes |  |
 | `model` | `string` | Yes |  |
 | `model_permaslug` | `string` | Yes |  |
-| `prompt_token` | `number` | Yes |  |
+| `prompt_tokens` | `number` | Yes |  |
 | `provider_name` | `string` | Yes |  |
-| `reasoning_token` | `number` | Yes |  |
-| `request` | `number` | Yes |  |
+| `reasoning_tokens` | `number` | Yes |  |
+| `requests` | `number` | Yes |  |
 | `usage` | `number` | Yes |  |
 
 ### Operations
@@ -534,23 +534,26 @@ local api_key = client:ApiKey(nil)
 | `byok_usage_monthly` | `number` | Yes |  |
 | `byok_usage_weekly` | `number` | Yes |  |
 | `created_at` | `string` | Yes |  |
-| `creator_user_id` | `any` | No |  |
-| `data` | `table` | Yes |  |
-| `disabled` | `boolean` | No |  |
-| `expires_at` | `any` | No |  |
+| `creator_user_id` | `string|nil` | Yes |  |
+| `disabled` | `boolean` | Yes |  |
+| `expires_at` | `string|nil` | No |  |
 | `hash` | `string` | Yes |  |
-| `include_byok_in_limit` | `boolean` | No |  |
+| `include_byok_in_limit` | `boolean` | Yes |  |
+| `is_free_tier` | `boolean` | Yes |  |
+| `is_management_key` | `boolean` | Yes |  |
+| `is_provisioning_key` | `boolean` | Yes |  |
 | `label` | `string` | Yes |  |
-| `limit` | `any` | No |  |
-| `limit_remaining` | `any` | Yes |  |
-| `limit_reset` | `any` | No |  |
+| `limit` | `number|nil` | Yes |  |
+| `limit_remaining` | `number|nil` | Yes |  |
+| `limit_reset` | `string|nil` | Yes |  |
 | `name` | `string` | Yes |  |
-| `updated_at` | `any` | Yes |  |
+| `rate_limit` | `table` | Yes |  |
+| `updated_at` | `string|nil` | Yes |  |
 | `usage` | `number` | Yes |  |
 | `usage_daily` | `number` | Yes |  |
 | `usage_monthly` | `number` | Yes |  |
 | `usage_weekly` | `number` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `workspace_id` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
@@ -561,23 +564,26 @@ local api_key = client:ApiKey(nil)
 | `byok_usage_monthly` | - | - | - | - | - |
 | `byok_usage_weekly` | - | - | - | - | - |
 | `created_at` | - | - | - | - | - |
-| `creator_user_id` | - | Yes | - | - | - |
-| `data` | - | - | - | - | - |
-| `disabled` | - | Yes | - | - | - |
+| `creator_user_id` | - | - | Yes | - | - |
+| `disabled` | - | - | - | Yes | - |
 | `expires_at` | - | - | - | - | - |
 | `hash` | - | - | - | - | - |
-| `include_byok_in_limit` | - | Yes | - | - | - |
+| `include_byok_in_limit` | - | - | Yes | Yes | - |
+| `is_free_tier` | - | - | - | - | - |
+| `is_management_key` | - | - | - | - | - |
+| `is_provisioning_key` | - | - | - | - | - |
 | `label` | - | - | - | - | - |
-| `limit` | - | Yes | - | - | - |
+| `limit` | - | - | Yes | Yes | - |
 | `limit_remaining` | - | - | - | - | - |
-| `limit_reset` | - | Yes | - | - | - |
+| `limit_reset` | - | - | Yes | Yes | - |
 | `name` | - | - | - | Yes | - |
+| `rate_limit` | - | - | - | - | - |
 | `updated_at` | - | - | - | - | - |
 | `usage` | - | - | - | - | - |
 | `usage_daily` | - | - | - | - | - |
 | `usage_monthly` | - | - | - | - | - |
 | `usage_weekly` | - | - | - | - | - |
-| `workspace_id` | - | Yes | - | - | - |
+| `workspace_id` | - | - | Yes | - | - |
 
 ### Operations
 
@@ -592,16 +598,25 @@ local result, err = client:ApiKey():create({
   byok_usage_monthly = --[[ number ]],
   byok_usage_weekly = --[[ number ]],
   created_at = --[[ string ]],
-  data = --[[ table ]],
+  creator_user_id = --[[ string|nil ]],
+  disabled = --[[ boolean ]],
   hash = --[[ string ]],
+  include_byok_in_limit = --[[ boolean ]],
+  is_free_tier = --[[ boolean ]],
+  is_management_key = --[[ boolean ]],
+  is_provisioning_key = --[[ boolean ]],
   label = --[[ string ]],
-  limit_remaining = --[[ any ]],
+  limit = --[[ number|nil ]],
+  limit_remaining = --[[ number|nil ]],
+  limit_reset = --[[ string|nil ]],
   name = --[[ string ]],
-  updated_at = --[[ any ]],
+  rate_limit = --[[ table ]],
+  updated_at = --[[ string|nil ]],
   usage = --[[ number ]],
   usage_daily = --[[ number ]],
   usage_monthly = --[[ number ]],
   usage_weekly = --[[ number ]],
+  workspace_id = --[[ string ]],
 })
 ```
 
@@ -683,8 +698,8 @@ local app_ranking = client:AppRanking(nil)
 | `app_id` | `number` | Yes |  |
 | `app_name` | `string` | Yes |  |
 | `rank` | `number` | Yes |  |
-| `total_request` | `number` | Yes |  |
-| `total_token` | `string` | Yes |  |
+| `total_requests` | `number` | Yes |  |
+| `total_tokens` | `string` | Yes |  |
 
 ### Operations
 
@@ -772,17 +787,43 @@ local beta_analytics = client:BetaAnalytics(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `classifier_dimension` | `table` | Yes |  |
-| `classifier_filter` | `table` | Yes |  |
+| `cachedAt` | `number` | No |  |
+| `classifier_dimensions` | `table` | Yes |  |
+| `classifier_filters` | `table` | Yes |  |
 | `data` | `table` | Yes |  |
-| `dimension` | `table` | No |  |
-| `filter` | `table` | No |  |
+| `dimensions` | `table` | Yes |  |
+| `filters` | `table` | No |  |
+| `granularities` | `table` | Yes |  |
 | `granularity` | `string` | No |  |
 | `group_limit` | `number` | No |  |
 | `limit` | `number` | No |  |
-| `metric` | `table` | Yes |  |
+| `metadata` | `table` | Yes |  |
+| `metrics` | `table` | Yes |  |
+| `operators` | `table` | Yes |  |
 | `order_by` | `table` | Yes |  |
 | `time_range` | `table` | Yes |  |
+| `warnings` | `table` | No |  |
+
+### Field Usage by Operation
+
+| Field | load | create |
+| --- | --- | --- |
+| `cachedAt` | - | - |
+| `classifier_dimensions` | - | - |
+| `classifier_filters` | - | - |
+| `data` | - | - |
+| `dimensions` | - | Yes |
+| `filters` | - | - |
+| `granularities` | - | - |
+| `granularity` | - | - |
+| `group_limit` | - | - |
+| `limit` | - | - |
+| `metadata` | - | - |
+| `metrics` | - | - |
+| `operators` | - | - |
+| `order_by` | - | - |
+| `time_range` | - | - |
+| `warnings` | - | - |
 
 ### Operations
 
@@ -792,10 +833,14 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:BetaAnalytics():create({
-  classifier_dimension = --[[ table ]],
-  classifier_filter = --[[ table ]],
+  classifier_dimensions = --[[ table ]],
+  classifier_filters = --[[ table ]],
   data = --[[ table ]],
-  metric = --[[ table ]],
+  dimensions = --[[ table ]],
+  granularities = --[[ table ]],
+  metadata = --[[ table ]],
+  metrics = --[[ table ]],
+  operators = --[[ table ]],
   order_by = --[[ table ]],
   time_range = --[[ table ]],
 })
@@ -887,7 +932,7 @@ local bulk_add_workspace_member = client:BulkAddWorkspaceMember(nil)
 | --- | --- | --- | --- |
 | `added_count` | `number` | Yes |  |
 | `data` | `table` | Yes |  |
-| `user_id` | `table` | Yes |  |
+| `user_ids` | `table` | Yes |  |
 
 ### Operations
 
@@ -898,6 +943,9 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:BulkAddWorkspaceMember():create({
   workspace_id = --[[ string ]],
+  added_count = --[[ number ]],
+  data = --[[ table ]],
+  user_ids = --[[ table ]],
 })
 ```
 
@@ -942,7 +990,7 @@ local bulk_assign_key = client:BulkAssignKey(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `assigned_count` | `number` | Yes |  |
-| `key_hash` | `table` | Yes |  |
+| `key_hashes` | `table` | Yes |  |
 
 ### Operations
 
@@ -953,6 +1001,8 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:BulkAssignKey():create({
   guardrail_id = --[[ string ]],
+  assigned_count = --[[ number ]],
+  key_hashes = --[[ table ]],
 })
 ```
 
@@ -997,7 +1047,7 @@ local bulk_assign_member = client:BulkAssignMember(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `assigned_count` | `number` | Yes |  |
-| `member_user_id` | `table` | Yes |  |
+| `member_user_ids` | `table` | Yes |  |
 
 ### Operations
 
@@ -1008,6 +1058,8 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:BulkAssignMember():create({
   guardrail_id = --[[ string ]],
+  assigned_count = --[[ number ]],
+  member_user_ids = --[[ table ]],
 })
 ```
 
@@ -1052,7 +1104,7 @@ local bulk_remove_workspace_member = client:BulkRemoveWorkspaceMember(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `removed_count` | `number` | Yes |  |
-| `user_id` | `table` | Yes |  |
+| `user_ids` | `table` | Yes |  |
 
 ### Operations
 
@@ -1063,6 +1115,8 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:BulkRemoveWorkspaceMember():create({
   workspace_id = --[[ string ]],
+  removed_count = --[[ number ]],
+  user_ids = --[[ table ]],
 })
 ```
 
@@ -1106,7 +1160,7 @@ local bulk_unassign_key = client:BulkUnassignKey(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key_hash` | `table` | Yes |  |
+| `key_hashes` | `table` | Yes |  |
 | `unassigned_count` | `number` | Yes |  |
 
 ### Operations
@@ -1118,6 +1172,8 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:BulkUnassignKey():create({
   guardrail_id = --[[ string ]],
+  key_hashes = --[[ table ]],
+  unassigned_count = --[[ number ]],
 })
 ```
 
@@ -1161,7 +1217,7 @@ local bulk_unassign_member = client:BulkUnassignMember(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `member_user_id` | `table` | Yes |  |
+| `member_user_ids` | `table` | Yes |  |
 | `unassigned_count` | `number` | Yes |  |
 
 ### Operations
@@ -1173,6 +1229,8 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:BulkUnassignMember():create({
   guardrail_id = --[[ string ]],
+  member_user_ids = --[[ table ]],
+  unassigned_count = --[[ number ]],
 })
 ```
 
@@ -1216,39 +1274,37 @@ local byok = client:Byok(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_api_key_hash` | `any` | Yes |  |
-| `allowed_model` | `any` | No |  |
-| `allowed_user_id` | `any` | No |  |
+| `allowed_api_key_hashes` | `table|nil` | Yes |  |
+| `allowed_models` | `table|nil` | Yes |  |
+| `allowed_user_ids` | `table|nil` | Yes |  |
 | `created_at` | `string` | Yes |  |
-| `data` | `any` | Yes |  |
-| `disabled` | `boolean` | No |  |
+| `disabled` | `boolean` | Yes |  |
 | `id` | `string` | Yes |  |
-| `is_fallback` | `boolean` | No |  |
+| `is_fallback` | `boolean` | Yes |  |
 | `key` | `string` | Yes |  |
 | `label` | `string` | Yes |  |
-| `name` | `any` | No |  |
+| `name` | `string|nil` | No |  |
 | `provider` | `string` | Yes |  |
 | `sort_order` | `number` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `workspace_id` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | load | list | create | remove |
 | --- | --- | --- | --- | --- |
-| `allowed_api_key_hash` | - | - | - | - |
-| `allowed_model` | - | Yes | - | - |
-| `allowed_user_id` | - | Yes | - | - |
+| `allowed_api_key_hashes` | - | - | - | - |
+| `allowed_models` | - | - | Yes | - |
+| `allowed_user_ids` | - | - | Yes | - |
 | `created_at` | - | - | - | - |
-| `data` | - | - | - | - |
-| `disabled` | - | Yes | - | - |
+| `disabled` | - | - | Yes | - |
 | `id` | - | - | - | - |
-| `is_fallback` | - | Yes | - | - |
+| `is_fallback` | - | - | Yes | - |
 | `key` | - | - | - | - |
 | `label` | - | - | - | - |
 | `name` | - | - | - | - |
 | `provider` | - | - | - | - |
 | `sort_order` | - | - | - | - |
-| `workspace_id` | - | Yes | - | - |
+| `workspace_id` | - | - | Yes | - |
 
 ### Operations
 
@@ -1258,14 +1314,18 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Byok():create({
-  allowed_api_key_hash = --[[ any ]],
+  allowed_api_key_hashes = --[[ table|nil ]],
+  allowed_models = --[[ table|nil ]],
+  allowed_user_ids = --[[ table|nil ]],
   created_at = --[[ string ]],
-  data = --[[ any ]],
+  disabled = --[[ boolean ]],
   id = --[[ string ]],
+  is_fallback = --[[ boolean ]],
   key = --[[ string ]],
   label = --[[ string ]],
   provider = --[[ string ]],
   sort_order = --[[ number ]],
+  workspace_id = --[[ string ]],
 })
 ```
 
@@ -1334,50 +1394,51 @@ local chat_result = client:ChatResult(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cache_control` | `table` | Yes |  |
-| `choice` | `table` | Yes |  |
+| `choices` | `table` | Yes |  |
 | `created` | `number` | Yes |  |
 | `debug` | `table` | No |  |
-| `frequency_penalty` | `any` | No |  |
+| `frequency_penalty` | `number|nil` | No |  |
 | `id` | `string` | Yes |  |
 | `image_config` | `table` | No |  |
-| `logit_bia` | `any` | No |  |
-| `logprob` | `any` | No |  |
-| `max_completion_token` | `any` | No |  |
-| `max_token` | `any` | No |  |
-| `message` | `table` | Yes |  |
+| `logit_bias` | `table|nil` | No |  |
+| `logprobs` | `boolean|nil` | No |  |
+| `max_completion_tokens` | `number|nil` | No |  |
+| `max_tokens` | `number|nil` | No |  |
+| `messages` | `table` | Yes |  |
 | `metadata` | `table` | No |  |
-| `min_p` | `any` | No |  |
-| `modality` | `table` | No |  |
+| `min_p` | `number|nil` | No |  |
+| `modalities` | `table` | No |  |
 | `model` | `string` | Yes |  |
+| `models` | `table` | No |  |
 | `object` | `string` | Yes |  |
 | `openrouter_metadata` | `table` | Yes |  |
-| `parallel_tool_call` | `any` | No |  |
-| `plugin` | `table` | No |  |
-| `prediction` | `any` | Yes |  |
-| `presence_penalty` | `any` | No |  |
-| `prompt_cache_key` | `any` | No |  |
-| `prompt_cache_option` | `any` | Yes |  |
-| `provider` | `any` | No |  |
+| `parallel_tool_calls` | `boolean|nil` | No |  |
+| `plugins` | `table` | No |  |
+| `prediction` | `table|nil` | Yes |  |
+| `presence_penalty` | `number|nil` | No |  |
+| `prompt_cache_key` | `string|nil` | No |  |
+| `prompt_cache_options` | `table|nil` | Yes |  |
+| `provider` | `table|nil` | No |  |
 | `reasoning` | `table` | No |  |
-| `reasoning_effort` | `any` | No |  |
-| `repetition_penalty` | `any` | No |  |
+| `reasoning_effort` | `string|nil` | No |  |
+| `repetition_penalty` | `number|nil` | No |  |
 | `response_format` | `any` | No |  |
-| `route` | `any` | No |  |
-| `seed` | `any` | No |  |
-| `service_tier` | `any` | No |  |
+| `route` | `string|nil` | No |  |
+| `seed` | `number|nil` | No |  |
+| `service_tier` | `string|nil` | No |  |
 | `session_id` | `string` | No |  |
 | `stop` | `any` | No |  |
 | `stop_server_tools_when` | `table` | No |  |
 | `stream` | `boolean` | No |  |
-| `stream_option` | `any` | No |  |
-| `system_fingerprint` | `any` | Yes |  |
-| `temperature` | `any` | No |  |
-| `tool` | `table` | No |  |
+| `stream_options` | `table|nil` | No |  |
+| `system_fingerprint` | `string|nil` | Yes |  |
+| `temperature` | `number|nil` | No |  |
 | `tool_choice` | `any` | No |  |
-| `top_a` | `any` | No |  |
-| `top_k` | `any` | No |  |
-| `top_logprob` | `any` | No |  |
-| `top_p` | `any` | No |  |
+| `tools` | `table` | No |  |
+| `top_a` | `number|nil` | No |  |
+| `top_k` | `number|nil` | No |  |
+| `top_logprobs` | `number|nil` | No |  |
+| `top_p` | `number|nil` | No |  |
 | `trace` | `table` | No |  |
 | `usage` | `table` | Yes |  |
 | `user` | `string` | No |  |
@@ -1387,29 +1448,30 @@ local chat_result = client:ChatResult(nil)
 | Field | create |
 | --- | --- |
 | `cache_control` | - |
-| `choice` | - |
+| `choices` | - |
 | `created` | - |
 | `debug` | - |
 | `frequency_penalty` | - |
 | `id` | - |
 | `image_config` | - |
-| `logit_bia` | - |
-| `logprob` | - |
-| `max_completion_token` | - |
-| `max_token` | - |
-| `message` | - |
+| `logit_bias` | - |
+| `logprobs` | - |
+| `max_completion_tokens` | - |
+| `max_tokens` | - |
+| `messages` | - |
 | `metadata` | - |
 | `min_p` | - |
-| `modality` | - |
+| `modalities` | - |
 | `model` | Yes |
+| `models` | - |
 | `object` | - |
 | `openrouter_metadata` | - |
-| `parallel_tool_call` | - |
-| `plugin` | - |
+| `parallel_tool_calls` | - |
+| `plugins` | - |
 | `prediction` | - |
 | `presence_penalty` | - |
 | `prompt_cache_key` | - |
-| `prompt_cache_option` | - |
+| `prompt_cache_options` | - |
 | `provider` | - |
 | `reasoning` | - |
 | `reasoning_effort` | - |
@@ -1422,14 +1484,14 @@ local chat_result = client:ChatResult(nil)
 | `stop` | - |
 | `stop_server_tools_when` | - |
 | `stream` | - |
-| `stream_option` | - |
+| `stream_options` | - |
 | `system_fingerprint` | - |
 | `temperature` | - |
-| `tool` | - |
 | `tool_choice` | - |
+| `tools` | - |
 | `top_a` | - |
 | `top_k` | - |
-| `top_logprob` | - |
+| `top_logprobs` | - |
 | `top_p` | - |
 | `trace` | - |
 | `usage` | - |
@@ -1444,16 +1506,16 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:ChatResult():create({
   cache_control = --[[ table ]],
-  choice = --[[ table ]],
+  choices = --[[ table ]],
   created = --[[ number ]],
   id = --[[ string ]],
-  message = --[[ table ]],
+  messages = --[[ table ]],
   model = --[[ string ]],
   object = --[[ string ]],
   openrouter_metadata = --[[ table ]],
-  prediction = --[[ any ]],
-  prompt_cache_option = --[[ any ]],
-  system_fingerprint = --[[ any ]],
+  prediction = --[[ table|nil ]],
+  prompt_cache_options = --[[ table|nil ]],
+  system_fingerprint = --[[ string|nil ]],
   usage = --[[ table ]],
 })
 ```
@@ -1750,10 +1812,10 @@ local create_observability_destination = client:CreateObservabilityDestination(n
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hash` | `any` | No |  |
+| `api_key_hashes` | `table|nil` | No |  |
 | `config` | `table` | Yes |  |
 | `enabled` | `boolean` | No |  |
-| `filter_rule` | `any` | Yes |  |
+| `filter_rules` | `table|nil` | Yes |  |
 | `name` | `string` | Yes |  |
 | `privacy_mode` | `boolean` | No |  |
 | `sampling_rate` | `number` | No |  |
@@ -1769,7 +1831,7 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:CreateObservabilityDestination():create({
   config = --[[ table ]],
-  filter_rule = --[[ any ]],
+  filter_rules = --[[ table|nil ]],
   name = --[[ string ]],
   type = --[[ string ]],
 })
@@ -1815,66 +1877,66 @@ local create_preset_from_inference = client:CreatePresetFromInference(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background` | `any` | No |  |
+| `background` | `boolean|nil` | No |  |
 | `cache_control` | `table` | Yes |  |
-| `context_management` | `any` | No |  |
-| `data` | `any` | Yes |  |
+| `context_management` | `table|nil` | No |  |
 | `debug` | `table` | No |  |
-| `fallback` | `any` | No |  |
-| `frequency_penalty` | `any` | No |  |
+| `fallbacks` | `table|nil` | No |  |
+| `frequency_penalty` | `number|nil` | No |  |
 | `image_config` | `table` | No |  |
-| `include` | `any` | No |  |
+| `include` | `table|nil` | No |  |
 | `input` | `any` | No |  |
-| `instruction` | `any` | No |  |
-| `logit_bia` | `any` | No |  |
-| `logprob` | `any` | No |  |
-| `max_completion_token` | `any` | No |  |
-| `max_output_token` | `any` | No |  |
-| `max_token` | `any` | No |  |
-| `max_tool_call` | `any` | No |  |
-| `message` | `table` | Yes |  |
+| `instructions` | `string|nil` | No |  |
+| `logit_bias` | `table|nil` | No |  |
+| `logprobs` | `boolean|nil` | No |  |
+| `max_completion_tokens` | `number|nil` | No |  |
+| `max_output_tokens` | `number|nil` | No |  |
+| `max_tokens` | `number|nil` | No |  |
+| `max_tool_calls` | `number|nil` | No |  |
+| `messages` | `table` | Yes |  |
 | `metadata` | `table` | No |  |
-| `min_p` | `any` | No |  |
-| `modality` | `table` | No |  |
+| `min_p` | `number|nil` | No |  |
+| `modalities` | `table` | No |  |
 | `model` | `string` | No |  |
+| `models` | `table` | No |  |
 | `output_config` | `table` | No |  |
-| `parallel_tool_call` | `any` | No |  |
-| `plugin` | `table` | No |  |
-| `prediction` | `any` | Yes |  |
-| `presence_penalty` | `any` | No |  |
+| `parallel_tool_calls` | `boolean|nil` | No |  |
+| `plugins` | `table` | No |  |
+| `prediction` | `table|nil` | Yes |  |
+| `presence_penalty` | `number|nil` | No |  |
 | `previous_response_id` | `string` | No |  |
-| `prompt` | `any` | Yes |  |
-| `prompt_cache_key` | `any` | No |  |
-| `prompt_cache_option` | `any` | Yes |  |
-| `provider` | `any` | No |  |
+| `prompt` | `table|nil` | Yes |  |
+| `prompt_cache_key` | `string|nil` | No |  |
+| `prompt_cache_options` | `table|nil` | Yes |  |
+| `provider` | `table|nil` | No |  |
 | `reasoning` | `table` | No |  |
-| `reasoning_effort` | `any` | No |  |
-| `repetition_penalty` | `any` | No |  |
+| `reasoning_effort` | `string|nil` | No |  |
+| `repetition_penalty` | `number|nil` | No |  |
 | `response_format` | `any` | No |  |
-| `route` | `any` | No |  |
-| `safety_identifier` | `any` | No |  |
-| `seed` | `any` | No |  |
-| `service_tier` | `any` | No |  |
+| `route` | `string|nil` | No |  |
+| `safety_identifier` | `string|nil` | No |  |
+| `seed` | `number|nil` | No |  |
+| `service_tier` | `string|nil` | No |  |
 | `session_id` | `string` | No |  |
 | `speed` | `any` | No |  |
 | `stop` | `any` | No |  |
-| `stop_sequence` | `table` | No |  |
+| `stop_sequences` | `table` | No |  |
 | `stop_server_tools_when` | `table` | No |  |
 | `store` | `boolean` | No |  |
 | `stream` | `boolean` | No |  |
-| `stream_option` | `any` | No |  |
+| `stream_options` | `table|nil` | No |  |
 | `system` | `any` | No |  |
-| `temperature` | `any` | No |  |
+| `temperature` | `number|nil` | No |  |
 | `text` | `any` | No |  |
 | `thinking` | `any` | No |  |
-| `tool` | `table` | No |  |
 | `tool_choice` | `any` | No |  |
-| `top_a` | `any` | No |  |
-| `top_k` | `any` | No |  |
-| `top_logprob` | `any` | No |  |
-| `top_p` | `any` | No |  |
+| `tools` | `table` | No |  |
+| `top_a` | `number|nil` | No |  |
+| `top_k` | `number|nil` | No |  |
+| `top_logprobs` | `number|nil` | No |  |
+| `top_p` | `number|nil` | No |  |
 | `trace` | `table` | No |  |
-| `truncation` | `any` | No |  |
+| `truncation` | `string|nil` | No |  |
 | `user` | `string` | No |  |
 
 ### Field Usage by Operation
@@ -1884,34 +1946,34 @@ local create_preset_from_inference = client:CreatePresetFromInference(nil)
 | `background` | - |
 | `cache_control` | - |
 | `context_management` | - |
-| `data` | - |
 | `debug` | - |
-| `fallback` | - |
+| `fallbacks` | - |
 | `frequency_penalty` | - |
 | `image_config` | - |
 | `include` | - |
 | `input` | - |
-| `instruction` | - |
-| `logit_bia` | - |
-| `logprob` | - |
-| `max_completion_token` | - |
-| `max_output_token` | - |
-| `max_token` | - |
-| `max_tool_call` | - |
-| `message` | - |
+| `instructions` | - |
+| `logit_bias` | - |
+| `logprobs` | - |
+| `max_completion_tokens` | - |
+| `max_output_tokens` | - |
+| `max_tokens` | - |
+| `max_tool_calls` | - |
+| `messages` | - |
 | `metadata` | - |
 | `min_p` | - |
-| `modality` | - |
+| `modalities` | - |
 | `model` | Yes |
+| `models` | - |
 | `output_config` | - |
-| `parallel_tool_call` | - |
-| `plugin` | - |
+| `parallel_tool_calls` | - |
+| `plugins` | - |
 | `prediction` | - |
 | `presence_penalty` | - |
 | `previous_response_id` | - |
 | `prompt` | - |
 | `prompt_cache_key` | - |
-| `prompt_cache_option` | - |
+| `prompt_cache_options` | - |
 | `provider` | - |
 | `reasoning` | - |
 | `reasoning_effort` | - |
@@ -1924,20 +1986,20 @@ local create_preset_from_inference = client:CreatePresetFromInference(nil)
 | `session_id` | - |
 | `speed` | - |
 | `stop` | - |
-| `stop_sequence` | - |
+| `stop_sequences` | - |
 | `stop_server_tools_when` | - |
 | `store` | - |
 | `stream` | - |
-| `stream_option` | - |
+| `stream_options` | - |
 | `system` | - |
 | `temperature` | - |
 | `text` | - |
 | `thinking` | - |
-| `tool` | - |
 | `tool_choice` | - |
+| `tools` | - |
 | `top_a` | - |
 | `top_k` | - |
-| `top_logprob` | - |
+| `top_logprobs` | - |
 | `top_p` | - |
 | `trace` | - |
 | `truncation` | - |
@@ -1952,6 +2014,11 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:CreatePresetFromInference():create({
   slug = --[[ string ]],
+  cache_control = --[[ table ]],
+  messages = --[[ table ]],
+  prediction = --[[ table|nil ]],
+  prompt = --[[ table|nil ]],
+  prompt_cache_options = --[[ table|nil ]],
 })
 ```
 
@@ -2031,7 +2098,8 @@ local credit = client:Credit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | Yes |  |
+| `total_credits` | `number` | Yes |  |
+| `total_usage` | `number` | Yes |  |
 
 ### Operations
 
@@ -2041,7 +2109,8 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Credit():create({
-  data = --[[ table ]],
+  total_credits = --[[ number ]],
+  total_usage = --[[ number ]],
 })
 ```
 
@@ -2130,7 +2199,7 @@ local embedding = client:Embedding(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `table` | Yes |  |
-| `dimension` | `number` | No |  |
+| `dimensions` | `number` | No |  |
 | `encoding_format` | `string` | No |  |
 | `id` | `string` | No |  |
 | `input` | `any` | Yes |  |
@@ -2197,40 +2266,79 @@ local endpoint = client:Endpoint(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `architecture` | `table` | Yes |  |
-| `benchmark` | `table` | Yes |  |
+| `architecture` | `any` | Yes |  |
+| `benchmarks` | `table` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
-| `context_length` | `any` | Yes |  |
+| `context_length` | `number|nil` | Yes |  |
 | `created` | `number` | Yes |  |
-| `data` | `table` | Yes |  |
-| `default_parameter` | `any` | Yes |  |
-| `description` | `string` | No |  |
-| `expiration_date` | `any` | No |  |
-| `hugging_face_id` | `any` | No |  |
+| `default_parameters` | `table|nil` | Yes |  |
+| `description` | `string` | Yes |  |
+| `endpoints` | `table` | Yes |  |
+| `expiration_date` | `string|nil` | No |  |
+| `hugging_face_id` | `string|nil` | No |  |
 | `id` | `string` | Yes |  |
-| `knowledge_cutoff` | `any` | No |  |
-| `latency_last_30m` | `any` | Yes |  |
-| `link` | `table` | Yes |  |
-| `max_completion_token` | `any` | Yes |  |
-| `max_prompt_token` | `any` | Yes |  |
+| `knowledge_cutoff` | `string|nil` | No |  |
+| `latency_last_30m` | `table|nil` | Yes |  |
+| `links` | `table` | Yes |  |
+| `max_completion_tokens` | `number|nil` | Yes |  |
+| `max_prompt_tokens` | `number|nil` | Yes |  |
 | `model_id` | `string` | Yes |  |
 | `model_name` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `per_request_limit` | `any` | Yes |  |
+| `per_request_limits` | `table|nil` | Yes |  |
 | `pricing` | `table` | Yes |  |
 | `provider_name` | `string` | Yes |  |
 | `quantization` | `any` | Yes |  |
 | `reasoning` | `table` | Yes |  |
 | `status` | `number` | No |  |
-| `supported_parameter` | `table` | Yes |  |
-| `supported_voice` | `any` | Yes |  |
+| `supported_parameters` | `table` | Yes |  |
+| `supported_voices` | `table|nil` | Yes |  |
 | `supports_implicit_caching` | `boolean` | Yes |  |
 | `tag` | `string` | Yes |  |
 | `throughput_last_30m` | `any` | Yes |  |
 | `top_provider` | `table` | Yes |  |
-| `uptime_last_1d` | `any` | Yes |  |
-| `uptime_last_30m` | `any` | Yes |  |
-| `uptime_last_5m` | `any` | Yes |  |
+| `uptime_last_1d` | `number|nil` | Yes |  |
+| `uptime_last_30m` | `number|nil` | Yes |  |
+| `uptime_last_5m` | `number|nil` | Yes |  |
+
+### Field Usage by Operation
+
+| Field | load | list |
+| --- | --- | --- |
+| `architecture` | - | - |
+| `benchmarks` | - | - |
+| `canonical_slug` | - | - |
+| `context_length` | - | - |
+| `created` | - | - |
+| `default_parameters` | - | - |
+| `description` | - | Yes |
+| `endpoints` | - | - |
+| `expiration_date` | - | - |
+| `hugging_face_id` | - | - |
+| `id` | - | - |
+| `knowledge_cutoff` | - | - |
+| `latency_last_30m` | - | - |
+| `links` | - | - |
+| `max_completion_tokens` | - | - |
+| `max_prompt_tokens` | - | - |
+| `model_id` | - | - |
+| `model_name` | - | - |
+| `name` | - | - |
+| `per_request_limits` | - | - |
+| `pricing` | - | - |
+| `provider_name` | - | - |
+| `quantization` | - | - |
+| `reasoning` | - | - |
+| `status` | - | - |
+| `supported_parameters` | - | - |
+| `supported_voices` | - | - |
+| `supports_implicit_caching` | - | - |
+| `tag` | - | - |
+| `throughput_last_30m` | - | - |
+| `top_provider` | - | - |
+| `uptime_last_1d` | - | - |
+| `uptime_last_30m` | - | - |
+| `uptime_last_5m` | - | - |
 
 ### Operations
 
@@ -2331,7 +2439,7 @@ local file = client:File(nil)
 | `filename` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
 | `mime_type` | `string` | Yes |  |
-| `size_byte` | `number` | Yes |  |
+| `size_bytes` | `number` | Yes |  |
 | `type` | `string` | Yes |  |
 
 ### Operations
@@ -2347,7 +2455,7 @@ local result, err = client:File():create({
   filename = --[[ string ]],
   id = --[[ string ]],
   mime_type = --[[ string ]],
-  size_byte = --[[ number ]],
+  size_bytes = --[[ number ]],
   type = --[[ string ]],
 })
 ```
@@ -2416,7 +2524,50 @@ local generation = client:Generation(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | Yes |  |
+| `api_type` | `string|nil` | Yes |  |
+| `app_id` | `number|nil` | Yes |  |
+| `cache_discount` | `number|nil` | Yes |  |
+| `cancelled` | `boolean|nil` | Yes |  |
+| `created_at` | `string` | Yes |  |
+| `data_region` | `string` | Yes |  |
+| `external_user` | `string|nil` | Yes |  |
+| `finish_reason` | `string|nil` | Yes |  |
+| `generation_time` | `number|nil` | Yes |  |
+| `http_referer` | `string|nil` | Yes |  |
+| `id` | `string` | Yes |  |
+| `is_byok` | `boolean` | Yes |  |
+| `latency` | `number|nil` | Yes |  |
+| `model` | `string` | Yes |  |
+| `moderation_latency` | `number|nil` | Yes |  |
+| `native_finish_reason` | `string|nil` | Yes |  |
+| `native_tokens_cached` | `number|nil` | Yes |  |
+| `native_tokens_completion` | `number|nil` | Yes |  |
+| `native_tokens_completion_images` | `number|nil` | Yes |  |
+| `native_tokens_prompt` | `number|nil` | Yes |  |
+| `native_tokens_reasoning` | `number|nil` | Yes |  |
+| `num_fetches` | `number|nil` | Yes |  |
+| `num_input_audio_prompt` | `number|nil` | Yes |  |
+| `num_media_completion` | `number|nil` | Yes |  |
+| `num_media_prompt` | `number|nil` | Yes |  |
+| `num_search_results` | `number|nil` | Yes |  |
+| `origin` | `string` | Yes |  |
+| `preset_id` | `string|nil` | Yes |  |
+| `provider_name` | `string|nil` | Yes |  |
+| `provider_responses` | `table|nil` | Yes |  |
+| `request_id` | `string|nil` | No |  |
+| `response_cache_source_id` | `string|nil` | No |  |
+| `router` | `string|nil` | Yes |  |
+| `service_tier` | `string|nil` | Yes |  |
+| `session_id` | `string|nil` | No |  |
+| `streamed` | `boolean|nil` | Yes |  |
+| `tokens_completion` | `number|nil` | Yes |  |
+| `tokens_prompt` | `number|nil` | Yes |  |
+| `total_cost` | `number` | Yes |  |
+| `upstream_id` | `string|nil` | Yes |  |
+| `upstream_inference_cost` | `number|nil` | Yes |  |
+| `usage` | `number` | Yes |  |
+| `user_agent` | `string|nil` | Yes |  |
+| `web_search_engine` | `string|nil` | Yes |  |
 
 ### Operations
 
@@ -2425,7 +2576,7 @@ local generation = client:Generation(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Generation():load()
+local result, err = client:Generation():load({ id = "generation_id" })
 ```
 
 ### Common Methods
@@ -2468,7 +2619,8 @@ local generation_content = client:GenerationContent(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | Yes |  |
+| `input` | `any` | Yes |  |
+| `output` | `table` | Yes |  |
 
 ### Operations
 
@@ -2520,38 +2672,36 @@ local guardrail = client:Guardrail(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `any` | No |  |
-| `allowed_provider` | `any` | No |  |
-| `content_filter` | `any` | No |  |
-| `content_filter_builtin` | `any` | No |  |
+| `allowed_models` | `table|nil` | No |  |
+| `allowed_providers` | `table|nil` | No |  |
+| `content_filter_builtins` | `table|nil` | No |  |
+| `content_filters` | `table|nil` | No |  |
 | `created_at` | `string` | Yes |  |
-| `data` | `any` | Yes |  |
-| `description` | `any` | No |  |
-| `enforce_zdr` | `any` | No |  |
-| `enforce_zdr_anthropic` | `any` | No |  |
-| `enforce_zdr_google` | `any` | No |  |
-| `enforce_zdr_openai` | `any` | No |  |
-| `enforce_zdr_other` | `any` | No |  |
-| `enforce_zdr_xai` | `any` | No |  |
+| `description` | `string|nil` | No |  |
+| `enforce_zdr` | `boolean|nil` | No |  |
+| `enforce_zdr_anthropic` | `boolean|nil` | No |  |
+| `enforce_zdr_google` | `boolean|nil` | No |  |
+| `enforce_zdr_openai` | `boolean|nil` | No |  |
+| `enforce_zdr_other` | `boolean|nil` | No |  |
+| `enforce_zdr_xai` | `boolean|nil` | No |  |
 | `id` | `string` | Yes |  |
-| `ignored_model` | `any` | No |  |
-| `ignored_provider` | `any` | No |  |
-| `limit_usd` | `any` | No |  |
+| `ignored_models` | `table|nil` | No |  |
+| `ignored_providers` | `table|nil` | No |  |
+| `limit_usd` | `number|nil` | No |  |
 | `name` | `string` | Yes |  |
-| `reset_interval` | `any` | No |  |
-| `updated_at` | `any` | No |  |
-| `workspace_id` | `string` | No |  |
+| `reset_interval` | `string|nil` | No |  |
+| `updated_at` | `string|nil` | No |  |
+| `workspace_id` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | load | list | create | remove |
 | --- | --- | --- | --- | --- |
-| `allowed_model` | - | - | - | - |
-| `allowed_provider` | - | - | - | - |
-| `content_filter` | - | - | - | - |
-| `content_filter_builtin` | - | - | - | - |
+| `allowed_models` | - | - | - | - |
+| `allowed_providers` | - | - | - | - |
+| `content_filter_builtins` | - | - | - | - |
+| `content_filters` | - | - | - | - |
 | `created_at` | - | - | - | - |
-| `data` | - | - | - | - |
 | `description` | - | - | - | - |
 | `enforce_zdr` | - | - | - | - |
 | `enforce_zdr_anthropic` | - | - | - | - |
@@ -2560,13 +2710,13 @@ local guardrail = client:Guardrail(nil)
 | `enforce_zdr_other` | - | - | - | - |
 | `enforce_zdr_xai` | - | - | - | - |
 | `id` | - | - | - | - |
-| `ignored_model` | - | - | - | - |
-| `ignored_provider` | - | - | - | - |
+| `ignored_models` | - | - | - | - |
+| `ignored_providers` | - | - | - | - |
 | `limit_usd` | - | - | - | - |
 | `name` | - | - | - | - |
 | `reset_interval` | - | - | - | - |
 | `updated_at` | - | - | - | - |
-| `workspace_id` | - | Yes | - | - |
+| `workspace_id` | - | - | Yes | - |
 
 ### Operations
 
@@ -2577,9 +2727,9 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:Guardrail():create({
   created_at = --[[ string ]],
-  data = --[[ any ]],
   id = --[[ string ]],
   name = --[[ string ]],
+  workspace_id = --[[ string ]],
 })
 ```
 
@@ -2651,7 +2801,7 @@ local image = client:Image(nil)
 | `background` | `string` | No |  |
 | `created` | `number` | Yes |  |
 | `data` | `table` | Yes |  |
-| `input_reference` | `table` | No |  |
+| `input_references` | `table` | No |  |
 | `model` | `string` | Yes |  |
 | `n` | `number` | No |  |
 | `output_compression` | `number` | No |  |
@@ -2721,12 +2871,12 @@ local image_model_endpoint = client:ImageModelEndpoint(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameter` | `table` | Yes |  |
+| `allowed_passthrough_parameters` | `table` | Yes |  |
 | `pricing` | `table` | Yes |  |
 | `provider_name` | `string` | Yes |  |
 | `provider_slug` | `string` | Yes |  |
-| `provider_tag` | `any` | Yes |  |
-| `supported_parameter` | `any` | Yes |  |
+| `provider_tag` | `string|nil` | Yes |  |
+| `supported_parameters` | `any` | Yes |  |
 | `supports_streaming` | `boolean` | Yes |  |
 
 ### Operations
@@ -2782,10 +2932,10 @@ local image_models_list = client:ImageModelsList(nil)
 | `architecture` | `table` | Yes |  |
 | `created` | `number` | Yes |  |
 | `description` | `string` | Yes |  |
-| `endpoint` | `string` | Yes |  |
+| `endpoints` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `supported_parameter` | `table` | Yes |  |
+| `supported_parameters` | `table` | Yes |  |
 | `supports_streaming` | `boolean` | Yes |  |
 
 ### Operations
@@ -2946,7 +3096,7 @@ local list_key_assignment = client:ListKeyAssignment(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_by` | `any` | Yes |  |
+| `assigned_by` | `string|nil` | Yes |  |
 | `created_at` | `string` | Yes |  |
 | `guardrail_id` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
@@ -3004,7 +3154,7 @@ local list_member_assignment = client:ListMemberAssignment(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_by` | `any` | Yes |  |
+| `assigned_by` | `string|nil` | Yes |  |
 | `created_at` | `string` | Yes |  |
 | `guardrail_id` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
@@ -3155,7 +3305,7 @@ local list_preset_version = client:ListPresetVersion(nil)
 | `creator_id` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
 | `preset_id` | `string` | Yes |  |
-| `system_prompt` | `any` | Yes |  |
+| `system_prompt` | `string|nil` | Yes |  |
 | `updated_at` | `string` | Yes |  |
 | `version` | `number` | Yes |  |
 
@@ -3248,7 +3398,7 @@ local list_workspace_budget = client:ListWorkspaceBudget(nil)
 | `created_at` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
 | `limit_usd` | `number` | Yes |  |
-| `reset_interval` | `any` | Yes |  |
+| `reset_interval` | `string|nil` | Yes |  |
 | `updated_at` | `string` | Yes |  |
 | `workspace_id` | `string` | Yes |  |
 
@@ -3395,62 +3545,32 @@ local message = client:Message(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cache_control` | `table` | Yes |  |
-| `context_management` | `any` | No |  |
-| `fallback` | `any` | No |  |
-| `max_token` | `number` | No |  |
-| `message` | `any` | Yes |  |
+| `context_management` | `table|nil` | No |  |
+| `fallbacks` | `table|nil` | No |  |
+| `max_tokens` | `number` | No |  |
+| `messages` | `table|nil` | Yes |  |
 | `metadata` | `table` | No |  |
 | `model` | `string` | Yes |  |
+| `models` | `table` | No |  |
 | `output_config` | `table` | No |  |
-| `plugin` | `table` | No |  |
-| `provider` | `any` | No |  |
-| `route` | `any` | No |  |
+| `plugins` | `table` | No |  |
+| `provider` | `table|nil` | No |  |
+| `route` | `string|nil` | No |  |
 | `service_tier` | `string` | No |  |
 | `session_id` | `string` | No |  |
 | `speed` | `any` | No |  |
-| `stop_sequence` | `table` | No |  |
+| `stop_sequences` | `table` | No |  |
 | `stop_server_tools_when` | `table` | No |  |
 | `stream` | `boolean` | No |  |
 | `system` | `any` | No |  |
 | `temperature` | `number` | No |  |
 | `thinking` | `any` | No |  |
-| `tool` | `table` | No |  |
 | `tool_choice` | `any` | No |  |
+| `tools` | `table` | No |  |
 | `top_k` | `number` | No |  |
 | `top_p` | `number` | No |  |
 | `trace` | `table` | No |  |
 | `user` | `string` | No |  |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `cache_control` | - |
-| `context_management` | - |
-| `fallback` | - |
-| `max_token` | - |
-| `message` | - |
-| `metadata` | - |
-| `model` | Yes |
-| `output_config` | - |
-| `plugin` | - |
-| `provider` | - |
-| `route` | - |
-| `service_tier` | - |
-| `session_id` | - |
-| `speed` | - |
-| `stop_sequence` | - |
-| `stop_server_tools_when` | - |
-| `stream` | - |
-| `system` | - |
-| `temperature` | - |
-| `thinking` | - |
-| `tool` | - |
-| `tool_choice` | - |
-| `top_k` | - |
-| `top_p` | - |
-| `trace` | - |
-| `user` | - |
 
 ### Operations
 
@@ -3461,7 +3581,7 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:Message():create({
   cache_control = --[[ table ]],
-  message = --[[ any ]],
+  messages = --[[ table|nil ]],
   model = --[[ string ]],
 })
 ```
@@ -3543,24 +3663,23 @@ local model = client:Model(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `table` | Yes |  |
-| `benchmark` | `table` | Yes |  |
+| `benchmarks` | `table` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
-| `context_length` | `any` | Yes |  |
+| `context_length` | `number|nil` | Yes |  |
 | `created` | `number` | Yes |  |
-| `data` | `table` | Yes |  |
-| `default_parameter` | `any` | Yes |  |
+| `default_parameters` | `table|nil` | Yes |  |
 | `description` | `string` | No |  |
-| `expiration_date` | `any` | No |  |
-| `hugging_face_id` | `any` | No |  |
+| `expiration_date` | `string|nil` | No |  |
+| `hugging_face_id` | `string|nil` | No |  |
 | `id` | `string` | Yes |  |
-| `knowledge_cutoff` | `any` | No |  |
-| `link` | `table` | Yes |  |
+| `knowledge_cutoff` | `string|nil` | No |  |
+| `links` | `table` | Yes |  |
 | `name` | `string` | Yes |  |
-| `per_request_limit` | `any` | Yes |  |
+| `per_request_limits` | `table|nil` | Yes |  |
 | `pricing` | `table` | Yes |  |
 | `reasoning` | `table` | Yes |  |
-| `supported_parameter` | `table` | Yes |  |
-| `supported_voice` | `any` | Yes |  |
+| `supported_parameters` | `table` | Yes |  |
+| `supported_voices` | `table|nil` | Yes |  |
 | `top_provider` | `table` | Yes |  |
 
 ### Operations
@@ -3621,7 +3740,7 @@ local models_count = client:ModelsCount(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | Yes |  |
+| `count` | `number` | Yes |  |
 
 ### Operations
 
@@ -3674,23 +3793,23 @@ local models_list = client:ModelsList(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `table` | Yes |  |
-| `benchmark` | `table` | Yes |  |
+| `benchmarks` | `table` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
-| `context_length` | `any` | Yes |  |
+| `context_length` | `number|nil` | Yes |  |
 | `created` | `number` | Yes |  |
-| `default_parameter` | `any` | Yes |  |
+| `default_parameters` | `table|nil` | Yes |  |
 | `description` | `string` | No |  |
-| `expiration_date` | `any` | No |  |
-| `hugging_face_id` | `any` | No |  |
+| `expiration_date` | `string|nil` | No |  |
+| `hugging_face_id` | `string|nil` | No |  |
 | `id` | `string` | Yes |  |
-| `knowledge_cutoff` | `any` | No |  |
-| `link` | `table` | Yes |  |
+| `knowledge_cutoff` | `string|nil` | No |  |
+| `links` | `table` | Yes |  |
 | `name` | `string` | Yes |  |
-| `per_request_limit` | `any` | Yes |  |
+| `per_request_limits` | `table|nil` | Yes |  |
 | `pricing` | `table` | Yes |  |
 | `reasoning` | `table` | Yes |  |
-| `supported_parameter` | `table` | Yes |  |
-| `supported_voice` | `any` | Yes |  |
+| `supported_parameters` | `table` | Yes |  |
+| `supported_voices` | `table|nil` | Yes |  |
 | `top_provider` | `table` | Yes |  |
 
 ### Operations
@@ -3743,20 +3862,22 @@ local o_auth = client:OAuth(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `app_id` | `number` | Yes |  |
 | `callback_url` | `string` | Yes |  |
 | `code` | `string` | Yes |  |
 | `code_challenge` | `string` | No |  |
-| `code_challenge_method` | `any` | No |  |
+| `code_challenge_method` | `string|nil` | No |  |
 | `code_verifier` | `string` | No |  |
-| `data` | `table` | Yes |  |
-| `expires_at` | `any` | No |  |
+| `created_at` | `string` | Yes |  |
+| `expires_at` | `string|nil` | No |  |
+| `id` | `string` | Yes |  |
 | `key` | `string` | Yes |  |
 | `key_label` | `string` | No |  |
 | `limit` | `number` | No |  |
 | `spawn_agent` | `string` | No |  |
 | `spawn_cloud` | `string` | No |  |
 | `usage_limit_type` | `string` | No |  |
-| `user_id` | `any` | Yes |  |
+| `user_id` | `string|nil` | Yes |  |
 | `workspace_id` | `string` | No |  |
 
 ### Operations
@@ -3767,11 +3888,13 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:OAuth():create({
+  app_id = --[[ number ]],
   callback_url = --[[ string ]],
   code = --[[ string ]],
-  data = --[[ table ]],
+  created_at = --[[ string ]],
+  id = --[[ string ]],
   key = --[[ string ]],
-  user_id = --[[ any ]],
+  user_id = --[[ string|nil ]],
 })
 ```
 
@@ -3815,7 +3938,7 @@ local observability_destination = client:ObservabilityDestination(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | Yes |  |
+| `data` | `table` | No |  |
 
 ### Operations
 
@@ -3875,44 +3998,45 @@ local open_responses_result = client:OpenResponsesResult(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background` | `any` | No |  |
+| `background` | `boolean|nil` | No |  |
 | `cache_control` | `table` | Yes |  |
 | `debug` | `table` | No |  |
-| `frequency_penalty` | `any` | No |  |
+| `frequency_penalty` | `number|nil` | No |  |
 | `image_config` | `table` | No |  |
-| `include` | `any` | No |  |
+| `include` | `table|nil` | No |  |
 | `input` | `any` | No |  |
-| `instruction` | `any` | No |  |
-| `max_output_token` | `any` | No |  |
-| `max_tool_call` | `any` | No |  |
-| `metadata` | `any` | No |  |
-| `modality` | `table` | No |  |
+| `instructions` | `string|nil` | No |  |
+| `max_output_tokens` | `number|nil` | No |  |
+| `max_tool_calls` | `number|nil` | No |  |
+| `metadata` | `table|nil` | No |  |
+| `modalities` | `table` | No |  |
 | `model` | `string` | No |  |
-| `parallel_tool_call` | `any` | No |  |
-| `plugin` | `table` | No |  |
-| `presence_penalty` | `any` | No |  |
+| `models` | `table` | No |  |
+| `parallel_tool_calls` | `boolean|nil` | No |  |
+| `plugins` | `table` | No |  |
+| `presence_penalty` | `number|nil` | No |  |
 | `previous_response_id` | `string` | No |  |
-| `prompt` | `any` | Yes |  |
-| `prompt_cache_key` | `any` | No |  |
-| `prompt_cache_option` | `any` | Yes |  |
-| `provider` | `any` | No |  |
+| `prompt` | `table|nil` | Yes |  |
+| `prompt_cache_key` | `string|nil` | No |  |
+| `prompt_cache_options` | `table|nil` | Yes |  |
+| `provider` | `table|nil` | No |  |
 | `reasoning` | `any` | No |  |
-| `route` | `any` | No |  |
-| `safety_identifier` | `any` | No |  |
-| `service_tier` | `any` | No |  |
+| `route` | `string|nil` | No |  |
+| `safety_identifier` | `string|nil` | No |  |
+| `service_tier` | `string|nil` | No |  |
 | `session_id` | `string` | No |  |
 | `stop_server_tools_when` | `table` | No |  |
 | `store` | `boolean` | No |  |
 | `stream` | `boolean` | No |  |
-| `temperature` | `any` | No |  |
+| `temperature` | `number|nil` | No |  |
 | `text` | `any` | No |  |
-| `tool` | `table` | No |  |
 | `tool_choice` | `any` | No |  |
+| `tools` | `table` | No |  |
 | `top_k` | `number` | No |  |
-| `top_logprob` | `any` | No |  |
-| `top_p` | `any` | No |  |
+| `top_logprobs` | `number|nil` | No |  |
+| `top_p` | `number|nil` | No |  |
 | `trace` | `table` | No |  |
-| `truncation` | `any` | No |  |
+| `truncation` | `string|nil` | No |  |
 | `user` | `string` | No |  |
 
 ### Operations
@@ -3924,8 +4048,8 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:OpenResponsesResult():create({
   cache_control = --[[ table ]],
-  prompt = --[[ any ]],
-  prompt_cache_option = --[[ any ]],
+  prompt = --[[ table|nil ]],
+  prompt_cache_options = --[[ table|nil ]],
 })
 ```
 
@@ -3970,9 +4094,9 @@ local organization = client:Organization(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email` | `string` | Yes |  |
-| `first_name` | `any` | Yes |  |
+| `first_name` | `string|nil` | Yes |  |
 | `id` | `string` | Yes |  |
-| `last_name` | `any` | Yes |  |
+| `last_name` | `string|nil` | Yes |  |
 | `role` | `string` | Yes |  |
 
 ### Operations
@@ -4026,17 +4150,17 @@ local preset = client:Preset(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `created_at` | `string` | Yes |  |
-| `creator_user_id` | `any` | Yes |  |
-| `data` | `any` | Yes |  |
-| `description` | `any` | Yes |  |
-| `designated_version_id` | `any` | Yes |  |
+| `creator_user_id` | `string|nil` | Yes |  |
+| `description` | `string|nil` | Yes |  |
+| `designated_version` | `table|nil` | Yes |  |
+| `designated_version_id` | `string|nil` | Yes |  |
 | `id` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
 | `slug` | `string` | Yes |  |
 | `status` | `string` | Yes |  |
-| `status_updated_at` | `any` | Yes |  |
+| `status_updated_at` | `string|nil` | Yes |  |
 | `updated_at` | `string` | Yes |  |
-| `workspace_id` | `any` | Yes |  |
+| `workspace_id` | `string|nil` | Yes |  |
 
 ### Operations
 
@@ -4096,7 +4220,14 @@ local preset_version = client:PresetVersion(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | Yes |  |
+| `config` | `table` | Yes |  |
+| `created_at` | `string` | Yes |  |
+| `creator_id` | `string` | Yes |  |
+| `id` | `string` | Yes |  |
+| `preset_id` | `string` | Yes |  |
+| `system_prompt` | `string|nil` | Yes |  |
+| `updated_at` | `string` | Yes |  |
+| `version` | `number` | Yes |  |
 
 ### Operations
 
@@ -4148,13 +4279,13 @@ local provider = client:Provider(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datacenter` | `any` | No |  |
-| `headquarter` | `any` | No |  |
+| `datacenters` | `table|nil` | No |  |
+| `headquarters` | `string|nil` | No |  |
 | `name` | `string` | Yes |  |
-| `privacy_policy_url` | `any` | Yes |  |
+| `privacy_policy_url` | `string|nil` | Yes |  |
 | `slug` | `string` | Yes |  |
-| `status_page_url` | `any` | No |  |
-| `terms_of_service_url` | `any` | No |  |
+| `status_page_url` | `string|nil` | No |  |
+| `terms_of_service_url` | `string|nil` | No |  |
 
 ### Operations
 
@@ -4244,7 +4375,7 @@ local rankings_daily = client:RankingsDaily(nil)
 | --- | --- | --- | --- |
 | `date` | `string` | Yes |  |
 | `model_permaslug` | `string` | Yes |  |
-| `total_token` | `string` | Yes |  |
+| `total_tokens` | `string` | Yes |  |
 
 ### Operations
 
@@ -4332,12 +4463,12 @@ local rerank = client:Rerank(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `document` | `table` | Yes |  |
+| `documents` | `table` | Yes |  |
 | `id` | `string` | No |  |
 | `model` | `string` | Yes |  |
 | `provider` | `string` | No |  |
 | `query` | `string` | Yes |  |
-| `result` | `table` | Yes |  |
+| `results` | `table` | Yes |  |
 | `top_n` | `number` | No |  |
 | `usage` | `table` | No |  |
 
@@ -4349,10 +4480,10 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Rerank():create({
-  document = --[[ table ]],
+  documents = --[[ table ]],
   model = --[[ string ]],
   query = --[[ string ]],
-  result = --[[ table ]],
+  results = --[[ table ]],
 })
 ```
 
@@ -4474,13 +4605,13 @@ local stt = client:Stt(nil)
 | `model` | `string` | Yes |  |
 | `provider` | `table` | No |  |
 | `response_format` | `string` | No |  |
-| `segment` | `table` | No |  |
+| `segments` | `table` | No |  |
 | `task` | `string` | No |  |
 | `temperature` | `number` | No |  |
 | `text` | `string` | Yes |  |
-| `timestamp_granularity` | `table` | No |  |
+| `timestamp_granularities` | `table` | No |  |
 | `usage` | `table` | No |  |
-| `word` | `table` | No |  |
+| `words` | `table` | No |  |
 
 ### Operations
 
@@ -4538,8 +4669,8 @@ local submit_generation_feedback = client:SubmitGenerationFeedback(nil)
 | --- | --- | --- | --- |
 | `category` | `string` | Yes |  |
 | `comment` | `string` | No |  |
-| `data` | `table` | Yes |  |
 | `generation_id` | `string` | Yes |  |
+| `success` | `boolean` | Yes |  |
 
 ### Operations
 
@@ -4550,8 +4681,8 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:SubmitGenerationFeedback():create({
   category = --[[ string ]],
-  data = --[[ table ]],
   generation_id = --[[ string ]],
+  success = --[[ boolean ]],
 })
 ```
 
@@ -4595,7 +4726,10 @@ local task = client:Task(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | Yes |  |
+| `as_of` | `string` | Yes |  |
+| `classifications` | `table` | Yes |  |
+| `macro_categories` | `table` | Yes |  |
+| `window_days` | `number` | Yes |  |
 
 ### Operations
 
@@ -4797,13 +4931,12 @@ local update_byok_key = client:UpdateByokKey(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `any` | No |  |
-| `allowed_user_id` | `any` | No |  |
-| `data` | `any` | Yes |  |
+| `allowed_models` | `table|nil` | No |  |
+| `allowed_user_ids` | `table|nil` | No |  |
 | `disabled` | `boolean` | No |  |
 | `is_fallback` | `boolean` | No |  |
 | `key` | `string` | No |  |
-| `name` | `any` | No |  |
+| `name` | `string|nil` | No |  |
 
 ### Operations
 
@@ -4858,23 +4991,22 @@ local update_guardrail = client:UpdateGuardrail(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `any` | No |  |
-| `allowed_provider` | `any` | No |  |
-| `content_filter` | `any` | No |  |
-| `content_filter_builtin` | `any` | No |  |
-| `data` | `any` | Yes |  |
-| `description` | `any` | No |  |
-| `enforce_zdr` | `any` | No |  |
-| `enforce_zdr_anthropic` | `any` | No |  |
-| `enforce_zdr_google` | `any` | No |  |
-| `enforce_zdr_openai` | `any` | No |  |
-| `enforce_zdr_other` | `any` | No |  |
-| `enforce_zdr_xai` | `any` | No |  |
-| `ignored_model` | `any` | No |  |
-| `ignored_provider` | `any` | No |  |
-| `limit_usd` | `any` | No |  |
+| `allowed_models` | `table|nil` | No |  |
+| `allowed_providers` | `table|nil` | No |  |
+| `content_filter_builtins` | `table|nil` | No |  |
+| `content_filters` | `table|nil` | No |  |
+| `description` | `string|nil` | No |  |
+| `enforce_zdr` | `boolean|nil` | No |  |
+| `enforce_zdr_anthropic` | `boolean|nil` | No |  |
+| `enforce_zdr_google` | `boolean|nil` | No |  |
+| `enforce_zdr_openai` | `boolean|nil` | No |  |
+| `enforce_zdr_other` | `boolean|nil` | No |  |
+| `enforce_zdr_xai` | `boolean|nil` | No |  |
+| `ignored_models` | `table|nil` | No |  |
+| `ignored_providers` | `table|nil` | No |  |
+| `limit_usd` | `number|nil` | No |  |
 | `name` | `string` | No |  |
-| `reset_interval` | `any` | No |  |
+| `reset_interval` | `string|nil` | No |  |
 
 ### Operations
 
@@ -4929,11 +5061,10 @@ local update_observability_destination = client:UpdateObservabilityDestination(n
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hash` | `any` | No |  |
+| `api_key_hashes` | `table|nil` | No |  |
 | `config` | `table` | No |  |
-| `data` | `any` | Yes |  |
 | `enabled` | `boolean` | No |  |
-| `filter_rule` | `any` | No |  |
+| `filter_rules` | `any` | No |  |
 | `name` | `string` | No |  |
 | `privacy_mode` | `boolean` | No |  |
 | `sampling_rate` | `number` | No |  |
@@ -4992,21 +5123,20 @@ local update_workspace = client:UpdateWorkspace(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `created_at` | `string` | Yes |  |
-| `created_by` | `any` | Yes |  |
-| `data` | `any` | Yes |  |
-| `default_image_model` | `any` | No |  |
-| `default_provider_sort` | `any` | No |  |
-| `default_text_model` | `any` | No |  |
-| `description` | `any` | No |  |
+| `created_by` | `string|nil` | Yes |  |
+| `default_image_model` | `string|nil` | No |  |
+| `default_provider_sort` | `string|nil` | No |  |
+| `default_text_model` | `string|nil` | No |  |
+| `description` | `string|nil` | No |  |
 | `id` | `string` | Yes |  |
-| `io_logging_api_key_id` | `any` | No |  |
+| `io_logging_api_key_ids` | `table|nil` | No |  |
 | `io_logging_sampling_rate` | `number` | No |  |
 | `is_data_discount_logging_enabled` | `boolean` | No |  |
 | `is_observability_broadcast_enabled` | `boolean` | No |  |
 | `is_observability_io_logging_enabled` | `boolean` | No |  |
 | `name` | `string` | Yes |  |
 | `slug` | `string` | Yes |  |
-| `updated_at` | `any` | Yes |  |
+| `updated_at` | `string|nil` | Yes |  |
 
 ### Field Usage by Operation
 
@@ -5014,13 +5144,12 @@ local update_workspace = client:UpdateWorkspace(nil)
 | --- | --- | --- | --- |
 | `created_at` | - | - | - |
 | `created_by` | - | - | - |
-| `data` | - | - | - |
 | `default_image_model` | Yes | - | - |
 | `default_provider_sort` | Yes | - | - |
 | `default_text_model` | Yes | - | - |
 | `description` | Yes | - | - |
 | `id` | - | - | - |
-| `io_logging_api_key_id` | Yes | - | - |
+| `io_logging_api_key_ids` | Yes | - | - |
 | `io_logging_sampling_rate` | Yes | - | - |
 | `is_data_discount_logging_enabled` | Yes | - | - |
 | `is_observability_broadcast_enabled` | Yes | - | - |
@@ -5038,12 +5167,11 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:UpdateWorkspace():create({
   created_at = --[[ string ]],
-  created_by = --[[ any ]],
-  data = --[[ any ]],
+  created_by = --[[ string|nil ]],
   id = --[[ string ]],
   name = --[[ string ]],
   slug = --[[ string ]],
-  updated_at = --[[ any ]],
+  updated_at = --[[ string|nil ]],
 })
 ```
 
@@ -5106,7 +5234,6 @@ local upsert_workspace_budget = client:UpsertWorkspaceBudget(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | Yes |  |
 | `limit_usd` | `number` | Yes |  |
 
 ### Operations
@@ -5239,11 +5366,11 @@ local video = client:Video(nil)
 | `callback_url` | `string` | No |  |
 | `duration` | `number` | No |  |
 | `error` | `string` | No |  |
-| `frame_image` | `table` | No |  |
+| `frame_images` | `table` | No |  |
 | `generate_audio` | `boolean` | No |  |
 | `generation_id` | `string` | No |  |
 | `id` | `string` | Yes |  |
-| `input_reference` | `table` | No |  |
+| `input_references` | `table` | No |  |
 | `model` | `string` | Yes |  |
 | `polling_url` | `string` | Yes |  |
 | `prompt` | `string` | No |  |
@@ -5252,7 +5379,7 @@ local video = client:Video(nil)
 | `seed` | `number` | No |  |
 | `size` | `string` | No |  |
 | `status` | `string` | Yes |  |
-| `unsigned_url` | `table` | No |  |
+| `unsigned_urls` | `table` | No |  |
 | `usage` | `table` | No |  |
 
 ### Operations
@@ -5364,21 +5491,21 @@ local video_models_list = client:VideoModelsList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameter` | `table` | Yes |  |
+| `allowed_passthrough_parameters` | `table` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
 | `created` | `number` | Yes |  |
 | `description` | `string` | No |  |
-| `generate_audio` | `any` | Yes |  |
-| `hugging_face_id` | `any` | No |  |
+| `generate_audio` | `boolean|nil` | Yes |  |
+| `hugging_face_id` | `string|nil` | No |  |
 | `id` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `pricing_skus` | `any` | No |  |
-| `seed` | `any` | Yes |  |
-| `supported_aspect_ratio` | `any` | Yes |  |
-| `supported_duration` | `any` | Yes |  |
-| `supported_frame_image` | `any` | Yes |  |
-| `supported_resolution` | `any` | Yes |  |
-| `supported_size` | `any` | Yes |  |
+| `pricing_skus` | `table|nil` | No |  |
+| `seed` | `boolean|nil` | Yes |  |
+| `supported_aspect_ratios` | `table|nil` | Yes |  |
+| `supported_durations` | `table|nil` | Yes |  |
+| `supported_frame_images` | `table|nil` | Yes |  |
+| `supported_resolutions` | `table|nil` | Yes |  |
+| `supported_sizes` | `table|nil` | Yes |  |
 
 ### Operations
 
@@ -5430,7 +5557,21 @@ local workspace = client:Workspace(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | Yes |  |
+| `created_at` | `string` | Yes |  |
+| `created_by` | `string|nil` | Yes |  |
+| `default_image_model` | `string|nil` | Yes |  |
+| `default_provider_sort` | `string|nil` | Yes |  |
+| `default_text_model` | `string|nil` | Yes |  |
+| `description` | `string|nil` | Yes |  |
+| `id` | `string` | Yes |  |
+| `io_logging_api_key_ids` | `table|nil` | Yes |  |
+| `io_logging_sampling_rate` | `number` | Yes |  |
+| `is_data_discount_logging_enabled` | `boolean` | Yes |  |
+| `is_observability_broadcast_enabled` | `boolean` | Yes |  |
+| `is_observability_io_logging_enabled` | `boolean` | Yes |  |
+| `name` | `string` | Yes |  |
+| `slug` | `string` | Yes |  |
+| `updated_at` | `string|nil` | Yes |  |
 
 ### Operations
 

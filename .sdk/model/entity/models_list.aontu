@@ -11,7 +11,7 @@ main: kit: entity: models_list: {
       type: "`$OBJECT`"
     }
     {
-      name: "benchmark"
+      name: "benchmarks"
       req: true
       type: "`$OBJECT`"
     }
@@ -37,7 +37,7 @@ main: kit: entity: models_list: {
       type: "`$INTEGER`"
     }
     {
-      name: "default_parameter"
+      name: "default_parameters"
       req: true
       type: [
         "`$ONE`"
@@ -91,7 +91,7 @@ main: kit: entity: models_list: {
       ]
     }
     {
-      name: "link"
+      name: "links"
       req: true
       type: "`$OBJECT`"
     }
@@ -101,7 +101,7 @@ main: kit: entity: models_list: {
       type: "`$STRING`"
     }
     {
-      name: "per_request_limit"
+      name: "per_request_limits"
       req: true
       type: [
         "`$ONE`"
@@ -122,12 +122,12 @@ main: kit: entity: models_list: {
       type: "`$OBJECT`"
     }
     {
-      name: "supported_parameter"
+      name: "supported_parameters"
       req: true
       type: "`$ARRAY`"
     }
     {
-      name: "supported_voice"
+      name: "supported_voices"
       req: true
       type: [
         "`$ONE`"

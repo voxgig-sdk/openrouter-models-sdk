@@ -429,15 +429,15 @@ activity = client.Activity()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `byok_usage_inference` | `float` | Yes |  |
-| `completion_token` | `int` | Yes |  |
+| `completion_tokens` | `int` | Yes |  |
 | `date` | `str` | Yes |  |
 | `endpoint_id` | `str` | Yes |  |
 | `model` | `str` | Yes |  |
 | `model_permaslug` | `str` | Yes |  |
-| `prompt_token` | `int` | Yes |  |
+| `prompt_tokens` | `int` | Yes |  |
 | `provider_name` | `str` | Yes |  |
-| `reasoning_token` | `int` | Yes |  |
-| `request` | `int` | Yes |  |
+| `reasoning_tokens` | `int` | Yes |  |
+| `requests` | `int` | Yes |  |
 | `usage` | `float` | Yes |  |
 
 ### Operations
@@ -531,23 +531,26 @@ api_key = client.ApiKey()
 | `byok_usage_monthly` | `float` | Yes |  |
 | `byok_usage_weekly` | `float` | Yes |  |
 | `created_at` | `str` | Yes |  |
-| `creator_user_id` | `Any` | No |  |
-| `data` | `dict` | Yes |  |
-| `disabled` | `bool` | No |  |
-| `expires_at` | `Any` | No |  |
+| `creator_user_id` | `str | None` | Yes |  |
+| `disabled` | `bool` | Yes |  |
+| `expires_at` | `str | None` | No |  |
 | `hash` | `str` | Yes |  |
-| `include_byok_in_limit` | `bool` | No |  |
+| `include_byok_in_limit` | `bool` | Yes |  |
+| `is_free_tier` | `bool` | Yes |  |
+| `is_management_key` | `bool` | Yes |  |
+| `is_provisioning_key` | `bool` | Yes |  |
 | `label` | `str` | Yes |  |
-| `limit` | `Any` | No |  |
-| `limit_remaining` | `Any` | Yes |  |
-| `limit_reset` | `Any` | No |  |
+| `limit` | `float | None` | Yes |  |
+| `limit_remaining` | `float | None` | Yes |  |
+| `limit_reset` | `str | None` | Yes |  |
 | `name` | `str` | Yes |  |
-| `updated_at` | `Any` | Yes |  |
+| `rate_limit` | `dict` | Yes |  |
+| `updated_at` | `str | None` | Yes |  |
 | `usage` | `float` | Yes |  |
 | `usage_daily` | `float` | Yes |  |
 | `usage_monthly` | `float` | Yes |  |
 | `usage_weekly` | `float` | Yes |  |
-| `workspace_id` | `str` | No |  |
+| `workspace_id` | `str` | Yes |  |
 
 ### Field Usage by Operation
 
@@ -558,23 +561,26 @@ api_key = client.ApiKey()
 | `byok_usage_monthly` | - | - | - | - | - |
 | `byok_usage_weekly` | - | - | - | - | - |
 | `created_at` | - | - | - | - | - |
-| `creator_user_id` | - | Yes | - | - | - |
-| `data` | - | - | - | - | - |
-| `disabled` | - | Yes | - | - | - |
+| `creator_user_id` | - | - | Yes | - | - |
+| `disabled` | - | - | - | Yes | - |
 | `expires_at` | - | - | - | - | - |
 | `hash` | - | - | - | - | - |
-| `include_byok_in_limit` | - | Yes | - | - | - |
+| `include_byok_in_limit` | - | - | Yes | Yes | - |
+| `is_free_tier` | - | - | - | - | - |
+| `is_management_key` | - | - | - | - | - |
+| `is_provisioning_key` | - | - | - | - | - |
 | `label` | - | - | - | - | - |
-| `limit` | - | Yes | - | - | - |
+| `limit` | - | - | Yes | Yes | - |
 | `limit_remaining` | - | - | - | - | - |
-| `limit_reset` | - | Yes | - | - | - |
+| `limit_reset` | - | - | Yes | Yes | - |
 | `name` | - | - | - | Yes | - |
+| `rate_limit` | - | - | - | - | - |
 | `updated_at` | - | - | - | - | - |
 | `usage` | - | - | - | - | - |
 | `usage_daily` | - | - | - | - | - |
 | `usage_monthly` | - | - | - | - | - |
 | `usage_weekly` | - | - | - | - | - |
-| `workspace_id` | - | Yes | - | - | - |
+| `workspace_id` | - | - | Yes | - | - |
 
 ### Operations
 
@@ -589,16 +595,25 @@ result = client.ApiKey().create({
     "byok_usage_monthly": 1,  # float
     "byok_usage_weekly": 1,  # float
     "created_at": "example_created_at",  # str
-    "data": {},  # dict
+    "creator_user_id": "example_creator_user_id",  # str | None
+    "disabled": True,  # bool
     "hash": "example_hash",  # str
+    "include_byok_in_limit": True,  # bool
+    "is_free_tier": True,  # bool
+    "is_management_key": True,  # bool
+    "is_provisioning_key": True,  # bool
     "label": "example_label",  # str
-    "limit_remaining": "example_limit_remaining",  # Any
+    "limit": "example_limit",  # float | None
+    "limit_remaining": "example_limit_remaining",  # float | None
+    "limit_reset": "example_limit_reset",  # str | None
     "name": "example_name",  # str
-    "updated_at": "example_updated_at",  # Any
+    "rate_limit": {},  # dict
+    "updated_at": "example_updated_at",  # str | None
     "usage": 1,  # float
     "usage_daily": 1,  # float
     "usage_monthly": 1,  # float
     "usage_weekly": 1,  # float
+    "workspace_id": "example_workspace_id",  # str
 })
 ```
 
@@ -681,8 +696,8 @@ app_ranking = client.AppRanking()
 | `app_id` | `int` | Yes |  |
 | `app_name` | `str` | Yes |  |
 | `rank` | `int` | Yes |  |
-| `total_request` | `int` | Yes |  |
-| `total_token` | `str` | Yes |  |
+| `total_requests` | `int` | Yes |  |
+| `total_tokens` | `str` | Yes |  |
 
 ### Operations
 
@@ -770,17 +785,43 @@ beta_analytics = client.BetaAnalytics()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `classifier_dimension` | `dict` | Yes |  |
-| `classifier_filter` | `dict` | Yes |  |
-| `data` | `dict` | Yes |  |
-| `dimension` | `list` | No |  |
-| `filter` | `list` | No |  |
+| `cachedAt` | `float` | No |  |
+| `classifier_dimensions` | `dict` | Yes |  |
+| `classifier_filters` | `dict` | Yes |  |
+| `data` | `list` | Yes |  |
+| `dimensions` | `list` | Yes |  |
+| `filters` | `list` | No |  |
+| `granularities` | `list` | Yes |  |
 | `granularity` | `str` | No |  |
 | `group_limit` | `int` | No |  |
 | `limit` | `int` | No |  |
-| `metric` | `list` | Yes |  |
+| `metadata` | `dict` | Yes |  |
+| `metrics` | `list` | Yes |  |
+| `operators` | `list` | Yes |  |
 | `order_by` | `dict` | Yes |  |
 | `time_range` | `dict` | Yes |  |
+| `warnings` | `list` | No |  |
+
+### Field Usage by Operation
+
+| Field | load | create |
+| --- | --- | --- |
+| `cachedAt` | - | - |
+| `classifier_dimensions` | - | - |
+| `classifier_filters` | - | - |
+| `data` | - | - |
+| `dimensions` | - | Yes |
+| `filters` | - | - |
+| `granularities` | - | - |
+| `granularity` | - | - |
+| `group_limit` | - | - |
+| `limit` | - | - |
+| `metadata` | - | - |
+| `metrics` | - | - |
+| `operators` | - | - |
+| `order_by` | - | - |
+| `time_range` | - | - |
+| `warnings` | - | - |
 
 ### Operations
 
@@ -790,10 +831,14 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.BetaAnalytics().create({
-    "classifier_dimension": {},  # dict
-    "classifier_filter": {},  # dict
-    "data": {},  # dict
-    "metric": [],  # list
+    "classifier_dimensions": {},  # dict
+    "classifier_filters": {},  # dict
+    "data": [],  # list
+    "dimensions": [],  # list
+    "granularities": [],  # list
+    "metadata": {},  # dict
+    "metrics": [],  # list
+    "operators": [],  # list
     "order_by": {},  # dict
     "time_range": {},  # dict
 })
@@ -883,7 +928,7 @@ bulk_add_workspace_member = client.BulkAddWorkspaceMember()
 | --- | --- | --- | --- |
 | `added_count` | `int` | Yes |  |
 | `data` | `list` | Yes |  |
-| `user_id` | `list` | Yes |  |
+| `user_ids` | `list` | Yes |  |
 
 ### Operations
 
@@ -894,6 +939,9 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.BulkAddWorkspaceMember().create({
     "workspace_id": "example_workspace_id",  # str
+    "added_count": 1,  # int
+    "data": [],  # list
+    "user_ids": [],  # list
 })
 ```
 
@@ -937,7 +985,7 @@ bulk_assign_key = client.BulkAssignKey()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `assigned_count` | `int` | Yes |  |
-| `key_hash` | `list` | Yes |  |
+| `key_hashes` | `list` | Yes |  |
 
 ### Operations
 
@@ -948,6 +996,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.BulkAssignKey().create({
     "guardrail_id": "example_guardrail_id",  # str
+    "assigned_count": 1,  # int
+    "key_hashes": [],  # list
 })
 ```
 
@@ -991,7 +1041,7 @@ bulk_assign_member = client.BulkAssignMember()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `assigned_count` | `int` | Yes |  |
-| `member_user_id` | `list` | Yes |  |
+| `member_user_ids` | `list` | Yes |  |
 
 ### Operations
 
@@ -1002,6 +1052,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.BulkAssignMember().create({
     "guardrail_id": "example_guardrail_id",  # str
+    "assigned_count": 1,  # int
+    "member_user_ids": [],  # list
 })
 ```
 
@@ -1045,7 +1097,7 @@ bulk_remove_workspace_member = client.BulkRemoveWorkspaceMember()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `removed_count` | `int` | Yes |  |
-| `user_id` | `list` | Yes |  |
+| `user_ids` | `list` | Yes |  |
 
 ### Operations
 
@@ -1056,6 +1108,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.BulkRemoveWorkspaceMember().create({
     "workspace_id": "example_workspace_id",  # str
+    "removed_count": 1,  # int
+    "user_ids": [],  # list
 })
 ```
 
@@ -1098,7 +1152,7 @@ bulk_unassign_key = client.BulkUnassignKey()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key_hash` | `list` | Yes |  |
+| `key_hashes` | `list` | Yes |  |
 | `unassigned_count` | `int` | Yes |  |
 
 ### Operations
@@ -1110,6 +1164,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.BulkUnassignKey().create({
     "guardrail_id": "example_guardrail_id",  # str
+    "key_hashes": [],  # list
+    "unassigned_count": 1,  # int
 })
 ```
 
@@ -1152,7 +1208,7 @@ bulk_unassign_member = client.BulkUnassignMember()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `member_user_id` | `list` | Yes |  |
+| `member_user_ids` | `list` | Yes |  |
 | `unassigned_count` | `int` | Yes |  |
 
 ### Operations
@@ -1164,6 +1220,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.BulkUnassignMember().create({
     "guardrail_id": "example_guardrail_id",  # str
+    "member_user_ids": [],  # list
+    "unassigned_count": 1,  # int
 })
 ```
 
@@ -1206,39 +1264,37 @@ byok = client.Byok()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_api_key_hash` | `Any` | Yes |  |
-| `allowed_model` | `Any` | No |  |
-| `allowed_user_id` | `Any` | No |  |
+| `allowed_api_key_hashes` | `list | None` | Yes |  |
+| `allowed_models` | `list | None` | Yes |  |
+| `allowed_user_ids` | `list | None` | Yes |  |
 | `created_at` | `str` | Yes |  |
-| `data` | `Any` | Yes |  |
-| `disabled` | `bool` | No |  |
+| `disabled` | `bool` | Yes |  |
 | `id` | `str` | Yes |  |
-| `is_fallback` | `bool` | No |  |
+| `is_fallback` | `bool` | Yes |  |
 | `key` | `str` | Yes |  |
 | `label` | `str` | Yes |  |
-| `name` | `Any` | No |  |
+| `name` | `str | None` | No |  |
 | `provider` | `str` | Yes |  |
 | `sort_order` | `int` | Yes |  |
-| `workspace_id` | `str` | No |  |
+| `workspace_id` | `str` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | load | list | create | remove |
 | --- | --- | --- | --- | --- |
-| `allowed_api_key_hash` | - | - | - | - |
-| `allowed_model` | - | Yes | - | - |
-| `allowed_user_id` | - | Yes | - | - |
+| `allowed_api_key_hashes` | - | - | - | - |
+| `allowed_models` | - | - | Yes | - |
+| `allowed_user_ids` | - | - | Yes | - |
 | `created_at` | - | - | - | - |
-| `data` | - | - | - | - |
-| `disabled` | - | Yes | - | - |
+| `disabled` | - | - | Yes | - |
 | `id` | - | - | - | - |
-| `is_fallback` | - | Yes | - | - |
+| `is_fallback` | - | - | Yes | - |
 | `key` | - | - | - | - |
 | `label` | - | - | - | - |
 | `name` | - | - | - | - |
 | `provider` | - | - | - | - |
 | `sort_order` | - | - | - | - |
-| `workspace_id` | - | Yes | - | - |
+| `workspace_id` | - | - | Yes | - |
 
 ### Operations
 
@@ -1248,14 +1304,18 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Byok().create({
-    "allowed_api_key_hash": "example_allowed_api_key_hash",  # Any
+    "allowed_api_key_hashes": "example_allowed_api_key_hashes",  # list | None
+    "allowed_models": "example_allowed_models",  # list | None
+    "allowed_user_ids": "example_allowed_user_ids",  # list | None
     "created_at": "example_created_at",  # str
-    "data": "example_data",  # Any
+    "disabled": True,  # bool
     "id": "example_id",  # str
+    "is_fallback": True,  # bool
     "key": "example_key",  # str
     "label": "example_label",  # str
     "provider": "example_provider",  # str
     "sort_order": 1,  # int
+    "workspace_id": "example_workspace_id",  # str
 })
 ```
 
@@ -1325,50 +1385,51 @@ chat_result = client.ChatResult()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cache_control` | `dict` | Yes |  |
-| `choice` | `list` | Yes |  |
+| `choices` | `list` | Yes |  |
 | `created` | `int` | Yes |  |
 | `debug` | `dict` | No |  |
-| `frequency_penalty` | `Any` | No |  |
+| `frequency_penalty` | `float | None` | No |  |
 | `id` | `str` | Yes |  |
 | `image_config` | `dict` | No |  |
-| `logit_bia` | `Any` | No |  |
-| `logprob` | `Any` | No |  |
-| `max_completion_token` | `Any` | No |  |
-| `max_token` | `Any` | No |  |
-| `message` | `list` | Yes |  |
+| `logit_bias` | `dict | None` | No |  |
+| `logprobs` | `bool | None` | No |  |
+| `max_completion_tokens` | `int | None` | No |  |
+| `max_tokens` | `int | None` | No |  |
+| `messages` | `list` | Yes |  |
 | `metadata` | `dict` | No |  |
-| `min_p` | `Any` | No |  |
-| `modality` | `list` | No |  |
+| `min_p` | `float | None` | No |  |
+| `modalities` | `list` | No |  |
 | `model` | `str` | Yes |  |
+| `models` | `list` | No |  |
 | `object` | `str` | Yes |  |
 | `openrouter_metadata` | `dict` | Yes |  |
-| `parallel_tool_call` | `Any` | No |  |
-| `plugin` | `list` | No |  |
-| `prediction` | `Any` | Yes |  |
-| `presence_penalty` | `Any` | No |  |
-| `prompt_cache_key` | `Any` | No |  |
-| `prompt_cache_option` | `Any` | Yes |  |
-| `provider` | `Any` | No |  |
+| `parallel_tool_calls` | `bool | None` | No |  |
+| `plugins` | `list` | No |  |
+| `prediction` | `dict | None` | Yes |  |
+| `presence_penalty` | `float | None` | No |  |
+| `prompt_cache_key` | `str | None` | No |  |
+| `prompt_cache_options` | `dict | None` | Yes |  |
+| `provider` | `dict | None` | No |  |
 | `reasoning` | `dict` | No |  |
-| `reasoning_effort` | `Any` | No |  |
-| `repetition_penalty` | `Any` | No |  |
+| `reasoning_effort` | `str | None` | No |  |
+| `repetition_penalty` | `float | None` | No |  |
 | `response_format` | `Any` | No |  |
-| `route` | `Any` | No |  |
-| `seed` | `Any` | No |  |
-| `service_tier` | `Any` | No |  |
+| `route` | `str | None` | No |  |
+| `seed` | `int | None` | No |  |
+| `service_tier` | `str | None` | No |  |
 | `session_id` | `str` | No |  |
 | `stop` | `Any` | No |  |
 | `stop_server_tools_when` | `list` | No |  |
 | `stream` | `bool` | No |  |
-| `stream_option` | `Any` | No |  |
-| `system_fingerprint` | `Any` | Yes |  |
-| `temperature` | `Any` | No |  |
-| `tool` | `list` | No |  |
+| `stream_options` | `dict | None` | No |  |
+| `system_fingerprint` | `str | None` | Yes |  |
+| `temperature` | `float | None` | No |  |
 | `tool_choice` | `Any` | No |  |
-| `top_a` | `Any` | No |  |
-| `top_k` | `Any` | No |  |
-| `top_logprob` | `Any` | No |  |
-| `top_p` | `Any` | No |  |
+| `tools` | `list` | No |  |
+| `top_a` | `float | None` | No |  |
+| `top_k` | `int | None` | No |  |
+| `top_logprobs` | `int | None` | No |  |
+| `top_p` | `float | None` | No |  |
 | `trace` | `dict` | No |  |
 | `usage` | `dict` | Yes |  |
 | `user` | `str` | No |  |
@@ -1378,29 +1439,30 @@ chat_result = client.ChatResult()
 | Field | create |
 | --- | --- |
 | `cache_control` | - |
-| `choice` | - |
+| `choices` | - |
 | `created` | - |
 | `debug` | - |
 | `frequency_penalty` | - |
 | `id` | - |
 | `image_config` | - |
-| `logit_bia` | - |
-| `logprob` | - |
-| `max_completion_token` | - |
-| `max_token` | - |
-| `message` | - |
+| `logit_bias` | - |
+| `logprobs` | - |
+| `max_completion_tokens` | - |
+| `max_tokens` | - |
+| `messages` | - |
 | `metadata` | - |
 | `min_p` | - |
-| `modality` | - |
+| `modalities` | - |
 | `model` | Yes |
+| `models` | - |
 | `object` | - |
 | `openrouter_metadata` | - |
-| `parallel_tool_call` | - |
-| `plugin` | - |
+| `parallel_tool_calls` | - |
+| `plugins` | - |
 | `prediction` | - |
 | `presence_penalty` | - |
 | `prompt_cache_key` | - |
-| `prompt_cache_option` | - |
+| `prompt_cache_options` | - |
 | `provider` | - |
 | `reasoning` | - |
 | `reasoning_effort` | - |
@@ -1413,14 +1475,14 @@ chat_result = client.ChatResult()
 | `stop` | - |
 | `stop_server_tools_when` | - |
 | `stream` | - |
-| `stream_option` | - |
+| `stream_options` | - |
 | `system_fingerprint` | - |
 | `temperature` | - |
-| `tool` | - |
 | `tool_choice` | - |
+| `tools` | - |
 | `top_a` | - |
 | `top_k` | - |
-| `top_logprob` | - |
+| `top_logprobs` | - |
 | `top_p` | - |
 | `trace` | - |
 | `usage` | - |
@@ -1435,16 +1497,16 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.ChatResult().create({
     "cache_control": {},  # dict
-    "choice": [],  # list
+    "choices": [],  # list
     "created": 1,  # int
     "id": "example_id",  # str
-    "message": [],  # list
+    "messages": [],  # list
     "model": "example_model",  # str
     "object": "example_object",  # str
     "openrouter_metadata": {},  # dict
-    "prediction": "example_prediction",  # Any
-    "prompt_cache_option": "example_prompt_cache_option",  # Any
-    "system_fingerprint": "example_system_fingerprint",  # Any
+    "prediction": "example_prediction",  # dict | None
+    "prompt_cache_options": "example_prompt_cache_options",  # dict | None
+    "system_fingerprint": "example_system_fingerprint",  # str | None
     "usage": {},  # dict
 })
 ```
@@ -1733,10 +1795,10 @@ create_observability_destination = client.CreateObservabilityDestination()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hash` | `Any` | No |  |
+| `api_key_hashes` | `list | None` | No |  |
 | `config` | `dict` | Yes |  |
 | `enabled` | `bool` | No |  |
-| `filter_rule` | `Any` | Yes |  |
+| `filter_rules` | `dict | None` | Yes |  |
 | `name` | `str` | Yes |  |
 | `privacy_mode` | `bool` | No |  |
 | `sampling_rate` | `float` | No |  |
@@ -1752,7 +1814,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.CreateObservabilityDestination().create({
     "config": {},  # dict
-    "filter_rule": "example_filter_rule",  # Any
+    "filter_rules": "example_filter_rules",  # dict | None
     "name": "example_name",  # str
     "type": "example_type",  # str
 })
@@ -1797,66 +1859,66 @@ create_preset_from_inference = client.CreatePresetFromInference()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background` | `Any` | No |  |
+| `background` | `bool | None` | No |  |
 | `cache_control` | `dict` | Yes |  |
-| `context_management` | `Any` | No |  |
-| `data` | `Any` | Yes |  |
+| `context_management` | `dict | None` | No |  |
 | `debug` | `dict` | No |  |
-| `fallback` | `Any` | No |  |
-| `frequency_penalty` | `Any` | No |  |
+| `fallbacks` | `list | None` | No |  |
+| `frequency_penalty` | `float | None` | No |  |
 | `image_config` | `dict` | No |  |
-| `include` | `Any` | No |  |
+| `include` | `list | None` | No |  |
 | `input` | `Any` | No |  |
-| `instruction` | `Any` | No |  |
-| `logit_bia` | `Any` | No |  |
-| `logprob` | `Any` | No |  |
-| `max_completion_token` | `Any` | No |  |
-| `max_output_token` | `Any` | No |  |
-| `max_token` | `Any` | No |  |
-| `max_tool_call` | `Any` | No |  |
-| `message` | `list` | Yes |  |
+| `instructions` | `str | None` | No |  |
+| `logit_bias` | `dict | None` | No |  |
+| `logprobs` | `bool | None` | No |  |
+| `max_completion_tokens` | `int | None` | No |  |
+| `max_output_tokens` | `int | None` | No |  |
+| `max_tokens` | `int | None` | No |  |
+| `max_tool_calls` | `int | None` | No |  |
+| `messages` | `list` | Yes |  |
 | `metadata` | `dict` | No |  |
-| `min_p` | `Any` | No |  |
-| `modality` | `list` | No |  |
+| `min_p` | `float | None` | No |  |
+| `modalities` | `list` | No |  |
 | `model` | `str` | No |  |
+| `models` | `list` | No |  |
 | `output_config` | `dict` | No |  |
-| `parallel_tool_call` | `Any` | No |  |
-| `plugin` | `list` | No |  |
-| `prediction` | `Any` | Yes |  |
-| `presence_penalty` | `Any` | No |  |
+| `parallel_tool_calls` | `bool | None` | No |  |
+| `plugins` | `list` | No |  |
+| `prediction` | `dict | None` | Yes |  |
+| `presence_penalty` | `float | None` | No |  |
 | `previous_response_id` | `str` | No |  |
-| `prompt` | `Any` | Yes |  |
-| `prompt_cache_key` | `Any` | No |  |
-| `prompt_cache_option` | `Any` | Yes |  |
-| `provider` | `Any` | No |  |
+| `prompt` | `dict | None` | Yes |  |
+| `prompt_cache_key` | `str | None` | No |  |
+| `prompt_cache_options` | `dict | None` | Yes |  |
+| `provider` | `dict | None` | No |  |
 | `reasoning` | `dict` | No |  |
-| `reasoning_effort` | `Any` | No |  |
-| `repetition_penalty` | `Any` | No |  |
+| `reasoning_effort` | `str | None` | No |  |
+| `repetition_penalty` | `float | None` | No |  |
 | `response_format` | `Any` | No |  |
-| `route` | `Any` | No |  |
-| `safety_identifier` | `Any` | No |  |
-| `seed` | `Any` | No |  |
-| `service_tier` | `Any` | No |  |
+| `route` | `str | None` | No |  |
+| `safety_identifier` | `str | None` | No |  |
+| `seed` | `int | None` | No |  |
+| `service_tier` | `str | None` | No |  |
 | `session_id` | `str` | No |  |
 | `speed` | `Any` | No |  |
 | `stop` | `Any` | No |  |
-| `stop_sequence` | `list` | No |  |
+| `stop_sequences` | `list` | No |  |
 | `stop_server_tools_when` | `list` | No |  |
 | `store` | `bool` | No |  |
 | `stream` | `bool` | No |  |
-| `stream_option` | `Any` | No |  |
+| `stream_options` | `dict | None` | No |  |
 | `system` | `Any` | No |  |
-| `temperature` | `Any` | No |  |
+| `temperature` | `float | None` | No |  |
 | `text` | `Any` | No |  |
 | `thinking` | `Any` | No |  |
-| `tool` | `list` | No |  |
 | `tool_choice` | `Any` | No |  |
-| `top_a` | `Any` | No |  |
-| `top_k` | `Any` | No |  |
-| `top_logprob` | `Any` | No |  |
-| `top_p` | `Any` | No |  |
+| `tools` | `list` | No |  |
+| `top_a` | `float | None` | No |  |
+| `top_k` | `int | None` | No |  |
+| `top_logprobs` | `int | None` | No |  |
+| `top_p` | `float | None` | No |  |
 | `trace` | `dict` | No |  |
-| `truncation` | `Any` | No |  |
+| `truncation` | `str | None` | No |  |
 | `user` | `str` | No |  |
 
 ### Field Usage by Operation
@@ -1866,34 +1928,34 @@ create_preset_from_inference = client.CreatePresetFromInference()
 | `background` | - |
 | `cache_control` | - |
 | `context_management` | - |
-| `data` | - |
 | `debug` | - |
-| `fallback` | - |
+| `fallbacks` | - |
 | `frequency_penalty` | - |
 | `image_config` | - |
 | `include` | - |
 | `input` | - |
-| `instruction` | - |
-| `logit_bia` | - |
-| `logprob` | - |
-| `max_completion_token` | - |
-| `max_output_token` | - |
-| `max_token` | - |
-| `max_tool_call` | - |
-| `message` | - |
+| `instructions` | - |
+| `logit_bias` | - |
+| `logprobs` | - |
+| `max_completion_tokens` | - |
+| `max_output_tokens` | - |
+| `max_tokens` | - |
+| `max_tool_calls` | - |
+| `messages` | - |
 | `metadata` | - |
 | `min_p` | - |
-| `modality` | - |
+| `modalities` | - |
 | `model` | Yes |
+| `models` | - |
 | `output_config` | - |
-| `parallel_tool_call` | - |
-| `plugin` | - |
+| `parallel_tool_calls` | - |
+| `plugins` | - |
 | `prediction` | - |
 | `presence_penalty` | - |
 | `previous_response_id` | - |
 | `prompt` | - |
 | `prompt_cache_key` | - |
-| `prompt_cache_option` | - |
+| `prompt_cache_options` | - |
 | `provider` | - |
 | `reasoning` | - |
 | `reasoning_effort` | - |
@@ -1906,20 +1968,20 @@ create_preset_from_inference = client.CreatePresetFromInference()
 | `session_id` | - |
 | `speed` | - |
 | `stop` | - |
-| `stop_sequence` | - |
+| `stop_sequences` | - |
 | `stop_server_tools_when` | - |
 | `store` | - |
 | `stream` | - |
-| `stream_option` | - |
+| `stream_options` | - |
 | `system` | - |
 | `temperature` | - |
 | `text` | - |
 | `thinking` | - |
-| `tool` | - |
 | `tool_choice` | - |
+| `tools` | - |
 | `top_a` | - |
 | `top_k` | - |
-| `top_logprob` | - |
+| `top_logprobs` | - |
 | `top_p` | - |
 | `trace` | - |
 | `truncation` | - |
@@ -1934,6 +1996,11 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.CreatePresetFromInference().create({
     "slug": "example_slug",  # str
+    "cache_control": {},  # dict
+    "messages": [],  # list
+    "prediction": "example_prediction",  # dict | None
+    "prompt": "example_prompt",  # dict | None
+    "prompt_cache_options": "example_prompt_cache_options",  # dict | None
 })
 ```
 
@@ -2011,7 +2078,8 @@ credit = client.Credit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | Yes |  |
+| `total_credits` | `float` | Yes |  |
+| `total_usage` | `float` | Yes |  |
 
 ### Operations
 
@@ -2021,7 +2089,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Credit().create({
-    "data": {},  # dict
+    "total_credits": 1,  # float
+    "total_usage": 1,  # float
 })
 ```
 
@@ -2108,7 +2177,7 @@ embedding = client.Embedding()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `list` | Yes |  |
-| `dimension` | `int` | No |  |
+| `dimensions` | `int` | No |  |
 | `encoding_format` | `str` | No |  |
 | `id` | `str` | No |  |
 | `input` | `Any` | Yes |  |
@@ -2174,40 +2243,79 @@ endpoint = client.Endpoint()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `architecture` | `dict` | Yes |  |
-| `benchmark` | `dict` | Yes |  |
+| `architecture` | `Any` | Yes |  |
+| `benchmarks` | `dict` | Yes |  |
 | `canonical_slug` | `str` | Yes |  |
-| `context_length` | `Any` | Yes |  |
+| `context_length` | `int | None` | Yes |  |
 | `created` | `int` | Yes |  |
-| `data` | `dict` | Yes |  |
-| `default_parameter` | `Any` | Yes |  |
-| `description` | `str` | No |  |
-| `expiration_date` | `Any` | No |  |
-| `hugging_face_id` | `Any` | No |  |
+| `default_parameters` | `dict | None` | Yes |  |
+| `description` | `str` | Yes |  |
+| `endpoints` | `list` | Yes |  |
+| `expiration_date` | `str | None` | No |  |
+| `hugging_face_id` | `str | None` | No |  |
 | `id` | `str` | Yes |  |
-| `knowledge_cutoff` | `Any` | No |  |
-| `latency_last_30m` | `Any` | Yes |  |
-| `link` | `dict` | Yes |  |
-| `max_completion_token` | `Any` | Yes |  |
-| `max_prompt_token` | `Any` | Yes |  |
+| `knowledge_cutoff` | `str | None` | No |  |
+| `latency_last_30m` | `dict | None` | Yes |  |
+| `links` | `dict` | Yes |  |
+| `max_completion_tokens` | `int | None` | Yes |  |
+| `max_prompt_tokens` | `int | None` | Yes |  |
 | `model_id` | `str` | Yes |  |
 | `model_name` | `str` | Yes |  |
 | `name` | `str` | Yes |  |
-| `per_request_limit` | `Any` | Yes |  |
+| `per_request_limits` | `dict | None` | Yes |  |
 | `pricing` | `dict` | Yes |  |
 | `provider_name` | `str` | Yes |  |
 | `quantization` | `Any` | Yes |  |
 | `reasoning` | `dict` | Yes |  |
 | `status` | `int` | No |  |
-| `supported_parameter` | `list` | Yes |  |
-| `supported_voice` | `Any` | Yes |  |
+| `supported_parameters` | `list` | Yes |  |
+| `supported_voices` | `list | None` | Yes |  |
 | `supports_implicit_caching` | `bool` | Yes |  |
 | `tag` | `str` | Yes |  |
 | `throughput_last_30m` | `Any` | Yes |  |
 | `top_provider` | `dict` | Yes |  |
-| `uptime_last_1d` | `Any` | Yes |  |
-| `uptime_last_30m` | `Any` | Yes |  |
-| `uptime_last_5m` | `Any` | Yes |  |
+| `uptime_last_1d` | `float | None` | Yes |  |
+| `uptime_last_30m` | `float | None` | Yes |  |
+| `uptime_last_5m` | `float | None` | Yes |  |
+
+### Field Usage by Operation
+
+| Field | load | list |
+| --- | --- | --- |
+| `architecture` | - | - |
+| `benchmarks` | - | - |
+| `canonical_slug` | - | - |
+| `context_length` | - | - |
+| `created` | - | - |
+| `default_parameters` | - | - |
+| `description` | - | Yes |
+| `endpoints` | - | - |
+| `expiration_date` | - | - |
+| `hugging_face_id` | - | - |
+| `id` | - | - |
+| `knowledge_cutoff` | - | - |
+| `latency_last_30m` | - | - |
+| `links` | - | - |
+| `max_completion_tokens` | - | - |
+| `max_prompt_tokens` | - | - |
+| `model_id` | - | - |
+| `model_name` | - | - |
+| `name` | - | - |
+| `per_request_limits` | - | - |
+| `pricing` | - | - |
+| `provider_name` | - | - |
+| `quantization` | - | - |
+| `reasoning` | - | - |
+| `status` | - | - |
+| `supported_parameters` | - | - |
+| `supported_voices` | - | - |
+| `supports_implicit_caching` | - | - |
+| `tag` | - | - |
+| `throughput_last_30m` | - | - |
+| `top_provider` | - | - |
+| `uptime_last_1d` | - | - |
+| `uptime_last_30m` | - | - |
+| `uptime_last_5m` | - | - |
 
 ### Operations
 
@@ -2308,7 +2416,7 @@ file = client.File()
 | `filename` | `str` | Yes |  |
 | `id` | `str` | Yes |  |
 | `mime_type` | `str` | Yes |  |
-| `size_byte` | `int` | Yes |  |
+| `size_bytes` | `int` | Yes |  |
 | `type` | `str` | Yes |  |
 
 ### Operations
@@ -2324,7 +2432,7 @@ result = client.File().create({
     "filename": "example_filename",  # str
     "id": "example_id",  # str
     "mime_type": "example_mime_type",  # str
-    "size_byte": 1,  # int
+    "size_bytes": 1,  # int
     "type": "example_type",  # str
 })
 ```
@@ -2394,7 +2502,50 @@ generation = client.Generation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | Yes |  |
+| `api_type` | `str | None` | Yes |  |
+| `app_id` | `int | None` | Yes |  |
+| `cache_discount` | `float | None` | Yes |  |
+| `cancelled` | `bool | None` | Yes |  |
+| `created_at` | `str` | Yes |  |
+| `data_region` | `str` | Yes |  |
+| `external_user` | `str | None` | Yes |  |
+| `finish_reason` | `str | None` | Yes |  |
+| `generation_time` | `float | None` | Yes |  |
+| `http_referer` | `str | None` | Yes |  |
+| `id` | `str` | Yes |  |
+| `is_byok` | `bool` | Yes |  |
+| `latency` | `float | None` | Yes |  |
+| `model` | `str` | Yes |  |
+| `moderation_latency` | `float | None` | Yes |  |
+| `native_finish_reason` | `str | None` | Yes |  |
+| `native_tokens_cached` | `int | None` | Yes |  |
+| `native_tokens_completion` | `int | None` | Yes |  |
+| `native_tokens_completion_images` | `int | None` | Yes |  |
+| `native_tokens_prompt` | `int | None` | Yes |  |
+| `native_tokens_reasoning` | `int | None` | Yes |  |
+| `num_fetches` | `int | None` | Yes |  |
+| `num_input_audio_prompt` | `int | None` | Yes |  |
+| `num_media_completion` | `int | None` | Yes |  |
+| `num_media_prompt` | `int | None` | Yes |  |
+| `num_search_results` | `int | None` | Yes |  |
+| `origin` | `str` | Yes |  |
+| `preset_id` | `str | None` | Yes |  |
+| `provider_name` | `str | None` | Yes |  |
+| `provider_responses` | `list | None` | Yes |  |
+| `request_id` | `str | None` | No |  |
+| `response_cache_source_id` | `str | None` | No |  |
+| `router` | `str | None` | Yes |  |
+| `service_tier` | `str | None` | Yes |  |
+| `session_id` | `str | None` | No |  |
+| `streamed` | `bool | None` | Yes |  |
+| `tokens_completion` | `int | None` | Yes |  |
+| `tokens_prompt` | `int | None` | Yes |  |
+| `total_cost` | `float` | Yes |  |
+| `upstream_id` | `str | None` | Yes |  |
+| `upstream_inference_cost` | `float | None` | Yes |  |
+| `usage` | `float` | Yes |  |
+| `user_agent` | `str | None` | Yes |  |
+| `web_search_engine` | `str | None` | Yes |  |
 
 ### Operations
 
@@ -2403,7 +2554,7 @@ generation = client.Generation()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Generation().load()
+result = client.Generation().load({"id": "generation_id"})
 ```
 
 ### Common Methods
@@ -2445,7 +2596,8 @@ generation_content = client.GenerationContent()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | Yes |  |
+| `input` | `Any` | Yes |  |
+| `output` | `dict` | Yes |  |
 
 ### Operations
 
@@ -2496,38 +2648,36 @@ guardrail = client.Guardrail()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `Any` | No |  |
-| `allowed_provider` | `Any` | No |  |
-| `content_filter` | `Any` | No |  |
-| `content_filter_builtin` | `Any` | No |  |
+| `allowed_models` | `list | None` | No |  |
+| `allowed_providers` | `list | None` | No |  |
+| `content_filter_builtins` | `list | None` | No |  |
+| `content_filters` | `list | None` | No |  |
 | `created_at` | `str` | Yes |  |
-| `data` | `Any` | Yes |  |
-| `description` | `Any` | No |  |
-| `enforce_zdr` | `Any` | No |  |
-| `enforce_zdr_anthropic` | `Any` | No |  |
-| `enforce_zdr_google` | `Any` | No |  |
-| `enforce_zdr_openai` | `Any` | No |  |
-| `enforce_zdr_other` | `Any` | No |  |
-| `enforce_zdr_xai` | `Any` | No |  |
+| `description` | `str | None` | No |  |
+| `enforce_zdr` | `bool | None` | No |  |
+| `enforce_zdr_anthropic` | `bool | None` | No |  |
+| `enforce_zdr_google` | `bool | None` | No |  |
+| `enforce_zdr_openai` | `bool | None` | No |  |
+| `enforce_zdr_other` | `bool | None` | No |  |
+| `enforce_zdr_xai` | `bool | None` | No |  |
 | `id` | `str` | Yes |  |
-| `ignored_model` | `Any` | No |  |
-| `ignored_provider` | `Any` | No |  |
-| `limit_usd` | `Any` | No |  |
+| `ignored_models` | `list | None` | No |  |
+| `ignored_providers` | `list | None` | No |  |
+| `limit_usd` | `float | None` | No |  |
 | `name` | `str` | Yes |  |
-| `reset_interval` | `Any` | No |  |
-| `updated_at` | `Any` | No |  |
-| `workspace_id` | `str` | No |  |
+| `reset_interval` | `str | None` | No |  |
+| `updated_at` | `str | None` | No |  |
+| `workspace_id` | `str` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | load | list | create | remove |
 | --- | --- | --- | --- | --- |
-| `allowed_model` | - | - | - | - |
-| `allowed_provider` | - | - | - | - |
-| `content_filter` | - | - | - | - |
-| `content_filter_builtin` | - | - | - | - |
+| `allowed_models` | - | - | - | - |
+| `allowed_providers` | - | - | - | - |
+| `content_filter_builtins` | - | - | - | - |
+| `content_filters` | - | - | - | - |
 | `created_at` | - | - | - | - |
-| `data` | - | - | - | - |
 | `description` | - | - | - | - |
 | `enforce_zdr` | - | - | - | - |
 | `enforce_zdr_anthropic` | - | - | - | - |
@@ -2536,13 +2686,13 @@ guardrail = client.Guardrail()
 | `enforce_zdr_other` | - | - | - | - |
 | `enforce_zdr_xai` | - | - | - | - |
 | `id` | - | - | - | - |
-| `ignored_model` | - | - | - | - |
-| `ignored_provider` | - | - | - | - |
+| `ignored_models` | - | - | - | - |
+| `ignored_providers` | - | - | - | - |
 | `limit_usd` | - | - | - | - |
 | `name` | - | - | - | - |
 | `reset_interval` | - | - | - | - |
 | `updated_at` | - | - | - | - |
-| `workspace_id` | - | Yes | - | - |
+| `workspace_id` | - | - | Yes | - |
 
 ### Operations
 
@@ -2553,9 +2703,9 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.Guardrail().create({
     "created_at": "example_created_at",  # str
-    "data": "example_data",  # Any
     "id": "example_id",  # str
     "name": "example_name",  # str
+    "workspace_id": "example_workspace_id",  # str
 })
 ```
 
@@ -2628,7 +2778,7 @@ image = client.Image()
 | `background` | `str` | No |  |
 | `created` | `int` | Yes |  |
 | `data` | `list` | Yes |  |
-| `input_reference` | `list` | No |  |
+| `input_references` | `list` | No |  |
 | `model` | `str` | Yes |  |
 | `n` | `int` | No |  |
 | `output_compression` | `int` | No |  |
@@ -2697,12 +2847,12 @@ image_model_endpoint = client.ImageModelEndpoint()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameter` | `list` | Yes |  |
+| `allowed_passthrough_parameters` | `list` | Yes |  |
 | `pricing` | `list` | Yes |  |
 | `provider_name` | `str` | Yes |  |
 | `provider_slug` | `str` | Yes |  |
-| `provider_tag` | `Any` | Yes |  |
-| `supported_parameter` | `Any` | Yes |  |
+| `provider_tag` | `str | None` | Yes |  |
+| `supported_parameters` | `Any` | Yes |  |
 | `supports_streaming` | `bool` | Yes |  |
 
 ### Operations
@@ -2712,7 +2862,7 @@ image_model_endpoint = client.ImageModelEndpoint()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ImageModelEndpoint().list()
+results = client.ImageModelEndpoint().list({"model_id": "example", "slug": "example"})
 for image_model_endpoint in results:
     print(image_model_endpoint)
 ```
@@ -2759,10 +2909,10 @@ image_models_list = client.ImageModelsList()
 | `architecture` | `dict` | Yes |  |
 | `created` | `int` | Yes |  |
 | `description` | `str` | Yes |  |
-| `endpoint` | `str` | Yes |  |
+| `endpoints` | `str` | Yes |  |
 | `id` | `str` | Yes |  |
 | `name` | `str` | Yes |  |
-| `supported_parameter` | `dict` | Yes |  |
+| `supported_parameters` | `dict` | Yes |  |
 | `supports_streaming` | `bool` | Yes |  |
 
 ### Operations
@@ -2921,7 +3071,7 @@ list_key_assignment = client.ListKeyAssignment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_by` | `Any` | Yes |  |
+| `assigned_by` | `str | None` | Yes |  |
 | `created_at` | `str` | Yes |  |
 | `guardrail_id` | `str` | Yes |  |
 | `id` | `str` | Yes |  |
@@ -2980,7 +3130,7 @@ list_member_assignment = client.ListMemberAssignment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_by` | `Any` | Yes |  |
+| `assigned_by` | `str | None` | Yes |  |
 | `created_at` | `str` | Yes |  |
 | `guardrail_id` | `str` | Yes |  |
 | `id` | `str` | Yes |  |
@@ -3132,7 +3282,7 @@ list_preset_version = client.ListPresetVersion()
 | `creator_id` | `str` | Yes |  |
 | `id` | `str` | Yes |  |
 | `preset_id` | `str` | Yes |  |
-| `system_prompt` | `Any` | Yes |  |
+| `system_prompt` | `str | None` | Yes |  |
 | `updated_at` | `str` | Yes |  |
 | `version` | `int` | Yes |  |
 
@@ -3143,7 +3293,7 @@ list_preset_version = client.ListPresetVersion()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ListPresetVersion().list()
+results = client.ListPresetVersion().list({"slug": "example"})
 for list_preset_version in results:
     print(list_preset_version)
 ```
@@ -3225,7 +3375,7 @@ list_workspace_budget = client.ListWorkspaceBudget()
 | `created_at` | `str` | Yes |  |
 | `id` | `str` | Yes |  |
 | `limit_usd` | `float` | Yes |  |
-| `reset_interval` | `Any` | Yes |  |
+| `reset_interval` | `str | None` | Yes |  |
 | `updated_at` | `str` | Yes |  |
 | `workspace_id` | `str` | Yes |  |
 
@@ -3236,7 +3386,7 @@ list_workspace_budget = client.ListWorkspaceBudget()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ListWorkspaceBudget().list()
+results = client.ListWorkspaceBudget().list({"workspace_id": "example"})
 for list_workspace_budget in results:
     print(list_workspace_budget)
 ```
@@ -3293,7 +3443,7 @@ list_workspace_member = client.ListWorkspaceMember()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ListWorkspaceMember().list()
+results = client.ListWorkspaceMember().list({"workspace_id": "example"})
 for list_workspace_member in results:
     print(list_workspace_member)
 ```
@@ -3373,62 +3523,32 @@ message = client.Message()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cache_control` | `dict` | Yes |  |
-| `context_management` | `Any` | No |  |
-| `fallback` | `Any` | No |  |
-| `max_token` | `int` | No |  |
-| `message` | `Any` | Yes |  |
+| `context_management` | `dict | None` | No |  |
+| `fallbacks` | `list | None` | No |  |
+| `max_tokens` | `int` | No |  |
+| `messages` | `list | None` | Yes |  |
 | `metadata` | `dict` | No |  |
 | `model` | `str` | Yes |  |
+| `models` | `list` | No |  |
 | `output_config` | `dict` | No |  |
-| `plugin` | `list` | No |  |
-| `provider` | `Any` | No |  |
-| `route` | `Any` | No |  |
+| `plugins` | `list` | No |  |
+| `provider` | `dict | None` | No |  |
+| `route` | `str | None` | No |  |
 | `service_tier` | `str` | No |  |
 | `session_id` | `str` | No |  |
 | `speed` | `Any` | No |  |
-| `stop_sequence` | `list` | No |  |
+| `stop_sequences` | `list` | No |  |
 | `stop_server_tools_when` | `list` | No |  |
 | `stream` | `bool` | No |  |
 | `system` | `Any` | No |  |
 | `temperature` | `float` | No |  |
 | `thinking` | `Any` | No |  |
-| `tool` | `list` | No |  |
 | `tool_choice` | `Any` | No |  |
+| `tools` | `list` | No |  |
 | `top_k` | `int` | No |  |
 | `top_p` | `float` | No |  |
 | `trace` | `dict` | No |  |
 | `user` | `str` | No |  |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `cache_control` | - |
-| `context_management` | - |
-| `fallback` | - |
-| `max_token` | - |
-| `message` | - |
-| `metadata` | - |
-| `model` | Yes |
-| `output_config` | - |
-| `plugin` | - |
-| `provider` | - |
-| `route` | - |
-| `service_tier` | - |
-| `session_id` | - |
-| `speed` | - |
-| `stop_sequence` | - |
-| `stop_server_tools_when` | - |
-| `stream` | - |
-| `system` | - |
-| `temperature` | - |
-| `thinking` | - |
-| `tool` | - |
-| `tool_choice` | - |
-| `top_k` | - |
-| `top_p` | - |
-| `trace` | - |
-| `user` | - |
 
 ### Operations
 
@@ -3439,7 +3559,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.Message().create({
     "cache_control": {},  # dict
-    "message": "example_message",  # Any
+    "messages": "example_messages",  # list | None
     "model": "example_model",  # str
 })
 ```
@@ -3519,24 +3639,23 @@ model = client.Model()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `dict` | Yes |  |
-| `benchmark` | `dict` | Yes |  |
+| `benchmarks` | `dict` | Yes |  |
 | `canonical_slug` | `str` | Yes |  |
-| `context_length` | `Any` | Yes |  |
+| `context_length` | `int | None` | Yes |  |
 | `created` | `int` | Yes |  |
-| `data` | `dict` | Yes |  |
-| `default_parameter` | `Any` | Yes |  |
+| `default_parameters` | `dict | None` | Yes |  |
 | `description` | `str` | No |  |
-| `expiration_date` | `Any` | No |  |
-| `hugging_face_id` | `Any` | No |  |
+| `expiration_date` | `str | None` | No |  |
+| `hugging_face_id` | `str | None` | No |  |
 | `id` | `str` | Yes |  |
-| `knowledge_cutoff` | `Any` | No |  |
-| `link` | `dict` | Yes |  |
+| `knowledge_cutoff` | `str | None` | No |  |
+| `links` | `dict` | Yes |  |
 | `name` | `str` | Yes |  |
-| `per_request_limit` | `Any` | Yes |  |
+| `per_request_limits` | `dict | None` | Yes |  |
 | `pricing` | `dict` | Yes |  |
 | `reasoning` | `dict` | Yes |  |
-| `supported_parameter` | `list` | Yes |  |
-| `supported_voice` | `Any` | Yes |  |
+| `supported_parameters` | `list` | Yes |  |
+| `supported_voices` | `list | None` | Yes |  |
 | `top_provider` | `dict` | Yes |  |
 
 ### Operations
@@ -3598,7 +3717,7 @@ models_count = client.ModelsCount()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | Yes |  |
+| `count` | `int` | Yes |  |
 
 ### Operations
 
@@ -3650,23 +3769,23 @@ models_list = client.ModelsList()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `dict` | Yes |  |
-| `benchmark` | `dict` | Yes |  |
+| `benchmarks` | `dict` | Yes |  |
 | `canonical_slug` | `str` | Yes |  |
-| `context_length` | `Any` | Yes |  |
+| `context_length` | `int | None` | Yes |  |
 | `created` | `int` | Yes |  |
-| `default_parameter` | `Any` | Yes |  |
+| `default_parameters` | `dict | None` | Yes |  |
 | `description` | `str` | No |  |
-| `expiration_date` | `Any` | No |  |
-| `hugging_face_id` | `Any` | No |  |
+| `expiration_date` | `str | None` | No |  |
+| `hugging_face_id` | `str | None` | No |  |
 | `id` | `str` | Yes |  |
-| `knowledge_cutoff` | `Any` | No |  |
-| `link` | `dict` | Yes |  |
+| `knowledge_cutoff` | `str | None` | No |  |
+| `links` | `dict` | Yes |  |
 | `name` | `str` | Yes |  |
-| `per_request_limit` | `Any` | Yes |  |
+| `per_request_limits` | `dict | None` | Yes |  |
 | `pricing` | `dict` | Yes |  |
 | `reasoning` | `dict` | Yes |  |
-| `supported_parameter` | `list` | Yes |  |
-| `supported_voice` | `Any` | Yes |  |
+| `supported_parameters` | `list` | Yes |  |
+| `supported_voices` | `list | None` | Yes |  |
 | `top_provider` | `dict` | Yes |  |
 
 ### Operations
@@ -3720,20 +3839,22 @@ o_auth = client.OAuth()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `app_id` | `int` | Yes |  |
 | `callback_url` | `str` | Yes |  |
 | `code` | `str` | Yes |  |
 | `code_challenge` | `str` | No |  |
-| `code_challenge_method` | `Any` | No |  |
+| `code_challenge_method` | `str | None` | No |  |
 | `code_verifier` | `str` | No |  |
-| `data` | `dict` | Yes |  |
-| `expires_at` | `Any` | No |  |
+| `created_at` | `str` | Yes |  |
+| `expires_at` | `str | None` | No |  |
+| `id` | `str` | Yes |  |
 | `key` | `str` | Yes |  |
 | `key_label` | `str` | No |  |
 | `limit` | `float` | No |  |
 | `spawn_agent` | `str` | No |  |
 | `spawn_cloud` | `str` | No |  |
 | `usage_limit_type` | `str` | No |  |
-| `user_id` | `Any` | Yes |  |
+| `user_id` | `str | None` | Yes |  |
 | `workspace_id` | `str` | No |  |
 
 ### Operations
@@ -3744,11 +3865,13 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.OAuth().create({
+    "app_id": 1,  # int
     "callback_url": "example_callback_url",  # str
     "code": "example_code",  # str
-    "data": {},  # dict
+    "created_at": "example_created_at",  # str
+    "id": "example_id",  # str
     "key": "example_key",  # str
-    "user_id": "example_user_id",  # Any
+    "user_id": "example_user_id",  # str | None
 })
 ```
 
@@ -3791,7 +3914,7 @@ observability_destination = client.ObservabilityDestination()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Any` | Yes |  |
+| `data` | `dict` | No |  |
 
 ### Operations
 
@@ -3850,44 +3973,45 @@ open_responses_result = client.OpenResponsesResult()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `background` | `Any` | No |  |
+| `background` | `bool | None` | No |  |
 | `cache_control` | `dict` | Yes |  |
 | `debug` | `dict` | No |  |
-| `frequency_penalty` | `Any` | No |  |
+| `frequency_penalty` | `float | None` | No |  |
 | `image_config` | `dict` | No |  |
-| `include` | `Any` | No |  |
+| `include` | `list | None` | No |  |
 | `input` | `Any` | No |  |
-| `instruction` | `Any` | No |  |
-| `max_output_token` | `Any` | No |  |
-| `max_tool_call` | `Any` | No |  |
-| `metadata` | `Any` | No |  |
-| `modality` | `list` | No |  |
+| `instructions` | `str | None` | No |  |
+| `max_output_tokens` | `int | None` | No |  |
+| `max_tool_calls` | `int | None` | No |  |
+| `metadata` | `dict | None` | No |  |
+| `modalities` | `list` | No |  |
 | `model` | `str` | No |  |
-| `parallel_tool_call` | `Any` | No |  |
-| `plugin` | `list` | No |  |
-| `presence_penalty` | `Any` | No |  |
+| `models` | `list` | No |  |
+| `parallel_tool_calls` | `bool | None` | No |  |
+| `plugins` | `list` | No |  |
+| `presence_penalty` | `float | None` | No |  |
 | `previous_response_id` | `str` | No |  |
-| `prompt` | `Any` | Yes |  |
-| `prompt_cache_key` | `Any` | No |  |
-| `prompt_cache_option` | `Any` | Yes |  |
-| `provider` | `Any` | No |  |
+| `prompt` | `dict | None` | Yes |  |
+| `prompt_cache_key` | `str | None` | No |  |
+| `prompt_cache_options` | `dict | None` | Yes |  |
+| `provider` | `dict | None` | No |  |
 | `reasoning` | `Any` | No |  |
-| `route` | `Any` | No |  |
-| `safety_identifier` | `Any` | No |  |
-| `service_tier` | `Any` | No |  |
+| `route` | `str | None` | No |  |
+| `safety_identifier` | `str | None` | No |  |
+| `service_tier` | `str | None` | No |  |
 | `session_id` | `str` | No |  |
 | `stop_server_tools_when` | `list` | No |  |
 | `store` | `bool` | No |  |
 | `stream` | `bool` | No |  |
-| `temperature` | `Any` | No |  |
+| `temperature` | `float | None` | No |  |
 | `text` | `Any` | No |  |
-| `tool` | `list` | No |  |
 | `tool_choice` | `Any` | No |  |
+| `tools` | `list` | No |  |
 | `top_k` | `int` | No |  |
-| `top_logprob` | `Any` | No |  |
-| `top_p` | `Any` | No |  |
+| `top_logprobs` | `int | None` | No |  |
+| `top_p` | `float | None` | No |  |
 | `trace` | `dict` | No |  |
-| `truncation` | `Any` | No |  |
+| `truncation` | `str | None` | No |  |
 | `user` | `str` | No |  |
 
 ### Operations
@@ -3899,8 +4023,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.OpenResponsesResult().create({
     "cache_control": {},  # dict
-    "prompt": "example_prompt",  # Any
-    "prompt_cache_option": "example_prompt_cache_option",  # Any
+    "prompt": "example_prompt",  # dict | None
+    "prompt_cache_options": "example_prompt_cache_options",  # dict | None
 })
 ```
 
@@ -3944,9 +4068,9 @@ organization = client.Organization()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email` | `str` | Yes |  |
-| `first_name` | `Any` | Yes |  |
+| `first_name` | `str | None` | Yes |  |
 | `id` | `str` | Yes |  |
-| `last_name` | `Any` | Yes |  |
+| `last_name` | `str | None` | Yes |  |
 | `role` | `str` | Yes |  |
 
 ### Operations
@@ -4001,17 +4125,17 @@ preset = client.Preset()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `created_at` | `str` | Yes |  |
-| `creator_user_id` | `Any` | Yes |  |
-| `data` | `Any` | Yes |  |
-| `description` | `Any` | Yes |  |
-| `designated_version_id` | `Any` | Yes |  |
+| `creator_user_id` | `str | None` | Yes |  |
+| `description` | `str | None` | Yes |  |
+| `designated_version` | `dict | None` | Yes |  |
+| `designated_version_id` | `str | None` | Yes |  |
 | `id` | `str` | Yes |  |
 | `name` | `str` | Yes |  |
 | `slug` | `str` | Yes |  |
 | `status` | `str` | Yes |  |
-| `status_updated_at` | `Any` | Yes |  |
+| `status_updated_at` | `str | None` | Yes |  |
 | `updated_at` | `str` | Yes |  |
-| `workspace_id` | `Any` | Yes |  |
+| `workspace_id` | `str | None` | Yes |  |
 
 ### Operations
 
@@ -4072,7 +4196,14 @@ preset_version = client.PresetVersion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Any` | Yes |  |
+| `config` | `dict` | Yes |  |
+| `created_at` | `str` | Yes |  |
+| `creator_id` | `str` | Yes |  |
+| `id` | `str` | Yes |  |
+| `preset_id` | `str` | Yes |  |
+| `system_prompt` | `str | None` | Yes |  |
+| `updated_at` | `str` | Yes |  |
+| `version` | `int` | Yes |  |
 
 ### Operations
 
@@ -4123,13 +4254,13 @@ provider = client.Provider()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datacenter` | `Any` | No |  |
-| `headquarter` | `Any` | No |  |
+| `datacenters` | `list | None` | No |  |
+| `headquarters` | `str | None` | No |  |
 | `name` | `str` | Yes |  |
-| `privacy_policy_url` | `Any` | Yes |  |
+| `privacy_policy_url` | `str | None` | Yes |  |
 | `slug` | `str` | Yes |  |
-| `status_page_url` | `Any` | No |  |
-| `terms_of_service_url` | `Any` | No |  |
+| `status_page_url` | `str | None` | No |  |
+| `terms_of_service_url` | `str | None` | No |  |
 
 ### Operations
 
@@ -4219,7 +4350,7 @@ rankings_daily = client.RankingsDaily()
 | --- | --- | --- | --- |
 | `date` | `str` | Yes |  |
 | `model_permaslug` | `str` | Yes |  |
-| `total_token` | `str` | Yes |  |
+| `total_tokens` | `str` | Yes |  |
 
 ### Operations
 
@@ -4307,12 +4438,12 @@ rerank = client.Rerank()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `document` | `list` | Yes |  |
+| `documents` | `list` | Yes |  |
 | `id` | `str` | No |  |
 | `model` | `str` | Yes |  |
 | `provider` | `str` | No |  |
 | `query` | `str` | Yes |  |
-| `result` | `list` | Yes |  |
+| `results` | `list` | Yes |  |
 | `top_n` | `int` | No |  |
 | `usage` | `dict` | No |  |
 
@@ -4324,10 +4455,10 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Rerank().create({
-    "document": [],  # list
+    "documents": [],  # list
     "model": "example_model",  # str
     "query": "example_query",  # str
-    "result": [],  # list
+    "results": [],  # list
 })
 ```
 
@@ -4446,13 +4577,13 @@ stt = client.Stt()
 | `model` | `str` | Yes |  |
 | `provider` | `dict` | No |  |
 | `response_format` | `str` | No |  |
-| `segment` | `list` | No |  |
+| `segments` | `list` | No |  |
 | `task` | `str` | No |  |
 | `temperature` | `float` | No |  |
 | `text` | `str` | Yes |  |
-| `timestamp_granularity` | `list` | No |  |
+| `timestamp_granularities` | `list` | No |  |
 | `usage` | `dict` | No |  |
-| `word` | `list` | No |  |
+| `words` | `list` | No |  |
 
 ### Operations
 
@@ -4509,8 +4640,8 @@ submit_generation_feedback = client.SubmitGenerationFeedback()
 | --- | --- | --- | --- |
 | `category` | `str` | Yes |  |
 | `comment` | `str` | No |  |
-| `data` | `dict` | Yes |  |
 | `generation_id` | `str` | Yes |  |
+| `success` | `bool` | Yes |  |
 
 ### Operations
 
@@ -4521,8 +4652,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.SubmitGenerationFeedback().create({
     "category": "example_category",  # str
-    "data": {},  # dict
     "generation_id": "example_generation_id",  # str
+    "success": True,  # bool
 })
 ```
 
@@ -4565,7 +4696,10 @@ task = client.Task()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | Yes |  |
+| `as_of` | `str` | Yes |  |
+| `classifications` | `list` | Yes |  |
+| `macro_categories` | `list` | Yes |  |
+| `window_days` | `int` | Yes |  |
 
 ### Operations
 
@@ -4765,13 +4899,12 @@ update_byok_key = client.UpdateByokKey()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `Any` | No |  |
-| `allowed_user_id` | `Any` | No |  |
-| `data` | `Any` | Yes |  |
+| `allowed_models` | `list | None` | No |  |
+| `allowed_user_ids` | `list | None` | No |  |
 | `disabled` | `bool` | No |  |
 | `is_fallback` | `bool` | No |  |
 | `key` | `str` | No |  |
-| `name` | `Any` | No |  |
+| `name` | `str | None` | No |  |
 
 ### Operations
 
@@ -4825,23 +4958,22 @@ update_guardrail = client.UpdateGuardrail()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `Any` | No |  |
-| `allowed_provider` | `Any` | No |  |
-| `content_filter` | `Any` | No |  |
-| `content_filter_builtin` | `Any` | No |  |
-| `data` | `Any` | Yes |  |
-| `description` | `Any` | No |  |
-| `enforce_zdr` | `Any` | No |  |
-| `enforce_zdr_anthropic` | `Any` | No |  |
-| `enforce_zdr_google` | `Any` | No |  |
-| `enforce_zdr_openai` | `Any` | No |  |
-| `enforce_zdr_other` | `Any` | No |  |
-| `enforce_zdr_xai` | `Any` | No |  |
-| `ignored_model` | `Any` | No |  |
-| `ignored_provider` | `Any` | No |  |
-| `limit_usd` | `Any` | No |  |
+| `allowed_models` | `list | None` | No |  |
+| `allowed_providers` | `list | None` | No |  |
+| `content_filter_builtins` | `list | None` | No |  |
+| `content_filters` | `list | None` | No |  |
+| `description` | `str | None` | No |  |
+| `enforce_zdr` | `bool | None` | No |  |
+| `enforce_zdr_anthropic` | `bool | None` | No |  |
+| `enforce_zdr_google` | `bool | None` | No |  |
+| `enforce_zdr_openai` | `bool | None` | No |  |
+| `enforce_zdr_other` | `bool | None` | No |  |
+| `enforce_zdr_xai` | `bool | None` | No |  |
+| `ignored_models` | `list | None` | No |  |
+| `ignored_providers` | `list | None` | No |  |
+| `limit_usd` | `float | None` | No |  |
 | `name` | `str` | No |  |
-| `reset_interval` | `Any` | No |  |
+| `reset_interval` | `str | None` | No |  |
 
 ### Operations
 
@@ -4895,11 +5027,10 @@ update_observability_destination = client.UpdateObservabilityDestination()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hash` | `Any` | No |  |
+| `api_key_hashes` | `list | None` | No |  |
 | `config` | `dict` | No |  |
-| `data` | `Any` | Yes |  |
 | `enabled` | `bool` | No |  |
-| `filter_rule` | `Any` | No |  |
+| `filter_rules` | `Any` | No |  |
 | `name` | `str` | No |  |
 | `privacy_mode` | `bool` | No |  |
 | `sampling_rate` | `float` | No |  |
@@ -4957,21 +5088,20 @@ update_workspace = client.UpdateWorkspace()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `created_at` | `str` | Yes |  |
-| `created_by` | `Any` | Yes |  |
-| `data` | `Any` | Yes |  |
-| `default_image_model` | `Any` | No |  |
-| `default_provider_sort` | `Any` | No |  |
-| `default_text_model` | `Any` | No |  |
-| `description` | `Any` | No |  |
+| `created_by` | `str | None` | Yes |  |
+| `default_image_model` | `str | None` | No |  |
+| `default_provider_sort` | `str | None` | No |  |
+| `default_text_model` | `str | None` | No |  |
+| `description` | `str | None` | No |  |
 | `id` | `str` | Yes |  |
-| `io_logging_api_key_id` | `Any` | No |  |
+| `io_logging_api_key_ids` | `list | None` | No |  |
 | `io_logging_sampling_rate` | `float` | No |  |
 | `is_data_discount_logging_enabled` | `bool` | No |  |
 | `is_observability_broadcast_enabled` | `bool` | No |  |
 | `is_observability_io_logging_enabled` | `bool` | No |  |
 | `name` | `str` | Yes |  |
 | `slug` | `str` | Yes |  |
-| `updated_at` | `Any` | Yes |  |
+| `updated_at` | `str | None` | Yes |  |
 
 ### Field Usage by Operation
 
@@ -4979,13 +5109,12 @@ update_workspace = client.UpdateWorkspace()
 | --- | --- | --- | --- |
 | `created_at` | - | - | - |
 | `created_by` | - | - | - |
-| `data` | - | - | - |
 | `default_image_model` | Yes | - | - |
 | `default_provider_sort` | Yes | - | - |
 | `default_text_model` | Yes | - | - |
 | `description` | Yes | - | - |
 | `id` | - | - | - |
-| `io_logging_api_key_id` | Yes | - | - |
+| `io_logging_api_key_ids` | Yes | - | - |
 | `io_logging_sampling_rate` | Yes | - | - |
 | `is_data_discount_logging_enabled` | Yes | - | - |
 | `is_observability_broadcast_enabled` | Yes | - | - |
@@ -5003,12 +5132,11 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.UpdateWorkspace().create({
     "created_at": "example_created_at",  # str
-    "created_by": "example_created_by",  # Any
-    "data": "example_data",  # Any
+    "created_by": "example_created_by",  # str | None
     "id": "example_id",  # str
     "name": "example_name",  # str
     "slug": "example_slug",  # str
-    "updated_at": "example_updated_at",  # Any
+    "updated_at": "example_updated_at",  # str | None
 })
 ```
 
@@ -5072,7 +5200,6 @@ upsert_workspace_budget = client.UpsertWorkspaceBudget()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Any` | Yes |  |
 | `limit_usd` | `float` | Yes |  |
 
 ### Operations
@@ -5202,11 +5329,11 @@ video = client.Video()
 | `callback_url` | `str` | No |  |
 | `duration` | `int` | No |  |
 | `error` | `str` | No |  |
-| `frame_image` | `list` | No |  |
+| `frame_images` | `list` | No |  |
 | `generate_audio` | `bool` | No |  |
 | `generation_id` | `str` | No |  |
 | `id` | `str` | Yes |  |
-| `input_reference` | `list` | No |  |
+| `input_references` | `list` | No |  |
 | `model` | `str` | Yes |  |
 | `polling_url` | `str` | Yes |  |
 | `prompt` | `str` | No |  |
@@ -5215,7 +5342,7 @@ video = client.Video()
 | `seed` | `int` | No |  |
 | `size` | `str` | No |  |
 | `status` | `str` | Yes |  |
-| `unsigned_url` | `list` | No |  |
+| `unsigned_urls` | `list` | No |  |
 | `usage` | `dict` | No |  |
 
 ### Operations
@@ -5325,21 +5452,21 @@ video_models_list = client.VideoModelsList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameter` | `list` | Yes |  |
+| `allowed_passthrough_parameters` | `list` | Yes |  |
 | `canonical_slug` | `str` | Yes |  |
 | `created` | `int` | Yes |  |
 | `description` | `str` | No |  |
-| `generate_audio` | `Any` | Yes |  |
-| `hugging_face_id` | `Any` | No |  |
+| `generate_audio` | `bool | None` | Yes |  |
+| `hugging_face_id` | `str | None` | No |  |
 | `id` | `str` | Yes |  |
 | `name` | `str` | Yes |  |
-| `pricing_skus` | `Any` | No |  |
-| `seed` | `Any` | Yes |  |
-| `supported_aspect_ratio` | `Any` | Yes |  |
-| `supported_duration` | `Any` | Yes |  |
-| `supported_frame_image` | `Any` | Yes |  |
-| `supported_resolution` | `Any` | Yes |  |
-| `supported_size` | `Any` | Yes |  |
+| `pricing_skus` | `dict | None` | No |  |
+| `seed` | `bool | None` | Yes |  |
+| `supported_aspect_ratios` | `list | None` | Yes |  |
+| `supported_durations` | `list | None` | Yes |  |
+| `supported_frame_images` | `list | None` | Yes |  |
+| `supported_resolutions` | `list | None` | Yes |  |
+| `supported_sizes` | `list | None` | Yes |  |
 
 ### Operations
 
@@ -5392,7 +5519,21 @@ workspace = client.Workspace()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Any` | Yes |  |
+| `created_at` | `str` | Yes |  |
+| `created_by` | `str | None` | Yes |  |
+| `default_image_model` | `str | None` | Yes |  |
+| `default_provider_sort` | `str | None` | Yes |  |
+| `default_text_model` | `str | None` | Yes |  |
+| `description` | `str | None` | Yes |  |
+| `id` | `str` | Yes |  |
+| `io_logging_api_key_ids` | `list | None` | Yes |  |
+| `io_logging_sampling_rate` | `float` | Yes |  |
+| `is_data_discount_logging_enabled` | `bool` | Yes |  |
+| `is_observability_broadcast_enabled` | `bool` | Yes |  |
+| `is_observability_io_logging_enabled` | `bool` | Yes |  |
+| `name` | `str` | Yes |  |
+| `slug` | `str` | Yes |  |
+| `updated_at` | `str | None` | Yes |  |
 
 ### Operations
 

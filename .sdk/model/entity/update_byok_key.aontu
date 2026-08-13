@@ -6,7 +6,7 @@ main: kit: entity: update_byok_key: {
 
   fields: [
     {
-      name: "allowed_model"
+      name: "allowed_models"
       req: false
       type: [
         "`$ONE`"
@@ -17,7 +17,7 @@ main: kit: entity: update_byok_key: {
       ]
     }
     {
-      name: "allowed_user_id"
+      name: "allowed_user_ids"
       req: false
       type: [
         "`$ONE`"
@@ -26,11 +26,6 @@ main: kit: entity: update_byok_key: {
           "`$NULL`"
         ]
       ]
-    }
-    {
-      name: "data"
-      req: true
-      type: "`$ANY`"
     }
     {
       name: "disabled"
@@ -117,7 +112,7 @@ main: kit: entity: update_byok_key: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

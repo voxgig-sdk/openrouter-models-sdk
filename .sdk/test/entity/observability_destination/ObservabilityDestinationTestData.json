@@ -2,15 +2,15 @@
   "existing": {
     "observability_destination": {
       "OBSERVABILITY_DESTINATION00": {
-        "data": "sa",
+        "data": {},
         "id": "OBSERVABILITY_DESTINATION00"
       },
       "OBSERVABILITY_DESTINATION01": {
-        "data": "s14",
+        "data": {},
         "id": "OBSERVABILITY_DESTINATION01"
       },
       "OBSERVABILITY_DESTINATION02": {
-        "data": "s1e",
+        "data": {},
         "id": "OBSERVABILITY_DESTINATION02"
       }
     }
@@ -18,7 +18,7 @@
   "new": {
     "observability_destination": {
       "observability_destination_ref01": {
-        "data": "s28"
+        "data": {}
       }
     }
   }

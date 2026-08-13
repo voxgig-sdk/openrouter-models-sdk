@@ -3,19 +3,19 @@
     "bulk_remove_workspace_member": {
       "BULK_REMOVE_WORKSPACE_MEMBER00": {
         "removed_count": "s14",
-        "user_id": "USER01",
+        "user_ids": [],
         "workspace_id": "WORKSPACE01",
         "id": "BULK_REMOVE_WORKSPACE_MEMBER00"
       },
       "BULK_REMOVE_WORKSPACE_MEMBER01": {
         "removed_count": "s28",
-        "user_id": "USER01",
+        "user_ids": [],
         "workspace_id": "WORKSPACE01",
         "id": "BULK_REMOVE_WORKSPACE_MEMBER01"
       },
       "BULK_REMOVE_WORKSPACE_MEMBER02": {
         "removed_count": "s3c",
-        "user_id": "USER01",
+        "user_ids": [],
         "workspace_id": "WORKSPACE01",
         "id": "BULK_REMOVE_WORKSPACE_MEMBER02"
       }
@@ -25,7 +25,7 @@
     "bulk_remove_workspace_member": {
       "bulk_remove_workspace_member_ref01": {
         "removed_count": "s50",
-        "user_id": "USER01"
+        "user_ids": []
       }
     }
   }

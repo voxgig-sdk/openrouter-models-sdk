@@ -26,8 +26,8 @@ import {
 describe('UpdateWorkspaceEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -62,14 +62,14 @@ describe('UpdateWorkspaceEntity', async () => {
     const update_workspace_ref01_ent = client.UpdateWorkspace()
     let update_workspace_ref01_data = setup.data.new.update_workspace['update_workspace_ref01']
 
-    update_workspace_ref01_data = await update_workspace_ref01_ent.create(update_workspace_ref01_data)
+    update_workspace_ref01_data = (await update_workspace_ref01_ent.create(update_workspace_ref01_data)).data()
     assert(null != update_workspace_ref01_data.id)
 
 
     // LIST
     const update_workspace_ref01_match: any = {}
 
-    const update_workspace_ref01_list = await update_workspace_ref01_ent.list(update_workspace_ref01_match)
+    const update_workspace_ref01_list = (await update_workspace_ref01_ent.list(update_workspace_ref01_match)).map((e: any) => e.data())
 
     assert(!isempty(select(update_workspace_ref01_list, { id: update_workspace_ref01_data.id })))
 
@@ -81,7 +81,7 @@ describe('UpdateWorkspaceEntity', async () => {
     const update_workspace_ref01_markdef_up0 = { name: 'created_at', value: 'Mark01-update_workspace_ref01_' + setup.now }
     ;(update_workspace_ref01_data_up0 as any)[update_workspace_ref01_markdef_up0.name] = update_workspace_ref01_markdef_up0.value
 
-    const update_workspace_ref01_resdata_up0 = await update_workspace_ref01_ent.update(update_workspace_ref01_data_up0)
+    const update_workspace_ref01_resdata_up0 = (await update_workspace_ref01_ent.update(update_workspace_ref01_data_up0)).data()
     assert(update_workspace_ref01_resdata_up0.id === update_workspace_ref01_data_up0.id)
 
     assert((update_workspace_ref01_resdata_up0 as any)[update_workspace_ref01_markdef_up0.name] === update_workspace_ref01_markdef_up0.value)

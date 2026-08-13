@@ -22,17 +22,23 @@ main: kit: entity: preset: {
       ]
     }
     {
-      name: "data"
-      req: true
-      type: "`$ANY`"
-    }
-    {
       name: "description"
       req: true
       type: [
         "`$ONE`"
         [
           "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "designated_version"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
           "`$NULL`"
         ]
       ]
@@ -173,7 +179,7 @@ main: kit: entity: preset: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -238,7 +244,7 @@ main: kit: entity: preset: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

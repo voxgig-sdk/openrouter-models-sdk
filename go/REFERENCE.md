@@ -440,15 +440,15 @@ fmt.Println(activity.GetName()) // "activity"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `byok_usage_inference` | `float64` | Yes |  |
-| `completion_token` | `int` | Yes |  |
+| `completion_tokens` | `int` | Yes |  |
 | `date` | `string` | Yes |  |
 | `endpoint_id` | `string` | Yes |  |
 | `model` | `string` | Yes |  |
 | `model_permaslug` | `string` | Yes |  |
-| `prompt_token` | `int` | Yes |  |
+| `prompt_tokens` | `int` | Yes |  |
 | `provider_name` | `string` | Yes |  |
-| `reasoning_token` | `int` | Yes |  |
-| `request` | `int` | Yes |  |
+| `reasoning_tokens` | `int` | Yes |  |
+| `requests` | `int` | Yes |  |
 | `usage` | `float64` | Yes |  |
 
 ### Operations
@@ -536,23 +536,26 @@ fmt.Println(apiKey.GetName()) // "api_key"
 | `byok_usage_monthly` | `float64` | Yes |  |
 | `byok_usage_weekly` | `float64` | Yes |  |
 | `created_at` | `string` | Yes |  |
-| `creator_user_id` | `any` | No |  |
-| `data` | `map[string]any` | Yes |  |
-| `disabled` | `bool` | No |  |
+| `creator_user_id` | `any` | Yes |  |
+| `disabled` | `bool` | Yes |  |
 | `expires_at` | `any` | No |  |
 | `hash` | `string` | Yes |  |
-| `include_byok_in_limit` | `bool` | No |  |
+| `include_byok_in_limit` | `bool` | Yes |  |
+| `is_free_tier` | `bool` | Yes |  |
+| `is_management_key` | `bool` | Yes |  |
+| `is_provisioning_key` | `bool` | Yes |  |
 | `label` | `string` | Yes |  |
-| `limit` | `any` | No |  |
+| `limit` | `any` | Yes |  |
 | `limit_remaining` | `any` | Yes |  |
-| `limit_reset` | `any` | No |  |
+| `limit_reset` | `any` | Yes |  |
 | `name` | `string` | Yes |  |
+| `rate_limit` | `map[string]any` | Yes |  |
 | `updated_at` | `any` | Yes |  |
 | `usage` | `float64` | Yes |  |
 | `usage_daily` | `float64` | Yes |  |
 | `usage_monthly` | `float64` | Yes |  |
 | `usage_weekly` | `float64` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `workspace_id` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
@@ -563,23 +566,26 @@ fmt.Println(apiKey.GetName()) // "api_key"
 | `byok_usage_monthly` | - | - | - | - | - |
 | `byok_usage_weekly` | - | - | - | - | - |
 | `created_at` | - | - | - | - | - |
-| `creator_user_id` | - | Yes | - | - | - |
-| `data` | - | - | - | - | - |
-| `disabled` | - | Yes | - | - | - |
+| `creator_user_id` | - | - | Yes | - | - |
+| `disabled` | - | - | - | Yes | - |
 | `expires_at` | - | - | - | - | - |
 | `hash` | - | - | - | - | - |
-| `include_byok_in_limit` | - | Yes | - | - | - |
+| `include_byok_in_limit` | - | - | Yes | Yes | - |
+| `is_free_tier` | - | - | - | - | - |
+| `is_management_key` | - | - | - | - | - |
+| `is_provisioning_key` | - | - | - | - | - |
 | `label` | - | - | - | - | - |
-| `limit` | - | Yes | - | - | - |
+| `limit` | - | - | Yes | Yes | - |
 | `limit_remaining` | - | - | - | - | - |
-| `limit_reset` | - | Yes | - | - | - |
+| `limit_reset` | - | - | Yes | Yes | - |
 | `name` | - | - | - | Yes | - |
+| `rate_limit` | - | - | - | - | - |
 | `updated_at` | - | - | - | - | - |
 | `usage` | - | - | - | - | - |
 | `usage_daily` | - | - | - | - | - |
 | `usage_monthly` | - | - | - | - | - |
 | `usage_weekly` | - | - | - | - | - |
-| `workspace_id` | - | Yes | - | - | - |
+| `workspace_id` | - | - | Yes | - | - |
 
 ### Operations
 
@@ -618,16 +624,25 @@ result, err := client.ApiKey(nil).Create(map[string]any{
     "byok_usage_monthly": 1,
     "byok_usage_weekly": 1,
     "created_at": "example_created_at",
-    "data": map[string]any{},
+    "creator_user_id": "example_creator_user_id",
+    "disabled": true,
     "hash": "example_hash",
+    "include_byok_in_limit": true,
+    "is_free_tier": true,
+    "is_management_key": true,
+    "is_provisioning_key": true,
     "label": "example_label",
+    "limit": "example_limit",
     "limit_remaining": "example_limit_remaining",
+    "limit_reset": "example_limit_reset",
     "name": "example_name",
+    "rate_limit": map[string]any{},
     "updated_at": "example_updated_at",
     "usage": 1,
     "usage_daily": 1,
     "usage_monthly": 1,
     "usage_weekly": 1,
+    "workspace_id": "example_workspace_id",
 }, nil)
 if err != nil {
     panic(err)
@@ -700,8 +715,8 @@ fmt.Println(appRanking.GetName()) // "app_ranking"
 | `app_id` | `int` | Yes |  |
 | `app_name` | `string` | Yes |  |
 | `rank` | `int` | Yes |  |
-| `total_request` | `int` | Yes |  |
-| `total_token` | `string` | Yes |  |
+| `total_requests` | `int` | Yes |  |
+| `total_tokens` | `string` | Yes |  |
 
 ### Operations
 
@@ -783,17 +798,43 @@ fmt.Println(betaAnalytics.GetName()) // "beta_analytics"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `classifier_dimension` | `map[string]any` | Yes |  |
-| `classifier_filter` | `map[string]any` | Yes |  |
-| `data` | `map[string]any` | Yes |  |
-| `dimension` | `[]any` | No |  |
-| `filter` | `[]any` | No |  |
+| `cachedAt` | `float64` | No |  |
+| `classifier_dimensions` | `map[string]any` | Yes |  |
+| `classifier_filters` | `map[string]any` | Yes |  |
+| `data` | `[]any` | Yes |  |
+| `dimensions` | `[]any` | Yes |  |
+| `filters` | `[]any` | No |  |
+| `granularities` | `[]any` | Yes |  |
 | `granularity` | `string` | No |  |
 | `group_limit` | `int` | No |  |
 | `limit` | `int` | No |  |
-| `metric` | `[]any` | Yes |  |
+| `metadata` | `map[string]any` | Yes |  |
+| `metrics` | `[]any` | Yes |  |
+| `operators` | `[]any` | Yes |  |
 | `order_by` | `map[string]any` | Yes |  |
 | `time_range` | `map[string]any` | Yes |  |
+| `warnings` | `[]any` | No |  |
+
+### Field Usage by Operation
+
+| Field | load | create |
+| --- | --- | --- |
+| `cachedAt` | - | - |
+| `classifier_dimensions` | - | - |
+| `classifier_filters` | - | - |
+| `data` | - | - |
+| `dimensions` | - | Yes |
+| `filters` | - | - |
+| `granularities` | - | - |
+| `granularity` | - | - |
+| `group_limit` | - | - |
+| `limit` | - | - |
+| `metadata` | - | - |
+| `metrics` | - | - |
+| `operators` | - | - |
+| `order_by` | - | - |
+| `time_range` | - | - |
+| `warnings` | - | - |
 
 ### Operations
 
@@ -815,10 +856,14 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.BetaAnalytics(nil).Create(map[string]any{
-    "classifier_dimension": map[string]any{},
-    "classifier_filter": map[string]any{},
-    "data": map[string]any{},
-    "metric": []any{},
+    "classifier_dimensions": map[string]any{},
+    "classifier_filters": map[string]any{},
+    "data": []any{},
+    "dimensions": []any{},
+    "granularities": []any{},
+    "metadata": map[string]any{},
+    "metrics": []any{},
+    "operators": []any{},
     "order_by": map[string]any{},
     "time_range": map[string]any{},
 }, nil)
@@ -896,7 +941,7 @@ fmt.Println(bulkAddWorkspaceMember.GetName()) // "bulk_add_workspace_member"
 | --- | --- | --- | --- |
 | `added_count` | `int` | Yes |  |
 | `data` | `[]any` | Yes |  |
-| `user_id` | `[]any` | Yes |  |
+| `user_ids` | `[]any` | Yes |  |
 
 ### Operations
 
@@ -907,6 +952,9 @@ Create a new entity with the given data.
 ```go
 result, err := client.BulkAddWorkspaceMember(nil).Create(map[string]any{
     "workspace_id": "example_workspace_id",
+    "added_count": 1,
+    "data": []any{},
+    "user_ids": []any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -950,7 +998,7 @@ fmt.Println(bulkAssignKey.GetName()) // "bulk_assign_key"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `assigned_count` | `int` | Yes |  |
-| `key_hash` | `[]any` | Yes |  |
+| `key_hashes` | `[]any` | Yes |  |
 
 ### Operations
 
@@ -961,6 +1009,8 @@ Create a new entity with the given data.
 ```go
 result, err := client.BulkAssignKey(nil).Create(map[string]any{
     "guardrail_id": "example_guardrail_id",
+    "assigned_count": 1,
+    "key_hashes": []any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -1004,7 +1054,7 @@ fmt.Println(bulkAssignMember.GetName()) // "bulk_assign_member"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `assigned_count` | `int` | Yes |  |
-| `member_user_id` | `[]any` | Yes |  |
+| `member_user_ids` | `[]any` | Yes |  |
 
 ### Operations
 
@@ -1015,6 +1065,8 @@ Create a new entity with the given data.
 ```go
 result, err := client.BulkAssignMember(nil).Create(map[string]any{
     "guardrail_id": "example_guardrail_id",
+    "assigned_count": 1,
+    "member_user_ids": []any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -1058,7 +1110,7 @@ fmt.Println(bulkRemoveWorkspaceMember.GetName()) // "bulk_remove_workspace_membe
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `removed_count` | `int` | Yes |  |
-| `user_id` | `[]any` | Yes |  |
+| `user_ids` | `[]any` | Yes |  |
 
 ### Operations
 
@@ -1069,6 +1121,8 @@ Create a new entity with the given data.
 ```go
 result, err := client.BulkRemoveWorkspaceMember(nil).Create(map[string]any{
     "workspace_id": "example_workspace_id",
+    "removed_count": 1,
+    "user_ids": []any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -1111,7 +1165,7 @@ fmt.Println(bulkUnassignKey.GetName()) // "bulk_unassign_key"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key_hash` | `[]any` | Yes |  |
+| `key_hashes` | `[]any` | Yes |  |
 | `unassigned_count` | `int` | Yes |  |
 
 ### Operations
@@ -1123,6 +1177,8 @@ Create a new entity with the given data.
 ```go
 result, err := client.BulkUnassignKey(nil).Create(map[string]any{
     "guardrail_id": "example_guardrail_id",
+    "key_hashes": []any{},
+    "unassigned_count": 1,
 }, nil)
 if err != nil {
     panic(err)
@@ -1165,7 +1221,7 @@ fmt.Println(bulkUnassignMember.GetName()) // "bulk_unassign_member"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `member_user_id` | `[]any` | Yes |  |
+| `member_user_ids` | `[]any` | Yes |  |
 | `unassigned_count` | `int` | Yes |  |
 
 ### Operations
@@ -1177,6 +1233,8 @@ Create a new entity with the given data.
 ```go
 result, err := client.BulkUnassignMember(nil).Create(map[string]any{
     "guardrail_id": "example_guardrail_id",
+    "member_user_ids": []any{},
+    "unassigned_count": 1,
 }, nil)
 if err != nil {
     panic(err)
@@ -1219,39 +1277,37 @@ fmt.Println(byok.GetName()) // "byok"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_api_key_hash` | `any` | Yes |  |
-| `allowed_model` | `any` | No |  |
-| `allowed_user_id` | `any` | No |  |
+| `allowed_api_key_hashes` | `any` | Yes |  |
+| `allowed_models` | `any` | Yes |  |
+| `allowed_user_ids` | `any` | Yes |  |
 | `created_at` | `string` | Yes |  |
-| `data` | `any` | Yes |  |
-| `disabled` | `bool` | No |  |
+| `disabled` | `bool` | Yes |  |
 | `id` | `string` | Yes |  |
-| `is_fallback` | `bool` | No |  |
+| `is_fallback` | `bool` | Yes |  |
 | `key` | `string` | Yes |  |
 | `label` | `string` | Yes |  |
 | `name` | `any` | No |  |
 | `provider` | `string` | Yes |  |
 | `sort_order` | `int` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `workspace_id` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | load | list | create | remove |
 | --- | --- | --- | --- | --- |
-| `allowed_api_key_hash` | - | - | - | - |
-| `allowed_model` | - | Yes | - | - |
-| `allowed_user_id` | - | Yes | - | - |
+| `allowed_api_key_hashes` | - | - | - | - |
+| `allowed_models` | - | - | Yes | - |
+| `allowed_user_ids` | - | - | Yes | - |
 | `created_at` | - | - | - | - |
-| `data` | - | - | - | - |
-| `disabled` | - | Yes | - | - |
+| `disabled` | - | - | Yes | - |
 | `id` | - | - | - | - |
-| `is_fallback` | - | Yes | - | - |
+| `is_fallback` | - | - | Yes | - |
 | `key` | - | - | - | - |
 | `label` | - | - | - | - |
 | `name` | - | - | - | - |
 | `provider` | - | - | - | - |
 | `sort_order` | - | - | - | - |
-| `workspace_id` | - | Yes | - | - |
+| `workspace_id` | - | - | Yes | - |
 
 ### Operations
 
@@ -1285,14 +1341,18 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Byok(nil).Create(map[string]any{
-    "allowed_api_key_hash": "example_allowed_api_key_hash",
+    "allowed_api_key_hashes": "example_allowed_api_key_hashes",
+    "allowed_models": "example_allowed_models",
+    "allowed_user_ids": "example_allowed_user_ids",
     "created_at": "example_created_at",
-    "data": "example_data",
+    "disabled": true,
     "id": "example_id",
+    "is_fallback": true,
     "key": "example_key",
     "label": "example_label",
     "provider": "example_provider",
     "sort_order": 1,
+    "workspace_id": "example_workspace_id",
 }, nil)
 if err != nil {
     panic(err)
@@ -1348,29 +1408,30 @@ fmt.Println(chatResult.GetName()) // "chat_result"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cache_control` | `map[string]any` | Yes |  |
-| `choice` | `[]any` | Yes |  |
+| `choices` | `[]any` | Yes |  |
 | `created` | `int` | Yes |  |
 | `debug` | `map[string]any` | No |  |
 | `frequency_penalty` | `any` | No |  |
 | `id` | `string` | Yes |  |
 | `image_config` | `map[string]any` | No |  |
-| `logit_bia` | `any` | No |  |
-| `logprob` | `any` | No |  |
-| `max_completion_token` | `any` | No |  |
-| `max_token` | `any` | No |  |
-| `message` | `[]any` | Yes |  |
+| `logit_bias` | `any` | No |  |
+| `logprobs` | `any` | No |  |
+| `max_completion_tokens` | `any` | No |  |
+| `max_tokens` | `any` | No |  |
+| `messages` | `[]any` | Yes |  |
 | `metadata` | `map[string]any` | No |  |
 | `min_p` | `any` | No |  |
-| `modality` | `[]any` | No |  |
+| `modalities` | `[]any` | No |  |
 | `model` | `string` | Yes |  |
+| `models` | `[]any` | No |  |
 | `object` | `string` | Yes |  |
 | `openrouter_metadata` | `map[string]any` | Yes |  |
-| `parallel_tool_call` | `any` | No |  |
-| `plugin` | `[]any` | No |  |
+| `parallel_tool_calls` | `any` | No |  |
+| `plugins` | `[]any` | No |  |
 | `prediction` | `any` | Yes |  |
 | `presence_penalty` | `any` | No |  |
 | `prompt_cache_key` | `any` | No |  |
-| `prompt_cache_option` | `any` | Yes |  |
+| `prompt_cache_options` | `any` | Yes |  |
 | `provider` | `any` | No |  |
 | `reasoning` | `map[string]any` | No |  |
 | `reasoning_effort` | `any` | No |  |
@@ -1383,14 +1444,14 @@ fmt.Println(chatResult.GetName()) // "chat_result"
 | `stop` | `any` | No |  |
 | `stop_server_tools_when` | `[]any` | No |  |
 | `stream` | `bool` | No |  |
-| `stream_option` | `any` | No |  |
+| `stream_options` | `any` | No |  |
 | `system_fingerprint` | `any` | Yes |  |
 | `temperature` | `any` | No |  |
-| `tool` | `[]any` | No |  |
 | `tool_choice` | `any` | No |  |
+| `tools` | `[]any` | No |  |
 | `top_a` | `any` | No |  |
 | `top_k` | `any` | No |  |
-| `top_logprob` | `any` | No |  |
+| `top_logprobs` | `any` | No |  |
 | `top_p` | `any` | No |  |
 | `trace` | `map[string]any` | No |  |
 | `usage` | `map[string]any` | Yes |  |
@@ -1401,29 +1462,30 @@ fmt.Println(chatResult.GetName()) // "chat_result"
 | Field | create |
 | --- | --- |
 | `cache_control` | - |
-| `choice` | - |
+| `choices` | - |
 | `created` | - |
 | `debug` | - |
 | `frequency_penalty` | - |
 | `id` | - |
 | `image_config` | - |
-| `logit_bia` | - |
-| `logprob` | - |
-| `max_completion_token` | - |
-| `max_token` | - |
-| `message` | - |
+| `logit_bias` | - |
+| `logprobs` | - |
+| `max_completion_tokens` | - |
+| `max_tokens` | - |
+| `messages` | - |
 | `metadata` | - |
 | `min_p` | - |
-| `modality` | - |
+| `modalities` | - |
 | `model` | Yes |
+| `models` | - |
 | `object` | - |
 | `openrouter_metadata` | - |
-| `parallel_tool_call` | - |
-| `plugin` | - |
+| `parallel_tool_calls` | - |
+| `plugins` | - |
 | `prediction` | - |
 | `presence_penalty` | - |
 | `prompt_cache_key` | - |
-| `prompt_cache_option` | - |
+| `prompt_cache_options` | - |
 | `provider` | - |
 | `reasoning` | - |
 | `reasoning_effort` | - |
@@ -1436,14 +1498,14 @@ fmt.Println(chatResult.GetName()) // "chat_result"
 | `stop` | - |
 | `stop_server_tools_when` | - |
 | `stream` | - |
-| `stream_option` | - |
+| `stream_options` | - |
 | `system_fingerprint` | - |
 | `temperature` | - |
-| `tool` | - |
 | `tool_choice` | - |
+| `tools` | - |
 | `top_a` | - |
 | `top_k` | - |
-| `top_logprob` | - |
+| `top_logprobs` | - |
 | `top_p` | - |
 | `trace` | - |
 | `usage` | - |
@@ -1458,15 +1520,15 @@ Create a new entity with the given data.
 ```go
 result, err := client.ChatResult(nil).Create(map[string]any{
     "cache_control": map[string]any{},
-    "choice": []any{},
+    "choices": []any{},
     "created": 1,
     "id": "example_id",
-    "message": []any{},
+    "messages": []any{},
     "model": "example_model",
     "object": "example_object",
     "openrouter_metadata": map[string]any{},
     "prediction": "example_prediction",
-    "prompt_cache_option": "example_prompt_cache_option",
+    "prompt_cache_options": "example_prompt_cache_options",
     "system_fingerprint": "example_system_fingerprint",
     "usage": map[string]any{},
 }, nil)
@@ -1728,10 +1790,10 @@ fmt.Println(createObservabilityDestination.GetName()) // "create_observability_d
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hash` | `any` | No |  |
+| `api_key_hashes` | `any` | No |  |
 | `config` | `map[string]any` | Yes |  |
 | `enabled` | `bool` | No |  |
-| `filter_rule` | `any` | Yes |  |
+| `filter_rules` | `any` | Yes |  |
 | `name` | `string` | Yes |  |
 | `privacy_mode` | `bool` | No |  |
 | `sampling_rate` | `float64` | No |  |
@@ -1747,7 +1809,7 @@ Create a new entity with the given data.
 ```go
 result, err := client.CreateObservabilityDestination(nil).Create(map[string]any{
     "config": map[string]any{},
-    "filter_rule": "example_filter_rule",
+    "filter_rules": "example_filter_rules",
     "name": "example_name",
     "type": "example_type",
 }, nil)
@@ -1795,34 +1857,34 @@ fmt.Println(createPresetFromInference.GetName()) // "create_preset_from_inferenc
 | `background` | `any` | No |  |
 | `cache_control` | `map[string]any` | Yes |  |
 | `context_management` | `any` | No |  |
-| `data` | `any` | Yes |  |
 | `debug` | `map[string]any` | No |  |
-| `fallback` | `any` | No |  |
+| `fallbacks` | `any` | No |  |
 | `frequency_penalty` | `any` | No |  |
 | `image_config` | `map[string]any` | No |  |
 | `include` | `any` | No |  |
 | `input` | `any` | No |  |
-| `instruction` | `any` | No |  |
-| `logit_bia` | `any` | No |  |
-| `logprob` | `any` | No |  |
-| `max_completion_token` | `any` | No |  |
-| `max_output_token` | `any` | No |  |
-| `max_token` | `any` | No |  |
-| `max_tool_call` | `any` | No |  |
-| `message` | `[]any` | Yes |  |
+| `instructions` | `any` | No |  |
+| `logit_bias` | `any` | No |  |
+| `logprobs` | `any` | No |  |
+| `max_completion_tokens` | `any` | No |  |
+| `max_output_tokens` | `any` | No |  |
+| `max_tokens` | `any` | No |  |
+| `max_tool_calls` | `any` | No |  |
+| `messages` | `[]any` | Yes |  |
 | `metadata` | `map[string]any` | No |  |
 | `min_p` | `any` | No |  |
-| `modality` | `[]any` | No |  |
+| `modalities` | `[]any` | No |  |
 | `model` | `string` | No |  |
+| `models` | `[]any` | No |  |
 | `output_config` | `map[string]any` | No |  |
-| `parallel_tool_call` | `any` | No |  |
-| `plugin` | `[]any` | No |  |
+| `parallel_tool_calls` | `any` | No |  |
+| `plugins` | `[]any` | No |  |
 | `prediction` | `any` | Yes |  |
 | `presence_penalty` | `any` | No |  |
 | `previous_response_id` | `string` | No |  |
 | `prompt` | `any` | Yes |  |
 | `prompt_cache_key` | `any` | No |  |
-| `prompt_cache_option` | `any` | Yes |  |
+| `prompt_cache_options` | `any` | Yes |  |
 | `provider` | `any` | No |  |
 | `reasoning` | `map[string]any` | No |  |
 | `reasoning_effort` | `any` | No |  |
@@ -1835,20 +1897,20 @@ fmt.Println(createPresetFromInference.GetName()) // "create_preset_from_inferenc
 | `session_id` | `string` | No |  |
 | `speed` | `any` | No |  |
 | `stop` | `any` | No |  |
-| `stop_sequence` | `[]any` | No |  |
+| `stop_sequences` | `[]any` | No |  |
 | `stop_server_tools_when` | `[]any` | No |  |
 | `store` | `bool` | No |  |
 | `stream` | `bool` | No |  |
-| `stream_option` | `any` | No |  |
+| `stream_options` | `any` | No |  |
 | `system` | `any` | No |  |
 | `temperature` | `any` | No |  |
 | `text` | `any` | No |  |
 | `thinking` | `any` | No |  |
-| `tool` | `[]any` | No |  |
 | `tool_choice` | `any` | No |  |
+| `tools` | `[]any` | No |  |
 | `top_a` | `any` | No |  |
 | `top_k` | `any` | No |  |
-| `top_logprob` | `any` | No |  |
+| `top_logprobs` | `any` | No |  |
 | `top_p` | `any` | No |  |
 | `trace` | `map[string]any` | No |  |
 | `truncation` | `any` | No |  |
@@ -1861,34 +1923,34 @@ fmt.Println(createPresetFromInference.GetName()) // "create_preset_from_inferenc
 | `background` | - |
 | `cache_control` | - |
 | `context_management` | - |
-| `data` | - |
 | `debug` | - |
-| `fallback` | - |
+| `fallbacks` | - |
 | `frequency_penalty` | - |
 | `image_config` | - |
 | `include` | - |
 | `input` | - |
-| `instruction` | - |
-| `logit_bia` | - |
-| `logprob` | - |
-| `max_completion_token` | - |
-| `max_output_token` | - |
-| `max_token` | - |
-| `max_tool_call` | - |
-| `message` | - |
+| `instructions` | - |
+| `logit_bias` | - |
+| `logprobs` | - |
+| `max_completion_tokens` | - |
+| `max_output_tokens` | - |
+| `max_tokens` | - |
+| `max_tool_calls` | - |
+| `messages` | - |
 | `metadata` | - |
 | `min_p` | - |
-| `modality` | - |
+| `modalities` | - |
 | `model` | Yes |
+| `models` | - |
 | `output_config` | - |
-| `parallel_tool_call` | - |
-| `plugin` | - |
+| `parallel_tool_calls` | - |
+| `plugins` | - |
 | `prediction` | - |
 | `presence_penalty` | - |
 | `previous_response_id` | - |
 | `prompt` | - |
 | `prompt_cache_key` | - |
-| `prompt_cache_option` | - |
+| `prompt_cache_options` | - |
 | `provider` | - |
 | `reasoning` | - |
 | `reasoning_effort` | - |
@@ -1901,20 +1963,20 @@ fmt.Println(createPresetFromInference.GetName()) // "create_preset_from_inferenc
 | `session_id` | - |
 | `speed` | - |
 | `stop` | - |
-| `stop_sequence` | - |
+| `stop_sequences` | - |
 | `stop_server_tools_when` | - |
 | `store` | - |
 | `stream` | - |
-| `stream_option` | - |
+| `stream_options` | - |
 | `system` | - |
 | `temperature` | - |
 | `text` | - |
 | `thinking` | - |
-| `tool` | - |
 | `tool_choice` | - |
+| `tools` | - |
 | `top_a` | - |
 | `top_k` | - |
-| `top_logprob` | - |
+| `top_logprobs` | - |
 | `top_p` | - |
 | `trace` | - |
 | `truncation` | - |
@@ -1929,6 +1991,11 @@ Create a new entity with the given data.
 ```go
 result, err := client.CreatePresetFromInference(nil).Create(map[string]any{
     "slug": "example_slug",
+    "cache_control": map[string]any{},
+    "messages": []any{},
+    "prediction": "example_prediction",
+    "prompt": "example_prompt",
+    "prompt_cache_options": "example_prompt_cache_options",
 }, nil)
 if err != nil {
     panic(err)
@@ -2002,7 +2069,8 @@ fmt.Println(credit.GetName()) // "credit"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | Yes |  |
+| `total_credits` | `float64` | Yes |  |
+| `total_usage` | `float64` | Yes |  |
 
 ### Operations
 
@@ -2024,7 +2092,8 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Credit(nil).Create(map[string]any{
-    "data": map[string]any{},
+    "total_credits": 1,
+    "total_usage": 1,
 }, nil)
 if err != nil {
     panic(err)
@@ -2099,7 +2168,7 @@ fmt.Println(embedding.GetName()) // "embedding"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `[]any` | Yes |  |
-| `dimension` | `int` | No |  |
+| `dimensions` | `int` | No |  |
 | `encoding_format` | `string` | No |  |
 | `id` | `string` | No |  |
 | `input` | `any` | Yes |  |
@@ -2165,33 +2234,33 @@ fmt.Println(endpoint.GetName()) // "endpoint"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `architecture` | `map[string]any` | Yes |  |
-| `benchmark` | `map[string]any` | Yes |  |
+| `architecture` | `any` | Yes |  |
+| `benchmarks` | `map[string]any` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
 | `context_length` | `any` | Yes |  |
 | `created` | `int` | Yes |  |
-| `data` | `map[string]any` | Yes |  |
-| `default_parameter` | `any` | Yes |  |
-| `description` | `string` | No |  |
+| `default_parameters` | `any` | Yes |  |
+| `description` | `string` | Yes |  |
+| `endpoints` | `[]any` | Yes |  |
 | `expiration_date` | `any` | No |  |
 | `hugging_face_id` | `any` | No |  |
 | `id` | `string` | Yes |  |
 | `knowledge_cutoff` | `any` | No |  |
 | `latency_last_30m` | `any` | Yes |  |
-| `link` | `map[string]any` | Yes |  |
-| `max_completion_token` | `any` | Yes |  |
-| `max_prompt_token` | `any` | Yes |  |
+| `links` | `map[string]any` | Yes |  |
+| `max_completion_tokens` | `any` | Yes |  |
+| `max_prompt_tokens` | `any` | Yes |  |
 | `model_id` | `string` | Yes |  |
 | `model_name` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `per_request_limit` | `any` | Yes |  |
+| `per_request_limits` | `any` | Yes |  |
 | `pricing` | `map[string]any` | Yes |  |
 | `provider_name` | `string` | Yes |  |
 | `quantization` | `any` | Yes |  |
 | `reasoning` | `map[string]any` | Yes |  |
 | `status` | `int` | No |  |
-| `supported_parameter` | `[]any` | Yes |  |
-| `supported_voice` | `any` | Yes |  |
+| `supported_parameters` | `[]any` | Yes |  |
+| `supported_voices` | `any` | Yes |  |
 | `supports_implicit_caching` | `bool` | Yes |  |
 | `tag` | `string` | Yes |  |
 | `throughput_last_30m` | `any` | Yes |  |
@@ -2199,6 +2268,45 @@ fmt.Println(endpoint.GetName()) // "endpoint"
 | `uptime_last_1d` | `any` | Yes |  |
 | `uptime_last_30m` | `any` | Yes |  |
 | `uptime_last_5m` | `any` | Yes |  |
+
+### Field Usage by Operation
+
+| Field | load | list |
+| --- | --- | --- |
+| `architecture` | - | - |
+| `benchmarks` | - | - |
+| `canonical_slug` | - | - |
+| `context_length` | - | - |
+| `created` | - | - |
+| `default_parameters` | - | - |
+| `description` | - | Yes |
+| `endpoints` | - | - |
+| `expiration_date` | - | - |
+| `hugging_face_id` | - | - |
+| `id` | - | - |
+| `knowledge_cutoff` | - | - |
+| `latency_last_30m` | - | - |
+| `links` | - | - |
+| `max_completion_tokens` | - | - |
+| `max_prompt_tokens` | - | - |
+| `model_id` | - | - |
+| `model_name` | - | - |
+| `name` | - | - |
+| `per_request_limits` | - | - |
+| `pricing` | - | - |
+| `provider_name` | - | - |
+| `quantization` | - | - |
+| `reasoning` | - | - |
+| `status` | - | - |
+| `supported_parameters` | - | - |
+| `supported_voices` | - | - |
+| `supports_implicit_caching` | - | - |
+| `tag` | - | - |
+| `throughput_last_30m` | - | - |
+| `top_provider` | - | - |
+| `uptime_last_1d` | - | - |
+| `uptime_last_30m` | - | - |
+| `uptime_last_5m` | - | - |
 
 ### Operations
 
@@ -2297,7 +2405,7 @@ fmt.Println(file.GetName()) // "file"
 | `filename` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
 | `mime_type` | `string` | Yes |  |
-| `size_byte` | `int` | Yes |  |
+| `size_bytes` | `int` | Yes |  |
 | `type` | `string` | Yes |  |
 
 ### Operations
@@ -2337,7 +2445,7 @@ result, err := client.File(nil).Create(map[string]any{
     "filename": "example_filename",
     "id": "example_id",
     "mime_type": "example_mime_type",
-    "size_byte": 1,
+    "size_bytes": 1,
     "type": "example_type",
 }, nil)
 if err != nil {
@@ -2393,7 +2501,50 @@ fmt.Println(generation.GetName()) // "generation"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | Yes |  |
+| `api_type` | `any` | Yes |  |
+| `app_id` | `any` | Yes |  |
+| `cache_discount` | `any` | Yes |  |
+| `cancelled` | `any` | Yes |  |
+| `created_at` | `string` | Yes |  |
+| `data_region` | `string` | Yes |  |
+| `external_user` | `any` | Yes |  |
+| `finish_reason` | `any` | Yes |  |
+| `generation_time` | `any` | Yes |  |
+| `http_referer` | `any` | Yes |  |
+| `id` | `string` | Yes |  |
+| `is_byok` | `bool` | Yes |  |
+| `latency` | `any` | Yes |  |
+| `model` | `string` | Yes |  |
+| `moderation_latency` | `any` | Yes |  |
+| `native_finish_reason` | `any` | Yes |  |
+| `native_tokens_cached` | `any` | Yes |  |
+| `native_tokens_completion` | `any` | Yes |  |
+| `native_tokens_completion_images` | `any` | Yes |  |
+| `native_tokens_prompt` | `any` | Yes |  |
+| `native_tokens_reasoning` | `any` | Yes |  |
+| `num_fetches` | `any` | Yes |  |
+| `num_input_audio_prompt` | `any` | Yes |  |
+| `num_media_completion` | `any` | Yes |  |
+| `num_media_prompt` | `any` | Yes |  |
+| `num_search_results` | `any` | Yes |  |
+| `origin` | `string` | Yes |  |
+| `preset_id` | `any` | Yes |  |
+| `provider_name` | `any` | Yes |  |
+| `provider_responses` | `any` | Yes |  |
+| `request_id` | `any` | No |  |
+| `response_cache_source_id` | `any` | No |  |
+| `router` | `any` | Yes |  |
+| `service_tier` | `any` | Yes |  |
+| `session_id` | `any` | No |  |
+| `streamed` | `any` | Yes |  |
+| `tokens_completion` | `any` | Yes |  |
+| `tokens_prompt` | `any` | Yes |  |
+| `total_cost` | `float64` | Yes |  |
+| `upstream_id` | `any` | Yes |  |
+| `upstream_inference_cost` | `any` | Yes |  |
+| `usage` | `float64` | Yes |  |
+| `user_agent` | `any` | Yes |  |
+| `web_search_engine` | `any` | Yes |  |
 
 ### Operations
 
@@ -2402,7 +2553,7 @@ fmt.Println(generation.GetName()) // "generation"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Generation(nil).Load(nil, nil)
+result, err := client.Generation(nil).Load(map[string]any{"id": "generation_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -2444,7 +2595,8 @@ fmt.Println(generationContent.GetName()) // "generation_content"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | Yes |  |
+| `input` | `any` | Yes |  |
+| `output` | `map[string]any` | Yes |  |
 
 ### Operations
 
@@ -2495,12 +2647,11 @@ fmt.Println(guardrail.GetName()) // "guardrail"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `any` | No |  |
-| `allowed_provider` | `any` | No |  |
-| `content_filter` | `any` | No |  |
-| `content_filter_builtin` | `any` | No |  |
+| `allowed_models` | `any` | No |  |
+| `allowed_providers` | `any` | No |  |
+| `content_filter_builtins` | `any` | No |  |
+| `content_filters` | `any` | No |  |
 | `created_at` | `string` | Yes |  |
-| `data` | `any` | Yes |  |
 | `description` | `any` | No |  |
 | `enforce_zdr` | `any` | No |  |
 | `enforce_zdr_anthropic` | `any` | No |  |
@@ -2509,24 +2660,23 @@ fmt.Println(guardrail.GetName()) // "guardrail"
 | `enforce_zdr_other` | `any` | No |  |
 | `enforce_zdr_xai` | `any` | No |  |
 | `id` | `string` | Yes |  |
-| `ignored_model` | `any` | No |  |
-| `ignored_provider` | `any` | No |  |
+| `ignored_models` | `any` | No |  |
+| `ignored_providers` | `any` | No |  |
 | `limit_usd` | `any` | No |  |
 | `name` | `string` | Yes |  |
 | `reset_interval` | `any` | No |  |
 | `updated_at` | `any` | No |  |
-| `workspace_id` | `string` | No |  |
+| `workspace_id` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | load | list | create | remove |
 | --- | --- | --- | --- | --- |
-| `allowed_model` | - | - | - | - |
-| `allowed_provider` | - | - | - | - |
-| `content_filter` | - | - | - | - |
-| `content_filter_builtin` | - | - | - | - |
+| `allowed_models` | - | - | - | - |
+| `allowed_providers` | - | - | - | - |
+| `content_filter_builtins` | - | - | - | - |
+| `content_filters` | - | - | - | - |
 | `created_at` | - | - | - | - |
-| `data` | - | - | - | - |
 | `description` | - | - | - | - |
 | `enforce_zdr` | - | - | - | - |
 | `enforce_zdr_anthropic` | - | - | - | - |
@@ -2535,13 +2685,13 @@ fmt.Println(guardrail.GetName()) // "guardrail"
 | `enforce_zdr_other` | - | - | - | - |
 | `enforce_zdr_xai` | - | - | - | - |
 | `id` | - | - | - | - |
-| `ignored_model` | - | - | - | - |
-| `ignored_provider` | - | - | - | - |
+| `ignored_models` | - | - | - | - |
+| `ignored_providers` | - | - | - | - |
 | `limit_usd` | - | - | - | - |
 | `name` | - | - | - | - |
 | `reset_interval` | - | - | - | - |
 | `updated_at` | - | - | - | - |
-| `workspace_id` | - | Yes | - | - |
+| `workspace_id` | - | - | Yes | - |
 
 ### Operations
 
@@ -2576,9 +2726,9 @@ Create a new entity with the given data.
 ```go
 result, err := client.Guardrail(nil).Create(map[string]any{
     "created_at": "example_created_at",
-    "data": "example_data",
     "id": "example_id",
     "name": "example_name",
+    "workspace_id": "example_workspace_id",
 }, nil)
 if err != nil {
     panic(err)
@@ -2637,7 +2787,7 @@ fmt.Println(image.GetName()) // "image"
 | `background` | `string` | No |  |
 | `created` | `int` | Yes |  |
 | `data` | `[]any` | Yes |  |
-| `input_reference` | `[]any` | No |  |
+| `input_references` | `[]any` | No |  |
 | `model` | `string` | Yes |  |
 | `n` | `int` | No |  |
 | `output_compression` | `int` | No |  |
@@ -2706,12 +2856,12 @@ fmt.Println(imageModelEndpoint.GetName()) // "image_model_endpoint"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameter` | `[]any` | Yes |  |
+| `allowed_passthrough_parameters` | `[]any` | Yes |  |
 | `pricing` | `[]any` | Yes |  |
 | `provider_name` | `string` | Yes |  |
 | `provider_slug` | `string` | Yes |  |
 | `provider_tag` | `any` | Yes |  |
-| `supported_parameter` | `any` | Yes |  |
+| `supported_parameters` | `any` | Yes |  |
 | `supports_streaming` | `bool` | Yes |  |
 
 ### Operations
@@ -2766,10 +2916,10 @@ fmt.Println(imageModelsList.GetName()) // "image_models_list"
 | `architecture` | `map[string]any` | Yes |  |
 | `created` | `int` | Yes |  |
 | `description` | `string` | Yes |  |
-| `endpoint` | `string` | Yes |  |
+| `endpoints` | `string` | Yes |  |
 | `id` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
-| `supported_parameter` | `map[string]any` | Yes |  |
+| `supported_parameters` | `map[string]any` | Yes |  |
 | `supports_streaming` | `bool` | Yes |  |
 
 ### Operations
@@ -3343,61 +3493,31 @@ fmt.Println(message.GetName()) // "message"
 | --- | --- | --- | --- |
 | `cache_control` | `map[string]any` | Yes |  |
 | `context_management` | `any` | No |  |
-| `fallback` | `any` | No |  |
-| `max_token` | `int` | No |  |
-| `message` | `any` | Yes |  |
+| `fallbacks` | `any` | No |  |
+| `max_tokens` | `int` | No |  |
+| `messages` | `any` | Yes |  |
 | `metadata` | `map[string]any` | No |  |
 | `model` | `string` | Yes |  |
+| `models` | `[]any` | No |  |
 | `output_config` | `map[string]any` | No |  |
-| `plugin` | `[]any` | No |  |
+| `plugins` | `[]any` | No |  |
 | `provider` | `any` | No |  |
 | `route` | `any` | No |  |
 | `service_tier` | `string` | No |  |
 | `session_id` | `string` | No |  |
 | `speed` | `any` | No |  |
-| `stop_sequence` | `[]any` | No |  |
+| `stop_sequences` | `[]any` | No |  |
 | `stop_server_tools_when` | `[]any` | No |  |
 | `stream` | `bool` | No |  |
 | `system` | `any` | No |  |
 | `temperature` | `float64` | No |  |
 | `thinking` | `any` | No |  |
-| `tool` | `[]any` | No |  |
 | `tool_choice` | `any` | No |  |
+| `tools` | `[]any` | No |  |
 | `top_k` | `int` | No |  |
 | `top_p` | `float64` | No |  |
 | `trace` | `map[string]any` | No |  |
 | `user` | `string` | No |  |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `cache_control` | - |
-| `context_management` | - |
-| `fallback` | - |
-| `max_token` | - |
-| `message` | - |
-| `metadata` | - |
-| `model` | Yes |
-| `output_config` | - |
-| `plugin` | - |
-| `provider` | - |
-| `route` | - |
-| `service_tier` | - |
-| `session_id` | - |
-| `speed` | - |
-| `stop_sequence` | - |
-| `stop_server_tools_when` | - |
-| `stream` | - |
-| `system` | - |
-| `temperature` | - |
-| `thinking` | - |
-| `tool` | - |
-| `tool_choice` | - |
-| `top_k` | - |
-| `top_p` | - |
-| `trace` | - |
-| `user` | - |
 
 ### Operations
 
@@ -3408,7 +3528,7 @@ Create a new entity with the given data.
 ```go
 result, err := client.Message(nil).Create(map[string]any{
     "cache_control": map[string]any{},
-    "message": "example_message",
+    "messages": "example_messages",
     "model": "example_model",
 }, nil)
 if err != nil {
@@ -3484,24 +3604,23 @@ fmt.Println(model.GetName()) // "model"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `map[string]any` | Yes |  |
-| `benchmark` | `map[string]any` | Yes |  |
+| `benchmarks` | `map[string]any` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
 | `context_length` | `any` | Yes |  |
 | `created` | `int` | Yes |  |
-| `data` | `map[string]any` | Yes |  |
-| `default_parameter` | `any` | Yes |  |
+| `default_parameters` | `any` | Yes |  |
 | `description` | `string` | No |  |
 | `expiration_date` | `any` | No |  |
 | `hugging_face_id` | `any` | No |  |
 | `id` | `string` | Yes |  |
 | `knowledge_cutoff` | `any` | No |  |
-| `link` | `map[string]any` | Yes |  |
+| `links` | `map[string]any` | Yes |  |
 | `name` | `string` | Yes |  |
-| `per_request_limit` | `any` | Yes |  |
+| `per_request_limits` | `any` | Yes |  |
 | `pricing` | `map[string]any` | Yes |  |
 | `reasoning` | `map[string]any` | Yes |  |
-| `supported_parameter` | `[]any` | Yes |  |
-| `supported_voice` | `any` | Yes |  |
+| `supported_parameters` | `[]any` | Yes |  |
+| `supported_voices` | `any` | Yes |  |
 | `top_provider` | `map[string]any` | Yes |  |
 
 ### Operations
@@ -3565,7 +3684,7 @@ fmt.Println(modelsCount.GetName()) // "models_count"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | Yes |  |
+| `count` | `int` | Yes |  |
 
 ### Operations
 
@@ -3617,23 +3736,23 @@ fmt.Println(modelsList.GetName()) // "models_list"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `map[string]any` | Yes |  |
-| `benchmark` | `map[string]any` | Yes |  |
+| `benchmarks` | `map[string]any` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
 | `context_length` | `any` | Yes |  |
 | `created` | `int` | Yes |  |
-| `default_parameter` | `any` | Yes |  |
+| `default_parameters` | `any` | Yes |  |
 | `description` | `string` | No |  |
 | `expiration_date` | `any` | No |  |
 | `hugging_face_id` | `any` | No |  |
 | `id` | `string` | Yes |  |
 | `knowledge_cutoff` | `any` | No |  |
-| `link` | `map[string]any` | Yes |  |
+| `links` | `map[string]any` | Yes |  |
 | `name` | `string` | Yes |  |
-| `per_request_limit` | `any` | Yes |  |
+| `per_request_limits` | `any` | Yes |  |
 | `pricing` | `map[string]any` | Yes |  |
 | `reasoning` | `map[string]any` | Yes |  |
-| `supported_parameter` | `[]any` | Yes |  |
-| `supported_voice` | `any` | Yes |  |
+| `supported_parameters` | `[]any` | Yes |  |
+| `supported_voices` | `any` | Yes |  |
 | `top_provider` | `map[string]any` | Yes |  |
 
 ### Operations
@@ -3685,13 +3804,15 @@ fmt.Println(oAuth.GetName()) // "o_auth"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `app_id` | `int` | Yes |  |
 | `callback_url` | `string` | Yes |  |
 | `code` | `string` | Yes |  |
 | `code_challenge` | `string` | No |  |
 | `code_challenge_method` | `any` | No |  |
 | `code_verifier` | `string` | No |  |
-| `data` | `map[string]any` | Yes |  |
+| `created_at` | `string` | Yes |  |
 | `expires_at` | `any` | No |  |
+| `id` | `string` | Yes |  |
 | `key` | `string` | Yes |  |
 | `key_label` | `string` | No |  |
 | `limit` | `float64` | No |  |
@@ -3709,9 +3830,11 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.OAuth(nil).Create(map[string]any{
+    "app_id": 1,
     "callback_url": "example_callback_url",
     "code": "example_code",
-    "data": map[string]any{},
+    "created_at": "example_created_at",
+    "id": "example_id",
     "key": "example_key",
     "user_id": "example_user_id",
 }, nil)
@@ -3756,7 +3879,7 @@ fmt.Println(observabilityDestination.GetName()) // "observability_destination"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | Yes |  |
+| `data` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -3826,19 +3949,20 @@ fmt.Println(openResponsesResult.GetName()) // "open_responses_result"
 | `image_config` | `map[string]any` | No |  |
 | `include` | `any` | No |  |
 | `input` | `any` | No |  |
-| `instruction` | `any` | No |  |
-| `max_output_token` | `any` | No |  |
-| `max_tool_call` | `any` | No |  |
+| `instructions` | `any` | No |  |
+| `max_output_tokens` | `any` | No |  |
+| `max_tool_calls` | `any` | No |  |
 | `metadata` | `any` | No |  |
-| `modality` | `[]any` | No |  |
+| `modalities` | `[]any` | No |  |
 | `model` | `string` | No |  |
-| `parallel_tool_call` | `any` | No |  |
-| `plugin` | `[]any` | No |  |
+| `models` | `[]any` | No |  |
+| `parallel_tool_calls` | `any` | No |  |
+| `plugins` | `[]any` | No |  |
 | `presence_penalty` | `any` | No |  |
 | `previous_response_id` | `string` | No |  |
 | `prompt` | `any` | Yes |  |
 | `prompt_cache_key` | `any` | No |  |
-| `prompt_cache_option` | `any` | Yes |  |
+| `prompt_cache_options` | `any` | Yes |  |
 | `provider` | `any` | No |  |
 | `reasoning` | `any` | No |  |
 | `route` | `any` | No |  |
@@ -3850,10 +3974,10 @@ fmt.Println(openResponsesResult.GetName()) // "open_responses_result"
 | `stream` | `bool` | No |  |
 | `temperature` | `any` | No |  |
 | `text` | `any` | No |  |
-| `tool` | `[]any` | No |  |
 | `tool_choice` | `any` | No |  |
+| `tools` | `[]any` | No |  |
 | `top_k` | `int` | No |  |
-| `top_logprob` | `any` | No |  |
+| `top_logprobs` | `any` | No |  |
 | `top_p` | `any` | No |  |
 | `trace` | `map[string]any` | No |  |
 | `truncation` | `any` | No |  |
@@ -3869,7 +3993,7 @@ Create a new entity with the given data.
 result, err := client.OpenResponsesResult(nil).Create(map[string]any{
     "cache_control": map[string]any{},
     "prompt": "example_prompt",
-    "prompt_cache_option": "example_prompt_cache_option",
+    "prompt_cache_options": "example_prompt_cache_options",
 }, nil)
 if err != nil {
     panic(err)
@@ -3969,8 +4093,8 @@ fmt.Println(preset.GetName()) // "preset"
 | --- | --- | --- | --- |
 | `created_at` | `string` | Yes |  |
 | `creator_user_id` | `any` | Yes |  |
-| `data` | `any` | Yes |  |
 | `description` | `any` | Yes |  |
+| `designated_version` | `any` | Yes |  |
 | `designated_version_id` | `any` | Yes |  |
 | `id` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
@@ -4041,7 +4165,14 @@ fmt.Println(presetVersion.GetName()) // "preset_version"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | Yes |  |
+| `config` | `map[string]any` | Yes |  |
+| `created_at` | `string` | Yes |  |
+| `creator_id` | `string` | Yes |  |
+| `id` | `string` | Yes |  |
+| `preset_id` | `string` | Yes |  |
+| `system_prompt` | `any` | Yes |  |
+| `updated_at` | `string` | Yes |  |
+| `version` | `int` | Yes |  |
 
 ### Operations
 
@@ -4092,8 +4223,8 @@ fmt.Println(provider.GetName()) // "provider"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datacenter` | `any` | No |  |
-| `headquarter` | `any` | No |  |
+| `datacenters` | `any` | No |  |
+| `headquarters` | `any` | No |  |
 | `name` | `string` | Yes |  |
 | `privacy_policy_url` | `any` | Yes |  |
 | `slug` | `string` | Yes |  |
@@ -4182,7 +4313,7 @@ fmt.Println(rankingsDaily.GetName()) // "rankings_daily"
 | --- | --- | --- | --- |
 | `date` | `string` | Yes |  |
 | `model_permaslug` | `string` | Yes |  |
-| `total_token` | `string` | Yes |  |
+| `total_tokens` | `string` | Yes |  |
 
 ### Operations
 
@@ -4264,12 +4395,12 @@ fmt.Println(rerank.GetName()) // "rerank"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `document` | `[]any` | Yes |  |
+| `documents` | `[]any` | Yes |  |
 | `id` | `string` | No |  |
 | `model` | `string` | Yes |  |
 | `provider` | `string` | No |  |
 | `query` | `string` | Yes |  |
-| `result` | `[]any` | Yes |  |
+| `results` | `[]any` | Yes |  |
 | `top_n` | `int` | No |  |
 | `usage` | `map[string]any` | No |  |
 
@@ -4281,10 +4412,10 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Rerank(nil).Create(map[string]any{
-    "document": []any{},
+    "documents": []any{},
     "model": "example_model",
     "query": "example_query",
-    "result": []any{},
+    "results": []any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -4395,13 +4526,13 @@ fmt.Println(stt.GetName()) // "stt"
 | `model` | `string` | Yes |  |
 | `provider` | `map[string]any` | No |  |
 | `response_format` | `string` | No |  |
-| `segment` | `[]any` | No |  |
+| `segments` | `[]any` | No |  |
 | `task` | `string` | No |  |
 | `temperature` | `float64` | No |  |
 | `text` | `string` | Yes |  |
-| `timestamp_granularity` | `[]any` | No |  |
+| `timestamp_granularities` | `[]any` | No |  |
 | `usage` | `map[string]any` | No |  |
-| `word` | `[]any` | No |  |
+| `words` | `[]any` | No |  |
 
 ### Operations
 
@@ -4458,8 +4589,8 @@ fmt.Println(submitGenerationFeedback.GetName()) // "submit_generation_feedback"
 | --- | --- | --- | --- |
 | `category` | `string` | Yes |  |
 | `comment` | `string` | No |  |
-| `data` | `map[string]any` | Yes |  |
 | `generation_id` | `string` | Yes |  |
+| `success` | `bool` | Yes |  |
 
 ### Operations
 
@@ -4470,8 +4601,8 @@ Create a new entity with the given data.
 ```go
 result, err := client.SubmitGenerationFeedback(nil).Create(map[string]any{
     "category": "example_category",
-    "data": map[string]any{},
     "generation_id": "example_generation_id",
+    "success": true,
 }, nil)
 if err != nil {
     panic(err)
@@ -4514,7 +4645,10 @@ fmt.Println(task.GetName()) // "task"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | Yes |  |
+| `as_of` | `string` | Yes |  |
+| `classifications` | `[]any` | Yes |  |
+| `macro_categories` | `[]any` | Yes |  |
+| `window_days` | `int` | Yes |  |
 
 ### Operations
 
@@ -4708,9 +4842,8 @@ fmt.Println(updateByokKey.GetName()) // "update_byok_key"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `any` | No |  |
-| `allowed_user_id` | `any` | No |  |
-| `data` | `any` | Yes |  |
+| `allowed_models` | `any` | No |  |
+| `allowed_user_ids` | `any` | No |  |
 | `disabled` | `bool` | No |  |
 | `is_fallback` | `bool` | No |  |
 | `key` | `string` | No |  |
@@ -4768,11 +4901,10 @@ fmt.Println(updateGuardrail.GetName()) // "update_guardrail"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_model` | `any` | No |  |
-| `allowed_provider` | `any` | No |  |
-| `content_filter` | `any` | No |  |
-| `content_filter_builtin` | `any` | No |  |
-| `data` | `any` | Yes |  |
+| `allowed_models` | `any` | No |  |
+| `allowed_providers` | `any` | No |  |
+| `content_filter_builtins` | `any` | No |  |
+| `content_filters` | `any` | No |  |
 | `description` | `any` | No |  |
 | `enforce_zdr` | `any` | No |  |
 | `enforce_zdr_anthropic` | `any` | No |  |
@@ -4780,8 +4912,8 @@ fmt.Println(updateGuardrail.GetName()) // "update_guardrail"
 | `enforce_zdr_openai` | `any` | No |  |
 | `enforce_zdr_other` | `any` | No |  |
 | `enforce_zdr_xai` | `any` | No |  |
-| `ignored_model` | `any` | No |  |
-| `ignored_provider` | `any` | No |  |
+| `ignored_models` | `any` | No |  |
+| `ignored_providers` | `any` | No |  |
 | `limit_usd` | `any` | No |  |
 | `name` | `string` | No |  |
 | `reset_interval` | `any` | No |  |
@@ -4838,11 +4970,10 @@ fmt.Println(updateObservabilityDestination.GetName()) // "update_observability_d
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hash` | `any` | No |  |
+| `api_key_hashes` | `any` | No |  |
 | `config` | `map[string]any` | No |  |
-| `data` | `any` | Yes |  |
 | `enabled` | `bool` | No |  |
-| `filter_rule` | `any` | No |  |
+| `filter_rules` | `any` | No |  |
 | `name` | `string` | No |  |
 | `privacy_mode` | `bool` | No |  |
 | `sampling_rate` | `float64` | No |  |
@@ -4901,13 +5032,12 @@ fmt.Println(updateWorkspace.GetName()) // "update_workspace"
 | --- | --- | --- | --- |
 | `created_at` | `string` | Yes |  |
 | `created_by` | `any` | Yes |  |
-| `data` | `any` | Yes |  |
 | `default_image_model` | `any` | No |  |
 | `default_provider_sort` | `any` | No |  |
 | `default_text_model` | `any` | No |  |
 | `description` | `any` | No |  |
 | `id` | `string` | Yes |  |
-| `io_logging_api_key_id` | `any` | No |  |
+| `io_logging_api_key_ids` | `any` | No |  |
 | `io_logging_sampling_rate` | `float64` | No |  |
 | `is_data_discount_logging_enabled` | `bool` | No |  |
 | `is_observability_broadcast_enabled` | `bool` | No |  |
@@ -4922,13 +5052,12 @@ fmt.Println(updateWorkspace.GetName()) // "update_workspace"
 | --- | --- | --- | --- |
 | `created_at` | - | - | - |
 | `created_by` | - | - | - |
-| `data` | - | - | - |
 | `default_image_model` | Yes | - | - |
 | `default_provider_sort` | Yes | - | - |
 | `default_text_model` | Yes | - | - |
 | `description` | Yes | - | - |
 | `id` | - | - | - |
-| `io_logging_api_key_id` | Yes | - | - |
+| `io_logging_api_key_ids` | Yes | - | - |
 | `io_logging_sampling_rate` | Yes | - | - |
 | `is_data_discount_logging_enabled` | Yes | - | - |
 | `is_observability_broadcast_enabled` | Yes | - | - |
@@ -4959,7 +5088,6 @@ Create a new entity with the given data.
 result, err := client.UpdateWorkspace(nil).Create(map[string]any{
     "created_at": "example_created_at",
     "created_by": "example_created_by",
-    "data": "example_data",
     "id": "example_id",
     "name": "example_name",
     "slug": "example_slug",
@@ -5021,7 +5149,6 @@ fmt.Println(upsertWorkspaceBudget.GetName()) // "upsert_workspace_budget"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | Yes |  |
 | `limit_usd` | `float64` | Yes |  |
 
 ### Operations
@@ -5143,11 +5270,11 @@ fmt.Println(video.GetName()) // "video"
 | `callback_url` | `string` | No |  |
 | `duration` | `int` | No |  |
 | `error` | `string` | No |  |
-| `frame_image` | `[]any` | No |  |
+| `frame_images` | `[]any` | No |  |
 | `generate_audio` | `bool` | No |  |
 | `generation_id` | `string` | No |  |
 | `id` | `string` | Yes |  |
-| `input_reference` | `[]any` | No |  |
+| `input_references` | `[]any` | No |  |
 | `model` | `string` | Yes |  |
 | `polling_url` | `string` | Yes |  |
 | `prompt` | `string` | No |  |
@@ -5156,7 +5283,7 @@ fmt.Println(video.GetName()) // "video"
 | `seed` | `int` | No |  |
 | `size` | `string` | No |  |
 | `status` | `string` | Yes |  |
-| `unsigned_url` | `[]any` | No |  |
+| `unsigned_urls` | `[]any` | No |  |
 | `usage` | `map[string]any` | No |  |
 
 ### Operations
@@ -5270,7 +5397,7 @@ fmt.Println(videoModelsList.GetName()) // "video_models_list"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameter` | `[]any` | Yes |  |
+| `allowed_passthrough_parameters` | `[]any` | Yes |  |
 | `canonical_slug` | `string` | Yes |  |
 | `created` | `int` | Yes |  |
 | `description` | `string` | No |  |
@@ -5280,11 +5407,11 @@ fmt.Println(videoModelsList.GetName()) // "video_models_list"
 | `name` | `string` | Yes |  |
 | `pricing_skus` | `any` | No |  |
 | `seed` | `any` | Yes |  |
-| `supported_aspect_ratio` | `any` | Yes |  |
-| `supported_duration` | `any` | Yes |  |
-| `supported_frame_image` | `any` | Yes |  |
-| `supported_resolution` | `any` | Yes |  |
-| `supported_size` | `any` | Yes |  |
+| `supported_aspect_ratios` | `any` | Yes |  |
+| `supported_durations` | `any` | Yes |  |
+| `supported_frame_images` | `any` | Yes |  |
+| `supported_resolutions` | `any` | Yes |  |
+| `supported_sizes` | `any` | Yes |  |
 
 ### Operations
 
@@ -5335,7 +5462,21 @@ fmt.Println(workspace.GetName()) // "workspace"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | Yes |  |
+| `created_at` | `string` | Yes |  |
+| `created_by` | `any` | Yes |  |
+| `default_image_model` | `any` | Yes |  |
+| `default_provider_sort` | `any` | Yes |  |
+| `default_text_model` | `any` | Yes |  |
+| `description` | `any` | Yes |  |
+| `id` | `string` | Yes |  |
+| `io_logging_api_key_ids` | `any` | Yes |  |
+| `io_logging_sampling_rate` | `float64` | Yes |  |
+| `is_data_discount_logging_enabled` | `bool` | Yes |  |
+| `is_observability_broadcast_enabled` | `bool` | Yes |  |
+| `is_observability_io_logging_enabled` | `bool` | Yes |  |
+| `name` | `string` | Yes |  |
+| `slug` | `string` | Yes |  |
+| `updated_at` | `any` | Yes |  |
 
 ### Operations
 

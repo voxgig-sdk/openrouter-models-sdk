@@ -68,16 +68,16 @@ function video_generation_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["OPENROUTERMODELS_TEST_VIDEO_GENERATION_ENTID"] = {},
-    ["OPENROUTERMODELS_TEST_LIVE"] = "FALSE",
-    ["OPENROUTERMODELS_APIKEY"] = "NONE",
+    ["OPENROUTER_MODELS_TEST_VIDEO_GENERATION_ENTID"] = {},
+    ["OPENROUTER_MODELS_TEST_LIVE"] = "FALSE",
+    ["OPENROUTER_MODELS_APIKEY"] = "NONE",
   })
 
-  local live = env["OPENROUTERMODELS_TEST_LIVE"] == "TRUE"
+  local live = env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["OPENROUTERMODELS_APIKEY"],
+      apikey = env["OPENROUTER_MODELS_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

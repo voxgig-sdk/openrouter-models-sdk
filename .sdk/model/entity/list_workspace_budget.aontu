@@ -111,7 +111,7 @@ main: kit: entity: list_workspace_budget: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

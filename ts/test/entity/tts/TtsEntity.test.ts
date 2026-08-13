@@ -26,8 +26,8 @@ import {
 describe('TtsEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OPENROUTERMODELS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OPENROUTERMODELS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OPENROUTER_MODELS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OPENROUTER_MODELS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OpenrouterModelsSDK.test()
@@ -62,7 +62,7 @@ describe('TtsEntity', async () => {
     const tts_ref01_ent = client.Tts()
     let tts_ref01_data = setup.data.new.tts['tts_ref01']
 
-    tts_ref01_data = await tts_ref01_ent.create(tts_ref01_data)
+    tts_ref01_data = (await tts_ref01_ent.create(tts_ref01_data)).data()
     assert(null != tts_ref01_data)
 
 
