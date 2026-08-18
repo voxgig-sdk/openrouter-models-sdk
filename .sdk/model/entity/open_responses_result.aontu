@@ -41,6 +41,11 @@ main: kit: entity: open_responses_result: {
       name: "image_config"
       req: false
       type: "`$OBJECT`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 1
+      }
     }
     {
       name: "include"
@@ -57,6 +62,11 @@ main: kit: entity: open_responses_result: {
       name: "input"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 49
+        count: 35
+        depth: 19
+      }
     }
     {
       name: "instructions"
@@ -132,6 +142,11 @@ main: kit: entity: open_responses_result: {
       name: "plugins"
       req: false
       type: "`$ARRAY`"
+      union: {
+        branches: 5
+        count: 4
+        depth: 12
+      }
     }
     {
       name: "presence_penalty"
@@ -159,6 +174,11 @@ main: kit: entity: open_responses_result: {
           "`$NULL`"
         ]
       ]
+      union: {
+        branches: 4
+        count: 1
+        depth: 3
+      }
     }
     {
       name: "prompt_cache_key"
@@ -192,6 +212,11 @@ main: kit: entity: open_responses_result: {
           "`$NULL`"
         ]
       ]
+      union: {
+        branches: 2
+        count: 6
+        depth: 3
+      }
     }
     {
       name: "reasoning"
@@ -266,16 +291,31 @@ main: kit: entity: open_responses_result: {
       name: "text"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 4
+      }
     }
     {
       name: "tool_choice"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 8
+        count: 3
+        depth: 4
+      }
     }
     {
       name: "tools"
       req: false
       type: "`$ARRAY`"
+      union: {
+        branches: 27
+        count: 10
+        depth: 12
+      }
     }
     {
       name: "top_k"

@@ -59,6 +59,11 @@ main: kit: entity: image: {
       name: "provider"
       req: false
       type: "`$OBJECT`"
+      union: {
+        branches: 2
+        count: 4
+        depth: 3
+      }
     }
     {
       name: "quality"
@@ -89,6 +94,11 @@ main: kit: entity: image: {
       name: "usage"
       req: true
       type: "`$OBJECT`"
+      union: {
+        branches: 4
+        count: 1
+        depth: 3
+      }
     }
   ]
 

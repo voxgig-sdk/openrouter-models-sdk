@@ -65,7 +65,7 @@ export interface ApiKey {
 }
 
 export interface ApiKeyLoadMatch {
-  id?: string
+  id: string
 }
 
 export interface ApiKeyListMatch {
@@ -1103,7 +1103,13 @@ export interface ListKeyAssignment {
 }
 
 export interface ListKeyAssignmentListMatch {
+  assigned_by?: string | null
+  created_at?: string
   guardrail_id?: string
+  id?: string
+  key_hash?: string
+  key_label?: string
+  key_name?: string
 }
 
 export interface ListMemberAssignment {
@@ -1116,7 +1122,12 @@ export interface ListMemberAssignment {
 }
 
 export interface ListMemberAssignmentListMatch {
+  assigned_by?: string | null
+  created_at?: string
   guardrail_id?: string
+  id?: string
+  organization_id?: string
+  user_id?: string
 }
 
 export interface ListObservabilityDestination {

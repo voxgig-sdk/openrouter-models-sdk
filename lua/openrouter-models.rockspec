@@ -23,6 +23,7 @@ build = {
   modules = {
     ["openrouter-models_sdk"] = "openrouter-models_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

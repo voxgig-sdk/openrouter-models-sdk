@@ -20,9 +20,11 @@
         ],
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "repr": "auto"
       },
       "contributor": {},
+      "docs": {},
       "entity": {
         "activity": {
           "active": true,
@@ -1111,7 +1113,12 @@
               "active": true,
               "name": "classifier_filters",
               "req": true,
-              "type": "`$OBJECT`"
+              "type": "`$OBJECT`",
+              "union": {
+                "branches": 3,
+                "count": 2,
+                "depth": 8
+              }
             },
             {
               "active": true,
@@ -1135,7 +1142,12 @@
               "active": true,
               "name": "filters",
               "req": false,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 3,
+                "count": 2,
+                "depth": 6
+              }
             },
             {
               "active": true,
@@ -2431,7 +2443,12 @@
               "active": true,
               "name": "choices",
               "req": true,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 5
+              }
             },
             {
               "active": true,
@@ -2467,7 +2484,12 @@
               "active": true,
               "name": "image_config",
               "req": false,
-              "type": "`$OBJECT`"
+              "type": "`$OBJECT`",
+              "union": {
+                "branches": 3,
+                "count": 1,
+                "depth": 1
+              }
             },
             {
               "active": true,
@@ -2521,7 +2543,12 @@
               "active": true,
               "name": "messages",
               "req": true,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 2,
+                "count": 5,
+                "depth": 5
+              }
             },
             {
               "active": true,
@@ -2593,7 +2620,12 @@
               "active": true,
               "name": "plugins",
               "req": false,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 5,
+                "count": 4,
+                "depth": 12
+              }
             },
             {
               "active": true,
@@ -2605,7 +2637,12 @@
                   "`$OBJECT`",
                   "`$NULL`"
                 ]
-              ]
+              ],
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 2
+              }
             },
             {
               "active": true,
@@ -2653,7 +2690,12 @@
                   "`$OBJECT`",
                   "`$NULL`"
                 ]
-              ]
+              ],
+              "union": {
+                "branches": 2,
+                "count": 6,
+                "depth": 3
+              }
             },
             {
               "active": true,
@@ -2737,7 +2779,12 @@
               "active": true,
               "name": "stop",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 0
+              }
             },
             {
               "active": true,
@@ -2791,13 +2838,23 @@
               "active": true,
               "name": "tool_choice",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 5,
+                "count": 1,
+                "depth": 0
+              }
             },
             {
               "active": true,
               "name": "tools",
               "req": false,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 12,
+                "count": 2,
+                "depth": 6
+              }
             },
             {
               "active": true,
@@ -3070,7 +3127,12 @@
                   "`$OBJECT`",
                   "`$NULL`"
                 ]
-              ]
+              ],
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 8
+              }
             },
             {
               "active": true,
@@ -3199,7 +3261,12 @@
                   "`$OBJECT`",
                   "`$NULL`"
                 ]
-              ]
+              ],
+              "union": {
+                "branches": 3,
+                "count": 3,
+                "depth": 7
+              }
             },
             {
               "active": true,
@@ -3235,7 +3302,12 @@
               "active": true,
               "name": "image_config",
               "req": false,
-              "type": "`$OBJECT`"
+              "type": "`$OBJECT`",
+              "union": {
+                "branches": 3,
+                "count": 1,
+                "depth": 1
+              }
             },
             {
               "active": true,
@@ -3253,7 +3325,12 @@
               "active": true,
               "name": "input",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 49,
+                "count": 35,
+                "depth": 19
+              }
             },
             {
               "active": true,
@@ -3343,7 +3420,12 @@
               "active": true,
               "name": "messages",
               "req": true,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 2,
+                "count": 5,
+                "depth": 5
+              }
             },
             {
               "active": true,
@@ -3409,7 +3491,12 @@
               "active": true,
               "name": "plugins",
               "req": false,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 5,
+                "count": 4,
+                "depth": 12
+              }
             },
             {
               "active": true,
@@ -3421,7 +3508,12 @@
                   "`$OBJECT`",
                   "`$NULL`"
                 ]
-              ]
+              ],
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 2
+              }
             },
             {
               "active": true,
@@ -3451,7 +3543,12 @@
                   "`$OBJECT`",
                   "`$NULL`"
                 ]
-              ]
+              ],
+              "union": {
+                "branches": 4,
+                "count": 1,
+                "depth": 3
+              }
             },
             {
               "active": true,
@@ -3487,7 +3584,12 @@
                   "`$OBJECT`",
                   "`$NULL`"
                 ]
-              ]
+              ],
+              "union": {
+                "branches": 2,
+                "count": 6,
+                "depth": 3
+              }
             },
             {
               "active": true,
@@ -3589,7 +3691,12 @@
               "active": true,
               "name": "stop",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 0
+              }
             },
             {
               "active": true,
@@ -3631,7 +3738,12 @@
               "active": true,
               "name": "system",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 0
+              }
             },
             {
               "active": true,
@@ -3649,25 +3761,45 @@
               "active": true,
               "name": "text",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 3,
+                "count": 1,
+                "depth": 4
+              }
             },
             {
               "active": true,
               "name": "thinking",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 3,
+                "count": 1,
+                "depth": 0
+              }
             },
             {
               "active": true,
               "name": "tool_choice",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 5,
+                "count": 1,
+                "depth": 0
+              }
             },
             {
               "active": true,
               "name": "tools",
               "req": false,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 12,
+                "count": 2,
+                "depth": 6
+              }
             },
             {
               "active": true,
@@ -4116,7 +4248,12 @@
               "active": true,
               "name": "data",
               "req": true,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 3
+              }
             },
             {
               "active": true,
@@ -4140,7 +4277,12 @@
               "active": true,
               "name": "input",
               "req": true,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 5,
+                "count": 2,
+                "depth": 6
+              }
             },
             {
               "active": true,
@@ -4164,7 +4306,12 @@
               "active": true,
               "name": "provider",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 2,
+                "count": 6,
+                "depth": 5
+              }
             },
             {
               "active": true,
@@ -6165,7 +6312,12 @@
               "active": true,
               "name": "input",
               "req": true,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 0
+              }
             },
             {
               "active": true,
@@ -6838,7 +6990,12 @@
               "active": true,
               "name": "provider",
               "req": false,
-              "type": "`$OBJECT`"
+              "type": "`$OBJECT`",
+              "union": {
+                "branches": 2,
+                "count": 4,
+                "depth": 3
+              }
             },
             {
               "active": true,
@@ -6874,7 +7031,12 @@
               "active": true,
               "name": "usage",
               "req": true,
-              "type": "`$OBJECT`"
+              "type": "`$OBJECT`",
+              "union": {
+                "branches": 4,
+                "count": 1,
+                "depth": 3
+              }
             }
           ],
           "name": "image",
@@ -7754,7 +7916,12 @@
               "active": true,
               "name": "data",
               "req": true,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 2,
+                "count": 11,
+                "depth": 13
+              }
             },
             {
               "active": true,
@@ -8387,7 +8554,12 @@
                   "`$OBJECT`",
                   "`$NULL`"
                 ]
-              ]
+              ],
+              "union": {
+                "branches": 3,
+                "count": 3,
+                "depth": 7
+              }
             },
             {
               "active": true,
@@ -8417,7 +8589,12 @@
                   "`$ARRAY`",
                   "`$NULL`"
                 ]
-              ]
+              ],
+              "union": {
+                "branches": 12,
+                "count": 7,
+                "depth": 14
+              }
             },
             {
               "active": true,
@@ -8447,7 +8624,12 @@
               "active": true,
               "name": "plugins",
               "req": false,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 5,
+                "count": 4,
+                "depth": 12
+              }
             },
             {
               "active": true,
@@ -8459,7 +8641,12 @@
                   "`$OBJECT`",
                   "`$NULL`"
                 ]
-              ]
+              ],
+              "union": {
+                "branches": 2,
+                "count": 6,
+                "depth": 3
+              }
             },
             {
               "active": true,
@@ -8513,7 +8700,12 @@
               "active": true,
               "name": "system",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 0
+              }
             },
             {
               "active": true,
@@ -8525,19 +8717,34 @@
               "active": true,
               "name": "thinking",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 3,
+                "count": 1,
+                "depth": 0
+              }
             },
             {
               "active": true,
               "name": "tool_choice",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 4,
+                "count": 1,
+                "depth": 0
+              }
             },
             {
               "active": true,
               "name": "tools",
               "req": false,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 13,
+                "count": 2,
+                "depth": 6
+              }
             },
             {
               "active": true,
@@ -9775,7 +9982,12 @@
               "active": true,
               "name": "image_config",
               "req": false,
-              "type": "`$OBJECT`"
+              "type": "`$OBJECT`",
+              "union": {
+                "branches": 3,
+                "count": 1,
+                "depth": 1
+              }
             },
             {
               "active": true,
@@ -9793,7 +10005,12 @@
               "active": true,
               "name": "input",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 49,
+                "count": 35,
+                "depth": 19
+              }
             },
             {
               "active": true,
@@ -9877,7 +10094,12 @@
               "active": true,
               "name": "plugins",
               "req": false,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 5,
+                "count": 4,
+                "depth": 12
+              }
             },
             {
               "active": true,
@@ -9907,7 +10129,12 @@
                   "`$OBJECT`",
                   "`$NULL`"
                 ]
-              ]
+              ],
+              "union": {
+                "branches": 4,
+                "count": 1,
+                "depth": 3
+              }
             },
             {
               "active": true,
@@ -9943,7 +10170,12 @@
                   "`$OBJECT`",
                   "`$NULL`"
                 ]
-              ]
+              ],
+              "union": {
+                "branches": 2,
+                "count": 6,
+                "depth": 3
+              }
             },
             {
               "active": true,
@@ -10027,19 +10259,34 @@
               "active": true,
               "name": "text",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 3,
+                "count": 1,
+                "depth": 4
+              }
             },
             {
               "active": true,
               "name": "tool_choice",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 8,
+                "count": 3,
+                "depth": 4
+              }
             },
             {
               "active": true,
               "name": "tools",
               "req": false,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 27,
+                "count": 10,
+                "depth": 12
+              }
             },
             {
               "active": true,
@@ -11095,7 +11342,12 @@
               "active": true,
               "name": "documents",
               "req": true,
-              "type": "`$ARRAY`"
+              "type": "`$ARRAY`",
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 1
+              }
             },
             {
               "active": true,
@@ -12259,7 +12511,12 @@
               "active": true,
               "name": "filter_rules",
               "req": false,
-              "type": "`$ANY`"
+              "type": "`$ANY`",
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 10
+              }
             },
             {
               "active": true,
@@ -13923,6 +14180,7 @@
       "feature": {
         "test": {
           "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
@@ -13983,6 +14241,8 @@
             }
           },
           "name": "test",
+          "origname": "",
+          "package": "@voxgig/sdkgen",
           "target": {
             "go": {
               "deps": {}
@@ -16222,6 +16482,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
           },
@@ -16240,12 +16501,14 @@
             "path": ""
           },
           "name": "go",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -16279,6 +16542,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
           },
@@ -16295,12 +16559,14 @@
             "path": ""
           },
           "name": "go-cli",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "phase": {
             "agentguide": {
               "active": false
@@ -16350,6 +16616,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
           },
@@ -16366,12 +16633,14 @@
             "path": ""
           },
           "name": "go-mcp",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "phase": {
             "agentguide": {
               "active": false
@@ -16421,6 +16690,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "--"
           },
@@ -16443,12 +16713,14 @@
             "path": ""
           },
           "name": "lua",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -16482,6 +16754,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
           },
@@ -16498,12 +16771,14 @@
             "path": ""
           },
           "name": "php",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -16537,6 +16812,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "#"
           },
@@ -16559,12 +16835,14 @@
             "path": ""
           },
           "name": "py",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -16598,6 +16876,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "#"
           },
@@ -16625,12 +16904,14 @@
             "path": ""
           },
           "name": "rb",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -16697,12 +16978,14 @@
             "path": ""
           },
           "name": "ts",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,

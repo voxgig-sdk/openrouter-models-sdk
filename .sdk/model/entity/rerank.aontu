@@ -9,6 +9,11 @@ main: kit: entity: rerank: {
       name: "documents"
       req: true
       type: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 1
+      }
     }
     {
       name: "id"

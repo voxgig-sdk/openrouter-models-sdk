@@ -79,7 +79,7 @@ class ApiKey(ApiKeyRequired, total=False):
     expires_at: str | None
 
 
-class ApiKeyLoadMatch(TypedDict, total=False):
+class ApiKeyLoadMatch(TypedDict):
     id: str
 
 
@@ -1178,7 +1178,13 @@ class ListKeyAssignment(TypedDict):
 
 
 class ListKeyAssignmentListMatch(TypedDict, total=False):
+    assigned_by: str | None
+    created_at: str
     guardrail_id: str
+    id: str
+    key_hash: str
+    key_label: str
+    key_name: str
 
 
 class ListMemberAssignment(TypedDict):
@@ -1191,7 +1197,12 @@ class ListMemberAssignment(TypedDict):
 
 
 class ListMemberAssignmentListMatch(TypedDict, total=False):
+    assigned_by: str | None
+    created_at: str
     guardrail_id: str
+    id: str
+    organization_id: str
+    user_id: str
 
 
 class ListObservabilityDestination(TypedDict):

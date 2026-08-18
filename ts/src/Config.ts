@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://openrouter.ai/api/v1',
+    base: "https://openrouter.ai/api/v1",
 
     auth: {
       prefix: 'Bearer',
@@ -314,81 +314,59 @@ class Config {
     "activity": {
       "fields": [
         {
-          "active": true,
           "name": "byok_usage_inference",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 0
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "completion_tokens",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 1
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "date",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "endpoint_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "model",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "model_permaslug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "prompt_tokens",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 6
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "provider_name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "reasoning_tokens",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 8
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "requests",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 9
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "usage",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 10
+          "type": "`$NUMBER`"
         }
       ],
       "name": "activity",
@@ -398,60 +376,47 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "abc123def456...",
                     "kind": "query",
                     "name": "api_key_hash",
                     "orig": "api_key_hash",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "2025-08-24",
                     "kind": "query",
                     "name": "date",
                     "orig": "date",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "user_abc123",
                     "kind": "query",
                     "name": "user_id",
                     "orig": "user_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -475,11 +440,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -501,46 +464,34 @@ class Config {
     "api_key": {
       "fields": [
         {
-          "active": true,
           "name": "byok_usage",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 0
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "byok_usage_daily",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 1
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "byok_usage_monthly",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 2
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "byok_usage_weekly",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 3
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "creator_user_id",
           "op": {
             "create": {
-              "req": false,
               "type": [
                 "`$ONE`",
                 [
@@ -557,93 +508,70 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "disabled",
           "op": {
             "update": {
-              "req": false,
               "type": "`$BOOLEAN`"
             }
           },
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 6
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "expires_at",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 7
+          ]
         },
         {
-          "active": true,
           "name": "hash",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "include_byok_in_limit",
           "op": {
             "create": {
-              "req": false,
               "type": "`$BOOLEAN`"
             },
             "update": {
-              "req": false,
               "type": "`$BOOLEAN`"
             }
           },
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 9
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_free_tier",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 10
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_management_key",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 11
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_provisioning_key",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 12
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "label",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "limit",
           "op": {
             "create": {
-              "req": false,
               "type": [
                 "`$ONE`",
                 [
@@ -653,7 +581,6 @@ class Config {
               ]
             },
             "update": {
-              "req": false,
               "type": [
                 "`$ONE`",
                 [
@@ -670,11 +597,9 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 14
+          ]
         },
         {
-          "active": true,
           "name": "limit_remaining",
           "req": true,
           "type": [
@@ -683,15 +608,12 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 15
+          ]
         },
         {
-          "active": true,
           "name": "limit_reset",
           "op": {
             "create": {
-              "req": false,
               "type": [
                 "`$ONE`",
                 [
@@ -701,7 +623,6 @@ class Config {
               ]
             },
             "update": {
-              "req": false,
               "type": [
                 "`$ONE`",
                 [
@@ -718,31 +639,24 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 16
+          ]
         },
         {
-          "active": true,
           "name": "name",
           "op": {
             "update": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "rate_limit",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 18
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "updated_at",
           "req": true,
           "type": [
@@ -751,49 +665,37 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 19
+          ]
         },
         {
-          "active": true,
           "name": "usage",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 20
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "usage_daily",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 21
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "usage_monthly",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 22
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "usage_weekly",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 23
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "workspace_id",
           "op": {
             "create": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 24
+          "type": "`$STRING`"
         }
       ],
       "name": "api_key",
@@ -803,31 +705,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -848,62 +743,49 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "list": {
           "input": "data",
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "false",
                     "kind": "query",
                     "name": "include_disabled",
                     "orig": "include_disabled",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -913,12 +795,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": "0df9e665-d932-5740-b2c7-b52af166bc11",
                     "kind": "query",
                     "name": "workspace_id",
                     "orig": "workspace_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -942,55 +822,44 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
                     "kind": "param",
                     "name": "id",
                     "orig": "hash",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -1017,35 +886,27 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -1066,55 +927,44 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "load"
+          ]
         },
         "remove": {
           "input": "data",
           "name": "remove",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
                     "kind": "param",
                     "name": "id",
                     "orig": "hash",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -1141,55 +991,44 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "remove"
+          ]
         },
         "update": {
           "input": "data",
           "name": "update",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
                     "kind": "param",
                     "name": "id",
                     "orig": "hash",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -1216,11 +1055,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "update"
+          ]
         }
       },
       "relations": {
@@ -1230,39 +1067,29 @@ class Config {
     "app_ranking": {
       "fields": [
         {
-          "active": true,
           "name": "app_id",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 0
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "app_name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "rank",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 2
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "total_requests",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 3
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "total_tokens",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         }
       ],
       "name": "app_ranking",
@@ -1272,69 +1099,54 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "coding",
                     "kind": "query",
                     "name": "category",
                     "orig": "category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "2026-05-11",
                     "kind": "query",
                     "name": "end_date",
                     "orig": "end_date",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -1344,30 +1156,24 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": "popular",
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "2026-04-12",
                     "kind": "query",
                     "name": "start_date",
                     "orig": "start_date",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "cli-agent",
                     "kind": "query",
                     "name": "subcategory",
                     "orig": "subcategory",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -1396,11 +1202,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -1418,122 +1222,93 @@ class Config {
     "beta_analytics": {
       "fields": [
         {
-          "active": true,
           "name": "cachedAt",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 0
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "classifier_dimensions",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "classifier_filters",
           "req": true,
           "type": "`$OBJECT`",
-          "index$": 2
+          "union": {
+            "branches": 3,
+            "count": 2,
+            "depth": 8
+          }
         },
         {
-          "active": true,
           "name": "data",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 3
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "dimensions",
           "op": {
             "create": {
-              "req": false,
               "type": "`$ARRAY`"
             }
           },
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 4
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "filters",
-          "req": false,
           "type": "`$ARRAY`",
-          "index$": 5
+          "union": {
+            "branches": 3,
+            "count": 2,
+            "depth": 6
+          }
         },
         {
-          "active": true,
           "name": "granularities",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 6
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "granularity",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "group_limit",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 8
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "limit",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 9
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "metadata",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 10
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "metrics",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 11
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "operators",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 12
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "order_by",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 13
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "time_range",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 14
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "warnings",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 15
+          "type": "`$ARRAY`"
         }
       ],
       "name": "beta_analytics",
@@ -1543,31 +1318,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -1589,42 +1357,33 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -1646,11 +1405,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -1672,25 +1429,19 @@ class Config {
     "bulk_add_workspace_member": {
       "fields": [
         {
-          "active": true,
           "name": "added_count",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 0
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "data",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "user_ids",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 2
+          "type": "`$ARRAY`"
         }
       ],
       "name": "bulk_add_workspace_member",
@@ -1700,44 +1451,35 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "production",
                     "kind": "param",
                     "name": "workspace_id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -1766,11 +1508,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -1784,18 +1524,14 @@ class Config {
     "bulk_assign_key": {
       "fields": [
         {
-          "active": true,
           "name": "assigned_count",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 0
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "key_hashes",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         }
       ],
       "name": "bulk_assign_key",
@@ -1805,44 +1541,35 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "550e8400-e29b-41d4-a716-446655440000",
                     "kind": "param",
                     "name": "guardrail_id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -1871,11 +1598,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -1889,18 +1614,14 @@ class Config {
     "bulk_assign_member": {
       "fields": [
         {
-          "active": true,
           "name": "assigned_count",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 0
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "member_user_ids",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         }
       ],
       "name": "bulk_assign_member",
@@ -1910,44 +1631,35 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "550e8400-e29b-41d4-a716-446655440000",
                     "kind": "param",
                     "name": "guardrail_id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -1976,11 +1688,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -1994,18 +1704,14 @@ class Config {
     "bulk_remove_workspace_member": {
       "fields": [
         {
-          "active": true,
           "name": "removed_count",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 0
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "user_ids",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         }
       ],
       "name": "bulk_remove_workspace_member",
@@ -2015,44 +1721,35 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "production",
                     "kind": "param",
                     "name": "workspace_id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -2081,11 +1778,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -2099,18 +1794,14 @@ class Config {
     "bulk_unassign_key": {
       "fields": [
         {
-          "active": true,
           "name": "key_hashes",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "unassigned_count",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 1
+          "type": "`$INTEGER`"
         }
       ],
       "name": "bulk_unassign_key",
@@ -2120,44 +1811,35 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "550e8400-e29b-41d4-a716-446655440000",
                     "kind": "param",
                     "name": "guardrail_id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -2187,11 +1869,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -2205,18 +1885,14 @@ class Config {
     "bulk_unassign_member": {
       "fields": [
         {
-          "active": true,
           "name": "member_user_ids",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "unassigned_count",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 1
+          "type": "`$INTEGER`"
         }
       ],
       "name": "bulk_unassign_member",
@@ -2226,44 +1902,35 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "550e8400-e29b-41d4-a716-446655440000",
                     "kind": "param",
                     "name": "guardrail_id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -2293,11 +1960,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -2311,7 +1976,6 @@ class Config {
     "byok": {
       "fields": [
         {
-          "active": true,
           "name": "allowed_api_key_hashes",
           "req": true,
           "type": [
@@ -2320,15 +1984,12 @@ class Config {
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 0
+          ]
         },
         {
-          "active": true,
           "name": "allowed_models",
           "op": {
             "create": {
-              "req": false,
               "type": [
                 "`$ONE`",
                 [
@@ -2345,15 +2006,12 @@ class Config {
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "allowed_user_ids",
           "op": {
             "create": {
-              "req": false,
               "type": [
                 "`$ONE`",
                 [
@@ -2370,102 +2028,77 @@ class Config {
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 2
+          ]
         },
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "disabled",
           "op": {
             "create": {
-              "req": false,
               "type": "`$BOOLEAN`"
             }
           },
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 4
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "is_fallback",
           "op": {
             "create": {
-              "req": false,
               "type": "`$BOOLEAN`"
             }
           },
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 6
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "key",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "label",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "provider",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "sort_order",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 11
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "workspace_id",
           "op": {
             "create": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         }
       ],
       "name": "byok",
@@ -2475,31 +2108,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -2520,62 +2146,49 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "list": {
           "input": "data",
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -2585,21 +2198,17 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": "openai",
                     "kind": "query",
                     "name": "provider",
                     "orig": "provider",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "550e8400-e29b-41d4-a716-446655440000",
                     "kind": "query",
                     "name": "workspace_id",
                     "orig": "workspace_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -2624,55 +2233,44 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "11111111-2222-3333-4444-555555555555",
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -2694,55 +2292,44 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         },
         "remove": {
           "input": "data",
           "name": "remove",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "11111111-2222-3333-4444-555555555555",
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -2764,11 +2351,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "remove"
+          ]
         }
       },
       "relations": {
@@ -2778,202 +2363,165 @@ class Config {
     "chat_result": {
       "fields": [
         {
-          "active": true,
           "name": "cache_control",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 0
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "choices",
           "req": true,
           "type": "`$ARRAY`",
-          "index$": 1
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 5
+          }
         },
         {
-          "active": true,
           "name": "created",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 2
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "debug",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 3
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "frequency_penalty",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 4
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "image_config",
-          "req": false,
           "type": "`$OBJECT`",
-          "index$": 6
+          "union": {
+            "branches": 3,
+            "count": 1,
+            "depth": 1
+          }
         },
         {
-          "active": true,
           "name": "logit_bias",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 7
+          ]
         },
         {
-          "active": true,
           "name": "logprobs",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 8
+          ]
         },
         {
-          "active": true,
           "name": "max_completion_tokens",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "max_tokens",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 10
+          ]
         },
         {
-          "active": true,
           "name": "messages",
           "req": true,
           "type": "`$ARRAY`",
-          "index$": 11
+          "union": {
+            "branches": 2,
+            "count": 5,
+            "depth": 5
+          }
         },
         {
-          "active": true,
           "name": "metadata",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 12
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "min_p",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 13
+          ]
         },
         {
-          "active": true,
           "name": "modalities",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 14
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "model",
           "op": {
             "create": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "models",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 16
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "object",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "openrouter_metadata",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 18
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "parallel_tool_calls",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 19
+          ]
         },
         {
-          "active": true,
           "name": "plugins",
-          "req": false,
           "type": "`$ARRAY`",
-          "index$": 20
+          "union": {
+            "branches": 5,
+            "count": 4,
+            "depth": 12
+          }
         },
         {
-          "active": true,
           "name": "prediction",
           "req": true,
           "type": [
@@ -2983,36 +2531,33 @@ class Config {
               "`$NULL`"
             ]
           ],
-          "index$": 21
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 2
+          }
         },
         {
-          "active": true,
           "name": "presence_penalty",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 22
+          ]
         },
         {
-          "active": true,
           "name": "prompt_cache_key",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 23
+          ]
         },
         {
-          "active": true,
           "name": "prompt_cache_options",
           "req": true,
           "type": [
@@ -3021,13 +2566,10 @@ class Config {
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 24
+          ]
         },
         {
-          "active": true,
           "name": "provider",
-          "req": false,
           "type": [
             "`$ONE`",
             [
@@ -3035,130 +2577,102 @@ class Config {
               "`$NULL`"
             ]
           ],
-          "index$": 25
+          "union": {
+            "branches": 2,
+            "count": 6,
+            "depth": 3
+          }
         },
         {
-          "active": true,
           "name": "reasoning",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 26
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "reasoning_effort",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 27
+          ]
         },
         {
-          "active": true,
           "name": "repetition_penalty",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 28
+          ]
         },
         {
-          "active": true,
           "name": "response_format",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 29
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "route",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 30
+          ]
         },
         {
-          "active": true,
           "name": "seed",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 31
+          ]
         },
         {
-          "active": true,
           "name": "service_tier",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 32
+          ]
         },
         {
-          "active": true,
           "name": "session_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 33
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "stop",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 34
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 0
+          }
         },
         {
-          "active": true,
           "name": "stop_server_tools_when",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 35
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "stream",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 36
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "stream_options",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 37
+          ]
         },
         {
-          "active": true,
           "name": "system_fingerprint",
           "req": true,
           "type": [
@@ -3167,108 +2681,88 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 38
+          ]
         },
         {
-          "active": true,
           "name": "temperature",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 39
+          ]
         },
         {
-          "active": true,
           "name": "tool_choice",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 40
+          "union": {
+            "branches": 5,
+            "count": 1,
+            "depth": 0
+          }
         },
         {
-          "active": true,
           "name": "tools",
-          "req": false,
           "type": "`$ARRAY`",
-          "index$": 41
+          "union": {
+            "branches": 12,
+            "count": 2,
+            "depth": 6
+          }
         },
         {
-          "active": true,
           "name": "top_a",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 42
+          ]
         },
         {
-          "active": true,
           "name": "top_k",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 43
+          ]
         },
         {
-          "active": true,
           "name": "top_logprobs",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 44
+          ]
         },
         {
-          "active": true,
           "name": "top_p",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 45
+          ]
         },
         {
-          "active": true,
           "name": "trace",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 46
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "usage",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 47
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "user",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 48
+          "type": "`$STRING`"
         }
       ],
       "name": "chat_result",
@@ -3278,40 +2772,31 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "enabled",
                     "kind": "header",
                     "name": "x_open_router_metadata",
                     "orig": "x_open_router_metadata",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -3334,11 +2819,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -3408,34 +2891,25 @@ class Config {
     "create_observability_destination": {
       "fields": [
         {
-          "active": true,
           "name": "api_key_hashes",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 0
+          ]
         },
         {
-          "active": true,
           "name": "config",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "enabled",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 2
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "filter_rules",
           "req": true,
           "type": [
@@ -3445,42 +2919,33 @@ class Config {
               "`$NULL`"
             ]
           ],
-          "index$": 3
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 8
+          }
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "privacy_mode",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 5
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "sampling_rate",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 6
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "type",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "workspace_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         }
       ],
       "name": "create_observability_destination",
@@ -3490,31 +2955,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -3536,11 +2994,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -3550,29 +3006,22 @@ class Config {
     "create_preset_from_inference": {
       "fields": [
         {
-          "active": true,
           "name": "background",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 0
+          ]
         },
         {
-          "active": true,
           "name": "cache_control",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "context_management",
-          "req": false,
           "type": [
             "`$ONE`",
             [
@@ -3580,195 +3029,163 @@ class Config {
               "`$NULL`"
             ]
           ],
-          "index$": 2
+          "union": {
+            "branches": 3,
+            "count": 3,
+            "depth": 7
+          }
         },
         {
-          "active": true,
           "name": "debug",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 3
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "fallbacks",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 4
+          ]
         },
         {
-          "active": true,
           "name": "frequency_penalty",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "image_config",
-          "req": false,
           "type": "`$OBJECT`",
-          "index$": 6
+          "union": {
+            "branches": 3,
+            "count": 1,
+            "depth": 1
+          }
         },
         {
-          "active": true,
           "name": "include",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 7
+          ]
         },
         {
-          "active": true,
           "name": "input",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 8
+          "union": {
+            "branches": 49,
+            "count": 35,
+            "depth": 19
+          }
         },
         {
-          "active": true,
           "name": "instructions",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "logit_bias",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 10
+          ]
         },
         {
-          "active": true,
           "name": "logprobs",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 11
+          ]
         },
         {
-          "active": true,
           "name": "max_completion_tokens",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 12
+          ]
         },
         {
-          "active": true,
           "name": "max_output_tokens",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 13
+          ]
         },
         {
-          "active": true,
           "name": "max_tokens",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 14
+          ]
         },
         {
-          "active": true,
           "name": "max_tool_calls",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 15
+          ]
         },
         {
-          "active": true,
           "name": "messages",
           "req": true,
           "type": "`$ARRAY`",
-          "index$": 16
+          "union": {
+            "branches": 2,
+            "count": 5,
+            "depth": 5
+          }
         },
         {
-          "active": true,
           "name": "metadata",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 17
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "min_p",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 18
+          ]
         },
         {
-          "active": true,
           "name": "modalities",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 19
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "model",
           "op": {
             "create": {
@@ -3776,46 +3193,36 @@ class Config {
               "type": "`$STRING`"
             }
           },
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 20
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "models",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 21
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "output_config",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 22
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "parallel_tool_calls",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 23
+          ]
         },
         {
-          "active": true,
           "name": "plugins",
-          "req": false,
           "type": "`$ARRAY`",
-          "index$": 24
+          "union": {
+            "branches": 5,
+            "count": 4,
+            "depth": 12
+          }
         },
         {
-          "active": true,
           "name": "prediction",
           "req": true,
           "type": [
@@ -3825,30 +3232,27 @@ class Config {
               "`$NULL`"
             ]
           ],
-          "index$": 25
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 2
+          }
         },
         {
-          "active": true,
           "name": "presence_penalty",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 26
+          ]
         },
         {
-          "active": true,
           "name": "previous_response_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 27
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "prompt",
           "req": true,
           "type": [
@@ -3858,23 +3262,23 @@ class Config {
               "`$NULL`"
             ]
           ],
-          "index$": 28
+          "union": {
+            "branches": 4,
+            "count": 1,
+            "depth": 3
+          }
         },
         {
-          "active": true,
           "name": "prompt_cache_key",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 29
+          ]
         },
         {
-          "active": true,
           "name": "prompt_cache_options",
           "req": true,
           "type": [
@@ -3883,13 +3287,10 @@ class Config {
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 30
+          ]
         },
         {
-          "active": true,
           "name": "provider",
-          "req": false,
           "type": [
             "`$ONE`",
             [
@@ -3897,288 +3298,235 @@ class Config {
               "`$NULL`"
             ]
           ],
-          "index$": 31
+          "union": {
+            "branches": 2,
+            "count": 6,
+            "depth": 3
+          }
         },
         {
-          "active": true,
           "name": "reasoning",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 32
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "reasoning_effort",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 33
+          ]
         },
         {
-          "active": true,
           "name": "repetition_penalty",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 34
+          ]
         },
         {
-          "active": true,
           "name": "response_format",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 35
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "route",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 36
+          ]
         },
         {
-          "active": true,
           "name": "safety_identifier",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 37
+          ]
         },
         {
-          "active": true,
           "name": "seed",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 38
+          ]
         },
         {
-          "active": true,
           "name": "service_tier",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 39
+          ]
         },
         {
-          "active": true,
           "name": "session_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 40
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "speed",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 41
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "stop",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 42
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 0
+          }
         },
         {
-          "active": true,
           "name": "stop_sequences",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 43
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "stop_server_tools_when",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 44
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "store",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 45
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "stream",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 46
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "stream_options",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 47
+          ]
         },
         {
-          "active": true,
           "name": "system",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 48
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 0
+          }
         },
         {
-          "active": true,
           "name": "temperature",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 49
+          ]
         },
         {
-          "active": true,
           "name": "text",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 50
+          "union": {
+            "branches": 3,
+            "count": 1,
+            "depth": 4
+          }
         },
         {
-          "active": true,
           "name": "thinking",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 51
+          "union": {
+            "branches": 3,
+            "count": 1,
+            "depth": 0
+          }
         },
         {
-          "active": true,
           "name": "tool_choice",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 52
+          "union": {
+            "branches": 5,
+            "count": 1,
+            "depth": 0
+          }
         },
         {
-          "active": true,
           "name": "tools",
-          "req": false,
           "type": "`$ARRAY`",
-          "index$": 53
+          "union": {
+            "branches": 12,
+            "count": 2,
+            "depth": 6
+          }
         },
         {
-          "active": true,
           "name": "top_a",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 54
+          ]
         },
         {
-          "active": true,
           "name": "top_k",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 55
+          ]
         },
         {
-          "active": true,
           "name": "top_logprobs",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 56
+          ]
         },
         {
-          "active": true,
           "name": "top_p",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 57
+          ]
         },
         {
-          "active": true,
           "name": "trace",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 58
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "truncation",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 59
+          ]
         },
         {
-          "active": true,
           "name": "user",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 60
+          "type": "`$STRING`"
         }
       ],
       "name": "create_preset_from_inference",
@@ -4188,44 +3536,35 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "my-preset",
                     "kind": "param",
                     "name": "slug",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -4249,48 +3588,38 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "my-preset",
                     "kind": "param",
                     "name": "slug",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -4313,48 +3642,38 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "my-preset",
                     "kind": "param",
                     "name": "slug",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -4377,11 +3696,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 2
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -4403,18 +3720,14 @@ class Config {
     "credit": {
       "fields": [
         {
-          "active": true,
           "name": "total_credits",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 0
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "total_usage",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 1
+          "type": "`$NUMBER`"
         }
       ],
       "name": "credit",
@@ -4424,31 +3737,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -4471,42 +3777,33 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -4527,11 +3824,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -4549,81 +3844,68 @@ class Config {
     "embedding": {
       "fields": [
         {
-          "active": true,
           "name": "data",
           "req": true,
           "type": "`$ARRAY`",
-          "index$": 0
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 3
+          }
         },
         {
-          "active": true,
           "name": "dimensions",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 1
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "encoding_format",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "input",
           "req": true,
           "type": "`$ANY`",
-          "index$": 4
+          "union": {
+            "branches": 5,
+            "count": 2,
+            "depth": 6
+          }
         },
         {
-          "active": true,
           "name": "input_type",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "model",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "object",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "provider",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 8
+          "union": {
+            "branches": 2,
+            "count": 6,
+            "depth": 5
+          }
         },
         {
-          "active": true,
           "name": "usage",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 9
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "user",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         }
       ],
       "name": "embedding",
@@ -4633,31 +3915,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -4678,11 +3953,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -4692,28 +3965,21 @@ class Config {
     "endpoint": {
       "fields": [
         {
-          "active": true,
           "name": "architecture",
           "req": true,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "benchmarks",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "canonical_slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "context_length",
           "req": true,
           "type": [
@@ -4722,18 +3988,14 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "created",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "default_parameters",
           "req": true,
           "type": [
@@ -4742,77 +4004,59 @@ class Config {
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "description",
           "op": {
             "list": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "endpoints",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 7
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "expiration_date",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 8
+          ]
         },
         {
-          "active": true,
           "name": "hugging_face_id",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "knowledge_cutoff",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 11
+          ]
         },
         {
-          "active": true,
           "name": "latency_last_30m",
           "req": true,
           "type": [
@@ -4821,18 +4065,14 @@ class Config {
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 12
+          ]
         },
         {
-          "active": true,
           "name": "links",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 13
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "max_completion_tokens",
           "req": true,
           "type": [
@@ -4841,11 +4081,9 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 14
+          ]
         },
         {
-          "active": true,
           "name": "max_prompt_tokens",
           "req": true,
           "type": [
@@ -4854,32 +4092,24 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 15
+          ]
         },
         {
-          "active": true,
           "name": "model_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 16
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "model_name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 18
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "per_request_limits",
           "req": true,
           "type": [
@@ -4888,53 +4118,38 @@ class Config {
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 19
+          ]
         },
         {
-          "active": true,
           "name": "pricing",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 20
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "provider_name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 21
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "quantization",
           "req": true,
-          "type": "`$ANY`",
-          "index$": 22
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "reasoning",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 23
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "status",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 24
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "supported_parameters",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 25
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "supported_voices",
           "req": true,
           "type": [
@@ -4943,39 +4158,29 @@ class Config {
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 26
+          ]
         },
         {
-          "active": true,
           "name": "supports_implicit_caching",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 27
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "tag",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 28
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "throughput_last_30m",
           "req": true,
-          "type": "`$ANY`",
-          "index$": 29
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "top_provider",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 30
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "uptime_last_1d",
           "req": true,
           "type": [
@@ -4984,11 +4189,9 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 31
+          ]
         },
         {
-          "active": true,
           "name": "uptime_last_30m",
           "req": true,
           "type": [
@@ -4997,11 +4200,9 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 32
+          ]
         },
         {
-          "active": true,
           "name": "uptime_last_5m",
           "req": true,
           "type": [
@@ -5010,8 +4211,7 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 33
+          ]
         }
       ],
       "name": "endpoint",
@@ -5021,96 +4221,75 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "GPT",
                     "kind": "query",
                     "name": "arch",
                     "orig": "arch",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "programming",
                     "kind": "query",
                     "name": "category",
                     "orig": "category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": 128000,
                     "kind": "query",
                     "name": "context",
                     "orig": "context",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": "true",
                     "kind": "query",
                     "name": "distillable",
                     "orig": "distillable",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "text,image",
                     "kind": "query",
                     "name": "input_modality",
                     "orig": "input_modality",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": 500,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 90,
                     "kind": "query",
                     "name": "max_age_day",
                     "orig": "max_age_day",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5120,12 +4299,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": 100,
                     "kind": "query",
                     "name": "max_agentic_index",
                     "orig": "max_agentic_index",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5135,12 +4312,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": 100,
                     "kind": "query",
                     "name": "max_coding_index",
                     "orig": "max_coding_index",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5150,12 +4325,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": 100,
                     "kind": "query",
                     "name": "max_intelligence_index",
                     "orig": "max_intelligence_index",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5165,12 +4338,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": 10,
                     "kind": "query",
                     "name": "max_output_price",
                     "orig": "max_output_price",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5180,12 +4351,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": 10,
                     "kind": "query",
                     "name": "max_price",
                     "orig": "max_price",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5195,12 +4364,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": 1,
                     "kind": "query",
                     "name": "max_tool_success_rate",
                     "orig": "max_tool_success_rate",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5210,12 +4377,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "min_age_day",
                     "orig": "min_age_day",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5225,12 +4390,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "min_agentic_index",
                     "orig": "min_agentic_index",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5240,12 +4403,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "min_coding_index",
                     "orig": "min_coding_index",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5255,12 +4416,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "min_intelligence_index",
                     "orig": "min_intelligence_index",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5270,12 +4429,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "min_output_price",
                     "orig": "min_output_price",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5285,12 +4442,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "min_price",
                     "orig": "min_price",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5300,12 +4455,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": 0.9,
                     "kind": "query",
                     "name": "min_tool_success_rate",
                     "orig": "min_tool_success_rate",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5315,21 +4468,17 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": "openai,anthropic",
                     "kind": "query",
                     "name": "model_author",
                     "orig": "model_author",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -5339,66 +4488,52 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": "text",
                     "kind": "query",
                     "name": "output_modality",
                     "orig": "output_modality",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "OpenAI,Anthropic",
                     "kind": "query",
                     "name": "provider",
                     "orig": "provider",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "gpt-4",
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "eu",
                     "kind": "query",
                     "name": "region",
                     "orig": "region",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "newest",
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "temperature",
                     "kind": "query",
                     "name": "supported_parameter",
                     "orig": "supported_parameter",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "true",
                     "kind": "query",
                     "name": "zdr",
                     "orig": "zdr",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -5448,35 +4583,27 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -5499,65 +4626,52 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "openai",
                     "kind": "param",
                     "name": "author",
                     "orig": "author",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "gpt-4",
                     "kind": "param",
                     "name": "slug",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 1
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -5582,11 +4696,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -5608,53 +4720,39 @@ class Config {
     "file": {
       "fields": [
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "downloadable",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 1
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "filename",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "mime_type",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "size_bytes",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 5
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "type",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         }
       ],
       "name": "file",
@@ -5664,42 +4762,33 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
                     "kind": "query",
                     "name": "workspace_id",
                     "orig": "workspace_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -5721,71 +4810,56 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "list": {
           "input": "data",
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "eyJjdXJzb3IiOiJmaWxlXzAxMUNOaGE4aUNKY1Uxd1hOUjZxNFY4dyJ9",
                     "kind": "query",
                     "name": "cursor",
                     "orig": "cursor",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": 100,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
                     "kind": "query",
                     "name": "workspace_id",
                     "orig": "workspace_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -5809,65 +4883,52 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "file_011CNha8iCJcU1wXNR6q4V8w",
                     "kind": "param",
                     "name": "id",
                     "orig": "file_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
                     "kind": "query",
                     "name": "workspace_id",
                     "orig": "workspace_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -5896,41 +4957,32 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "file_011CNha8iCJcU1wXNR6q4V8w",
                     "kind": "param",
                     "name": "id",
@@ -5941,12 +4993,10 @@ class Config {
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
                     "kind": "query",
                     "name": "workspace_id",
                     "orig": "workspace_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -5977,65 +5027,52 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "load"
+          ]
         },
         "remove": {
           "input": "data",
           "name": "remove",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "file_011CNha8iCJcU1wXNR6q4V8w",
                     "kind": "param",
                     "name": "id",
                     "orig": "file_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
                     "kind": "query",
                     "name": "workspace_id",
                     "orig": "workspace_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6064,11 +5101,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "remove"
+          ]
         }
       },
       "relations": {
@@ -6078,7 +5113,6 @@ class Config {
     "generation": {
       "fields": [
         {
-          "active": true,
           "name": "api_type",
           "req": true,
           "type": [
@@ -6087,11 +5121,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 0
+          ]
         },
         {
-          "active": true,
           "name": "app_id",
           "req": true,
           "type": [
@@ -6100,11 +5132,9 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "cache_discount",
           "req": true,
           "type": [
@@ -6113,11 +5143,9 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 2
+          ]
         },
         {
-          "active": true,
           "name": "cancelled",
           "req": true,
           "type": [
@@ -6126,25 +5154,19 @@ class Config {
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "data_region",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "external_user",
           "req": true,
           "type": [
@@ -6153,11 +5175,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 6
+          ]
         },
         {
-          "active": true,
           "name": "finish_reason",
           "req": true,
           "type": [
@@ -6166,11 +5186,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 7
+          ]
         },
         {
-          "active": true,
           "name": "generation_time",
           "req": true,
           "type": [
@@ -6179,11 +5197,9 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 8
+          ]
         },
         {
-          "active": true,
           "name": "http_referer",
           "req": true,
           "type": [
@@ -6192,25 +5208,19 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "is_byok",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 11
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "latency",
           "req": true,
           "type": [
@@ -6219,18 +5229,14 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 12
+          ]
         },
         {
-          "active": true,
           "name": "model",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "moderation_latency",
           "req": true,
           "type": [
@@ -6239,11 +5245,9 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 14
+          ]
         },
         {
-          "active": true,
           "name": "native_finish_reason",
           "req": true,
           "type": [
@@ -6252,11 +5256,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 15
+          ]
         },
         {
-          "active": true,
           "name": "native_tokens_cached",
           "req": true,
           "type": [
@@ -6265,11 +5267,9 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 16
+          ]
         },
         {
-          "active": true,
           "name": "native_tokens_completion",
           "req": true,
           "type": [
@@ -6278,11 +5278,9 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 17
+          ]
         },
         {
-          "active": true,
           "name": "native_tokens_completion_images",
           "req": true,
           "type": [
@@ -6291,11 +5289,9 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 18
+          ]
         },
         {
-          "active": true,
           "name": "native_tokens_prompt",
           "req": true,
           "type": [
@@ -6304,11 +5300,9 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 19
+          ]
         },
         {
-          "active": true,
           "name": "native_tokens_reasoning",
           "req": true,
           "type": [
@@ -6317,11 +5311,9 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 20
+          ]
         },
         {
-          "active": true,
           "name": "num_fetches",
           "req": true,
           "type": [
@@ -6330,11 +5322,9 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 21
+          ]
         },
         {
-          "active": true,
           "name": "num_input_audio_prompt",
           "req": true,
           "type": [
@@ -6343,11 +5333,9 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 22
+          ]
         },
         {
-          "active": true,
           "name": "num_media_completion",
           "req": true,
           "type": [
@@ -6356,11 +5344,9 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 23
+          ]
         },
         {
-          "active": true,
           "name": "num_media_prompt",
           "req": true,
           "type": [
@@ -6369,11 +5355,9 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 24
+          ]
         },
         {
-          "active": true,
           "name": "num_search_results",
           "req": true,
           "type": [
@@ -6382,18 +5366,14 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 25
+          ]
         },
         {
-          "active": true,
           "name": "origin",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 26
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "preset_id",
           "req": true,
           "type": [
@@ -6402,11 +5382,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 27
+          ]
         },
         {
-          "active": true,
           "name": "provider_name",
           "req": true,
           "type": [
@@ -6415,11 +5393,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 28
+          ]
         },
         {
-          "active": true,
           "name": "provider_responses",
           "req": true,
           "type": [
@@ -6428,37 +5404,29 @@ class Config {
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 29
+          ]
         },
         {
-          "active": true,
           "name": "request_id",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 30
+          ]
         },
         {
-          "active": true,
           "name": "response_cache_source_id",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 31
+          ]
         },
         {
-          "active": true,
           "name": "router",
           "req": true,
           "type": [
@@ -6467,11 +5435,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 32
+          ]
         },
         {
-          "active": true,
           "name": "service_tier",
           "req": true,
           "type": [
@@ -6480,24 +5446,19 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 33
+          ]
         },
         {
-          "active": true,
           "name": "session_id",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 34
+          ]
         },
         {
-          "active": true,
           "name": "streamed",
           "req": true,
           "type": [
@@ -6506,11 +5467,9 @@ class Config {
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 35
+          ]
         },
         {
-          "active": true,
           "name": "tokens_completion",
           "req": true,
           "type": [
@@ -6519,11 +5478,9 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 36
+          ]
         },
         {
-          "active": true,
           "name": "tokens_prompt",
           "req": true,
           "type": [
@@ -6532,18 +5489,14 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 37
+          ]
         },
         {
-          "active": true,
           "name": "total_cost",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 38
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "upstream_id",
           "req": true,
           "type": [
@@ -6552,11 +5505,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 39
+          ]
         },
         {
-          "active": true,
           "name": "upstream_inference_cost",
           "req": true,
           "type": [
@@ -6565,18 +5516,14 @@ class Config {
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 40
+          ]
         },
         {
-          "active": true,
           "name": "usage",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 41
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "user_agent",
           "req": true,
           "type": [
@@ -6585,11 +5532,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 42
+          ]
         },
         {
-          "active": true,
           "name": "web_search_engine",
           "req": true,
           "type": [
@@ -6598,8 +5543,7 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 43
+          ]
         }
       ],
       "name": "generation",
@@ -6609,37 +5553,29 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "gen-1234567890",
                     "kind": "query",
                     "name": "id",
@@ -6666,11 +5602,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -6680,18 +5614,19 @@ class Config {
     "generation_content": {
       "fields": [
         {
-          "active": true,
           "name": "input",
           "req": true,
           "type": "`$ANY`",
-          "index$": 0
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 0
+          }
         },
         {
-          "active": true,
           "name": "output",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         }
       ],
       "name": "generation_content",
@@ -6701,37 +5636,29 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "gen-1234567890",
                     "kind": "query",
                     "name": "id",
@@ -6759,11 +5686,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -6773,246 +5698,189 @@ class Config {
     "guardrail": {
       "fields": [
         {
-          "active": true,
           "name": "allowed_models",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 0
+          ]
         },
         {
-          "active": true,
           "name": "allowed_providers",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "content_filter_builtins",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 2
+          ]
         },
         {
-          "active": true,
           "name": "content_filters",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "description",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "enforce_zdr",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 6
+          ]
         },
         {
-          "active": true,
           "name": "enforce_zdr_anthropic",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 7
+          ]
         },
         {
-          "active": true,
           "name": "enforce_zdr_google",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 8
+          ]
         },
         {
-          "active": true,
           "name": "enforce_zdr_openai",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "enforce_zdr_other",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 10
+          ]
         },
         {
-          "active": true,
           "name": "enforce_zdr_xai",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 11
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "ignored_models",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 13
+          ]
         },
         {
-          "active": true,
           "name": "ignored_providers",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 14
+          ]
         },
         {
-          "active": true,
           "name": "limit_usd",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 15
+          ]
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 16
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "reset_interval",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 17
+          ]
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 18
+          ]
         },
         {
-          "active": true,
           "name": "workspace_id",
           "op": {
             "create": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 19
+          "type": "`$STRING`"
         }
       ],
       "name": "guardrail",
@@ -7022,31 +5890,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7067,62 +5928,49 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "list": {
           "input": "data",
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -7132,12 +5980,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": "0df9e665-d932-5740-b2c7-b52af166bc11",
                     "kind": "query",
                     "name": "workspace_id",
                     "orig": "workspace_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7161,55 +6007,44 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "550e8400-e29b-41d4-a716-446655440000",
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -7231,55 +6066,44 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         },
         "remove": {
           "input": "data",
           "name": "remove",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "550e8400-e29b-41d4-a716-446655440000",
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -7301,11 +6125,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "remove"
+          ]
         }
       },
       "relations": {
@@ -7315,123 +6137,87 @@ class Config {
     "image": {
       "fields": [
         {
-          "active": true,
           "name": "aspect_ratio",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "background",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "created",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 2
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "data",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 3
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "input_references",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 4
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "model",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "n",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 6
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "output_compression",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 7
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "output_format",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "prompt",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "provider",
-          "req": false,
           "type": "`$OBJECT`",
-          "index$": 10
+          "union": {
+            "branches": 2,
+            "count": 4,
+            "depth": 3
+          }
         },
         {
-          "active": true,
           "name": "quality",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "resolution",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "seed",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 13
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "size",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "stream",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 15
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "usage",
           "req": true,
           "type": "`$OBJECT`",
-          "index$": 16
+          "union": {
+            "branches": 4,
+            "count": 1,
+            "depth": 3
+          }
         }
       ],
       "name": "image",
@@ -7441,31 +6227,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7486,11 +6265,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -7500,35 +6277,26 @@ class Config {
     "image_model_endpoint": {
       "fields": [
         {
-          "active": true,
           "name": "allowed_passthrough_parameters",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "pricing",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "provider_name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "provider_slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "provider_tag",
           "req": true,
           "type": [
@@ -7537,22 +6305,17 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 4
+          ]
         },
         {
-          "active": true,
           "name": "supported_parameters",
           "req": true,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "supports_streaming",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 6
+          "type": "`$BOOLEAN`"
         }
       ],
       "name": "image_model_endpoint",
@@ -7562,54 +6325,43 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "bytedance-seed",
                     "kind": "param",
                     "name": "model_id",
                     "orig": "author",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "seedream-4.5",
                     "kind": "param",
                     "name": "slug",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 1
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -7640,11 +6392,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.endpoints`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -7658,60 +6408,44 @@ class Config {
     "image_models_list": {
       "fields": [
         {
-          "active": true,
           "name": "architecture",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 0
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "created",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 1
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "description",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "endpoints",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "supported_parameters",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 6
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "supports_streaming",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 7
+          "type": "`$BOOLEAN`"
         }
       ],
       "name": "image_models_list",
@@ -7721,31 +6455,24 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7767,11 +6494,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -7809,7 +6534,6 @@ class Config {
     "list_key_assignment": {
       "fields": [
         {
-          "active": true,
           "name": "assigned_by",
           "req": true,
           "type": [
@@ -7818,50 +6542,37 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 0
+          ]
         },
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "guardrail_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "key_hash",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "key_label",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "key_name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         }
       ],
       "name": "list_key_assignment",
@@ -7871,63 +6582,50 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "550e8400-e29b-41d4-a716-446655440000",
                     "kind": "param",
                     "name": "guardrail_id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -7965,55 +6663,43 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -8044,11 +6730,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -8062,7 +6746,6 @@ class Config {
     "list_member_assignment": {
       "fields": [
         {
-          "active": true,
           "name": "assigned_by",
           "req": true,
           "type": [
@@ -8071,43 +6754,32 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 0
+          ]
         },
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "guardrail_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "organization_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "user_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         }
       ],
       "name": "list_member_assignment",
@@ -8117,63 +6789,50 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "550e8400-e29b-41d4-a716-446655440000",
                     "kind": "param",
                     "name": "guardrail_id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -8211,55 +6870,43 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -8290,11 +6937,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -8308,18 +6953,19 @@ class Config {
     "list_observability_destination": {
       "fields": [
         {
-          "active": true,
           "name": "data",
           "req": true,
           "type": "`$ARRAY`",
-          "index$": 0
+          "union": {
+            "branches": 2,
+            "count": 11,
+            "depth": 13
+          }
         },
         {
-          "active": true,
           "name": "total_count",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 1
+          "type": "`$INTEGER`"
         }
       ],
       "name": "list_observability_destination",
@@ -8329,51 +6975,40 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -8383,12 +7018,10 @@ class Config {
                     ]
                   },
                   {
-                    "active": true,
                     "example": "550e8400-e29b-41d4-a716-446655440000",
                     "kind": "query",
                     "name": "workspace_id",
                     "orig": "workspace_id",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -8413,11 +7046,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -8435,42 +7066,31 @@ class Config {
     "list_preset_version": {
       "fields": [
         {
-          "active": true,
           "name": "config",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 0
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "creator_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "preset_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "system_prompt",
           "req": true,
           "type": [
@@ -8479,22 +7099,17 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "updated_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "version",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 7
+          "type": "`$INTEGER`"
         }
       ],
       "name": "list_preset_version",
@@ -8504,63 +7119,50 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "my-preset",
                     "kind": "param",
                     "name": "slug",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -8592,11 +7194,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -8618,28 +7218,21 @@ class Config {
     "list_workspace_budget": {
       "fields": [
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "limit_usd",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 2
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "reset_interval",
           "req": true,
           "type": [
@@ -8648,22 +7241,17 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "updated_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "workspace_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         }
       ],
       "name": "list_workspace_budget",
@@ -8673,44 +7261,35 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "production",
                     "kind": "param",
                     "name": "workspace_id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -8738,11 +7317,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -8756,39 +7333,29 @@ class Config {
     "list_workspace_member": {
       "fields": [
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "role",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "user_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "workspace_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         }
       ],
       "name": "list_workspace_member",
@@ -8798,63 +7365,50 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "production",
                     "kind": "param",
                     "name": "workspace_id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -8891,11 +7445,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -8921,16 +7473,12 @@ class Config {
     "message": {
       "fields": [
         {
-          "active": true,
           "name": "cache_control",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 0
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "context_management",
-          "req": false,
           "type": [
             "`$ONE`",
             [
@@ -8938,30 +7486,27 @@ class Config {
               "`$NULL`"
             ]
           ],
-          "index$": 1
+          "union": {
+            "branches": 3,
+            "count": 3,
+            "depth": 7
+          }
         },
         {
-          "active": true,
           "name": "fallbacks",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 2
+          ]
         },
         {
-          "active": true,
           "name": "max_tokens",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 3
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "messages",
           "req": true,
           "type": [
@@ -8971,47 +7516,40 @@ class Config {
               "`$NULL`"
             ]
           ],
-          "index$": 4
+          "union": {
+            "branches": 12,
+            "count": 7,
+            "depth": 14
+          }
         },
         {
-          "active": true,
           "name": "metadata",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 5
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "model",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "models",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 7
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "output_config",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 8
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "plugins",
-          "req": false,
           "type": "`$ARRAY`",
-          "index$": 9
+          "union": {
+            "branches": 5,
+            "count": 4,
+            "depth": 12
+          }
         },
         {
-          "active": true,
           "name": "provider",
-          "req": false,
           "type": [
             "`$ONE`",
             [
@@ -9019,125 +7557,101 @@ class Config {
               "`$NULL`"
             ]
           ],
-          "index$": 10
+          "union": {
+            "branches": 2,
+            "count": 6,
+            "depth": 3
+          }
         },
         {
-          "active": true,
           "name": "route",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 11
+          ]
         },
         {
-          "active": true,
           "name": "service_tier",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "session_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "speed",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 14
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "stop_sequences",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 15
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "stop_server_tools_when",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 16
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "stream",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 17
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "system",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 18
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 0
+          }
         },
         {
-          "active": true,
           "name": "temperature",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 19
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "thinking",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 20
+          "union": {
+            "branches": 3,
+            "count": 1,
+            "depth": 0
+          }
         },
         {
-          "active": true,
           "name": "tool_choice",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 21
+          "union": {
+            "branches": 4,
+            "count": 1,
+            "depth": 0
+          }
         },
         {
-          "active": true,
           "name": "tools",
-          "req": false,
           "type": "`$ARRAY`",
-          "index$": 22
+          "union": {
+            "branches": 13,
+            "count": 2,
+            "depth": 6
+          }
         },
         {
-          "active": true,
           "name": "top_k",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 23
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "top_p",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 24
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "trace",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 25
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "user",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 26
+          "type": "`$STRING`"
         }
       ],
       "name": "message",
@@ -9147,40 +7661,31 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "enabled",
                     "kind": "header",
                     "name": "x_open_router_metadata",
                     "orig": "x_open_router_metadata",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -9202,11 +7707,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -9224,28 +7727,21 @@ class Config {
     "model": {
       "fields": [
         {
-          "active": true,
           "name": "architecture",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 0
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "benchmarks",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "canonical_slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "context_length",
           "req": true,
           "type": [
@@ -9254,18 +7750,14 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "created",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "default_parameters",
           "req": true,
           "type": [
@@ -9274,78 +7766,58 @@ class Config {
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "expiration_date",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 7
+          ]
         },
         {
-          "active": true,
           "name": "hugging_face_id",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 8
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "knowledge_cutoff",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 10
+          ]
         },
         {
-          "active": true,
           "name": "links",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 11
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "per_request_limits",
           "req": true,
           "type": [
@@ -9354,32 +7826,24 @@ class Config {
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 13
+          ]
         },
         {
-          "active": true,
           "name": "pricing",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 14
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "reasoning",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 15
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "supported_parameters",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 16
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "supported_voices",
           "req": true,
           "type": [
@@ -9388,15 +7852,12 @@ class Config {
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 17
+          ]
         },
         {
-          "active": true,
           "name": "top_provider",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 18
+          "type": "`$OBJECT`"
         }
       ],
       "name": "model",
@@ -9406,51 +7867,40 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 500,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -9480,65 +7930,52 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "openai",
                     "kind": "param",
                     "name": "author",
                     "orig": "author",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "gpt-4",
                     "kind": "param",
                     "name": "slug",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 1
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -9562,11 +7999,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -9580,11 +8015,9 @@ class Config {
     "models_count": {
       "fields": [
         {
-          "active": true,
           "name": "count",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 0
+          "type": "`$INTEGER`"
         }
       ],
       "name": "models_count",
@@ -9594,42 +8027,33 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "text",
                     "kind": "query",
                     "name": "output_modality",
                     "orig": "output_modality",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -9652,11 +8076,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -9666,28 +8088,21 @@ class Config {
     "models_list": {
       "fields": [
         {
-          "active": true,
           "name": "architecture",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 0
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "benchmarks",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "canonical_slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "context_length",
           "req": true,
           "type": [
@@ -9696,18 +8111,14 @@ class Config {
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "created",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "default_parameters",
           "req": true,
           "type": [
@@ -9716,78 +8127,58 @@ class Config {
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "expiration_date",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 7
+          ]
         },
         {
-          "active": true,
           "name": "hugging_face_id",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 8
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "knowledge_cutoff",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 10
+          ]
         },
         {
-          "active": true,
           "name": "links",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 11
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "per_request_limits",
           "req": true,
           "type": [
@@ -9796,32 +8187,24 @@ class Config {
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 13
+          ]
         },
         {
-          "active": true,
           "name": "pricing",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 14
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "reasoning",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 15
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "supported_parameters",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 16
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "supported_voices",
           "req": true,
           "type": [
@@ -9830,15 +8213,12 @@ class Config {
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 17
+          ]
         },
         {
-          "active": true,
           "name": "top_provider",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 18
+          "type": "`$OBJECT`"
         }
       ],
       "name": "models_list",
@@ -9848,51 +8228,40 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 500,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -9922,11 +8291,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -9936,124 +8303,84 @@ class Config {
     "o_auth": {
       "fields": [
         {
-          "active": true,
           "name": "app_id",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 0
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "callback_url",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "code",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "code_challenge",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "code_challenge_method",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 4
+          ]
         },
         {
-          "active": true,
           "name": "code_verifier",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "expires_at",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 7
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "key",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "key_label",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "limit",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 11
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "spawn_agent",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "spawn_cloud",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "usage_limit_type",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "user_id",
           "req": true,
           "type": [
@@ -10062,15 +8389,11 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 15
+          ]
         },
         {
-          "active": true,
           "name": "workspace_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 16
+          "type": "`$STRING`"
         }
       ],
       "name": "o_auth",
@@ -10080,31 +8403,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -10126,35 +8442,27 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -10177,11 +8485,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -10191,11 +8497,8 @@ class Config {
     "observability_destination": {
       "fields": [
         {
-          "active": true,
           "name": "data",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 0
+          "type": "`$OBJECT`"
         }
       ],
       "name": "observability_destination",
@@ -10205,44 +8508,35 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -10265,55 +8559,44 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         },
         "remove": {
           "input": "data",
           "name": "remove",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -10336,11 +8619,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "remove"
+          ]
         }
       },
       "relations": {
@@ -10350,187 +8631,148 @@ class Config {
     "open_responses_result": {
       "fields": [
         {
-          "active": true,
           "name": "background",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 0
+          ]
         },
         {
-          "active": true,
           "name": "cache_control",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "debug",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 2
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "frequency_penalty",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "image_config",
-          "req": false,
           "type": "`$OBJECT`",
-          "index$": 4
+          "union": {
+            "branches": 3,
+            "count": 1,
+            "depth": 1
+          }
         },
         {
-          "active": true,
           "name": "include",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "input",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 6
+          "union": {
+            "branches": 49,
+            "count": 35,
+            "depth": 19
+          }
         },
         {
-          "active": true,
           "name": "instructions",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 7
+          ]
         },
         {
-          "active": true,
           "name": "max_output_tokens",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 8
+          ]
         },
         {
-          "active": true,
           "name": "max_tool_calls",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "metadata",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 10
+          ]
         },
         {
-          "active": true,
           "name": "modalities",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 11
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "model",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "models",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 13
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "parallel_tool_calls",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 14
+          ]
         },
         {
-          "active": true,
           "name": "plugins",
-          "req": false,
           "type": "`$ARRAY`",
-          "index$": 15
+          "union": {
+            "branches": 5,
+            "count": 4,
+            "depth": 12
+          }
         },
         {
-          "active": true,
           "name": "presence_penalty",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 16
+          ]
         },
         {
-          "active": true,
           "name": "previous_response_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "prompt",
           "req": true,
           "type": [
@@ -10540,23 +8782,23 @@ class Config {
               "`$NULL`"
             ]
           ],
-          "index$": 18
+          "union": {
+            "branches": 4,
+            "count": 1,
+            "depth": 3
+          }
         },
         {
-          "active": true,
           "name": "prompt_cache_key",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 19
+          ]
         },
         {
-          "active": true,
           "name": "prompt_cache_options",
           "req": true,
           "type": [
@@ -10565,13 +8807,10 @@ class Config {
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 20
+          ]
         },
         {
-          "active": true,
           "name": "provider",
-          "req": false,
           "type": [
             "`$ONE`",
             [
@@ -10579,175 +8818,140 @@ class Config {
               "`$NULL`"
             ]
           ],
-          "index$": 21
+          "union": {
+            "branches": 2,
+            "count": 6,
+            "depth": 3
+          }
         },
         {
-          "active": true,
           "name": "reasoning",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 22
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "route",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 23
+          ]
         },
         {
-          "active": true,
           "name": "safety_identifier",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 24
+          ]
         },
         {
-          "active": true,
           "name": "service_tier",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 25
+          ]
         },
         {
-          "active": true,
           "name": "session_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 26
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "stop_server_tools_when",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 27
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "store",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 28
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "stream",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 29
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "temperature",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 30
+          ]
         },
         {
-          "active": true,
           "name": "text",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 31
+          "union": {
+            "branches": 3,
+            "count": 1,
+            "depth": 4
+          }
         },
         {
-          "active": true,
           "name": "tool_choice",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 32
+          "union": {
+            "branches": 8,
+            "count": 3,
+            "depth": 4
+          }
         },
         {
-          "active": true,
           "name": "tools",
-          "req": false,
           "type": "`$ARRAY`",
-          "index$": 33
+          "union": {
+            "branches": 27,
+            "count": 10,
+            "depth": 12
+          }
         },
         {
-          "active": true,
           "name": "top_k",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 34
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "top_logprobs",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$INTEGER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 35
+          ]
         },
         {
-          "active": true,
           "name": "top_p",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 36
+          ]
         },
         {
-          "active": true,
           "name": "trace",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 37
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "truncation",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 38
+          ]
         },
         {
-          "active": true,
           "name": "user",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 39
+          "type": "`$STRING`"
         }
       ],
       "name": "open_responses_result",
@@ -10757,40 +8961,31 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "enabled",
                     "kind": "header",
                     "name": "x_open_router_metadata",
                     "orig": "x_open_router_metadata",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -10812,11 +9007,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -10826,14 +9019,11 @@ class Config {
     "organization": {
       "fields": [
         {
-          "active": true,
           "name": "email",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "first_name",
           "req": true,
           "type": [
@@ -10842,18 +9032,14 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "last_name",
           "req": true,
           "type": [
@@ -10862,15 +9048,12 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "role",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         }
       ],
       "name": "organization",
@@ -10880,51 +9063,40 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -10955,11 +9127,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -10969,14 +9139,11 @@ class Config {
     "preset": {
       "fields": [
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "creator_user_id",
           "req": true,
           "type": [
@@ -10985,11 +9152,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "description",
           "req": true,
           "type": [
@@ -10998,11 +9163,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 2
+          ]
         },
         {
-          "active": true,
           "name": "designated_version",
           "req": true,
           "type": [
@@ -11011,11 +9174,9 @@ class Config {
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "designated_version_id",
           "req": true,
           "type": [
@@ -11024,39 +9185,29 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 4
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "status",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "status_updated_at",
           "req": true,
           "type": [
@@ -11065,18 +9216,14 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "updated_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "workspace_id",
           "req": true,
           "type": [
@@ -11085,8 +9232,7 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 11
+          ]
         }
       ],
       "name": "preset",
@@ -11096,51 +9242,40 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -11169,55 +9304,44 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "my-preset",
                     "kind": "param",
                     "name": "id",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -11244,11 +9368,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -11262,42 +9384,31 @@ class Config {
     "preset_version": {
       "fields": [
         {
-          "active": true,
           "name": "config",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 0
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "creator_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "preset_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "system_prompt",
           "req": true,
           "type": [
@@ -11306,22 +9417,17 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "updated_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "version",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 7
+          "type": "`$INTEGER`"
         }
       ],
       "name": "preset_version",
@@ -11331,54 +9437,43 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "1",
                     "kind": "param",
                     "name": "id",
                     "orig": "version",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "my-preset",
                     "kind": "param",
                     "name": "slug",
                     "orig": "slug",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 1
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -11408,11 +9503,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -11426,40 +9519,31 @@ class Config {
     "provider": {
       "fields": [
         {
-          "active": true,
           "name": "datacenters",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 0
+          ]
         },
         {
-          "active": true,
           "name": "headquarters",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "privacy_policy_url",
           "req": true,
           "type": [
@@ -11468,41 +9552,32 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "status_page_url",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "terms_of_service_url",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 6
+          ]
         }
       ],
       "name": "provider",
@@ -11512,31 +9587,24 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -11557,11 +9625,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -11579,25 +9645,19 @@ class Config {
     "rankings_daily": {
       "fields": [
         {
-          "active": true,
           "name": "date",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "model_permaslug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "total_tokens",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         }
       ],
       "name": "rankings_daily",
@@ -11607,96 +9667,75 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "programming",
                     "kind": "query",
                     "name": "category",
                     "orig": "category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "100K",
                     "kind": "query",
                     "name": "context_bucket",
                     "orig": "context_bucket",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "2026-05-11",
                     "kind": "query",
                     "name": "end_date",
                     "orig": "end_date",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "natural",
                     "kind": "query",
                     "name": "language_type",
                     "orig": "language_type",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "text",
                     "kind": "query",
                     "name": "modality",
                     "orig": "modality",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "day",
                     "kind": "query",
                     "name": "period",
                     "orig": "period",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "2026-04-12",
                     "kind": "query",
                     "name": "start_date",
                     "orig": "start_date",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -11725,11 +9764,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -11754,60 +9791,45 @@ class Config {
     "rerank": {
       "fields": [
         {
-          "active": true,
           "name": "documents",
           "req": true,
           "type": "`$ARRAY`",
-          "index$": 0
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 1
+          }
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "model",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "provider",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "query",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "results",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 5
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "top_n",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 6
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "usage",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 7
+          "type": "`$OBJECT`"
         }
       ],
       "name": "rerank",
@@ -11817,31 +9839,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -11862,11 +9877,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -11892,95 +9905,59 @@ class Config {
     "stt": {
       "fields": [
         {
-          "active": true,
           "name": "duration",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 0
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "input_audio",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "language",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "model",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "provider",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 4
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "response_format",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "segments",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 6
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "task",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "temperature",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 8
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "text",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "timestamp_granularities",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 10
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "usage",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 11
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "words",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 12
+          "type": "`$ARRAY`"
         }
       ],
       "name": "stt",
@@ -11990,31 +9967,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -12036,11 +10006,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -12050,32 +10018,23 @@ class Config {
     "submit_generation_feedback": {
       "fields": [
         {
-          "active": true,
           "name": "category",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "comment",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "generation_id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "success",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 3
+          "type": "`$BOOLEAN`"
         }
       ],
       "name": "submit_generation_feedback",
@@ -12085,31 +10044,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -12131,11 +10083,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -12145,32 +10095,24 @@ class Config {
     "task": {
       "fields": [
         {
-          "active": true,
           "name": "as_of",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "classifications",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "macro_categories",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 2
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "window_days",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 3
+          "type": "`$INTEGER`"
         }
       ],
       "name": "task",
@@ -12180,42 +10122,33 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "7d",
                     "kind": "query",
                     "name": "window",
                     "orig": "window",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -12238,11 +10171,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -12260,46 +10191,31 @@ class Config {
     "tts": {
       "fields": [
         {
-          "active": true,
           "name": "input",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "model",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "provider",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 2
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "response_format",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "speed",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 4
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "voice",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         }
       ],
       "name": "tts",
@@ -12309,31 +10225,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -12355,11 +10264,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {
@@ -12369,18 +10276,14 @@ class Config {
     "unified_benchmark": {
       "fields": [
         {
-          "active": true,
           "name": "data",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "meta",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         }
       ],
       "name": "unified_benchmark",
@@ -12390,78 +10293,61 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": "models",
                     "kind": "query",
                     "name": "arena",
                     "orig": "arena",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "codecategories",
                     "kind": "query",
                     "name": "category",
                     "orig": "category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "max_result",
                     "orig": "max_result",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": "artificial-analysis",
                     "kind": "query",
                     "name": "source",
                     "orig": "source",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "coding",
                     "kind": "query",
                     "name": "task_type",
                     "orig": "task_type",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -12487,11 +10373,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -12501,64 +10385,46 @@ class Config {
     "update_byok_key": {
       "fields": [
         {
-          "active": true,
           "name": "allowed_models",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 0
+          ]
         },
         {
-          "active": true,
           "name": "allowed_user_ids",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "disabled",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 2
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_fallback",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 3
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "key",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         }
       ],
       "name": "update_byok_key",
@@ -12568,44 +10434,35 @@ class Config {
           "name": "update",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "11111111-2222-3333-4444-555555555555",
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -12627,11 +10484,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "update"
+          ]
         }
       },
       "relations": {
@@ -12641,206 +10496,158 @@ class Config {
     "update_guardrail": {
       "fields": [
         {
-          "active": true,
           "name": "allowed_models",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 0
+          ]
         },
         {
-          "active": true,
           "name": "allowed_providers",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "content_filter_builtins",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 2
+          ]
         },
         {
-          "active": true,
           "name": "content_filters",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "description",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 4
+          ]
         },
         {
-          "active": true,
           "name": "enforce_zdr",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "enforce_zdr_anthropic",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 6
+          ]
         },
         {
-          "active": true,
           "name": "enforce_zdr_google",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 7
+          ]
         },
         {
-          "active": true,
           "name": "enforce_zdr_openai",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 8
+          ]
         },
         {
-          "active": true,
           "name": "enforce_zdr_other",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "enforce_zdr_xai",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 10
+          ]
         },
         {
-          "active": true,
           "name": "ignored_models",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 11
+          ]
         },
         {
-          "active": true,
           "name": "ignored_providers",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 12
+          ]
         },
         {
-          "active": true,
           "name": "limit_usd",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$NUMBER`",
               "`$NULL`"
             ]
-          ],
-          "index$": 13
+          ]
         },
         {
-          "active": true,
           "name": "name",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "reset_interval",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 15
+          ]
         }
       ],
       "name": "update_guardrail",
@@ -12850,44 +10657,35 @@ class Config {
           "name": "update",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "550e8400-e29b-41d4-a716-446655440000",
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -12909,11 +10707,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "update"
+          ]
         }
       },
       "relations": {
@@ -12923,59 +10719,43 @@ class Config {
     "update_observability_destination": {
       "fields": [
         {
-          "active": true,
           "name": "api_key_hashes",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 0
+          ]
         },
         {
-          "active": true,
           "name": "config",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "enabled",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 2
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "filter_rules",
-          "req": false,
           "type": "`$ANY`",
-          "index$": 3
+          "union": {
+            "branches": 2,
+            "count": 1,
+            "depth": 10
+          }
         },
         {
-          "active": true,
           "name": "name",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "privacy_mode",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 5
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "sampling_rate",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 6
+          "type": "`$NUMBER`"
         }
       ],
       "name": "update_observability_destination",
@@ -12985,44 +10765,35 @@ class Config {
           "name": "update",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -13045,11 +10816,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "update"
+          ]
         }
       },
       "relations": {
@@ -13059,14 +10828,11 @@ class Config {
     "update_workspace": {
       "fields": [
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "created_by",
           "req": true,
           "type": [
@@ -13075,11 +10841,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "default_image_model",
           "op": {
             "list": {
@@ -13093,18 +10857,15 @@ class Config {
               ]
             }
           },
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 2
+          ]
         },
         {
-          "active": true,
           "name": "default_provider_sort",
           "op": {
             "list": {
@@ -13118,18 +10879,15 @@ class Config {
               ]
             }
           },
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "default_text_model",
           "op": {
             "list": {
@@ -13143,18 +10901,15 @@ class Config {
               ]
             }
           },
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 4
+          ]
         },
         {
-          "active": true,
           "name": "description",
           "op": {
             "list": {
@@ -13168,25 +10923,20 @@ class Config {
               ]
             }
           },
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "io_logging_api_key_ids",
           "op": {
             "list": {
@@ -13200,18 +10950,15 @@ class Config {
               ]
             }
           },
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 7
+          ]
         },
         {
-          "active": true,
           "name": "io_logging_sampling_rate",
           "op": {
             "list": {
@@ -13219,12 +10966,9 @@ class Config {
               "type": "`$NUMBER`"
             }
           },
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 8
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "is_data_discount_logging_enabled",
           "op": {
             "list": {
@@ -13232,12 +10976,9 @@ class Config {
               "type": "`$BOOLEAN`"
             }
           },
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 9
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_observability_broadcast_enabled",
           "op": {
             "list": {
@@ -13245,12 +10986,9 @@ class Config {
               "type": "`$BOOLEAN`"
             }
           },
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 10
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_observability_io_logging_enabled",
           "op": {
             "list": {
@@ -13258,38 +10996,29 @@ class Config {
               "type": "`$BOOLEAN`"
             }
           },
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 11
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "name",
           "op": {
             "update": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "slug",
           "op": {
             "update": {
-              "req": false,
               "type": "`$STRING`"
             }
           },
           "req": true,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
           "req": true,
           "type": [
@@ -13298,8 +11027,7 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 14
+          ]
         }
       ],
       "name": "update_workspace",
@@ -13309,31 +11037,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -13354,62 +11075,49 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "list": {
           "input": "data",
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 50,
                     "kind": "query",
                     "name": "limit",
                     "orig": "limit",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "offset",
                     "orig": "offset",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -13438,55 +11146,44 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "update": {
           "input": "data",
           "name": "update",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "production",
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -13508,11 +11205,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "update"
+          ]
         }
       },
       "relations": {
@@ -13522,11 +11217,9 @@ class Config {
     "upsert_workspace_budget": {
       "fields": [
         {
-          "active": true,
           "name": "limit_usd",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 0
+          "type": "`$NUMBER`"
         }
       ],
       "name": "upsert_workspace_budget",
@@ -13536,54 +11229,43 @@ class Config {
           "name": "update",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "monthly",
                     "kind": "param",
                     "name": "id",
                     "orig": "interval",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "production",
                     "kind": "param",
                     "name": "workspace_id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 1
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -13614,11 +11296,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "update"
+          ]
         }
       },
       "relations": {
@@ -13652,137 +11332,84 @@ class Config {
     "video": {
       "fields": [
         {
-          "active": true,
           "name": "aspect_ratio",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "callback_url",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "duration",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 2
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "error",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "frame_images",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 4
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "generate_audio",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 5
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "generation_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "input_references",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 8
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "model",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "polling_url",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "prompt",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "provider",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 12
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "resolution",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "seed",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 14
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "size",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "status",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 16
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "unsigned_urls",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 17
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "usage",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 18
+          "type": "`$OBJECT`"
         }
       ],
       "name": "video",
@@ -13792,31 +11419,24 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -13837,55 +11457,44 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "job-abc123",
                     "kind": "param",
                     "name": "id",
                     "orig": "job_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -13912,11 +11521,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -13932,54 +11539,43 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "job-abc123",
                     "kind": "param",
                     "name": "id",
                     "orig": "job_id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "index",
                     "orig": "index",
-                    "reqd": false,
                     "type": [
                       "`$ONE`",
                       [
@@ -14016,11 +11612,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -14030,35 +11624,25 @@ class Config {
     "video_models_list": {
       "fields": [
         {
-          "active": true,
           "name": "allowed_passthrough_parameters",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "canonical_slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "created",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 2
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "generate_audio",
           "req": true,
           "type": [
@@ -14067,51 +11651,39 @@ class Config {
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 4
+          ]
         },
         {
-          "active": true,
           "name": "hugging_face_id",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "pricing_skus",
-          "req": false,
           "type": [
             "`$ONE`",
             [
               "`$OBJECT`",
               "`$NULL`"
             ]
-          ],
-          "index$": 8
+          ]
         },
         {
-          "active": true,
           "name": "seed",
           "req": true,
           "type": [
@@ -14120,11 +11692,9 @@ class Config {
               "`$BOOLEAN`",
               "`$NULL`"
             ]
-          ],
-          "index$": 9
+          ]
         },
         {
-          "active": true,
           "name": "supported_aspect_ratios",
           "req": true,
           "type": [
@@ -14133,11 +11703,9 @@ class Config {
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 10
+          ]
         },
         {
-          "active": true,
           "name": "supported_durations",
           "req": true,
           "type": [
@@ -14146,11 +11714,9 @@ class Config {
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 11
+          ]
         },
         {
-          "active": true,
           "name": "supported_frame_images",
           "req": true,
           "type": [
@@ -14159,11 +11725,9 @@ class Config {
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 12
+          ]
         },
         {
-          "active": true,
           "name": "supported_resolutions",
           "req": true,
           "type": [
@@ -14172,11 +11736,9 @@ class Config {
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 13
+          ]
         },
         {
-          "active": true,
           "name": "supported_sizes",
           "req": true,
           "type": [
@@ -14185,8 +11747,7 @@ class Config {
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 14
+          ]
         }
       ],
       "name": "video_models_list",
@@ -14196,31 +11757,24 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -14242,11 +11796,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -14256,14 +11808,11 @@ class Config {
     "workspace": {
       "fields": [
         {
-          "active": true,
           "name": "created_at",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "created_by",
           "req": true,
           "type": [
@@ -14272,11 +11821,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 1
+          ]
         },
         {
-          "active": true,
           "name": "default_image_model",
           "req": true,
           "type": [
@@ -14285,11 +11832,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 2
+          ]
         },
         {
-          "active": true,
           "name": "default_provider_sort",
           "req": true,
           "type": [
@@ -14298,11 +11843,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 3
+          ]
         },
         {
-          "active": true,
           "name": "default_text_model",
           "req": true,
           "type": [
@@ -14311,11 +11854,9 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 4
+          ]
         },
         {
-          "active": true,
           "name": "description",
           "req": true,
           "type": [
@@ -14324,18 +11865,14 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 5
+          ]
         },
         {
-          "active": true,
           "name": "id",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "io_logging_api_key_ids",
           "req": true,
           "type": [
@@ -14344,53 +11881,39 @@ class Config {
               "`$ARRAY`",
               "`$NULL`"
             ]
-          ],
-          "index$": 7
+          ]
         },
         {
-          "active": true,
           "name": "io_logging_sampling_rate",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 8
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "is_data_discount_logging_enabled",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 9
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_observability_broadcast_enabled",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 10
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_observability_io_logging_enabled",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 11
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "name",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "slug",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
           "req": true,
           "type": [
@@ -14399,8 +11922,7 @@ class Config {
               "`$STRING`",
               "`$NULL`"
             ]
-          ],
-          "index$": 14
+          ]
         }
       ],
       "name": "workspace",
@@ -14410,44 +11932,35 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "production",
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -14469,55 +11982,44 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         },
         "remove": {
           "input": "data",
           "name": "remove",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "production",
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -14539,11 +12041,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "remove"
+          ]
         }
       },
       "relations": {
@@ -14559,54 +12059,43 @@ class Config {
           "name": "remove",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "http_referer",
                     "orig": "http_referer",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_category",
                     "orig": "x_open_router_category",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "x_open_router_title",
                     "orig": "x_open_router_title",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "example": "monthly",
                     "kind": "param",
                     "name": "id",
                     "orig": "interval",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "production",
                     "kind": "param",
                     "name": "workspace_id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 1
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -14637,11 +12126,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "remove"
+          ]
         }
       },
       "relations": {

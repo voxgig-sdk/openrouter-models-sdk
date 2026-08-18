@@ -31,6 +31,11 @@ main: kit: entity: create_preset_from_inference: {
           "`$NULL`"
         ]
       ]
+      union: {
+        branches: 3
+        count: 3
+        depth: 7
+      }
     }
     {
       name: "debug"
@@ -63,6 +68,11 @@ main: kit: entity: create_preset_from_inference: {
       name: "image_config"
       req: false
       type: "`$OBJECT`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 1
+      }
     }
     {
       name: "include"
@@ -79,6 +89,11 @@ main: kit: entity: create_preset_from_inference: {
       name: "input"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 49
+        count: 35
+        depth: 19
+      }
     }
     {
       name: "instructions"
@@ -161,6 +176,11 @@ main: kit: entity: create_preset_from_inference: {
       name: "messages"
       req: true
       type: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 5
+        depth: 5
+      }
     }
     {
       name: "metadata"
@@ -219,6 +239,11 @@ main: kit: entity: create_preset_from_inference: {
       name: "plugins"
       req: false
       type: "`$ARRAY`"
+      union: {
+        branches: 5
+        count: 4
+        depth: 12
+      }
     }
     {
       name: "prediction"
@@ -230,6 +255,11 @@ main: kit: entity: create_preset_from_inference: {
           "`$NULL`"
         ]
       ]
+      union: {
+        branches: 2
+        count: 1
+        depth: 2
+      }
     }
     {
       name: "presence_penalty"
@@ -257,6 +287,11 @@ main: kit: entity: create_preset_from_inference: {
           "`$NULL`"
         ]
       ]
+      union: {
+        branches: 4
+        count: 1
+        depth: 3
+      }
     }
     {
       name: "prompt_cache_key"
@@ -290,6 +325,11 @@ main: kit: entity: create_preset_from_inference: {
           "`$NULL`"
         ]
       ]
+      union: {
+        branches: 2
+        count: 6
+        depth: 3
+      }
     }
     {
       name: "reasoning"
@@ -381,6 +421,11 @@ main: kit: entity: create_preset_from_inference: {
       name: "stop"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
     }
     {
       name: "stop_sequences"
@@ -417,6 +462,11 @@ main: kit: entity: create_preset_from_inference: {
       name: "system"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
     }
     {
       name: "temperature"
@@ -433,21 +483,41 @@ main: kit: entity: create_preset_from_inference: {
       name: "text"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 4
+      }
     }
     {
       name: "thinking"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 0
+      }
     }
     {
       name: "tool_choice"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 5
+        count: 1
+        depth: 0
+      }
     }
     {
       name: "tools"
       req: false
       type: "`$ARRAY`"
+      union: {
+        branches: 12
+        count: 2
+        depth: 6
+      }
     }
     {
       name: "top_a"

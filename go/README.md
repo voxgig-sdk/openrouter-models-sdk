@@ -4419,6 +4419,53 @@ Create an instance: `workspaceBudget := client.WorkspaceBudget(nil)`
 Create an instance: `zdr := client.Zdr(nil)`
 
 
+## Open types
+
+30 fields are carried as open values rather than typed structures.
+This follows from the API definition, not from a gap in this SDK: the
+definition describes them with untagged unions —
+`oneOf`/`anyOf` branches with no `discriminator` — so it never states which
+variant a given value is. Nothing can select a branch reliably, so the SDK
+passes the value through unchanged rather than assert a shape the API does not
+guarantee.
+
+| Entity | Field | Variants | Nesting |
+| --- | --- | --- | --- |
+| `create_preset_from_inference` | `input` | 49 | 19 levels |
+| `open_responses_result` | `input` | 49 | 19 levels |
+| `open_responses_result` | `tools` | 27 | 12 levels |
+| `message` | `tools` | 13 | 6 levels |
+| `chat_result` | `tools` | 12 | 6 levels |
+| `create_preset_from_inference` | `tools` | 12 | 6 levels |
+| `message` | `messages` | 12 | 14 levels |
+| `open_responses_result` | `tool_choice` | 8 | 4 levels |
+| `chat_result` | `plugins` | 5 | 12 levels |
+| `chat_result` | `tool_choice` | 5 | 0 levels |
+| `create_preset_from_inference` | `plugins` | 5 | 12 levels |
+| `create_preset_from_inference` | `tool_choice` | 5 | 0 levels |
+| `embedding` | `input` | 5 | 6 levels |
+| `message` | `plugins` | 5 | 12 levels |
+| `open_responses_result` | `plugins` | 5 | 12 levels |
+| `create_preset_from_inference` | `prompt` | 4 | 3 levels |
+| `image` | `usage` | 4 | 3 levels |
+| `message` | `tool_choice` | 4 | 0 levels |
+| `open_responses_result` | `prompt` | 4 | 3 levels |
+| `beta_analytics` | `classifier_filters` | 3 | 8 levels |
+| `beta_analytics` | `filters` | 3 | 6 levels |
+| `chat_result` | `image_config` | 3 | 1 level |
+| `create_preset_from_inference` | `context_management` | 3 | 7 levels |
+| `create_preset_from_inference` | `image_config` | 3 | 1 level |
+| `create_preset_from_inference` | `text` | 3 | 4 levels |
+| `create_preset_from_inference` | `thinking` | 3 | 0 levels |
+| `message` | `context_management` | 3 | 7 levels |
+| `message` | `thinking` | 3 | 0 levels |
+| `open_responses_result` | `image_config` | 3 | 1 level |
+| `open_responses_result` | `text` | 3 | 4 levels |
+
+These values round-trip unchanged — read them, modify them, send them back. If
+the API adds a `discriminator` to the definition, regenerating will type them.
+Every other field is typed normally.
+
 ## Advanced
 
 > The sections above cover everyday use. The material below explains the

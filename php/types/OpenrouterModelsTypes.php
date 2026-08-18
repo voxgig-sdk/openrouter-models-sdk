@@ -82,7 +82,7 @@ class ApiKey
 /** Request payload for ApiKey#load. */
 class ApiKeyLoadMatch
 {
-    public ?string $id = null;
+    public string $id;
 }
 
 /** Request payload for ApiKey#list. */
@@ -1256,7 +1256,13 @@ class ListKeyAssignment
 /** Request payload for ListKeyAssignment#list. */
 class ListKeyAssignmentListMatch
 {
+    public mixed $assigned_by = null;
+    public ?string $created_at = null;
     public ?string $guardrail_id = null;
+    public ?string $id = null;
+    public ?string $key_hash = null;
+    public ?string $key_label = null;
+    public ?string $key_name = null;
 }
 
 /** ListMemberAssignment entity data model. */
@@ -1273,7 +1279,12 @@ class ListMemberAssignment
 /** Request payload for ListMemberAssignment#list. */
 class ListMemberAssignmentListMatch
 {
+    public mixed $assigned_by = null;
+    public ?string $created_at = null;
     public ?string $guardrail_id = null;
+    public ?string $id = null;
+    public ?string $organization_id = null;
+    public ?string $user_id = null;
 }
 
 /** ListObservabilityDestination entity data model. */

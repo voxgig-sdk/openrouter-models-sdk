@@ -15,7 +15,7 @@ require_relative "../OpenrouterModels_sdk"
 module OpenrouterModelsFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = OpenrouterModelsConfig.make_config["feature"]
+    f = OpenrouterModelsConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

@@ -36,6 +36,11 @@ main: kit: entity: create_observability_destination: {
           "`$NULL`"
         ]
       ]
+      union: {
+        branches: 2
+        count: 1
+        depth: 8
+      }
     }
     {
       name: "name"

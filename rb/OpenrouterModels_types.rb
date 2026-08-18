@@ -218,7 +218,7 @@ ApiKey = Struct.new(
 # Request payload for ApiKey#load.
 #
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
 ApiKeyLoadMatch = Struct.new(
   :id,
   keyword_init: true
@@ -3743,10 +3743,34 @@ ListKeyAssignment = Struct.new(
 
 # Request payload for ListKeyAssignment#list.
 #
+# @!attribute [rw] assigned_by
+#   @return [Object, nil]
+#
+# @!attribute [rw] created_at
+#   @return [String, nil]
+#
 # @!attribute [rw] guardrail_id
 #   @return [String, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+#
+# @!attribute [rw] key_hash
+#   @return [String, nil]
+#
+# @!attribute [rw] key_label
+#   @return [String, nil]
+#
+# @!attribute [rw] key_name
+#   @return [String, nil]
 ListKeyAssignmentListMatch = Struct.new(
+  :assigned_by,
+  :created_at,
   :guardrail_id,
+  :id,
+  :key_hash,
+  :key_label,
+  :key_name,
   keyword_init: true
 )
 
@@ -3781,10 +3805,30 @@ ListMemberAssignment = Struct.new(
 
 # Request payload for ListMemberAssignment#list.
 #
+# @!attribute [rw] assigned_by
+#   @return [Object, nil]
+#
+# @!attribute [rw] created_at
+#   @return [String, nil]
+#
 # @!attribute [rw] guardrail_id
 #   @return [String, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+#
+# @!attribute [rw] organization_id
+#   @return [String, nil]
+#
+# @!attribute [rw] user_id
+#   @return [String, nil]
 ListMemberAssignmentListMatch = Struct.new(
+  :assigned_by,
+  :created_at,
   :guardrail_id,
+  :id,
+  :organization_id,
+  :user_id,
   keyword_init: true
 )
 

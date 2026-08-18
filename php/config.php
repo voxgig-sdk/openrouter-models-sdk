@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class OpenrouterModelsConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -119,81 +142,59 @@ class OpenrouterModelsConfig
         'activity' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'byok_usage_inference',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'completion_tokens',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'date',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'endpoint_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'model',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'model_permaslug',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'prompt_tokens',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'provider_name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'reasoning_tokens',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'requests',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'usage',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 10,
             ],
           ],
           'name' => 'activity',
@@ -203,60 +204,47 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'abc123def456...',
                         'kind' => 'query',
                         'name' => 'api_key_hash',
                         'orig' => 'api_key_hash',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '2025-08-24',
                         'kind' => 'query',
                         'name' => 'date',
                         'orig' => 'date',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'user_abc123',
                         'kind' => 'query',
                         'name' => 'user_id',
                         'orig' => 'user_id',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -281,10 +269,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -306,46 +292,34 @@ class OpenrouterModelsConfig
         'api_key' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'byok_usage',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'byok_usage_daily',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'byok_usage_monthly',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'byok_usage_weekly',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'creator_user_id',
               'op' => [
                 'create' => [
-                  'req' => false,
                   'type' => [
                     '`$ONE`',
                     [
@@ -363,25 +337,19 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'disabled',
               'op' => [
                 'update' => [
-                  'req' => false,
                   'type' => '`$BOOLEAN`',
                 ],
               ],
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'expires_at',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -389,66 +357,49 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'hash',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'include_byok_in_limit',
               'op' => [
                 'create' => [
-                  'req' => false,
                   'type' => '`$BOOLEAN`',
                 ],
                 'update' => [
-                  'req' => false,
                   'type' => '`$BOOLEAN`',
                 ],
               ],
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'is_free_tier',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'is_management_key',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'is_provisioning_key',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'label',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'limit',
               'op' => [
                 'create' => [
-                  'req' => false,
                   'type' => [
                     '`$ONE`',
                     [
@@ -458,7 +409,6 @@ class OpenrouterModelsConfig
                   ],
                 ],
                 'update' => [
-                  'req' => false,
                   'type' => [
                     '`$ONE`',
                     [
@@ -476,10 +426,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'limit_remaining',
               'req' => true,
               'type' => [
@@ -489,14 +437,11 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'limit_reset',
               'op' => [
                 'create' => [
-                  'req' => false,
                   'type' => [
                     '`$ONE`',
                     [
@@ -506,7 +451,6 @@ class OpenrouterModelsConfig
                   ],
                 ],
                 'update' => [
-                  'req' => false,
                   'type' => [
                     '`$ONE`',
                     [
@@ -524,30 +468,23 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 16,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'op' => [
                 'update' => [
-                  'req' => false,
                   'type' => '`$STRING`',
                 ],
               ],
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 17,
             ],
             [
-              'active' => true,
               'name' => 'rate_limit',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 18,
             ],
             [
-              'active' => true,
               'name' => 'updated_at',
               'req' => true,
               'type' => [
@@ -557,48 +494,36 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 19,
             ],
             [
-              'active' => true,
               'name' => 'usage',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 20,
             ],
             [
-              'active' => true,
               'name' => 'usage_daily',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 21,
             ],
             [
-              'active' => true,
               'name' => 'usage_monthly',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 22,
             ],
             [
-              'active' => true,
               'name' => 'usage_weekly',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 23,
             ],
             [
-              'active' => true,
               'name' => 'workspace_id',
               'op' => [
                 'create' => [
-                  'req' => false,
                   'type' => '`$STRING`',
                 ],
               ],
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 24,
             ],
           ],
           'name' => 'api_key',
@@ -608,31 +533,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -654,61 +572,48 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
             'list' => [
               'input' => 'data',
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'false',
                         'kind' => 'query',
                         'name' => 'include_disabled',
                         'orig' => 'include_disabled',
-                        'reqd' => false,
                         'type' => '`$BOOLEAN`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -718,12 +623,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => '0df9e665-d932-5740-b2c7-b52af166bc11',
                         'kind' => 'query',
                         'name' => 'workspace_id',
                         'orig' => 'workspace_id',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -748,54 +651,43 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'hash',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -823,34 +715,26 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -872,54 +756,43 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
             'remove' => [
               'input' => 'data',
               'name' => 'remove',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'hash',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -947,54 +820,43 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'remove',
             ],
             'update' => [
               'input' => 'data',
               'name' => 'update',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'hash',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1022,10 +884,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'update',
             ],
           ],
           'relations' => [
@@ -1035,39 +895,29 @@ class OpenrouterModelsConfig
         'app_ranking' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'app_id',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'app_name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'rank',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'total_requests',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'total_tokens',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
           ],
           'name' => 'app_ranking',
@@ -1077,69 +927,54 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'coding',
                         'kind' => 'query',
                         'name' => 'category',
                         'orig' => 'category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '2026-05-11',
                         'kind' => 'query',
                         'name' => 'end_date',
                         'orig' => 'end_date',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -1149,30 +984,24 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 'popular',
                         'kind' => 'query',
                         'name' => 'sort',
                         'orig' => 'sort',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '2026-04-12',
                         'kind' => 'query',
                         'name' => 'start_date',
                         'orig' => 'start_date',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'cli-agent',
                         'kind' => 'query',
                         'name' => 'subcategory',
                         'orig' => 'subcategory',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1202,10 +1031,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -1223,122 +1050,93 @@ class OpenrouterModelsConfig
         'beta_analytics' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'cachedAt',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'classifier_dimensions',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'classifier_filters',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 2,
+              'union' => [
+                'branches' => 3,
+                'count' => 2,
+                'depth' => 8,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'data',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'dimensions',
               'op' => [
                 'create' => [
-                  'req' => false,
                   'type' => '`$ARRAY`',
                 ],
               ],
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'filters',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 5,
+              'union' => [
+                'branches' => 3,
+                'count' => 2,
+                'depth' => 6,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'granularities',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'granularity',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'group_limit',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'limit',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'metadata',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'metrics',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'operators',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'order_by',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'time_range',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'warnings',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 15,
             ],
           ],
           'name' => 'beta_analytics',
@@ -1348,31 +1146,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1395,41 +1186,32 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1452,10 +1234,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1477,25 +1257,19 @@ class OpenrouterModelsConfig
         'bulk_add_workspace_member' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'added_count',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'data',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'user_ids',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 2,
             ],
           ],
           'name' => 'bulk_add_workspace_member',
@@ -1505,44 +1279,35 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'production',
                         'kind' => 'param',
                         'name' => 'workspace_id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1572,10 +1337,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -1589,18 +1352,14 @@ class OpenrouterModelsConfig
         'bulk_assign_key' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'assigned_count',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'key_hashes',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
           ],
           'name' => 'bulk_assign_key',
@@ -1610,44 +1369,35 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '550e8400-e29b-41d4-a716-446655440000',
                         'kind' => 'param',
                         'name' => 'guardrail_id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1677,10 +1427,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -1694,18 +1442,14 @@ class OpenrouterModelsConfig
         'bulk_assign_member' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'assigned_count',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'member_user_ids',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
           ],
           'name' => 'bulk_assign_member',
@@ -1715,44 +1459,35 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '550e8400-e29b-41d4-a716-446655440000',
                         'kind' => 'param',
                         'name' => 'guardrail_id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1782,10 +1517,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -1799,18 +1532,14 @@ class OpenrouterModelsConfig
         'bulk_remove_workspace_member' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'removed_count',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'user_ids',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
           ],
           'name' => 'bulk_remove_workspace_member',
@@ -1820,44 +1549,35 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'production',
                         'kind' => 'param',
                         'name' => 'workspace_id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1887,10 +1607,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -1904,18 +1622,14 @@ class OpenrouterModelsConfig
         'bulk_unassign_key' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'key_hashes',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'unassigned_count',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
           ],
           'name' => 'bulk_unassign_key',
@@ -1925,44 +1639,35 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '550e8400-e29b-41d4-a716-446655440000',
                         'kind' => 'param',
                         'name' => 'guardrail_id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1993,10 +1698,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -2010,18 +1713,14 @@ class OpenrouterModelsConfig
         'bulk_unassign_member' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'member_user_ids',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'unassigned_count',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
           ],
           'name' => 'bulk_unassign_member',
@@ -2031,44 +1730,35 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '550e8400-e29b-41d4-a716-446655440000',
                         'kind' => 'param',
                         'name' => 'guardrail_id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2099,10 +1789,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -2116,7 +1804,6 @@ class OpenrouterModelsConfig
         'byok' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'allowed_api_key_hashes',
               'req' => true,
               'type' => [
@@ -2126,14 +1813,11 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'allowed_models',
               'op' => [
                 'create' => [
-                  'req' => false,
                   'type' => [
                     '`$ONE`',
                     [
@@ -2151,14 +1835,11 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'allowed_user_ids',
               'op' => [
                 'create' => [
-                  'req' => false,
                   'type' => [
                     '`$ONE`',
                     [
@@ -2176,66 +1857,49 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'disabled',
               'op' => [
                 'create' => [
-                  'req' => false,
                   'type' => '`$BOOLEAN`',
                 ],
               ],
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'is_fallback',
               'op' => [
                 'create' => [
-                  'req' => false,
                   'type' => '`$BOOLEAN`',
                 ],
               ],
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'key',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'label',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2243,34 +1907,26 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'provider',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'sort_order',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'workspace_id',
               'op' => [
                 'create' => [
-                  'req' => false,
                   'type' => '`$STRING`',
                 ],
               ],
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
           ],
           'name' => 'byok',
@@ -2280,31 +1936,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -2326,61 +1975,48 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
             'list' => [
               'input' => 'data',
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -2390,21 +2026,17 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 'openai',
                         'kind' => 'query',
                         'name' => 'provider',
                         'orig' => 'provider',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '550e8400-e29b-41d4-a716-446655440000',
                         'kind' => 'query',
                         'name' => 'workspace_id',
                         'orig' => 'workspace_id',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -2430,54 +2062,43 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '11111111-2222-3333-4444-555555555555',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2500,54 +2121,43 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
             'remove' => [
               'input' => 'data',
               'name' => 'remove',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '11111111-2222-3333-4444-555555555555',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2570,10 +2180,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'remove',
             ],
           ],
           'relations' => [
@@ -2583,37 +2191,31 @@ class OpenrouterModelsConfig
         'chat_result' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'cache_control',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'choices',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 1,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 5,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'created',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'debug',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'frequency_penalty',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2621,26 +2223,23 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'image_config',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 6,
+              'union' => [
+                'branches' => 3,
+                'count' => 1,
+                'depth' => 1,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'logit_bias',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2648,12 +2247,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'logprobs',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2661,12 +2257,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'max_completion_tokens',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2674,12 +2267,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'max_tokens',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2687,26 +2277,23 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'messages',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 11,
+              'union' => [
+                'branches' => 2,
+                'count' => 5,
+                'depth' => 5,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'metadata',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'min_p',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2714,53 +2301,37 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'modalities',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'model',
               'op' => [
                 'create' => [
-                  'req' => false,
                   'type' => '`$STRING`',
                 ],
               ],
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'models',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 16,
             ],
             [
-              'active' => true,
               'name' => 'object',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 17,
             ],
             [
-              'active' => true,
               'name' => 'openrouter_metadata',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 18,
             ],
             [
-              'active' => true,
               'name' => 'parallel_tool_calls',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2768,17 +2339,17 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 19,
             ],
             [
-              'active' => true,
               'name' => 'plugins',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 20,
+              'union' => [
+                'branches' => 5,
+                'count' => 4,
+                'depth' => 12,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'prediction',
               'req' => true,
               'type' => [
@@ -2788,12 +2359,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 21,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 2,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'presence_penalty',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2801,12 +2374,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 22,
             ],
             [
-              'active' => true,
               'name' => 'prompt_cache_key',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2814,10 +2384,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 23,
             ],
             [
-              'active' => true,
               'name' => 'prompt_cache_options',
               'req' => true,
               'type' => [
@@ -2827,12 +2395,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 24,
             ],
             [
-              'active' => true,
               'name' => 'provider',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2840,19 +2405,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 25,
+              'union' => [
+                'branches' => 2,
+                'count' => 6,
+                'depth' => 3,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'reasoning',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 26,
             ],
             [
-              'active' => true,
               'name' => 'reasoning_effort',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2860,12 +2424,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 27,
             ],
             [
-              'active' => true,
               'name' => 'repetition_penalty',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2873,19 +2434,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 28,
             ],
             [
-              'active' => true,
               'name' => 'response_format',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 29,
             ],
             [
-              'active' => true,
               'name' => 'route',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2893,12 +2448,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 30,
             ],
             [
-              'active' => true,
               'name' => 'seed',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2906,12 +2458,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 31,
             ],
             [
-              'active' => true,
               'name' => 'service_tier',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2919,40 +2468,30 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 32,
             ],
             [
-              'active' => true,
               'name' => 'session_id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 33,
             ],
             [
-              'active' => true,
               'name' => 'stop',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 34,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 0,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'stop_server_tools_when',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 35,
             ],
             [
-              'active' => true,
               'name' => 'stream',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 36,
             ],
             [
-              'active' => true,
               'name' => 'stream_options',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2960,10 +2499,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 37,
             ],
             [
-              'active' => true,
               'name' => 'system_fingerprint',
               'req' => true,
               'type' => [
@@ -2973,12 +2510,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 38,
             ],
             [
-              'active' => true,
               'name' => 'temperature',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2986,26 +2520,27 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 39,
             ],
             [
-              'active' => true,
               'name' => 'tool_choice',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 40,
+              'union' => [
+                'branches' => 5,
+                'count' => 1,
+                'depth' => 0,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'tools',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 41,
+              'union' => [
+                'branches' => 12,
+                'count' => 2,
+                'depth' => 6,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'top_a',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3013,12 +2548,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 42,
             ],
             [
-              'active' => true,
               'name' => 'top_k',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3026,12 +2558,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 43,
             ],
             [
-              'active' => true,
               'name' => 'top_logprobs',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3039,12 +2568,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 44,
             ],
             [
-              'active' => true,
               'name' => 'top_p',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3052,28 +2578,19 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 45,
             ],
             [
-              'active' => true,
               'name' => 'trace',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 46,
             ],
             [
-              'active' => true,
               'name' => 'usage',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 47,
             ],
             [
-              'active' => true,
               'name' => 'user',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 48,
             ],
           ],
           'name' => 'chat_result',
@@ -3083,40 +2600,31 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'enabled',
                         'kind' => 'header',
                         'name' => 'x_open_router_metadata',
                         'orig' => 'x_open_router_metadata',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3140,10 +2648,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -3213,9 +2719,7 @@ class OpenrouterModelsConfig
         'create_observability_destination' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'api_key_hashes',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3223,24 +2727,17 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'config',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'enabled',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'filter_rules',
               'req' => true,
               'type' => [
@@ -3250,42 +2747,33 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 8,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'privacy_mode',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'sampling_rate',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'type',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'workspace_id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
           ],
           'name' => 'create_observability_destination',
@@ -3295,31 +2783,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3342,10 +2823,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -3355,9 +2834,7 @@ class OpenrouterModelsConfig
         'create_preset_from_inference' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'background',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3365,19 +2842,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'cache_control',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'context_management',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3385,19 +2857,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 2,
+              'union' => [
+                'branches' => 3,
+                'count' => 3,
+                'depth' => 7,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'debug',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'fallbacks',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3405,12 +2876,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'frequency_penalty',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3418,19 +2886,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'image_config',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 6,
+              'union' => [
+                'branches' => 3,
+                'count' => 1,
+                'depth' => 1,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'include',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3438,19 +2905,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'input',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 8,
+              'union' => [
+                'branches' => 49,
+                'count' => 35,
+                'depth' => 19,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'instructions',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3458,12 +2924,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'logit_bias',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3471,12 +2934,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'logprobs',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3484,12 +2944,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'max_completion_tokens',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3497,12 +2954,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'max_output_tokens',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3510,12 +2964,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'max_tokens',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3523,12 +2974,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'max_tool_calls',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3536,26 +2984,23 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'messages',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 16,
+              'union' => [
+                'branches' => 2,
+                'count' => 5,
+                'depth' => 5,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'metadata',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 17,
             ],
             [
-              'active' => true,
               'name' => 'min_p',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3563,17 +3008,12 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 18,
             ],
             [
-              'active' => true,
               'name' => 'modalities',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 19,
             ],
             [
-              'active' => true,
               'name' => 'model',
               'op' => [
                 'create' => [
@@ -3581,28 +3021,18 @@ class OpenrouterModelsConfig
                   'type' => '`$STRING`',
                 ],
               ],
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 20,
             ],
             [
-              'active' => true,
               'name' => 'models',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 21,
             ],
             [
-              'active' => true,
               'name' => 'output_config',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 22,
             ],
             [
-              'active' => true,
               'name' => 'parallel_tool_calls',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3610,17 +3040,17 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 23,
             ],
             [
-              'active' => true,
               'name' => 'plugins',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 24,
+              'union' => [
+                'branches' => 5,
+                'count' => 4,
+                'depth' => 12,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'prediction',
               'req' => true,
               'type' => [
@@ -3630,12 +3060,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 25,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 2,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'presence_penalty',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3643,17 +3075,12 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 26,
             ],
             [
-              'active' => true,
               'name' => 'previous_response_id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 27,
             ],
             [
-              'active' => true,
               'name' => 'prompt',
               'req' => true,
               'type' => [
@@ -3663,12 +3090,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 28,
+              'union' => [
+                'branches' => 4,
+                'count' => 1,
+                'depth' => 3,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'prompt_cache_key',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3676,10 +3105,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 29,
             ],
             [
-              'active' => true,
               'name' => 'prompt_cache_options',
               'req' => true,
               'type' => [
@@ -3689,12 +3116,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 30,
             ],
             [
-              'active' => true,
               'name' => 'provider',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3702,19 +3126,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 31,
+              'union' => [
+                'branches' => 2,
+                'count' => 6,
+                'depth' => 3,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'reasoning',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 32,
             ],
             [
-              'active' => true,
               'name' => 'reasoning_effort',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3722,12 +3145,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 33,
             ],
             [
-              'active' => true,
               'name' => 'repetition_penalty',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3735,19 +3155,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 34,
             ],
             [
-              'active' => true,
               'name' => 'response_format',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 35,
             ],
             [
-              'active' => true,
               'name' => 'route',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3755,12 +3169,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 36,
             ],
             [
-              'active' => true,
               'name' => 'safety_identifier',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3768,12 +3179,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 37,
             ],
             [
-              'active' => true,
               'name' => 'seed',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3781,12 +3189,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 38,
             ],
             [
-              'active' => true,
               'name' => 'service_tier',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3794,61 +3199,42 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 39,
             ],
             [
-              'active' => true,
               'name' => 'session_id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 40,
             ],
             [
-              'active' => true,
               'name' => 'speed',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 41,
             ],
             [
-              'active' => true,
               'name' => 'stop',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 42,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 0,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'stop_sequences',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 43,
             ],
             [
-              'active' => true,
               'name' => 'stop_server_tools_when',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 44,
             ],
             [
-              'active' => true,
               'name' => 'store',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 45,
             ],
             [
-              'active' => true,
               'name' => 'stream',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 46,
             ],
             [
-              'active' => true,
               'name' => 'stream_options',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3856,19 +3242,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 47,
             ],
             [
-              'active' => true,
               'name' => 'system',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 48,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 0,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'temperature',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3876,40 +3261,45 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 49,
             ],
             [
-              'active' => true,
               'name' => 'text',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 50,
+              'union' => [
+                'branches' => 3,
+                'count' => 1,
+                'depth' => 4,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'thinking',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 51,
+              'union' => [
+                'branches' => 3,
+                'count' => 1,
+                'depth' => 0,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'tool_choice',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 52,
+              'union' => [
+                'branches' => 5,
+                'count' => 1,
+                'depth' => 0,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'tools',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 53,
+              'union' => [
+                'branches' => 12,
+                'count' => 2,
+                'depth' => 6,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'top_a',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3917,12 +3307,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 54,
             ],
             [
-              'active' => true,
               'name' => 'top_k',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3930,12 +3317,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 55,
             ],
             [
-              'active' => true,
               'name' => 'top_logprobs',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3943,12 +3327,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 56,
             ],
             [
-              'active' => true,
               'name' => 'top_p',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3956,19 +3337,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 57,
             ],
             [
-              'active' => true,
               'name' => 'trace',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 58,
             ],
             [
-              'active' => true,
               'name' => 'truncation',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -3976,14 +3351,10 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 59,
             ],
             [
-              'active' => true,
               'name' => 'user',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 60,
             ],
           ],
           'name' => 'create_preset_from_inference',
@@ -3993,44 +3364,35 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'my-preset',
                         'kind' => 'param',
                         'name' => 'slug',
                         'orig' => 'slug',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -4055,47 +3417,37 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'my-preset',
                         'kind' => 'param',
                         'name' => 'slug',
                         'orig' => 'slug',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -4119,47 +3471,37 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'my-preset',
                         'kind' => 'param',
                         'name' => 'slug',
                         'orig' => 'slug',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -4183,10 +3525,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 2,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -4208,18 +3548,14 @@ class OpenrouterModelsConfig
         'credit' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'total_credits',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'total_usage',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 1,
             ],
           ],
           'name' => 'credit',
@@ -4229,31 +3565,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -4277,41 +3606,32 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -4333,10 +3653,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -4354,81 +3672,68 @@ class OpenrouterModelsConfig
         'embedding' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'data',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 0,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 3,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'dimensions',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'encoding_format',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'input',
               'req' => true,
               'type' => '`$ANY`',
-              'index$' => 4,
+              'union' => [
+                'branches' => 5,
+                'count' => 2,
+                'depth' => 6,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'input_type',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'model',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'object',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'provider',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 8,
+              'union' => [
+                'branches' => 2,
+                'count' => 6,
+                'depth' => 5,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'usage',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'user',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
           ],
           'name' => 'embedding',
@@ -4438,31 +3743,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -4484,10 +3782,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -4497,28 +3793,21 @@ class OpenrouterModelsConfig
         'endpoint' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'architecture',
               'req' => true,
               'type' => '`$ANY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'benchmarks',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'canonical_slug',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'context_length',
               'req' => true,
               'type' => [
@@ -4528,17 +3817,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'created',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'default_parameters',
               'req' => true,
               'type' => [
@@ -4548,32 +3833,24 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'description',
               'op' => [
                 'list' => [
-                  'req' => false,
                   'type' => '`$STRING`',
                 ],
               ],
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'endpoints',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'expiration_date',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -4581,12 +3858,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'hugging_face_id',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -4594,19 +3868,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'knowledge_cutoff',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -4614,10 +3883,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'latency_last_30m',
               'req' => true,
               'type' => [
@@ -4627,17 +3894,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'links',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'max_completion_tokens',
               'req' => true,
               'type' => [
@@ -4647,10 +3910,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'max_prompt_tokens',
               'req' => true,
               'type' => [
@@ -4660,31 +3921,23 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'model_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 16,
             ],
             [
-              'active' => true,
               'name' => 'model_name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 17,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 18,
             ],
             [
-              'active' => true,
               'name' => 'per_request_limits',
               'req' => true,
               'type' => [
@@ -4694,52 +3947,37 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 19,
             ],
             [
-              'active' => true,
               'name' => 'pricing',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 20,
             ],
             [
-              'active' => true,
               'name' => 'provider_name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 21,
             ],
             [
-              'active' => true,
               'name' => 'quantization',
               'req' => true,
               'type' => '`$ANY`',
-              'index$' => 22,
             ],
             [
-              'active' => true,
               'name' => 'reasoning',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 23,
             ],
             [
-              'active' => true,
               'name' => 'status',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 24,
             ],
             [
-              'active' => true,
               'name' => 'supported_parameters',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 25,
             ],
             [
-              'active' => true,
               'name' => 'supported_voices',
               'req' => true,
               'type' => [
@@ -4749,38 +3987,28 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 26,
             ],
             [
-              'active' => true,
               'name' => 'supports_implicit_caching',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 27,
             ],
             [
-              'active' => true,
               'name' => 'tag',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 28,
             ],
             [
-              'active' => true,
               'name' => 'throughput_last_30m',
               'req' => true,
               'type' => '`$ANY`',
-              'index$' => 29,
             ],
             [
-              'active' => true,
               'name' => 'top_provider',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 30,
             ],
             [
-              'active' => true,
               'name' => 'uptime_last_1d',
               'req' => true,
               'type' => [
@@ -4790,10 +4018,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 31,
             ],
             [
-              'active' => true,
               'name' => 'uptime_last_30m',
               'req' => true,
               'type' => [
@@ -4803,10 +4029,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 32,
             ],
             [
-              'active' => true,
               'name' => 'uptime_last_5m',
               'req' => true,
               'type' => [
@@ -4816,7 +4040,6 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 33,
             ],
           ],
           'name' => 'endpoint',
@@ -4826,96 +4049,75 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'GPT',
                         'kind' => 'query',
                         'name' => 'arch',
                         'orig' => 'arch',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'programming',
                         'kind' => 'query',
                         'name' => 'category',
                         'orig' => 'category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 128000,
                         'kind' => 'query',
                         'name' => 'context',
                         'orig' => 'context',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'true',
                         'kind' => 'query',
                         'name' => 'distillable',
                         'orig' => 'distillable',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'text,image',
                         'kind' => 'query',
                         'name' => 'input_modality',
                         'orig' => 'input_modality',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 500,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 90,
                         'kind' => 'query',
                         'name' => 'max_age_day',
                         'orig' => 'max_age_day',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -4925,12 +4127,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 100,
                         'kind' => 'query',
                         'name' => 'max_agentic_index',
                         'orig' => 'max_agentic_index',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -4940,12 +4140,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 100,
                         'kind' => 'query',
                         'name' => 'max_coding_index',
                         'orig' => 'max_coding_index',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -4955,12 +4153,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 100,
                         'kind' => 'query',
                         'name' => 'max_intelligence_index',
                         'orig' => 'max_intelligence_index',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -4970,12 +4166,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 10,
                         'kind' => 'query',
                         'name' => 'max_output_price',
                         'orig' => 'max_output_price',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -4985,12 +4179,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 10,
                         'kind' => 'query',
                         'name' => 'max_price',
                         'orig' => 'max_price',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -5000,12 +4192,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 1,
                         'kind' => 'query',
                         'name' => 'max_tool_success_rate',
                         'orig' => 'max_tool_success_rate',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -5015,12 +4205,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'min_age_day',
                         'orig' => 'min_age_day',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -5030,12 +4218,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'min_agentic_index',
                         'orig' => 'min_agentic_index',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -5045,12 +4231,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'min_coding_index',
                         'orig' => 'min_coding_index',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -5060,12 +4244,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'min_intelligence_index',
                         'orig' => 'min_intelligence_index',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -5075,12 +4257,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'min_output_price',
                         'orig' => 'min_output_price',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -5090,12 +4270,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'min_price',
                         'orig' => 'min_price',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -5105,12 +4283,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 0.9,
                         'kind' => 'query',
                         'name' => 'min_tool_success_rate',
                         'orig' => 'min_tool_success_rate',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -5120,21 +4296,17 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 'openai,anthropic',
                         'kind' => 'query',
                         'name' => 'model_author',
                         'orig' => 'model_author',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -5144,66 +4316,52 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => 'text',
                         'kind' => 'query',
                         'name' => 'output_modality',
                         'orig' => 'output_modality',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'OpenAI,Anthropic',
                         'kind' => 'query',
                         'name' => 'provider',
                         'orig' => 'provider',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'gpt-4',
                         'kind' => 'query',
                         'name' => 'q',
                         'orig' => 'q',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'eu',
                         'kind' => 'query',
                         'name' => 'region',
                         'orig' => 'region',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'newest',
                         'kind' => 'query',
                         'name' => 'sort',
                         'orig' => 'sort',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'temperature',
                         'kind' => 'query',
                         'name' => 'supported_parameter',
                         'orig' => 'supported_parameter',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'true',
                         'kind' => 'query',
                         'name' => 'zdr',
                         'orig' => 'zdr',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -5254,34 +4412,26 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -5305,64 +4455,51 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'openai',
                         'kind' => 'param',
                         'name' => 'author',
                         'orig' => 'author',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                       [
-                        'active' => true,
                         'example' => 'gpt-4',
                         'kind' => 'param',
                         'name' => 'slug',
                         'orig' => 'slug',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -5388,10 +4525,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -5413,53 +4548,39 @@ class OpenrouterModelsConfig
         'file' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'downloadable',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'filename',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'mime_type',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'size_bytes',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'type',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
           ],
           'name' => 'file',
@@ -5469,42 +4590,33 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7',
                         'kind' => 'query',
                         'name' => 'workspace_id',
                         'orig' => 'workspace_id',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -5527,70 +4639,55 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
             'list' => [
               'input' => 'data',
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'eyJjdXJzb3IiOiJmaWxlXzAxMUNOaGE4aUNKY1Uxd1hOUjZxNFY4dyJ9',
                         'kind' => 'query',
                         'name' => 'cursor',
                         'orig' => 'cursor',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 100,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7',
                         'kind' => 'query',
                         'name' => 'workspace_id',
                         'orig' => 'workspace_id',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -5615,64 +4712,51 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'file_011CNha8iCJcU1wXNR6q4V8w',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'file_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7',
                         'kind' => 'query',
                         'name' => 'workspace_id',
                         'orig' => 'workspace_id',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -5702,40 +4786,31 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'file_011CNha8iCJcU1wXNR6q4V8w',
                         'kind' => 'param',
                         'name' => 'id',
@@ -5746,12 +4821,10 @@ class OpenrouterModelsConfig
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7',
                         'kind' => 'query',
                         'name' => 'workspace_id',
                         'orig' => 'workspace_id',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -5783,64 +4856,51 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
             'remove' => [
               'input' => 'data',
               'name' => 'remove',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'file_011CNha8iCJcU1wXNR6q4V8w',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'file_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7',
                         'kind' => 'query',
                         'name' => 'workspace_id',
                         'orig' => 'workspace_id',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -5870,10 +4930,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'remove',
             ],
           ],
           'relations' => [
@@ -5883,7 +4941,6 @@ class OpenrouterModelsConfig
         'generation' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'api_type',
               'req' => true,
               'type' => [
@@ -5893,10 +4950,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'app_id',
               'req' => true,
               'type' => [
@@ -5906,10 +4961,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'cache_discount',
               'req' => true,
               'type' => [
@@ -5919,10 +4972,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'cancelled',
               'req' => true,
               'type' => [
@@ -5932,24 +4983,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'data_region',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'external_user',
               'req' => true,
               'type' => [
@@ -5959,10 +5004,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'finish_reason',
               'req' => true,
               'type' => [
@@ -5972,10 +5015,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'generation_time',
               'req' => true,
               'type' => [
@@ -5985,10 +5026,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'http_referer',
               'req' => true,
               'type' => [
@@ -5998,24 +5037,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'is_byok',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'latency',
               'req' => true,
               'type' => [
@@ -6025,17 +5058,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'model',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'moderation_latency',
               'req' => true,
               'type' => [
@@ -6045,10 +5074,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'native_finish_reason',
               'req' => true,
               'type' => [
@@ -6058,10 +5085,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'native_tokens_cached',
               'req' => true,
               'type' => [
@@ -6071,10 +5096,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 16,
             ],
             [
-              'active' => true,
               'name' => 'native_tokens_completion',
               'req' => true,
               'type' => [
@@ -6084,10 +5107,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 17,
             ],
             [
-              'active' => true,
               'name' => 'native_tokens_completion_images',
               'req' => true,
               'type' => [
@@ -6097,10 +5118,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 18,
             ],
             [
-              'active' => true,
               'name' => 'native_tokens_prompt',
               'req' => true,
               'type' => [
@@ -6110,10 +5129,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 19,
             ],
             [
-              'active' => true,
               'name' => 'native_tokens_reasoning',
               'req' => true,
               'type' => [
@@ -6123,10 +5140,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 20,
             ],
             [
-              'active' => true,
               'name' => 'num_fetches',
               'req' => true,
               'type' => [
@@ -6136,10 +5151,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 21,
             ],
             [
-              'active' => true,
               'name' => 'num_input_audio_prompt',
               'req' => true,
               'type' => [
@@ -6149,10 +5162,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 22,
             ],
             [
-              'active' => true,
               'name' => 'num_media_completion',
               'req' => true,
               'type' => [
@@ -6162,10 +5173,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 23,
             ],
             [
-              'active' => true,
               'name' => 'num_media_prompt',
               'req' => true,
               'type' => [
@@ -6175,10 +5184,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 24,
             ],
             [
-              'active' => true,
               'name' => 'num_search_results',
               'req' => true,
               'type' => [
@@ -6188,17 +5195,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 25,
             ],
             [
-              'active' => true,
               'name' => 'origin',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 26,
             ],
             [
-              'active' => true,
               'name' => 'preset_id',
               'req' => true,
               'type' => [
@@ -6208,10 +5211,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 27,
             ],
             [
-              'active' => true,
               'name' => 'provider_name',
               'req' => true,
               'type' => [
@@ -6221,10 +5222,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 28,
             ],
             [
-              'active' => true,
               'name' => 'provider_responses',
               'req' => true,
               'type' => [
@@ -6234,12 +5233,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 29,
             ],
             [
-              'active' => true,
               'name' => 'request_id',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6247,12 +5243,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 30,
             ],
             [
-              'active' => true,
               'name' => 'response_cache_source_id',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6260,10 +5253,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 31,
             ],
             [
-              'active' => true,
               'name' => 'router',
               'req' => true,
               'type' => [
@@ -6273,10 +5264,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 32,
             ],
             [
-              'active' => true,
               'name' => 'service_tier',
               'req' => true,
               'type' => [
@@ -6286,12 +5275,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 33,
             ],
             [
-              'active' => true,
               'name' => 'session_id',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6299,10 +5285,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 34,
             ],
             [
-              'active' => true,
               'name' => 'streamed',
               'req' => true,
               'type' => [
@@ -6312,10 +5296,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 35,
             ],
             [
-              'active' => true,
               'name' => 'tokens_completion',
               'req' => true,
               'type' => [
@@ -6325,10 +5307,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 36,
             ],
             [
-              'active' => true,
               'name' => 'tokens_prompt',
               'req' => true,
               'type' => [
@@ -6338,17 +5318,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 37,
             ],
             [
-              'active' => true,
               'name' => 'total_cost',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 38,
             ],
             [
-              'active' => true,
               'name' => 'upstream_id',
               'req' => true,
               'type' => [
@@ -6358,10 +5334,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 39,
             ],
             [
-              'active' => true,
               'name' => 'upstream_inference_cost',
               'req' => true,
               'type' => [
@@ -6371,17 +5345,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 40,
             ],
             [
-              'active' => true,
               'name' => 'usage',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 41,
             ],
             [
-              'active' => true,
               'name' => 'user_agent',
               'req' => true,
               'type' => [
@@ -6391,10 +5361,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 42,
             ],
             [
-              'active' => true,
               'name' => 'web_search_engine',
               'req' => true,
               'type' => [
@@ -6404,7 +5372,6 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 43,
             ],
           ],
           'name' => 'generation',
@@ -6414,37 +5381,29 @@ class OpenrouterModelsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'gen-1234567890',
                         'kind' => 'query',
                         'name' => 'id',
@@ -6472,10 +5431,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -6485,18 +5442,19 @@ class OpenrouterModelsConfig
         'generation_content' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'input',
               'req' => true,
               'type' => '`$ANY`',
-              'index$' => 0,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 0,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'output',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
           ],
           'name' => 'generation_content',
@@ -6506,37 +5464,29 @@ class OpenrouterModelsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'gen-1234567890',
                         'kind' => 'query',
                         'name' => 'id',
@@ -6565,10 +5515,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -6578,9 +5526,7 @@ class OpenrouterModelsConfig
         'guardrail' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'allowed_models',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6588,12 +5534,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'allowed_providers',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6601,12 +5544,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'content_filter_builtins',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6614,12 +5554,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'content_filters',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6627,19 +5564,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'description',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6647,12 +5579,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'enforce_zdr',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6660,12 +5589,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'enforce_zdr_anthropic',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6673,12 +5599,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'enforce_zdr_google',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6686,12 +5609,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'enforce_zdr_openai',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6699,12 +5619,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'enforce_zdr_other',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6712,12 +5629,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'enforce_zdr_xai',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6725,19 +5639,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'ignored_models',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6745,12 +5654,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'ignored_providers',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6758,12 +5664,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'limit_usd',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6771,19 +5674,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 16,
             ],
             [
-              'active' => true,
               'name' => 'reset_interval',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6791,12 +5689,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 17,
             ],
             [
-              'active' => true,
               'name' => 'updated_at',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -6804,20 +5699,16 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 18,
             ],
             [
-              'active' => true,
               'name' => 'workspace_id',
               'op' => [
                 'create' => [
-                  'req' => false,
                   'type' => '`$STRING`',
                 ],
               ],
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 19,
             ],
           ],
           'name' => 'guardrail',
@@ -6827,31 +5718,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -6873,61 +5757,48 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
             'list' => [
               'input' => 'data',
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -6937,12 +5808,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => '0df9e665-d932-5740-b2c7-b52af166bc11',
                         'kind' => 'query',
                         'name' => 'workspace_id',
                         'orig' => 'workspace_id',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -6967,54 +5836,43 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '550e8400-e29b-41d4-a716-446655440000',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -7037,54 +5895,43 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
             'remove' => [
               'input' => 'data',
               'name' => 'remove',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '550e8400-e29b-41d4-a716-446655440000',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -7107,10 +5954,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'remove',
             ],
           ],
           'relations' => [
@@ -7120,123 +5965,87 @@ class OpenrouterModelsConfig
         'image' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'aspect_ratio',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'background',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'created',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'data',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'input_references',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'model',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'n',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'output_compression',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'output_format',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'prompt',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'provider',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 10,
+              'union' => [
+                'branches' => 2,
+                'count' => 4,
+                'depth' => 3,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'quality',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'resolution',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'seed',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'size',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'stream',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'usage',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 16,
+              'union' => [
+                'branches' => 4,
+                'count' => 1,
+                'depth' => 3,
+              ],
             ],
           ],
           'name' => 'image',
@@ -7246,31 +6055,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -7292,10 +6094,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -7305,35 +6105,26 @@ class OpenrouterModelsConfig
         'image_model_endpoint' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'allowed_passthrough_parameters',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'pricing',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'provider_name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'provider_slug',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'provider_tag',
               'req' => true,
               'type' => [
@@ -7343,21 +6134,16 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'supported_parameters',
               'req' => true,
               'type' => '`$ANY`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'supports_streaming',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 6,
             ],
           ],
           'name' => 'image_model_endpoint',
@@ -7367,54 +6153,43 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'bytedance-seed',
                         'kind' => 'param',
                         'name' => 'model_id',
                         'orig' => 'author',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                       [
-                        'active' => true,
                         'example' => 'seedream-4.5',
                         'kind' => 'param',
                         'name' => 'slug',
                         'orig' => 'slug',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -7446,10 +6221,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.endpoints`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -7463,60 +6236,44 @@ class OpenrouterModelsConfig
         'image_models_list' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'architecture',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'created',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'description',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'endpoints',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'supported_parameters',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'supports_streaming',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 7,
             ],
           ],
           'name' => 'image_models_list',
@@ -7526,31 +6283,24 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -7573,10 +6323,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -7614,7 +6362,6 @@ class OpenrouterModelsConfig
         'list_key_assignment' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'assigned_by',
               'req' => true,
               'type' => [
@@ -7624,49 +6371,36 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'guardrail_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'key_hash',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'key_label',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'key_name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
           ],
           'name' => 'list_key_assignment',
@@ -7676,63 +6410,50 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '550e8400-e29b-41d4-a716-446655440000',
                         'kind' => 'param',
                         'name' => 'guardrail_id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -7771,54 +6492,42 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -7850,10 +6559,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -7867,7 +6574,6 @@ class OpenrouterModelsConfig
         'list_member_assignment' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'assigned_by',
               'req' => true,
               'type' => [
@@ -7877,42 +6583,31 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'guardrail_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'organization_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'user_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
           ],
           'name' => 'list_member_assignment',
@@ -7922,63 +6617,50 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '550e8400-e29b-41d4-a716-446655440000',
                         'kind' => 'param',
                         'name' => 'guardrail_id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -8017,54 +6699,42 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -8096,10 +6766,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -8113,18 +6781,19 @@ class OpenrouterModelsConfig
         'list_observability_destination' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'data',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 0,
+              'union' => [
+                'branches' => 2,
+                'count' => 11,
+                'depth' => 13,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'total_count',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
           ],
           'name' => 'list_observability_destination',
@@ -8134,51 +6803,40 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -8188,12 +6846,10 @@ class OpenrouterModelsConfig
                         ],
                       ],
                       [
-                        'active' => true,
                         'example' => '550e8400-e29b-41d4-a716-446655440000',
                         'kind' => 'query',
                         'name' => 'workspace_id',
                         'orig' => 'workspace_id',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -8219,10 +6875,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -8240,42 +6894,31 @@ class OpenrouterModelsConfig
         'list_preset_version' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'config',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'creator_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'preset_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'system_prompt',
               'req' => true,
               'type' => [
@@ -8285,21 +6928,16 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'updated_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'version',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 7,
             ],
           ],
           'name' => 'list_preset_version',
@@ -8309,63 +6947,50 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'my-preset',
                         'kind' => 'param',
                         'name' => 'slug',
                         'orig' => 'slug',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -8398,10 +7023,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -8423,28 +7046,21 @@ class OpenrouterModelsConfig
         'list_workspace_budget' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'limit_usd',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'reset_interval',
               'req' => true,
               'type' => [
@@ -8454,21 +7070,16 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'updated_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'workspace_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
           ],
           'name' => 'list_workspace_budget',
@@ -8478,44 +7089,35 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'production',
                         'kind' => 'param',
                         'name' => 'workspace_id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -8544,10 +7146,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -8561,39 +7161,29 @@ class OpenrouterModelsConfig
         'list_workspace_member' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'role',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'user_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'workspace_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
           ],
           'name' => 'list_workspace_member',
@@ -8603,63 +7193,50 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'production',
                         'kind' => 'param',
                         'name' => 'workspace_id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -8697,10 +7274,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -8726,16 +7301,12 @@ class OpenrouterModelsConfig
         'message' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'cache_control',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'context_management',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -8743,12 +7314,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 1,
+              'union' => [
+                'branches' => 3,
+                'count' => 3,
+                'depth' => 7,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'fallbacks',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -8756,17 +7329,12 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'max_tokens',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'messages',
               'req' => true,
               'type' => [
@@ -8776,47 +7344,40 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 4,
+              'union' => [
+                'branches' => 12,
+                'count' => 7,
+                'depth' => 14,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'metadata',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'model',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'models',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'output_config',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'plugins',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 9,
+              'union' => [
+                'branches' => 5,
+                'count' => 4,
+                'depth' => 12,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'provider',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -8824,12 +7385,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 10,
+              'union' => [
+                'branches' => 2,
+                'count' => 6,
+                'depth' => 3,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'route',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -8837,112 +7400,86 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'service_tier',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'session_id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'speed',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'stop_sequences',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'stop_server_tools_when',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 16,
             ],
             [
-              'active' => true,
               'name' => 'stream',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 17,
             ],
             [
-              'active' => true,
               'name' => 'system',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 18,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 0,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'temperature',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 19,
             ],
             [
-              'active' => true,
               'name' => 'thinking',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 20,
+              'union' => [
+                'branches' => 3,
+                'count' => 1,
+                'depth' => 0,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'tool_choice',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 21,
+              'union' => [
+                'branches' => 4,
+                'count' => 1,
+                'depth' => 0,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'tools',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 22,
+              'union' => [
+                'branches' => 13,
+                'count' => 2,
+                'depth' => 6,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'top_k',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 23,
             ],
             [
-              'active' => true,
               'name' => 'top_p',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 24,
             ],
             [
-              'active' => true,
               'name' => 'trace',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 25,
             ],
             [
-              'active' => true,
               'name' => 'user',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 26,
             ],
           ],
           'name' => 'message',
@@ -8952,40 +7489,31 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'enabled',
                         'kind' => 'header',
                         'name' => 'x_open_router_metadata',
                         'orig' => 'x_open_router_metadata',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -9008,10 +7536,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -9029,28 +7555,21 @@ class OpenrouterModelsConfig
         'model' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'architecture',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'benchmarks',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'canonical_slug',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'context_length',
               'req' => true,
               'type' => [
@@ -9060,17 +7579,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'created',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'default_parameters',
               'req' => true,
               'type' => [
@@ -9080,19 +7595,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'description',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'expiration_date',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -9100,12 +7609,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'hugging_face_id',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -9113,19 +7619,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'knowledge_cutoff',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -9133,24 +7634,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'links',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'per_request_limits',
               'req' => true,
               'type' => [
@@ -9160,31 +7655,23 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'pricing',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'reasoning',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'supported_parameters',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 16,
             ],
             [
-              'active' => true,
               'name' => 'supported_voices',
               'req' => true,
               'type' => [
@@ -9194,14 +7681,11 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 17,
             ],
             [
-              'active' => true,
               'name' => 'top_provider',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 18,
             ],
           ],
           'name' => 'model',
@@ -9211,51 +7695,40 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 500,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -9286,64 +7759,51 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'openai',
                         'kind' => 'param',
                         'name' => 'author',
                         'orig' => 'author',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                       [
-                        'active' => true,
                         'example' => 'gpt-4',
                         'kind' => 'param',
                         'name' => 'slug',
                         'orig' => 'slug',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -9368,10 +7828,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -9385,11 +7843,9 @@ class OpenrouterModelsConfig
         'models_count' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'count',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
           ],
           'name' => 'models_count',
@@ -9399,42 +7855,33 @@ class OpenrouterModelsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'text',
                         'kind' => 'query',
                         'name' => 'output_modality',
                         'orig' => 'output_modality',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -9458,10 +7905,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -9471,28 +7916,21 @@ class OpenrouterModelsConfig
         'models_list' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'architecture',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'benchmarks',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'canonical_slug',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'context_length',
               'req' => true,
               'type' => [
@@ -9502,17 +7940,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'created',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'default_parameters',
               'req' => true,
               'type' => [
@@ -9522,19 +7956,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'description',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'expiration_date',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -9542,12 +7970,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'hugging_face_id',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -9555,19 +7980,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'knowledge_cutoff',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -9575,24 +7995,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'links',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'per_request_limits',
               'req' => true,
               'type' => [
@@ -9602,31 +8016,23 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'pricing',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'reasoning',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'supported_parameters',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 16,
             ],
             [
-              'active' => true,
               'name' => 'supported_voices',
               'req' => true,
               'type' => [
@@ -9636,14 +8042,11 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 17,
             ],
             [
-              'active' => true,
               'name' => 'top_provider',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 18,
             ],
           ],
           'name' => 'models_list',
@@ -9653,51 +8056,40 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 500,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -9728,10 +8120,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -9741,37 +8131,26 @@ class OpenrouterModelsConfig
         'o_auth' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'app_id',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'callback_url',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'code',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'code_challenge',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'code_challenge_method',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -9779,26 +8158,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'code_verifier',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'expires_at',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -9806,59 +8177,38 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'key',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'key_label',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'limit',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'spawn_agent',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'spawn_cloud',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'usage_limit_type',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'user_id',
               'req' => true,
               'type' => [
@@ -9868,14 +8218,10 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'workspace_id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 16,
             ],
           ],
           'name' => 'o_auth',
@@ -9885,31 +8231,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -9932,34 +8271,26 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -9983,10 +8314,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -9996,11 +8325,8 @@ class OpenrouterModelsConfig
         'observability_destination' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'data',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
           ],
           'name' => 'observability_destination',
@@ -10010,44 +8336,35 @@ class OpenrouterModelsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '99999999-aaaa-bbbb-cccc-dddddddddddd',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -10071,54 +8388,43 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
             'remove' => [
               'input' => 'data',
               'name' => 'remove',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '99999999-aaaa-bbbb-cccc-dddddddddddd',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -10142,10 +8448,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'remove',
             ],
           ],
           'relations' => [
@@ -10155,9 +8459,7 @@ class OpenrouterModelsConfig
         'open_responses_result' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'background',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10165,26 +8467,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'cache_control',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'debug',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'frequency_penalty',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10192,19 +8486,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'image_config',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 4,
+              'union' => [
+                'branches' => 3,
+                'count' => 1,
+                'depth' => 1,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'include',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10212,19 +8505,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'input',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 6,
+              'union' => [
+                'branches' => 49,
+                'count' => 35,
+                'depth' => 19,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'instructions',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10232,12 +8524,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'max_output_tokens',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10245,12 +8534,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'max_tool_calls',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10258,12 +8544,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'metadata',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10271,33 +8554,21 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'modalities',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'model',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'models',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'parallel_tool_calls',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10305,19 +8576,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'plugins',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 15,
+              'union' => [
+                'branches' => 5,
+                'count' => 4,
+                'depth' => 12,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'presence_penalty',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10325,17 +8595,12 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 16,
             ],
             [
-              'active' => true,
               'name' => 'previous_response_id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 17,
             ],
             [
-              'active' => true,
               'name' => 'prompt',
               'req' => true,
               'type' => [
@@ -10345,12 +8610,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 18,
+              'union' => [
+                'branches' => 4,
+                'count' => 1,
+                'depth' => 3,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'prompt_cache_key',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10358,10 +8625,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 19,
             ],
             [
-              'active' => true,
               'name' => 'prompt_cache_options',
               'req' => true,
               'type' => [
@@ -10371,12 +8636,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 20,
             ],
             [
-              'active' => true,
               'name' => 'provider',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10384,19 +8646,18 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 21,
+              'union' => [
+                'branches' => 2,
+                'count' => 6,
+                'depth' => 3,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'reasoning',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 22,
             ],
             [
-              'active' => true,
               'name' => 'route',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10404,12 +8665,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 23,
             ],
             [
-              'active' => true,
               'name' => 'safety_identifier',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10417,12 +8675,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 24,
             ],
             [
-              'active' => true,
               'name' => 'service_tier',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10430,40 +8685,25 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 25,
             ],
             [
-              'active' => true,
               'name' => 'session_id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 26,
             ],
             [
-              'active' => true,
               'name' => 'stop_server_tools_when',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 27,
             ],
             [
-              'active' => true,
               'name' => 'store',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 28,
             ],
             [
-              'active' => true,
               'name' => 'stream',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 29,
             ],
             [
-              'active' => true,
               'name' => 'temperature',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10471,40 +8711,40 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 30,
             ],
             [
-              'active' => true,
               'name' => 'text',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 31,
+              'union' => [
+                'branches' => 3,
+                'count' => 1,
+                'depth' => 4,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'tool_choice',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 32,
+              'union' => [
+                'branches' => 8,
+                'count' => 3,
+                'depth' => 4,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'tools',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 33,
+              'union' => [
+                'branches' => 27,
+                'count' => 10,
+                'depth' => 12,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'top_k',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 34,
             ],
             [
-              'active' => true,
               'name' => 'top_logprobs',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10512,12 +8752,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 35,
             ],
             [
-              'active' => true,
               'name' => 'top_p',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10525,19 +8762,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 36,
             ],
             [
-              'active' => true,
               'name' => 'trace',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 37,
             ],
             [
-              'active' => true,
               'name' => 'truncation',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -10545,14 +8776,10 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 38,
             ],
             [
-              'active' => true,
               'name' => 'user',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 39,
             ],
           ],
           'name' => 'open_responses_result',
@@ -10562,40 +8789,31 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'enabled',
                         'kind' => 'header',
                         'name' => 'x_open_router_metadata',
                         'orig' => 'x_open_router_metadata',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -10618,10 +8836,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -10631,14 +8847,11 @@ class OpenrouterModelsConfig
         'organization' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'email',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'first_name',
               'req' => true,
               'type' => [
@@ -10648,17 +8861,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'last_name',
               'req' => true,
               'type' => [
@@ -10668,14 +8877,11 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'role',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
           ],
           'name' => 'organization',
@@ -10685,51 +8891,40 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -10761,10 +8956,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -10774,14 +8967,11 @@ class OpenrouterModelsConfig
         'preset' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'creator_user_id',
               'req' => true,
               'type' => [
@@ -10791,10 +8981,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'description',
               'req' => true,
               'type' => [
@@ -10804,10 +8992,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'designated_version',
               'req' => true,
               'type' => [
@@ -10817,10 +9003,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'designated_version_id',
               'req' => true,
               'type' => [
@@ -10830,38 +9014,28 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'slug',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'status',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'status_updated_at',
               'req' => true,
               'type' => [
@@ -10871,17 +9045,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'updated_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'workspace_id',
               'req' => true,
               'type' => [
@@ -10891,7 +9061,6 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 11,
             ],
           ],
           'name' => 'preset',
@@ -10901,51 +9070,40 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -10975,54 +9133,43 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'my-preset',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'slug',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -11050,10 +9197,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -11067,42 +9212,31 @@ class OpenrouterModelsConfig
         'preset_version' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'config',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'creator_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'preset_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'system_prompt',
               'req' => true,
               'type' => [
@@ -11112,21 +9246,16 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'updated_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'version',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 7,
             ],
           ],
           'name' => 'preset_version',
@@ -11136,54 +9265,43 @@ class OpenrouterModelsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '1',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'version',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                       [
-                        'active' => true,
                         'example' => 'my-preset',
                         'kind' => 'param',
                         'name' => 'slug',
                         'orig' => 'slug',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -11214,10 +9332,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -11231,9 +9347,7 @@ class OpenrouterModelsConfig
         'provider' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'datacenters',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -11241,12 +9355,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'headquarters',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -11254,17 +9365,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'privacy_policy_url',
               'req' => true,
               'type' => [
@@ -11274,19 +9381,14 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'slug',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'status_page_url',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -11294,12 +9396,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'terms_of_service_url',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -11307,7 +9406,6 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 6,
             ],
           ],
           'name' => 'provider',
@@ -11317,31 +9415,24 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -11363,10 +9454,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -11384,25 +9473,19 @@ class OpenrouterModelsConfig
         'rankings_daily' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'date',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'model_permaslug',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'total_tokens',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
           ],
           'name' => 'rankings_daily',
@@ -11412,96 +9495,75 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'programming',
                         'kind' => 'query',
                         'name' => 'category',
                         'orig' => 'category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '100K',
                         'kind' => 'query',
                         'name' => 'context_bucket',
                         'orig' => 'context_bucket',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '2026-05-11',
                         'kind' => 'query',
                         'name' => 'end_date',
                         'orig' => 'end_date',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'natural',
                         'kind' => 'query',
                         'name' => 'language_type',
                         'orig' => 'language_type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'text',
                         'kind' => 'query',
                         'name' => 'modality',
                         'orig' => 'modality',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'day',
                         'kind' => 'query',
                         'name' => 'period',
                         'orig' => 'period',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '2026-04-12',
                         'kind' => 'query',
                         'name' => 'start_date',
                         'orig' => 'start_date',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -11531,10 +9593,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -11559,60 +9619,45 @@ class OpenrouterModelsConfig
         'rerank' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'documents',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 0,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 1,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'model',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'provider',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'query',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'results',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'top_n',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'usage',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 7,
             ],
           ],
           'name' => 'rerank',
@@ -11622,31 +9667,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -11668,10 +9706,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -11697,95 +9733,59 @@ class OpenrouterModelsConfig
         'stt' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'duration',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'input_audio',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'language',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'model',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'provider',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'response_format',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'segments',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'task',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'temperature',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'text',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'timestamp_granularities',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'usage',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'words',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 12,
             ],
           ],
           'name' => 'stt',
@@ -11795,31 +9795,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -11842,10 +9835,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -11855,32 +9846,23 @@ class OpenrouterModelsConfig
         'submit_generation_feedback' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'category',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'comment',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'generation_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'success',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 3,
             ],
           ],
           'name' => 'submit_generation_feedback',
@@ -11890,31 +9872,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -11937,10 +9912,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -11950,32 +9923,24 @@ class OpenrouterModelsConfig
         'task' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'as_of',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'classifications',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'macro_categories',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'window_days',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
           ],
           'name' => 'task',
@@ -11985,42 +9950,33 @@ class OpenrouterModelsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => '7d',
                         'kind' => 'query',
                         'name' => 'window',
                         'orig' => 'window',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -12044,10 +10000,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -12065,46 +10019,31 @@ class OpenrouterModelsConfig
         'tts' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'input',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'model',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'provider',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'response_format',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'speed',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'voice',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
           ],
           'name' => 'tts',
@@ -12114,31 +10053,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -12161,10 +10093,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -12174,18 +10104,14 @@ class OpenrouterModelsConfig
         'unified_benchmark' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'data',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'meta',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
           ],
           'name' => 'unified_benchmark',
@@ -12195,78 +10121,61 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'models',
                         'kind' => 'query',
                         'name' => 'arena',
                         'orig' => 'arena',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'codecategories',
                         'kind' => 'query',
                         'name' => 'category',
                         'orig' => 'category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'max_result',
                         'orig' => 'max_result',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'artificial-analysis',
                         'kind' => 'query',
                         'name' => 'source',
                         'orig' => 'source',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'coding',
                         'kind' => 'query',
                         'name' => 'task_type',
                         'orig' => 'task_type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -12293,10 +10202,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -12306,9 +10213,7 @@ class OpenrouterModelsConfig
         'update_byok_key' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'allowed_models',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12316,12 +10221,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'allowed_user_ids',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12329,33 +10231,21 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'disabled',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'is_fallback',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'key',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12363,7 +10253,6 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
           ],
           'name' => 'update_byok_key',
@@ -12373,44 +10262,35 @@ class OpenrouterModelsConfig
               'name' => 'update',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '11111111-2222-3333-4444-555555555555',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -12433,10 +10313,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'update',
             ],
           ],
           'relations' => [
@@ -12446,9 +10324,7 @@ class OpenrouterModelsConfig
         'update_guardrail' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'allowed_models',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12456,12 +10332,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'allowed_providers',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12469,12 +10342,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'content_filter_builtins',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12482,12 +10352,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'content_filters',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12495,12 +10362,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'description',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12508,12 +10372,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'enforce_zdr',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12521,12 +10382,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'enforce_zdr_anthropic',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12534,12 +10392,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'enforce_zdr_google',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12547,12 +10402,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'enforce_zdr_openai',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12560,12 +10412,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'enforce_zdr_other',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12573,12 +10422,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'enforce_zdr_xai',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12586,12 +10432,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'ignored_models',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12599,12 +10442,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'ignored_providers',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12612,12 +10452,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'limit_usd',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12625,19 +10462,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'reset_interval',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12645,7 +10476,6 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 15,
             ],
           ],
           'name' => 'update_guardrail',
@@ -12655,44 +10485,35 @@ class OpenrouterModelsConfig
               'name' => 'update',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '550e8400-e29b-41d4-a716-446655440000',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -12715,10 +10536,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'update',
             ],
           ],
           'relations' => [
@@ -12728,9 +10547,7 @@ class OpenrouterModelsConfig
         'update_observability_destination' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'api_key_hashes',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12738,49 +10555,35 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'config',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'enabled',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'filter_rules',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 3,
+              'union' => [
+                'branches' => 2,
+                'count' => 1,
+                'depth' => 10,
+              ],
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'privacy_mode',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'sampling_rate',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 6,
             ],
           ],
           'name' => 'update_observability_destination',
@@ -12790,44 +10593,35 @@ class OpenrouterModelsConfig
               'name' => 'update',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '99999999-aaaa-bbbb-cccc-dddddddddddd',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -12851,10 +10645,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'update',
             ],
           ],
           'relations' => [
@@ -12864,14 +10656,11 @@ class OpenrouterModelsConfig
         'update_workspace' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'created_by',
               'req' => true,
               'type' => [
@@ -12881,10 +10670,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'default_image_model',
               'op' => [
                 'list' => [
@@ -12898,7 +10685,6 @@ class OpenrouterModelsConfig
                   ],
                 ],
               ],
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12906,10 +10692,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'default_provider_sort',
               'op' => [
                 'list' => [
@@ -12923,7 +10707,6 @@ class OpenrouterModelsConfig
                   ],
                 ],
               ],
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12931,10 +10714,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'default_text_model',
               'op' => [
                 'list' => [
@@ -12948,7 +10729,6 @@ class OpenrouterModelsConfig
                   ],
                 ],
               ],
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12956,10 +10736,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'description',
               'op' => [
                 'list' => [
@@ -12973,7 +10751,6 @@ class OpenrouterModelsConfig
                   ],
                 ],
               ],
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -12981,17 +10758,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'io_logging_api_key_ids',
               'op' => [
                 'list' => [
@@ -13005,7 +10778,6 @@ class OpenrouterModelsConfig
                   ],
                 ],
               ],
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -13013,10 +10785,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'io_logging_sampling_rate',
               'op' => [
                 'list' => [
@@ -13024,12 +10794,9 @@ class OpenrouterModelsConfig
                   'type' => '`$NUMBER`',
                 ],
               ],
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'is_data_discount_logging_enabled',
               'op' => [
                 'list' => [
@@ -13037,12 +10804,9 @@ class OpenrouterModelsConfig
                   'type' => '`$BOOLEAN`',
                 ],
               ],
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'is_observability_broadcast_enabled',
               'op' => [
                 'list' => [
@@ -13050,12 +10814,9 @@ class OpenrouterModelsConfig
                   'type' => '`$BOOLEAN`',
                 ],
               ],
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'is_observability_io_logging_enabled',
               'op' => [
                 'list' => [
@@ -13063,38 +10824,29 @@ class OpenrouterModelsConfig
                   'type' => '`$BOOLEAN`',
                 ],
               ],
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'op' => [
                 'update' => [
-                  'req' => false,
                   'type' => '`$STRING`',
                 ],
               ],
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'slug',
               'op' => [
                 'update' => [
-                  'req' => false,
                   'type' => '`$STRING`',
                 ],
               ],
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'updated_at',
               'req' => true,
               'type' => [
@@ -13104,7 +10856,6 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 14,
             ],
           ],
           'name' => 'update_workspace',
@@ -13114,31 +10865,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -13160,61 +10904,48 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
             'list' => [
               'input' => 'data',
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 50,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'offset',
                         'orig' => 'offset',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -13244,54 +10975,43 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
             'update' => [
               'input' => 'data',
               'name' => 'update',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'production',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -13314,10 +11034,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'update',
             ],
           ],
           'relations' => [
@@ -13327,11 +11045,9 @@ class OpenrouterModelsConfig
         'upsert_workspace_budget' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'limit_usd',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 0,
             ],
           ],
           'name' => 'upsert_workspace_budget',
@@ -13341,54 +11057,43 @@ class OpenrouterModelsConfig
               'name' => 'update',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'monthly',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'interval',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                       [
-                        'active' => true,
                         'example' => 'production',
                         'kind' => 'param',
                         'name' => 'workspace_id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -13420,10 +11125,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'update',
             ],
           ],
           'relations' => [
@@ -13457,137 +11160,84 @@ class OpenrouterModelsConfig
         'video' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'aspect_ratio',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'callback_url',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'duration',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'error',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'frame_images',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'generate_audio',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'generation_id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'input_references',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'model',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'polling_url',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'prompt',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'provider',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'resolution',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'seed',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'size',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'status',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 16,
             ],
             [
-              'active' => true,
               'name' => 'unsigned_urls',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 17,
             ],
             [
-              'active' => true,
               'name' => 'usage',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 18,
             ],
           ],
           'name' => 'video',
@@ -13597,31 +11247,24 @@ class OpenrouterModelsConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -13643,54 +11286,43 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'job-abc123',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'job_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -13718,10 +11350,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -13737,54 +11367,43 @@ class OpenrouterModelsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'job-abc123',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'job_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 0,
                         'kind' => 'query',
                         'name' => 'index',
                         'orig' => 'index',
-                        'reqd' => false,
                         'type' => [
                           '`$ONE`',
                           [
@@ -13822,10 +11441,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -13835,35 +11452,25 @@ class OpenrouterModelsConfig
         'video_models_list' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'allowed_passthrough_parameters',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'canonical_slug',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'created',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'description',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'generate_audio',
               'req' => true,
               'type' => [
@@ -13873,12 +11480,9 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'hugging_face_id',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -13886,26 +11490,19 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'pricing_skus',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -13913,10 +11510,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'seed',
               'req' => true,
               'type' => [
@@ -13926,10 +11521,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'supported_aspect_ratios',
               'req' => true,
               'type' => [
@@ -13939,10 +11532,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'supported_durations',
               'req' => true,
               'type' => [
@@ -13952,10 +11543,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'supported_frame_images',
               'req' => true,
               'type' => [
@@ -13965,10 +11554,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'supported_resolutions',
               'req' => true,
               'type' => [
@@ -13978,10 +11565,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'supported_sizes',
               'req' => true,
               'type' => [
@@ -13991,7 +11576,6 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 14,
             ],
           ],
           'name' => 'video_models_list',
@@ -14001,31 +11585,24 @@ class OpenrouterModelsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -14048,10 +11625,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -14061,14 +11636,11 @@ class OpenrouterModelsConfig
         'workspace' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'created_at',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'created_by',
               'req' => true,
               'type' => [
@@ -14078,10 +11650,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'default_image_model',
               'req' => true,
               'type' => [
@@ -14091,10 +11661,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'default_provider_sort',
               'req' => true,
               'type' => [
@@ -14104,10 +11672,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'default_text_model',
               'req' => true,
               'type' => [
@@ -14117,10 +11683,8 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'description',
               'req' => true,
               'type' => [
@@ -14130,17 +11694,13 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'io_logging_api_key_ids',
               'req' => true,
               'type' => [
@@ -14150,52 +11710,38 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'io_logging_sampling_rate',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'is_data_discount_logging_enabled',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'is_observability_broadcast_enabled',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'is_observability_io_logging_enabled',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'slug',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'updated_at',
               'req' => true,
               'type' => [
@@ -14205,7 +11751,6 @@ class OpenrouterModelsConfig
                   '`$NULL`',
                 ],
               ],
-              'index$' => 14,
             ],
           ],
           'name' => 'workspace',
@@ -14215,44 +11760,35 @@ class OpenrouterModelsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'production',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -14275,54 +11811,43 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
             'remove' => [
               'input' => 'data',
               'name' => 'remove',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'production',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -14345,10 +11870,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'remove',
             ],
           ],
           'relations' => [
@@ -14364,54 +11887,43 @@ class OpenrouterModelsConfig
               'name' => 'remove',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'header' => [
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'http_referer',
                         'orig' => 'http_referer',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_category',
                         'orig' => 'x_open_router_category',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'header',
                         'name' => 'x_open_router_title',
                         'orig' => 'x_open_router_title',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'monthly',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'interval',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                       [
-                        'active' => true,
                         'example' => 'production',
                         'kind' => 'param',
                         'name' => 'workspace_id',
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -14443,10 +11955,8 @@ class OpenrouterModelsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'remove',
             ],
           ],
           'relations' => [

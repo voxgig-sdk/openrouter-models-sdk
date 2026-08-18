@@ -28,7 +28,7 @@ class OpenrouterModelsSDK
     utility = OpenrouterModelsUtility.new
     @_utility = utility
 
-    config = OpenrouterModelsConfig.make_config
+    config = OpenrouterModelsConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

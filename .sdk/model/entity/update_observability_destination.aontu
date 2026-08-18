@@ -30,6 +30,11 @@ main: kit: entity: update_observability_destination: {
       name: "filter_rules"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 10
+      }
     }
     {
       name: "name"

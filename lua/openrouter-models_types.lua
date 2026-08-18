@@ -62,7 +62,7 @@
 ---@field workspace_id string
 
 ---@class ApiKeyLoadMatch
----@field id? string
+---@field id string
 
 ---@class ApiKeyListMatch
 ---@field byok_usage? number
@@ -1005,7 +1005,13 @@
 ---@field key_name string
 
 ---@class ListKeyAssignmentListMatch
+---@field assigned_by? string|nil
+---@field created_at? string
 ---@field guardrail_id? string
+---@field id? string
+---@field key_hash? string
+---@field key_label? string
+---@field key_name? string
 
 ---@class ListMemberAssignment
 ---@field assigned_by string|nil
@@ -1016,7 +1022,12 @@
 ---@field user_id string
 
 ---@class ListMemberAssignmentListMatch
+---@field assigned_by? string|nil
+---@field created_at? string
 ---@field guardrail_id? string
+---@field id? string
+---@field organization_id? string
+---@field user_id? string
 
 ---@class ListObservabilityDestination
 ---@field data table

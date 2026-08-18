@@ -9,6 +9,11 @@ main: kit: entity: list_observability_destination: {
       name: "data"
       req: true
       type: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 11
+        depth: 13
+      }
     }
     {
       name: "total_count"

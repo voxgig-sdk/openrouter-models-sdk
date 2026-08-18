@@ -40,7 +40,7 @@ class OpenrouterModelsSDK
         $utility = new OpenrouterModelsUtility();
         $this->_utility = $utility;
 
-        $config = OpenrouterModelsConfig::make_config();
+        $config = OpenrouterModelsConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

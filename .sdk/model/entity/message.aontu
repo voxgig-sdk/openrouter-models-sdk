@@ -20,6 +20,11 @@ main: kit: entity: message: {
           "`$NULL`"
         ]
       ]
+      union: {
+        branches: 3
+        count: 3
+        depth: 7
+      }
     }
     {
       name: "fallbacks"
@@ -47,6 +52,11 @@ main: kit: entity: message: {
           "`$NULL`"
         ]
       ]
+      union: {
+        branches: 12
+        count: 7
+        depth: 14
+      }
     }
     {
       name: "metadata"
@@ -72,6 +82,11 @@ main: kit: entity: message: {
       name: "plugins"
       req: false
       type: "`$ARRAY`"
+      union: {
+        branches: 5
+        count: 4
+        depth: 12
+      }
     }
     {
       name: "provider"
@@ -83,6 +98,11 @@ main: kit: entity: message: {
           "`$NULL`"
         ]
       ]
+      union: {
+        branches: 2
+        count: 6
+        depth: 3
+      }
     }
     {
       name: "route"
@@ -129,6 +149,11 @@ main: kit: entity: message: {
       name: "system"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
     }
     {
       name: "temperature"
@@ -139,16 +164,31 @@ main: kit: entity: message: {
       name: "thinking"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 0
+      }
     }
     {
       name: "tool_choice"
       req: false
       type: "`$ANY`"
+      union: {
+        branches: 4
+        count: 1
+        depth: 0
+      }
     }
     {
       name: "tools"
       req: false
       type: "`$ARRAY`"
+      union: {
+        branches: 13
+        count: 2
+        depth: 6
+      }
     }
     {
       name: "top_k"

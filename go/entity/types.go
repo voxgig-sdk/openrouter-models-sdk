@@ -77,7 +77,7 @@ type ApiKey struct {
 
 // ApiKeyLoadMatch is the typed request payload for ApiKey.LoadTyped.
 type ApiKeyLoadMatch struct {
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 }
 
 // ApiKeyListMatch is the typed request payload for ApiKey.ListTyped.
@@ -1174,7 +1174,13 @@ type ListKeyAssignment struct {
 
 // ListKeyAssignmentListMatch is the typed request payload for ListKeyAssignment.ListTyped.
 type ListKeyAssignmentListMatch struct {
+	AssignedBy *any `json:"assigned_by,omitempty"`
+	CreatedAt *string `json:"created_at,omitempty"`
 	GuardrailId *string `json:"guardrail_id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	KeyHash *string `json:"key_hash,omitempty"`
+	KeyLabel *string `json:"key_label,omitempty"`
+	KeyName *string `json:"key_name,omitempty"`
 }
 
 // ListMemberAssignment is the typed data model for the list_member_assignment entity.
@@ -1189,7 +1195,12 @@ type ListMemberAssignment struct {
 
 // ListMemberAssignmentListMatch is the typed request payload for ListMemberAssignment.ListTyped.
 type ListMemberAssignmentListMatch struct {
+	AssignedBy *any `json:"assigned_by,omitempty"`
+	CreatedAt *string `json:"created_at,omitempty"`
 	GuardrailId *string `json:"guardrail_id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	OrganizationId *string `json:"organization_id,omitempty"`
+	UserId *string `json:"user_id,omitempty"`
 }
 
 // ListObservabilityDestination is the typed data model for the list_observability_destination entity.
