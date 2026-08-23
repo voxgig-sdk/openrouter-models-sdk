@@ -1,0 +1,262 @@
+# Entity: update_guardrail
+
+main: kit: entity: update_guardrail: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "allowed_models"
+      req: false
+      short: "Array of model identifiers (slug or canonical_slug accepted)"
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "allowed_providers"
+      req: false
+      short: "New list of allowed provider IDs"
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "content_filter_builtins"
+      req: false
+      short: "Builtin content filters to apply."
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "content_filters"
+      req: false
+      short: "Custom regex content filters to apply."
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "description"
+      req: false
+      short: "New description for the guardrail"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "enforce_zdr"
+      req: false
+      short: "Deprecated."
+      type: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "enforce_zdr_anthropic"
+      req: false
+      short: "Whether to enforce zero data retention for Anthropic models."
+      type: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "enforce_zdr_google"
+      req: false
+      short: "Whether to enforce zero data retention for Google models."
+      type: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "enforce_zdr_openai"
+      req: false
+      short: "Whether to enforce zero data retention for OpenAI models."
+      type: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "enforce_zdr_other"
+      req: false
+      short: "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI."
+      type: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "enforce_zdr_xai"
+      req: false
+      short: "Whether to enforce zero data retention for xAI models."
+      type: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "ignored_models"
+      req: false
+      short: "Array of model identifiers to exclude from routing (slug or canonical_slug accepted)"
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "ignored_providers"
+      req: false
+      short: "List of provider IDs to exclude from routing"
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "limit_usd"
+      req: false
+      short: "New spending limit in USD"
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "name"
+      req: false
+      short: "New name for the guardrail"
+      type: "`$STRING`"
+    }
+    {
+      name: "reset_interval"
+      req: false
+      short: "Interval at which the limit resets (daily, weekly, monthly)"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  ]
+
+  name: "update_guardrail"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "550e8400-e29b-41d4-a716-446655440000"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PATCH"
+          orig: "/guardrails/{id}"
+          parts: [
+            "guardrails"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

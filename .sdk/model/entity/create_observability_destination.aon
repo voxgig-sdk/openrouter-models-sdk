@@ -1,0 +1,136 @@
+# Entity: create_observability_destination
+
+main: kit: entity: create_observability_destination: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "api_key_hashes"
+      req: false
+      short: "Optional allowlist of OpenRouter API key hashes whose traffic is forwarded."
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "config"
+      req: true
+      short: "Provider-specific configuration."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "enabled"
+      req: false
+      short: "Whether this destination should be enabled immediately."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "filter_rules"
+      req: true
+      short: "Optional structured filter rules controlling which events are forwarded."
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 2
+        count: 1
+        depth: 8
+      }
+    }
+    {
+      name: "name"
+      req: true
+      short: "Human-readable name for the destination."
+      type: "`$STRING`"
+    }
+    {
+      name: "privacy_mode"
+      req: false
+      short: "When true, request/response bodies are not forwarded — only metadata."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "sampling_rate"
+      req: false
+      short: "Sampling rate between 0.0001 and 1 (1 = 100%)."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "type"
+      req: true
+      short: "The destination type."
+      type: "`$STRING`"
+    }
+    {
+      name: "workspace_id"
+      req: false
+      short: "Optional workspace ID."
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "create_observability_destination"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/observability/destinations"
+          parts: [
+            "observability"
+            "destinations"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,216 @@
+# Entity: beta_analytics
+
+main: kit: entity: beta_analytics: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "cachedAt"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "classifier_dimensions"
+      req: true
+      short: "Group results by custom classifier tags, breaking down metrics by the specified dimension values."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "classifier_filters"
+      req: true
+      short: "Filter results to generations with specific classifier tag values."
+      type: "`$OBJECT`"
+      union: {
+        branches: 3
+        count: 2
+        depth: 8
+      }
+    }
+    {
+      name: "data"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "dimensions"
+      op: {
+        create: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "filters"
+      req: false
+      type: "`$ARRAY`"
+      union: {
+        branches: 3
+        count: 2
+        depth: 6
+      }
+    }
+    {
+      name: "granularities"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "granularity"
+      req: false
+      short: "Time granularity"
+      type: "`$STRING`"
+    }
+    {
+      name: "group_limit"
+      req: false
+      short: "Maximum rows per distinct combination of dimensions."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "limit"
+      req: false
+      short: "Maximum total rows returned."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "metadata"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "metrics"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "operators"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "order_by"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "time_range"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "warnings"
+      req: false
+      short: "Warnings about filter resolution issues (e.g."
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "beta_analytics"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/analytics/query"
+          parts: [
+            "analytics"
+            "query"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/analytics/meta"
+          parts: [
+            "analytics"
+            "meta"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

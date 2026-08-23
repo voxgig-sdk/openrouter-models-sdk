@@ -433,17 +433,17 @@ $activity = $client->Activity();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `byok_usage_inference` | `float` | Yes |  |
-| `completion_tokens` | `int` | Yes |  |
-| `date` | `string` | Yes |  |
-| `endpoint_id` | `string` | Yes |  |
-| `model` | `string` | Yes |  |
-| `model_permaslug` | `string` | Yes |  |
-| `prompt_tokens` | `int` | Yes |  |
-| `provider_name` | `string` | Yes |  |
-| `reasoning_tokens` | `int` | Yes |  |
-| `requests` | `int` | Yes |  |
-| `usage` | `float` | Yes |  |
+| `byok_usage_inference` | `float` | Yes | BYOK inference cost in USD (external credits spent) |
+| `completion_tokens` | `int` | Yes | Total completion tokens generated |
+| `date` | `string` | Yes | Date of the activity (YYYY-MM-DD format) |
+| `endpoint_id` | `string` | Yes | Unique identifier for the endpoint |
+| `model` | `string` | Yes | Model slug (e.g., "openai/gpt-4.1") |
+| `model_permaslug` | `string` | Yes | Model permaslug (e.g., "openai/gpt-4.1-2025-04-14") |
+| `prompt_tokens` | `int` | Yes | Total prompt tokens used |
+| `provider_name` | `string` | Yes | Name of the provider serving this endpoint |
+| `reasoning_tokens` | `int` | Yes | Total reasoning tokens used |
+| `requests` | `int` | Yes | Number of requests made |
+| `usage` | `float` | Yes | Total cost in USD (OpenRouter credits spent) |
 
 ### Operations
 
@@ -531,31 +531,31 @@ $api_key = $client->ApiKey();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `byok_usage` | `float` | Yes |  |
-| `byok_usage_daily` | `float` | Yes |  |
-| `byok_usage_monthly` | `float` | Yes |  |
-| `byok_usage_weekly` | `float` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `creator_user_id` | `mixed` | Yes |  |
-| `disabled` | `bool` | Yes |  |
-| `expires_at` | `mixed` | No |  |
-| `hash` | `string` | Yes |  |
-| `include_byok_in_limit` | `bool` | Yes |  |
-| `is_free_tier` | `bool` | Yes |  |
-| `is_management_key` | `bool` | Yes |  |
-| `is_provisioning_key` | `bool` | Yes |  |
-| `label` | `string` | Yes |  |
-| `limit` | `mixed` | Yes |  |
-| `limit_remaining` | `mixed` | Yes |  |
-| `limit_reset` | `mixed` | Yes |  |
-| `name` | `string` | Yes |  |
-| `rate_limit` | `array` | Yes |  |
-| `updated_at` | `mixed` | Yes |  |
-| `usage` | `float` | Yes |  |
-| `usage_daily` | `float` | Yes |  |
-| `usage_monthly` | `float` | Yes |  |
-| `usage_weekly` | `float` | Yes |  |
-| `workspace_id` | `string` | Yes |  |
+| `byok_usage` | `float` | Yes | Total external BYOK usage (in USD) for the API key |
+| `byok_usage_daily` | `float` | Yes | External BYOK usage (in USD) for the current UTC day |
+| `byok_usage_monthly` | `float` | Yes | External BYOK usage (in USD) for current UTC month |
+| `byok_usage_weekly` | `float` | Yes | External BYOK usage (in USD) for the current UTC week (Monday-Sunday) |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the API key was created |
+| `creator_user_id` | `mixed` | Yes | The user ID of the key creator. |
+| `disabled` | `bool` | Yes | Whether the API key is disabled |
+| `expires_at` | `mixed` | No | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
+| `hash` | `string` | Yes | Unique hash identifier for the API key |
+| `include_byok_in_limit` | `bool` | Yes | Whether to include external BYOK usage in the credit limit |
+| `is_free_tier` | `bool` | Yes | Whether this is a free tier API key |
+| `is_management_key` | `bool` | Yes | Whether this is a management key |
+| `is_provisioning_key` | `bool` | Yes | Whether this is a management key |
+| `label` | `string` | Yes | Human-readable label for the API key |
+| `limit` | `mixed` | Yes | Spending limit for the API key in USD |
+| `limit_remaining` | `mixed` | Yes | Remaining spending limit in USD |
+| `limit_reset` | `mixed` | Yes | Type of limit reset for the API key |
+| `name` | `string` | Yes | Name of the API key |
+| `rate_limit` | `array` | Yes | Legacy rate limit information about a key. |
+| `updated_at` | `mixed` | Yes | ISO 8601 timestamp of when the API key was last updated |
+| `usage` | `float` | Yes | Total OpenRouter credit usage (in USD) for the API key |
+| `usage_daily` | `float` | Yes | OpenRouter credit usage (in USD) for the current UTC day |
+| `usage_monthly` | `float` | Yes | OpenRouter credit usage (in USD) for the current UTC month |
+| `usage_weekly` | `float` | Yes | OpenRouter credit usage (in USD) for the current UTC week (Monday-Sunday) |
+| `workspace_id` | `string` | Yes | The workspace ID this API key belongs to. |
 
 ### Field Usage by Operation
 
@@ -697,11 +697,11 @@ $app_ranking = $client->AppRanking();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `app_id` | `int` | Yes |  |
-| `app_name` | `string` | Yes |  |
-| `rank` | `int` | Yes |  |
-| `total_requests` | `int` | Yes |  |
-| `total_tokens` | `string` | Yes |  |
+| `app_id` | `int` | Yes | Stable numeric identifier of the app on OpenRouter. |
+| `app_name` | `string` | Yes | Public display name of the app. |
+| `rank` | `int` | Yes | 1-based position of the app within this response, per the requested `sort`. |
+| `total_requests` | `int` | Yes | Number of requests attributed to the app inside the date window. |
+| `total_tokens` | `string` | Yes | Sum of `prompt_tokens + completion_tokens` attributed to the app inside the date window, returned as a decimal string so 64-bit values are not truncated. |
 
 ### Operations
 
@@ -790,21 +790,21 @@ $beta_analytics = $client->BetaAnalytics();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cachedAt` | `float` | No |  |
-| `classifier_dimensions` | `array` | Yes |  |
-| `classifier_filters` | `array` | Yes |  |
+| `classifier_dimensions` | `array` | Yes | Group results by custom classifier tags, breaking down metrics by the specified dimension values. |
+| `classifier_filters` | `array` | Yes | Filter results to generations with specific classifier tag values. |
 | `data` | `array` | Yes |  |
 | `dimensions` | `array` | Yes |  |
 | `filters` | `array` | No |  |
 | `granularities` | `array` | Yes |  |
-| `granularity` | `string` | No |  |
-| `group_limit` | `int` | No |  |
-| `limit` | `int` | No |  |
+| `granularity` | `string` | No | Time granularity |
+| `group_limit` | `int` | No | Maximum rows per distinct combination of dimensions. |
+| `limit` | `int` | No | Maximum total rows returned. |
 | `metadata` | `array` | Yes |  |
 | `metrics` | `array` | Yes |  |
 | `operators` | `array` | Yes |  |
 | `order_by` | `array` | Yes |  |
 | `time_range` | `array` | Yes |  |
-| `warnings` | `array` | No |  |
+| `warnings` | `array` | No | Warnings about filter resolution issues (e.g. |
 
 ### Field Usage by Operation
 
@@ -932,9 +932,9 @@ $bulk_add_workspace_member = $client->BulkAddWorkspaceMember();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `added_count` | `int` | Yes |  |
-| `data` | `array` | Yes |  |
-| `user_ids` | `array` | Yes |  |
+| `added_count` | `int` | Yes | Number of workspace memberships created or updated |
+| `data` | `array` | Yes | List of added workspace memberships |
+| `user_ids` | `array` | Yes | List of user IDs to add to the workspace. |
 
 ### Operations
 
@@ -991,8 +991,8 @@ $bulk_assign_key = $client->BulkAssignKey();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_count` | `int` | Yes |  |
-| `key_hashes` | `array` | Yes |  |
+| `assigned_count` | `int` | Yes | Number of keys successfully assigned |
+| `key_hashes` | `array` | Yes | Array of API key hashes to assign to the guardrail |
 
 ### Operations
 
@@ -1048,8 +1048,8 @@ $bulk_assign_member = $client->BulkAssignMember();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_count` | `int` | Yes |  |
-| `member_user_ids` | `array` | Yes |  |
+| `assigned_count` | `int` | Yes | Number of members successfully assigned |
+| `member_user_ids` | `array` | Yes | Array of member user IDs to assign to the guardrail |
 
 ### Operations
 
@@ -1105,8 +1105,8 @@ $bulk_remove_workspace_member = $client->BulkRemoveWorkspaceMember();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `removed_count` | `int` | Yes |  |
-| `user_ids` | `array` | Yes |  |
+| `removed_count` | `int` | Yes | Number of members removed |
+| `user_ids` | `array` | Yes | List of user IDs to remove from the workspace |
 
 ### Operations
 
@@ -1162,8 +1162,8 @@ $bulk_unassign_key = $client->BulkUnassignKey();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key_hashes` | `array` | Yes |  |
-| `unassigned_count` | `int` | Yes |  |
+| `key_hashes` | `array` | Yes | Array of API key hashes to unassign from the guardrail |
+| `unassigned_count` | `int` | Yes | Number of keys successfully unassigned |
 
 ### Operations
 
@@ -1219,8 +1219,8 @@ $bulk_unassign_member = $client->BulkUnassignMember();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `member_user_ids` | `array` | Yes |  |
-| `unassigned_count` | `int` | Yes |  |
+| `member_user_ids` | `array` | Yes | Array of member user IDs to unassign from the guardrail |
+| `unassigned_count` | `int` | Yes | Number of members successfully unassigned |
 
 ### Operations
 
@@ -1276,19 +1276,19 @@ $byok = $client->Byok();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_api_key_hashes` | `mixed` | Yes |  |
-| `allowed_models` | `mixed` | Yes |  |
-| `allowed_user_ids` | `mixed` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `disabled` | `bool` | Yes |  |
-| `id` | `string` | Yes |  |
-| `is_fallback` | `bool` | Yes |  |
-| `key` | `string` | Yes |  |
-| `label` | `string` | Yes |  |
-| `name` | `mixed` | No |  |
-| `provider` | `string` | Yes |  |
-| `sort_order` | `int` | Yes |  |
-| `workspace_id` | `string` | Yes |  |
+| `allowed_api_key_hashes` | `mixed` | Yes | Optional allowlist of OpenRouter API key hashes (`api_keys.hash`) that may use this credential. |
+| `allowed_models` | `mixed` | Yes | Optional allowlist of model slugs this credential may be used for. |
+| `allowed_user_ids` | `mixed` | Yes | Optional allowlist of user IDs that may use this credential. |
+| `created_at` | `string` | Yes | ISO timestamp of when the credential was created. |
+| `disabled` | `bool` | Yes | Whether this credential is currently disabled. |
+| `id` | `string` | Yes | Stable public identifier for this BYOK credential. |
+| `is_fallback` | `bool` | Yes | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
+| `key` | `string` | Yes | The raw provider API key or credential. |
+| `label` | `string` | Yes | Short masked snippet of the key (e.g. |
+| `name` | `mixed` | No | Optional human-readable name for the credential. |
+| `provider` | `string` | Yes | The upstream provider this credential authenticates against, as a lowercase slug (e.g. |
+| `sort_order` | `int` | Yes | Position within the provider — credentials are tried in ascending sort order. |
+| `workspace_id` | `string` | Yes | ID of the workspace this credential belongs to. |
 
 ### Field Usage by Operation
 
@@ -1395,55 +1395,55 @@ $chat_result = $client->ChatResult();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cache_control` | `array` | Yes |  |
-| `choices` | `array` | Yes |  |
-| `created` | `int` | Yes |  |
-| `debug` | `array` | No |  |
-| `frequency_penalty` | `mixed` | No |  |
-| `id` | `string` | Yes |  |
-| `image_config` | `array` | No |  |
-| `logit_bias` | `mixed` | No |  |
-| `logprobs` | `mixed` | No |  |
-| `max_completion_tokens` | `mixed` | No |  |
-| `max_tokens` | `mixed` | No |  |
-| `messages` | `array` | Yes |  |
-| `metadata` | `array` | No |  |
-| `min_p` | `mixed` | No |  |
-| `modalities` | `array` | No |  |
-| `model` | `string` | Yes |  |
-| `models` | `array` | No |  |
+| `cache_control` | `array` | Yes | Enable automatic prompt caching. |
+| `choices` | `array` | Yes | List of completion choices |
+| `created` | `int` | Yes | Unix timestamp of creation |
+| `debug` | `array` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `mixed` | No | Frequency penalty (-2.0 to 2.0) |
+| `id` | `string` | Yes | Unique completion identifier |
+| `image_config` | `array` | No | Provider-specific image configuration options. |
+| `logit_bias` | `mixed` | No | Token logit bias adjustments |
+| `logprobs` | `mixed` | No | Return log probabilities |
+| `max_completion_tokens` | `mixed` | No | Maximum tokens in completion |
+| `max_tokens` | `mixed` | No | Maximum tokens (deprecated, use max_completion_tokens). |
+| `messages` | `array` | Yes | List of messages for the conversation |
+| `metadata` | `array` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `mixed` | No | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `array` | No | Output modalities for the response. |
+| `model` | `string` | Yes | Model used for completion |
+| `models` | `array` | No | Models to use for completion |
 | `object` | `string` | Yes |  |
 | `openrouter_metadata` | `array` | Yes |  |
-| `parallel_tool_calls` | `mixed` | No |  |
-| `plugins` | `array` | No |  |
-| `prediction` | `mixed` | Yes |  |
-| `presence_penalty` | `mixed` | No |  |
+| `parallel_tool_calls` | `mixed` | No | Whether to enable parallel function calling during tool use. |
+| `plugins` | `array` | No | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `mixed` | Yes | Static predicted output content. |
+| `presence_penalty` | `mixed` | No | Presence penalty (-2.0 to 2.0) |
 | `prompt_cache_key` | `mixed` | No |  |
-| `prompt_cache_options` | `mixed` | Yes |  |
-| `provider` | `mixed` | No |  |
-| `reasoning` | `array` | No |  |
-| `reasoning_effort` | `mixed` | No |  |
-| `repetition_penalty` | `mixed` | No |  |
-| `response_format` | `mixed` | No |  |
-| `route` | `mixed` | No |  |
-| `seed` | `mixed` | No |  |
-| `service_tier` | `mixed` | No |  |
-| `session_id` | `string` | No |  |
-| `stop` | `mixed` | No |  |
-| `stop_server_tools_when` | `array` | No |  |
-| `stream` | `bool` | No |  |
-| `stream_options` | `mixed` | No |  |
-| `system_fingerprint` | `mixed` | Yes |  |
-| `temperature` | `mixed` | No |  |
-| `tool_choice` | `mixed` | No |  |
-| `tools` | `array` | No |  |
-| `top_a` | `mixed` | No |  |
-| `top_k` | `mixed` | No |  |
-| `top_logprobs` | `mixed` | No |  |
-| `top_p` | `mixed` | No |  |
-| `trace` | `array` | No |  |
-| `usage` | `array` | Yes |  |
-| `user` | `string` | No |  |
+| `prompt_cache_options` | `mixed` | Yes | Request-level prompt-cache controls. |
+| `provider` | `mixed` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `array` | No | Configuration options for reasoning models |
+| `reasoning_effort` | `mixed` | No | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `mixed` | No | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `mixed` | No | Response format configuration |
+| `route` | `mixed` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `seed` | `mixed` | No | Random seed for deterministic outputs |
+| `service_tier` | `mixed` | No | The service tier used by the upstream provider for this request |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop` | `mixed` | No | Stop sequences (up to 4) |
+| `stop_server_tools_when` | `array` | No | Stop conditions for the server-tool agent loop. |
+| `stream` | `bool` | No | Enable streaming response |
+| `stream_options` | `mixed` | No | Streaming configuration options |
+| `system_fingerprint` | `mixed` | Yes | System fingerprint |
+| `temperature` | `mixed` | No | Sampling temperature (0-2) |
+| `tool_choice` | `mixed` | No | Tool choice configuration |
+| `tools` | `array` | No | Available tools for function calling |
+| `top_a` | `mixed` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `mixed` | No | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `mixed` | No | Number of top log probabilities to return (0-20) |
+| `top_p` | `mixed` | No | Nucleus sampling parameter (0-1) |
+| `trace` | `array` | No | Metadata for observability and tracing. |
+| `usage` | `array` | Yes | Token usage statistics |
+| `user` | `string` | No | Unique user identifier |
 
 ### Field Usage by Operation
 
@@ -1814,15 +1814,15 @@ $create_observability_destination = $client->CreateObservabilityDestination();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hashes` | `mixed` | No |  |
-| `config` | `array` | Yes |  |
-| `enabled` | `bool` | No |  |
-| `filter_rules` | `mixed` | Yes |  |
-| `name` | `string` | Yes |  |
-| `privacy_mode` | `bool` | No |  |
-| `sampling_rate` | `float` | No |  |
-| `type` | `string` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `api_key_hashes` | `mixed` | No | Optional allowlist of OpenRouter API key hashes whose traffic is forwarded. |
+| `config` | `array` | Yes | Provider-specific configuration. |
+| `enabled` | `bool` | No | Whether this destination should be enabled immediately. |
+| `filter_rules` | `mixed` | Yes | Optional structured filter rules controlling which events are forwarded. |
+| `name` | `string` | Yes | Human-readable name for the destination. |
+| `privacy_mode` | `bool` | No | When true, request/response bodies are not forwarded — only metadata. |
+| `sampling_rate` | `float` | No | Sampling rate between 0.0001 and 1 (1 = 100%). |
+| `type` | `string` | Yes | The destination type. |
+| `workspace_id` | `string` | No | Optional workspace ID. |
 
 ### Operations
 
@@ -1880,66 +1880,66 @@ $create_preset_from_inference = $client->CreatePresetFromInference();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `background` | `mixed` | No |  |
-| `cache_control` | `array` | Yes |  |
+| `cache_control` | `array` | Yes | Enable automatic prompt caching. |
 | `context_management` | `mixed` | No |  |
-| `debug` | `array` | No |  |
-| `fallbacks` | `mixed` | No |  |
-| `frequency_penalty` | `mixed` | No |  |
-| `image_config` | `array` | No |  |
+| `debug` | `array` | No | Debug options for inspecting request transformations (streaming only) |
+| `fallbacks` | `mixed` | No | Fallback models to try if the primary model fails or refuses, in order. |
+| `frequency_penalty` | `mixed` | No | Frequency penalty (-2.0 to 2.0) |
+| `image_config` | `array` | No | Provider-specific image configuration options. |
 | `include` | `mixed` | No |  |
-| `input` | `mixed` | No |  |
+| `input` | `mixed` | No | Input for a response request - can be a string or array of items |
 | `instructions` | `mixed` | No |  |
-| `logit_bias` | `mixed` | No |  |
-| `logprobs` | `mixed` | No |  |
-| `max_completion_tokens` | `mixed` | No |  |
+| `logit_bias` | `mixed` | No | Token logit bias adjustments |
+| `logprobs` | `mixed` | No | Return log probabilities |
+| `max_completion_tokens` | `mixed` | No | Maximum tokens in completion |
 | `max_output_tokens` | `mixed` | No |  |
-| `max_tokens` | `mixed` | No |  |
+| `max_tokens` | `mixed` | No | Maximum tokens (deprecated, use max_completion_tokens). |
 | `max_tool_calls` | `mixed` | No |  |
-| `messages` | `array` | Yes |  |
-| `metadata` | `array` | No |  |
-| `min_p` | `mixed` | No |  |
-| `modalities` | `array` | No |  |
-| `model` | `string` | No |  |
-| `models` | `array` | No |  |
-| `output_config` | `array` | No |  |
-| `parallel_tool_calls` | `mixed` | No |  |
-| `plugins` | `array` | No |  |
-| `prediction` | `mixed` | Yes |  |
-| `presence_penalty` | `mixed` | No |  |
-| `previous_response_id` | `string` | No |  |
+| `messages` | `array` | Yes | List of messages for the conversation |
+| `metadata` | `array` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `mixed` | No | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `array` | No | Output modalities for the response. |
+| `model` | `string` | No | Model to use for completion |
+| `models` | `array` | No | Models to use for completion |
+| `output_config` | `array` | No | Configuration for controlling output behavior. |
+| `parallel_tool_calls` | `mixed` | No | Whether to enable parallel function calling during tool use. |
+| `plugins` | `array` | No | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `mixed` | Yes | Static predicted output content. |
+| `presence_penalty` | `mixed` | No | Presence penalty (-2.0 to 2.0) |
+| `previous_response_id` | `string` | No | Not supported. |
 | `prompt` | `mixed` | Yes |  |
 | `prompt_cache_key` | `mixed` | No |  |
-| `prompt_cache_options` | `mixed` | Yes |  |
-| `provider` | `mixed` | No |  |
-| `reasoning` | `array` | No |  |
-| `reasoning_effort` | `mixed` | No |  |
-| `repetition_penalty` | `mixed` | No |  |
-| `response_format` | `mixed` | No |  |
-| `route` | `mixed` | No |  |
+| `prompt_cache_options` | `mixed` | Yes | Request-level prompt-cache controls. |
+| `provider` | `mixed` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `array` | No | Configuration options for reasoning models |
+| `reasoning_effort` | `mixed` | No | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `mixed` | No | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `mixed` | No | Response format configuration |
+| `route` | `mixed` | No | **DEPRECATED** Use providers.sort.partition instead. |
 | `safety_identifier` | `mixed` | No |  |
-| `seed` | `mixed` | No |  |
-| `service_tier` | `mixed` | No |  |
-| `session_id` | `string` | No |  |
+| `seed` | `mixed` | No | Random seed for deterministic outputs |
+| `service_tier` | `mixed` | No | The service tier to use for processing this request. |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
 | `speed` | `mixed` | No |  |
-| `stop` | `mixed` | No |  |
+| `stop` | `mixed` | No | Stop sequences (up to 4) |
 | `stop_sequences` | `array` | No |  |
-| `stop_server_tools_when` | `array` | No |  |
+| `stop_server_tools_when` | `array` | No | Stop conditions for the server-tool agent loop. |
 | `store` | `bool` | No |  |
-| `stream` | `bool` | No |  |
-| `stream_options` | `mixed` | No |  |
+| `stream` | `bool` | No | Enable streaming response |
+| `stream_options` | `mixed` | No | Streaming configuration options |
 | `system` | `mixed` | No |  |
-| `temperature` | `mixed` | No |  |
-| `text` | `mixed` | No |  |
+| `temperature` | `mixed` | No | Sampling temperature (0-2) |
+| `text` | `mixed` | No | Text output configuration including format and verbosity |
 | `thinking` | `mixed` | No |  |
-| `tool_choice` | `mixed` | No |  |
-| `tools` | `array` | No |  |
-| `top_a` | `mixed` | No |  |
-| `top_k` | `mixed` | No |  |
-| `top_logprobs` | `mixed` | No |  |
-| `top_p` | `mixed` | No |  |
-| `trace` | `array` | No |  |
+| `tool_choice` | `mixed` | No | Tool choice configuration |
+| `tools` | `array` | No | Available tools for function calling |
+| `top_a` | `mixed` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `mixed` | No | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `mixed` | No | Number of top log probabilities to return (0-20) |
+| `top_p` | `mixed` | No | Nucleus sampling parameter (0-1) |
+| `trace` | `array` | No | Metadata for observability and tracing. |
 | `truncation` | `mixed` | No |  |
-| `user` | `string` | No |  |
+| `user` | `string` | No | Unique user identifier |
 
 ### Field Usage by Operation
 
@@ -2100,8 +2100,8 @@ $credit = $client->Credit();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `total_credits` | `float` | Yes |  |
-| `total_usage` | `float` | Yes |  |
+| `total_credits` | `float` | Yes | Total credits purchased |
+| `total_usage` | `float` | Yes | Total credits used |
 
 ### Operations
 
@@ -2200,17 +2200,17 @@ $embedding = $client->Embedding();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | Yes |  |
-| `dimensions` | `int` | No |  |
-| `encoding_format` | `string` | No |  |
-| `id` | `string` | No |  |
-| `input` | `mixed` | Yes |  |
-| `input_type` | `string` | No |  |
-| `model` | `string` | Yes |  |
+| `data` | `array` | Yes | List of embedding objects |
+| `dimensions` | `int` | No | The number of dimensions for the output embeddings |
+| `encoding_format` | `string` | No | The format of the output embeddings |
+| `id` | `string` | No | Unique identifier for the embeddings response |
+| `input` | `mixed` | Yes | Text, token, or multimodal input(s) to embed |
+| `input_type` | `string` | No | The type of input (e.g. |
+| `model` | `string` | Yes | The model used for embeddings |
 | `object` | `string` | Yes |  |
 | `provider` | `mixed` | No |  |
-| `usage` | `array` | Yes |  |
-| `user` | `string` | No |  |
+| `usage` | `array` | Yes | Token usage statistics |
+| `user` | `string` | No | A unique identifier for the end-user |
 
 ### Operations
 
@@ -2268,40 +2268,40 @@ $endpoint = $client->Endpoint();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `architecture` | `mixed` | Yes |  |
-| `benchmarks` | `array` | Yes |  |
-| `canonical_slug` | `string` | Yes |  |
-| `context_length` | `mixed` | Yes |  |
-| `created` | `int` | Yes |  |
-| `default_parameters` | `mixed` | Yes |  |
-| `description` | `string` | Yes |  |
-| `endpoints` | `array` | Yes |  |
-| `expiration_date` | `mixed` | No |  |
-| `hugging_face_id` | `mixed` | No |  |
-| `id` | `string` | Yes |  |
-| `knowledge_cutoff` | `mixed` | No |  |
-| `latency_last_30m` | `mixed` | Yes |  |
-| `links` | `array` | Yes |  |
+| `architecture` | `mixed` | Yes | Model architecture information |
+| `benchmarks` | `array` | Yes | Third-party benchmark rankings for this model. |
+| `canonical_slug` | `string` | Yes | Canonical slug for the model |
+| `context_length` | `mixed` | Yes | Maximum context length in tokens |
+| `created` | `int` | Yes | Unix timestamp of when the model was created |
+| `default_parameters` | `mixed` | Yes | Default parameters for this model |
+| `description` | `string` | Yes | Description of the model |
+| `endpoints` | `array` | Yes | List of available endpoints for this model |
+| `expiration_date` | `mixed` | No | The date after which the model may be removed. |
+| `hugging_face_id` | `mixed` | No | Hugging Face model identifier, if applicable |
+| `id` | `string` | Yes | Unique identifier for the model |
+| `knowledge_cutoff` | `mixed` | No | The date up to which the model was trained on data. |
+| `latency_last_30m` | `mixed` | Yes | Latency percentiles in milliseconds over the last 30 minutes. |
+| `links` | `array` | Yes | Related API endpoints and resources for this model. |
 | `max_completion_tokens` | `mixed` | Yes |  |
 | `max_prompt_tokens` | `mixed` | Yes |  |
-| `model_id` | `string` | Yes |  |
+| `model_id` | `string` | Yes | The unique identifier for the model (permaslug) |
 | `model_name` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `per_request_limits` | `mixed` | Yes |  |
-| `pricing` | `array` | Yes |  |
+| `name` | `string` | Yes | Display name of the model |
+| `per_request_limits` | `mixed` | Yes | Per-request token limits |
+| `pricing` | `array` | Yes | Pricing information for the model |
 | `provider_name` | `string` | Yes |  |
 | `quantization` | `mixed` | Yes |  |
-| `reasoning` | `array` | Yes |  |
+| `reasoning` | `array` | Yes | Reasoning effort configuration. |
 | `status` | `int` | No |  |
-| `supported_parameters` | `array` | Yes |  |
-| `supported_voices` | `mixed` | Yes |  |
+| `supported_parameters` | `array` | Yes | List of supported parameters for this model |
+| `supported_voices` | `mixed` | Yes | List of supported voice identifiers for TTS models. |
 | `supports_implicit_caching` | `bool` | Yes |  |
 | `tag` | `string` | Yes |  |
 | `throughput_last_30m` | `mixed` | Yes |  |
-| `top_provider` | `array` | Yes |  |
-| `uptime_last_1d` | `mixed` | Yes |  |
+| `top_provider` | `array` | Yes | Information about the top provider for this model |
+| `uptime_last_1d` | `mixed` | Yes | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
 | `uptime_last_30m` | `mixed` | Yes |  |
-| `uptime_last_5m` | `mixed` | Yes |  |
+| `uptime_last_5m` | `mixed` | Yes | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 ### Field Usage by Operation
 
@@ -2526,50 +2526,50 @@ $generation = $client->Generation();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_type` | `mixed` | Yes |  |
-| `app_id` | `mixed` | Yes |  |
-| `cache_discount` | `mixed` | Yes |  |
-| `cancelled` | `mixed` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `data_region` | `string` | Yes |  |
-| `external_user` | `mixed` | Yes |  |
-| `finish_reason` | `mixed` | Yes |  |
-| `generation_time` | `mixed` | Yes |  |
-| `http_referer` | `mixed` | Yes |  |
-| `id` | `string` | Yes |  |
-| `is_byok` | `bool` | Yes |  |
-| `latency` | `mixed` | Yes |  |
-| `model` | `string` | Yes |  |
-| `moderation_latency` | `mixed` | Yes |  |
-| `native_finish_reason` | `mixed` | Yes |  |
-| `native_tokens_cached` | `mixed` | Yes |  |
-| `native_tokens_completion` | `mixed` | Yes |  |
-| `native_tokens_completion_images` | `mixed` | Yes |  |
-| `native_tokens_prompt` | `mixed` | Yes |  |
-| `native_tokens_reasoning` | `mixed` | Yes |  |
-| `num_fetches` | `mixed` | Yes |  |
-| `num_input_audio_prompt` | `mixed` | Yes |  |
-| `num_media_completion` | `mixed` | Yes |  |
-| `num_media_prompt` | `mixed` | Yes |  |
-| `num_search_results` | `mixed` | Yes |  |
-| `origin` | `string` | Yes |  |
-| `preset_id` | `mixed` | Yes |  |
-| `provider_name` | `mixed` | Yes |  |
-| `provider_responses` | `mixed` | Yes |  |
-| `request_id` | `mixed` | No |  |
-| `response_cache_source_id` | `mixed` | No |  |
-| `router` | `mixed` | Yes |  |
-| `service_tier` | `mixed` | Yes |  |
-| `session_id` | `mixed` | No |  |
-| `streamed` | `mixed` | Yes |  |
-| `tokens_completion` | `mixed` | Yes |  |
-| `tokens_prompt` | `mixed` | Yes |  |
-| `total_cost` | `float` | Yes |  |
-| `upstream_id` | `mixed` | Yes |  |
-| `upstream_inference_cost` | `mixed` | Yes |  |
-| `usage` | `float` | Yes |  |
-| `user_agent` | `mixed` | Yes |  |
-| `web_search_engine` | `mixed` | Yes |  |
+| `api_type` | `mixed` | Yes | Type of API used for the generation |
+| `app_id` | `mixed` | Yes | ID of the app that made the request |
+| `cache_discount` | `mixed` | Yes | Discount applied due to caching |
+| `cancelled` | `mixed` | Yes | Whether the generation was cancelled |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the generation was created |
+| `data_region` | `string` | Yes | The data region this generation was routed through. |
+| `external_user` | `mixed` | Yes | External user identifier |
+| `finish_reason` | `mixed` | Yes | Reason the generation finished |
+| `generation_time` | `mixed` | Yes | Time taken for generation in milliseconds |
+| `http_referer` | `mixed` | Yes | Referer header from the request |
+| `id` | `string` | Yes | Unique identifier for the generation |
+| `is_byok` | `bool` | Yes | Whether this used bring-your-own-key |
+| `latency` | `mixed` | Yes | Total latency in milliseconds |
+| `model` | `string` | Yes | Model used for the generation |
+| `moderation_latency` | `mixed` | Yes | Moderation latency in milliseconds |
+| `native_finish_reason` | `mixed` | Yes | Native finish reason as reported by provider |
+| `native_tokens_cached` | `mixed` | Yes | Native cached tokens as reported by provider |
+| `native_tokens_completion` | `mixed` | Yes | Native completion tokens as reported by provider |
+| `native_tokens_completion_images` | `mixed` | Yes | Native completion image tokens as reported by provider |
+| `native_tokens_prompt` | `mixed` | Yes | Native prompt tokens as reported by provider |
+| `native_tokens_reasoning` | `mixed` | Yes | Native reasoning tokens as reported by provider |
+| `num_fetches` | `mixed` | Yes | Number of web fetches performed |
+| `num_input_audio_prompt` | `mixed` | Yes | Number of audio inputs in the prompt |
+| `num_media_completion` | `mixed` | Yes | Number of media items in the completion |
+| `num_media_prompt` | `mixed` | Yes | Number of media items in the prompt |
+| `num_search_results` | `mixed` | Yes | Number of search results included |
+| `origin` | `string` | Yes | Origin URL of the request |
+| `preset_id` | `mixed` | Yes | ID of the preset used for this generation, null if no preset was used |
+| `provider_name` | `mixed` | Yes | Name of the provider that served the request |
+| `provider_responses` | `mixed` | Yes | List of provider responses for this generation, including fallback attempts |
+| `request_id` | `mixed` | No | Unique identifier grouping all generations from a single API request |
+| `response_cache_source_id` | `mixed` | No | If this generation was served from response cache, contains the original generation ID. |
+| `router` | `mixed` | Yes | Router used for the request (e.g., openrouter/auto) |
+| `service_tier` | `mixed` | Yes | Service tier the upstream provider reported running this request on, or null if it did not report one. |
+| `session_id` | `mixed` | No | Session identifier grouping multiple generations in the same session |
+| `streamed` | `mixed` | Yes | Whether the response was streamed |
+| `tokens_completion` | `mixed` | Yes | Number of tokens in the completion |
+| `tokens_prompt` | `mixed` | Yes | Number of tokens in the prompt |
+| `total_cost` | `float` | Yes | Total cost of the generation in USD |
+| `upstream_id` | `mixed` | Yes | Upstream provider's identifier for this generation |
+| `upstream_inference_cost` | `mixed` | Yes | Cost charged by the upstream provider |
+| `usage` | `float` | Yes | Usage amount in USD |
+| `user_agent` | `mixed` | Yes | User-Agent header from the request |
+| `web_search_engine` | `mixed` | Yes | The resolved web search engine used for this generation (e.g. |
 
 ### Operations
 
@@ -2621,8 +2621,8 @@ $generation_content = $client->GenerationContent();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `input` | `mixed` | Yes |  |
-| `output` | `array` | Yes |  |
+| `input` | `mixed` | Yes | The input to the generation — either a prompt string or an array of messages |
+| `output` | `array` | Yes | The output from the generation |
 
 ### Operations
 
@@ -2674,26 +2674,26 @@ $guardrail = $client->Guardrail();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_models` | `mixed` | No |  |
-| `allowed_providers` | `mixed` | No |  |
-| `content_filter_builtins` | `mixed` | No |  |
-| `content_filters` | `mixed` | No |  |
-| `created_at` | `string` | Yes |  |
-| `description` | `mixed` | No |  |
-| `enforce_zdr` | `mixed` | No |  |
-| `enforce_zdr_anthropic` | `mixed` | No |  |
-| `enforce_zdr_google` | `mixed` | No |  |
-| `enforce_zdr_openai` | `mixed` | No |  |
-| `enforce_zdr_other` | `mixed` | No |  |
-| `enforce_zdr_xai` | `mixed` | No |  |
-| `id` | `string` | Yes |  |
-| `ignored_models` | `mixed` | No |  |
-| `ignored_providers` | `mixed` | No |  |
-| `limit_usd` | `mixed` | No |  |
-| `name` | `string` | Yes |  |
-| `reset_interval` | `mixed` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `workspace_id` | `string` | Yes |  |
+| `allowed_models` | `mixed` | No | Array of model canonical_slugs (immutable identifiers) |
+| `allowed_providers` | `mixed` | No | List of allowed provider IDs |
+| `content_filter_builtins` | `mixed` | No | Builtin content filters applied to requests. |
+| `content_filters` | `mixed` | No | Custom regex content filters applied to request messages |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the guardrail was created |
+| `description` | `mixed` | No | Description of the guardrail |
+| `enforce_zdr` | `mixed` | No | Deprecated. |
+| `enforce_zdr_anthropic` | `mixed` | No | Whether to enforce zero data retention for Anthropic models. |
+| `enforce_zdr_google` | `mixed` | No | Whether to enforce zero data retention for Google models. |
+| `enforce_zdr_openai` | `mixed` | No | Whether to enforce zero data retention for OpenAI models. |
+| `enforce_zdr_other` | `mixed` | No | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
+| `enforce_zdr_xai` | `mixed` | No | Whether to enforce zero data retention for xAI models. |
+| `id` | `string` | Yes | Unique identifier for the guardrail |
+| `ignored_models` | `mixed` | No | Array of model canonical_slugs to exclude from routing |
+| `ignored_providers` | `mixed` | No | List of provider IDs to exclude from routing |
+| `limit_usd` | `mixed` | No | Spending limit in USD |
+| `name` | `string` | Yes | Name of the guardrail |
+| `reset_interval` | `mixed` | No | Interval at which the limit resets (daily, weekly, monthly) |
+| `updated_at` | `mixed` | No | ISO 8601 timestamp of when the guardrail was last updated |
+| `workspace_id` | `string` | Yes | The workspace ID this guardrail belongs to. |
 
 ### Field Usage by Operation
 
@@ -2799,23 +2799,23 @@ $image = $client->Image();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aspect_ratio` | `string` | No |  |
-| `background` | `string` | No |  |
-| `created` | `int` | Yes |  |
-| `data` | `array` | Yes |  |
-| `input_references` | `array` | No |  |
-| `model` | `string` | Yes |  |
-| `n` | `int` | No |  |
-| `output_compression` | `int` | No |  |
-| `output_format` | `string` | No |  |
-| `prompt` | `string` | Yes |  |
-| `provider` | `array` | No |  |
-| `quality` | `string` | No |  |
-| `resolution` | `string` | No |  |
-| `seed` | `int` | No |  |
-| `size` | `string` | No |  |
-| `stream` | `bool` | No |  |
-| `usage` | `array` | Yes |  |
+| `aspect_ratio` | `string` | No | Normalized aspect ratio of the generated image. |
+| `background` | `string` | No | Background treatment. |
+| `created` | `int` | Yes | Unix timestamp (seconds) when the image was generated |
+| `data` | `array` | Yes | Generated images |
+| `input_references` | `array` | No | Reference images to guide image-to-image generation, as base64 data URLs or HTTP(S) URLs. |
+| `model` | `string` | Yes | The image generation model to use |
+| `n` | `int` | No | Number of images to generate (1-10). |
+| `output_compression` | `int` | No | Compression level (0-100) for webp/jpeg output. |
+| `output_format` | `string` | No | Encoding of the returned image bytes. |
+| `prompt` | `string` | Yes | Text description of the desired image |
+| `provider` | `array` | No | Provider routing preferences and provider-specific passthrough configuration. |
+| `quality` | `string` | No | Rendering quality. |
+| `resolution` | `string` | No | Normalized resolution tier of the generated image. |
+| `seed` | `int` | No | If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result. |
+| `size` | `string` | No | Optional. |
+| `stream` | `bool` | No | If true, partial images are streamed as SSE events as they become available. |
+| `usage` | `array` | Yes | Token and cost usage for the image generation request, when available |
 
 ### Operations
 
@@ -2873,13 +2873,13 @@ $image_model_endpoint = $client->ImageModelEndpoint();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameters` | `array` | Yes |  |
-| `pricing` | `array` | Yes |  |
-| `provider_name` | `string` | Yes |  |
-| `provider_slug` | `string` | Yes |  |
-| `provider_tag` | `mixed` | Yes |  |
+| `allowed_passthrough_parameters` | `array` | Yes | Provider-specific options accepted under provider.options[provider_slug]. |
+| `pricing` | `array` | Yes | Billable pricing lines for this endpoint. |
+| `provider_name` | `string` | Yes | Provider display name |
+| `provider_slug` | `string` | Yes | Provider slug |
+| `provider_tag` | `mixed` | Yes | Provider tag for request-side selection |
 | `supported_parameters` | `mixed` | Yes |  |
-| `supports_streaming` | `bool` | Yes |  |
+| `supports_streaming` | `bool` | Yes | Whether this endpoint supports native SSE streaming (`stream: true` in the request). |
 
 ### Operations
 
@@ -2932,13 +2932,13 @@ $image_models_list = $client->ImageModelsList();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `array` | Yes |  |
-| `created` | `int` | Yes |  |
+| `created` | `int` | Yes | Unix timestamp (seconds) of when the model was created |
 | `description` | `string` | Yes |  |
-| `endpoints` | `string` | Yes |  |
-| `id` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `supported_parameters` | `array` | Yes |  |
-| `supports_streaming` | `bool` | Yes |  |
+| `endpoints` | `string` | Yes | Relative URL to the full per-endpoint records for this model |
+| `id` | `string` | Yes | Model slug |
+| `name` | `string` | Yes | Display name |
+| `supported_parameters` | `array` | Yes | Union of supported parameters across every endpoint of this model. |
+| `supports_streaming` | `bool` | Yes | Whether any endpoint of this model supports native SSE streaming on the dedicated Image API (i.e. |
 
 ### Operations
 
@@ -3098,13 +3098,13 @@ $list_key_assignment = $client->ListKeyAssignment();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_by` | `mixed` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `guardrail_id` | `string` | Yes |  |
-| `id` | `string` | Yes |  |
-| `key_hash` | `string` | Yes |  |
-| `key_label` | `string` | Yes |  |
-| `key_name` | `string` | Yes |  |
+| `assigned_by` | `mixed` | Yes | User ID of who made the assignment |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `string` | Yes | ID of the guardrail |
+| `id` | `string` | Yes | Unique identifier for the assignment |
+| `key_hash` | `string` | Yes | Hash of the assigned API key |
+| `key_label` | `string` | Yes | Label of the API key |
+| `key_name` | `string` | Yes | Name of the API key |
 
 ### Operations
 
@@ -3156,12 +3156,12 @@ $list_member_assignment = $client->ListMemberAssignment();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_by` | `mixed` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `guardrail_id` | `string` | Yes |  |
-| `id` | `string` | Yes |  |
-| `organization_id` | `string` | Yes |  |
-| `user_id` | `string` | Yes |  |
+| `assigned_by` | `mixed` | Yes | User ID of who made the assignment |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `string` | Yes | ID of the guardrail |
+| `id` | `string` | Yes | Unique identifier for the assignment |
+| `organization_id` | `string` | Yes | Organization ID |
+| `user_id` | `string` | Yes | Clerk user ID of the assigned member |
 
 ### Operations
 
@@ -3213,8 +3213,8 @@ $list_observability_destination = $client->ListObservabilityDestination();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | Yes |  |
-| `total_count` | `int` | Yes |  |
+| `data` | `array` | Yes | List of observability destinations. |
+| `total_count` | `int` | Yes | Total number of destinations matching the filters. |
 
 ### Operations
 
@@ -3397,12 +3397,12 @@ $list_workspace_budget = $client->ListWorkspaceBudget();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | Yes |  |
-| `id` | `string` | Yes |  |
-| `limit_usd` | `float` | Yes |  |
-| `reset_interval` | `mixed` | Yes |  |
-| `updated_at` | `string` | Yes |  |
-| `workspace_id` | `string` | Yes |  |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the budget was created |
+| `id` | `string` | Yes | Unique identifier for the budget |
+| `limit_usd` | `float` | Yes | Spending limit in USD for this interval |
+| `reset_interval` | `mixed` | Yes | Interval at which spend resets. |
+| `updated_at` | `string` | Yes | ISO 8601 timestamp of when the budget was last updated |
+| `workspace_id` | `string` | Yes | ID of the workspace the budget belongs to |
 
 ### Operations
 
@@ -3454,11 +3454,11 @@ $list_workspace_member = $client->ListWorkspaceMember();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | Yes |  |
-| `id` | `string` | Yes |  |
-| `role` | `string` | Yes |  |
-| `user_id` | `string` | Yes |  |
-| `workspace_id` | `string` | Yes |  |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the membership was created |
+| `id` | `string` | Yes | Unique identifier for the workspace membership |
+| `role` | `string` | Yes | Role of the member in the workspace |
+| `user_id` | `string` | Yes | Clerk user ID of the member |
+| `workspace_id` | `string` | Yes | ID of the workspace |
 
 ### Operations
 
@@ -3546,23 +3546,23 @@ $message = $client->Message();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cache_control` | `array` | Yes |  |
+| `cache_control` | `array` | Yes | Enable automatic prompt caching. |
 | `context_management` | `mixed` | No |  |
-| `fallbacks` | `mixed` | No |  |
+| `fallbacks` | `mixed` | No | Fallback models to try if the primary model fails or refuses, in order. |
 | `max_tokens` | `int` | No |  |
 | `messages` | `mixed` | Yes |  |
 | `metadata` | `array` | No |  |
 | `model` | `string` | Yes |  |
 | `models` | `array` | No |  |
-| `output_config` | `array` | No |  |
-| `plugins` | `array` | No |  |
-| `provider` | `mixed` | No |  |
-| `route` | `mixed` | No |  |
+| `output_config` | `array` | No | Configuration for controlling output behavior. |
+| `plugins` | `array` | No | Plugins you want to enable for this request, including their settings. |
+| `provider` | `mixed` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `route` | `mixed` | No | **DEPRECATED** Use providers.sort.partition instead. |
 | `service_tier` | `string` | No |  |
-| `session_id` | `string` | No |  |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
 | `speed` | `mixed` | No |  |
 | `stop_sequences` | `array` | No |  |
-| `stop_server_tools_when` | `array` | No |  |
+| `stop_server_tools_when` | `array` | No | Stop conditions for the server-tool agent loop. |
 | `stream` | `bool` | No |  |
 | `system` | `mixed` | No |  |
 | `temperature` | `float` | No |  |
@@ -3571,8 +3571,8 @@ $message = $client->Message();
 | `tools` | `array` | No |  |
 | `top_k` | `int` | No |  |
 | `top_p` | `float` | No |  |
-| `trace` | `array` | No |  |
-| `user` | `string` | No |  |
+| `trace` | `array` | No | Metadata for observability and tracing. |
+| `user` | `string` | No | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
 ### Operations
 
@@ -3664,25 +3664,25 @@ $model = $client->Model();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `architecture` | `array` | Yes |  |
-| `benchmarks` | `array` | Yes |  |
-| `canonical_slug` | `string` | Yes |  |
-| `context_length` | `mixed` | Yes |  |
-| `created` | `int` | Yes |  |
-| `default_parameters` | `mixed` | Yes |  |
-| `description` | `string` | No |  |
-| `expiration_date` | `mixed` | No |  |
-| `hugging_face_id` | `mixed` | No |  |
-| `id` | `string` | Yes |  |
-| `knowledge_cutoff` | `mixed` | No |  |
-| `links` | `array` | Yes |  |
-| `name` | `string` | Yes |  |
-| `per_request_limits` | `mixed` | Yes |  |
-| `pricing` | `array` | Yes |  |
-| `reasoning` | `array` | Yes |  |
-| `supported_parameters` | `array` | Yes |  |
-| `supported_voices` | `mixed` | Yes |  |
-| `top_provider` | `array` | Yes |  |
+| `architecture` | `array` | Yes | Model architecture information |
+| `benchmarks` | `array` | Yes | Third-party benchmark rankings for this model. |
+| `canonical_slug` | `string` | Yes | Canonical slug for the model |
+| `context_length` | `mixed` | Yes | Maximum context length in tokens |
+| `created` | `int` | Yes | Unix timestamp of when the model was created |
+| `default_parameters` | `mixed` | Yes | Default parameters for this model |
+| `description` | `string` | No | Description of the model |
+| `expiration_date` | `mixed` | No | The date after which the model may be removed. |
+| `hugging_face_id` | `mixed` | No | Hugging Face model identifier, if applicable |
+| `id` | `string` | Yes | Unique identifier for the model |
+| `knowledge_cutoff` | `mixed` | No | The date up to which the model was trained on data. |
+| `links` | `array` | Yes | Related API endpoints and resources for this model. |
+| `name` | `string` | Yes | Display name of the model |
+| `per_request_limits` | `mixed` | Yes | Per-request token limits |
+| `pricing` | `array` | Yes | Pricing information for the model |
+| `reasoning` | `array` | Yes | Reasoning effort configuration. |
+| `supported_parameters` | `array` | Yes | List of supported parameters for this model |
+| `supported_voices` | `mixed` | Yes | List of supported voice identifiers for TTS models. |
+| `top_provider` | `array` | Yes | Information about the top provider for this model |
 
 ### Operations
 
@@ -3742,7 +3742,7 @@ $models_count = $client->ModelsCount();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | `int` | Yes |  |
+| `count` | `int` | Yes | Total number of available models |
 
 ### Operations
 
@@ -3794,25 +3794,25 @@ $models_list = $client->ModelsList();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `architecture` | `array` | Yes |  |
-| `benchmarks` | `array` | Yes |  |
-| `canonical_slug` | `string` | Yes |  |
-| `context_length` | `mixed` | Yes |  |
-| `created` | `int` | Yes |  |
-| `default_parameters` | `mixed` | Yes |  |
-| `description` | `string` | No |  |
-| `expiration_date` | `mixed` | No |  |
-| `hugging_face_id` | `mixed` | No |  |
-| `id` | `string` | Yes |  |
-| `knowledge_cutoff` | `mixed` | No |  |
-| `links` | `array` | Yes |  |
-| `name` | `string` | Yes |  |
-| `per_request_limits` | `mixed` | Yes |  |
-| `pricing` | `array` | Yes |  |
-| `reasoning` | `array` | Yes |  |
-| `supported_parameters` | `array` | Yes |  |
-| `supported_voices` | `mixed` | Yes |  |
-| `top_provider` | `array` | Yes |  |
+| `architecture` | `array` | Yes | Model architecture information |
+| `benchmarks` | `array` | Yes | Third-party benchmark rankings for this model. |
+| `canonical_slug` | `string` | Yes | Canonical slug for the model |
+| `context_length` | `mixed` | Yes | Maximum context length in tokens |
+| `created` | `int` | Yes | Unix timestamp of when the model was created |
+| `default_parameters` | `mixed` | Yes | Default parameters for this model |
+| `description` | `string` | No | Description of the model |
+| `expiration_date` | `mixed` | No | The date after which the model may be removed. |
+| `hugging_face_id` | `mixed` | No | Hugging Face model identifier, if applicable |
+| `id` | `string` | Yes | Unique identifier for the model |
+| `knowledge_cutoff` | `mixed` | No | The date up to which the model was trained on data. |
+| `links` | `array` | Yes | Related API endpoints and resources for this model. |
+| `name` | `string` | Yes | Display name of the model |
+| `per_request_limits` | `mixed` | Yes | Per-request token limits |
+| `pricing` | `array` | Yes | Pricing information for the model |
+| `reasoning` | `array` | Yes | Reasoning effort configuration. |
+| `supported_parameters` | `array` | Yes | List of supported parameters for this model |
+| `supported_voices` | `mixed` | Yes | List of supported voice identifiers for TTS models. |
+| `top_provider` | `array` | Yes | Information about the top provider for this model |
 
 ### Operations
 
@@ -3864,23 +3864,23 @@ $o_auth = $client->OAuth();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `app_id` | `int` | Yes |  |
-| `callback_url` | `string` | Yes |  |
-| `code` | `string` | Yes |  |
-| `code_challenge` | `string` | No |  |
-| `code_challenge_method` | `mixed` | No |  |
-| `code_verifier` | `string` | No |  |
-| `created_at` | `string` | Yes |  |
-| `expires_at` | `mixed` | No |  |
-| `id` | `string` | Yes |  |
-| `key` | `string` | Yes |  |
-| `key_label` | `string` | No |  |
-| `limit` | `float` | No |  |
-| `spawn_agent` | `string` | No |  |
-| `spawn_cloud` | `string` | No |  |
-| `usage_limit_type` | `string` | No |  |
-| `user_id` | `mixed` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `app_id` | `int` | Yes | The application ID associated with this auth code |
+| `callback_url` | `string` | Yes | The callback URL to redirect to after authorization. |
+| `code` | `string` | Yes | The authorization code received from the OAuth redirect |
+| `code_challenge` | `string` | No | PKCE code challenge for enhanced security |
+| `code_challenge_method` | `mixed` | No | The method used to generate the code challenge |
+| `code_verifier` | `string` | No | The code verifier if code_challenge was used in the authorization request |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the auth code was created |
+| `expires_at` | `mixed` | No | Optional expiration time for the API key to be created |
+| `id` | `string` | Yes | The authorization code ID to use in the exchange request |
+| `key` | `string` | Yes | The API key to use for OpenRouter requests |
+| `key_label` | `string` | No | Optional custom label for the API key. |
+| `limit` | `float` | No | Credit limit for the API key to be created |
+| `spawn_agent` | `string` | No | Agent identifier for spawn telemetry |
+| `spawn_cloud` | `string` | No | Cloud identifier for spawn telemetry |
+| `usage_limit_type` | `string` | No | Optional credit limit reset interval. |
+| `user_id` | `mixed` | Yes | User ID associated with the API key |
+| `workspace_id` | `string` | No | Optional workspace ID to associate the API key with |
 
 ### Operations
 
@@ -4001,45 +4001,45 @@ $open_responses_result = $client->OpenResponsesResult();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `background` | `mixed` | No |  |
-| `cache_control` | `array` | Yes |  |
-| `debug` | `array` | No |  |
+| `cache_control` | `array` | Yes | Enable automatic prompt caching. |
+| `debug` | `array` | No | Debug options for inspecting request transformations (streaming only) |
 | `frequency_penalty` | `mixed` | No |  |
-| `image_config` | `array` | No |  |
+| `image_config` | `array` | No | Provider-specific image configuration options. |
 | `include` | `mixed` | No |  |
-| `input` | `mixed` | No |  |
+| `input` | `mixed` | No | Input for a response request - can be a string or array of items |
 | `instructions` | `mixed` | No |  |
 | `max_output_tokens` | `mixed` | No |  |
 | `max_tool_calls` | `mixed` | No |  |
-| `metadata` | `mixed` | No |  |
-| `modalities` | `array` | No |  |
+| `metadata` | `mixed` | No | Metadata key-value pairs for the request. |
+| `modalities` | `array` | No | Output modalities for the response. |
 | `model` | `string` | No |  |
 | `models` | `array` | No |  |
 | `parallel_tool_calls` | `mixed` | No |  |
-| `plugins` | `array` | No |  |
+| `plugins` | `array` | No | Plugins you want to enable for this request, including their settings. |
 | `presence_penalty` | `mixed` | No |  |
-| `previous_response_id` | `string` | No |  |
+| `previous_response_id` | `string` | No | Not supported. |
 | `prompt` | `mixed` | Yes |  |
 | `prompt_cache_key` | `mixed` | No |  |
-| `prompt_cache_options` | `mixed` | Yes |  |
-| `provider` | `mixed` | No |  |
-| `reasoning` | `mixed` | No |  |
-| `route` | `mixed` | No |  |
+| `prompt_cache_options` | `mixed` | Yes | Request-level prompt-cache controls. |
+| `provider` | `mixed` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `mixed` | No | Configuration for reasoning mode in the response |
+| `route` | `mixed` | No | **DEPRECATED** Use providers.sort.partition instead. |
 | `safety_identifier` | `mixed` | No |  |
 | `service_tier` | `mixed` | No |  |
-| `session_id` | `string` | No |  |
-| `stop_server_tools_when` | `array` | No |  |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop_server_tools_when` | `array` | No | Stop conditions for the server-tool agent loop. |
 | `store` | `bool` | No |  |
 | `stream` | `bool` | No |  |
 | `temperature` | `mixed` | No |  |
-| `text` | `mixed` | No |  |
+| `text` | `mixed` | No | Text output configuration including format and verbosity |
 | `tool_choice` | `mixed` | No |  |
 | `tools` | `array` | No |  |
 | `top_k` | `int` | No |  |
 | `top_logprobs` | `mixed` | No |  |
 | `top_p` | `mixed` | No |  |
-| `trace` | `array` | No |  |
+| `trace` | `array` | No | Metadata for observability and tracing. |
 | `truncation` | `mixed` | No |  |
-| `user` | `string` | No |  |
+| `user` | `string` | No | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
 ### Operations
 
@@ -4095,11 +4095,11 @@ $organization = $client->Organization();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | Yes |  |
-| `first_name` | `mixed` | Yes |  |
-| `id` | `string` | Yes |  |
-| `last_name` | `mixed` | Yes |  |
-| `role` | `string` | Yes |  |
+| `email` | `string` | Yes | Email address of the member |
+| `first_name` | `mixed` | Yes | First name of the member |
+| `id` | `string` | Yes | User ID of the organization member |
+| `last_name` | `mixed` | Yes | Last name of the member |
+| `role` | `string` | Yes | Role of the member in the organization |
 
 ### Operations
 
@@ -4154,12 +4154,12 @@ $preset = $client->Preset();
 | `created_at` | `string` | Yes |  |
 | `creator_user_id` | `mixed` | Yes |  |
 | `description` | `mixed` | Yes |  |
-| `designated_version` | `mixed` | Yes |  |
+| `designated_version` | `mixed` | Yes | A specific version of a preset, containing config and optional system prompt. |
 | `designated_version_id` | `mixed` | Yes |  |
 | `id` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
 | `slug` | `string` | Yes |  |
-| `status` | `string` | Yes |  |
+| `status` | `string` | Yes | The status of a preset. |
 | `status_updated_at` | `mixed` | Yes |  |
 | `updated_at` | `string` | Yes |  |
 | `workspace_id` | `mixed` | Yes |  |
@@ -4281,13 +4281,13 @@ $provider = $client->Provider();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datacenters` | `mixed` | No |  |
-| `headquarters` | `mixed` | No |  |
-| `name` | `string` | Yes |  |
-| `privacy_policy_url` | `mixed` | Yes |  |
-| `slug` | `string` | Yes |  |
-| `status_page_url` | `mixed` | No |  |
-| `terms_of_service_url` | `mixed` | No |  |
+| `datacenters` | `mixed` | No | ISO 3166-1 Alpha-2 country codes of the provider datacenter locations |
+| `headquarters` | `mixed` | No | ISO 3166-1 Alpha-2 country code of the provider headquarters |
+| `name` | `string` | Yes | Display name of the provider |
+| `privacy_policy_url` | `mixed` | Yes | URL to the provider's privacy policy |
+| `slug` | `string` | Yes | URL-friendly identifier for the provider |
+| `status_page_url` | `mixed` | No | URL to the provider's status page |
+| `terms_of_service_url` | `mixed` | No | URL to the provider's terms of service |
 
 ### Operations
 
@@ -4375,9 +4375,9 @@ $rankings_daily = $client->RankingsDaily();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | `string` | Yes |  |
-| `model_permaslug` | `string` | Yes |  |
-| `total_tokens` | `string` | Yes |  |
+| `date` | `string` | Yes | UTC calendar date the row is aggregated over (YYYY-MM-DD). |
+| `model_permaslug` | `string` | Yes | Model variant permaslug (e.g. |
+| `total_tokens` | `string` | Yes | Sum of `prompt_tokens + completion_tokens` for the day, returned as a decimal string so 64-bit values are not truncated. |
 
 ### Operations
 
@@ -4465,14 +4465,14 @@ $rerank = $client->Rerank();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `documents` | `array` | Yes |  |
-| `id` | `string` | No |  |
-| `model` | `string` | Yes |  |
-| `provider` | `string` | No |  |
-| `query` | `string` | Yes |  |
-| `results` | `array` | Yes |  |
-| `top_n` | `int` | No |  |
-| `usage` | `array` | No |  |
+| `documents` | `array` | Yes | The list of documents to rerank. |
+| `id` | `string` | No | Unique identifier for the rerank response (ORID format) |
+| `model` | `string` | Yes | The model used for reranking |
+| `provider` | `string` | No | The provider that served the rerank request |
+| `query` | `string` | Yes | The search query to rerank documents against |
+| `results` | `array` | Yes | List of rerank results sorted by relevance |
+| `top_n` | `int` | No | Number of most relevant documents to return |
+| `usage` | `array` | No | Usage statistics |
 
 ### Operations
 
@@ -4601,19 +4601,19 @@ $stt = $client->Stt();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `duration` | `float` | No |  |
-| `input_audio` | `array` | Yes |  |
-| `language` | `string` | No |  |
-| `model` | `string` | Yes |  |
-| `provider` | `array` | No |  |
-| `response_format` | `string` | No |  |
-| `segments` | `array` | No |  |
-| `task` | `string` | No |  |
-| `temperature` | `float` | No |  |
-| `text` | `string` | Yes |  |
-| `timestamp_granularities` | `array` | No |  |
-| `usage` | `array` | No |  |
-| `words` | `array` | No |  |
+| `duration` | `float` | No | Duration of the input audio in seconds, present when response_format is verbose_json |
+| `input_audio` | `array` | Yes | Base64-encoded audio to transcribe |
+| `language` | `string` | No | Detected or forced language, present when response_format is verbose_json |
+| `model` | `string` | Yes | STT model identifier |
+| `provider` | `array` | No | Provider-specific passthrough configuration |
+| `response_format` | `string` | No | Output format. |
+| `segments` | `array` | No | Timestamped transcript segments, present when response_format is verbose_json |
+| `task` | `string` | No | The task performed, present when response_format is verbose_json |
+| `temperature` | `float` | No | Sampling temperature for transcription |
+| `text` | `string` | Yes | The transcribed text |
+| `timestamp_granularities` | `array` | No | Timestamp detail levels to include when response_format is "verbose_json". |
+| `usage` | `array` | No | Aggregated usage statistics for the request |
+| `words` | `array` | No | Timestamped words, present when the provider returns word-level timestamps |
 
 ### Operations
 
@@ -4669,10 +4669,10 @@ $submit_generation_feedback = $client->SubmitGenerationFeedback();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `string` | Yes |  |
-| `comment` | `string` | No |  |
-| `generation_id` | `string` | Yes |  |
-| `success` | `bool` | Yes |  |
+| `category` | `string` | Yes | The category of feedback being reported |
+| `comment` | `string` | No | An optional free-text comment describing the feedback |
+| `generation_id` | `string` | Yes | The generation to submit feedback on |
+| `success` | `bool` | Yes | Whether the feedback was recorded |
 
 ### Operations
 
@@ -4728,10 +4728,10 @@ $task = $client->Task();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as_of` | `string` | Yes |  |
-| `classifications` | `array` | Yes |  |
-| `macro_categories` | `array` | Yes |  |
-| `window_days` | `int` | Yes |  |
+| `as_of` | `string` | Yes | UTC date (YYYY-MM-DD) of the window upper bound (yesterday). |
+| `classifications` | `array` | Yes | Per-task classification market-share data, sorted by usage_share descending. |
+| `macro_categories` | `array` | Yes | Aggregate market-share data per macro-category (code, data, agent, general). |
+| `window_days` | `int` | Yes | Number of trailing days covered by this snapshot. |
 
 ### Operations
 
@@ -4819,12 +4819,12 @@ $tts = $client->Tts();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `input` | `string` | Yes |  |
-| `model` | `string` | Yes |  |
-| `provider` | `array` | No |  |
-| `response_format` | `string` | No |  |
-| `speed` | `float` | No |  |
-| `voice` | `string` | Yes |  |
+| `input` | `string` | Yes | Text to synthesize |
+| `model` | `string` | Yes | TTS model identifier |
+| `provider` | `array` | No | Provider-specific passthrough configuration |
+| `response_format` | `string` | No | Audio output format |
+| `speed` | `float` | No | Playback speed multiplier. |
+| `voice` | `string` | Yes | Voice identifier (provider-specific). |
 
 ### Operations
 
@@ -4933,12 +4933,12 @@ $update_byok_key = $client->UpdateByokKey();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_models` | `mixed` | No |  |
-| `allowed_user_ids` | `mixed` | No |  |
-| `disabled` | `bool` | No |  |
-| `is_fallback` | `bool` | No |  |
-| `key` | `string` | No |  |
-| `name` | `mixed` | No |  |
+| `allowed_models` | `mixed` | No | Optional allowlist of model slugs this credential may be used for. |
+| `allowed_user_ids` | `mixed` | No | Optional allowlist of user IDs that may use this credential. |
+| `disabled` | `bool` | No | Whether this credential is disabled. |
+| `is_fallback` | `bool` | No | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
+| `key` | `string` | No | A new raw provider API key to rotate the credential in-place. |
+| `name` | `mixed` | No | Optional human-readable name for the credential. |
 
 ### Operations
 
@@ -4993,22 +4993,22 @@ $update_guardrail = $client->UpdateGuardrail();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_models` | `mixed` | No |  |
-| `allowed_providers` | `mixed` | No |  |
-| `content_filter_builtins` | `mixed` | No |  |
-| `content_filters` | `mixed` | No |  |
-| `description` | `mixed` | No |  |
-| `enforce_zdr` | `mixed` | No |  |
-| `enforce_zdr_anthropic` | `mixed` | No |  |
-| `enforce_zdr_google` | `mixed` | No |  |
-| `enforce_zdr_openai` | `mixed` | No |  |
-| `enforce_zdr_other` | `mixed` | No |  |
-| `enforce_zdr_xai` | `mixed` | No |  |
-| `ignored_models` | `mixed` | No |  |
-| `ignored_providers` | `mixed` | No |  |
-| `limit_usd` | `mixed` | No |  |
-| `name` | `string` | No |  |
-| `reset_interval` | `mixed` | No |  |
+| `allowed_models` | `mixed` | No | Array of model identifiers (slug or canonical_slug accepted) |
+| `allowed_providers` | `mixed` | No | New list of allowed provider IDs |
+| `content_filter_builtins` | `mixed` | No | Builtin content filters to apply. |
+| `content_filters` | `mixed` | No | Custom regex content filters to apply. |
+| `description` | `mixed` | No | New description for the guardrail |
+| `enforce_zdr` | `mixed` | No | Deprecated. |
+| `enforce_zdr_anthropic` | `mixed` | No | Whether to enforce zero data retention for Anthropic models. |
+| `enforce_zdr_google` | `mixed` | No | Whether to enforce zero data retention for Google models. |
+| `enforce_zdr_openai` | `mixed` | No | Whether to enforce zero data retention for OpenAI models. |
+| `enforce_zdr_other` | `mixed` | No | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
+| `enforce_zdr_xai` | `mixed` | No | Whether to enforce zero data retention for xAI models. |
+| `ignored_models` | `mixed` | No | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
+| `ignored_providers` | `mixed` | No | List of provider IDs to exclude from routing |
+| `limit_usd` | `mixed` | No | New spending limit in USD |
+| `name` | `string` | No | New name for the guardrail |
+| `reset_interval` | `mixed` | No | Interval at which the limit resets (daily, weekly, monthly) |
 
 ### Operations
 
@@ -5063,13 +5063,13 @@ $update_observability_destination = $client->UpdateObservabilityDestination();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hashes` | `mixed` | No |  |
-| `config` | `array` | No |  |
-| `enabled` | `bool` | No |  |
+| `api_key_hashes` | `mixed` | No | Optional allowlist of OpenRouter API key hashes. |
+| `config` | `array` | No | Provider-specific configuration fields to update. |
+| `enabled` | `bool` | No | Whether the destination is enabled. |
 | `filter_rules` | `mixed` | No |  |
-| `name` | `string` | No |  |
-| `privacy_mode` | `bool` | No |  |
-| `sampling_rate` | `float` | No |  |
+| `name` | `string` | No | Human-readable name for the destination. |
+| `privacy_mode` | `bool` | No | When true, request/response bodies are not forwarded — only metadata. |
+| `sampling_rate` | `float` | No | Sampling rate between 0.0001 and 1 (1 = 100%). |
 
 ### Operations
 
@@ -5124,21 +5124,21 @@ $update_workspace = $client->UpdateWorkspace();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | Yes |  |
-| `created_by` | `mixed` | Yes |  |
-| `default_image_model` | `mixed` | No |  |
-| `default_provider_sort` | `mixed` | No |  |
-| `default_text_model` | `mixed` | No |  |
-| `description` | `mixed` | No |  |
-| `id` | `string` | Yes |  |
-| `io_logging_api_key_ids` | `mixed` | No |  |
-| `io_logging_sampling_rate` | `float` | No |  |
-| `is_data_discount_logging_enabled` | `bool` | No |  |
-| `is_observability_broadcast_enabled` | `bool` | No |  |
-| `is_observability_io_logging_enabled` | `bool` | No |  |
-| `name` | `string` | Yes |  |
-| `slug` | `string` | Yes |  |
-| `updated_at` | `mixed` | Yes |  |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the workspace was created |
+| `created_by` | `mixed` | Yes | User ID of the workspace creator |
+| `default_image_model` | `mixed` | No | Default image model for this workspace |
+| `default_provider_sort` | `mixed` | No | Default provider sort preference (price, throughput, latency, exacto) |
+| `default_text_model` | `mixed` | No | Default text model for this workspace |
+| `description` | `mixed` | No | Description of the workspace |
+| `id` | `string` | Yes | Unique identifier for the workspace |
+| `io_logging_api_key_ids` | `mixed` | No | Optional array of API key IDs to filter I/O logging |
+| `io_logging_sampling_rate` | `float` | No | Sampling rate for I/O logging (0.0001-1) |
+| `is_data_discount_logging_enabled` | `bool` | No | Whether data discount logging is enabled |
+| `is_observability_broadcast_enabled` | `bool` | No | Whether broadcast is enabled |
+| `is_observability_io_logging_enabled` | `bool` | No | Whether private logging is enabled |
+| `name` | `string` | Yes | Name for the new workspace |
+| `slug` | `string` | Yes | URL-friendly slug (lowercase alphanumeric segments separated by single hyphens, no leading/trailing hyphens) |
+| `updated_at` | `mixed` | Yes | ISO 8601 timestamp of when the workspace was last updated |
 
 ### Field Usage by Operation
 
@@ -5236,7 +5236,7 @@ $upsert_workspace_budget = $client->UpsertWorkspaceBudget();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `limit_usd` | `float` | Yes |  |
+| `limit_usd` | `float` | Yes | Spending limit in USD. |
 
 ### Operations
 
@@ -5364,25 +5364,25 @@ $video = $client->Video();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aspect_ratio` | `string` | No |  |
-| `callback_url` | `string` | No |  |
-| `duration` | `int` | No |  |
+| `aspect_ratio` | `string` | No | Aspect ratio of the generated video |
+| `callback_url` | `string` | No | URL to receive a webhook notification when the video generation job completes. |
+| `duration` | `int` | No | Duration of the generated video in seconds |
 | `error` | `string` | No |  |
-| `frame_images` | `array` | No |  |
-| `generate_audio` | `bool` | No |  |
-| `generation_id` | `string` | No |  |
+| `frame_images` | `array` | No | Images to use as the first and/or last frame of the generated video. |
+| `generate_audio` | `bool` | No | Whether to generate audio alongside the video. |
+| `generation_id` | `string` | No | The generation ID associated with this video generation job. |
 | `id` | `string` | Yes |  |
-| `input_references` | `array` | No |  |
+| `input_references` | `array` | No | Reference assets to guide video generation. |
 | `model` | `string` | Yes |  |
 | `polling_url` | `string` | Yes |  |
-| `prompt` | `string` | No |  |
-| `provider` | `array` | No |  |
-| `resolution` | `string` | No |  |
-| `seed` | `int` | No |  |
-| `size` | `string` | No |  |
+| `prompt` | `string` | No | Text prompt describing the video to generate. |
+| `provider` | `array` | No | Provider-specific passthrough configuration |
+| `resolution` | `string` | No | Resolution of the generated video |
+| `seed` | `int` | No | If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result. |
+| `size` | `string` | No | Exact pixel dimensions of the generated video in "WIDTHxHEIGHT" format (e.g. |
 | `status` | `string` | Yes |  |
 | `unsigned_urls` | `array` | No |  |
-| `usage` | `array` | No |  |
+| `usage` | `array` | No | Usage and cost information for the video generation. |
 
 ### Operations
 
@@ -5493,21 +5493,21 @@ $video_models_list = $client->VideoModelsList();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameters` | `array` | Yes |  |
-| `canonical_slug` | `string` | Yes |  |
-| `created` | `int` | Yes |  |
-| `description` | `string` | No |  |
-| `generate_audio` | `mixed` | Yes |  |
-| `hugging_face_id` | `mixed` | No |  |
-| `id` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `pricing_skus` | `mixed` | No |  |
-| `seed` | `mixed` | Yes |  |
-| `supported_aspect_ratios` | `mixed` | Yes |  |
-| `supported_durations` | `mixed` | Yes |  |
-| `supported_frame_images` | `mixed` | Yes |  |
-| `supported_resolutions` | `mixed` | Yes |  |
-| `supported_sizes` | `mixed` | Yes |  |
+| `allowed_passthrough_parameters` | `array` | Yes | List of parameters that are allowed to be passed through to the provider |
+| `canonical_slug` | `string` | Yes | Canonical slug for the model |
+| `created` | `int` | Yes | Unix timestamp of when the model was created |
+| `description` | `string` | No | Description of the model |
+| `generate_audio` | `mixed` | Yes | Whether the model supports generating audio alongside video |
+| `hugging_face_id` | `mixed` | No | Hugging Face model identifier, if applicable |
+| `id` | `string` | Yes | Unique identifier for the model |
+| `name` | `string` | Yes | Display name of the model |
+| `pricing_skus` | `mixed` | No | Pricing SKUs with provider prefix stripped, values as strings |
+| `seed` | `mixed` | Yes | Whether the model supports deterministic generation via seed parameter |
+| `supported_aspect_ratios` | `mixed` | Yes | Supported output aspect ratios |
+| `supported_durations` | `mixed` | Yes | Supported video durations in seconds |
+| `supported_frame_images` | `mixed` | Yes | Supported frame image types (e.g. |
+| `supported_resolutions` | `mixed` | Yes | Supported output resolutions |
+| `supported_sizes` | `mixed` | Yes | Supported output sizes (width x height) |
 
 ### Operations
 
@@ -5559,21 +5559,21 @@ $workspace = $client->Workspace();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | Yes |  |
-| `created_by` | `mixed` | Yes |  |
-| `default_image_model` | `mixed` | Yes |  |
-| `default_provider_sort` | `mixed` | Yes |  |
-| `default_text_model` | `mixed` | Yes |  |
-| `description` | `mixed` | Yes |  |
-| `id` | `string` | Yes |  |
-| `io_logging_api_key_ids` | `mixed` | Yes |  |
-| `io_logging_sampling_rate` | `float` | Yes |  |
-| `is_data_discount_logging_enabled` | `bool` | Yes |  |
-| `is_observability_broadcast_enabled` | `bool` | Yes |  |
-| `is_observability_io_logging_enabled` | `bool` | Yes |  |
-| `name` | `string` | Yes |  |
-| `slug` | `string` | Yes |  |
-| `updated_at` | `mixed` | Yes |  |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the workspace was created |
+| `created_by` | `mixed` | Yes | User ID of the workspace creator |
+| `default_image_model` | `mixed` | Yes | Default image model for this workspace |
+| `default_provider_sort` | `mixed` | Yes | Default provider sort preference (price, throughput, latency, exacto) |
+| `default_text_model` | `mixed` | Yes | Default text model for this workspace |
+| `description` | `mixed` | Yes | Description of the workspace |
+| `id` | `string` | Yes | Unique identifier for the workspace |
+| `io_logging_api_key_ids` | `mixed` | Yes | Optional array of API key IDs to filter I/O logging. |
+| `io_logging_sampling_rate` | `float` | Yes | Sampling rate for I/O logging (0.0001-1). |
+| `is_data_discount_logging_enabled` | `bool` | Yes | Whether data discount logging is enabled for this workspace |
+| `is_observability_broadcast_enabled` | `bool` | Yes | Whether broadcast is enabled for this workspace |
+| `is_observability_io_logging_enabled` | `bool` | Yes | Whether private logging is enabled for this workspace |
+| `name` | `string` | Yes | Name of the workspace |
+| `slug` | `string` | Yes | URL-friendly slug for the workspace |
+| `updated_at` | `mixed` | Yes | ISO 8601 timestamp of when the workspace was last updated |
 
 ### Operations
 

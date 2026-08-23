@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'OpenrouterModels',
+        slug: "openrouter-models",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -316,56 +327,67 @@ class Config {
         {
           "name": "byok_usage_inference",
           "req": true,
+          "short": "BYOK inference cost in USD (external credits spent)",
           "type": "`$NUMBER`"
         },
         {
           "name": "completion_tokens",
           "req": true,
+          "short": "Total completion tokens generated",
           "type": "`$INTEGER`"
         },
         {
           "name": "date",
           "req": true,
+          "short": "Date of the activity (YYYY-MM-DD format)",
           "type": "`$STRING`"
         },
         {
           "name": "endpoint_id",
           "req": true,
+          "short": "Unique identifier for the endpoint",
           "type": "`$STRING`"
         },
         {
           "name": "model",
           "req": true,
+          "short": "Model slug (e.g., \"openai/gpt-4.1\")",
           "type": "`$STRING`"
         },
         {
           "name": "model_permaslug",
           "req": true,
+          "short": "Model permaslug (e.g., \"openai/gpt-4.1-2025-04-14\")",
           "type": "`$STRING`"
         },
         {
           "name": "prompt_tokens",
           "req": true,
+          "short": "Total prompt tokens used",
           "type": "`$INTEGER`"
         },
         {
           "name": "provider_name",
           "req": true,
+          "short": "Name of the provider serving this endpoint",
           "type": "`$STRING`"
         },
         {
           "name": "reasoning_tokens",
           "req": true,
+          "short": "Total reasoning tokens used",
           "type": "`$INTEGER`"
         },
         {
           "name": "requests",
           "req": true,
+          "short": "Number of requests made",
           "type": "`$INTEGER`"
         },
         {
           "name": "usage",
           "req": true,
+          "short": "Total cost in USD (OpenRouter credits spent)",
           "type": "`$NUMBER`"
         }
       ],
@@ -466,26 +488,31 @@ class Config {
         {
           "name": "byok_usage",
           "req": true,
+          "short": "Total external BYOK usage (in USD) for the API key",
           "type": "`$NUMBER`"
         },
         {
           "name": "byok_usage_daily",
           "req": true,
+          "short": "External BYOK usage (in USD) for the current UTC day",
           "type": "`$NUMBER`"
         },
         {
           "name": "byok_usage_monthly",
           "req": true,
+          "short": "External BYOK usage (in USD) for current UTC month",
           "type": "`$NUMBER`"
         },
         {
           "name": "byok_usage_weekly",
           "req": true,
+          "short": "External BYOK usage (in USD) for the current UTC week (Monday-Sunday)",
           "type": "`$NUMBER`"
         },
         {
           "name": "created_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the API key was created",
           "type": "`$STRING`"
         },
         {
@@ -502,6 +529,7 @@ class Config {
             }
           },
           "req": true,
+          "short": "The user ID of the key creator.",
           "type": [
             "`$ONE`",
             [
@@ -518,10 +546,12 @@ class Config {
             }
           },
           "req": true,
+          "short": "Whether the API key is disabled",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "expires_at",
+          "short": "ISO 8601 UTC timestamp when the API key expires, or null if no expiration",
           "type": [
             "`$ONE`",
             [
@@ -533,6 +563,7 @@ class Config {
         {
           "name": "hash",
           "req": true,
+          "short": "Unique hash identifier for the API key",
           "type": "`$STRING`"
         },
         {
@@ -546,26 +577,31 @@ class Config {
             }
           },
           "req": true,
+          "short": "Whether to include external BYOK usage in the credit limit",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "is_free_tier",
           "req": true,
+          "short": "Whether this is a free tier API key",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "is_management_key",
           "req": true,
+          "short": "Whether this is a management key",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "is_provisioning_key",
           "req": true,
+          "short": "Whether this is a management key",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "label",
           "req": true,
+          "short": "Human-readable label for the API key",
           "type": "`$STRING`"
         },
         {
@@ -591,6 +627,7 @@ class Config {
             }
           },
           "req": true,
+          "short": "Spending limit for the API key in USD",
           "type": [
             "`$ONE`",
             [
@@ -602,6 +639,7 @@ class Config {
         {
           "name": "limit_remaining",
           "req": true,
+          "short": "Remaining spending limit in USD",
           "type": [
             "`$ONE`",
             [
@@ -633,6 +671,7 @@ class Config {
             }
           },
           "req": true,
+          "short": "Type of limit reset for the API key",
           "type": [
             "`$ONE`",
             [
@@ -649,16 +688,19 @@ class Config {
             }
           },
           "req": true,
+          "short": "Name of the API key",
           "type": "`$STRING`"
         },
         {
           "name": "rate_limit",
           "req": true,
+          "short": "Legacy rate limit information about a key.",
           "type": "`$OBJECT`"
         },
         {
           "name": "updated_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the API key was last updated",
           "type": [
             "`$ONE`",
             [
@@ -670,21 +712,25 @@ class Config {
         {
           "name": "usage",
           "req": true,
+          "short": "Total OpenRouter credit usage (in USD) for the API key",
           "type": "`$NUMBER`"
         },
         {
           "name": "usage_daily",
           "req": true,
+          "short": "OpenRouter credit usage (in USD) for the current UTC day",
           "type": "`$NUMBER`"
         },
         {
           "name": "usage_monthly",
           "req": true,
+          "short": "OpenRouter credit usage (in USD) for the current UTC month",
           "type": "`$NUMBER`"
         },
         {
           "name": "usage_weekly",
           "req": true,
+          "short": "OpenRouter credit usage (in USD) for the current UTC week (Monday-Sunday)",
           "type": "`$NUMBER`"
         },
         {
@@ -695,6 +741,7 @@ class Config {
             }
           },
           "req": true,
+          "short": "The workspace ID this API key belongs to.",
           "type": "`$STRING`"
         }
       ],
@@ -1069,26 +1116,31 @@ class Config {
         {
           "name": "app_id",
           "req": true,
+          "short": "Stable numeric identifier of the app on OpenRouter.",
           "type": "`$INTEGER`"
         },
         {
           "name": "app_name",
           "req": true,
+          "short": "Public display name of the app.",
           "type": "`$STRING`"
         },
         {
           "name": "rank",
           "req": true,
+          "short": "1-based position of the app within this response, per the requested `sort`.",
           "type": "`$INTEGER`"
         },
         {
           "name": "total_requests",
           "req": true,
+          "short": "Number of requests attributed to the app inside the date window.",
           "type": "`$INTEGER`"
         },
         {
           "name": "total_tokens",
           "req": true,
+          "short": "Sum of `prompt_tokens + completion_tokens` attributed to the app inside the date window, returned as a decimal string so 64-bit values are not truncated.",
           "type": "`$STRING`"
         }
       ],
@@ -1228,11 +1280,13 @@ class Config {
         {
           "name": "classifier_dimensions",
           "req": true,
+          "short": "Group results by custom classifier tags, breaking down metrics by the specified dimension values.",
           "type": "`$OBJECT`"
         },
         {
           "name": "classifier_filters",
           "req": true,
+          "short": "Filter results to generations with specific classifier tag values.",
           "type": "`$OBJECT`",
           "union": {
             "branches": 3,
@@ -1271,14 +1325,17 @@ class Config {
         },
         {
           "name": "granularity",
+          "short": "Time granularity",
           "type": "`$STRING`"
         },
         {
           "name": "group_limit",
+          "short": "Maximum rows per distinct combination of dimensions.",
           "type": "`$INTEGER`"
         },
         {
           "name": "limit",
+          "short": "Maximum total rows returned.",
           "type": "`$INTEGER`"
         },
         {
@@ -1308,6 +1365,7 @@ class Config {
         },
         {
           "name": "warnings",
+          "short": "Warnings about filter resolution issues (e.g.",
           "type": "`$ARRAY`"
         }
       ],
@@ -1431,16 +1489,19 @@ class Config {
         {
           "name": "added_count",
           "req": true,
+          "short": "Number of workspace memberships created or updated",
           "type": "`$INTEGER`"
         },
         {
           "name": "data",
           "req": true,
+          "short": "List of added workspace memberships",
           "type": "`$ARRAY`"
         },
         {
           "name": "user_ids",
           "req": true,
+          "short": "List of user IDs to add to the workspace.",
           "type": "`$ARRAY`"
         }
       ],
@@ -1526,11 +1587,13 @@ class Config {
         {
           "name": "assigned_count",
           "req": true,
+          "short": "Number of keys successfully assigned",
           "type": "`$INTEGER`"
         },
         {
           "name": "key_hashes",
           "req": true,
+          "short": "Array of API key hashes to assign to the guardrail",
           "type": "`$ARRAY`"
         }
       ],
@@ -1616,11 +1679,13 @@ class Config {
         {
           "name": "assigned_count",
           "req": true,
+          "short": "Number of members successfully assigned",
           "type": "`$INTEGER`"
         },
         {
           "name": "member_user_ids",
           "req": true,
+          "short": "Array of member user IDs to assign to the guardrail",
           "type": "`$ARRAY`"
         }
       ],
@@ -1706,11 +1771,13 @@ class Config {
         {
           "name": "removed_count",
           "req": true,
+          "short": "Number of members removed",
           "type": "`$INTEGER`"
         },
         {
           "name": "user_ids",
           "req": true,
+          "short": "List of user IDs to remove from the workspace",
           "type": "`$ARRAY`"
         }
       ],
@@ -1796,11 +1863,13 @@ class Config {
         {
           "name": "key_hashes",
           "req": true,
+          "short": "Array of API key hashes to unassign from the guardrail",
           "type": "`$ARRAY`"
         },
         {
           "name": "unassigned_count",
           "req": true,
+          "short": "Number of keys successfully unassigned",
           "type": "`$INTEGER`"
         }
       ],
@@ -1887,11 +1956,13 @@ class Config {
         {
           "name": "member_user_ids",
           "req": true,
+          "short": "Array of member user IDs to unassign from the guardrail",
           "type": "`$ARRAY`"
         },
         {
           "name": "unassigned_count",
           "req": true,
+          "short": "Number of members successfully unassigned",
           "type": "`$INTEGER`"
         }
       ],
@@ -1978,6 +2049,7 @@ class Config {
         {
           "name": "allowed_api_key_hashes",
           "req": true,
+          "short": "Optional allowlist of OpenRouter API key hashes (`api_keys.hash`) that may use this credential.",
           "type": [
             "`$ONE`",
             [
@@ -2000,6 +2072,7 @@ class Config {
             }
           },
           "req": true,
+          "short": "Optional allowlist of model slugs this credential may be used for.",
           "type": [
             "`$ONE`",
             [
@@ -2022,6 +2095,7 @@ class Config {
             }
           },
           "req": true,
+          "short": "Optional allowlist of user IDs that may use this credential.",
           "type": [
             "`$ONE`",
             [
@@ -2033,6 +2107,7 @@ class Config {
         {
           "name": "created_at",
           "req": true,
+          "short": "ISO timestamp of when the credential was created.",
           "type": "`$STRING`"
         },
         {
@@ -2043,11 +2118,13 @@ class Config {
             }
           },
           "req": true,
+          "short": "Whether this credential is currently disabled.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "id",
           "req": true,
+          "short": "Stable public identifier for this BYOK credential.",
           "type": "`$STRING`"
         },
         {
@@ -2058,20 +2135,24 @@ class Config {
             }
           },
           "req": true,
+          "short": "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "key",
           "req": true,
+          "short": "The raw provider API key or credential.",
           "type": "`$STRING`"
         },
         {
           "name": "label",
           "req": true,
+          "short": "Short masked snippet of the key (e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "name",
+          "short": "Optional human-readable name for the credential.",
           "type": [
             "`$ONE`",
             [
@@ -2083,11 +2164,13 @@ class Config {
         {
           "name": "provider",
           "req": true,
+          "short": "The upstream provider this credential authenticates against, as a lowercase slug (e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "sort_order",
           "req": true,
+          "short": "Position within the provider — credentials are tried in ascending sort order.",
           "type": "`$INTEGER`"
         },
         {
@@ -2098,6 +2181,7 @@ class Config {
             }
           },
           "req": true,
+          "short": "ID of the workspace this credential belongs to.",
           "type": "`$STRING`"
         }
       ],
@@ -2365,11 +2449,13 @@ class Config {
         {
           "name": "cache_control",
           "req": true,
+          "short": "Enable automatic prompt caching.",
           "type": "`$OBJECT`"
         },
         {
           "name": "choices",
           "req": true,
+          "short": "List of completion choices",
           "type": "`$ARRAY`",
           "union": {
             "branches": 2,
@@ -2380,14 +2466,17 @@ class Config {
         {
           "name": "created",
           "req": true,
+          "short": "Unix timestamp of creation",
           "type": "`$INTEGER`"
         },
         {
           "name": "debug",
+          "short": "Debug options for inspecting request transformations (streaming only)",
           "type": "`$OBJECT`"
         },
         {
           "name": "frequency_penalty",
+          "short": "Frequency penalty (-2.0 to 2.0)",
           "type": [
             "`$ONE`",
             [
@@ -2399,10 +2488,12 @@ class Config {
         {
           "name": "id",
           "req": true,
+          "short": "Unique completion identifier",
           "type": "`$STRING`"
         },
         {
           "name": "image_config",
+          "short": "Provider-specific image configuration options.",
           "type": "`$OBJECT`",
           "union": {
             "branches": 3,
@@ -2412,6 +2503,7 @@ class Config {
         },
         {
           "name": "logit_bias",
+          "short": "Token logit bias adjustments",
           "type": [
             "`$ONE`",
             [
@@ -2422,6 +2514,7 @@ class Config {
         },
         {
           "name": "logprobs",
+          "short": "Return log probabilities",
           "type": [
             "`$ONE`",
             [
@@ -2432,6 +2525,7 @@ class Config {
         },
         {
           "name": "max_completion_tokens",
+          "short": "Maximum tokens in completion",
           "type": [
             "`$ONE`",
             [
@@ -2442,6 +2536,7 @@ class Config {
         },
         {
           "name": "max_tokens",
+          "short": "Maximum tokens (deprecated, use max_completion_tokens).",
           "type": [
             "`$ONE`",
             [
@@ -2453,6 +2548,7 @@ class Config {
         {
           "name": "messages",
           "req": true,
+          "short": "List of messages for the conversation",
           "type": "`$ARRAY`",
           "union": {
             "branches": 2,
@@ -2462,10 +2558,12 @@ class Config {
         },
         {
           "name": "metadata",
+          "short": "Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values)",
           "type": "`$OBJECT`"
         },
         {
           "name": "min_p",
+          "short": "Minimum probability threshold relative to the most likely token.",
           "type": [
             "`$ONE`",
             [
@@ -2476,6 +2574,7 @@ class Config {
         },
         {
           "name": "modalities",
+          "short": "Output modalities for the response.",
           "type": "`$ARRAY`"
         },
         {
@@ -2486,10 +2585,12 @@ class Config {
             }
           },
           "req": true,
+          "short": "Model used for completion",
           "type": "`$STRING`"
         },
         {
           "name": "models",
+          "short": "Models to use for completion",
           "type": "`$ARRAY`"
         },
         {
@@ -2504,6 +2605,7 @@ class Config {
         },
         {
           "name": "parallel_tool_calls",
+          "short": "Whether to enable parallel function calling during tool use.",
           "type": [
             "`$ONE`",
             [
@@ -2514,6 +2616,7 @@ class Config {
         },
         {
           "name": "plugins",
+          "short": "Plugins you want to enable for this request, including their settings.",
           "type": "`$ARRAY`",
           "union": {
             "branches": 5,
@@ -2524,6 +2627,7 @@ class Config {
         {
           "name": "prediction",
           "req": true,
+          "short": "Static predicted output content.",
           "type": [
             "`$ONE`",
             [
@@ -2539,6 +2643,7 @@ class Config {
         },
         {
           "name": "presence_penalty",
+          "short": "Presence penalty (-2.0 to 2.0)",
           "type": [
             "`$ONE`",
             [
@@ -2560,6 +2665,7 @@ class Config {
         {
           "name": "prompt_cache_options",
           "req": true,
+          "short": "Request-level prompt-cache controls.",
           "type": [
             "`$ONE`",
             [
@@ -2570,6 +2676,7 @@ class Config {
         },
         {
           "name": "provider",
+          "short": "When multiple model providers are available, optionally indicate your routing preference.",
           "type": [
             "`$ONE`",
             [
@@ -2585,10 +2692,12 @@ class Config {
         },
         {
           "name": "reasoning",
+          "short": "Configuration options for reasoning models",
           "type": "`$OBJECT`"
         },
         {
           "name": "reasoning_effort",
+          "short": "Shorthand for setting reasoning effort.",
           "type": [
             "`$ONE`",
             [
@@ -2599,6 +2708,7 @@ class Config {
         },
         {
           "name": "repetition_penalty",
+          "short": "Penalizes tokens based on how much they have already appeared in the text.",
           "type": [
             "`$ONE`",
             [
@@ -2609,10 +2719,12 @@ class Config {
         },
         {
           "name": "response_format",
+          "short": "Response format configuration",
           "type": "`$ANY`"
         },
         {
           "name": "route",
+          "short": "**DEPRECATED** Use providers.sort.partition instead.",
           "type": [
             "`$ONE`",
             [
@@ -2623,6 +2735,7 @@ class Config {
         },
         {
           "name": "seed",
+          "short": "Random seed for deterministic outputs",
           "type": [
             "`$ONE`",
             [
@@ -2633,6 +2746,7 @@ class Config {
         },
         {
           "name": "service_tier",
+          "short": "The service tier used by the upstream provider for this request",
           "type": [
             "`$ONE`",
             [
@@ -2643,10 +2757,12 @@ class Config {
         },
         {
           "name": "session_id",
+          "short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
           "type": "`$STRING`"
         },
         {
           "name": "stop",
+          "short": "Stop sequences (up to 4)",
           "type": "`$ANY`",
           "union": {
             "branches": 2,
@@ -2656,14 +2772,17 @@ class Config {
         },
         {
           "name": "stop_server_tools_when",
+          "short": "Stop conditions for the server-tool agent loop.",
           "type": "`$ARRAY`"
         },
         {
           "name": "stream",
+          "short": "Enable streaming response",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "stream_options",
+          "short": "Streaming configuration options",
           "type": [
             "`$ONE`",
             [
@@ -2675,6 +2794,7 @@ class Config {
         {
           "name": "system_fingerprint",
           "req": true,
+          "short": "System fingerprint",
           "type": [
             "`$ONE`",
             [
@@ -2685,6 +2805,7 @@ class Config {
         },
         {
           "name": "temperature",
+          "short": "Sampling temperature (0-2)",
           "type": [
             "`$ONE`",
             [
@@ -2695,6 +2816,7 @@ class Config {
         },
         {
           "name": "tool_choice",
+          "short": "Tool choice configuration",
           "type": "`$ANY`",
           "union": {
             "branches": 5,
@@ -2704,6 +2826,7 @@ class Config {
         },
         {
           "name": "tools",
+          "short": "Available tools for function calling",
           "type": "`$ARRAY`",
           "union": {
             "branches": 12,
@@ -2713,6 +2836,7 @@ class Config {
         },
         {
           "name": "top_a",
+          "short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
           "type": [
             "`$ONE`",
             [
@@ -2723,6 +2847,7 @@ class Config {
         },
         {
           "name": "top_k",
+          "short": "Limits the model to choose from the top K most likely tokens at each step.",
           "type": [
             "`$ONE`",
             [
@@ -2733,6 +2858,7 @@ class Config {
         },
         {
           "name": "top_logprobs",
+          "short": "Number of top log probabilities to return (0-20)",
           "type": [
             "`$ONE`",
             [
@@ -2743,6 +2869,7 @@ class Config {
         },
         {
           "name": "top_p",
+          "short": "Nucleus sampling parameter (0-1)",
           "type": [
             "`$ONE`",
             [
@@ -2753,15 +2880,18 @@ class Config {
         },
         {
           "name": "trace",
+          "short": "Metadata for observability and tracing.",
           "type": "`$OBJECT`"
         },
         {
           "name": "usage",
           "req": true,
+          "short": "Token usage statistics",
           "type": "`$OBJECT`"
         },
         {
           "name": "user",
+          "short": "Unique user identifier",
           "type": "`$STRING`"
         }
       ],
@@ -2892,6 +3022,7 @@ class Config {
       "fields": [
         {
           "name": "api_key_hashes",
+          "short": "Optional allowlist of OpenRouter API key hashes whose traffic is forwarded.",
           "type": [
             "`$ONE`",
             [
@@ -2903,15 +3034,18 @@ class Config {
         {
           "name": "config",
           "req": true,
+          "short": "Provider-specific configuration.",
           "type": "`$OBJECT`"
         },
         {
           "name": "enabled",
+          "short": "Whether this destination should be enabled immediately.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "filter_rules",
           "req": true,
+          "short": "Optional structured filter rules controlling which events are forwarded.",
           "type": [
             "`$ONE`",
             [
@@ -2928,23 +3062,28 @@ class Config {
         {
           "name": "name",
           "req": true,
+          "short": "Human-readable name for the destination.",
           "type": "`$STRING`"
         },
         {
           "name": "privacy_mode",
+          "short": "When true, request/response bodies are not forwarded — only metadata.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "sampling_rate",
+          "short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
           "type": "`$NUMBER`"
         },
         {
           "name": "type",
           "req": true,
+          "short": "The destination type.",
           "type": "`$STRING`"
         },
         {
           "name": "workspace_id",
+          "short": "Optional workspace ID.",
           "type": "`$STRING`"
         }
       ],
@@ -3018,6 +3157,7 @@ class Config {
         {
           "name": "cache_control",
           "req": true,
+          "short": "Enable automatic prompt caching.",
           "type": "`$OBJECT`"
         },
         {
@@ -3037,10 +3177,12 @@ class Config {
         },
         {
           "name": "debug",
+          "short": "Debug options for inspecting request transformations (streaming only)",
           "type": "`$OBJECT`"
         },
         {
           "name": "fallbacks",
+          "short": "Fallback models to try if the primary model fails or refuses, in order.",
           "type": [
             "`$ONE`",
             [
@@ -3051,6 +3193,7 @@ class Config {
         },
         {
           "name": "frequency_penalty",
+          "short": "Frequency penalty (-2.0 to 2.0)",
           "type": [
             "`$ONE`",
             [
@@ -3061,6 +3204,7 @@ class Config {
         },
         {
           "name": "image_config",
+          "short": "Provider-specific image configuration options.",
           "type": "`$OBJECT`",
           "union": {
             "branches": 3,
@@ -3080,6 +3224,7 @@ class Config {
         },
         {
           "name": "input",
+          "short": "Input for a response request - can be a string or array of items",
           "type": "`$ANY`",
           "union": {
             "branches": 49,
@@ -3099,6 +3244,7 @@ class Config {
         },
         {
           "name": "logit_bias",
+          "short": "Token logit bias adjustments",
           "type": [
             "`$ONE`",
             [
@@ -3109,6 +3255,7 @@ class Config {
         },
         {
           "name": "logprobs",
+          "short": "Return log probabilities",
           "type": [
             "`$ONE`",
             [
@@ -3119,6 +3266,7 @@ class Config {
         },
         {
           "name": "max_completion_tokens",
+          "short": "Maximum tokens in completion",
           "type": [
             "`$ONE`",
             [
@@ -3139,6 +3287,7 @@ class Config {
         },
         {
           "name": "max_tokens",
+          "short": "Maximum tokens (deprecated, use max_completion_tokens).",
           "type": [
             "`$ONE`",
             [
@@ -3160,6 +3309,7 @@ class Config {
         {
           "name": "messages",
           "req": true,
+          "short": "List of messages for the conversation",
           "type": "`$ARRAY`",
           "union": {
             "branches": 2,
@@ -3169,10 +3319,12 @@ class Config {
         },
         {
           "name": "metadata",
+          "short": "Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values)",
           "type": "`$OBJECT`"
         },
         {
           "name": "min_p",
+          "short": "Minimum probability threshold relative to the most likely token.",
           "type": [
             "`$ONE`",
             [
@@ -3183,6 +3335,7 @@ class Config {
         },
         {
           "name": "modalities",
+          "short": "Output modalities for the response.",
           "type": "`$ARRAY`"
         },
         {
@@ -3193,18 +3346,22 @@ class Config {
               "type": "`$STRING`"
             }
           },
+          "short": "Model to use for completion",
           "type": "`$STRING`"
         },
         {
           "name": "models",
+          "short": "Models to use for completion",
           "type": "`$ARRAY`"
         },
         {
           "name": "output_config",
+          "short": "Configuration for controlling output behavior.",
           "type": "`$OBJECT`"
         },
         {
           "name": "parallel_tool_calls",
+          "short": "Whether to enable parallel function calling during tool use.",
           "type": [
             "`$ONE`",
             [
@@ -3215,6 +3372,7 @@ class Config {
         },
         {
           "name": "plugins",
+          "short": "Plugins you want to enable for this request, including their settings.",
           "type": "`$ARRAY`",
           "union": {
             "branches": 5,
@@ -3225,6 +3383,7 @@ class Config {
         {
           "name": "prediction",
           "req": true,
+          "short": "Static predicted output content.",
           "type": [
             "`$ONE`",
             [
@@ -3240,6 +3399,7 @@ class Config {
         },
         {
           "name": "presence_penalty",
+          "short": "Presence penalty (-2.0 to 2.0)",
           "type": [
             "`$ONE`",
             [
@@ -3250,6 +3410,7 @@ class Config {
         },
         {
           "name": "previous_response_id",
+          "short": "Not supported.",
           "type": "`$STRING`"
         },
         {
@@ -3281,6 +3442,7 @@ class Config {
         {
           "name": "prompt_cache_options",
           "req": true,
+          "short": "Request-level prompt-cache controls.",
           "type": [
             "`$ONE`",
             [
@@ -3291,6 +3453,7 @@ class Config {
         },
         {
           "name": "provider",
+          "short": "When multiple model providers are available, optionally indicate your routing preference.",
           "type": [
             "`$ONE`",
             [
@@ -3306,10 +3469,12 @@ class Config {
         },
         {
           "name": "reasoning",
+          "short": "Configuration options for reasoning models",
           "type": "`$OBJECT`"
         },
         {
           "name": "reasoning_effort",
+          "short": "Shorthand for setting reasoning effort.",
           "type": [
             "`$ONE`",
             [
@@ -3320,6 +3485,7 @@ class Config {
         },
         {
           "name": "repetition_penalty",
+          "short": "Penalizes tokens based on how much they have already appeared in the text.",
           "type": [
             "`$ONE`",
             [
@@ -3330,10 +3496,12 @@ class Config {
         },
         {
           "name": "response_format",
+          "short": "Response format configuration",
           "type": "`$ANY`"
         },
         {
           "name": "route",
+          "short": "**DEPRECATED** Use providers.sort.partition instead.",
           "type": [
             "`$ONE`",
             [
@@ -3354,6 +3522,7 @@ class Config {
         },
         {
           "name": "seed",
+          "short": "Random seed for deterministic outputs",
           "type": [
             "`$ONE`",
             [
@@ -3364,6 +3533,7 @@ class Config {
         },
         {
           "name": "service_tier",
+          "short": "The service tier to use for processing this request.",
           "type": [
             "`$ONE`",
             [
@@ -3374,6 +3544,7 @@ class Config {
         },
         {
           "name": "session_id",
+          "short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
           "type": "`$STRING`"
         },
         {
@@ -3382,6 +3553,7 @@ class Config {
         },
         {
           "name": "stop",
+          "short": "Stop sequences (up to 4)",
           "type": "`$ANY`",
           "union": {
             "branches": 2,
@@ -3395,6 +3567,7 @@ class Config {
         },
         {
           "name": "stop_server_tools_when",
+          "short": "Stop conditions for the server-tool agent loop.",
           "type": "`$ARRAY`"
         },
         {
@@ -3403,10 +3576,12 @@ class Config {
         },
         {
           "name": "stream",
+          "short": "Enable streaming response",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "stream_options",
+          "short": "Streaming configuration options",
           "type": [
             "`$ONE`",
             [
@@ -3426,6 +3601,7 @@ class Config {
         },
         {
           "name": "temperature",
+          "short": "Sampling temperature (0-2)",
           "type": [
             "`$ONE`",
             [
@@ -3436,6 +3612,7 @@ class Config {
         },
         {
           "name": "text",
+          "short": "Text output configuration including format and verbosity",
           "type": "`$ANY`",
           "union": {
             "branches": 3,
@@ -3454,6 +3631,7 @@ class Config {
         },
         {
           "name": "tool_choice",
+          "short": "Tool choice configuration",
           "type": "`$ANY`",
           "union": {
             "branches": 5,
@@ -3463,6 +3641,7 @@ class Config {
         },
         {
           "name": "tools",
+          "short": "Available tools for function calling",
           "type": "`$ARRAY`",
           "union": {
             "branches": 12,
@@ -3472,6 +3651,7 @@ class Config {
         },
         {
           "name": "top_a",
+          "short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
           "type": [
             "`$ONE`",
             [
@@ -3482,6 +3662,7 @@ class Config {
         },
         {
           "name": "top_k",
+          "short": "Limits the model to choose from the top K most likely tokens at each step.",
           "type": [
             "`$ONE`",
             [
@@ -3492,6 +3673,7 @@ class Config {
         },
         {
           "name": "top_logprobs",
+          "short": "Number of top log probabilities to return (0-20)",
           "type": [
             "`$ONE`",
             [
@@ -3502,6 +3684,7 @@ class Config {
         },
         {
           "name": "top_p",
+          "short": "Nucleus sampling parameter (0-1)",
           "type": [
             "`$ONE`",
             [
@@ -3512,6 +3695,7 @@ class Config {
         },
         {
           "name": "trace",
+          "short": "Metadata for observability and tracing.",
           "type": "`$OBJECT`"
         },
         {
@@ -3526,6 +3710,7 @@ class Config {
         },
         {
           "name": "user",
+          "short": "Unique user identifier",
           "type": "`$STRING`"
         }
       ],
@@ -3722,11 +3907,13 @@ class Config {
         {
           "name": "total_credits",
           "req": true,
+          "short": "Total credits purchased",
           "type": "`$NUMBER`"
         },
         {
           "name": "total_usage",
           "req": true,
+          "short": "Total credits used",
           "type": "`$NUMBER`"
         }
       ],
@@ -3846,6 +4033,7 @@ class Config {
         {
           "name": "data",
           "req": true,
+          "short": "List of embedding objects",
           "type": "`$ARRAY`",
           "union": {
             "branches": 2,
@@ -3855,19 +4043,23 @@ class Config {
         },
         {
           "name": "dimensions",
+          "short": "The number of dimensions for the output embeddings",
           "type": "`$INTEGER`"
         },
         {
           "name": "encoding_format",
+          "short": "The format of the output embeddings",
           "type": "`$STRING`"
         },
         {
           "name": "id",
+          "short": "Unique identifier for the embeddings response",
           "type": "`$STRING`"
         },
         {
           "name": "input",
           "req": true,
+          "short": "Text, token, or multimodal input(s) to embed",
           "type": "`$ANY`",
           "union": {
             "branches": 5,
@@ -3877,11 +4069,13 @@ class Config {
         },
         {
           "name": "input_type",
+          "short": "The type of input (e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "model",
           "req": true,
+          "short": "The model used for embeddings",
           "type": "`$STRING`"
         },
         {
@@ -3901,10 +4095,12 @@ class Config {
         {
           "name": "usage",
           "req": true,
+          "short": "Token usage statistics",
           "type": "`$OBJECT`"
         },
         {
           "name": "user",
+          "short": "A unique identifier for the end-user",
           "type": "`$STRING`"
         }
       ],
@@ -3967,21 +4163,25 @@ class Config {
         {
           "name": "architecture",
           "req": true,
+          "short": "Model architecture information",
           "type": "`$ANY`"
         },
         {
           "name": "benchmarks",
           "req": true,
+          "short": "Third-party benchmark rankings for this model.",
           "type": "`$OBJECT`"
         },
         {
           "name": "canonical_slug",
           "req": true,
+          "short": "Canonical slug for the model",
           "type": "`$STRING`"
         },
         {
           "name": "context_length",
           "req": true,
+          "short": "Maximum context length in tokens",
           "type": [
             "`$ONE`",
             [
@@ -3993,11 +4193,13 @@ class Config {
         {
           "name": "created",
           "req": true,
+          "short": "Unix timestamp of when the model was created",
           "type": "`$INTEGER`"
         },
         {
           "name": "default_parameters",
           "req": true,
+          "short": "Default parameters for this model",
           "type": [
             "`$ONE`",
             [
@@ -4014,15 +4216,18 @@ class Config {
             }
           },
           "req": true,
+          "short": "Description of the model",
           "type": "`$STRING`"
         },
         {
           "name": "endpoints",
           "req": true,
+          "short": "List of available endpoints for this model",
           "type": "`$ARRAY`"
         },
         {
           "name": "expiration_date",
+          "short": "The date after which the model may be removed.",
           "type": [
             "`$ONE`",
             [
@@ -4033,6 +4238,7 @@ class Config {
         },
         {
           "name": "hugging_face_id",
+          "short": "Hugging Face model identifier, if applicable",
           "type": [
             "`$ONE`",
             [
@@ -4044,10 +4250,12 @@ class Config {
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the model",
           "type": "`$STRING`"
         },
         {
           "name": "knowledge_cutoff",
+          "short": "The date up to which the model was trained on data.",
           "type": [
             "`$ONE`",
             [
@@ -4059,6 +4267,7 @@ class Config {
         {
           "name": "latency_last_30m",
           "req": true,
+          "short": "Latency percentiles in milliseconds over the last 30 minutes.",
           "type": [
             "`$ONE`",
             [
@@ -4070,6 +4279,7 @@ class Config {
         {
           "name": "links",
           "req": true,
+          "short": "Related API endpoints and resources for this model.",
           "type": "`$OBJECT`"
         },
         {
@@ -4097,6 +4307,7 @@ class Config {
         {
           "name": "model_id",
           "req": true,
+          "short": "The unique identifier for the model (permaslug)",
           "type": "`$STRING`"
         },
         {
@@ -4107,11 +4318,13 @@ class Config {
         {
           "name": "name",
           "req": true,
+          "short": "Display name of the model",
           "type": "`$STRING`"
         },
         {
           "name": "per_request_limits",
           "req": true,
+          "short": "Per-request token limits",
           "type": [
             "`$ONE`",
             [
@@ -4123,6 +4336,7 @@ class Config {
         {
           "name": "pricing",
           "req": true,
+          "short": "Pricing information for the model",
           "type": "`$OBJECT`"
         },
         {
@@ -4138,6 +4352,7 @@ class Config {
         {
           "name": "reasoning",
           "req": true,
+          "short": "Reasoning effort configuration.",
           "type": "`$OBJECT`"
         },
         {
@@ -4147,11 +4362,13 @@ class Config {
         {
           "name": "supported_parameters",
           "req": true,
+          "short": "List of supported parameters for this model",
           "type": "`$ARRAY`"
         },
         {
           "name": "supported_voices",
           "req": true,
+          "short": "List of supported voice identifiers for TTS models.",
           "type": [
             "`$ONE`",
             [
@@ -4178,11 +4395,13 @@ class Config {
         {
           "name": "top_provider",
           "req": true,
+          "short": "Information about the top provider for this model",
           "type": "`$OBJECT`"
         },
         {
           "name": "uptime_last_1d",
           "req": true,
+          "short": "Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100.",
           "type": [
             "`$ONE`",
             [
@@ -4205,6 +4424,7 @@ class Config {
         {
           "name": "uptime_last_5m",
           "req": true,
+          "short": "Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100.",
           "type": [
             "`$ONE`",
             [
@@ -5115,6 +5335,7 @@ class Config {
         {
           "name": "api_type",
           "req": true,
+          "short": "Type of API used for the generation",
           "type": [
             "`$ONE`",
             [
@@ -5126,6 +5347,7 @@ class Config {
         {
           "name": "app_id",
           "req": true,
+          "short": "ID of the app that made the request",
           "type": [
             "`$ONE`",
             [
@@ -5137,6 +5359,7 @@ class Config {
         {
           "name": "cache_discount",
           "req": true,
+          "short": "Discount applied due to caching",
           "type": [
             "`$ONE`",
             [
@@ -5148,6 +5371,7 @@ class Config {
         {
           "name": "cancelled",
           "req": true,
+          "short": "Whether the generation was cancelled",
           "type": [
             "`$ONE`",
             [
@@ -5159,16 +5383,19 @@ class Config {
         {
           "name": "created_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the generation was created",
           "type": "`$STRING`"
         },
         {
           "name": "data_region",
           "req": true,
+          "short": "The data region this generation was routed through.",
           "type": "`$STRING`"
         },
         {
           "name": "external_user",
           "req": true,
+          "short": "External user identifier",
           "type": [
             "`$ONE`",
             [
@@ -5180,6 +5407,7 @@ class Config {
         {
           "name": "finish_reason",
           "req": true,
+          "short": "Reason the generation finished",
           "type": [
             "`$ONE`",
             [
@@ -5191,6 +5419,7 @@ class Config {
         {
           "name": "generation_time",
           "req": true,
+          "short": "Time taken for generation in milliseconds",
           "type": [
             "`$ONE`",
             [
@@ -5202,6 +5431,7 @@ class Config {
         {
           "name": "http_referer",
           "req": true,
+          "short": "Referer header from the request",
           "type": [
             "`$ONE`",
             [
@@ -5213,16 +5443,19 @@ class Config {
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the generation",
           "type": "`$STRING`"
         },
         {
           "name": "is_byok",
           "req": true,
+          "short": "Whether this used bring-your-own-key",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "latency",
           "req": true,
+          "short": "Total latency in milliseconds",
           "type": [
             "`$ONE`",
             [
@@ -5234,11 +5467,13 @@ class Config {
         {
           "name": "model",
           "req": true,
+          "short": "Model used for the generation",
           "type": "`$STRING`"
         },
         {
           "name": "moderation_latency",
           "req": true,
+          "short": "Moderation latency in milliseconds",
           "type": [
             "`$ONE`",
             [
@@ -5250,6 +5485,7 @@ class Config {
         {
           "name": "native_finish_reason",
           "req": true,
+          "short": "Native finish reason as reported by provider",
           "type": [
             "`$ONE`",
             [
@@ -5261,6 +5497,7 @@ class Config {
         {
           "name": "native_tokens_cached",
           "req": true,
+          "short": "Native cached tokens as reported by provider",
           "type": [
             "`$ONE`",
             [
@@ -5272,6 +5509,7 @@ class Config {
         {
           "name": "native_tokens_completion",
           "req": true,
+          "short": "Native completion tokens as reported by provider",
           "type": [
             "`$ONE`",
             [
@@ -5283,6 +5521,7 @@ class Config {
         {
           "name": "native_tokens_completion_images",
           "req": true,
+          "short": "Native completion image tokens as reported by provider",
           "type": [
             "`$ONE`",
             [
@@ -5294,6 +5533,7 @@ class Config {
         {
           "name": "native_tokens_prompt",
           "req": true,
+          "short": "Native prompt tokens as reported by provider",
           "type": [
             "`$ONE`",
             [
@@ -5305,6 +5545,7 @@ class Config {
         {
           "name": "native_tokens_reasoning",
           "req": true,
+          "short": "Native reasoning tokens as reported by provider",
           "type": [
             "`$ONE`",
             [
@@ -5316,6 +5557,7 @@ class Config {
         {
           "name": "num_fetches",
           "req": true,
+          "short": "Number of web fetches performed",
           "type": [
             "`$ONE`",
             [
@@ -5327,6 +5569,7 @@ class Config {
         {
           "name": "num_input_audio_prompt",
           "req": true,
+          "short": "Number of audio inputs in the prompt",
           "type": [
             "`$ONE`",
             [
@@ -5338,6 +5581,7 @@ class Config {
         {
           "name": "num_media_completion",
           "req": true,
+          "short": "Number of media items in the completion",
           "type": [
             "`$ONE`",
             [
@@ -5349,6 +5593,7 @@ class Config {
         {
           "name": "num_media_prompt",
           "req": true,
+          "short": "Number of media items in the prompt",
           "type": [
             "`$ONE`",
             [
@@ -5360,6 +5605,7 @@ class Config {
         {
           "name": "num_search_results",
           "req": true,
+          "short": "Number of search results included",
           "type": [
             "`$ONE`",
             [
@@ -5371,11 +5617,13 @@ class Config {
         {
           "name": "origin",
           "req": true,
+          "short": "Origin URL of the request",
           "type": "`$STRING`"
         },
         {
           "name": "preset_id",
           "req": true,
+          "short": "ID of the preset used for this generation, null if no preset was used",
           "type": [
             "`$ONE`",
             [
@@ -5387,6 +5635,7 @@ class Config {
         {
           "name": "provider_name",
           "req": true,
+          "short": "Name of the provider that served the request",
           "type": [
             "`$ONE`",
             [
@@ -5398,6 +5647,7 @@ class Config {
         {
           "name": "provider_responses",
           "req": true,
+          "short": "List of provider responses for this generation, including fallback attempts",
           "type": [
             "`$ONE`",
             [
@@ -5408,6 +5658,7 @@ class Config {
         },
         {
           "name": "request_id",
+          "short": "Unique identifier grouping all generations from a single API request",
           "type": [
             "`$ONE`",
             [
@@ -5418,6 +5669,7 @@ class Config {
         },
         {
           "name": "response_cache_source_id",
+          "short": "If this generation was served from response cache, contains the original generation ID.",
           "type": [
             "`$ONE`",
             [
@@ -5429,6 +5681,7 @@ class Config {
         {
           "name": "router",
           "req": true,
+          "short": "Router used for the request (e.g., openrouter/auto)",
           "type": [
             "`$ONE`",
             [
@@ -5440,6 +5693,7 @@ class Config {
         {
           "name": "service_tier",
           "req": true,
+          "short": "Service tier the upstream provider reported running this request on, or null if it did not report one.",
           "type": [
             "`$ONE`",
             [
@@ -5450,6 +5704,7 @@ class Config {
         },
         {
           "name": "session_id",
+          "short": "Session identifier grouping multiple generations in the same session",
           "type": [
             "`$ONE`",
             [
@@ -5461,6 +5716,7 @@ class Config {
         {
           "name": "streamed",
           "req": true,
+          "short": "Whether the response was streamed",
           "type": [
             "`$ONE`",
             [
@@ -5472,6 +5728,7 @@ class Config {
         {
           "name": "tokens_completion",
           "req": true,
+          "short": "Number of tokens in the completion",
           "type": [
             "`$ONE`",
             [
@@ -5483,6 +5740,7 @@ class Config {
         {
           "name": "tokens_prompt",
           "req": true,
+          "short": "Number of tokens in the prompt",
           "type": [
             "`$ONE`",
             [
@@ -5494,11 +5752,13 @@ class Config {
         {
           "name": "total_cost",
           "req": true,
+          "short": "Total cost of the generation in USD",
           "type": "`$NUMBER`"
         },
         {
           "name": "upstream_id",
           "req": true,
+          "short": "Upstream provider's identifier for this generation",
           "type": [
             "`$ONE`",
             [
@@ -5510,6 +5770,7 @@ class Config {
         {
           "name": "upstream_inference_cost",
           "req": true,
+          "short": "Cost charged by the upstream provider",
           "type": [
             "`$ONE`",
             [
@@ -5521,11 +5782,13 @@ class Config {
         {
           "name": "usage",
           "req": true,
+          "short": "Usage amount in USD",
           "type": "`$NUMBER`"
         },
         {
           "name": "user_agent",
           "req": true,
+          "short": "User-Agent header from the request",
           "type": [
             "`$ONE`",
             [
@@ -5537,6 +5800,7 @@ class Config {
         {
           "name": "web_search_engine",
           "req": true,
+          "short": "The resolved web search engine used for this generation (e.g.",
           "type": [
             "`$ONE`",
             [
@@ -5616,6 +5880,7 @@ class Config {
         {
           "name": "input",
           "req": true,
+          "short": "The input to the generation — either a prompt string or an array of messages",
           "type": "`$ANY`",
           "union": {
             "branches": 2,
@@ -5626,6 +5891,7 @@ class Config {
         {
           "name": "output",
           "req": true,
+          "short": "The output from the generation",
           "type": "`$OBJECT`"
         }
       ],
@@ -5699,6 +5965,7 @@ class Config {
       "fields": [
         {
           "name": "allowed_models",
+          "short": "Array of model canonical_slugs (immutable identifiers)",
           "type": [
             "`$ONE`",
             [
@@ -5709,6 +5976,7 @@ class Config {
         },
         {
           "name": "allowed_providers",
+          "short": "List of allowed provider IDs",
           "type": [
             "`$ONE`",
             [
@@ -5719,6 +5987,7 @@ class Config {
         },
         {
           "name": "content_filter_builtins",
+          "short": "Builtin content filters applied to requests.",
           "type": [
             "`$ONE`",
             [
@@ -5729,6 +5998,7 @@ class Config {
         },
         {
           "name": "content_filters",
+          "short": "Custom regex content filters applied to request messages",
           "type": [
             "`$ONE`",
             [
@@ -5740,10 +6010,12 @@ class Config {
         {
           "name": "created_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the guardrail was created",
           "type": "`$STRING`"
         },
         {
           "name": "description",
+          "short": "Description of the guardrail",
           "type": [
             "`$ONE`",
             [
@@ -5754,6 +6026,7 @@ class Config {
         },
         {
           "name": "enforce_zdr",
+          "short": "Deprecated.",
           "type": [
             "`$ONE`",
             [
@@ -5764,6 +6037,7 @@ class Config {
         },
         {
           "name": "enforce_zdr_anthropic",
+          "short": "Whether to enforce zero data retention for Anthropic models.",
           "type": [
             "`$ONE`",
             [
@@ -5774,6 +6048,7 @@ class Config {
         },
         {
           "name": "enforce_zdr_google",
+          "short": "Whether to enforce zero data retention for Google models.",
           "type": [
             "`$ONE`",
             [
@@ -5784,6 +6059,7 @@ class Config {
         },
         {
           "name": "enforce_zdr_openai",
+          "short": "Whether to enforce zero data retention for OpenAI models.",
           "type": [
             "`$ONE`",
             [
@@ -5794,6 +6070,7 @@ class Config {
         },
         {
           "name": "enforce_zdr_other",
+          "short": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI.",
           "type": [
             "`$ONE`",
             [
@@ -5804,6 +6081,7 @@ class Config {
         },
         {
           "name": "enforce_zdr_xai",
+          "short": "Whether to enforce zero data retention for xAI models.",
           "type": [
             "`$ONE`",
             [
@@ -5815,10 +6093,12 @@ class Config {
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the guardrail",
           "type": "`$STRING`"
         },
         {
           "name": "ignored_models",
+          "short": "Array of model canonical_slugs to exclude from routing",
           "type": [
             "`$ONE`",
             [
@@ -5829,6 +6109,7 @@ class Config {
         },
         {
           "name": "ignored_providers",
+          "short": "List of provider IDs to exclude from routing",
           "type": [
             "`$ONE`",
             [
@@ -5839,6 +6120,7 @@ class Config {
         },
         {
           "name": "limit_usd",
+          "short": "Spending limit in USD",
           "type": [
             "`$ONE`",
             [
@@ -5850,10 +6132,12 @@ class Config {
         {
           "name": "name",
           "req": true,
+          "short": "Name of the guardrail",
           "type": "`$STRING`"
         },
         {
           "name": "reset_interval",
+          "short": "Interval at which the limit resets (daily, weekly, monthly)",
           "type": [
             "`$ONE`",
             [
@@ -5864,6 +6148,7 @@ class Config {
         },
         {
           "name": "updated_at",
+          "short": "ISO 8601 timestamp of when the guardrail was last updated",
           "type": [
             "`$ONE`",
             [
@@ -5880,6 +6165,7 @@ class Config {
             }
           },
           "req": true,
+          "short": "The workspace ID this guardrail belongs to.",
           "type": "`$STRING`"
         }
       ],
@@ -6138,50 +6424,61 @@ class Config {
       "fields": [
         {
           "name": "aspect_ratio",
+          "short": "Normalized aspect ratio of the generated image.",
           "type": "`$STRING`"
         },
         {
           "name": "background",
+          "short": "Background treatment.",
           "type": "`$STRING`"
         },
         {
           "name": "created",
           "req": true,
+          "short": "Unix timestamp (seconds) when the image was generated",
           "type": "`$INTEGER`"
         },
         {
           "name": "data",
           "req": true,
+          "short": "Generated images",
           "type": "`$ARRAY`"
         },
         {
           "name": "input_references",
+          "short": "Reference images to guide image-to-image generation, as base64 data URLs or HTTP(S) URLs.",
           "type": "`$ARRAY`"
         },
         {
           "name": "model",
           "req": true,
+          "short": "The image generation model to use",
           "type": "`$STRING`"
         },
         {
           "name": "n",
+          "short": "Number of images to generate (1-10).",
           "type": "`$INTEGER`"
         },
         {
           "name": "output_compression",
+          "short": "Compression level (0-100) for webp/jpeg output.",
           "type": "`$INTEGER`"
         },
         {
           "name": "output_format",
+          "short": "Encoding of the returned image bytes.",
           "type": "`$STRING`"
         },
         {
           "name": "prompt",
           "req": true,
+          "short": "Text description of the desired image",
           "type": "`$STRING`"
         },
         {
           "name": "provider",
+          "short": "Provider routing preferences and provider-specific passthrough configuration.",
           "type": "`$OBJECT`",
           "union": {
             "branches": 2,
@@ -6191,27 +6488,33 @@ class Config {
         },
         {
           "name": "quality",
+          "short": "Rendering quality.",
           "type": "`$STRING`"
         },
         {
           "name": "resolution",
+          "short": "Normalized resolution tier of the generated image.",
           "type": "`$STRING`"
         },
         {
           "name": "seed",
+          "short": "If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result.",
           "type": "`$INTEGER`"
         },
         {
           "name": "size",
+          "short": "Optional.",
           "type": "`$STRING`"
         },
         {
           "name": "stream",
+          "short": "If true, partial images are streamed as SSE events as they become available.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "usage",
           "req": true,
+          "short": "Token and cost usage for the image generation request, when available",
           "type": "`$OBJECT`",
           "union": {
             "branches": 4,
@@ -6279,26 +6582,31 @@ class Config {
         {
           "name": "allowed_passthrough_parameters",
           "req": true,
+          "short": "Provider-specific options accepted under provider.options[provider_slug].",
           "type": "`$ARRAY`"
         },
         {
           "name": "pricing",
           "req": true,
+          "short": "Billable pricing lines for this endpoint.",
           "type": "`$ARRAY`"
         },
         {
           "name": "provider_name",
           "req": true,
+          "short": "Provider display name",
           "type": "`$STRING`"
         },
         {
           "name": "provider_slug",
           "req": true,
+          "short": "Provider slug",
           "type": "`$STRING`"
         },
         {
           "name": "provider_tag",
           "req": true,
+          "short": "Provider tag for request-side selection",
           "type": [
             "`$ONE`",
             [
@@ -6315,6 +6623,7 @@ class Config {
         {
           "name": "supports_streaming",
           "req": true,
+          "short": "Whether this endpoint supports native SSE streaming (`stream: true` in the request).",
           "type": "`$BOOLEAN`"
         }
       ],
@@ -6415,6 +6724,7 @@ class Config {
         {
           "name": "created",
           "req": true,
+          "short": "Unix timestamp (seconds) of when the model was created",
           "type": "`$INTEGER`"
         },
         {
@@ -6425,26 +6735,31 @@ class Config {
         {
           "name": "endpoints",
           "req": true,
+          "short": "Relative URL to the full per-endpoint records for this model",
           "type": "`$STRING`"
         },
         {
           "name": "id",
           "req": true,
+          "short": "Model slug",
           "type": "`$STRING`"
         },
         {
           "name": "name",
           "req": true,
+          "short": "Display name",
           "type": "`$STRING`"
         },
         {
           "name": "supported_parameters",
           "req": true,
+          "short": "Union of supported parameters across every endpoint of this model.",
           "type": "`$OBJECT`"
         },
         {
           "name": "supports_streaming",
           "req": true,
+          "short": "Whether any endpoint of this model supports native SSE streaming on the dedicated Image API (i.e.",
           "type": "`$BOOLEAN`"
         }
       ],
@@ -6536,6 +6851,7 @@ class Config {
         {
           "name": "assigned_by",
           "req": true,
+          "short": "User ID of who made the assignment",
           "type": [
             "`$ONE`",
             [
@@ -6547,31 +6863,37 @@ class Config {
         {
           "name": "created_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the assignment was created",
           "type": "`$STRING`"
         },
         {
           "name": "guardrail_id",
           "req": true,
+          "short": "ID of the guardrail",
           "type": "`$STRING`"
         },
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the assignment",
           "type": "`$STRING`"
         },
         {
           "name": "key_hash",
           "req": true,
+          "short": "Hash of the assigned API key",
           "type": "`$STRING`"
         },
         {
           "name": "key_label",
           "req": true,
+          "short": "Label of the API key",
           "type": "`$STRING`"
         },
         {
           "name": "key_name",
           "req": true,
+          "short": "Name of the API key",
           "type": "`$STRING`"
         }
       ],
@@ -6748,6 +7070,7 @@ class Config {
         {
           "name": "assigned_by",
           "req": true,
+          "short": "User ID of who made the assignment",
           "type": [
             "`$ONE`",
             [
@@ -6759,26 +7082,31 @@ class Config {
         {
           "name": "created_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the assignment was created",
           "type": "`$STRING`"
         },
         {
           "name": "guardrail_id",
           "req": true,
+          "short": "ID of the guardrail",
           "type": "`$STRING`"
         },
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the assignment",
           "type": "`$STRING`"
         },
         {
           "name": "organization_id",
           "req": true,
+          "short": "Organization ID",
           "type": "`$STRING`"
         },
         {
           "name": "user_id",
           "req": true,
+          "short": "Clerk user ID of the assigned member",
           "type": "`$STRING`"
         }
       ],
@@ -6955,6 +7283,7 @@ class Config {
         {
           "name": "data",
           "req": true,
+          "short": "List of observability destinations.",
           "type": "`$ARRAY`",
           "union": {
             "branches": 2,
@@ -6965,6 +7294,7 @@ class Config {
         {
           "name": "total_count",
           "req": true,
+          "short": "Total number of destinations matching the filters.",
           "type": "`$INTEGER`"
         }
       ],
@@ -7220,21 +7550,25 @@ class Config {
         {
           "name": "created_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the budget was created",
           "type": "`$STRING`"
         },
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the budget",
           "type": "`$STRING`"
         },
         {
           "name": "limit_usd",
           "req": true,
+          "short": "Spending limit in USD for this interval",
           "type": "`$NUMBER`"
         },
         {
           "name": "reset_interval",
           "req": true,
+          "short": "Interval at which spend resets.",
           "type": [
             "`$ONE`",
             [
@@ -7246,11 +7580,13 @@ class Config {
         {
           "name": "updated_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the budget was last updated",
           "type": "`$STRING`"
         },
         {
           "name": "workspace_id",
           "req": true,
+          "short": "ID of the workspace the budget belongs to",
           "type": "`$STRING`"
         }
       ],
@@ -7335,26 +7671,31 @@ class Config {
         {
           "name": "created_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the membership was created",
           "type": "`$STRING`"
         },
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the workspace membership",
           "type": "`$STRING`"
         },
         {
           "name": "role",
           "req": true,
+          "short": "Role of the member in the workspace",
           "type": "`$STRING`"
         },
         {
           "name": "user_id",
           "req": true,
+          "short": "Clerk user ID of the member",
           "type": "`$STRING`"
         },
         {
           "name": "workspace_id",
           "req": true,
+          "short": "ID of the workspace",
           "type": "`$STRING`"
         }
       ],
@@ -7475,6 +7816,7 @@ class Config {
         {
           "name": "cache_control",
           "req": true,
+          "short": "Enable automatic prompt caching.",
           "type": "`$OBJECT`"
         },
         {
@@ -7494,6 +7836,7 @@ class Config {
         },
         {
           "name": "fallbacks",
+          "short": "Fallback models to try if the primary model fails or refuses, in order.",
           "type": [
             "`$ONE`",
             [
@@ -7537,10 +7880,12 @@ class Config {
         },
         {
           "name": "output_config",
+          "short": "Configuration for controlling output behavior.",
           "type": "`$OBJECT`"
         },
         {
           "name": "plugins",
+          "short": "Plugins you want to enable for this request, including their settings.",
           "type": "`$ARRAY`",
           "union": {
             "branches": 5,
@@ -7550,6 +7895,7 @@ class Config {
         },
         {
           "name": "provider",
+          "short": "When multiple model providers are available, optionally indicate your routing preference.",
           "type": [
             "`$ONE`",
             [
@@ -7565,6 +7911,7 @@ class Config {
         },
         {
           "name": "route",
+          "short": "**DEPRECATED** Use providers.sort.partition instead.",
           "type": [
             "`$ONE`",
             [
@@ -7579,6 +7926,7 @@ class Config {
         },
         {
           "name": "session_id",
+          "short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
           "type": "`$STRING`"
         },
         {
@@ -7591,6 +7939,7 @@ class Config {
         },
         {
           "name": "stop_server_tools_when",
+          "short": "Stop conditions for the server-tool agent loop.",
           "type": "`$ARRAY`"
         },
         {
@@ -7647,10 +7996,12 @@ class Config {
         },
         {
           "name": "trace",
+          "short": "Metadata for observability and tracing.",
           "type": "`$OBJECT`"
         },
         {
           "name": "user",
+          "short": "A unique identifier representing your end-user, which helps distinguish between different users of your app.",
           "type": "`$STRING`"
         }
       ],
@@ -7729,21 +8080,25 @@ class Config {
         {
           "name": "architecture",
           "req": true,
+          "short": "Model architecture information",
           "type": "`$OBJECT`"
         },
         {
           "name": "benchmarks",
           "req": true,
+          "short": "Third-party benchmark rankings for this model.",
           "type": "`$OBJECT`"
         },
         {
           "name": "canonical_slug",
           "req": true,
+          "short": "Canonical slug for the model",
           "type": "`$STRING`"
         },
         {
           "name": "context_length",
           "req": true,
+          "short": "Maximum context length in tokens",
           "type": [
             "`$ONE`",
             [
@@ -7755,11 +8110,13 @@ class Config {
         {
           "name": "created",
           "req": true,
+          "short": "Unix timestamp of when the model was created",
           "type": "`$INTEGER`"
         },
         {
           "name": "default_parameters",
           "req": true,
+          "short": "Default parameters for this model",
           "type": [
             "`$ONE`",
             [
@@ -7770,10 +8127,12 @@ class Config {
         },
         {
           "name": "description",
+          "short": "Description of the model",
           "type": "`$STRING`"
         },
         {
           "name": "expiration_date",
+          "short": "The date after which the model may be removed.",
           "type": [
             "`$ONE`",
             [
@@ -7784,6 +8143,7 @@ class Config {
         },
         {
           "name": "hugging_face_id",
+          "short": "Hugging Face model identifier, if applicable",
           "type": [
             "`$ONE`",
             [
@@ -7795,10 +8155,12 @@ class Config {
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the model",
           "type": "`$STRING`"
         },
         {
           "name": "knowledge_cutoff",
+          "short": "The date up to which the model was trained on data.",
           "type": [
             "`$ONE`",
             [
@@ -7810,16 +8172,19 @@ class Config {
         {
           "name": "links",
           "req": true,
+          "short": "Related API endpoints and resources for this model.",
           "type": "`$OBJECT`"
         },
         {
           "name": "name",
           "req": true,
+          "short": "Display name of the model",
           "type": "`$STRING`"
         },
         {
           "name": "per_request_limits",
           "req": true,
+          "short": "Per-request token limits",
           "type": [
             "`$ONE`",
             [
@@ -7831,21 +8196,25 @@ class Config {
         {
           "name": "pricing",
           "req": true,
+          "short": "Pricing information for the model",
           "type": "`$OBJECT`"
         },
         {
           "name": "reasoning",
           "req": true,
+          "short": "Reasoning effort configuration.",
           "type": "`$OBJECT`"
         },
         {
           "name": "supported_parameters",
           "req": true,
+          "short": "List of supported parameters for this model",
           "type": "`$ARRAY`"
         },
         {
           "name": "supported_voices",
           "req": true,
+          "short": "List of supported voice identifiers for TTS models.",
           "type": [
             "`$ONE`",
             [
@@ -7857,6 +8226,7 @@ class Config {
         {
           "name": "top_provider",
           "req": true,
+          "short": "Information about the top provider for this model",
           "type": "`$OBJECT`"
         }
       ],
@@ -8017,6 +8387,7 @@ class Config {
         {
           "name": "count",
           "req": true,
+          "short": "Total number of available models",
           "type": "`$INTEGER`"
         }
       ],
@@ -8090,21 +8461,25 @@ class Config {
         {
           "name": "architecture",
           "req": true,
+          "short": "Model architecture information",
           "type": "`$OBJECT`"
         },
         {
           "name": "benchmarks",
           "req": true,
+          "short": "Third-party benchmark rankings for this model.",
           "type": "`$OBJECT`"
         },
         {
           "name": "canonical_slug",
           "req": true,
+          "short": "Canonical slug for the model",
           "type": "`$STRING`"
         },
         {
           "name": "context_length",
           "req": true,
+          "short": "Maximum context length in tokens",
           "type": [
             "`$ONE`",
             [
@@ -8116,11 +8491,13 @@ class Config {
         {
           "name": "created",
           "req": true,
+          "short": "Unix timestamp of when the model was created",
           "type": "`$INTEGER`"
         },
         {
           "name": "default_parameters",
           "req": true,
+          "short": "Default parameters for this model",
           "type": [
             "`$ONE`",
             [
@@ -8131,10 +8508,12 @@ class Config {
         },
         {
           "name": "description",
+          "short": "Description of the model",
           "type": "`$STRING`"
         },
         {
           "name": "expiration_date",
+          "short": "The date after which the model may be removed.",
           "type": [
             "`$ONE`",
             [
@@ -8145,6 +8524,7 @@ class Config {
         },
         {
           "name": "hugging_face_id",
+          "short": "Hugging Face model identifier, if applicable",
           "type": [
             "`$ONE`",
             [
@@ -8156,10 +8536,12 @@ class Config {
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the model",
           "type": "`$STRING`"
         },
         {
           "name": "knowledge_cutoff",
+          "short": "The date up to which the model was trained on data.",
           "type": [
             "`$ONE`",
             [
@@ -8171,16 +8553,19 @@ class Config {
         {
           "name": "links",
           "req": true,
+          "short": "Related API endpoints and resources for this model.",
           "type": "`$OBJECT`"
         },
         {
           "name": "name",
           "req": true,
+          "short": "Display name of the model",
           "type": "`$STRING`"
         },
         {
           "name": "per_request_limits",
           "req": true,
+          "short": "Per-request token limits",
           "type": [
             "`$ONE`",
             [
@@ -8192,21 +8577,25 @@ class Config {
         {
           "name": "pricing",
           "req": true,
+          "short": "Pricing information for the model",
           "type": "`$OBJECT`"
         },
         {
           "name": "reasoning",
           "req": true,
+          "short": "Reasoning effort configuration.",
           "type": "`$OBJECT`"
         },
         {
           "name": "supported_parameters",
           "req": true,
+          "short": "List of supported parameters for this model",
           "type": "`$ARRAY`"
         },
         {
           "name": "supported_voices",
           "req": true,
+          "short": "List of supported voice identifiers for TTS models.",
           "type": [
             "`$ONE`",
             [
@@ -8218,6 +8607,7 @@ class Config {
         {
           "name": "top_provider",
           "req": true,
+          "short": "Information about the top provider for this model",
           "type": "`$OBJECT`"
         }
       ],
@@ -8305,24 +8695,29 @@ class Config {
         {
           "name": "app_id",
           "req": true,
+          "short": "The application ID associated with this auth code",
           "type": "`$INTEGER`"
         },
         {
           "name": "callback_url",
           "req": true,
+          "short": "The callback URL to redirect to after authorization.",
           "type": "`$STRING`"
         },
         {
           "name": "code",
           "req": true,
+          "short": "The authorization code received from the OAuth redirect",
           "type": "`$STRING`"
         },
         {
           "name": "code_challenge",
+          "short": "PKCE code challenge for enhanced security",
           "type": "`$STRING`"
         },
         {
           "name": "code_challenge_method",
+          "short": "The method used to generate the code challenge",
           "type": [
             "`$ONE`",
             [
@@ -8333,15 +8728,18 @@ class Config {
         },
         {
           "name": "code_verifier",
+          "short": "The code verifier if code_challenge was used in the authorization request",
           "type": "`$STRING`"
         },
         {
           "name": "created_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the auth code was created",
           "type": "`$STRING`"
         },
         {
           "name": "expires_at",
+          "short": "Optional expiration time for the API key to be created",
           "type": [
             "`$ONE`",
             [
@@ -8353,36 +8751,44 @@ class Config {
         {
           "name": "id",
           "req": true,
+          "short": "The authorization code ID to use in the exchange request",
           "type": "`$STRING`"
         },
         {
           "name": "key",
           "req": true,
+          "short": "The API key to use for OpenRouter requests",
           "type": "`$STRING`"
         },
         {
           "name": "key_label",
+          "short": "Optional custom label for the API key.",
           "type": "`$STRING`"
         },
         {
           "name": "limit",
+          "short": "Credit limit for the API key to be created",
           "type": "`$NUMBER`"
         },
         {
           "name": "spawn_agent",
+          "short": "Agent identifier for spawn telemetry",
           "type": "`$STRING`"
         },
         {
           "name": "spawn_cloud",
+          "short": "Cloud identifier for spawn telemetry",
           "type": "`$STRING`"
         },
         {
           "name": "usage_limit_type",
+          "short": "Optional credit limit reset interval.",
           "type": "`$STRING`"
         },
         {
           "name": "user_id",
           "req": true,
+          "short": "User ID associated with the API key",
           "type": [
             "`$ONE`",
             [
@@ -8393,6 +8799,7 @@ class Config {
         },
         {
           "name": "workspace_id",
+          "short": "Optional workspace ID to associate the API key with",
           "type": "`$STRING`"
         }
       ],
@@ -8643,10 +9050,12 @@ class Config {
         {
           "name": "cache_control",
           "req": true,
+          "short": "Enable automatic prompt caching.",
           "type": "`$OBJECT`"
         },
         {
           "name": "debug",
+          "short": "Debug options for inspecting request transformations (streaming only)",
           "type": "`$OBJECT`"
         },
         {
@@ -8661,6 +9070,7 @@ class Config {
         },
         {
           "name": "image_config",
+          "short": "Provider-specific image configuration options.",
           "type": "`$OBJECT`",
           "union": {
             "branches": 3,
@@ -8680,6 +9090,7 @@ class Config {
         },
         {
           "name": "input",
+          "short": "Input for a response request - can be a string or array of items",
           "type": "`$ANY`",
           "union": {
             "branches": 49,
@@ -8719,6 +9130,7 @@ class Config {
         },
         {
           "name": "metadata",
+          "short": "Metadata key-value pairs for the request.",
           "type": [
             "`$ONE`",
             [
@@ -8729,6 +9141,7 @@ class Config {
         },
         {
           "name": "modalities",
+          "short": "Output modalities for the response.",
           "type": "`$ARRAY`"
         },
         {
@@ -8751,6 +9164,7 @@ class Config {
         },
         {
           "name": "plugins",
+          "short": "Plugins you want to enable for this request, including their settings.",
           "type": "`$ARRAY`",
           "union": {
             "branches": 5,
@@ -8770,6 +9184,7 @@ class Config {
         },
         {
           "name": "previous_response_id",
+          "short": "Not supported.",
           "type": "`$STRING`"
         },
         {
@@ -8801,6 +9216,7 @@ class Config {
         {
           "name": "prompt_cache_options",
           "req": true,
+          "short": "Request-level prompt-cache controls.",
           "type": [
             "`$ONE`",
             [
@@ -8811,6 +9227,7 @@ class Config {
         },
         {
           "name": "provider",
+          "short": "When multiple model providers are available, optionally indicate your routing preference.",
           "type": [
             "`$ONE`",
             [
@@ -8826,10 +9243,12 @@ class Config {
         },
         {
           "name": "reasoning",
+          "short": "Configuration for reasoning mode in the response",
           "type": "`$ANY`"
         },
         {
           "name": "route",
+          "short": "**DEPRECATED** Use providers.sort.partition instead.",
           "type": [
             "`$ONE`",
             [
@@ -8860,10 +9279,12 @@ class Config {
         },
         {
           "name": "session_id",
+          "short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
           "type": "`$STRING`"
         },
         {
           "name": "stop_server_tools_when",
+          "short": "Stop conditions for the server-tool agent loop.",
           "type": "`$ARRAY`"
         },
         {
@@ -8886,6 +9307,7 @@ class Config {
         },
         {
           "name": "text",
+          "short": "Text output configuration including format and verbosity",
           "type": "`$ANY`",
           "union": {
             "branches": 3,
@@ -8937,6 +9359,7 @@ class Config {
         },
         {
           "name": "trace",
+          "short": "Metadata for observability and tracing.",
           "type": "`$OBJECT`"
         },
         {
@@ -8951,6 +9374,7 @@ class Config {
         },
         {
           "name": "user",
+          "short": "A unique identifier representing your end-user, which helps distinguish between different users of your app.",
           "type": "`$STRING`"
         }
       ],
@@ -9021,11 +9445,13 @@ class Config {
         {
           "name": "email",
           "req": true,
+          "short": "Email address of the member",
           "type": "`$STRING`"
         },
         {
           "name": "first_name",
           "req": true,
+          "short": "First name of the member",
           "type": [
             "`$ONE`",
             [
@@ -9037,11 +9463,13 @@ class Config {
         {
           "name": "id",
           "req": true,
+          "short": "User ID of the organization member",
           "type": "`$STRING`"
         },
         {
           "name": "last_name",
           "req": true,
+          "short": "Last name of the member",
           "type": [
             "`$ONE`",
             [
@@ -9053,6 +9481,7 @@ class Config {
         {
           "name": "role",
           "req": true,
+          "short": "Role of the member in the organization",
           "type": "`$STRING`"
         }
       ],
@@ -9168,6 +9597,7 @@ class Config {
         {
           "name": "designated_version",
           "req": true,
+          "short": "A specific version of a preset, containing config and optional system prompt.",
           "type": [
             "`$ONE`",
             [
@@ -9205,6 +9635,7 @@ class Config {
         {
           "name": "status",
           "req": true,
+          "short": "The status of a preset.",
           "type": "`$STRING`"
         },
         {
@@ -9520,6 +9951,7 @@ class Config {
       "fields": [
         {
           "name": "datacenters",
+          "short": "ISO 3166-1 Alpha-2 country codes of the provider datacenter locations",
           "type": [
             "`$ONE`",
             [
@@ -9530,6 +9962,7 @@ class Config {
         },
         {
           "name": "headquarters",
+          "short": "ISO 3166-1 Alpha-2 country code of the provider headquarters",
           "type": [
             "`$ONE`",
             [
@@ -9541,11 +9974,13 @@ class Config {
         {
           "name": "name",
           "req": true,
+          "short": "Display name of the provider",
           "type": "`$STRING`"
         },
         {
           "name": "privacy_policy_url",
           "req": true,
+          "short": "URL to the provider's privacy policy",
           "type": [
             "`$ONE`",
             [
@@ -9557,10 +9992,12 @@ class Config {
         {
           "name": "slug",
           "req": true,
+          "short": "URL-friendly identifier for the provider",
           "type": "`$STRING`"
         },
         {
           "name": "status_page_url",
+          "short": "URL to the provider's status page",
           "type": [
             "`$ONE`",
             [
@@ -9571,6 +10008,7 @@ class Config {
         },
         {
           "name": "terms_of_service_url",
+          "short": "URL to the provider's terms of service",
           "type": [
             "`$ONE`",
             [
@@ -9647,16 +10085,19 @@ class Config {
         {
           "name": "date",
           "req": true,
+          "short": "UTC calendar date the row is aggregated over (YYYY-MM-DD).",
           "type": "`$STRING`"
         },
         {
           "name": "model_permaslug",
           "req": true,
+          "short": "Model variant permaslug (e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "total_tokens",
           "req": true,
+          "short": "Sum of `prompt_tokens + completion_tokens` for the day, returned as a decimal string so 64-bit values are not truncated.",
           "type": "`$STRING`"
         }
       ],
@@ -9793,6 +10234,7 @@ class Config {
         {
           "name": "documents",
           "req": true,
+          "short": "The list of documents to rerank.",
           "type": "`$ARRAY`",
           "union": {
             "branches": 2,
@@ -9802,33 +10244,40 @@ class Config {
         },
         {
           "name": "id",
+          "short": "Unique identifier for the rerank response (ORID format)",
           "type": "`$STRING`"
         },
         {
           "name": "model",
           "req": true,
+          "short": "The model used for reranking",
           "type": "`$STRING`"
         },
         {
           "name": "provider",
+          "short": "The provider that served the rerank request",
           "type": "`$STRING`"
         },
         {
           "name": "query",
           "req": true,
+          "short": "The search query to rerank documents against",
           "type": "`$STRING`"
         },
         {
           "name": "results",
           "req": true,
+          "short": "List of rerank results sorted by relevance",
           "type": "`$ARRAY`"
         },
         {
           "name": "top_n",
+          "short": "Number of most relevant documents to return",
           "type": "`$INTEGER`"
         },
         {
           "name": "usage",
+          "short": "Usage statistics",
           "type": "`$OBJECT`"
         }
       ],
@@ -9906,57 +10355,70 @@ class Config {
       "fields": [
         {
           "name": "duration",
+          "short": "Duration of the input audio in seconds, present when response_format is verbose_json",
           "type": "`$NUMBER`"
         },
         {
           "name": "input_audio",
           "req": true,
+          "short": "Base64-encoded audio to transcribe",
           "type": "`$OBJECT`"
         },
         {
           "name": "language",
+          "short": "Detected or forced language, present when response_format is verbose_json",
           "type": "`$STRING`"
         },
         {
           "name": "model",
           "req": true,
+          "short": "STT model identifier",
           "type": "`$STRING`"
         },
         {
           "name": "provider",
+          "short": "Provider-specific passthrough configuration",
           "type": "`$OBJECT`"
         },
         {
           "name": "response_format",
+          "short": "Output format.",
           "type": "`$STRING`"
         },
         {
           "name": "segments",
+          "short": "Timestamped transcript segments, present when response_format is verbose_json",
           "type": "`$ARRAY`"
         },
         {
           "name": "task",
+          "short": "The task performed, present when response_format is verbose_json",
           "type": "`$STRING`"
         },
         {
           "name": "temperature",
+          "short": "Sampling temperature for transcription",
           "type": "`$NUMBER`"
         },
         {
           "name": "text",
           "req": true,
+          "short": "The transcribed text",
           "type": "`$STRING`"
         },
         {
           "name": "timestamp_granularities",
+          "short": "Timestamp detail levels to include when response_format is \"verbose_json\".",
           "type": "`$ARRAY`"
         },
         {
           "name": "usage",
+          "short": "Aggregated usage statistics for the request",
           "type": "`$OBJECT`"
         },
         {
           "name": "words",
+          "short": "Timestamped words, present when the provider returns word-level timestamps",
           "type": "`$ARRAY`"
         }
       ],
@@ -10020,20 +10482,24 @@ class Config {
         {
           "name": "category",
           "req": true,
+          "short": "The category of feedback being reported",
           "type": "`$STRING`"
         },
         {
           "name": "comment",
+          "short": "An optional free-text comment describing the feedback",
           "type": "`$STRING`"
         },
         {
           "name": "generation_id",
           "req": true,
+          "short": "The generation to submit feedback on",
           "type": "`$STRING`"
         },
         {
           "name": "success",
           "req": true,
+          "short": "Whether the feedback was recorded",
           "type": "`$BOOLEAN`"
         }
       ],
@@ -10097,21 +10563,25 @@ class Config {
         {
           "name": "as_of",
           "req": true,
+          "short": "UTC date (YYYY-MM-DD) of the window upper bound (yesterday).",
           "type": "`$STRING`"
         },
         {
           "name": "classifications",
           "req": true,
+          "short": "Per-task classification market-share data, sorted by usage_share descending.",
           "type": "`$ARRAY`"
         },
         {
           "name": "macro_categories",
           "req": true,
+          "short": "Aggregate market-share data per macro-category (code, data, agent, general).",
           "type": "`$ARRAY`"
         },
         {
           "name": "window_days",
           "req": true,
+          "short": "Number of trailing days covered by this snapshot.",
           "type": "`$INTEGER`"
         }
       ],
@@ -10193,28 +10663,34 @@ class Config {
         {
           "name": "input",
           "req": true,
+          "short": "Text to synthesize",
           "type": "`$STRING`"
         },
         {
           "name": "model",
           "req": true,
+          "short": "TTS model identifier",
           "type": "`$STRING`"
         },
         {
           "name": "provider",
+          "short": "Provider-specific passthrough configuration",
           "type": "`$OBJECT`"
         },
         {
           "name": "response_format",
+          "short": "Audio output format",
           "type": "`$STRING`"
         },
         {
           "name": "speed",
+          "short": "Playback speed multiplier.",
           "type": "`$NUMBER`"
         },
         {
           "name": "voice",
           "req": true,
+          "short": "Voice identifier (provider-specific).",
           "type": "`$STRING`"
         }
       ],
@@ -10386,6 +10862,7 @@ class Config {
       "fields": [
         {
           "name": "allowed_models",
+          "short": "Optional allowlist of model slugs this credential may be used for.",
           "type": [
             "`$ONE`",
             [
@@ -10396,6 +10873,7 @@ class Config {
         },
         {
           "name": "allowed_user_ids",
+          "short": "Optional allowlist of user IDs that may use this credential.",
           "type": [
             "`$ONE`",
             [
@@ -10406,18 +10884,22 @@ class Config {
         },
         {
           "name": "disabled",
+          "short": "Whether this credential is disabled.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "is_fallback",
+          "short": "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "key",
+          "short": "A new raw provider API key to rotate the credential in-place.",
           "type": "`$STRING`"
         },
         {
           "name": "name",
+          "short": "Optional human-readable name for the credential.",
           "type": [
             "`$ONE`",
             [
@@ -10497,6 +10979,7 @@ class Config {
       "fields": [
         {
           "name": "allowed_models",
+          "short": "Array of model identifiers (slug or canonical_slug accepted)",
           "type": [
             "`$ONE`",
             [
@@ -10507,6 +10990,7 @@ class Config {
         },
         {
           "name": "allowed_providers",
+          "short": "New list of allowed provider IDs",
           "type": [
             "`$ONE`",
             [
@@ -10517,6 +11001,7 @@ class Config {
         },
         {
           "name": "content_filter_builtins",
+          "short": "Builtin content filters to apply.",
           "type": [
             "`$ONE`",
             [
@@ -10527,6 +11012,7 @@ class Config {
         },
         {
           "name": "content_filters",
+          "short": "Custom regex content filters to apply.",
           "type": [
             "`$ONE`",
             [
@@ -10537,6 +11023,7 @@ class Config {
         },
         {
           "name": "description",
+          "short": "New description for the guardrail",
           "type": [
             "`$ONE`",
             [
@@ -10547,6 +11034,7 @@ class Config {
         },
         {
           "name": "enforce_zdr",
+          "short": "Deprecated.",
           "type": [
             "`$ONE`",
             [
@@ -10557,6 +11045,7 @@ class Config {
         },
         {
           "name": "enforce_zdr_anthropic",
+          "short": "Whether to enforce zero data retention for Anthropic models.",
           "type": [
             "`$ONE`",
             [
@@ -10567,6 +11056,7 @@ class Config {
         },
         {
           "name": "enforce_zdr_google",
+          "short": "Whether to enforce zero data retention for Google models.",
           "type": [
             "`$ONE`",
             [
@@ -10577,6 +11067,7 @@ class Config {
         },
         {
           "name": "enforce_zdr_openai",
+          "short": "Whether to enforce zero data retention for OpenAI models.",
           "type": [
             "`$ONE`",
             [
@@ -10587,6 +11078,7 @@ class Config {
         },
         {
           "name": "enforce_zdr_other",
+          "short": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI.",
           "type": [
             "`$ONE`",
             [
@@ -10597,6 +11089,7 @@ class Config {
         },
         {
           "name": "enforce_zdr_xai",
+          "short": "Whether to enforce zero data retention for xAI models.",
           "type": [
             "`$ONE`",
             [
@@ -10607,6 +11100,7 @@ class Config {
         },
         {
           "name": "ignored_models",
+          "short": "Array of model identifiers to exclude from routing (slug or canonical_slug accepted)",
           "type": [
             "`$ONE`",
             [
@@ -10617,6 +11111,7 @@ class Config {
         },
         {
           "name": "ignored_providers",
+          "short": "List of provider IDs to exclude from routing",
           "type": [
             "`$ONE`",
             [
@@ -10627,6 +11122,7 @@ class Config {
         },
         {
           "name": "limit_usd",
+          "short": "New spending limit in USD",
           "type": [
             "`$ONE`",
             [
@@ -10637,10 +11133,12 @@ class Config {
         },
         {
           "name": "name",
+          "short": "New name for the guardrail",
           "type": "`$STRING`"
         },
         {
           "name": "reset_interval",
+          "short": "Interval at which the limit resets (daily, weekly, monthly)",
           "type": [
             "`$ONE`",
             [
@@ -10720,6 +11218,7 @@ class Config {
       "fields": [
         {
           "name": "api_key_hashes",
+          "short": "Optional allowlist of OpenRouter API key hashes.",
           "type": [
             "`$ONE`",
             [
@@ -10730,10 +11229,12 @@ class Config {
         },
         {
           "name": "config",
+          "short": "Provider-specific configuration fields to update.",
           "type": "`$OBJECT`"
         },
         {
           "name": "enabled",
+          "short": "Whether the destination is enabled.",
           "type": "`$BOOLEAN`"
         },
         {
@@ -10747,14 +11248,17 @@ class Config {
         },
         {
           "name": "name",
+          "short": "Human-readable name for the destination.",
           "type": "`$STRING`"
         },
         {
           "name": "privacy_mode",
+          "short": "When true, request/response bodies are not forwarded — only metadata.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "sampling_rate",
+          "short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
           "type": "`$NUMBER`"
         }
       ],
@@ -10830,11 +11334,13 @@ class Config {
         {
           "name": "created_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the workspace was created",
           "type": "`$STRING`"
         },
         {
           "name": "created_by",
           "req": true,
+          "short": "User ID of the workspace creator",
           "type": [
             "`$ONE`",
             [
@@ -10857,6 +11363,7 @@ class Config {
               ]
             }
           },
+          "short": "Default image model for this workspace",
           "type": [
             "`$ONE`",
             [
@@ -10879,6 +11386,7 @@ class Config {
               ]
             }
           },
+          "short": "Default provider sort preference (price, throughput, latency, exacto)",
           "type": [
             "`$ONE`",
             [
@@ -10901,6 +11409,7 @@ class Config {
               ]
             }
           },
+          "short": "Default text model for this workspace",
           "type": [
             "`$ONE`",
             [
@@ -10923,6 +11432,7 @@ class Config {
               ]
             }
           },
+          "short": "Description of the workspace",
           "type": [
             "`$ONE`",
             [
@@ -10934,6 +11444,7 @@ class Config {
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the workspace",
           "type": "`$STRING`"
         },
         {
@@ -10950,6 +11461,7 @@ class Config {
               ]
             }
           },
+          "short": "Optional array of API key IDs to filter I/O logging",
           "type": [
             "`$ONE`",
             [
@@ -10966,6 +11478,7 @@ class Config {
               "type": "`$NUMBER`"
             }
           },
+          "short": "Sampling rate for I/O logging (0.0001-1)",
           "type": "`$NUMBER`"
         },
         {
@@ -10976,6 +11489,7 @@ class Config {
               "type": "`$BOOLEAN`"
             }
           },
+          "short": "Whether data discount logging is enabled",
           "type": "`$BOOLEAN`"
         },
         {
@@ -10986,6 +11500,7 @@ class Config {
               "type": "`$BOOLEAN`"
             }
           },
+          "short": "Whether broadcast is enabled",
           "type": "`$BOOLEAN`"
         },
         {
@@ -10996,6 +11511,7 @@ class Config {
               "type": "`$BOOLEAN`"
             }
           },
+          "short": "Whether private logging is enabled",
           "type": "`$BOOLEAN`"
         },
         {
@@ -11006,6 +11522,7 @@ class Config {
             }
           },
           "req": true,
+          "short": "Name for the new workspace",
           "type": "`$STRING`"
         },
         {
@@ -11016,11 +11533,13 @@ class Config {
             }
           },
           "req": true,
+          "short": "URL-friendly slug (lowercase alphanumeric segments separated by single hyphens, no leading/trailing hyphens)",
           "type": "`$STRING`"
         },
         {
           "name": "updated_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the workspace was last updated",
           "type": [
             "`$ONE`",
             [
@@ -11219,6 +11738,7 @@ class Config {
         {
           "name": "limit_usd",
           "req": true,
+          "short": "Spending limit in USD.",
           "type": "`$NUMBER`"
         }
       ],
@@ -11333,14 +11853,17 @@ class Config {
       "fields": [
         {
           "name": "aspect_ratio",
+          "short": "Aspect ratio of the generated video",
           "type": "`$STRING`"
         },
         {
           "name": "callback_url",
+          "short": "URL to receive a webhook notification when the video generation job completes.",
           "type": "`$STRING`"
         },
         {
           "name": "duration",
+          "short": "Duration of the generated video in seconds",
           "type": "`$INTEGER`"
         },
         {
@@ -11349,14 +11872,17 @@ class Config {
         },
         {
           "name": "frame_images",
+          "short": "Images to use as the first and/or last frame of the generated video.",
           "type": "`$ARRAY`"
         },
         {
           "name": "generate_audio",
+          "short": "Whether to generate audio alongside the video.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "generation_id",
+          "short": "The generation ID associated with this video generation job.",
           "type": "`$STRING`"
         },
         {
@@ -11366,6 +11892,7 @@ class Config {
         },
         {
           "name": "input_references",
+          "short": "Reference assets to guide video generation.",
           "type": "`$ARRAY`"
         },
         {
@@ -11380,22 +11907,27 @@ class Config {
         },
         {
           "name": "prompt",
+          "short": "Text prompt describing the video to generate.",
           "type": "`$STRING`"
         },
         {
           "name": "provider",
+          "short": "Provider-specific passthrough configuration",
           "type": "`$OBJECT`"
         },
         {
           "name": "resolution",
+          "short": "Resolution of the generated video",
           "type": "`$STRING`"
         },
         {
           "name": "seed",
+          "short": "If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result.",
           "type": "`$INTEGER`"
         },
         {
           "name": "size",
+          "short": "Exact pixel dimensions of the generated video in \"WIDTHxHEIGHT\" format (e.g.",
           "type": "`$STRING`"
         },
         {
@@ -11409,6 +11941,7 @@ class Config {
         },
         {
           "name": "usage",
+          "short": "Usage and cost information for the video generation.",
           "type": "`$OBJECT`"
         }
       ],
@@ -11626,25 +12159,30 @@ class Config {
         {
           "name": "allowed_passthrough_parameters",
           "req": true,
+          "short": "List of parameters that are allowed to be passed through to the provider",
           "type": "`$ARRAY`"
         },
         {
           "name": "canonical_slug",
           "req": true,
+          "short": "Canonical slug for the model",
           "type": "`$STRING`"
         },
         {
           "name": "created",
           "req": true,
+          "short": "Unix timestamp of when the model was created",
           "type": "`$INTEGER`"
         },
         {
           "name": "description",
+          "short": "Description of the model",
           "type": "`$STRING`"
         },
         {
           "name": "generate_audio",
           "req": true,
+          "short": "Whether the model supports generating audio alongside video",
           "type": [
             "`$ONE`",
             [
@@ -11655,6 +12193,7 @@ class Config {
         },
         {
           "name": "hugging_face_id",
+          "short": "Hugging Face model identifier, if applicable",
           "type": [
             "`$ONE`",
             [
@@ -11666,15 +12205,18 @@ class Config {
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the model",
           "type": "`$STRING`"
         },
         {
           "name": "name",
           "req": true,
+          "short": "Display name of the model",
           "type": "`$STRING`"
         },
         {
           "name": "pricing_skus",
+          "short": "Pricing SKUs with provider prefix stripped, values as strings",
           "type": [
             "`$ONE`",
             [
@@ -11686,6 +12228,7 @@ class Config {
         {
           "name": "seed",
           "req": true,
+          "short": "Whether the model supports deterministic generation via seed parameter",
           "type": [
             "`$ONE`",
             [
@@ -11697,6 +12240,7 @@ class Config {
         {
           "name": "supported_aspect_ratios",
           "req": true,
+          "short": "Supported output aspect ratios",
           "type": [
             "`$ONE`",
             [
@@ -11708,6 +12252,7 @@ class Config {
         {
           "name": "supported_durations",
           "req": true,
+          "short": "Supported video durations in seconds",
           "type": [
             "`$ONE`",
             [
@@ -11719,6 +12264,7 @@ class Config {
         {
           "name": "supported_frame_images",
           "req": true,
+          "short": "Supported frame image types (e.g.",
           "type": [
             "`$ONE`",
             [
@@ -11730,6 +12276,7 @@ class Config {
         {
           "name": "supported_resolutions",
           "req": true,
+          "short": "Supported output resolutions",
           "type": [
             "`$ONE`",
             [
@@ -11741,6 +12288,7 @@ class Config {
         {
           "name": "supported_sizes",
           "req": true,
+          "short": "Supported output sizes (width x height)",
           "type": [
             "`$ONE`",
             [
@@ -11810,11 +12358,13 @@ class Config {
         {
           "name": "created_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the workspace was created",
           "type": "`$STRING`"
         },
         {
           "name": "created_by",
           "req": true,
+          "short": "User ID of the workspace creator",
           "type": [
             "`$ONE`",
             [
@@ -11826,6 +12376,7 @@ class Config {
         {
           "name": "default_image_model",
           "req": true,
+          "short": "Default image model for this workspace",
           "type": [
             "`$ONE`",
             [
@@ -11837,6 +12388,7 @@ class Config {
         {
           "name": "default_provider_sort",
           "req": true,
+          "short": "Default provider sort preference (price, throughput, latency, exacto)",
           "type": [
             "`$ONE`",
             [
@@ -11848,6 +12400,7 @@ class Config {
         {
           "name": "default_text_model",
           "req": true,
+          "short": "Default text model for this workspace",
           "type": [
             "`$ONE`",
             [
@@ -11859,6 +12412,7 @@ class Config {
         {
           "name": "description",
           "req": true,
+          "short": "Description of the workspace",
           "type": [
             "`$ONE`",
             [
@@ -11870,11 +12424,13 @@ class Config {
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the workspace",
           "type": "`$STRING`"
         },
         {
           "name": "io_logging_api_key_ids",
           "req": true,
+          "short": "Optional array of API key IDs to filter I/O logging.",
           "type": [
             "`$ONE`",
             [
@@ -11886,36 +12442,43 @@ class Config {
         {
           "name": "io_logging_sampling_rate",
           "req": true,
+          "short": "Sampling rate for I/O logging (0.0001-1).",
           "type": "`$NUMBER`"
         },
         {
           "name": "is_data_discount_logging_enabled",
           "req": true,
+          "short": "Whether data discount logging is enabled for this workspace",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "is_observability_broadcast_enabled",
           "req": true,
+          "short": "Whether broadcast is enabled for this workspace",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "is_observability_io_logging_enabled",
           "req": true,
+          "short": "Whether private logging is enabled for this workspace",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "name",
           "req": true,
+          "short": "Name of the workspace",
           "type": "`$STRING`"
         },
         {
           "name": "slug",
           "req": true,
+          "short": "URL-friendly slug for the workspace",
           "type": "`$STRING`"
         },
         {
           "name": "updated_at",
           "req": true,
+          "short": "ISO 8601 timestamp of when the workspace was last updated",
           "type": [
             "`$ONE`",
             [

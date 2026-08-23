@@ -1,0 +1,166 @@
+# Entity: app_ranking
+
+main: kit: entity: app_ranking: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "app_id"
+      req: true
+      short: "Stable numeric identifier of the app on OpenRouter."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "app_name"
+      req: true
+      short: "Public display name of the app."
+      type: "`$STRING`"
+    }
+    {
+      name: "rank"
+      req: true
+      short: "1-based position of the app within this response, per the requested `sort`."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "total_requests"
+      req: true
+      short: "Number of requests attributed to the app inside the date window."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "total_tokens"
+      req: true
+      short: "Sum of `prompt_tokens + completion_tokens` attributed to the app inside the date window, returned as a decimal string so 64-bit values are not truncated."
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "app_ranking"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "coding"
+                kind: "query"
+                name: "category"
+                orig: "category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "2026-05-11"
+                kind: "query"
+                name: "end_date"
+                orig: "end_date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 50
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                example: "popular"
+                kind: "query"
+                name: "sort"
+                orig: "sort"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "2026-04-12"
+                kind: "query"
+                name: "start_date"
+                orig: "start_date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "cli-agent"
+                kind: "query"
+                name: "subcategory"
+                orig: "subcategory"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/datasets/app-rankings"
+          parts: [
+            "datasets"
+            "app-rankings"
+          ]
+          select: {
+            exist: [
+              "category"
+              "end_date"
+              "http_referer"
+              "limit"
+              "offset"
+              "sort"
+              "start_date"
+              "subcategory"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

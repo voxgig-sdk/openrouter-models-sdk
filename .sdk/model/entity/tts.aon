@@ -1,0 +1,101 @@
+# Entity: tts
+
+main: kit: entity: tts: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "input"
+      req: true
+      short: "Text to synthesize"
+      type: "`$STRING`"
+    }
+    {
+      name: "model"
+      req: true
+      short: "TTS model identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "provider"
+      req: false
+      short: "Provider-specific passthrough configuration"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "response_format"
+      req: false
+      short: "Audio output format"
+      type: "`$STRING`"
+    }
+    {
+      name: "speed"
+      req: false
+      short: "Playback speed multiplier."
+      type: "`$NUMBER`"
+    }
+    {
+      name: "voice"
+      req: true
+      short: "Voice identifier (provider-specific)."
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "tts"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/audio/speech"
+          parts: [
+            "audio"
+            "speech"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

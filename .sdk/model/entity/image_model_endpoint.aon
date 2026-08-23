@@ -1,0 +1,148 @@
+# Entity: image_model_endpoint
+
+main: kit: entity: image_model_endpoint: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "allowed_passthrough_parameters"
+      req: true
+      short: "Provider-specific options accepted under provider.options[provider_slug]."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "pricing"
+      req: true
+      short: "Billable pricing lines for this endpoint."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "provider_name"
+      req: true
+      short: "Provider display name"
+      type: "`$STRING`"
+    }
+    {
+      name: "provider_slug"
+      req: true
+      short: "Provider slug"
+      type: "`$STRING`"
+    }
+    {
+      name: "provider_tag"
+      req: true
+      short: "Provider tag for request-side selection"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "supported_parameters"
+      req: true
+      type: "`$ANY`"
+    }
+    {
+      name: "supports_streaming"
+      req: true
+      short: "Whether this endpoint supports native SSE streaming (`stream: true` in the request)."
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "image_model_endpoint"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "bytedance-seed"
+                kind: "param"
+                name: "model_id"
+                orig: "author"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "seedream-4.5"
+                kind: "param"
+                name: "slug"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/images/models/{author}/{slug}/endpoints"
+          parts: [
+            "images"
+            "models"
+            "{model_id}"
+            "{slug}"
+            "endpoints"
+          ]
+          rename: {
+            param: {
+              author: "model_id"
+            }
+          }
+          select: {
+            exist: [
+              "http_referer"
+              "model_id"
+              "slug"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.endpoints`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "model"
+      ]
+    ]
+  }
+
+
+
+}

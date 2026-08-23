@@ -1,0 +1,136 @@
+# Entity: provider
+
+main: kit: entity: provider: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "datacenters"
+      req: false
+      short: "ISO 3166-1 Alpha-2 country codes of the provider datacenter locations"
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "headquarters"
+      req: false
+      short: "ISO 3166-1 Alpha-2 country code of the provider headquarters"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "name"
+      req: true
+      short: "Display name of the provider"
+      type: "`$STRING`"
+    }
+    {
+      name: "privacy_policy_url"
+      req: true
+      short: "URL to the provider's privacy policy"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "slug"
+      req: true
+      short: "URL-friendly identifier for the provider"
+      type: "`$STRING`"
+    }
+    {
+      name: "status_page_url"
+      req: false
+      short: "URL to the provider's status page"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "terms_of_service_url"
+      req: false
+      short: "URL to the provider's terms of service"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  ]
+
+  name: "provider"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/providers"
+          parts: [
+            "providers"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

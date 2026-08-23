@@ -1,0 +1,252 @@
+# Entity: models_list
+
+main: kit: entity: models_list: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "architecture"
+      req: true
+      short: "Model architecture information"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "benchmarks"
+      req: true
+      short: "Third-party benchmark rankings for this model."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "canonical_slug"
+      req: true
+      short: "Canonical slug for the model"
+      type: "`$STRING`"
+    }
+    {
+      name: "context_length"
+      req: true
+      short: "Maximum context length in tokens"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "created"
+      req: true
+      short: "Unix timestamp of when the model was created"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "default_parameters"
+      req: true
+      short: "Default parameters for this model"
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "description"
+      req: false
+      short: "Description of the model"
+      type: "`$STRING`"
+    }
+    {
+      name: "expiration_date"
+      req: false
+      short: "The date after which the model may be removed."
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "hugging_face_id"
+      req: false
+      short: "Hugging Face model identifier, if applicable"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "id"
+      req: true
+      short: "Unique identifier for the model"
+      type: "`$STRING`"
+    }
+    {
+      name: "knowledge_cutoff"
+      req: false
+      short: "The date up to which the model was trained on data."
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "links"
+      req: true
+      short: "Related API endpoints and resources for this model."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
+      req: true
+      short: "Display name of the model"
+      type: "`$STRING`"
+    }
+    {
+      name: "per_request_limits"
+      req: true
+      short: "Per-request token limits"
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "pricing"
+      req: true
+      short: "Pricing information for the model"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "reasoning"
+      req: true
+      short: "Reasoning effort configuration."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "supported_parameters"
+      req: true
+      short: "List of supported parameters for this model"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "supported_voices"
+      req: true
+      short: "List of supported voice identifiers for TTS models."
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "top_provider"
+      req: true
+      short: "Information about the top provider for this model"
+      type: "`$OBJECT`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "models_list"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 500
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/models/user"
+          parts: [
+            "models"
+            "user"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "limit"
+              "offset"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

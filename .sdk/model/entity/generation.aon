@@ -1,0 +1,560 @@
+# Entity: generation
+
+main: kit: entity: generation: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "api_type"
+      req: true
+      short: "Type of API used for the generation"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "app_id"
+      req: true
+      short: "ID of the app that made the request"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "cache_discount"
+      req: true
+      short: "Discount applied due to caching"
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "cancelled"
+      req: true
+      short: "Whether the generation was cancelled"
+      type: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "created_at"
+      req: true
+      short: "ISO 8601 timestamp of when the generation was created"
+      type: "`$STRING`"
+    }
+    {
+      name: "data_region"
+      req: true
+      short: "The data region this generation was routed through."
+      type: "`$STRING`"
+    }
+    {
+      name: "external_user"
+      req: true
+      short: "External user identifier"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "finish_reason"
+      req: true
+      short: "Reason the generation finished"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "generation_time"
+      req: true
+      short: "Time taken for generation in milliseconds"
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "http_referer"
+      req: true
+      short: "Referer header from the request"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "id"
+      req: true
+      short: "Unique identifier for the generation"
+      type: "`$STRING`"
+    }
+    {
+      name: "is_byok"
+      req: true
+      short: "Whether this used bring-your-own-key"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "latency"
+      req: true
+      short: "Total latency in milliseconds"
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "model"
+      req: true
+      short: "Model used for the generation"
+      type: "`$STRING`"
+    }
+    {
+      name: "moderation_latency"
+      req: true
+      short: "Moderation latency in milliseconds"
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "native_finish_reason"
+      req: true
+      short: "Native finish reason as reported by provider"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "native_tokens_cached"
+      req: true
+      short: "Native cached tokens as reported by provider"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "native_tokens_completion"
+      req: true
+      short: "Native completion tokens as reported by provider"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "native_tokens_completion_images"
+      req: true
+      short: "Native completion image tokens as reported by provider"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "native_tokens_prompt"
+      req: true
+      short: "Native prompt tokens as reported by provider"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "native_tokens_reasoning"
+      req: true
+      short: "Native reasoning tokens as reported by provider"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "num_fetches"
+      req: true
+      short: "Number of web fetches performed"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "num_input_audio_prompt"
+      req: true
+      short: "Number of audio inputs in the prompt"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "num_media_completion"
+      req: true
+      short: "Number of media items in the completion"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "num_media_prompt"
+      req: true
+      short: "Number of media items in the prompt"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "num_search_results"
+      req: true
+      short: "Number of search results included"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "origin"
+      req: true
+      short: "Origin URL of the request"
+      type: "`$STRING`"
+    }
+    {
+      name: "preset_id"
+      req: true
+      short: "ID of the preset used for this generation, null if no preset was used"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "provider_name"
+      req: true
+      short: "Name of the provider that served the request"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "provider_responses"
+      req: true
+      short: "List of provider responses for this generation, including fallback attempts"
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "request_id"
+      req: false
+      short: "Unique identifier grouping all generations from a single API request"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "response_cache_source_id"
+      req: false
+      short: "If this generation was served from response cache, contains the original generation ID."
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "router"
+      req: true
+      short: "Router used for the request (e.g., openrouter/auto)"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "service_tier"
+      req: true
+      short: "Service tier the upstream provider reported running this request on, or null if it did not report one."
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "session_id"
+      req: false
+      short: "Session identifier grouping multiple generations in the same session"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "streamed"
+      req: true
+      short: "Whether the response was streamed"
+      type: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "tokens_completion"
+      req: true
+      short: "Number of tokens in the completion"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "tokens_prompt"
+      req: true
+      short: "Number of tokens in the prompt"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "total_cost"
+      req: true
+      short: "Total cost of the generation in USD"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "upstream_id"
+      req: true
+      short: "Upstream provider's identifier for this generation"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "upstream_inference_cost"
+      req: true
+      short: "Cost charged by the upstream provider"
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "usage"
+      req: true
+      short: "Usage amount in USD"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "user_agent"
+      req: true
+      short: "User-Agent header from the request"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "web_search_engine"
+      req: true
+      short: "The resolved web search engine used for this generation (e.g."
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "generation"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "gen-1234567890"
+                kind: "query"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/generation"
+          parts: [
+            "generation"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

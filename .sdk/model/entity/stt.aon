@@ -1,0 +1,143 @@
+# Entity: stt
+
+main: kit: entity: stt: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "duration"
+      req: false
+      short: "Duration of the input audio in seconds, present when response_format is verbose_json"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "input_audio"
+      req: true
+      short: "Base64-encoded audio to transcribe"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "language"
+      req: false
+      short: "Detected or forced language, present when response_format is verbose_json"
+      type: "`$STRING`"
+    }
+    {
+      name: "model"
+      req: true
+      short: "STT model identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "provider"
+      req: false
+      short: "Provider-specific passthrough configuration"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "response_format"
+      req: false
+      short: "Output format."
+      type: "`$STRING`"
+    }
+    {
+      name: "segments"
+      req: false
+      short: "Timestamped transcript segments, present when response_format is verbose_json"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "task"
+      req: false
+      short: "The task performed, present when response_format is verbose_json"
+      type: "`$STRING`"
+    }
+    {
+      name: "temperature"
+      req: false
+      short: "Sampling temperature for transcription"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "text"
+      req: true
+      short: "The transcribed text"
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp_granularities"
+      req: false
+      short: "Timestamp detail levels to include when response_format is \"verbose_json\"."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "usage"
+      req: false
+      short: "Aggregated usage statistics for the request"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "words"
+      req: false
+      short: "Timestamped words, present when the provider returns word-level timestamps"
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "stt"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/audio/transcriptions"
+          parts: [
+            "audio"
+            "transcriptions"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

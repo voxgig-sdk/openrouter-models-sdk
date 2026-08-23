@@ -1,0 +1,823 @@
+# Entity: create_preset_from_inference
+
+main: kit: entity: create_preset_from_inference: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "background"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "cache_control"
+      req: true
+      short: "Enable automatic prompt caching."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "context_management"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 3
+        count: 3
+        depth: 7
+      }
+    }
+    {
+      name: "debug"
+      req: false
+      short: "Debug options for inspecting request transformations (streaming only)"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "fallbacks"
+      req: false
+      short: "Fallback models to try if the primary model fails or refuses, in order."
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "frequency_penalty"
+      req: false
+      short: "Frequency penalty (-2.0 to 2.0)"
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "image_config"
+      req: false
+      short: "Provider-specific image configuration options."
+      type: "`$OBJECT`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 1
+      }
+    }
+    {
+      name: "include"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "input"
+      req: false
+      short: "Input for a response request - can be a string or array of items"
+      type: "`$ANY`"
+      union: {
+        branches: 49
+        count: 35
+        depth: 19
+      }
+    }
+    {
+      name: "instructions"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "logit_bias"
+      req: false
+      short: "Token logit bias adjustments"
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "logprobs"
+      req: false
+      short: "Return log probabilities"
+      type: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "max_completion_tokens"
+      req: false
+      short: "Maximum tokens in completion"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "max_output_tokens"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "max_tokens"
+      req: false
+      short: "Maximum tokens (deprecated, use max_completion_tokens)."
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "max_tool_calls"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "messages"
+      req: true
+      short: "List of messages for the conversation"
+      type: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 5
+        depth: 5
+      }
+    }
+    {
+      name: "metadata"
+      req: false
+      short: "Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values)"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "min_p"
+      req: false
+      short: "Minimum probability threshold relative to the most likely token."
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "modalities"
+      req: false
+      short: "Output modalities for the response."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "model"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      short: "Model to use for completion"
+      type: "`$STRING`"
+    }
+    {
+      name: "models"
+      req: false
+      short: "Models to use for completion"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "output_config"
+      req: false
+      short: "Configuration for controlling output behavior."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "parallel_tool_calls"
+      req: false
+      short: "Whether to enable parallel function calling during tool use."
+      type: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "plugins"
+      req: false
+      short: "Plugins you want to enable for this request, including their settings."
+      type: "`$ARRAY`"
+      union: {
+        branches: 5
+        count: 4
+        depth: 12
+      }
+    }
+    {
+      name: "prediction"
+      req: true
+      short: "Static predicted output content."
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 2
+        count: 1
+        depth: 2
+      }
+    }
+    {
+      name: "presence_penalty"
+      req: false
+      short: "Presence penalty (-2.0 to 2.0)"
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "previous_response_id"
+      req: false
+      short: "Not supported."
+      type: "`$STRING`"
+    }
+    {
+      name: "prompt"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 4
+        count: 1
+        depth: 3
+      }
+    }
+    {
+      name: "prompt_cache_key"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "prompt_cache_options"
+      req: true
+      short: "Request-level prompt-cache controls."
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "provider"
+      req: false
+      short: "When multiple model providers are available, optionally indicate your routing preference."
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 2
+        count: 6
+        depth: 3
+      }
+    }
+    {
+      name: "reasoning"
+      req: false
+      short: "Configuration options for reasoning models"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "reasoning_effort"
+      req: false
+      short: "Shorthand for setting reasoning effort."
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "repetition_penalty"
+      req: false
+      short: "Penalizes tokens based on how much they have already appeared in the text."
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "response_format"
+      req: false
+      short: "Response format configuration"
+      type: "`$ANY`"
+    }
+    {
+      name: "route"
+      req: false
+      short: "**DEPRECATED** Use providers.sort.partition instead."
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "safety_identifier"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "seed"
+      req: false
+      short: "Random seed for deterministic outputs"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "service_tier"
+      req: false
+      short: "The service tier to use for processing this request."
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "session_id"
+      req: false
+      short: "A unique identifier for grouping related requests (e.g., a conversation or agent workflow)."
+      type: "`$STRING`"
+    }
+    {
+      name: "speed"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "stop"
+      req: false
+      short: "Stop sequences (up to 4)"
+      type: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    {
+      name: "stop_sequences"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "stop_server_tools_when"
+      req: false
+      short: "Stop conditions for the server-tool agent loop."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "store"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "stream"
+      req: false
+      short: "Enable streaming response"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "stream_options"
+      req: false
+      short: "Streaming configuration options"
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "system"
+      req: false
+      type: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    {
+      name: "temperature"
+      req: false
+      short: "Sampling temperature (0-2)"
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "text"
+      req: false
+      short: "Text output configuration including format and verbosity"
+      type: "`$ANY`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 4
+      }
+    }
+    {
+      name: "thinking"
+      req: false
+      type: "`$ANY`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 0
+      }
+    }
+    {
+      name: "tool_choice"
+      req: false
+      short: "Tool choice configuration"
+      type: "`$ANY`"
+      union: {
+        branches: 5
+        count: 1
+        depth: 0
+      }
+    }
+    {
+      name: "tools"
+      req: false
+      short: "Available tools for function calling"
+      type: "`$ARRAY`"
+      union: {
+        branches: 12
+        count: 2
+        depth: 6
+      }
+    }
+    {
+      name: "top_a"
+      req: false
+      short: "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token."
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "top_k"
+      req: false
+      short: "Limits the model to choose from the top K most likely tokens at each step."
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "top_logprobs"
+      req: false
+      short: "Number of top log probabilities to return (0-20)"
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "top_p"
+      req: false
+      short: "Nucleus sampling parameter (0-1)"
+      type: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "trace"
+      req: false
+      short: "Metadata for observability and tracing."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "truncation"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "user"
+      req: false
+      short: "Unique user identifier"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "create_preset_from_inference"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "my-preset"
+                kind: "param"
+                name: "slug"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/presets/{slug}/chat/completions"
+          parts: [
+            "presets"
+            "{slug}"
+            "chat"
+            "completions"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "slug"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "my-preset"
+                kind: "param"
+                name: "slug"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/presets/{slug}/messages"
+          parts: [
+            "presets"
+            "{slug}"
+            "messages"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "slug"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "my-preset"
+                kind: "param"
+                name: "slug"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/presets/{slug}/responses"
+          parts: [
+            "presets"
+            "{slug}"
+            "responses"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "slug"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "preset"
+      ]
+    ]
+  }
+
+
+
+}

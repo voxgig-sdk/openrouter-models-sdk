@@ -1137,17 +1137,17 @@ const activity = client.Activity()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `byok_usage_inference` | `number` | Yes |  |
-| `completion_tokens` | `number` | Yes |  |
-| `date` | `string` | Yes |  |
-| `endpoint_id` | `string` | Yes |  |
-| `model` | `string` | Yes |  |
-| `model_permaslug` | `string` | Yes |  |
-| `prompt_tokens` | `number` | Yes |  |
-| `provider_name` | `string` | Yes |  |
-| `reasoning_tokens` | `number` | Yes |  |
-| `requests` | `number` | Yes |  |
-| `usage` | `number` | Yes |  |
+| `byok_usage_inference` | `number` | Yes | BYOK inference cost in USD (external credits spent) |
+| `completion_tokens` | `number` | Yes | Total completion tokens generated |
+| `date` | `string` | Yes | Date of the activity (YYYY-MM-DD format) |
+| `endpoint_id` | `string` | Yes | Unique identifier for the endpoint |
+| `model` | `string` | Yes | Model slug (e.g., "openai/gpt-4.1") |
+| `model_permaslug` | `string` | Yes | Model permaslug (e.g., "openai/gpt-4.1-2025-04-14") |
+| `prompt_tokens` | `number` | Yes | Total prompt tokens used |
+| `provider_name` | `string` | Yes | Name of the provider serving this endpoint |
+| `reasoning_tokens` | `number` | Yes | Total reasoning tokens used |
+| `requests` | `number` | Yes | Number of requests made |
+| `usage` | `number` | Yes | Total cost in USD (OpenRouter credits spent) |
 
 ### Operations
 
@@ -1231,31 +1231,31 @@ const api_key = client.ApiKey()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `byok_usage` | `number` | Yes |  |
-| `byok_usage_daily` | `number` | Yes |  |
-| `byok_usage_monthly` | `number` | Yes |  |
-| `byok_usage_weekly` | `number` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `creator_user_id` | `string | null` | Yes |  |
-| `disabled` | `boolean` | Yes |  |
-| `expires_at` | `string | null` | No |  |
-| `hash` | `string` | Yes |  |
-| `include_byok_in_limit` | `boolean` | Yes |  |
-| `is_free_tier` | `boolean` | Yes |  |
-| `is_management_key` | `boolean` | Yes |  |
-| `is_provisioning_key` | `boolean` | Yes |  |
-| `label` | `string` | Yes |  |
-| `limit` | `number | null` | Yes |  |
-| `limit_remaining` | `number | null` | Yes |  |
-| `limit_reset` | `string | null` | Yes |  |
-| `name` | `string` | Yes |  |
-| `rate_limit` | `Record<string, any>` | Yes |  |
-| `updated_at` | `string | null` | Yes |  |
-| `usage` | `number` | Yes |  |
-| `usage_daily` | `number` | Yes |  |
-| `usage_monthly` | `number` | Yes |  |
-| `usage_weekly` | `number` | Yes |  |
-| `workspace_id` | `string` | Yes |  |
+| `byok_usage` | `number` | Yes | Total external BYOK usage (in USD) for the API key |
+| `byok_usage_daily` | `number` | Yes | External BYOK usage (in USD) for the current UTC day |
+| `byok_usage_monthly` | `number` | Yes | External BYOK usage (in USD) for current UTC month |
+| `byok_usage_weekly` | `number` | Yes | External BYOK usage (in USD) for the current UTC week (Monday-Sunday) |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the API key was created |
+| `creator_user_id` | `string | null` | Yes | The user ID of the key creator. |
+| `disabled` | `boolean` | Yes | Whether the API key is disabled |
+| `expires_at` | `string | null` | No | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
+| `hash` | `string` | Yes | Unique hash identifier for the API key |
+| `include_byok_in_limit` | `boolean` | Yes | Whether to include external BYOK usage in the credit limit |
+| `is_free_tier` | `boolean` | Yes | Whether this is a free tier API key |
+| `is_management_key` | `boolean` | Yes | Whether this is a management key |
+| `is_provisioning_key` | `boolean` | Yes | Whether this is a management key |
+| `label` | `string` | Yes | Human-readable label for the API key |
+| `limit` | `number | null` | Yes | Spending limit for the API key in USD |
+| `limit_remaining` | `number | null` | Yes | Remaining spending limit in USD |
+| `limit_reset` | `string | null` | Yes | Type of limit reset for the API key |
+| `name` | `string` | Yes | Name of the API key |
+| `rate_limit` | `Record<string, any>` | Yes | Legacy rate limit information about a key. |
+| `updated_at` | `string | null` | Yes | ISO 8601 timestamp of when the API key was last updated |
+| `usage` | `number` | Yes | Total OpenRouter credit usage (in USD) for the API key |
+| `usage_daily` | `number` | Yes | OpenRouter credit usage (in USD) for the current UTC day |
+| `usage_monthly` | `number` | Yes | OpenRouter credit usage (in USD) for the current UTC month |
+| `usage_weekly` | `number` | Yes | OpenRouter credit usage (in USD) for the current UTC week (Monday-Sunday) |
+| `workspace_id` | `string` | Yes | The workspace ID this API key belongs to. |
 
 ### Field Usage by Operation
 
@@ -1395,11 +1395,11 @@ const app_ranking = client.AppRanking()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `app_id` | `number` | Yes |  |
-| `app_name` | `string` | Yes |  |
-| `rank` | `number` | Yes |  |
-| `total_requests` | `number` | Yes |  |
-| `total_tokens` | `string` | Yes |  |
+| `app_id` | `number` | Yes | Stable numeric identifier of the app on OpenRouter. |
+| `app_name` | `string` | Yes | Public display name of the app. |
+| `rank` | `number` | Yes | 1-based position of the app within this response, per the requested `sort`. |
+| `total_requests` | `number` | Yes | Number of requests attributed to the app inside the date window. |
+| `total_tokens` | `string` | Yes | Sum of `prompt_tokens + completion_tokens` attributed to the app inside the date window, returned as a decimal string so 64-bit values are not truncated. |
 
 ### Operations
 
@@ -1484,21 +1484,21 @@ const beta_analytics = client.BetaAnalytics()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cachedAt` | `number` | No |  |
-| `classifier_dimensions` | `Record<string, any>` | Yes |  |
-| `classifier_filters` | `Record<string, any>` | Yes |  |
+| `classifier_dimensions` | `Record<string, any>` | Yes | Group results by custom classifier tags, breaking down metrics by the specified dimension values. |
+| `classifier_filters` | `Record<string, any>` | Yes | Filter results to generations with specific classifier tag values. |
 | `data` | `any[]` | Yes |  |
 | `dimensions` | `any[]` | Yes |  |
 | `filters` | `any[]` | No |  |
 | `granularities` | `any[]` | Yes |  |
-| `granularity` | `string` | No |  |
-| `group_limit` | `number` | No |  |
-| `limit` | `number` | No |  |
+| `granularity` | `string` | No | Time granularity |
+| `group_limit` | `number` | No | Maximum rows per distinct combination of dimensions. |
+| `limit` | `number` | No | Maximum total rows returned. |
 | `metadata` | `Record<string, any>` | Yes |  |
 | `metrics` | `any[]` | Yes |  |
 | `operators` | `any[]` | Yes |  |
 | `order_by` | `Record<string, any>` | Yes |  |
 | `time_range` | `Record<string, any>` | Yes |  |
-| `warnings` | `any[]` | No |  |
+| `warnings` | `any[]` | No | Warnings about filter resolution issues (e.g. |
 
 ### Field Usage by Operation
 
@@ -1622,9 +1622,9 @@ const bulk_add_workspace_member = client.BulkAddWorkspaceMember()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `added_count` | `number` | Yes |  |
-| `data` | `any[]` | Yes |  |
-| `user_ids` | `any[]` | Yes |  |
+| `added_count` | `number` | Yes | Number of workspace memberships created or updated |
+| `data` | `any[]` | Yes | List of added workspace memberships |
+| `user_ids` | `any[]` | Yes | List of user IDs to add to the workspace. |
 
 ### Operations
 
@@ -1679,8 +1679,8 @@ const bulk_assign_key = client.BulkAssignKey()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_count` | `number` | Yes |  |
-| `key_hashes` | `any[]` | Yes |  |
+| `assigned_count` | `number` | Yes | Number of keys successfully assigned |
+| `key_hashes` | `any[]` | Yes | Array of API key hashes to assign to the guardrail |
 
 ### Operations
 
@@ -1734,8 +1734,8 @@ const bulk_assign_member = client.BulkAssignMember()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_count` | `number` | Yes |  |
-| `member_user_ids` | `any[]` | Yes |  |
+| `assigned_count` | `number` | Yes | Number of members successfully assigned |
+| `member_user_ids` | `any[]` | Yes | Array of member user IDs to assign to the guardrail |
 
 ### Operations
 
@@ -1789,8 +1789,8 @@ const bulk_remove_workspace_member = client.BulkRemoveWorkspaceMember()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `removed_count` | `number` | Yes |  |
-| `user_ids` | `any[]` | Yes |  |
+| `removed_count` | `number` | Yes | Number of members removed |
+| `user_ids` | `any[]` | Yes | List of user IDs to remove from the workspace |
 
 ### Operations
 
@@ -1844,8 +1844,8 @@ const bulk_unassign_key = client.BulkUnassignKey()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key_hashes` | `any[]` | Yes |  |
-| `unassigned_count` | `number` | Yes |  |
+| `key_hashes` | `any[]` | Yes | Array of API key hashes to unassign from the guardrail |
+| `unassigned_count` | `number` | Yes | Number of keys successfully unassigned |
 
 ### Operations
 
@@ -1899,8 +1899,8 @@ const bulk_unassign_member = client.BulkUnassignMember()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `member_user_ids` | `any[]` | Yes |  |
-| `unassigned_count` | `number` | Yes |  |
+| `member_user_ids` | `any[]` | Yes | Array of member user IDs to unassign from the guardrail |
+| `unassigned_count` | `number` | Yes | Number of members successfully unassigned |
 
 ### Operations
 
@@ -1954,19 +1954,19 @@ const byok = client.Byok()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_api_key_hashes` | `any[] | null` | Yes |  |
-| `allowed_models` | `any[] | null` | Yes |  |
-| `allowed_user_ids` | `any[] | null` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `disabled` | `boolean` | Yes |  |
-| `id` | `string` | Yes |  |
-| `is_fallback` | `boolean` | Yes |  |
-| `key` | `string` | Yes |  |
-| `label` | `string` | Yes |  |
-| `name` | `string | null` | No |  |
-| `provider` | `string` | Yes |  |
-| `sort_order` | `number` | Yes |  |
-| `workspace_id` | `string` | Yes |  |
+| `allowed_api_key_hashes` | `any[] | null` | Yes | Optional allowlist of OpenRouter API key hashes (`api_keys.hash`) that may use this credential. |
+| `allowed_models` | `any[] | null` | Yes | Optional allowlist of model slugs this credential may be used for. |
+| `allowed_user_ids` | `any[] | null` | Yes | Optional allowlist of user IDs that may use this credential. |
+| `created_at` | `string` | Yes | ISO timestamp of when the credential was created. |
+| `disabled` | `boolean` | Yes | Whether this credential is currently disabled. |
+| `id` | `string` | Yes | Stable public identifier for this BYOK credential. |
+| `is_fallback` | `boolean` | Yes | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
+| `key` | `string` | Yes | The raw provider API key or credential. |
+| `label` | `string` | Yes | Short masked snippet of the key (e.g. |
+| `name` | `string | null` | No | Optional human-readable name for the credential. |
+| `provider` | `string` | Yes | The upstream provider this credential authenticates against, as a lowercase slug (e.g. |
+| `sort_order` | `number` | Yes | Position within the provider — credentials are tried in ascending sort order. |
+| `workspace_id` | `string` | Yes | ID of the workspace this credential belongs to. |
 
 ### Field Usage by Operation
 
@@ -2071,55 +2071,55 @@ const chat_result = client.ChatResult()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cache_control` | `Record<string, any>` | Yes |  |
-| `choices` | `any[]` | Yes |  |
-| `created` | `number` | Yes |  |
-| `debug` | `Record<string, any>` | No |  |
-| `frequency_penalty` | `number | null` | No |  |
-| `id` | `string` | Yes |  |
-| `image_config` | `Record<string, any>` | No |  |
-| `logit_bias` | `Record<string, any> | null` | No |  |
-| `logprobs` | `boolean | null` | No |  |
-| `max_completion_tokens` | `number | null` | No |  |
-| `max_tokens` | `number | null` | No |  |
-| `messages` | `any[]` | Yes |  |
-| `metadata` | `Record<string, any>` | No |  |
-| `min_p` | `number | null` | No |  |
-| `modalities` | `any[]` | No |  |
-| `model` | `string` | Yes |  |
-| `models` | `any[]` | No |  |
+| `cache_control` | `Record<string, any>` | Yes | Enable automatic prompt caching. |
+| `choices` | `any[]` | Yes | List of completion choices |
+| `created` | `number` | Yes | Unix timestamp of creation |
+| `debug` | `Record<string, any>` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `number | null` | No | Frequency penalty (-2.0 to 2.0) |
+| `id` | `string` | Yes | Unique completion identifier |
+| `image_config` | `Record<string, any>` | No | Provider-specific image configuration options. |
+| `logit_bias` | `Record<string, any> | null` | No | Token logit bias adjustments |
+| `logprobs` | `boolean | null` | No | Return log probabilities |
+| `max_completion_tokens` | `number | null` | No | Maximum tokens in completion |
+| `max_tokens` | `number | null` | No | Maximum tokens (deprecated, use max_completion_tokens). |
+| `messages` | `any[]` | Yes | List of messages for the conversation |
+| `metadata` | `Record<string, any>` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `number | null` | No | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `any[]` | No | Output modalities for the response. |
+| `model` | `string` | Yes | Model used for completion |
+| `models` | `any[]` | No | Models to use for completion |
 | `object` | `string` | Yes |  |
 | `openrouter_metadata` | `Record<string, any>` | Yes |  |
-| `parallel_tool_calls` | `boolean | null` | No |  |
-| `plugins` | `any[]` | No |  |
-| `prediction` | `Record<string, any> | null` | Yes |  |
-| `presence_penalty` | `number | null` | No |  |
+| `parallel_tool_calls` | `boolean | null` | No | Whether to enable parallel function calling during tool use. |
+| `plugins` | `any[]` | No | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `Record<string, any> | null` | Yes | Static predicted output content. |
+| `presence_penalty` | `number | null` | No | Presence penalty (-2.0 to 2.0) |
 | `prompt_cache_key` | `string | null` | No |  |
-| `prompt_cache_options` | `Record<string, any> | null` | Yes |  |
-| `provider` | `Record<string, any> | null` | No |  |
-| `reasoning` | `Record<string, any>` | No |  |
-| `reasoning_effort` | `string | null` | No |  |
-| `repetition_penalty` | `number | null` | No |  |
-| `response_format` | `any` | No |  |
-| `route` | `string | null` | No |  |
-| `seed` | `number | null` | No |  |
-| `service_tier` | `string | null` | No |  |
-| `session_id` | `string` | No |  |
-| `stop` | `any` | No |  |
-| `stop_server_tools_when` | `any[]` | No |  |
-| `stream` | `boolean` | No |  |
-| `stream_options` | `Record<string, any> | null` | No |  |
-| `system_fingerprint` | `string | null` | Yes |  |
-| `temperature` | `number | null` | No |  |
-| `tool_choice` | `any` | No |  |
-| `tools` | `any[]` | No |  |
-| `top_a` | `number | null` | No |  |
-| `top_k` | `number | null` | No |  |
-| `top_logprobs` | `number | null` | No |  |
-| `top_p` | `number | null` | No |  |
-| `trace` | `Record<string, any>` | No |  |
-| `usage` | `Record<string, any>` | Yes |  |
-| `user` | `string` | No |  |
+| `prompt_cache_options` | `Record<string, any> | null` | Yes | Request-level prompt-cache controls. |
+| `provider` | `Record<string, any> | null` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `Record<string, any>` | No | Configuration options for reasoning models |
+| `reasoning_effort` | `string | null` | No | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `number | null` | No | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `any` | No | Response format configuration |
+| `route` | `string | null` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `seed` | `number | null` | No | Random seed for deterministic outputs |
+| `service_tier` | `string | null` | No | The service tier used by the upstream provider for this request |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop` | `any` | No | Stop sequences (up to 4) |
+| `stop_server_tools_when` | `any[]` | No | Stop conditions for the server-tool agent loop. |
+| `stream` | `boolean` | No | Enable streaming response |
+| `stream_options` | `Record<string, any> | null` | No | Streaming configuration options |
+| `system_fingerprint` | `string | null` | Yes | System fingerprint |
+| `temperature` | `number | null` | No | Sampling temperature (0-2) |
+| `tool_choice` | `any` | No | Tool choice configuration |
+| `tools` | `any[]` | No | Available tools for function calling |
+| `top_a` | `number | null` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `number | null` | No | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `number | null` | No | Number of top log probabilities to return (0-20) |
+| `top_p` | `number | null` | No | Nucleus sampling parameter (0-1) |
+| `trace` | `Record<string, any>` | No | Metadata for observability and tracing. |
+| `usage` | `Record<string, any>` | Yes | Token usage statistics |
+| `user` | `string` | No | Unique user identifier |
 
 ### Field Usage by Operation
 
@@ -2474,15 +2474,15 @@ const create_observability_destination = client.CreateObservabilityDestination()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hashes` | `any[] | null` | No |  |
-| `config` | `Record<string, any>` | Yes |  |
-| `enabled` | `boolean` | No |  |
-| `filter_rules` | `Record<string, any> | null` | Yes |  |
-| `name` | `string` | Yes |  |
-| `privacy_mode` | `boolean` | No |  |
-| `sampling_rate` | `number` | No |  |
-| `type` | `string` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `api_key_hashes` | `any[] | null` | No | Optional allowlist of OpenRouter API key hashes whose traffic is forwarded. |
+| `config` | `Record<string, any>` | Yes | Provider-specific configuration. |
+| `enabled` | `boolean` | No | Whether this destination should be enabled immediately. |
+| `filter_rules` | `Record<string, any> | null` | Yes | Optional structured filter rules controlling which events are forwarded. |
+| `name` | `string` | Yes | Human-readable name for the destination. |
+| `privacy_mode` | `boolean` | No | When true, request/response bodies are not forwarded — only metadata. |
+| `sampling_rate` | `number` | No | Sampling rate between 0.0001 and 1 (1 = 100%). |
+| `type` | `string` | Yes | The destination type. |
+| `workspace_id` | `string` | No | Optional workspace ID. |
 
 ### Operations
 
@@ -2538,66 +2538,66 @@ const create_preset_from_inference = client.CreatePresetFromInference()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `background` | `boolean | null` | No |  |
-| `cache_control` | `Record<string, any>` | Yes |  |
+| `cache_control` | `Record<string, any>` | Yes | Enable automatic prompt caching. |
 | `context_management` | `Record<string, any> | null` | No |  |
-| `debug` | `Record<string, any>` | No |  |
-| `fallbacks` | `any[] | null` | No |  |
-| `frequency_penalty` | `number | null` | No |  |
-| `image_config` | `Record<string, any>` | No |  |
+| `debug` | `Record<string, any>` | No | Debug options for inspecting request transformations (streaming only) |
+| `fallbacks` | `any[] | null` | No | Fallback models to try if the primary model fails or refuses, in order. |
+| `frequency_penalty` | `number | null` | No | Frequency penalty (-2.0 to 2.0) |
+| `image_config` | `Record<string, any>` | No | Provider-specific image configuration options. |
 | `include` | `any[] | null` | No |  |
-| `input` | `any` | No |  |
+| `input` | `any` | No | Input for a response request - can be a string or array of items |
 | `instructions` | `string | null` | No |  |
-| `logit_bias` | `Record<string, any> | null` | No |  |
-| `logprobs` | `boolean | null` | No |  |
-| `max_completion_tokens` | `number | null` | No |  |
+| `logit_bias` | `Record<string, any> | null` | No | Token logit bias adjustments |
+| `logprobs` | `boolean | null` | No | Return log probabilities |
+| `max_completion_tokens` | `number | null` | No | Maximum tokens in completion |
 | `max_output_tokens` | `number | null` | No |  |
-| `max_tokens` | `number | null` | No |  |
+| `max_tokens` | `number | null` | No | Maximum tokens (deprecated, use max_completion_tokens). |
 | `max_tool_calls` | `number | null` | No |  |
-| `messages` | `any[]` | Yes |  |
-| `metadata` | `Record<string, any>` | No |  |
-| `min_p` | `number | null` | No |  |
-| `modalities` | `any[]` | No |  |
-| `model` | `string` | No |  |
-| `models` | `any[]` | No |  |
-| `output_config` | `Record<string, any>` | No |  |
-| `parallel_tool_calls` | `boolean | null` | No |  |
-| `plugins` | `any[]` | No |  |
-| `prediction` | `Record<string, any> | null` | Yes |  |
-| `presence_penalty` | `number | null` | No |  |
-| `previous_response_id` | `string` | No |  |
+| `messages` | `any[]` | Yes | List of messages for the conversation |
+| `metadata` | `Record<string, any>` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `number | null` | No | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `any[]` | No | Output modalities for the response. |
+| `model` | `string` | No | Model to use for completion |
+| `models` | `any[]` | No | Models to use for completion |
+| `output_config` | `Record<string, any>` | No | Configuration for controlling output behavior. |
+| `parallel_tool_calls` | `boolean | null` | No | Whether to enable parallel function calling during tool use. |
+| `plugins` | `any[]` | No | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `Record<string, any> | null` | Yes | Static predicted output content. |
+| `presence_penalty` | `number | null` | No | Presence penalty (-2.0 to 2.0) |
+| `previous_response_id` | `string` | No | Not supported. |
 | `prompt` | `Record<string, any> | null` | Yes |  |
 | `prompt_cache_key` | `string | null` | No |  |
-| `prompt_cache_options` | `Record<string, any> | null` | Yes |  |
-| `provider` | `Record<string, any> | null` | No |  |
-| `reasoning` | `Record<string, any>` | No |  |
-| `reasoning_effort` | `string | null` | No |  |
-| `repetition_penalty` | `number | null` | No |  |
-| `response_format` | `any` | No |  |
-| `route` | `string | null` | No |  |
+| `prompt_cache_options` | `Record<string, any> | null` | Yes | Request-level prompt-cache controls. |
+| `provider` | `Record<string, any> | null` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `Record<string, any>` | No | Configuration options for reasoning models |
+| `reasoning_effort` | `string | null` | No | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `number | null` | No | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `any` | No | Response format configuration |
+| `route` | `string | null` | No | **DEPRECATED** Use providers.sort.partition instead. |
 | `safety_identifier` | `string | null` | No |  |
-| `seed` | `number | null` | No |  |
-| `service_tier` | `string | null` | No |  |
-| `session_id` | `string` | No |  |
+| `seed` | `number | null` | No | Random seed for deterministic outputs |
+| `service_tier` | `string | null` | No | The service tier to use for processing this request. |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
 | `speed` | `any` | No |  |
-| `stop` | `any` | No |  |
+| `stop` | `any` | No | Stop sequences (up to 4) |
 | `stop_sequences` | `any[]` | No |  |
-| `stop_server_tools_when` | `any[]` | No |  |
+| `stop_server_tools_when` | `any[]` | No | Stop conditions for the server-tool agent loop. |
 | `store` | `boolean` | No |  |
-| `stream` | `boolean` | No |  |
-| `stream_options` | `Record<string, any> | null` | No |  |
+| `stream` | `boolean` | No | Enable streaming response |
+| `stream_options` | `Record<string, any> | null` | No | Streaming configuration options |
 | `system` | `any` | No |  |
-| `temperature` | `number | null` | No |  |
-| `text` | `any` | No |  |
+| `temperature` | `number | null` | No | Sampling temperature (0-2) |
+| `text` | `any` | No | Text output configuration including format and verbosity |
 | `thinking` | `any` | No |  |
-| `tool_choice` | `any` | No |  |
-| `tools` | `any[]` | No |  |
-| `top_a` | `number | null` | No |  |
-| `top_k` | `number | null` | No |  |
-| `top_logprobs` | `number | null` | No |  |
-| `top_p` | `number | null` | No |  |
-| `trace` | `Record<string, any>` | No |  |
+| `tool_choice` | `any` | No | Tool choice configuration |
+| `tools` | `any[]` | No | Available tools for function calling |
+| `top_a` | `number | null` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `number | null` | No | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `number | null` | No | Number of top log probabilities to return (0-20) |
+| `top_p` | `number | null` | No | Nucleus sampling parameter (0-1) |
+| `trace` | `Record<string, any>` | No | Metadata for observability and tracing. |
 | `truncation` | `string | null` | No |  |
-| `user` | `string` | No |  |
+| `user` | `string` | No | Unique user identifier |
 
 ### Field Usage by Operation
 
@@ -2754,8 +2754,8 @@ const credit = client.Credit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `total_credits` | `number` | Yes |  |
-| `total_usage` | `number` | Yes |  |
+| `total_credits` | `number` | Yes | Total credits purchased |
+| `total_usage` | `number` | Yes | Total credits used |
 
 ### Actions
 
@@ -2870,17 +2870,17 @@ const embedding = client.Embedding()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any[]` | Yes |  |
-| `dimensions` | `number` | No |  |
-| `encoding_format` | `string` | No |  |
-| `id` | `string` | No |  |
-| `input` | `any` | Yes |  |
-| `input_type` | `string` | No |  |
-| `model` | `string` | Yes |  |
+| `data` | `any[]` | Yes | List of embedding objects |
+| `dimensions` | `number` | No | The number of dimensions for the output embeddings |
+| `encoding_format` | `string` | No | The format of the output embeddings |
+| `id` | `string` | No | Unique identifier for the embeddings response |
+| `input` | `any` | Yes | Text, token, or multimodal input(s) to embed |
+| `input_type` | `string` | No | The type of input (e.g. |
+| `model` | `string` | Yes | The model used for embeddings |
 | `object` | `string` | Yes |  |
 | `provider` | `any` | No |  |
-| `usage` | `Record<string, any>` | Yes |  |
-| `user` | `string` | No |  |
+| `usage` | `Record<string, any>` | Yes | Token usage statistics |
+| `user` | `string` | No | A unique identifier for the end-user |
 
 ### Operations
 
@@ -2936,40 +2936,40 @@ const endpoint = client.Endpoint()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `architecture` | `any` | Yes |  |
-| `benchmarks` | `Record<string, any>` | Yes |  |
-| `canonical_slug` | `string` | Yes |  |
-| `context_length` | `number | null` | Yes |  |
-| `created` | `number` | Yes |  |
-| `default_parameters` | `Record<string, any> | null` | Yes |  |
-| `description` | `string` | Yes |  |
-| `endpoints` | `any[]` | Yes |  |
-| `expiration_date` | `string | null` | No |  |
-| `hugging_face_id` | `string | null` | No |  |
-| `id` | `string` | Yes |  |
-| `knowledge_cutoff` | `string | null` | No |  |
-| `latency_last_30m` | `Record<string, any> | null` | Yes |  |
-| `links` | `Record<string, any>` | Yes |  |
+| `architecture` | `any` | Yes | Model architecture information |
+| `benchmarks` | `Record<string, any>` | Yes | Third-party benchmark rankings for this model. |
+| `canonical_slug` | `string` | Yes | Canonical slug for the model |
+| `context_length` | `number | null` | Yes | Maximum context length in tokens |
+| `created` | `number` | Yes | Unix timestamp of when the model was created |
+| `default_parameters` | `Record<string, any> | null` | Yes | Default parameters for this model |
+| `description` | `string` | Yes | Description of the model |
+| `endpoints` | `any[]` | Yes | List of available endpoints for this model |
+| `expiration_date` | `string | null` | No | The date after which the model may be removed. |
+| `hugging_face_id` | `string | null` | No | Hugging Face model identifier, if applicable |
+| `id` | `string` | Yes | Unique identifier for the model |
+| `knowledge_cutoff` | `string | null` | No | The date up to which the model was trained on data. |
+| `latency_last_30m` | `Record<string, any> | null` | Yes | Latency percentiles in milliseconds over the last 30 minutes. |
+| `links` | `Record<string, any>` | Yes | Related API endpoints and resources for this model. |
 | `max_completion_tokens` | `number | null` | Yes |  |
 | `max_prompt_tokens` | `number | null` | Yes |  |
-| `model_id` | `string` | Yes |  |
+| `model_id` | `string` | Yes | The unique identifier for the model (permaslug) |
 | `model_name` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `per_request_limits` | `Record<string, any> | null` | Yes |  |
-| `pricing` | `Record<string, any>` | Yes |  |
+| `name` | `string` | Yes | Display name of the model |
+| `per_request_limits` | `Record<string, any> | null` | Yes | Per-request token limits |
+| `pricing` | `Record<string, any>` | Yes | Pricing information for the model |
 | `provider_name` | `string` | Yes |  |
 | `quantization` | `any` | Yes |  |
-| `reasoning` | `Record<string, any>` | Yes |  |
+| `reasoning` | `Record<string, any>` | Yes | Reasoning effort configuration. |
 | `status` | `number` | No |  |
-| `supported_parameters` | `any[]` | Yes |  |
-| `supported_voices` | `any[] | null` | Yes |  |
+| `supported_parameters` | `any[]` | Yes | List of supported parameters for this model |
+| `supported_voices` | `any[] | null` | Yes | List of supported voice identifiers for TTS models. |
 | `supports_implicit_caching` | `boolean` | Yes |  |
 | `tag` | `string` | Yes |  |
 | `throughput_last_30m` | `any` | Yes |  |
-| `top_provider` | `Record<string, any>` | Yes |  |
-| `uptime_last_1d` | `number | null` | Yes |  |
+| `top_provider` | `Record<string, any>` | Yes | Information about the top provider for this model |
+| `uptime_last_1d` | `number | null` | Yes | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
 | `uptime_last_30m` | `number | null` | Yes |  |
-| `uptime_last_5m` | `number | null` | Yes |  |
+| `uptime_last_5m` | `number | null` | Yes | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 ### Field Usage by Operation
 
@@ -3228,50 +3228,50 @@ const generation = client.Generation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_type` | `string | null` | Yes |  |
-| `app_id` | `number | null` | Yes |  |
-| `cache_discount` | `number | null` | Yes |  |
-| `cancelled` | `boolean | null` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `data_region` | `string` | Yes |  |
-| `external_user` | `string | null` | Yes |  |
-| `finish_reason` | `string | null` | Yes |  |
-| `generation_time` | `number | null` | Yes |  |
-| `http_referer` | `string | null` | Yes |  |
-| `id` | `string` | Yes |  |
-| `is_byok` | `boolean` | Yes |  |
-| `latency` | `number | null` | Yes |  |
-| `model` | `string` | Yes |  |
-| `moderation_latency` | `number | null` | Yes |  |
-| `native_finish_reason` | `string | null` | Yes |  |
-| `native_tokens_cached` | `number | null` | Yes |  |
-| `native_tokens_completion` | `number | null` | Yes |  |
-| `native_tokens_completion_images` | `number | null` | Yes |  |
-| `native_tokens_prompt` | `number | null` | Yes |  |
-| `native_tokens_reasoning` | `number | null` | Yes |  |
-| `num_fetches` | `number | null` | Yes |  |
-| `num_input_audio_prompt` | `number | null` | Yes |  |
-| `num_media_completion` | `number | null` | Yes |  |
-| `num_media_prompt` | `number | null` | Yes |  |
-| `num_search_results` | `number | null` | Yes |  |
-| `origin` | `string` | Yes |  |
-| `preset_id` | `string | null` | Yes |  |
-| `provider_name` | `string | null` | Yes |  |
-| `provider_responses` | `any[] | null` | Yes |  |
-| `request_id` | `string | null` | No |  |
-| `response_cache_source_id` | `string | null` | No |  |
-| `router` | `string | null` | Yes |  |
-| `service_tier` | `string | null` | Yes |  |
-| `session_id` | `string | null` | No |  |
-| `streamed` | `boolean | null` | Yes |  |
-| `tokens_completion` | `number | null` | Yes |  |
-| `tokens_prompt` | `number | null` | Yes |  |
-| `total_cost` | `number` | Yes |  |
-| `upstream_id` | `string | null` | Yes |  |
-| `upstream_inference_cost` | `number | null` | Yes |  |
-| `usage` | `number` | Yes |  |
-| `user_agent` | `string | null` | Yes |  |
-| `web_search_engine` | `string | null` | Yes |  |
+| `api_type` | `string | null` | Yes | Type of API used for the generation |
+| `app_id` | `number | null` | Yes | ID of the app that made the request |
+| `cache_discount` | `number | null` | Yes | Discount applied due to caching |
+| `cancelled` | `boolean | null` | Yes | Whether the generation was cancelled |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the generation was created |
+| `data_region` | `string` | Yes | The data region this generation was routed through. |
+| `external_user` | `string | null` | Yes | External user identifier |
+| `finish_reason` | `string | null` | Yes | Reason the generation finished |
+| `generation_time` | `number | null` | Yes | Time taken for generation in milliseconds |
+| `http_referer` | `string | null` | Yes | Referer header from the request |
+| `id` | `string` | Yes | Unique identifier for the generation |
+| `is_byok` | `boolean` | Yes | Whether this used bring-your-own-key |
+| `latency` | `number | null` | Yes | Total latency in milliseconds |
+| `model` | `string` | Yes | Model used for the generation |
+| `moderation_latency` | `number | null` | Yes | Moderation latency in milliseconds |
+| `native_finish_reason` | `string | null` | Yes | Native finish reason as reported by provider |
+| `native_tokens_cached` | `number | null` | Yes | Native cached tokens as reported by provider |
+| `native_tokens_completion` | `number | null` | Yes | Native completion tokens as reported by provider |
+| `native_tokens_completion_images` | `number | null` | Yes | Native completion image tokens as reported by provider |
+| `native_tokens_prompt` | `number | null` | Yes | Native prompt tokens as reported by provider |
+| `native_tokens_reasoning` | `number | null` | Yes | Native reasoning tokens as reported by provider |
+| `num_fetches` | `number | null` | Yes | Number of web fetches performed |
+| `num_input_audio_prompt` | `number | null` | Yes | Number of audio inputs in the prompt |
+| `num_media_completion` | `number | null` | Yes | Number of media items in the completion |
+| `num_media_prompt` | `number | null` | Yes | Number of media items in the prompt |
+| `num_search_results` | `number | null` | Yes | Number of search results included |
+| `origin` | `string` | Yes | Origin URL of the request |
+| `preset_id` | `string | null` | Yes | ID of the preset used for this generation, null if no preset was used |
+| `provider_name` | `string | null` | Yes | Name of the provider that served the request |
+| `provider_responses` | `any[] | null` | Yes | List of provider responses for this generation, including fallback attempts |
+| `request_id` | `string | null` | No | Unique identifier grouping all generations from a single API request |
+| `response_cache_source_id` | `string | null` | No | If this generation was served from response cache, contains the original generation ID. |
+| `router` | `string | null` | Yes | Router used for the request (e.g., openrouter/auto) |
+| `service_tier` | `string | null` | Yes | Service tier the upstream provider reported running this request on, or null if it did not report one. |
+| `session_id` | `string | null` | No | Session identifier grouping multiple generations in the same session |
+| `streamed` | `boolean | null` | Yes | Whether the response was streamed |
+| `tokens_completion` | `number | null` | Yes | Number of tokens in the completion |
+| `tokens_prompt` | `number | null` | Yes | Number of tokens in the prompt |
+| `total_cost` | `number` | Yes | Total cost of the generation in USD |
+| `upstream_id` | `string | null` | Yes | Upstream provider's identifier for this generation |
+| `upstream_inference_cost` | `number | null` | Yes | Cost charged by the upstream provider |
+| `usage` | `number` | Yes | Usage amount in USD |
+| `user_agent` | `string | null` | Yes | User-Agent header from the request |
+| `web_search_engine` | `string | null` | Yes | The resolved web search engine used for this generation (e.g. |
 
 ### Operations
 
@@ -3321,8 +3321,8 @@ const generation_content = client.GenerationContent()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `input` | `any` | Yes |  |
-| `output` | `Record<string, any>` | Yes |  |
+| `input` | `any` | Yes | The input to the generation — either a prompt string or an array of messages |
+| `output` | `Record<string, any>` | Yes | The output from the generation |
 
 ### Operations
 
@@ -3372,26 +3372,26 @@ const guardrail = client.Guardrail()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_models` | `any[] | null` | No |  |
-| `allowed_providers` | `any[] | null` | No |  |
-| `content_filter_builtins` | `any[] | null` | No |  |
-| `content_filters` | `any[] | null` | No |  |
-| `created_at` | `string` | Yes |  |
-| `description` | `string | null` | No |  |
-| `enforce_zdr` | `boolean | null` | No |  |
-| `enforce_zdr_anthropic` | `boolean | null` | No |  |
-| `enforce_zdr_google` | `boolean | null` | No |  |
-| `enforce_zdr_openai` | `boolean | null` | No |  |
-| `enforce_zdr_other` | `boolean | null` | No |  |
-| `enforce_zdr_xai` | `boolean | null` | No |  |
-| `id` | `string` | Yes |  |
-| `ignored_models` | `any[] | null` | No |  |
-| `ignored_providers` | `any[] | null` | No |  |
-| `limit_usd` | `number | null` | No |  |
-| `name` | `string` | Yes |  |
-| `reset_interval` | `string | null` | No |  |
-| `updated_at` | `string | null` | No |  |
-| `workspace_id` | `string` | Yes |  |
+| `allowed_models` | `any[] | null` | No | Array of model canonical_slugs (immutable identifiers) |
+| `allowed_providers` | `any[] | null` | No | List of allowed provider IDs |
+| `content_filter_builtins` | `any[] | null` | No | Builtin content filters applied to requests. |
+| `content_filters` | `any[] | null` | No | Custom regex content filters applied to request messages |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the guardrail was created |
+| `description` | `string | null` | No | Description of the guardrail |
+| `enforce_zdr` | `boolean | null` | No | Deprecated. |
+| `enforce_zdr_anthropic` | `boolean | null` | No | Whether to enforce zero data retention for Anthropic models. |
+| `enforce_zdr_google` | `boolean | null` | No | Whether to enforce zero data retention for Google models. |
+| `enforce_zdr_openai` | `boolean | null` | No | Whether to enforce zero data retention for OpenAI models. |
+| `enforce_zdr_other` | `boolean | null` | No | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
+| `enforce_zdr_xai` | `boolean | null` | No | Whether to enforce zero data retention for xAI models. |
+| `id` | `string` | Yes | Unique identifier for the guardrail |
+| `ignored_models` | `any[] | null` | No | Array of model canonical_slugs to exclude from routing |
+| `ignored_providers` | `any[] | null` | No | List of provider IDs to exclude from routing |
+| `limit_usd` | `number | null` | No | Spending limit in USD |
+| `name` | `string` | Yes | Name of the guardrail |
+| `reset_interval` | `string | null` | No | Interval at which the limit resets (daily, weekly, monthly) |
+| `updated_at` | `string | null` | No | ISO 8601 timestamp of when the guardrail was last updated |
+| `workspace_id` | `string` | Yes | The workspace ID this guardrail belongs to. |
 
 ### Field Usage by Operation
 
@@ -3495,23 +3495,23 @@ const image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aspect_ratio` | `string` | No |  |
-| `background` | `string` | No |  |
-| `created` | `number` | Yes |  |
-| `data` | `any[]` | Yes |  |
-| `input_references` | `any[]` | No |  |
-| `model` | `string` | Yes |  |
-| `n` | `number` | No |  |
-| `output_compression` | `number` | No |  |
-| `output_format` | `string` | No |  |
-| `prompt` | `string` | Yes |  |
-| `provider` | `Record<string, any>` | No |  |
-| `quality` | `string` | No |  |
-| `resolution` | `string` | No |  |
-| `seed` | `number` | No |  |
-| `size` | `string` | No |  |
-| `stream` | `boolean` | No |  |
-| `usage` | `Record<string, any>` | Yes |  |
+| `aspect_ratio` | `string` | No | Normalized aspect ratio of the generated image. |
+| `background` | `string` | No | Background treatment. |
+| `created` | `number` | Yes | Unix timestamp (seconds) when the image was generated |
+| `data` | `any[]` | Yes | Generated images |
+| `input_references` | `any[]` | No | Reference images to guide image-to-image generation, as base64 data URLs or HTTP(S) URLs. |
+| `model` | `string` | Yes | The image generation model to use |
+| `n` | `number` | No | Number of images to generate (1-10). |
+| `output_compression` | `number` | No | Compression level (0-100) for webp/jpeg output. |
+| `output_format` | `string` | No | Encoding of the returned image bytes. |
+| `prompt` | `string` | Yes | Text description of the desired image |
+| `provider` | `Record<string, any>` | No | Provider routing preferences and provider-specific passthrough configuration. |
+| `quality` | `string` | No | Rendering quality. |
+| `resolution` | `string` | No | Normalized resolution tier of the generated image. |
+| `seed` | `number` | No | If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result. |
+| `size` | `string` | No | Optional. |
+| `stream` | `boolean` | No | If true, partial images are streamed as SSE events as they become available. |
+| `usage` | `Record<string, any>` | Yes | Token and cost usage for the image generation request, when available |
 
 ### Operations
 
@@ -3567,13 +3567,13 @@ const image_model_endpoint = client.ImageModelEndpoint()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameters` | `any[]` | Yes |  |
-| `pricing` | `any[]` | Yes |  |
-| `provider_name` | `string` | Yes |  |
-| `provider_slug` | `string` | Yes |  |
-| `provider_tag` | `string | null` | Yes |  |
+| `allowed_passthrough_parameters` | `any[]` | Yes | Provider-specific options accepted under provider.options[provider_slug]. |
+| `pricing` | `any[]` | Yes | Billable pricing lines for this endpoint. |
+| `provider_name` | `string` | Yes | Provider display name |
+| `provider_slug` | `string` | Yes | Provider slug |
+| `provider_tag` | `string | null` | Yes | Provider tag for request-side selection |
 | `supported_parameters` | `any` | Yes |  |
-| `supports_streaming` | `boolean` | Yes |  |
+| `supports_streaming` | `boolean` | Yes | Whether this endpoint supports native SSE streaming (`stream: true` in the request). |
 
 ### Operations
 
@@ -3624,13 +3624,13 @@ const image_models_list = client.ImageModelsList()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `architecture` | `Record<string, any>` | Yes |  |
-| `created` | `number` | Yes |  |
+| `created` | `number` | Yes | Unix timestamp (seconds) of when the model was created |
 | `description` | `string` | Yes |  |
-| `endpoints` | `string` | Yes |  |
-| `id` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `supported_parameters` | `Record<string, any>` | Yes |  |
-| `supports_streaming` | `boolean` | Yes |  |
+| `endpoints` | `string` | Yes | Relative URL to the full per-endpoint records for this model |
+| `id` | `string` | Yes | Model slug |
+| `name` | `string` | Yes | Display name |
+| `supported_parameters` | `Record<string, any>` | Yes | Union of supported parameters across every endpoint of this model. |
+| `supports_streaming` | `boolean` | Yes | Whether any endpoint of this model supports native SSE streaming on the dedicated Image API (i.e. |
 
 ### Operations
 
@@ -3782,13 +3782,13 @@ const list_key_assignment = client.ListKeyAssignment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_by` | `string | null` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `guardrail_id` | `string` | Yes |  |
-| `id` | `string` | Yes |  |
-| `key_hash` | `string` | Yes |  |
-| `key_label` | `string` | Yes |  |
-| `key_name` | `string` | Yes |  |
+| `assigned_by` | `string | null` | Yes | User ID of who made the assignment |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `string` | Yes | ID of the guardrail |
+| `id` | `string` | Yes | Unique identifier for the assignment |
+| `key_hash` | `string` | Yes | Hash of the assigned API key |
+| `key_label` | `string` | Yes | Label of the API key |
+| `key_name` | `string` | Yes | Name of the API key |
 
 ### Operations
 
@@ -3838,12 +3838,12 @@ const list_member_assignment = client.ListMemberAssignment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assigned_by` | `string | null` | Yes |  |
-| `created_at` | `string` | Yes |  |
-| `guardrail_id` | `string` | Yes |  |
-| `id` | `string` | Yes |  |
-| `organization_id` | `string` | Yes |  |
-| `user_id` | `string` | Yes |  |
+| `assigned_by` | `string | null` | Yes | User ID of who made the assignment |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `string` | Yes | ID of the guardrail |
+| `id` | `string` | Yes | Unique identifier for the assignment |
+| `organization_id` | `string` | Yes | Organization ID |
+| `user_id` | `string` | Yes | Clerk user ID of the assigned member |
 
 ### Operations
 
@@ -3893,8 +3893,8 @@ const list_observability_destination = client.ListObservabilityDestination()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any[]` | Yes |  |
-| `total_count` | `number` | Yes |  |
+| `data` | `any[]` | Yes | List of observability destinations. |
+| `total_count` | `number` | Yes | Total number of destinations matching the filters. |
 
 ### Operations
 
@@ -4069,12 +4069,12 @@ const list_workspace_budget = client.ListWorkspaceBudget()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | Yes |  |
-| `id` | `string` | Yes |  |
-| `limit_usd` | `number` | Yes |  |
-| `reset_interval` | `string | null` | Yes |  |
-| `updated_at` | `string` | Yes |  |
-| `workspace_id` | `string` | Yes |  |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the budget was created |
+| `id` | `string` | Yes | Unique identifier for the budget |
+| `limit_usd` | `number` | Yes | Spending limit in USD for this interval |
+| `reset_interval` | `string | null` | Yes | Interval at which spend resets. |
+| `updated_at` | `string` | Yes | ISO 8601 timestamp of when the budget was last updated |
+| `workspace_id` | `string` | Yes | ID of the workspace the budget belongs to |
 
 ### Operations
 
@@ -4124,11 +4124,11 @@ const list_workspace_member = client.ListWorkspaceMember()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | Yes |  |
-| `id` | `string` | Yes |  |
-| `role` | `string` | Yes |  |
-| `user_id` | `string` | Yes |  |
-| `workspace_id` | `string` | Yes |  |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the membership was created |
+| `id` | `string` | Yes | Unique identifier for the workspace membership |
+| `role` | `string` | Yes | Role of the member in the workspace |
+| `user_id` | `string` | Yes | Clerk user ID of the member |
+| `workspace_id` | `string` | Yes | ID of the workspace |
 
 ### Operations
 
@@ -4212,23 +4212,23 @@ const message = client.Message()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cache_control` | `Record<string, any>` | Yes |  |
+| `cache_control` | `Record<string, any>` | Yes | Enable automatic prompt caching. |
 | `context_management` | `Record<string, any> | null` | No |  |
-| `fallbacks` | `any[] | null` | No |  |
+| `fallbacks` | `any[] | null` | No | Fallback models to try if the primary model fails or refuses, in order. |
 | `max_tokens` | `number` | No |  |
 | `messages` | `any[] | null` | Yes |  |
 | `metadata` | `Record<string, any>` | No |  |
 | `model` | `string` | Yes |  |
 | `models` | `any[]` | No |  |
-| `output_config` | `Record<string, any>` | No |  |
-| `plugins` | `any[]` | No |  |
-| `provider` | `Record<string, any> | null` | No |  |
-| `route` | `string | null` | No |  |
+| `output_config` | `Record<string, any>` | No | Configuration for controlling output behavior. |
+| `plugins` | `any[]` | No | Plugins you want to enable for this request, including their settings. |
+| `provider` | `Record<string, any> | null` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `route` | `string | null` | No | **DEPRECATED** Use providers.sort.partition instead. |
 | `service_tier` | `string` | No |  |
-| `session_id` | `string` | No |  |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
 | `speed` | `any` | No |  |
 | `stop_sequences` | `any[]` | No |  |
-| `stop_server_tools_when` | `any[]` | No |  |
+| `stop_server_tools_when` | `any[]` | No | Stop conditions for the server-tool agent loop. |
 | `stream` | `boolean` | No |  |
 | `system` | `any` | No |  |
 | `temperature` | `number` | No |  |
@@ -4237,8 +4237,8 @@ const message = client.Message()
 | `tools` | `any[]` | No |  |
 | `top_k` | `number` | No |  |
 | `top_p` | `number` | No |  |
-| `trace` | `Record<string, any>` | No |  |
-| `user` | `string` | No |  |
+| `trace` | `Record<string, any>` | No | Metadata for observability and tracing. |
+| `user` | `string` | No | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
 ### Operations
 
@@ -4326,25 +4326,25 @@ const model = client.Model()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `architecture` | `Record<string, any>` | Yes |  |
-| `benchmarks` | `Record<string, any>` | Yes |  |
-| `canonical_slug` | `string` | Yes |  |
-| `context_length` | `number | null` | Yes |  |
-| `created` | `number` | Yes |  |
-| `default_parameters` | `Record<string, any> | null` | Yes |  |
-| `description` | `string` | No |  |
-| `expiration_date` | `string | null` | No |  |
-| `hugging_face_id` | `string | null` | No |  |
-| `id` | `string` | Yes |  |
-| `knowledge_cutoff` | `string | null` | No |  |
-| `links` | `Record<string, any>` | Yes |  |
-| `name` | `string` | Yes |  |
-| `per_request_limits` | `Record<string, any> | null` | Yes |  |
-| `pricing` | `Record<string, any>` | Yes |  |
-| `reasoning` | `Record<string, any>` | Yes |  |
-| `supported_parameters` | `any[]` | Yes |  |
-| `supported_voices` | `any[] | null` | Yes |  |
-| `top_provider` | `Record<string, any>` | Yes |  |
+| `architecture` | `Record<string, any>` | Yes | Model architecture information |
+| `benchmarks` | `Record<string, any>` | Yes | Third-party benchmark rankings for this model. |
+| `canonical_slug` | `string` | Yes | Canonical slug for the model |
+| `context_length` | `number | null` | Yes | Maximum context length in tokens |
+| `created` | `number` | Yes | Unix timestamp of when the model was created |
+| `default_parameters` | `Record<string, any> | null` | Yes | Default parameters for this model |
+| `description` | `string` | No | Description of the model |
+| `expiration_date` | `string | null` | No | The date after which the model may be removed. |
+| `hugging_face_id` | `string | null` | No | Hugging Face model identifier, if applicable |
+| `id` | `string` | Yes | Unique identifier for the model |
+| `knowledge_cutoff` | `string | null` | No | The date up to which the model was trained on data. |
+| `links` | `Record<string, any>` | Yes | Related API endpoints and resources for this model. |
+| `name` | `string` | Yes | Display name of the model |
+| `per_request_limits` | `Record<string, any> | null` | Yes | Per-request token limits |
+| `pricing` | `Record<string, any>` | Yes | Pricing information for the model |
+| `reasoning` | `Record<string, any>` | Yes | Reasoning effort configuration. |
+| `supported_parameters` | `any[]` | Yes | List of supported parameters for this model |
+| `supported_voices` | `any[] | null` | Yes | List of supported voice identifiers for TTS models. |
+| `top_provider` | `Record<string, any>` | Yes | Information about the top provider for this model |
 
 ### Operations
 
@@ -4402,7 +4402,7 @@ const models_count = client.ModelsCount()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | `number` | Yes |  |
+| `count` | `number` | Yes | Total number of available models |
 
 ### Operations
 
@@ -4452,25 +4452,25 @@ const models_list = client.ModelsList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `architecture` | `Record<string, any>` | Yes |  |
-| `benchmarks` | `Record<string, any>` | Yes |  |
-| `canonical_slug` | `string` | Yes |  |
-| `context_length` | `number | null` | Yes |  |
-| `created` | `number` | Yes |  |
-| `default_parameters` | `Record<string, any> | null` | Yes |  |
-| `description` | `string` | No |  |
-| `expiration_date` | `string | null` | No |  |
-| `hugging_face_id` | `string | null` | No |  |
-| `id` | `string` | Yes |  |
-| `knowledge_cutoff` | `string | null` | No |  |
-| `links` | `Record<string, any>` | Yes |  |
-| `name` | `string` | Yes |  |
-| `per_request_limits` | `Record<string, any> | null` | Yes |  |
-| `pricing` | `Record<string, any>` | Yes |  |
-| `reasoning` | `Record<string, any>` | Yes |  |
-| `supported_parameters` | `any[]` | Yes |  |
-| `supported_voices` | `any[] | null` | Yes |  |
-| `top_provider` | `Record<string, any>` | Yes |  |
+| `architecture` | `Record<string, any>` | Yes | Model architecture information |
+| `benchmarks` | `Record<string, any>` | Yes | Third-party benchmark rankings for this model. |
+| `canonical_slug` | `string` | Yes | Canonical slug for the model |
+| `context_length` | `number | null` | Yes | Maximum context length in tokens |
+| `created` | `number` | Yes | Unix timestamp of when the model was created |
+| `default_parameters` | `Record<string, any> | null` | Yes | Default parameters for this model |
+| `description` | `string` | No | Description of the model |
+| `expiration_date` | `string | null` | No | The date after which the model may be removed. |
+| `hugging_face_id` | `string | null` | No | Hugging Face model identifier, if applicable |
+| `id` | `string` | Yes | Unique identifier for the model |
+| `knowledge_cutoff` | `string | null` | No | The date up to which the model was trained on data. |
+| `links` | `Record<string, any>` | Yes | Related API endpoints and resources for this model. |
+| `name` | `string` | Yes | Display name of the model |
+| `per_request_limits` | `Record<string, any> | null` | Yes | Per-request token limits |
+| `pricing` | `Record<string, any>` | Yes | Pricing information for the model |
+| `reasoning` | `Record<string, any>` | Yes | Reasoning effort configuration. |
+| `supported_parameters` | `any[]` | Yes | List of supported parameters for this model |
+| `supported_voices` | `any[] | null` | Yes | List of supported voice identifiers for TTS models. |
+| `top_provider` | `Record<string, any>` | Yes | Information about the top provider for this model |
 
 ### Operations
 
@@ -4520,23 +4520,23 @@ const o_auth = client.OAuth()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `app_id` | `number` | Yes |  |
-| `callback_url` | `string` | Yes |  |
-| `code` | `string` | Yes |  |
-| `code_challenge` | `string` | No |  |
-| `code_challenge_method` | `string | null` | No |  |
-| `code_verifier` | `string` | No |  |
-| `created_at` | `string` | Yes |  |
-| `expires_at` | `string | null` | No |  |
-| `id` | `string` | Yes |  |
-| `key` | `string` | Yes |  |
-| `key_label` | `string` | No |  |
-| `limit` | `number` | No |  |
-| `spawn_agent` | `string` | No |  |
-| `spawn_cloud` | `string` | No |  |
-| `usage_limit_type` | `string` | No |  |
-| `user_id` | `string | null` | Yes |  |
-| `workspace_id` | `string` | No |  |
+| `app_id` | `number` | Yes | The application ID associated with this auth code |
+| `callback_url` | `string` | Yes | The callback URL to redirect to after authorization. |
+| `code` | `string` | Yes | The authorization code received from the OAuth redirect |
+| `code_challenge` | `string` | No | PKCE code challenge for enhanced security |
+| `code_challenge_method` | `string | null` | No | The method used to generate the code challenge |
+| `code_verifier` | `string` | No | The code verifier if code_challenge was used in the authorization request |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the auth code was created |
+| `expires_at` | `string | null` | No | Optional expiration time for the API key to be created |
+| `id` | `string` | Yes | The authorization code ID to use in the exchange request |
+| `key` | `string` | Yes | The API key to use for OpenRouter requests |
+| `key_label` | `string` | No | Optional custom label for the API key. |
+| `limit` | `number` | No | Credit limit for the API key to be created |
+| `spawn_agent` | `string` | No | Agent identifier for spawn telemetry |
+| `spawn_cloud` | `string` | No | Cloud identifier for spawn telemetry |
+| `usage_limit_type` | `string` | No | Optional credit limit reset interval. |
+| `user_id` | `string | null` | Yes | User ID associated with the API key |
+| `workspace_id` | `string` | No | Optional workspace ID to associate the API key with |
 
 ### Operations
 
@@ -4653,45 +4653,45 @@ const open_responses_result = client.OpenResponsesResult()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `background` | `boolean | null` | No |  |
-| `cache_control` | `Record<string, any>` | Yes |  |
-| `debug` | `Record<string, any>` | No |  |
+| `cache_control` | `Record<string, any>` | Yes | Enable automatic prompt caching. |
+| `debug` | `Record<string, any>` | No | Debug options for inspecting request transformations (streaming only) |
 | `frequency_penalty` | `number | null` | No |  |
-| `image_config` | `Record<string, any>` | No |  |
+| `image_config` | `Record<string, any>` | No | Provider-specific image configuration options. |
 | `include` | `any[] | null` | No |  |
-| `input` | `any` | No |  |
+| `input` | `any` | No | Input for a response request - can be a string or array of items |
 | `instructions` | `string | null` | No |  |
 | `max_output_tokens` | `number | null` | No |  |
 | `max_tool_calls` | `number | null` | No |  |
-| `metadata` | `Record<string, any> | null` | No |  |
-| `modalities` | `any[]` | No |  |
+| `metadata` | `Record<string, any> | null` | No | Metadata key-value pairs for the request. |
+| `modalities` | `any[]` | No | Output modalities for the response. |
 | `model` | `string` | No |  |
 | `models` | `any[]` | No |  |
 | `parallel_tool_calls` | `boolean | null` | No |  |
-| `plugins` | `any[]` | No |  |
+| `plugins` | `any[]` | No | Plugins you want to enable for this request, including their settings. |
 | `presence_penalty` | `number | null` | No |  |
-| `previous_response_id` | `string` | No |  |
+| `previous_response_id` | `string` | No | Not supported. |
 | `prompt` | `Record<string, any> | null` | Yes |  |
 | `prompt_cache_key` | `string | null` | No |  |
-| `prompt_cache_options` | `Record<string, any> | null` | Yes |  |
-| `provider` | `Record<string, any> | null` | No |  |
-| `reasoning` | `any` | No |  |
-| `route` | `string | null` | No |  |
+| `prompt_cache_options` | `Record<string, any> | null` | Yes | Request-level prompt-cache controls. |
+| `provider` | `Record<string, any> | null` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `any` | No | Configuration for reasoning mode in the response |
+| `route` | `string | null` | No | **DEPRECATED** Use providers.sort.partition instead. |
 | `safety_identifier` | `string | null` | No |  |
 | `service_tier` | `string | null` | No |  |
-| `session_id` | `string` | No |  |
-| `stop_server_tools_when` | `any[]` | No |  |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop_server_tools_when` | `any[]` | No | Stop conditions for the server-tool agent loop. |
 | `store` | `boolean` | No |  |
 | `stream` | `boolean` | No |  |
 | `temperature` | `number | null` | No |  |
-| `text` | `any` | No |  |
+| `text` | `any` | No | Text output configuration including format and verbosity |
 | `tool_choice` | `any` | No |  |
 | `tools` | `any[]` | No |  |
 | `top_k` | `number` | No |  |
 | `top_logprobs` | `number | null` | No |  |
 | `top_p` | `number | null` | No |  |
-| `trace` | `Record<string, any>` | No |  |
+| `trace` | `Record<string, any>` | No | Metadata for observability and tracing. |
 | `truncation` | `string | null` | No |  |
-| `user` | `string` | No |  |
+| `user` | `string` | No | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
 ### Operations
 
@@ -4745,11 +4745,11 @@ const organization = client.Organization()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | Yes |  |
-| `first_name` | `string | null` | Yes |  |
-| `id` | `string` | Yes |  |
-| `last_name` | `string | null` | Yes |  |
-| `role` | `string` | Yes |  |
+| `email` | `string` | Yes | Email address of the member |
+| `first_name` | `string | null` | Yes | First name of the member |
+| `id` | `string` | Yes | User ID of the organization member |
+| `last_name` | `string | null` | Yes | Last name of the member |
+| `role` | `string` | Yes | Role of the member in the organization |
 
 ### Actions
 
@@ -4822,12 +4822,12 @@ const preset = client.Preset()
 | `created_at` | `string` | Yes |  |
 | `creator_user_id` | `string | null` | Yes |  |
 | `description` | `string | null` | Yes |  |
-| `designated_version` | `Record<string, any> | null` | Yes |  |
+| `designated_version` | `Record<string, any> | null` | Yes | A specific version of a preset, containing config and optional system prompt. |
 | `designated_version_id` | `string | null` | Yes |  |
 | `id` | `string` | Yes |  |
 | `name` | `string` | Yes |  |
 | `slug` | `string` | Yes |  |
-| `status` | `string` | Yes |  |
+| `status` | `string` | Yes | The status of a preset. |
 | `status_updated_at` | `string | null` | Yes |  |
 | `updated_at` | `string` | Yes |  |
 | `workspace_id` | `string | null` | Yes |  |
@@ -4945,13 +4945,13 @@ const provider = client.Provider()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datacenters` | `any[] | null` | No |  |
-| `headquarters` | `string | null` | No |  |
-| `name` | `string` | Yes |  |
-| `privacy_policy_url` | `string | null` | Yes |  |
-| `slug` | `string` | Yes |  |
-| `status_page_url` | `string | null` | No |  |
-| `terms_of_service_url` | `string | null` | No |  |
+| `datacenters` | `any[] | null` | No | ISO 3166-1 Alpha-2 country codes of the provider datacenter locations |
+| `headquarters` | `string | null` | No | ISO 3166-1 Alpha-2 country code of the provider headquarters |
+| `name` | `string` | Yes | Display name of the provider |
+| `privacy_policy_url` | `string | null` | Yes | URL to the provider's privacy policy |
+| `slug` | `string` | Yes | URL-friendly identifier for the provider |
+| `status_page_url` | `string | null` | No | URL to the provider's status page |
+| `terms_of_service_url` | `string | null` | No | URL to the provider's terms of service |
 
 ### Operations
 
@@ -5035,9 +5035,9 @@ const rankings_daily = client.RankingsDaily()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | `string` | Yes |  |
-| `model_permaslug` | `string` | Yes |  |
-| `total_tokens` | `string` | Yes |  |
+| `date` | `string` | Yes | UTC calendar date the row is aggregated over (YYYY-MM-DD). |
+| `model_permaslug` | `string` | Yes | Model variant permaslug (e.g. |
+| `total_tokens` | `string` | Yes | Sum of `prompt_tokens + completion_tokens` for the day, returned as a decimal string so 64-bit values are not truncated. |
 
 ### Operations
 
@@ -5121,14 +5121,14 @@ const rerank = client.Rerank()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `documents` | `any[]` | Yes |  |
-| `id` | `string` | No |  |
-| `model` | `string` | Yes |  |
-| `provider` | `string` | No |  |
-| `query` | `string` | Yes |  |
-| `results` | `any[]` | Yes |  |
-| `top_n` | `number` | No |  |
-| `usage` | `Record<string, any>` | No |  |
+| `documents` | `any[]` | Yes | The list of documents to rerank. |
+| `id` | `string` | No | Unique identifier for the rerank response (ORID format) |
+| `model` | `string` | Yes | The model used for reranking |
+| `provider` | `string` | No | The provider that served the rerank request |
+| `query` | `string` | Yes | The search query to rerank documents against |
+| `results` | `any[]` | Yes | List of rerank results sorted by relevance |
+| `top_n` | `number` | No | Number of most relevant documents to return |
+| `usage` | `Record<string, any>` | No | Usage statistics |
 
 ### Operations
 
@@ -5251,19 +5251,19 @@ const stt = client.Stt()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `duration` | `number` | No |  |
-| `input_audio` | `Record<string, any>` | Yes |  |
-| `language` | `string` | No |  |
-| `model` | `string` | Yes |  |
-| `provider` | `Record<string, any>` | No |  |
-| `response_format` | `string` | No |  |
-| `segments` | `any[]` | No |  |
-| `task` | `string` | No |  |
-| `temperature` | `number` | No |  |
-| `text` | `string` | Yes |  |
-| `timestamp_granularities` | `any[]` | No |  |
-| `usage` | `Record<string, any>` | No |  |
-| `words` | `any[]` | No |  |
+| `duration` | `number` | No | Duration of the input audio in seconds, present when response_format is verbose_json |
+| `input_audio` | `Record<string, any>` | Yes | Base64-encoded audio to transcribe |
+| `language` | `string` | No | Detected or forced language, present when response_format is verbose_json |
+| `model` | `string` | Yes | STT model identifier |
+| `provider` | `Record<string, any>` | No | Provider-specific passthrough configuration |
+| `response_format` | `string` | No | Output format. |
+| `segments` | `any[]` | No | Timestamped transcript segments, present when response_format is verbose_json |
+| `task` | `string` | No | The task performed, present when response_format is verbose_json |
+| `temperature` | `number` | No | Sampling temperature for transcription |
+| `text` | `string` | Yes | The transcribed text |
+| `timestamp_granularities` | `any[]` | No | Timestamp detail levels to include when response_format is "verbose_json". |
+| `usage` | `Record<string, any>` | No | Aggregated usage statistics for the request |
+| `words` | `any[]` | No | Timestamped words, present when the provider returns word-level timestamps |
 
 ### Operations
 
@@ -5317,10 +5317,10 @@ const submit_generation_feedback = client.SubmitGenerationFeedback()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `string` | Yes |  |
-| `comment` | `string` | No |  |
-| `generation_id` | `string` | Yes |  |
-| `success` | `boolean` | Yes |  |
+| `category` | `string` | Yes | The category of feedback being reported |
+| `comment` | `string` | No | An optional free-text comment describing the feedback |
+| `generation_id` | `string` | Yes | The generation to submit feedback on |
+| `success` | `boolean` | Yes | Whether the feedback was recorded |
 
 ### Operations
 
@@ -5374,10 +5374,10 @@ const task = client.Task()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as_of` | `string` | Yes |  |
-| `classifications` | `any[]` | Yes |  |
-| `macro_categories` | `any[]` | Yes |  |
-| `window_days` | `number` | Yes |  |
+| `as_of` | `string` | Yes | UTC date (YYYY-MM-DD) of the window upper bound (yesterday). |
+| `classifications` | `any[]` | Yes | Per-task classification market-share data, sorted by usage_share descending. |
+| `macro_categories` | `any[]` | Yes | Aggregate market-share data per macro-category (code, data, agent, general). |
+| `window_days` | `number` | Yes | Number of trailing days covered by this snapshot. |
 
 ### Operations
 
@@ -5461,12 +5461,12 @@ const tts = client.Tts()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `input` | `string` | Yes |  |
-| `model` | `string` | Yes |  |
-| `provider` | `Record<string, any>` | No |  |
-| `response_format` | `string` | No |  |
-| `speed` | `number` | No |  |
-| `voice` | `string` | Yes |  |
+| `input` | `string` | Yes | Text to synthesize |
+| `model` | `string` | Yes | TTS model identifier |
+| `provider` | `Record<string, any>` | No | Provider-specific passthrough configuration |
+| `response_format` | `string` | No | Audio output format |
+| `speed` | `number` | No | Playback speed multiplier. |
+| `voice` | `string` | Yes | Voice identifier (provider-specific). |
 
 ### Operations
 
@@ -5571,12 +5571,12 @@ const update_byok_key = client.UpdateByokKey()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_models` | `any[] | null` | No |  |
-| `allowed_user_ids` | `any[] | null` | No |  |
-| `disabled` | `boolean` | No |  |
-| `is_fallback` | `boolean` | No |  |
-| `key` | `string` | No |  |
-| `name` | `string | null` | No |  |
+| `allowed_models` | `any[] | null` | No | Optional allowlist of model slugs this credential may be used for. |
+| `allowed_user_ids` | `any[] | null` | No | Optional allowlist of user IDs that may use this credential. |
+| `disabled` | `boolean` | No | Whether this credential is disabled. |
+| `is_fallback` | `boolean` | No | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
+| `key` | `string` | No | A new raw provider API key to rotate the credential in-place. |
+| `name` | `string | null` | No | Optional human-readable name for the credential. |
 
 ### Operations
 
@@ -5629,22 +5629,22 @@ const update_guardrail = client.UpdateGuardrail()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_models` | `any[] | null` | No |  |
-| `allowed_providers` | `any[] | null` | No |  |
-| `content_filter_builtins` | `any[] | null` | No |  |
-| `content_filters` | `any[] | null` | No |  |
-| `description` | `string | null` | No |  |
-| `enforce_zdr` | `boolean | null` | No |  |
-| `enforce_zdr_anthropic` | `boolean | null` | No |  |
-| `enforce_zdr_google` | `boolean | null` | No |  |
-| `enforce_zdr_openai` | `boolean | null` | No |  |
-| `enforce_zdr_other` | `boolean | null` | No |  |
-| `enforce_zdr_xai` | `boolean | null` | No |  |
-| `ignored_models` | `any[] | null` | No |  |
-| `ignored_providers` | `any[] | null` | No |  |
-| `limit_usd` | `number | null` | No |  |
-| `name` | `string` | No |  |
-| `reset_interval` | `string | null` | No |  |
+| `allowed_models` | `any[] | null` | No | Array of model identifiers (slug or canonical_slug accepted) |
+| `allowed_providers` | `any[] | null` | No | New list of allowed provider IDs |
+| `content_filter_builtins` | `any[] | null` | No | Builtin content filters to apply. |
+| `content_filters` | `any[] | null` | No | Custom regex content filters to apply. |
+| `description` | `string | null` | No | New description for the guardrail |
+| `enforce_zdr` | `boolean | null` | No | Deprecated. |
+| `enforce_zdr_anthropic` | `boolean | null` | No | Whether to enforce zero data retention for Anthropic models. |
+| `enforce_zdr_google` | `boolean | null` | No | Whether to enforce zero data retention for Google models. |
+| `enforce_zdr_openai` | `boolean | null` | No | Whether to enforce zero data retention for OpenAI models. |
+| `enforce_zdr_other` | `boolean | null` | No | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
+| `enforce_zdr_xai` | `boolean | null` | No | Whether to enforce zero data retention for xAI models. |
+| `ignored_models` | `any[] | null` | No | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
+| `ignored_providers` | `any[] | null` | No | List of provider IDs to exclude from routing |
+| `limit_usd` | `number | null` | No | New spending limit in USD |
+| `name` | `string` | No | New name for the guardrail |
+| `reset_interval` | `string | null` | No | Interval at which the limit resets (daily, weekly, monthly) |
 
 ### Operations
 
@@ -5697,13 +5697,13 @@ const update_observability_destination = client.UpdateObservabilityDestination()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key_hashes` | `any[] | null` | No |  |
-| `config` | `Record<string, any>` | No |  |
-| `enabled` | `boolean` | No |  |
+| `api_key_hashes` | `any[] | null` | No | Optional allowlist of OpenRouter API key hashes. |
+| `config` | `Record<string, any>` | No | Provider-specific configuration fields to update. |
+| `enabled` | `boolean` | No | Whether the destination is enabled. |
 | `filter_rules` | `any` | No |  |
-| `name` | `string` | No |  |
-| `privacy_mode` | `boolean` | No |  |
-| `sampling_rate` | `number` | No |  |
+| `name` | `string` | No | Human-readable name for the destination. |
+| `privacy_mode` | `boolean` | No | When true, request/response bodies are not forwarded — only metadata. |
+| `sampling_rate` | `number` | No | Sampling rate between 0.0001 and 1 (1 = 100%). |
 
 ### Operations
 
@@ -5756,21 +5756,21 @@ const update_workspace = client.UpdateWorkspace()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | Yes |  |
-| `created_by` | `string | null` | Yes |  |
-| `default_image_model` | `string | null` | No |  |
-| `default_provider_sort` | `string | null` | No |  |
-| `default_text_model` | `string | null` | No |  |
-| `description` | `string | null` | No |  |
-| `id` | `string` | Yes |  |
-| `io_logging_api_key_ids` | `any[] | null` | No |  |
-| `io_logging_sampling_rate` | `number` | No |  |
-| `is_data_discount_logging_enabled` | `boolean` | No |  |
-| `is_observability_broadcast_enabled` | `boolean` | No |  |
-| `is_observability_io_logging_enabled` | `boolean` | No |  |
-| `name` | `string` | Yes |  |
-| `slug` | `string` | Yes |  |
-| `updated_at` | `string | null` | Yes |  |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the workspace was created |
+| `created_by` | `string | null` | Yes | User ID of the workspace creator |
+| `default_image_model` | `string | null` | No | Default image model for this workspace |
+| `default_provider_sort` | `string | null` | No | Default provider sort preference (price, throughput, latency, exacto) |
+| `default_text_model` | `string | null` | No | Default text model for this workspace |
+| `description` | `string | null` | No | Description of the workspace |
+| `id` | `string` | Yes | Unique identifier for the workspace |
+| `io_logging_api_key_ids` | `any[] | null` | No | Optional array of API key IDs to filter I/O logging |
+| `io_logging_sampling_rate` | `number` | No | Sampling rate for I/O logging (0.0001-1) |
+| `is_data_discount_logging_enabled` | `boolean` | No | Whether data discount logging is enabled |
+| `is_observability_broadcast_enabled` | `boolean` | No | Whether broadcast is enabled |
+| `is_observability_io_logging_enabled` | `boolean` | No | Whether private logging is enabled |
+| `name` | `string` | Yes | Name for the new workspace |
+| `slug` | `string` | Yes | URL-friendly slug (lowercase alphanumeric segments separated by single hyphens, no leading/trailing hyphens) |
+| `updated_at` | `string | null` | Yes | ISO 8601 timestamp of when the workspace was last updated |
 
 ### Field Usage by Operation
 
@@ -5866,7 +5866,7 @@ const upsert_workspace_budget = client.UpsertWorkspaceBudget()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `limit_usd` | `number` | Yes |  |
+| `limit_usd` | `number` | Yes | Spending limit in USD. |
 
 ### Operations
 
@@ -5988,25 +5988,25 @@ const video = client.Video()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aspect_ratio` | `string` | No |  |
-| `callback_url` | `string` | No |  |
-| `duration` | `number` | No |  |
+| `aspect_ratio` | `string` | No | Aspect ratio of the generated video |
+| `callback_url` | `string` | No | URL to receive a webhook notification when the video generation job completes. |
+| `duration` | `number` | No | Duration of the generated video in seconds |
 | `error` | `string` | No |  |
-| `frame_images` | `any[]` | No |  |
-| `generate_audio` | `boolean` | No |  |
-| `generation_id` | `string` | No |  |
+| `frame_images` | `any[]` | No | Images to use as the first and/or last frame of the generated video. |
+| `generate_audio` | `boolean` | No | Whether to generate audio alongside the video. |
+| `generation_id` | `string` | No | The generation ID associated with this video generation job. |
 | `id` | `string` | Yes |  |
-| `input_references` | `any[]` | No |  |
+| `input_references` | `any[]` | No | Reference assets to guide video generation. |
 | `model` | `string` | Yes |  |
 | `polling_url` | `string` | Yes |  |
-| `prompt` | `string` | No |  |
-| `provider` | `Record<string, any>` | No |  |
-| `resolution` | `string` | No |  |
-| `seed` | `number` | No |  |
-| `size` | `string` | No |  |
+| `prompt` | `string` | No | Text prompt describing the video to generate. |
+| `provider` | `Record<string, any>` | No | Provider-specific passthrough configuration |
+| `resolution` | `string` | No | Resolution of the generated video |
+| `seed` | `number` | No | If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result. |
+| `size` | `string` | No | Exact pixel dimensions of the generated video in "WIDTHxHEIGHT" format (e.g. |
 | `status` | `string` | Yes |  |
 | `unsigned_urls` | `any[]` | No |  |
-| `usage` | `Record<string, any>` | No |  |
+| `usage` | `Record<string, any>` | No | Usage and cost information for the video generation. |
 
 ### Operations
 
@@ -6133,21 +6133,21 @@ const video_models_list = client.VideoModelsList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allowed_passthrough_parameters` | `any[]` | Yes |  |
-| `canonical_slug` | `string` | Yes |  |
-| `created` | `number` | Yes |  |
-| `description` | `string` | No |  |
-| `generate_audio` | `boolean | null` | Yes |  |
-| `hugging_face_id` | `string | null` | No |  |
-| `id` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `pricing_skus` | `Record<string, any> | null` | No |  |
-| `seed` | `boolean | null` | Yes |  |
-| `supported_aspect_ratios` | `any[] | null` | Yes |  |
-| `supported_durations` | `any[] | null` | Yes |  |
-| `supported_frame_images` | `any[] | null` | Yes |  |
-| `supported_resolutions` | `any[] | null` | Yes |  |
-| `supported_sizes` | `any[] | null` | Yes |  |
+| `allowed_passthrough_parameters` | `any[]` | Yes | List of parameters that are allowed to be passed through to the provider |
+| `canonical_slug` | `string` | Yes | Canonical slug for the model |
+| `created` | `number` | Yes | Unix timestamp of when the model was created |
+| `description` | `string` | No | Description of the model |
+| `generate_audio` | `boolean | null` | Yes | Whether the model supports generating audio alongside video |
+| `hugging_face_id` | `string | null` | No | Hugging Face model identifier, if applicable |
+| `id` | `string` | Yes | Unique identifier for the model |
+| `name` | `string` | Yes | Display name of the model |
+| `pricing_skus` | `Record<string, any> | null` | No | Pricing SKUs with provider prefix stripped, values as strings |
+| `seed` | `boolean | null` | Yes | Whether the model supports deterministic generation via seed parameter |
+| `supported_aspect_ratios` | `any[] | null` | Yes | Supported output aspect ratios |
+| `supported_durations` | `any[] | null` | Yes | Supported video durations in seconds |
+| `supported_frame_images` | `any[] | null` | Yes | Supported frame image types (e.g. |
+| `supported_resolutions` | `any[] | null` | Yes | Supported output resolutions |
+| `supported_sizes` | `any[] | null` | Yes | Supported output sizes (width x height) |
 
 ### Operations
 
@@ -6197,21 +6197,21 @@ const workspace = client.Workspace()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | Yes |  |
-| `created_by` | `string | null` | Yes |  |
-| `default_image_model` | `string | null` | Yes |  |
-| `default_provider_sort` | `string | null` | Yes |  |
-| `default_text_model` | `string | null` | Yes |  |
-| `description` | `string | null` | Yes |  |
-| `id` | `string` | Yes |  |
-| `io_logging_api_key_ids` | `any[] | null` | Yes |  |
-| `io_logging_sampling_rate` | `number` | Yes |  |
-| `is_data_discount_logging_enabled` | `boolean` | Yes |  |
-| `is_observability_broadcast_enabled` | `boolean` | Yes |  |
-| `is_observability_io_logging_enabled` | `boolean` | Yes |  |
-| `name` | `string` | Yes |  |
-| `slug` | `string` | Yes |  |
-| `updated_at` | `string | null` | Yes |  |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the workspace was created |
+| `created_by` | `string | null` | Yes | User ID of the workspace creator |
+| `default_image_model` | `string | null` | Yes | Default image model for this workspace |
+| `default_provider_sort` | `string | null` | Yes | Default provider sort preference (price, throughput, latency, exacto) |
+| `default_text_model` | `string | null` | Yes | Default text model for this workspace |
+| `description` | `string | null` | Yes | Description of the workspace |
+| `id` | `string` | Yes | Unique identifier for the workspace |
+| `io_logging_api_key_ids` | `any[] | null` | Yes | Optional array of API key IDs to filter I/O logging. |
+| `io_logging_sampling_rate` | `number` | Yes | Sampling rate for I/O logging (0.0001-1). |
+| `is_data_discount_logging_enabled` | `boolean` | Yes | Whether data discount logging is enabled for this workspace |
+| `is_observability_broadcast_enabled` | `boolean` | Yes | Whether broadcast is enabled for this workspace |
+| `is_observability_io_logging_enabled` | `boolean` | Yes | Whether private logging is enabled for this workspace |
+| `name` | `string` | Yes | Name of the workspace |
+| `slug` | `string` | Yes | URL-friendly slug for the workspace |
+| `updated_at` | `string | null` | Yes | ISO 8601 timestamp of when the workspace was last updated |
 
 ### Operations
 

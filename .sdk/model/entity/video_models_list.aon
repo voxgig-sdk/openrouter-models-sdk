@@ -1,0 +1,214 @@
+# Entity: video_models_list
+
+main: kit: entity: video_models_list: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "allowed_passthrough_parameters"
+      req: true
+      short: "List of parameters that are allowed to be passed through to the provider"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "canonical_slug"
+      req: true
+      short: "Canonical slug for the model"
+      type: "`$STRING`"
+    }
+    {
+      name: "created"
+      req: true
+      short: "Unix timestamp of when the model was created"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "description"
+      req: false
+      short: "Description of the model"
+      type: "`$STRING`"
+    }
+    {
+      name: "generate_audio"
+      req: true
+      short: "Whether the model supports generating audio alongside video"
+      type: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "hugging_face_id"
+      req: false
+      short: "Hugging Face model identifier, if applicable"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "id"
+      req: true
+      short: "Unique identifier for the model"
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      short: "Display name of the model"
+      type: "`$STRING`"
+    }
+    {
+      name: "pricing_skus"
+      req: false
+      short: "Pricing SKUs with provider prefix stripped, values as strings"
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "seed"
+      req: true
+      short: "Whether the model supports deterministic generation via seed parameter"
+      type: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "supported_aspect_ratios"
+      req: true
+      short: "Supported output aspect ratios"
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "supported_durations"
+      req: true
+      short: "Supported video durations in seconds"
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "supported_frame_images"
+      req: true
+      short: "Supported frame image types (e.g."
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "supported_resolutions"
+      req: true
+      short: "Supported output resolutions"
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "supported_sizes"
+      req: true
+      short: "Supported output sizes (width x height)"
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "video_models_list"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/videos/models"
+          parts: [
+            "videos"
+            "models"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,130 @@
+# Entity: update_byok_key
+
+main: kit: entity: update_byok_key: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "allowed_models"
+      req: false
+      short: "Optional allowlist of model slugs this credential may be used for."
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "allowed_user_ids"
+      req: false
+      short: "Optional allowlist of user IDs that may use this credential."
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "disabled"
+      req: false
+      short: "Whether this credential is disabled."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_fallback"
+      req: false
+      short: "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "key"
+      req: false
+      short: "A new raw provider API key to rotate the credential in-place."
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Optional human-readable name for the credential."
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  ]
+
+  name: "update_byok_key"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "11111111-2222-3333-4444-555555555555"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "PATCH"
+          orig: "/byok/{id}"
+          parts: [
+            "byok"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

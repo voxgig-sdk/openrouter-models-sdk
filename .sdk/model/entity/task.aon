@@ -1,0 +1,100 @@
+# Entity: task
+
+main: kit: entity: task: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "as_of"
+      req: true
+      short: "UTC date (YYYY-MM-DD) of the window upper bound (yesterday)."
+      type: "`$STRING`"
+    }
+    {
+      name: "classifications"
+      req: true
+      short: "Per-task classification market-share data, sorted by usage_share descending."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "macro_categories"
+      req: true
+      short: "Aggregate market-share data per macro-category (code, data, agent, general)."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "window_days"
+      req: true
+      short: "Number of trailing days covered by this snapshot."
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "task"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "7d"
+                kind: "query"
+                name: "window"
+                orig: "window"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/classifications/task"
+          parts: [
+            "classifications"
+            "task"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "window"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

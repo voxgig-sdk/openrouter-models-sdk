@@ -1,0 +1,288 @@
+# Entity: message
+
+main: kit: entity: message: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "cache_control"
+      req: true
+      short: "Enable automatic prompt caching."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "context_management"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 3
+        count: 3
+        depth: 7
+      }
+    }
+    {
+      name: "fallbacks"
+      req: false
+      short: "Fallback models to try if the primary model fails or refuses, in order."
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "max_tokens"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "messages"
+      req: true
+      type: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 12
+        count: 7
+        depth: 14
+      }
+    }
+    {
+      name: "metadata"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "model"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "models"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "output_config"
+      req: false
+      short: "Configuration for controlling output behavior."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "plugins"
+      req: false
+      short: "Plugins you want to enable for this request, including their settings."
+      type: "`$ARRAY`"
+      union: {
+        branches: 5
+        count: 4
+        depth: 12
+      }
+    }
+    {
+      name: "provider"
+      req: false
+      short: "When multiple model providers are available, optionally indicate your routing preference."
+      type: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 2
+        count: 6
+        depth: 3
+      }
+    }
+    {
+      name: "route"
+      req: false
+      short: "**DEPRECATED** Use providers.sort.partition instead."
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "service_tier"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "session_id"
+      req: false
+      short: "A unique identifier for grouping related requests (e.g., a conversation or agent workflow)."
+      type: "`$STRING`"
+    }
+    {
+      name: "speed"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "stop_sequences"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "stop_server_tools_when"
+      req: false
+      short: "Stop conditions for the server-tool agent loop."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "stream"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "system"
+      req: false
+      type: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    {
+      name: "temperature"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "thinking"
+      req: false
+      type: "`$ANY`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 0
+      }
+    }
+    {
+      name: "tool_choice"
+      req: false
+      type: "`$ANY`"
+      union: {
+        branches: 4
+        count: 1
+        depth: 0
+      }
+    }
+    {
+      name: "tools"
+      req: false
+      type: "`$ARRAY`"
+      union: {
+        branches: 13
+        count: 2
+        depth: 6
+      }
+    }
+    {
+      name: "top_k"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "top_p"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "trace"
+      req: false
+      short: "Metadata for observability and tracing."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "user"
+      req: false
+      short: "A unique identifier representing your end-user, which helps distinguish between different users of your app."
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "message"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "enabled"
+                kind: "header"
+                name: "x_open_router_metadata"
+                orig: "x_open_router_metadata"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/messages"
+          parts: [
+            "messages"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_metadata"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

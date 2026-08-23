@@ -1,0 +1,235 @@
+# Entity: list_member_assignment
+
+main: kit: entity: list_member_assignment: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "assigned_by"
+      req: true
+      short: "User ID of who made the assignment"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "created_at"
+      req: true
+      short: "ISO 8601 timestamp of when the assignment was created"
+      type: "`$STRING`"
+    }
+    {
+      name: "guardrail_id"
+      req: true
+      short: "ID of the guardrail"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: true
+      short: "Unique identifier for the assignment"
+      type: "`$STRING`"
+    }
+    {
+      name: "organization_id"
+      req: true
+      short: "Organization ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "user_id"
+      req: true
+      short: "Clerk user ID of the assigned member"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "list_member_assignment"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "550e8400-e29b-41d4-a716-446655440000"
+                kind: "param"
+                name: "guardrail_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 50
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/guardrails/{id}/assignments/members"
+          parts: [
+            "guardrails"
+            "{guardrail_id}"
+            "assignments"
+            "members"
+          ]
+          rename: {
+            param: {
+              id: "guardrail_id"
+            }
+          }
+          select: {
+            exist: [
+              "guardrail_id"
+              "http_referer"
+              "limit"
+              "offset"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 50
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/guardrails/assignments/members"
+          parts: [
+            "guardrails"
+            "assignments"
+            "members"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "limit"
+              "offset"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "guardrail"
+      ]
+    ]
+  }
+
+
+
+}

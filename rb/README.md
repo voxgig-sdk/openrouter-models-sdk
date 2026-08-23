@@ -344,17 +344,17 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `byok_usage_inference` |  |
-| `completion_tokens` |  |
-| `date` |  |
-| `endpoint_id` |  |
-| `model` |  |
-| `model_permaslug` |  |
-| `prompt_tokens` |  |
-| `provider_name` |  |
-| `reasoning_tokens` |  |
-| `requests` |  |
-| `usage` |  |
+| `byok_usage_inference` | BYOK inference cost in USD (external credits spent) |
+| `completion_tokens` | Total completion tokens generated |
+| `date` | Date of the activity (YYYY-MM-DD format) |
+| `endpoint_id` | Unique identifier for the endpoint |
+| `model` | Model slug (e.g., "openai/gpt-4.1") |
+| `model_permaslug` | Model permaslug (e.g., "openai/gpt-4.1-2025-04-14") |
+| `prompt_tokens` | Total prompt tokens used |
+| `provider_name` | Name of the provider serving this endpoint |
+| `reasoning_tokens` | Total reasoning tokens used |
+| `requests` | Number of requests made |
+| `usage` | Total cost in USD (OpenRouter credits spent) |
 
 Operations: List.
 
@@ -373,31 +373,31 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `byok_usage` |  |
-| `byok_usage_daily` |  |
-| `byok_usage_monthly` |  |
-| `byok_usage_weekly` |  |
-| `created_at` |  |
-| `creator_user_id` |  |
-| `disabled` |  |
-| `expires_at` |  |
-| `hash` |  |
-| `include_byok_in_limit` |  |
-| `is_free_tier` |  |
-| `is_management_key` |  |
-| `is_provisioning_key` |  |
-| `label` |  |
-| `limit` |  |
-| `limit_remaining` |  |
-| `limit_reset` |  |
-| `name` |  |
-| `rate_limit` |  |
-| `updated_at` |  |
-| `usage` |  |
-| `usage_daily` |  |
-| `usage_monthly` |  |
-| `usage_weekly` |  |
-| `workspace_id` |  |
+| `byok_usage` | Total external BYOK usage (in USD) for the API key |
+| `byok_usage_daily` | External BYOK usage (in USD) for the current UTC day |
+| `byok_usage_monthly` | External BYOK usage (in USD) for current UTC month |
+| `byok_usage_weekly` | External BYOK usage (in USD) for the current UTC week (Monday-Sunday) |
+| `created_at` | ISO 8601 timestamp of when the API key was created |
+| `creator_user_id` | The user ID of the key creator. |
+| `disabled` | Whether the API key is disabled |
+| `expires_at` | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
+| `hash` | Unique hash identifier for the API key |
+| `include_byok_in_limit` | Whether to include external BYOK usage in the credit limit |
+| `is_free_tier` | Whether this is a free tier API key |
+| `is_management_key` | Whether this is a management key |
+| `is_provisioning_key` | Whether this is a management key |
+| `label` | Human-readable label for the API key |
+| `limit` | Spending limit for the API key in USD |
+| `limit_remaining` | Remaining spending limit in USD |
+| `limit_reset` | Type of limit reset for the API key |
+| `name` | Name of the API key |
+| `rate_limit` | Legacy rate limit information about a key. |
+| `updated_at` | ISO 8601 timestamp of when the API key was last updated |
+| `usage` | Total OpenRouter credit usage (in USD) for the API key |
+| `usage_daily` | OpenRouter credit usage (in USD) for the current UTC day |
+| `usage_monthly` | OpenRouter credit usage (in USD) for the current UTC month |
+| `usage_weekly` | OpenRouter credit usage (in USD) for the current UTC week (Monday-Sunday) |
+| `workspace_id` | The workspace ID this API key belongs to. |
 
 Operations: Create, List, Load, Remove, Update.
 
@@ -407,11 +407,11 @@ API path: `/keys`
 
 | Field | Description |
 | --- | --- |
-| `app_id` |  |
-| `app_name` |  |
-| `rank` |  |
-| `total_requests` |  |
-| `total_tokens` |  |
+| `app_id` | Stable numeric identifier of the app on OpenRouter. |
+| `app_name` | Public display name of the app. |
+| `rank` | 1-based position of the app within this response, per the requested `sort`. |
+| `total_requests` | Number of requests attributed to the app inside the date window. |
+| `total_tokens` | Sum of `prompt_tokens + completion_tokens` attributed to the app inside the date window, returned as a decimal string so 64-bit values are not truncated. |
 
 Operations: List.
 
@@ -431,21 +431,21 @@ API path: ``
 | Field | Description |
 | --- | --- |
 | `cachedAt` |  |
-| `classifier_dimensions` |  |
-| `classifier_filters` |  |
+| `classifier_dimensions` | Group results by custom classifier tags, breaking down metrics by the specified dimension values. |
+| `classifier_filters` | Filter results to generations with specific classifier tag values. |
 | `data` |  |
 | `dimensions` |  |
 | `filters` |  |
 | `granularities` |  |
-| `granularity` |  |
-| `group_limit` |  |
-| `limit` |  |
+| `granularity` | Time granularity |
+| `group_limit` | Maximum rows per distinct combination of dimensions. |
+| `limit` | Maximum total rows returned. |
 | `metadata` |  |
 | `metrics` |  |
 | `operators` |  |
 | `order_by` |  |
 | `time_range` |  |
-| `warnings` |  |
+| `warnings` | Warnings about filter resolution issues (e.g. |
 
 Operations: Create, Load.
 
@@ -464,9 +464,9 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `added_count` |  |
-| `data` |  |
-| `user_ids` |  |
+| `added_count` | Number of workspace memberships created or updated |
+| `data` | List of added workspace memberships |
+| `user_ids` | List of user IDs to add to the workspace. |
 
 Operations: Create.
 
@@ -476,8 +476,8 @@ API path: `/workspaces/{id}/members/add`
 
 | Field | Description |
 | --- | --- |
-| `assigned_count` |  |
-| `key_hashes` |  |
+| `assigned_count` | Number of keys successfully assigned |
+| `key_hashes` | Array of API key hashes to assign to the guardrail |
 
 Operations: Create.
 
@@ -487,8 +487,8 @@ API path: `/guardrails/{id}/assignments/keys`
 
 | Field | Description |
 | --- | --- |
-| `assigned_count` |  |
-| `member_user_ids` |  |
+| `assigned_count` | Number of members successfully assigned |
+| `member_user_ids` | Array of member user IDs to assign to the guardrail |
 
 Operations: Create.
 
@@ -498,8 +498,8 @@ API path: `/guardrails/{id}/assignments/members`
 
 | Field | Description |
 | --- | --- |
-| `removed_count` |  |
-| `user_ids` |  |
+| `removed_count` | Number of members removed |
+| `user_ids` | List of user IDs to remove from the workspace |
 
 Operations: Create.
 
@@ -509,8 +509,8 @@ API path: `/workspaces/{id}/members/remove`
 
 | Field | Description |
 | --- | --- |
-| `key_hashes` |  |
-| `unassigned_count` |  |
+| `key_hashes` | Array of API key hashes to unassign from the guardrail |
+| `unassigned_count` | Number of keys successfully unassigned |
 
 Operations: Create.
 
@@ -520,8 +520,8 @@ API path: `/guardrails/{id}/assignments/keys/remove`
 
 | Field | Description |
 | --- | --- |
-| `member_user_ids` |  |
-| `unassigned_count` |  |
+| `member_user_ids` | Array of member user IDs to unassign from the guardrail |
+| `unassigned_count` | Number of members successfully unassigned |
 
 Operations: Create.
 
@@ -531,19 +531,19 @@ API path: `/guardrails/{id}/assignments/members/remove`
 
 | Field | Description |
 | --- | --- |
-| `allowed_api_key_hashes` |  |
-| `allowed_models` |  |
-| `allowed_user_ids` |  |
-| `created_at` |  |
-| `disabled` |  |
-| `id` |  |
-| `is_fallback` |  |
-| `key` |  |
-| `label` |  |
-| `name` |  |
-| `provider` |  |
-| `sort_order` |  |
-| `workspace_id` |  |
+| `allowed_api_key_hashes` | Optional allowlist of OpenRouter API key hashes (`api_keys.hash`) that may use this credential. |
+| `allowed_models` | Optional allowlist of model slugs this credential may be used for. |
+| `allowed_user_ids` | Optional allowlist of user IDs that may use this credential. |
+| `created_at` | ISO timestamp of when the credential was created. |
+| `disabled` | Whether this credential is currently disabled. |
+| `id` | Stable public identifier for this BYOK credential. |
+| `is_fallback` | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
+| `key` | The raw provider API key or credential. |
+| `label` | Short masked snippet of the key (e.g. |
+| `name` | Optional human-readable name for the credential. |
+| `provider` | The upstream provider this credential authenticates against, as a lowercase slug (e.g. |
+| `sort_order` | Position within the provider — credentials are tried in ascending sort order. |
+| `workspace_id` | ID of the workspace this credential belongs to. |
 
 Operations: Create, List, Load, Remove.
 
@@ -553,55 +553,55 @@ API path: `/byok`
 
 | Field | Description |
 | --- | --- |
-| `cache_control` |  |
-| `choices` |  |
-| `created` |  |
-| `debug` |  |
-| `frequency_penalty` |  |
-| `id` |  |
-| `image_config` |  |
-| `logit_bias` |  |
-| `logprobs` |  |
-| `max_completion_tokens` |  |
-| `max_tokens` |  |
-| `messages` |  |
-| `metadata` |  |
-| `min_p` |  |
-| `modalities` |  |
-| `model` |  |
-| `models` |  |
+| `cache_control` | Enable automatic prompt caching. |
+| `choices` | List of completion choices |
+| `created` | Unix timestamp of creation |
+| `debug` | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | Frequency penalty (-2.0 to 2.0) |
+| `id` | Unique completion identifier |
+| `image_config` | Provider-specific image configuration options. |
+| `logit_bias` | Token logit bias adjustments |
+| `logprobs` | Return log probabilities |
+| `max_completion_tokens` | Maximum tokens in completion |
+| `max_tokens` | Maximum tokens (deprecated, use max_completion_tokens). |
+| `messages` | List of messages for the conversation |
+| `metadata` | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | Minimum probability threshold relative to the most likely token. |
+| `modalities` | Output modalities for the response. |
+| `model` | Model used for completion |
+| `models` | Models to use for completion |
 | `object` |  |
 | `openrouter_metadata` |  |
-| `parallel_tool_calls` |  |
-| `plugins` |  |
-| `prediction` |  |
-| `presence_penalty` |  |
+| `parallel_tool_calls` | Whether to enable parallel function calling during tool use. |
+| `plugins` | Plugins you want to enable for this request, including their settings. |
+| `prediction` | Static predicted output content. |
+| `presence_penalty` | Presence penalty (-2.0 to 2.0) |
 | `prompt_cache_key` |  |
-| `prompt_cache_options` |  |
-| `provider` |  |
-| `reasoning` |  |
-| `reasoning_effort` |  |
-| `repetition_penalty` |  |
-| `response_format` |  |
-| `route` |  |
-| `seed` |  |
-| `service_tier` |  |
-| `session_id` |  |
-| `stop` |  |
-| `stop_server_tools_when` |  |
-| `stream` |  |
-| `stream_options` |  |
-| `system_fingerprint` |  |
-| `temperature` |  |
-| `tool_choice` |  |
-| `tools` |  |
-| `top_a` |  |
-| `top_k` |  |
-| `top_logprobs` |  |
-| `top_p` |  |
-| `trace` |  |
-| `usage` |  |
-| `user` |  |
+| `prompt_cache_options` | Request-level prompt-cache controls. |
+| `provider` | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | Configuration options for reasoning models |
+| `reasoning_effort` | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | Response format configuration |
+| `route` | **DEPRECATED** Use providers.sort.partition instead. |
+| `seed` | Random seed for deterministic outputs |
+| `service_tier` | The service tier used by the upstream provider for this request |
+| `session_id` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop` | Stop sequences (up to 4) |
+| `stop_server_tools_when` | Stop conditions for the server-tool agent loop. |
+| `stream` | Enable streaming response |
+| `stream_options` | Streaming configuration options |
+| `system_fingerprint` | System fingerprint |
+| `temperature` | Sampling temperature (0-2) |
+| `tool_choice` | Tool choice configuration |
+| `tools` | Available tools for function calling |
+| `top_a` | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | Number of top log probabilities to return (0-20) |
+| `top_p` | Nucleus sampling parameter (0-1) |
+| `trace` | Metadata for observability and tracing. |
+| `usage` | Token usage statistics |
+| `user` | Unique user identifier |
 
 Operations: Create.
 
@@ -674,15 +674,15 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `api_key_hashes` |  |
-| `config` |  |
-| `enabled` |  |
-| `filter_rules` |  |
-| `name` |  |
-| `privacy_mode` |  |
-| `sampling_rate` |  |
-| `type` |  |
-| `workspace_id` |  |
+| `api_key_hashes` | Optional allowlist of OpenRouter API key hashes whose traffic is forwarded. |
+| `config` | Provider-specific configuration. |
+| `enabled` | Whether this destination should be enabled immediately. |
+| `filter_rules` | Optional structured filter rules controlling which events are forwarded. |
+| `name` | Human-readable name for the destination. |
+| `privacy_mode` | When true, request/response bodies are not forwarded — only metadata. |
+| `sampling_rate` | Sampling rate between 0.0001 and 1 (1 = 100%). |
+| `type` | The destination type. |
+| `workspace_id` | Optional workspace ID. |
 
 Operations: Create.
 
@@ -693,66 +693,66 @@ API path: `/observability/destinations`
 | Field | Description |
 | --- | --- |
 | `background` |  |
-| `cache_control` |  |
+| `cache_control` | Enable automatic prompt caching. |
 | `context_management` |  |
-| `debug` |  |
-| `fallbacks` |  |
-| `frequency_penalty` |  |
-| `image_config` |  |
+| `debug` | Debug options for inspecting request transformations (streaming only) |
+| `fallbacks` | Fallback models to try if the primary model fails or refuses, in order. |
+| `frequency_penalty` | Frequency penalty (-2.0 to 2.0) |
+| `image_config` | Provider-specific image configuration options. |
 | `include` |  |
-| `input` |  |
+| `input` | Input for a response request - can be a string or array of items |
 | `instructions` |  |
-| `logit_bias` |  |
-| `logprobs` |  |
-| `max_completion_tokens` |  |
+| `logit_bias` | Token logit bias adjustments |
+| `logprobs` | Return log probabilities |
+| `max_completion_tokens` | Maximum tokens in completion |
 | `max_output_tokens` |  |
-| `max_tokens` |  |
+| `max_tokens` | Maximum tokens (deprecated, use max_completion_tokens). |
 | `max_tool_calls` |  |
-| `messages` |  |
-| `metadata` |  |
-| `min_p` |  |
-| `modalities` |  |
-| `model` |  |
-| `models` |  |
-| `output_config` |  |
-| `parallel_tool_calls` |  |
-| `plugins` |  |
-| `prediction` |  |
-| `presence_penalty` |  |
-| `previous_response_id` |  |
+| `messages` | List of messages for the conversation |
+| `metadata` | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | Minimum probability threshold relative to the most likely token. |
+| `modalities` | Output modalities for the response. |
+| `model` | Model to use for completion |
+| `models` | Models to use for completion |
+| `output_config` | Configuration for controlling output behavior. |
+| `parallel_tool_calls` | Whether to enable parallel function calling during tool use. |
+| `plugins` | Plugins you want to enable for this request, including their settings. |
+| `prediction` | Static predicted output content. |
+| `presence_penalty` | Presence penalty (-2.0 to 2.0) |
+| `previous_response_id` | Not supported. |
 | `prompt` |  |
 | `prompt_cache_key` |  |
-| `prompt_cache_options` |  |
-| `provider` |  |
-| `reasoning` |  |
-| `reasoning_effort` |  |
-| `repetition_penalty` |  |
-| `response_format` |  |
-| `route` |  |
+| `prompt_cache_options` | Request-level prompt-cache controls. |
+| `provider` | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | Configuration options for reasoning models |
+| `reasoning_effort` | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | Response format configuration |
+| `route` | **DEPRECATED** Use providers.sort.partition instead. |
 | `safety_identifier` |  |
-| `seed` |  |
-| `service_tier` |  |
-| `session_id` |  |
+| `seed` | Random seed for deterministic outputs |
+| `service_tier` | The service tier to use for processing this request. |
+| `session_id` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
 | `speed` |  |
-| `stop` |  |
+| `stop` | Stop sequences (up to 4) |
 | `stop_sequences` |  |
-| `stop_server_tools_when` |  |
+| `stop_server_tools_when` | Stop conditions for the server-tool agent loop. |
 | `store` |  |
-| `stream` |  |
-| `stream_options` |  |
+| `stream` | Enable streaming response |
+| `stream_options` | Streaming configuration options |
 | `system` |  |
-| `temperature` |  |
-| `text` |  |
+| `temperature` | Sampling temperature (0-2) |
+| `text` | Text output configuration including format and verbosity |
 | `thinking` |  |
-| `tool_choice` |  |
-| `tools` |  |
-| `top_a` |  |
-| `top_k` |  |
-| `top_logprobs` |  |
-| `top_p` |  |
-| `trace` |  |
+| `tool_choice` | Tool choice configuration |
+| `tools` | Available tools for function calling |
+| `top_a` | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | Number of top log probabilities to return (0-20) |
+| `top_p` | Nucleus sampling parameter (0-1) |
+| `trace` | Metadata for observability and tracing. |
 | `truncation` |  |
-| `user` |  |
+| `user` | Unique user identifier |
 
 Operations: Create.
 
@@ -771,8 +771,8 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `total_credits` |  |
-| `total_usage` |  |
+| `total_credits` | Total credits purchased |
+| `total_usage` | Total credits used |
 
 Operations: Create, Load.
 
@@ -791,17 +791,17 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `dimensions` |  |
-| `encoding_format` |  |
-| `id` |  |
-| `input` |  |
-| `input_type` |  |
-| `model` |  |
+| `data` | List of embedding objects |
+| `dimensions` | The number of dimensions for the output embeddings |
+| `encoding_format` | The format of the output embeddings |
+| `id` | Unique identifier for the embeddings response |
+| `input` | Text, token, or multimodal input(s) to embed |
+| `input_type` | The type of input (e.g. |
+| `model` | The model used for embeddings |
 | `object` |  |
 | `provider` |  |
-| `usage` |  |
-| `user` |  |
+| `usage` | Token usage statistics |
+| `user` | A unique identifier for the end-user |
 
 Operations: Create.
 
@@ -811,40 +811,40 @@ API path: `/embeddings`
 
 | Field | Description |
 | --- | --- |
-| `architecture` |  |
-| `benchmarks` |  |
-| `canonical_slug` |  |
-| `context_length` |  |
-| `created` |  |
-| `default_parameters` |  |
-| `description` |  |
-| `endpoints` |  |
-| `expiration_date` |  |
-| `hugging_face_id` |  |
-| `id` |  |
-| `knowledge_cutoff` |  |
-| `latency_last_30m` |  |
-| `links` |  |
+| `architecture` | Model architecture information |
+| `benchmarks` | Third-party benchmark rankings for this model. |
+| `canonical_slug` | Canonical slug for the model |
+| `context_length` | Maximum context length in tokens |
+| `created` | Unix timestamp of when the model was created |
+| `default_parameters` | Default parameters for this model |
+| `description` | Description of the model |
+| `endpoints` | List of available endpoints for this model |
+| `expiration_date` | The date after which the model may be removed. |
+| `hugging_face_id` | Hugging Face model identifier, if applicable |
+| `id` | Unique identifier for the model |
+| `knowledge_cutoff` | The date up to which the model was trained on data. |
+| `latency_last_30m` | Latency percentiles in milliseconds over the last 30 minutes. |
+| `links` | Related API endpoints and resources for this model. |
 | `max_completion_tokens` |  |
 | `max_prompt_tokens` |  |
-| `model_id` |  |
+| `model_id` | The unique identifier for the model (permaslug) |
 | `model_name` |  |
-| `name` |  |
-| `per_request_limits` |  |
-| `pricing` |  |
+| `name` | Display name of the model |
+| `per_request_limits` | Per-request token limits |
+| `pricing` | Pricing information for the model |
 | `provider_name` |  |
 | `quantization` |  |
-| `reasoning` |  |
+| `reasoning` | Reasoning effort configuration. |
 | `status` |  |
-| `supported_parameters` |  |
-| `supported_voices` |  |
+| `supported_parameters` | List of supported parameters for this model |
+| `supported_voices` | List of supported voice identifiers for TTS models. |
 | `supports_implicit_caching` |  |
 | `tag` |  |
 | `throughput_last_30m` |  |
-| `top_provider` |  |
-| `uptime_last_1d` |  |
+| `top_provider` | Information about the top provider for this model |
+| `uptime_last_1d` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
 | `uptime_last_30m` |  |
-| `uptime_last_5m` |  |
+| `uptime_last_5m` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 Operations: List, Load.
 
@@ -879,50 +879,50 @@ API path: `/files`
 
 | Field | Description |
 | --- | --- |
-| `api_type` |  |
-| `app_id` |  |
-| `cache_discount` |  |
-| `cancelled` |  |
-| `created_at` |  |
-| `data_region` |  |
-| `external_user` |  |
-| `finish_reason` |  |
-| `generation_time` |  |
-| `http_referer` |  |
-| `id` |  |
-| `is_byok` |  |
-| `latency` |  |
-| `model` |  |
-| `moderation_latency` |  |
-| `native_finish_reason` |  |
-| `native_tokens_cached` |  |
-| `native_tokens_completion` |  |
-| `native_tokens_completion_images` |  |
-| `native_tokens_prompt` |  |
-| `native_tokens_reasoning` |  |
-| `num_fetches` |  |
-| `num_input_audio_prompt` |  |
-| `num_media_completion` |  |
-| `num_media_prompt` |  |
-| `num_search_results` |  |
-| `origin` |  |
-| `preset_id` |  |
-| `provider_name` |  |
-| `provider_responses` |  |
-| `request_id` |  |
-| `response_cache_source_id` |  |
-| `router` |  |
-| `service_tier` |  |
-| `session_id` |  |
-| `streamed` |  |
-| `tokens_completion` |  |
-| `tokens_prompt` |  |
-| `total_cost` |  |
-| `upstream_id` |  |
-| `upstream_inference_cost` |  |
-| `usage` |  |
-| `user_agent` |  |
-| `web_search_engine` |  |
+| `api_type` | Type of API used for the generation |
+| `app_id` | ID of the app that made the request |
+| `cache_discount` | Discount applied due to caching |
+| `cancelled` | Whether the generation was cancelled |
+| `created_at` | ISO 8601 timestamp of when the generation was created |
+| `data_region` | The data region this generation was routed through. |
+| `external_user` | External user identifier |
+| `finish_reason` | Reason the generation finished |
+| `generation_time` | Time taken for generation in milliseconds |
+| `http_referer` | Referer header from the request |
+| `id` | Unique identifier for the generation |
+| `is_byok` | Whether this used bring-your-own-key |
+| `latency` | Total latency in milliseconds |
+| `model` | Model used for the generation |
+| `moderation_latency` | Moderation latency in milliseconds |
+| `native_finish_reason` | Native finish reason as reported by provider |
+| `native_tokens_cached` | Native cached tokens as reported by provider |
+| `native_tokens_completion` | Native completion tokens as reported by provider |
+| `native_tokens_completion_images` | Native completion image tokens as reported by provider |
+| `native_tokens_prompt` | Native prompt tokens as reported by provider |
+| `native_tokens_reasoning` | Native reasoning tokens as reported by provider |
+| `num_fetches` | Number of web fetches performed |
+| `num_input_audio_prompt` | Number of audio inputs in the prompt |
+| `num_media_completion` | Number of media items in the completion |
+| `num_media_prompt` | Number of media items in the prompt |
+| `num_search_results` | Number of search results included |
+| `origin` | Origin URL of the request |
+| `preset_id` | ID of the preset used for this generation, null if no preset was used |
+| `provider_name` | Name of the provider that served the request |
+| `provider_responses` | List of provider responses for this generation, including fallback attempts |
+| `request_id` | Unique identifier grouping all generations from a single API request |
+| `response_cache_source_id` | If this generation was served from response cache, contains the original generation ID. |
+| `router` | Router used for the request (e.g., openrouter/auto) |
+| `service_tier` | Service tier the upstream provider reported running this request on, or null if it did not report one. |
+| `session_id` | Session identifier grouping multiple generations in the same session |
+| `streamed` | Whether the response was streamed |
+| `tokens_completion` | Number of tokens in the completion |
+| `tokens_prompt` | Number of tokens in the prompt |
+| `total_cost` | Total cost of the generation in USD |
+| `upstream_id` | Upstream provider's identifier for this generation |
+| `upstream_inference_cost` | Cost charged by the upstream provider |
+| `usage` | Usage amount in USD |
+| `user_agent` | User-Agent header from the request |
+| `web_search_engine` | The resolved web search engine used for this generation (e.g. |
 
 Operations: Load.
 
@@ -932,8 +932,8 @@ API path: `/generation`
 
 | Field | Description |
 | --- | --- |
-| `input` |  |
-| `output` |  |
+| `input` | The input to the generation — either a prompt string or an array of messages |
+| `output` | The output from the generation |
 
 Operations: Load.
 
@@ -943,26 +943,26 @@ API path: `/generation/content`
 
 | Field | Description |
 | --- | --- |
-| `allowed_models` |  |
-| `allowed_providers` |  |
-| `content_filter_builtins` |  |
-| `content_filters` |  |
-| `created_at` |  |
-| `description` |  |
-| `enforce_zdr` |  |
-| `enforce_zdr_anthropic` |  |
-| `enforce_zdr_google` |  |
-| `enforce_zdr_openai` |  |
-| `enforce_zdr_other` |  |
-| `enforce_zdr_xai` |  |
-| `id` |  |
-| `ignored_models` |  |
-| `ignored_providers` |  |
-| `limit_usd` |  |
-| `name` |  |
-| `reset_interval` |  |
-| `updated_at` |  |
-| `workspace_id` |  |
+| `allowed_models` | Array of model canonical_slugs (immutable identifiers) |
+| `allowed_providers` | List of allowed provider IDs |
+| `content_filter_builtins` | Builtin content filters applied to requests. |
+| `content_filters` | Custom regex content filters applied to request messages |
+| `created_at` | ISO 8601 timestamp of when the guardrail was created |
+| `description` | Description of the guardrail |
+| `enforce_zdr` | Deprecated. |
+| `enforce_zdr_anthropic` | Whether to enforce zero data retention for Anthropic models. |
+| `enforce_zdr_google` | Whether to enforce zero data retention for Google models. |
+| `enforce_zdr_openai` | Whether to enforce zero data retention for OpenAI models. |
+| `enforce_zdr_other` | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
+| `enforce_zdr_xai` | Whether to enforce zero data retention for xAI models. |
+| `id` | Unique identifier for the guardrail |
+| `ignored_models` | Array of model canonical_slugs to exclude from routing |
+| `ignored_providers` | List of provider IDs to exclude from routing |
+| `limit_usd` | Spending limit in USD |
+| `name` | Name of the guardrail |
+| `reset_interval` | Interval at which the limit resets (daily, weekly, monthly) |
+| `updated_at` | ISO 8601 timestamp of when the guardrail was last updated |
+| `workspace_id` | The workspace ID this guardrail belongs to. |
 
 Operations: Create, List, Load, Remove.
 
@@ -972,23 +972,23 @@ API path: `/guardrails`
 
 | Field | Description |
 | --- | --- |
-| `aspect_ratio` |  |
-| `background` |  |
-| `created` |  |
-| `data` |  |
-| `input_references` |  |
-| `model` |  |
-| `n` |  |
-| `output_compression` |  |
-| `output_format` |  |
-| `prompt` |  |
-| `provider` |  |
-| `quality` |  |
-| `resolution` |  |
-| `seed` |  |
-| `size` |  |
-| `stream` |  |
-| `usage` |  |
+| `aspect_ratio` | Normalized aspect ratio of the generated image. |
+| `background` | Background treatment. |
+| `created` | Unix timestamp (seconds) when the image was generated |
+| `data` | Generated images |
+| `input_references` | Reference images to guide image-to-image generation, as base64 data URLs or HTTP(S) URLs. |
+| `model` | The image generation model to use |
+| `n` | Number of images to generate (1-10). |
+| `output_compression` | Compression level (0-100) for webp/jpeg output. |
+| `output_format` | Encoding of the returned image bytes. |
+| `prompt` | Text description of the desired image |
+| `provider` | Provider routing preferences and provider-specific passthrough configuration. |
+| `quality` | Rendering quality. |
+| `resolution` | Normalized resolution tier of the generated image. |
+| `seed` | If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result. |
+| `size` | Optional. |
+| `stream` | If true, partial images are streamed as SSE events as they become available. |
+| `usage` | Token and cost usage for the image generation request, when available |
 
 Operations: Create.
 
@@ -998,13 +998,13 @@ API path: `/images`
 
 | Field | Description |
 | --- | --- |
-| `allowed_passthrough_parameters` |  |
-| `pricing` |  |
-| `provider_name` |  |
-| `provider_slug` |  |
-| `provider_tag` |  |
+| `allowed_passthrough_parameters` | Provider-specific options accepted under provider.options[provider_slug]. |
+| `pricing` | Billable pricing lines for this endpoint. |
+| `provider_name` | Provider display name |
+| `provider_slug` | Provider slug |
+| `provider_tag` | Provider tag for request-side selection |
 | `supported_parameters` |  |
-| `supports_streaming` |  |
+| `supports_streaming` | Whether this endpoint supports native SSE streaming (`stream: true` in the request). |
 
 Operations: List.
 
@@ -1015,13 +1015,13 @@ API path: `/images/models/{author}/{slug}/endpoints`
 | Field | Description |
 | --- | --- |
 | `architecture` |  |
-| `created` |  |
+| `created` | Unix timestamp (seconds) of when the model was created |
 | `description` |  |
-| `endpoints` |  |
-| `id` |  |
-| `name` |  |
-| `supported_parameters` |  |
-| `supports_streaming` |  |
+| `endpoints` | Relative URL to the full per-endpoint records for this model |
+| `id` | Model slug |
+| `name` | Display name |
+| `supported_parameters` | Union of supported parameters across every endpoint of this model. |
+| `supports_streaming` | Whether any endpoint of this model supports native SSE streaming on the dedicated Image API (i.e. |
 
 Operations: List.
 
@@ -1058,13 +1058,13 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `assigned_by` |  |
-| `created_at` |  |
-| `guardrail_id` |  |
-| `id` |  |
-| `key_hash` |  |
-| `key_label` |  |
-| `key_name` |  |
+| `assigned_by` | User ID of who made the assignment |
+| `created_at` | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | ID of the guardrail |
+| `id` | Unique identifier for the assignment |
+| `key_hash` | Hash of the assigned API key |
+| `key_label` | Label of the API key |
+| `key_name` | Name of the API key |
 
 Operations: List.
 
@@ -1074,12 +1074,12 @@ API path: `/guardrails/{id}/assignments/keys`
 
 | Field | Description |
 | --- | --- |
-| `assigned_by` |  |
-| `created_at` |  |
-| `guardrail_id` |  |
-| `id` |  |
-| `organization_id` |  |
-| `user_id` |  |
+| `assigned_by` | User ID of who made the assignment |
+| `created_at` | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | ID of the guardrail |
+| `id` | Unique identifier for the assignment |
+| `organization_id` | Organization ID |
+| `user_id` | Clerk user ID of the assigned member |
 
 Operations: List.
 
@@ -1089,8 +1089,8 @@ API path: `/guardrails/{id}/assignments/members`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `total_count` |  |
+| `data` | List of observability destinations. |
+| `total_count` | Total number of destinations matching the filters. |
 
 Operations: List.
 
@@ -1135,12 +1135,12 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
-| `id` |  |
-| `limit_usd` |  |
-| `reset_interval` |  |
-| `updated_at` |  |
-| `workspace_id` |  |
+| `created_at` | ISO 8601 timestamp of when the budget was created |
+| `id` | Unique identifier for the budget |
+| `limit_usd` | Spending limit in USD for this interval |
+| `reset_interval` | Interval at which spend resets. |
+| `updated_at` | ISO 8601 timestamp of when the budget was last updated |
+| `workspace_id` | ID of the workspace the budget belongs to |
 
 Operations: List.
 
@@ -1150,11 +1150,11 @@ API path: `/workspaces/{id}/budgets`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
-| `id` |  |
-| `role` |  |
-| `user_id` |  |
-| `workspace_id` |  |
+| `created_at` | ISO 8601 timestamp of when the membership was created |
+| `id` | Unique identifier for the workspace membership |
+| `role` | Role of the member in the workspace |
+| `user_id` | Clerk user ID of the member |
+| `workspace_id` | ID of the workspace |
 
 Operations: List.
 
@@ -1173,23 +1173,23 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `cache_control` |  |
+| `cache_control` | Enable automatic prompt caching. |
 | `context_management` |  |
-| `fallbacks` |  |
+| `fallbacks` | Fallback models to try if the primary model fails or refuses, in order. |
 | `max_tokens` |  |
 | `messages` |  |
 | `metadata` |  |
 | `model` |  |
 | `models` |  |
-| `output_config` |  |
-| `plugins` |  |
-| `provider` |  |
-| `route` |  |
+| `output_config` | Configuration for controlling output behavior. |
+| `plugins` | Plugins you want to enable for this request, including their settings. |
+| `provider` | When multiple model providers are available, optionally indicate your routing preference. |
+| `route` | **DEPRECATED** Use providers.sort.partition instead. |
 | `service_tier` |  |
-| `session_id` |  |
+| `session_id` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
 | `speed` |  |
 | `stop_sequences` |  |
-| `stop_server_tools_when` |  |
+| `stop_server_tools_when` | Stop conditions for the server-tool agent loop. |
 | `stream` |  |
 | `system` |  |
 | `temperature` |  |
@@ -1198,8 +1198,8 @@ API path: ``
 | `tools` |  |
 | `top_k` |  |
 | `top_p` |  |
-| `trace` |  |
-| `user` |  |
+| `trace` | Metadata for observability and tracing. |
+| `user` | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
 Operations: Create.
 
@@ -1218,25 +1218,25 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `architecture` |  |
-| `benchmarks` |  |
-| `canonical_slug` |  |
-| `context_length` |  |
-| `created` |  |
-| `default_parameters` |  |
-| `description` |  |
-| `expiration_date` |  |
-| `hugging_face_id` |  |
-| `id` |  |
-| `knowledge_cutoff` |  |
-| `links` |  |
-| `name` |  |
-| `per_request_limits` |  |
-| `pricing` |  |
-| `reasoning` |  |
-| `supported_parameters` |  |
-| `supported_voices` |  |
-| `top_provider` |  |
+| `architecture` | Model architecture information |
+| `benchmarks` | Third-party benchmark rankings for this model. |
+| `canonical_slug` | Canonical slug for the model |
+| `context_length` | Maximum context length in tokens |
+| `created` | Unix timestamp of when the model was created |
+| `default_parameters` | Default parameters for this model |
+| `description` | Description of the model |
+| `expiration_date` | The date after which the model may be removed. |
+| `hugging_face_id` | Hugging Face model identifier, if applicable |
+| `id` | Unique identifier for the model |
+| `knowledge_cutoff` | The date up to which the model was trained on data. |
+| `links` | Related API endpoints and resources for this model. |
+| `name` | Display name of the model |
+| `per_request_limits` | Per-request token limits |
+| `pricing` | Pricing information for the model |
+| `reasoning` | Reasoning effort configuration. |
+| `supported_parameters` | List of supported parameters for this model |
+| `supported_voices` | List of supported voice identifiers for TTS models. |
+| `top_provider` | Information about the top provider for this model |
 
 Operations: List, Load.
 
@@ -1246,7 +1246,7 @@ API path: `/embeddings/models`
 
 | Field | Description |
 | --- | --- |
-| `count` |  |
+| `count` | Total number of available models |
 
 Operations: Load.
 
@@ -1256,25 +1256,25 @@ API path: `/models/count`
 
 | Field | Description |
 | --- | --- |
-| `architecture` |  |
-| `benchmarks` |  |
-| `canonical_slug` |  |
-| `context_length` |  |
-| `created` |  |
-| `default_parameters` |  |
-| `description` |  |
-| `expiration_date` |  |
-| `hugging_face_id` |  |
-| `id` |  |
-| `knowledge_cutoff` |  |
-| `links` |  |
-| `name` |  |
-| `per_request_limits` |  |
-| `pricing` |  |
-| `reasoning` |  |
-| `supported_parameters` |  |
-| `supported_voices` |  |
-| `top_provider` |  |
+| `architecture` | Model architecture information |
+| `benchmarks` | Third-party benchmark rankings for this model. |
+| `canonical_slug` | Canonical slug for the model |
+| `context_length` | Maximum context length in tokens |
+| `created` | Unix timestamp of when the model was created |
+| `default_parameters` | Default parameters for this model |
+| `description` | Description of the model |
+| `expiration_date` | The date after which the model may be removed. |
+| `hugging_face_id` | Hugging Face model identifier, if applicable |
+| `id` | Unique identifier for the model |
+| `knowledge_cutoff` | The date up to which the model was trained on data. |
+| `links` | Related API endpoints and resources for this model. |
+| `name` | Display name of the model |
+| `per_request_limits` | Per-request token limits |
+| `pricing` | Pricing information for the model |
+| `reasoning` | Reasoning effort configuration. |
+| `supported_parameters` | List of supported parameters for this model |
+| `supported_voices` | List of supported voice identifiers for TTS models. |
+| `top_provider` | Information about the top provider for this model |
 
 Operations: List.
 
@@ -1284,23 +1284,23 @@ API path: `/models/user`
 
 | Field | Description |
 | --- | --- |
-| `app_id` |  |
-| `callback_url` |  |
-| `code` |  |
-| `code_challenge` |  |
-| `code_challenge_method` |  |
-| `code_verifier` |  |
-| `created_at` |  |
-| `expires_at` |  |
-| `id` |  |
-| `key` |  |
-| `key_label` |  |
-| `limit` |  |
-| `spawn_agent` |  |
-| `spawn_cloud` |  |
-| `usage_limit_type` |  |
-| `user_id` |  |
-| `workspace_id` |  |
+| `app_id` | The application ID associated with this auth code |
+| `callback_url` | The callback URL to redirect to after authorization. |
+| `code` | The authorization code received from the OAuth redirect |
+| `code_challenge` | PKCE code challenge for enhanced security |
+| `code_challenge_method` | The method used to generate the code challenge |
+| `code_verifier` | The code verifier if code_challenge was used in the authorization request |
+| `created_at` | ISO 8601 timestamp of when the auth code was created |
+| `expires_at` | Optional expiration time for the API key to be created |
+| `id` | The authorization code ID to use in the exchange request |
+| `key` | The API key to use for OpenRouter requests |
+| `key_label` | Optional custom label for the API key. |
+| `limit` | Credit limit for the API key to be created |
+| `spawn_agent` | Agent identifier for spawn telemetry |
+| `spawn_cloud` | Cloud identifier for spawn telemetry |
+| `usage_limit_type` | Optional credit limit reset interval. |
+| `user_id` | User ID associated with the API key |
+| `workspace_id` | Optional workspace ID to associate the API key with |
 
 Operations: Create.
 
@@ -1321,45 +1321,45 @@ API path: `/observability/destinations/{id}`
 | Field | Description |
 | --- | --- |
 | `background` |  |
-| `cache_control` |  |
-| `debug` |  |
+| `cache_control` | Enable automatic prompt caching. |
+| `debug` | Debug options for inspecting request transformations (streaming only) |
 | `frequency_penalty` |  |
-| `image_config` |  |
+| `image_config` | Provider-specific image configuration options. |
 | `include` |  |
-| `input` |  |
+| `input` | Input for a response request - can be a string or array of items |
 | `instructions` |  |
 | `max_output_tokens` |  |
 | `max_tool_calls` |  |
-| `metadata` |  |
-| `modalities` |  |
+| `metadata` | Metadata key-value pairs for the request. |
+| `modalities` | Output modalities for the response. |
 | `model` |  |
 | `models` |  |
 | `parallel_tool_calls` |  |
-| `plugins` |  |
+| `plugins` | Plugins you want to enable for this request, including their settings. |
 | `presence_penalty` |  |
-| `previous_response_id` |  |
+| `previous_response_id` | Not supported. |
 | `prompt` |  |
 | `prompt_cache_key` |  |
-| `prompt_cache_options` |  |
-| `provider` |  |
-| `reasoning` |  |
-| `route` |  |
+| `prompt_cache_options` | Request-level prompt-cache controls. |
+| `provider` | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | Configuration for reasoning mode in the response |
+| `route` | **DEPRECATED** Use providers.sort.partition instead. |
 | `safety_identifier` |  |
 | `service_tier` |  |
-| `session_id` |  |
-| `stop_server_tools_when` |  |
+| `session_id` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop_server_tools_when` | Stop conditions for the server-tool agent loop. |
 | `store` |  |
 | `stream` |  |
 | `temperature` |  |
-| `text` |  |
+| `text` | Text output configuration including format and verbosity |
 | `tool_choice` |  |
 | `tools` |  |
 | `top_k` |  |
 | `top_logprobs` |  |
 | `top_p` |  |
-| `trace` |  |
+| `trace` | Metadata for observability and tracing. |
 | `truncation` |  |
-| `user` |  |
+| `user` | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
 Operations: Create.
 
@@ -1369,11 +1369,11 @@ API path: `/responses`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `first_name` |  |
-| `id` |  |
-| `last_name` |  |
-| `role` |  |
+| `email` | Email address of the member |
+| `first_name` | First name of the member |
+| `id` | User ID of the organization member |
+| `last_name` | Last name of the member |
+| `role` | Role of the member in the organization |
 
 Operations: List.
 
@@ -1386,12 +1386,12 @@ API path: `/organization/members`
 | `created_at` |  |
 | `creator_user_id` |  |
 | `description` |  |
-| `designated_version` |  |
+| `designated_version` | A specific version of a preset, containing config and optional system prompt. |
 | `designated_version_id` |  |
 | `id` |  |
 | `name` |  |
 | `slug` |  |
-| `status` |  |
+| `status` | The status of a preset. |
 | `status_updated_at` |  |
 | `updated_at` |  |
 | `workspace_id` |  |
@@ -1421,13 +1421,13 @@ API path: `/presets/{slug}/versions/{version}`
 
 | Field | Description |
 | --- | --- |
-| `datacenters` |  |
-| `headquarters` |  |
-| `name` |  |
-| `privacy_policy_url` |  |
-| `slug` |  |
-| `status_page_url` |  |
-| `terms_of_service_url` |  |
+| `datacenters` | ISO 3166-1 Alpha-2 country codes of the provider datacenter locations |
+| `headquarters` | ISO 3166-1 Alpha-2 country code of the provider headquarters |
+| `name` | Display name of the provider |
+| `privacy_policy_url` | URL to the provider's privacy policy |
+| `slug` | URL-friendly identifier for the provider |
+| `status_page_url` | URL to the provider's status page |
+| `terms_of_service_url` | URL to the provider's terms of service |
 
 Operations: List.
 
@@ -1446,9 +1446,9 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `date` |  |
-| `model_permaslug` |  |
-| `total_tokens` |  |
+| `date` | UTC calendar date the row is aggregated over (YYYY-MM-DD). |
+| `model_permaslug` | Model variant permaslug (e.g. |
+| `total_tokens` | Sum of `prompt_tokens + completion_tokens` for the day, returned as a decimal string so 64-bit values are not truncated. |
 
 Operations: List.
 
@@ -1467,14 +1467,14 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `documents` |  |
-| `id` |  |
-| `model` |  |
-| `provider` |  |
-| `query` |  |
-| `results` |  |
-| `top_n` |  |
-| `usage` |  |
+| `documents` | The list of documents to rerank. |
+| `id` | Unique identifier for the rerank response (ORID format) |
+| `model` | The model used for reranking |
+| `provider` | The provider that served the rerank request |
+| `query` | The search query to rerank documents against |
+| `results` | List of rerank results sorted by relevance |
+| `top_n` | Number of most relevant documents to return |
+| `usage` | Usage statistics |
 
 Operations: Create.
 
@@ -1502,19 +1502,19 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `duration` |  |
-| `input_audio` |  |
-| `language` |  |
-| `model` |  |
-| `provider` |  |
-| `response_format` |  |
-| `segments` |  |
-| `task` |  |
-| `temperature` |  |
-| `text` |  |
-| `timestamp_granularities` |  |
-| `usage` |  |
-| `words` |  |
+| `duration` | Duration of the input audio in seconds, present when response_format is verbose_json |
+| `input_audio` | Base64-encoded audio to transcribe |
+| `language` | Detected or forced language, present when response_format is verbose_json |
+| `model` | STT model identifier |
+| `provider` | Provider-specific passthrough configuration |
+| `response_format` | Output format. |
+| `segments` | Timestamped transcript segments, present when response_format is verbose_json |
+| `task` | The task performed, present when response_format is verbose_json |
+| `temperature` | Sampling temperature for transcription |
+| `text` | The transcribed text |
+| `timestamp_granularities` | Timestamp detail levels to include when response_format is "verbose_json". |
+| `usage` | Aggregated usage statistics for the request |
+| `words` | Timestamped words, present when the provider returns word-level timestamps |
 
 Operations: Create.
 
@@ -1524,10 +1524,10 @@ API path: `/audio/transcriptions`
 
 | Field | Description |
 | --- | --- |
-| `category` |  |
-| `comment` |  |
-| `generation_id` |  |
-| `success` |  |
+| `category` | The category of feedback being reported |
+| `comment` | An optional free-text comment describing the feedback |
+| `generation_id` | The generation to submit feedback on |
+| `success` | Whether the feedback was recorded |
 
 Operations: Create.
 
@@ -1537,10 +1537,10 @@ API path: `/generation/feedback`
 
 | Field | Description |
 | --- | --- |
-| `as_of` |  |
-| `classifications` |  |
-| `macro_categories` |  |
-| `window_days` |  |
+| `as_of` | UTC date (YYYY-MM-DD) of the window upper bound (yesterday). |
+| `classifications` | Per-task classification market-share data, sorted by usage_share descending. |
+| `macro_categories` | Aggregate market-share data per macro-category (code, data, agent, general). |
+| `window_days` | Number of trailing days covered by this snapshot. |
 
 Operations: Load.
 
@@ -1559,12 +1559,12 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `input` |  |
-| `model` |  |
-| `provider` |  |
-| `response_format` |  |
-| `speed` |  |
-| `voice` |  |
+| `input` | Text to synthesize |
+| `model` | TTS model identifier |
+| `provider` | Provider-specific passthrough configuration |
+| `response_format` | Audio output format |
+| `speed` | Playback speed multiplier. |
+| `voice` | Voice identifier (provider-specific). |
 
 Operations: Create.
 
@@ -1585,12 +1585,12 @@ API path: `/benchmarks`
 
 | Field | Description |
 | --- | --- |
-| `allowed_models` |  |
-| `allowed_user_ids` |  |
-| `disabled` |  |
-| `is_fallback` |  |
-| `key` |  |
-| `name` |  |
+| `allowed_models` | Optional allowlist of model slugs this credential may be used for. |
+| `allowed_user_ids` | Optional allowlist of user IDs that may use this credential. |
+| `disabled` | Whether this credential is disabled. |
+| `is_fallback` | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
+| `key` | A new raw provider API key to rotate the credential in-place. |
+| `name` | Optional human-readable name for the credential. |
 
 Operations: Update.
 
@@ -1600,22 +1600,22 @@ API path: `/byok/{id}`
 
 | Field | Description |
 | --- | --- |
-| `allowed_models` |  |
-| `allowed_providers` |  |
-| `content_filter_builtins` |  |
-| `content_filters` |  |
-| `description` |  |
-| `enforce_zdr` |  |
-| `enforce_zdr_anthropic` |  |
-| `enforce_zdr_google` |  |
-| `enforce_zdr_openai` |  |
-| `enforce_zdr_other` |  |
-| `enforce_zdr_xai` |  |
-| `ignored_models` |  |
-| `ignored_providers` |  |
-| `limit_usd` |  |
-| `name` |  |
-| `reset_interval` |  |
+| `allowed_models` | Array of model identifiers (slug or canonical_slug accepted) |
+| `allowed_providers` | New list of allowed provider IDs |
+| `content_filter_builtins` | Builtin content filters to apply. |
+| `content_filters` | Custom regex content filters to apply. |
+| `description` | New description for the guardrail |
+| `enforce_zdr` | Deprecated. |
+| `enforce_zdr_anthropic` | Whether to enforce zero data retention for Anthropic models. |
+| `enforce_zdr_google` | Whether to enforce zero data retention for Google models. |
+| `enforce_zdr_openai` | Whether to enforce zero data retention for OpenAI models. |
+| `enforce_zdr_other` | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
+| `enforce_zdr_xai` | Whether to enforce zero data retention for xAI models. |
+| `ignored_models` | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
+| `ignored_providers` | List of provider IDs to exclude from routing |
+| `limit_usd` | New spending limit in USD |
+| `name` | New name for the guardrail |
+| `reset_interval` | Interval at which the limit resets (daily, weekly, monthly) |
 
 Operations: Update.
 
@@ -1625,13 +1625,13 @@ API path: `/guardrails/{id}`
 
 | Field | Description |
 | --- | --- |
-| `api_key_hashes` |  |
-| `config` |  |
-| `enabled` |  |
+| `api_key_hashes` | Optional allowlist of OpenRouter API key hashes. |
+| `config` | Provider-specific configuration fields to update. |
+| `enabled` | Whether the destination is enabled. |
 | `filter_rules` |  |
-| `name` |  |
-| `privacy_mode` |  |
-| `sampling_rate` |  |
+| `name` | Human-readable name for the destination. |
+| `privacy_mode` | When true, request/response bodies are not forwarded — only metadata. |
+| `sampling_rate` | Sampling rate between 0.0001 and 1 (1 = 100%). |
 
 Operations: Update.
 
@@ -1641,21 +1641,21 @@ API path: `/observability/destinations/{id}`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
-| `created_by` |  |
-| `default_image_model` |  |
-| `default_provider_sort` |  |
-| `default_text_model` |  |
-| `description` |  |
-| `id` |  |
-| `io_logging_api_key_ids` |  |
-| `io_logging_sampling_rate` |  |
-| `is_data_discount_logging_enabled` |  |
-| `is_observability_broadcast_enabled` |  |
-| `is_observability_io_logging_enabled` |  |
-| `name` |  |
-| `slug` |  |
-| `updated_at` |  |
+| `created_at` | ISO 8601 timestamp of when the workspace was created |
+| `created_by` | User ID of the workspace creator |
+| `default_image_model` | Default image model for this workspace |
+| `default_provider_sort` | Default provider sort preference (price, throughput, latency, exacto) |
+| `default_text_model` | Default text model for this workspace |
+| `description` | Description of the workspace |
+| `id` | Unique identifier for the workspace |
+| `io_logging_api_key_ids` | Optional array of API key IDs to filter I/O logging |
+| `io_logging_sampling_rate` | Sampling rate for I/O logging (0.0001-1) |
+| `is_data_discount_logging_enabled` | Whether data discount logging is enabled |
+| `is_observability_broadcast_enabled` | Whether broadcast is enabled |
+| `is_observability_io_logging_enabled` | Whether private logging is enabled |
+| `name` | Name for the new workspace |
+| `slug` | URL-friendly slug (lowercase alphanumeric segments separated by single hyphens, no leading/trailing hyphens) |
+| `updated_at` | ISO 8601 timestamp of when the workspace was last updated |
 
 Operations: Create, List, Update.
 
@@ -1665,7 +1665,7 @@ API path: `/workspaces`
 
 | Field | Description |
 | --- | --- |
-| `limit_usd` |  |
+| `limit_usd` | Spending limit in USD. |
 
 Operations: Update.
 
@@ -1693,25 +1693,25 @@ API path: ``
 
 | Field | Description |
 | --- | --- |
-| `aspect_ratio` |  |
-| `callback_url` |  |
-| `duration` |  |
+| `aspect_ratio` | Aspect ratio of the generated video |
+| `callback_url` | URL to receive a webhook notification when the video generation job completes. |
+| `duration` | Duration of the generated video in seconds |
 | `error` |  |
-| `frame_images` |  |
-| `generate_audio` |  |
-| `generation_id` |  |
+| `frame_images` | Images to use as the first and/or last frame of the generated video. |
+| `generate_audio` | Whether to generate audio alongside the video. |
+| `generation_id` | The generation ID associated with this video generation job. |
 | `id` |  |
-| `input_references` |  |
+| `input_references` | Reference assets to guide video generation. |
 | `model` |  |
 | `polling_url` |  |
-| `prompt` |  |
-| `provider` |  |
-| `resolution` |  |
-| `seed` |  |
-| `size` |  |
+| `prompt` | Text prompt describing the video to generate. |
+| `provider` | Provider-specific passthrough configuration |
+| `resolution` | Resolution of the generated video |
+| `seed` | If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result. |
+| `size` | Exact pixel dimensions of the generated video in "WIDTHxHEIGHT" format (e.g. |
 | `status` |  |
 | `unsigned_urls` |  |
-| `usage` |  |
+| `usage` | Usage and cost information for the video generation. |
 
 Operations: Create, Load.
 
@@ -1730,21 +1730,21 @@ API path: `/videos/{jobId}/content`
 
 | Field | Description |
 | --- | --- |
-| `allowed_passthrough_parameters` |  |
-| `canonical_slug` |  |
-| `created` |  |
-| `description` |  |
-| `generate_audio` |  |
-| `hugging_face_id` |  |
-| `id` |  |
-| `name` |  |
-| `pricing_skus` |  |
-| `seed` |  |
-| `supported_aspect_ratios` |  |
-| `supported_durations` |  |
-| `supported_frame_images` |  |
-| `supported_resolutions` |  |
-| `supported_sizes` |  |
+| `allowed_passthrough_parameters` | List of parameters that are allowed to be passed through to the provider |
+| `canonical_slug` | Canonical slug for the model |
+| `created` | Unix timestamp of when the model was created |
+| `description` | Description of the model |
+| `generate_audio` | Whether the model supports generating audio alongside video |
+| `hugging_face_id` | Hugging Face model identifier, if applicable |
+| `id` | Unique identifier for the model |
+| `name` | Display name of the model |
+| `pricing_skus` | Pricing SKUs with provider prefix stripped, values as strings |
+| `seed` | Whether the model supports deterministic generation via seed parameter |
+| `supported_aspect_ratios` | Supported output aspect ratios |
+| `supported_durations` | Supported video durations in seconds |
+| `supported_frame_images` | Supported frame image types (e.g. |
+| `supported_resolutions` | Supported output resolutions |
+| `supported_sizes` | Supported output sizes (width x height) |
 
 Operations: List.
 
@@ -1754,21 +1754,21 @@ API path: `/videos/models`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
-| `created_by` |  |
-| `default_image_model` |  |
-| `default_provider_sort` |  |
-| `default_text_model` |  |
-| `description` |  |
-| `id` |  |
-| `io_logging_api_key_ids` |  |
-| `io_logging_sampling_rate` |  |
-| `is_data_discount_logging_enabled` |  |
-| `is_observability_broadcast_enabled` |  |
-| `is_observability_io_logging_enabled` |  |
-| `name` |  |
-| `slug` |  |
-| `updated_at` |  |
+| `created_at` | ISO 8601 timestamp of when the workspace was created |
+| `created_by` | User ID of the workspace creator |
+| `default_image_model` | Default image model for this workspace |
+| `default_provider_sort` | Default provider sort preference (price, throughput, latency, exacto) |
+| `default_text_model` | Default text model for this workspace |
+| `description` | Description of the workspace |
+| `id` | Unique identifier for the workspace |
+| `io_logging_api_key_ids` | Optional array of API key IDs to filter I/O logging. |
+| `io_logging_sampling_rate` | Sampling rate for I/O logging (0.0001-1). |
+| `is_data_discount_logging_enabled` | Whether data discount logging is enabled for this workspace |
+| `is_observability_broadcast_enabled` | Whether broadcast is enabled for this workspace |
+| `is_observability_io_logging_enabled` | Whether private logging is enabled for this workspace |
+| `name` | Name of the workspace |
+| `slug` | URL-friendly slug for the workspace |
+| `updated_at` | ISO 8601 timestamp of when the workspace was last updated |
 
 Operations: Load, Remove.
 
@@ -1811,17 +1811,17 @@ Create an instance: `activity = client.Activity`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `byok_usage_inference` | `Float` |  |
-| `completion_tokens` | `Integer` |  |
-| `date` | `String` |  |
-| `endpoint_id` | `String` |  |
-| `model` | `String` |  |
-| `model_permaslug` | `String` |  |
-| `prompt_tokens` | `Integer` |  |
-| `provider_name` | `String` |  |
-| `reasoning_tokens` | `Integer` |  |
-| `requests` | `Integer` |  |
-| `usage` | `Float` |  |
+| `byok_usage_inference` | `Float` | BYOK inference cost in USD (external credits spent) |
+| `completion_tokens` | `Integer` | Total completion tokens generated |
+| `date` | `String` | Date of the activity (YYYY-MM-DD format) |
+| `endpoint_id` | `String` | Unique identifier for the endpoint |
+| `model` | `String` | Model slug (e.g., "openai/gpt-4.1") |
+| `model_permaslug` | `String` | Model permaslug (e.g., "openai/gpt-4.1-2025-04-14") |
+| `prompt_tokens` | `Integer` | Total prompt tokens used |
+| `provider_name` | `String` | Name of the provider serving this endpoint |
+| `reasoning_tokens` | `Integer` | Total reasoning tokens used |
+| `requests` | `Integer` | Number of requests made |
+| `usage` | `Float` | Total cost in USD (OpenRouter credits spent) |
 
 #### Example: List
 
@@ -1854,31 +1854,31 @@ Create an instance: `api_key = client.ApiKey`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `byok_usage` | `Float` |  |
-| `byok_usage_daily` | `Float` |  |
-| `byok_usage_monthly` | `Float` |  |
-| `byok_usage_weekly` | `Float` |  |
-| `created_at` | `String` |  |
-| `creator_user_id` | `Object` |  |
-| `disabled` | `Boolean` |  |
-| `expires_at` | `Object` |  |
-| `hash` | `String` |  |
-| `include_byok_in_limit` | `Boolean` |  |
-| `is_free_tier` | `Boolean` |  |
-| `is_management_key` | `Boolean` |  |
-| `is_provisioning_key` | `Boolean` |  |
-| `label` | `String` |  |
-| `limit` | `Object` |  |
-| `limit_remaining` | `Object` |  |
-| `limit_reset` | `Object` |  |
-| `name` | `String` |  |
-| `rate_limit` | `Hash` |  |
-| `updated_at` | `Object` |  |
-| `usage` | `Float` |  |
-| `usage_daily` | `Float` |  |
-| `usage_monthly` | `Float` |  |
-| `usage_weekly` | `Float` |  |
-| `workspace_id` | `String` |  |
+| `byok_usage` | `Float` | Total external BYOK usage (in USD) for the API key |
+| `byok_usage_daily` | `Float` | External BYOK usage (in USD) for the current UTC day |
+| `byok_usage_monthly` | `Float` | External BYOK usage (in USD) for current UTC month |
+| `byok_usage_weekly` | `Float` | External BYOK usage (in USD) for the current UTC week (Monday-Sunday) |
+| `created_at` | `String` | ISO 8601 timestamp of when the API key was created |
+| `creator_user_id` | `Object` | The user ID of the key creator. |
+| `disabled` | `Boolean` | Whether the API key is disabled |
+| `expires_at` | `Object` | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
+| `hash` | `String` | Unique hash identifier for the API key |
+| `include_byok_in_limit` | `Boolean` | Whether to include external BYOK usage in the credit limit |
+| `is_free_tier` | `Boolean` | Whether this is a free tier API key |
+| `is_management_key` | `Boolean` | Whether this is a management key |
+| `is_provisioning_key` | `Boolean` | Whether this is a management key |
+| `label` | `String` | Human-readable label for the API key |
+| `limit` | `Object` | Spending limit for the API key in USD |
+| `limit_remaining` | `Object` | Remaining spending limit in USD |
+| `limit_reset` | `Object` | Type of limit reset for the API key |
+| `name` | `String` | Name of the API key |
+| `rate_limit` | `Hash` | Legacy rate limit information about a key. |
+| `updated_at` | `Object` | ISO 8601 timestamp of when the API key was last updated |
+| `usage` | `Float` | Total OpenRouter credit usage (in USD) for the API key |
+| `usage_daily` | `Float` | OpenRouter credit usage (in USD) for the current UTC day |
+| `usage_monthly` | `Float` | OpenRouter credit usage (in USD) for the current UTC month |
+| `usage_weekly` | `Float` | OpenRouter credit usage (in USD) for the current UTC week (Monday-Sunday) |
+| `workspace_id` | `String` | The workspace ID this API key belongs to. |
 
 #### Example: Load
 
@@ -1940,11 +1940,11 @@ Create an instance: `app_ranking = client.AppRanking`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `app_id` | `Integer` |  |
-| `app_name` | `String` |  |
-| `rank` | `Integer` |  |
-| `total_requests` | `Integer` |  |
-| `total_tokens` | `String` |  |
+| `app_id` | `Integer` | Stable numeric identifier of the app on OpenRouter. |
+| `app_name` | `String` | Public display name of the app. |
+| `rank` | `Integer` | 1-based position of the app within this response, per the requested `sort`. |
+| `total_requests` | `Integer` | Number of requests attributed to the app inside the date window. |
+| `total_tokens` | `String` | Sum of `prompt_tokens + completion_tokens` attributed to the app inside the date window, returned as a decimal string so 64-bit values are not truncated. |
 
 #### Example: List
 
@@ -1975,21 +1975,21 @@ Create an instance: `beta_analytics = client.BetaAnalytics`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cachedAt` | `Float` |  |
-| `classifier_dimensions` | `Hash` |  |
-| `classifier_filters` | `Hash` |  |
+| `classifier_dimensions` | `Hash` | Group results by custom classifier tags, breaking down metrics by the specified dimension values. |
+| `classifier_filters` | `Hash` | Filter results to generations with specific classifier tag values. |
 | `data` | `Array` |  |
 | `dimensions` | `Array` |  |
 | `filters` | `Array` |  |
 | `granularities` | `Array` |  |
-| `granularity` | `String` |  |
-| `group_limit` | `Integer` |  |
-| `limit` | `Integer` |  |
+| `granularity` | `String` | Time granularity |
+| `group_limit` | `Integer` | Maximum rows per distinct combination of dimensions. |
+| `limit` | `Integer` | Maximum total rows returned. |
 | `metadata` | `Hash` |  |
 | `metrics` | `Array` |  |
 | `operators` | `Array` |  |
 | `order_by` | `Hash` |  |
 | `time_range` | `Hash` |  |
-| `warnings` | `Array` |  |
+| `warnings` | `Array` | Warnings about filter resolution issues (e.g. |
 
 #### Example: Load
 
@@ -2035,9 +2035,9 @@ Create an instance: `bulk_add_workspace_member = client.BulkAddWorkspaceMember`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `added_count` | `Integer` |  |
-| `data` | `Array` |  |
-| `user_ids` | `Array` |  |
+| `added_count` | `Integer` | Number of workspace memberships created or updated |
+| `data` | `Array` | List of added workspace memberships |
+| `user_ids` | `Array` | List of user IDs to add to the workspace. |
 
 #### Example: Create
 
@@ -2065,8 +2065,8 @@ Create an instance: `bulk_assign_key = client.BulkAssignKey`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assigned_count` | `Integer` |  |
-| `key_hashes` | `Array` |  |
+| `assigned_count` | `Integer` | Number of keys successfully assigned |
+| `key_hashes` | `Array` | Array of API key hashes to assign to the guardrail |
 
 #### Example: Create
 
@@ -2093,8 +2093,8 @@ Create an instance: `bulk_assign_member = client.BulkAssignMember`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assigned_count` | `Integer` |  |
-| `member_user_ids` | `Array` |  |
+| `assigned_count` | `Integer` | Number of members successfully assigned |
+| `member_user_ids` | `Array` | Array of member user IDs to assign to the guardrail |
 
 #### Example: Create
 
@@ -2121,8 +2121,8 @@ Create an instance: `bulk_remove_workspace_member = client.BulkRemoveWorkspaceMe
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `removed_count` | `Integer` |  |
-| `user_ids` | `Array` |  |
+| `removed_count` | `Integer` | Number of members removed |
+| `user_ids` | `Array` | List of user IDs to remove from the workspace |
 
 #### Example: Create
 
@@ -2149,8 +2149,8 @@ Create an instance: `bulk_unassign_key = client.BulkUnassignKey`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `key_hashes` | `Array` |  |
-| `unassigned_count` | `Integer` |  |
+| `key_hashes` | `Array` | Array of API key hashes to unassign from the guardrail |
+| `unassigned_count` | `Integer` | Number of keys successfully unassigned |
 
 #### Example: Create
 
@@ -2177,8 +2177,8 @@ Create an instance: `bulk_unassign_member = client.BulkUnassignMember`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `member_user_ids` | `Array` |  |
-| `unassigned_count` | `Integer` |  |
+| `member_user_ids` | `Array` | Array of member user IDs to unassign from the guardrail |
+| `unassigned_count` | `Integer` | Number of members successfully unassigned |
 
 #### Example: Create
 
@@ -2208,19 +2208,19 @@ Create an instance: `byok = client.Byok`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_api_key_hashes` | `Object` |  |
-| `allowed_models` | `Object` |  |
-| `allowed_user_ids` | `Object` |  |
-| `created_at` | `String` |  |
-| `disabled` | `Boolean` |  |
-| `id` | `String` |  |
-| `is_fallback` | `Boolean` |  |
-| `key` | `String` |  |
-| `label` | `String` |  |
-| `name` | `Object` |  |
-| `provider` | `String` |  |
-| `sort_order` | `Integer` |  |
-| `workspace_id` | `String` |  |
+| `allowed_api_key_hashes` | `Object` | Optional allowlist of OpenRouter API key hashes (`api_keys.hash`) that may use this credential. |
+| `allowed_models` | `Object` | Optional allowlist of model slugs this credential may be used for. |
+| `allowed_user_ids` | `Object` | Optional allowlist of user IDs that may use this credential. |
+| `created_at` | `String` | ISO timestamp of when the credential was created. |
+| `disabled` | `Boolean` | Whether this credential is currently disabled. |
+| `id` | `String` | Stable public identifier for this BYOK credential. |
+| `is_fallback` | `Boolean` | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
+| `key` | `String` | The raw provider API key or credential. |
+| `label` | `String` | Short masked snippet of the key (e.g. |
+| `name` | `Object` | Optional human-readable name for the credential. |
+| `provider` | `String` | The upstream provider this credential authenticates against, as a lowercase slug (e.g. |
+| `sort_order` | `Integer` | Position within the provider — credentials are tried in ascending sort order. |
+| `workspace_id` | `String` | ID of the workspace this credential belongs to. |
 
 #### Example: Load
 
@@ -2270,55 +2270,55 @@ Create an instance: `chat_result = client.ChatResult`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cache_control` | `Hash` |  |
-| `choices` | `Array` |  |
-| `created` | `Integer` |  |
-| `debug` | `Hash` |  |
-| `frequency_penalty` | `Object` |  |
-| `id` | `String` |  |
-| `image_config` | `Hash` |  |
-| `logit_bias` | `Object` |  |
-| `logprobs` | `Object` |  |
-| `max_completion_tokens` | `Object` |  |
-| `max_tokens` | `Object` |  |
-| `messages` | `Array` |  |
-| `metadata` | `Hash` |  |
-| `min_p` | `Object` |  |
-| `modalities` | `Array` |  |
-| `model` | `String` |  |
-| `models` | `Array` |  |
+| `cache_control` | `Hash` | Enable automatic prompt caching. |
+| `choices` | `Array` | List of completion choices |
+| `created` | `Integer` | Unix timestamp of creation |
+| `debug` | `Hash` | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `Object` | Frequency penalty (-2.0 to 2.0) |
+| `id` | `String` | Unique completion identifier |
+| `image_config` | `Hash` | Provider-specific image configuration options. |
+| `logit_bias` | `Object` | Token logit bias adjustments |
+| `logprobs` | `Object` | Return log probabilities |
+| `max_completion_tokens` | `Object` | Maximum tokens in completion |
+| `max_tokens` | `Object` | Maximum tokens (deprecated, use max_completion_tokens). |
+| `messages` | `Array` | List of messages for the conversation |
+| `metadata` | `Hash` | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `Object` | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `Array` | Output modalities for the response. |
+| `model` | `String` | Model used for completion |
+| `models` | `Array` | Models to use for completion |
 | `object` | `String` |  |
 | `openrouter_metadata` | `Hash` |  |
-| `parallel_tool_calls` | `Object` |  |
-| `plugins` | `Array` |  |
-| `prediction` | `Object` |  |
-| `presence_penalty` | `Object` |  |
+| `parallel_tool_calls` | `Object` | Whether to enable parallel function calling during tool use. |
+| `plugins` | `Array` | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `Object` | Static predicted output content. |
+| `presence_penalty` | `Object` | Presence penalty (-2.0 to 2.0) |
 | `prompt_cache_key` | `Object` |  |
-| `prompt_cache_options` | `Object` |  |
-| `provider` | `Object` |  |
-| `reasoning` | `Hash` |  |
-| `reasoning_effort` | `Object` |  |
-| `repetition_penalty` | `Object` |  |
-| `response_format` | `Object` |  |
-| `route` | `Object` |  |
-| `seed` | `Object` |  |
-| `service_tier` | `Object` |  |
-| `session_id` | `String` |  |
-| `stop` | `Object` |  |
-| `stop_server_tools_when` | `Array` |  |
-| `stream` | `Boolean` |  |
-| `stream_options` | `Object` |  |
-| `system_fingerprint` | `Object` |  |
-| `temperature` | `Object` |  |
-| `tool_choice` | `Object` |  |
-| `tools` | `Array` |  |
-| `top_a` | `Object` |  |
-| `top_k` | `Object` |  |
-| `top_logprobs` | `Object` |  |
-| `top_p` | `Object` |  |
-| `trace` | `Hash` |  |
-| `usage` | `Hash` |  |
-| `user` | `String` |  |
+| `prompt_cache_options` | `Object` | Request-level prompt-cache controls. |
+| `provider` | `Object` | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `Hash` | Configuration options for reasoning models |
+| `reasoning_effort` | `Object` | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `Object` | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `Object` | Response format configuration |
+| `route` | `Object` | **DEPRECATED** Use providers.sort.partition instead. |
+| `seed` | `Object` | Random seed for deterministic outputs |
+| `service_tier` | `Object` | The service tier used by the upstream provider for this request |
+| `session_id` | `String` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop` | `Object` | Stop sequences (up to 4) |
+| `stop_server_tools_when` | `Array` | Stop conditions for the server-tool agent loop. |
+| `stream` | `Boolean` | Enable streaming response |
+| `stream_options` | `Object` | Streaming configuration options |
+| `system_fingerprint` | `Object` | System fingerprint |
+| `temperature` | `Object` | Sampling temperature (0-2) |
+| `tool_choice` | `Object` | Tool choice configuration |
+| `tools` | `Array` | Available tools for function calling |
+| `top_a` | `Object` | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `Object` | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `Object` | Number of top log probabilities to return (0-20) |
+| `top_p` | `Object` | Nucleus sampling parameter (0-1) |
+| `trace` | `Hash` | Metadata for observability and tracing. |
+| `usage` | `Hash` | Token usage statistics |
+| `user` | `String` | Unique user identifier |
 
 #### Example: Create
 
@@ -2389,15 +2389,15 @@ Create an instance: `create_observability_destination = client.CreateObservabili
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key_hashes` | `Object` |  |
-| `config` | `Hash` |  |
-| `enabled` | `Boolean` |  |
-| `filter_rules` | `Object` |  |
-| `name` | `String` |  |
-| `privacy_mode` | `Boolean` |  |
-| `sampling_rate` | `Float` |  |
-| `type` | `String` |  |
-| `workspace_id` | `String` |  |
+| `api_key_hashes` | `Object` | Optional allowlist of OpenRouter API key hashes whose traffic is forwarded. |
+| `config` | `Hash` | Provider-specific configuration. |
+| `enabled` | `Boolean` | Whether this destination should be enabled immediately. |
+| `filter_rules` | `Object` | Optional structured filter rules controlling which events are forwarded. |
+| `name` | `String` | Human-readable name for the destination. |
+| `privacy_mode` | `Boolean` | When true, request/response bodies are not forwarded — only metadata. |
+| `sampling_rate` | `Float` | Sampling rate between 0.0001 and 1 (1 = 100%). |
+| `type` | `String` | The destination type. |
+| `workspace_id` | `String` | Optional workspace ID. |
 
 #### Example: Create
 
@@ -2426,66 +2426,66 @@ Create an instance: `create_preset_from_inference = client.CreatePresetFromInfer
 | Field | Type | Description |
 | --- | --- | --- |
 | `background` | `Object` |  |
-| `cache_control` | `Hash` |  |
+| `cache_control` | `Hash` | Enable automatic prompt caching. |
 | `context_management` | `Object` |  |
-| `debug` | `Hash` |  |
-| `fallbacks` | `Object` |  |
-| `frequency_penalty` | `Object` |  |
-| `image_config` | `Hash` |  |
+| `debug` | `Hash` | Debug options for inspecting request transformations (streaming only) |
+| `fallbacks` | `Object` | Fallback models to try if the primary model fails or refuses, in order. |
+| `frequency_penalty` | `Object` | Frequency penalty (-2.0 to 2.0) |
+| `image_config` | `Hash` | Provider-specific image configuration options. |
 | `include` | `Object` |  |
-| `input` | `Object` |  |
+| `input` | `Object` | Input for a response request - can be a string or array of items |
 | `instructions` | `Object` |  |
-| `logit_bias` | `Object` |  |
-| `logprobs` | `Object` |  |
-| `max_completion_tokens` | `Object` |  |
+| `logit_bias` | `Object` | Token logit bias adjustments |
+| `logprobs` | `Object` | Return log probabilities |
+| `max_completion_tokens` | `Object` | Maximum tokens in completion |
 | `max_output_tokens` | `Object` |  |
-| `max_tokens` | `Object` |  |
+| `max_tokens` | `Object` | Maximum tokens (deprecated, use max_completion_tokens). |
 | `max_tool_calls` | `Object` |  |
-| `messages` | `Array` |  |
-| `metadata` | `Hash` |  |
-| `min_p` | `Object` |  |
-| `modalities` | `Array` |  |
-| `model` | `String` |  |
-| `models` | `Array` |  |
-| `output_config` | `Hash` |  |
-| `parallel_tool_calls` | `Object` |  |
-| `plugins` | `Array` |  |
-| `prediction` | `Object` |  |
-| `presence_penalty` | `Object` |  |
-| `previous_response_id` | `String` |  |
+| `messages` | `Array` | List of messages for the conversation |
+| `metadata` | `Hash` | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `Object` | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `Array` | Output modalities for the response. |
+| `model` | `String` | Model to use for completion |
+| `models` | `Array` | Models to use for completion |
+| `output_config` | `Hash` | Configuration for controlling output behavior. |
+| `parallel_tool_calls` | `Object` | Whether to enable parallel function calling during tool use. |
+| `plugins` | `Array` | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `Object` | Static predicted output content. |
+| `presence_penalty` | `Object` | Presence penalty (-2.0 to 2.0) |
+| `previous_response_id` | `String` | Not supported. |
 | `prompt` | `Object` |  |
 | `prompt_cache_key` | `Object` |  |
-| `prompt_cache_options` | `Object` |  |
-| `provider` | `Object` |  |
-| `reasoning` | `Hash` |  |
-| `reasoning_effort` | `Object` |  |
-| `repetition_penalty` | `Object` |  |
-| `response_format` | `Object` |  |
-| `route` | `Object` |  |
+| `prompt_cache_options` | `Object` | Request-level prompt-cache controls. |
+| `provider` | `Object` | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `Hash` | Configuration options for reasoning models |
+| `reasoning_effort` | `Object` | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `Object` | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `Object` | Response format configuration |
+| `route` | `Object` | **DEPRECATED** Use providers.sort.partition instead. |
 | `safety_identifier` | `Object` |  |
-| `seed` | `Object` |  |
-| `service_tier` | `Object` |  |
-| `session_id` | `String` |  |
+| `seed` | `Object` | Random seed for deterministic outputs |
+| `service_tier` | `Object` | The service tier to use for processing this request. |
+| `session_id` | `String` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
 | `speed` | `Object` |  |
-| `stop` | `Object` |  |
+| `stop` | `Object` | Stop sequences (up to 4) |
 | `stop_sequences` | `Array` |  |
-| `stop_server_tools_when` | `Array` |  |
+| `stop_server_tools_when` | `Array` | Stop conditions for the server-tool agent loop. |
 | `store` | `Boolean` |  |
-| `stream` | `Boolean` |  |
-| `stream_options` | `Object` |  |
+| `stream` | `Boolean` | Enable streaming response |
+| `stream_options` | `Object` | Streaming configuration options |
 | `system` | `Object` |  |
-| `temperature` | `Object` |  |
-| `text` | `Object` |  |
+| `temperature` | `Object` | Sampling temperature (0-2) |
+| `text` | `Object` | Text output configuration including format and verbosity |
 | `thinking` | `Object` |  |
-| `tool_choice` | `Object` |  |
-| `tools` | `Array` |  |
-| `top_a` | `Object` |  |
-| `top_k` | `Object` |  |
-| `top_logprobs` | `Object` |  |
-| `top_p` | `Object` |  |
-| `trace` | `Hash` |  |
+| `tool_choice` | `Object` | Tool choice configuration |
+| `tools` | `Array` | Available tools for function calling |
+| `top_a` | `Object` | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `Object` | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `Object` | Number of top log probabilities to return (0-20) |
+| `top_p` | `Object` | Nucleus sampling parameter (0-1) |
+| `trace` | `Hash` | Metadata for observability and tracing. |
 | `truncation` | `Object` |  |
-| `user` | `String` |  |
+| `user` | `String` | Unique user identifier |
 
 #### Example: Create
 
@@ -2521,8 +2521,8 @@ Create an instance: `credit = client.Credit`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `total_credits` | `Float` |  |
-| `total_usage` | `Float` |  |
+| `total_credits` | `Float` | Total credits purchased |
+| `total_usage` | `Float` | Total credits used |
 
 #### Example: Load
 
@@ -2560,17 +2560,17 @@ Create an instance: `embedding = client.Embedding`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Array` |  |
-| `dimensions` | `Integer` |  |
-| `encoding_format` | `String` |  |
-| `id` | `String` |  |
-| `input` | `Object` |  |
-| `input_type` | `String` |  |
-| `model` | `String` |  |
+| `data` | `Array` | List of embedding objects |
+| `dimensions` | `Integer` | The number of dimensions for the output embeddings |
+| `encoding_format` | `String` | The format of the output embeddings |
+| `id` | `String` | Unique identifier for the embeddings response |
+| `input` | `Object` | Text, token, or multimodal input(s) to embed |
+| `input_type` | `String` | The type of input (e.g. |
+| `model` | `String` | The model used for embeddings |
 | `object` | `String` |  |
 | `provider` | `Object` |  |
-| `usage` | `Hash` |  |
-| `user` | `String` |  |
+| `usage` | `Hash` | Token usage statistics |
+| `user` | `String` | A unique identifier for the end-user |
 
 #### Example: Create
 
@@ -2600,40 +2600,40 @@ Create an instance: `endpoint = client.Endpoint`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `architecture` | `Object` |  |
-| `benchmarks` | `Hash` |  |
-| `canonical_slug` | `String` |  |
-| `context_length` | `Object` |  |
-| `created` | `Integer` |  |
-| `default_parameters` | `Object` |  |
-| `description` | `String` |  |
-| `endpoints` | `Array` |  |
-| `expiration_date` | `Object` |  |
-| `hugging_face_id` | `Object` |  |
-| `id` | `String` |  |
-| `knowledge_cutoff` | `Object` |  |
-| `latency_last_30m` | `Object` |  |
-| `links` | `Hash` |  |
+| `architecture` | `Object` | Model architecture information |
+| `benchmarks` | `Hash` | Third-party benchmark rankings for this model. |
+| `canonical_slug` | `String` | Canonical slug for the model |
+| `context_length` | `Object` | Maximum context length in tokens |
+| `created` | `Integer` | Unix timestamp of when the model was created |
+| `default_parameters` | `Object` | Default parameters for this model |
+| `description` | `String` | Description of the model |
+| `endpoints` | `Array` | List of available endpoints for this model |
+| `expiration_date` | `Object` | The date after which the model may be removed. |
+| `hugging_face_id` | `Object` | Hugging Face model identifier, if applicable |
+| `id` | `String` | Unique identifier for the model |
+| `knowledge_cutoff` | `Object` | The date up to which the model was trained on data. |
+| `latency_last_30m` | `Object` | Latency percentiles in milliseconds over the last 30 minutes. |
+| `links` | `Hash` | Related API endpoints and resources for this model. |
 | `max_completion_tokens` | `Object` |  |
 | `max_prompt_tokens` | `Object` |  |
-| `model_id` | `String` |  |
+| `model_id` | `String` | The unique identifier for the model (permaslug) |
 | `model_name` | `String` |  |
-| `name` | `String` |  |
-| `per_request_limits` | `Object` |  |
-| `pricing` | `Hash` |  |
+| `name` | `String` | Display name of the model |
+| `per_request_limits` | `Object` | Per-request token limits |
+| `pricing` | `Hash` | Pricing information for the model |
 | `provider_name` | `String` |  |
 | `quantization` | `Object` |  |
-| `reasoning` | `Hash` |  |
+| `reasoning` | `Hash` | Reasoning effort configuration. |
 | `status` | `Integer` |  |
-| `supported_parameters` | `Array` |  |
-| `supported_voices` | `Object` |  |
+| `supported_parameters` | `Array` | List of supported parameters for this model |
+| `supported_voices` | `Object` | List of supported voice identifiers for TTS models. |
 | `supports_implicit_caching` | `Boolean` |  |
 | `tag` | `String` |  |
 | `throughput_last_30m` | `Object` |  |
-| `top_provider` | `Hash` |  |
-| `uptime_last_1d` | `Object` |  |
+| `top_provider` | `Hash` | Information about the top provider for this model |
+| `uptime_last_1d` | `Object` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
 | `uptime_last_30m` | `Object` |  |
-| `uptime_last_5m` | `Object` |  |
+| `uptime_last_5m` | `Object` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 #### Example: Load
 
@@ -2723,50 +2723,50 @@ Create an instance: `generation = client.Generation`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_type` | `Object` |  |
-| `app_id` | `Object` |  |
-| `cache_discount` | `Object` |  |
-| `cancelled` | `Object` |  |
-| `created_at` | `String` |  |
-| `data_region` | `String` |  |
-| `external_user` | `Object` |  |
-| `finish_reason` | `Object` |  |
-| `generation_time` | `Object` |  |
-| `http_referer` | `Object` |  |
-| `id` | `String` |  |
-| `is_byok` | `Boolean` |  |
-| `latency` | `Object` |  |
-| `model` | `String` |  |
-| `moderation_latency` | `Object` |  |
-| `native_finish_reason` | `Object` |  |
-| `native_tokens_cached` | `Object` |  |
-| `native_tokens_completion` | `Object` |  |
-| `native_tokens_completion_images` | `Object` |  |
-| `native_tokens_prompt` | `Object` |  |
-| `native_tokens_reasoning` | `Object` |  |
-| `num_fetches` | `Object` |  |
-| `num_input_audio_prompt` | `Object` |  |
-| `num_media_completion` | `Object` |  |
-| `num_media_prompt` | `Object` |  |
-| `num_search_results` | `Object` |  |
-| `origin` | `String` |  |
-| `preset_id` | `Object` |  |
-| `provider_name` | `Object` |  |
-| `provider_responses` | `Object` |  |
-| `request_id` | `Object` |  |
-| `response_cache_source_id` | `Object` |  |
-| `router` | `Object` |  |
-| `service_tier` | `Object` |  |
-| `session_id` | `Object` |  |
-| `streamed` | `Object` |  |
-| `tokens_completion` | `Object` |  |
-| `tokens_prompt` | `Object` |  |
-| `total_cost` | `Float` |  |
-| `upstream_id` | `Object` |  |
-| `upstream_inference_cost` | `Object` |  |
-| `usage` | `Float` |  |
-| `user_agent` | `Object` |  |
-| `web_search_engine` | `Object` |  |
+| `api_type` | `Object` | Type of API used for the generation |
+| `app_id` | `Object` | ID of the app that made the request |
+| `cache_discount` | `Object` | Discount applied due to caching |
+| `cancelled` | `Object` | Whether the generation was cancelled |
+| `created_at` | `String` | ISO 8601 timestamp of when the generation was created |
+| `data_region` | `String` | The data region this generation was routed through. |
+| `external_user` | `Object` | External user identifier |
+| `finish_reason` | `Object` | Reason the generation finished |
+| `generation_time` | `Object` | Time taken for generation in milliseconds |
+| `http_referer` | `Object` | Referer header from the request |
+| `id` | `String` | Unique identifier for the generation |
+| `is_byok` | `Boolean` | Whether this used bring-your-own-key |
+| `latency` | `Object` | Total latency in milliseconds |
+| `model` | `String` | Model used for the generation |
+| `moderation_latency` | `Object` | Moderation latency in milliseconds |
+| `native_finish_reason` | `Object` | Native finish reason as reported by provider |
+| `native_tokens_cached` | `Object` | Native cached tokens as reported by provider |
+| `native_tokens_completion` | `Object` | Native completion tokens as reported by provider |
+| `native_tokens_completion_images` | `Object` | Native completion image tokens as reported by provider |
+| `native_tokens_prompt` | `Object` | Native prompt tokens as reported by provider |
+| `native_tokens_reasoning` | `Object` | Native reasoning tokens as reported by provider |
+| `num_fetches` | `Object` | Number of web fetches performed |
+| `num_input_audio_prompt` | `Object` | Number of audio inputs in the prompt |
+| `num_media_completion` | `Object` | Number of media items in the completion |
+| `num_media_prompt` | `Object` | Number of media items in the prompt |
+| `num_search_results` | `Object` | Number of search results included |
+| `origin` | `String` | Origin URL of the request |
+| `preset_id` | `Object` | ID of the preset used for this generation, null if no preset was used |
+| `provider_name` | `Object` | Name of the provider that served the request |
+| `provider_responses` | `Object` | List of provider responses for this generation, including fallback attempts |
+| `request_id` | `Object` | Unique identifier grouping all generations from a single API request |
+| `response_cache_source_id` | `Object` | If this generation was served from response cache, contains the original generation ID. |
+| `router` | `Object` | Router used for the request (e.g., openrouter/auto) |
+| `service_tier` | `Object` | Service tier the upstream provider reported running this request on, or null if it did not report one. |
+| `session_id` | `Object` | Session identifier grouping multiple generations in the same session |
+| `streamed` | `Object` | Whether the response was streamed |
+| `tokens_completion` | `Object` | Number of tokens in the completion |
+| `tokens_prompt` | `Object` | Number of tokens in the prompt |
+| `total_cost` | `Float` | Total cost of the generation in USD |
+| `upstream_id` | `Object` | Upstream provider's identifier for this generation |
+| `upstream_inference_cost` | `Object` | Cost charged by the upstream provider |
+| `usage` | `Float` | Usage amount in USD |
+| `user_agent` | `Object` | User-Agent header from the request |
+| `web_search_engine` | `Object` | The resolved web search engine used for this generation (e.g. |
 
 #### Example: Load
 
@@ -2790,8 +2790,8 @@ Create an instance: `generation_content = client.GenerationContent`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `input` | `Object` |  |
-| `output` | `Hash` |  |
+| `input` | `Object` | The input to the generation — either a prompt string or an array of messages |
+| `output` | `Hash` | The output from the generation |
 
 #### Example: Load
 
@@ -2818,26 +2818,26 @@ Create an instance: `guardrail = client.Guardrail`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_models` | `Object` |  |
-| `allowed_providers` | `Object` |  |
-| `content_filter_builtins` | `Object` |  |
-| `content_filters` | `Object` |  |
-| `created_at` | `String` |  |
-| `description` | `Object` |  |
-| `enforce_zdr` | `Object` |  |
-| `enforce_zdr_anthropic` | `Object` |  |
-| `enforce_zdr_google` | `Object` |  |
-| `enforce_zdr_openai` | `Object` |  |
-| `enforce_zdr_other` | `Object` |  |
-| `enforce_zdr_xai` | `Object` |  |
-| `id` | `String` |  |
-| `ignored_models` | `Object` |  |
-| `ignored_providers` | `Object` |  |
-| `limit_usd` | `Object` |  |
-| `name` | `String` |  |
-| `reset_interval` | `Object` |  |
-| `updated_at` | `Object` |  |
-| `workspace_id` | `String` |  |
+| `allowed_models` | `Object` | Array of model canonical_slugs (immutable identifiers) |
+| `allowed_providers` | `Object` | List of allowed provider IDs |
+| `content_filter_builtins` | `Object` | Builtin content filters applied to requests. |
+| `content_filters` | `Object` | Custom regex content filters applied to request messages |
+| `created_at` | `String` | ISO 8601 timestamp of when the guardrail was created |
+| `description` | `Object` | Description of the guardrail |
+| `enforce_zdr` | `Object` | Deprecated. |
+| `enforce_zdr_anthropic` | `Object` | Whether to enforce zero data retention for Anthropic models. |
+| `enforce_zdr_google` | `Object` | Whether to enforce zero data retention for Google models. |
+| `enforce_zdr_openai` | `Object` | Whether to enforce zero data retention for OpenAI models. |
+| `enforce_zdr_other` | `Object` | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
+| `enforce_zdr_xai` | `Object` | Whether to enforce zero data retention for xAI models. |
+| `id` | `String` | Unique identifier for the guardrail |
+| `ignored_models` | `Object` | Array of model canonical_slugs to exclude from routing |
+| `ignored_providers` | `Object` | List of provider IDs to exclude from routing |
+| `limit_usd` | `Object` | Spending limit in USD |
+| `name` | `String` | Name of the guardrail |
+| `reset_interval` | `Object` | Interval at which the limit resets (daily, weekly, monthly) |
+| `updated_at` | `Object` | ISO 8601 timestamp of when the guardrail was last updated |
+| `workspace_id` | `String` | The workspace ID this guardrail belongs to. |
 
 #### Example: Load
 
@@ -2879,23 +2879,23 @@ Create an instance: `image = client.Image`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aspect_ratio` | `String` |  |
-| `background` | `String` |  |
-| `created` | `Integer` |  |
-| `data` | `Array` |  |
-| `input_references` | `Array` |  |
-| `model` | `String` |  |
-| `n` | `Integer` |  |
-| `output_compression` | `Integer` |  |
-| `output_format` | `String` |  |
-| `prompt` | `String` |  |
-| `provider` | `Hash` |  |
-| `quality` | `String` |  |
-| `resolution` | `String` |  |
-| `seed` | `Integer` |  |
-| `size` | `String` |  |
-| `stream` | `Boolean` |  |
-| `usage` | `Hash` |  |
+| `aspect_ratio` | `String` | Normalized aspect ratio of the generated image. |
+| `background` | `String` | Background treatment. |
+| `created` | `Integer` | Unix timestamp (seconds) when the image was generated |
+| `data` | `Array` | Generated images |
+| `input_references` | `Array` | Reference images to guide image-to-image generation, as base64 data URLs or HTTP(S) URLs. |
+| `model` | `String` | The image generation model to use |
+| `n` | `Integer` | Number of images to generate (1-10). |
+| `output_compression` | `Integer` | Compression level (0-100) for webp/jpeg output. |
+| `output_format` | `String` | Encoding of the returned image bytes. |
+| `prompt` | `String` | Text description of the desired image |
+| `provider` | `Hash` | Provider routing preferences and provider-specific passthrough configuration. |
+| `quality` | `String` | Rendering quality. |
+| `resolution` | `String` | Normalized resolution tier of the generated image. |
+| `seed` | `Integer` | If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result. |
+| `size` | `String` | Optional. |
+| `stream` | `Boolean` | If true, partial images are streamed as SSE events as they become available. |
+| `usage` | `Hash` | Token and cost usage for the image generation request, when available |
 
 #### Example: Create
 
@@ -2924,13 +2924,13 @@ Create an instance: `image_model_endpoint = client.ImageModelEndpoint`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_passthrough_parameters` | `Array` |  |
-| `pricing` | `Array` |  |
-| `provider_name` | `String` |  |
-| `provider_slug` | `String` |  |
-| `provider_tag` | `Object` |  |
+| `allowed_passthrough_parameters` | `Array` | Provider-specific options accepted under provider.options[provider_slug]. |
+| `pricing` | `Array` | Billable pricing lines for this endpoint. |
+| `provider_name` | `String` | Provider display name |
+| `provider_slug` | `String` | Provider slug |
+| `provider_tag` | `Object` | Provider tag for request-side selection |
 | `supported_parameters` | `Object` |  |
-| `supports_streaming` | `Boolean` |  |
+| `supports_streaming` | `Boolean` | Whether this endpoint supports native SSE streaming (`stream: true` in the request). |
 
 #### Example: List
 
@@ -2955,13 +2955,13 @@ Create an instance: `image_models_list = client.ImageModelsList`
 | Field | Type | Description |
 | --- | --- | --- |
 | `architecture` | `Hash` |  |
-| `created` | `Integer` |  |
+| `created` | `Integer` | Unix timestamp (seconds) of when the model was created |
 | `description` | `String` |  |
-| `endpoints` | `String` |  |
-| `id` | `String` |  |
-| `name` | `String` |  |
-| `supported_parameters` | `Hash` |  |
-| `supports_streaming` | `Boolean` |  |
+| `endpoints` | `String` | Relative URL to the full per-endpoint records for this model |
+| `id` | `String` | Model slug |
+| `name` | `String` | Display name |
+| `supported_parameters` | `Hash` | Union of supported parameters across every endpoint of this model. |
+| `supports_streaming` | `Boolean` | Whether any endpoint of this model supports native SSE streaming on the dedicated Image API (i.e. |
 
 #### Example: List
 
@@ -3000,13 +3000,13 @@ Create an instance: `list_key_assignment = client.ListKeyAssignment`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assigned_by` | `Object` |  |
-| `created_at` | `String` |  |
-| `guardrail_id` | `String` |  |
-| `id` | `String` |  |
-| `key_hash` | `String` |  |
-| `key_label` | `String` |  |
-| `key_name` | `String` |  |
+| `assigned_by` | `Object` | User ID of who made the assignment |
+| `created_at` | `String` | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `String` | ID of the guardrail |
+| `id` | `String` | Unique identifier for the assignment |
+| `key_hash` | `String` | Hash of the assigned API key |
+| `key_label` | `String` | Label of the API key |
+| `key_name` | `String` | Name of the API key |
 
 #### Example: List
 
@@ -3030,12 +3030,12 @@ Create an instance: `list_member_assignment = client.ListMemberAssignment`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assigned_by` | `Object` |  |
-| `created_at` | `String` |  |
-| `guardrail_id` | `String` |  |
-| `id` | `String` |  |
-| `organization_id` | `String` |  |
-| `user_id` | `String` |  |
+| `assigned_by` | `Object` | User ID of who made the assignment |
+| `created_at` | `String` | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `String` | ID of the guardrail |
+| `id` | `String` | Unique identifier for the assignment |
+| `organization_id` | `String` | Organization ID |
+| `user_id` | `String` | Clerk user ID of the assigned member |
 
 #### Example: List
 
@@ -3059,8 +3059,8 @@ Create an instance: `list_observability_destination = client.ListObservabilityDe
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Array` |  |
-| `total_count` | `Integer` |  |
+| `data` | `Array` | List of observability destinations. |
+| `total_count` | `Integer` | Total number of destinations matching the filters. |
 
 #### Example: List
 
@@ -3125,12 +3125,12 @@ Create an instance: `list_workspace_budget = client.ListWorkspaceBudget`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `String` |  |
-| `id` | `String` |  |
-| `limit_usd` | `Float` |  |
-| `reset_interval` | `Object` |  |
-| `updated_at` | `String` |  |
-| `workspace_id` | `String` |  |
+| `created_at` | `String` | ISO 8601 timestamp of when the budget was created |
+| `id` | `String` | Unique identifier for the budget |
+| `limit_usd` | `Float` | Spending limit in USD for this interval |
+| `reset_interval` | `Object` | Interval at which spend resets. |
+| `updated_at` | `String` | ISO 8601 timestamp of when the budget was last updated |
+| `workspace_id` | `String` | ID of the workspace the budget belongs to |
 
 #### Example: List
 
@@ -3154,11 +3154,11 @@ Create an instance: `list_workspace_member = client.ListWorkspaceMember`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `String` |  |
-| `id` | `String` |  |
-| `role` | `String` |  |
-| `user_id` | `String` |  |
-| `workspace_id` | `String` |  |
+| `created_at` | `String` | ISO 8601 timestamp of when the membership was created |
+| `id` | `String` | Unique identifier for the workspace membership |
+| `role` | `String` | Role of the member in the workspace |
+| `user_id` | `String` | Clerk user ID of the member |
+| `workspace_id` | `String` | ID of the workspace |
 
 #### Example: List
 
@@ -3187,23 +3187,23 @@ Create an instance: `message = client.Message`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cache_control` | `Hash` |  |
+| `cache_control` | `Hash` | Enable automatic prompt caching. |
 | `context_management` | `Object` |  |
-| `fallbacks` | `Object` |  |
+| `fallbacks` | `Object` | Fallback models to try if the primary model fails or refuses, in order. |
 | `max_tokens` | `Integer` |  |
 | `messages` | `Object` |  |
 | `metadata` | `Hash` |  |
 | `model` | `String` |  |
 | `models` | `Array` |  |
-| `output_config` | `Hash` |  |
-| `plugins` | `Array` |  |
-| `provider` | `Object` |  |
-| `route` | `Object` |  |
+| `output_config` | `Hash` | Configuration for controlling output behavior. |
+| `plugins` | `Array` | Plugins you want to enable for this request, including their settings. |
+| `provider` | `Object` | When multiple model providers are available, optionally indicate your routing preference. |
+| `route` | `Object` | **DEPRECATED** Use providers.sort.partition instead. |
 | `service_tier` | `String` |  |
-| `session_id` | `String` |  |
+| `session_id` | `String` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
 | `speed` | `Object` |  |
 | `stop_sequences` | `Array` |  |
-| `stop_server_tools_when` | `Array` |  |
+| `stop_server_tools_when` | `Array` | Stop conditions for the server-tool agent loop. |
 | `stream` | `Boolean` |  |
 | `system` | `Object` |  |
 | `temperature` | `Float` |  |
@@ -3212,8 +3212,8 @@ Create an instance: `message = client.Message`
 | `tools` | `Array` |  |
 | `top_k` | `Integer` |  |
 | `top_p` | `Float` |  |
-| `trace` | `Hash` |  |
-| `user` | `String` |  |
+| `trace` | `Hash` | Metadata for observability and tracing. |
+| `user` | `String` | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
 #### Example: Create
 
@@ -3246,25 +3246,25 @@ Create an instance: `model = client.Model`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `architecture` | `Hash` |  |
-| `benchmarks` | `Hash` |  |
-| `canonical_slug` | `String` |  |
-| `context_length` | `Object` |  |
-| `created` | `Integer` |  |
-| `default_parameters` | `Object` |  |
-| `description` | `String` |  |
-| `expiration_date` | `Object` |  |
-| `hugging_face_id` | `Object` |  |
-| `id` | `String` |  |
-| `knowledge_cutoff` | `Object` |  |
-| `links` | `Hash` |  |
-| `name` | `String` |  |
-| `per_request_limits` | `Object` |  |
-| `pricing` | `Hash` |  |
-| `reasoning` | `Hash` |  |
-| `supported_parameters` | `Array` |  |
-| `supported_voices` | `Object` |  |
-| `top_provider` | `Hash` |  |
+| `architecture` | `Hash` | Model architecture information |
+| `benchmarks` | `Hash` | Third-party benchmark rankings for this model. |
+| `canonical_slug` | `String` | Canonical slug for the model |
+| `context_length` | `Object` | Maximum context length in tokens |
+| `created` | `Integer` | Unix timestamp of when the model was created |
+| `default_parameters` | `Object` | Default parameters for this model |
+| `description` | `String` | Description of the model |
+| `expiration_date` | `Object` | The date after which the model may be removed. |
+| `hugging_face_id` | `Object` | Hugging Face model identifier, if applicable |
+| `id` | `String` | Unique identifier for the model |
+| `knowledge_cutoff` | `Object` | The date up to which the model was trained on data. |
+| `links` | `Hash` | Related API endpoints and resources for this model. |
+| `name` | `String` | Display name of the model |
+| `per_request_limits` | `Object` | Per-request token limits |
+| `pricing` | `Hash` | Pricing information for the model |
+| `reasoning` | `Hash` | Reasoning effort configuration. |
+| `supported_parameters` | `Array` | List of supported parameters for this model |
+| `supported_voices` | `Object` | List of supported voice identifiers for TTS models. |
+| `top_provider` | `Hash` | Information about the top provider for this model |
 
 #### Example: Load
 
@@ -3295,7 +3295,7 @@ Create an instance: `models_count = client.ModelsCount`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | `Integer` |  |
+| `count` | `Integer` | Total number of available models |
 
 #### Example: Load
 
@@ -3319,25 +3319,25 @@ Create an instance: `models_list = client.ModelsList`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `architecture` | `Hash` |  |
-| `benchmarks` | `Hash` |  |
-| `canonical_slug` | `String` |  |
-| `context_length` | `Object` |  |
-| `created` | `Integer` |  |
-| `default_parameters` | `Object` |  |
-| `description` | `String` |  |
-| `expiration_date` | `Object` |  |
-| `hugging_face_id` | `Object` |  |
-| `id` | `String` |  |
-| `knowledge_cutoff` | `Object` |  |
-| `links` | `Hash` |  |
-| `name` | `String` |  |
-| `per_request_limits` | `Object` |  |
-| `pricing` | `Hash` |  |
-| `reasoning` | `Hash` |  |
-| `supported_parameters` | `Array` |  |
-| `supported_voices` | `Object` |  |
-| `top_provider` | `Hash` |  |
+| `architecture` | `Hash` | Model architecture information |
+| `benchmarks` | `Hash` | Third-party benchmark rankings for this model. |
+| `canonical_slug` | `String` | Canonical slug for the model |
+| `context_length` | `Object` | Maximum context length in tokens |
+| `created` | `Integer` | Unix timestamp of when the model was created |
+| `default_parameters` | `Object` | Default parameters for this model |
+| `description` | `String` | Description of the model |
+| `expiration_date` | `Object` | The date after which the model may be removed. |
+| `hugging_face_id` | `Object` | Hugging Face model identifier, if applicable |
+| `id` | `String` | Unique identifier for the model |
+| `knowledge_cutoff` | `Object` | The date up to which the model was trained on data. |
+| `links` | `Hash` | Related API endpoints and resources for this model. |
+| `name` | `String` | Display name of the model |
+| `per_request_limits` | `Object` | Per-request token limits |
+| `pricing` | `Hash` | Pricing information for the model |
+| `reasoning` | `Hash` | Reasoning effort configuration. |
+| `supported_parameters` | `Array` | List of supported parameters for this model |
+| `supported_voices` | `Object` | List of supported voice identifiers for TTS models. |
+| `top_provider` | `Hash` | Information about the top provider for this model |
 
 #### Example: List
 
@@ -3361,23 +3361,23 @@ Create an instance: `o_auth = client.OAuth`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `app_id` | `Integer` |  |
-| `callback_url` | `String` |  |
-| `code` | `String` |  |
-| `code_challenge` | `String` |  |
-| `code_challenge_method` | `Object` |  |
-| `code_verifier` | `String` |  |
-| `created_at` | `String` |  |
-| `expires_at` | `Object` |  |
-| `id` | `String` |  |
-| `key` | `String` |  |
-| `key_label` | `String` |  |
-| `limit` | `Float` |  |
-| `spawn_agent` | `String` |  |
-| `spawn_cloud` | `String` |  |
-| `usage_limit_type` | `String` |  |
-| `user_id` | `Object` |  |
-| `workspace_id` | `String` |  |
+| `app_id` | `Integer` | The application ID associated with this auth code |
+| `callback_url` | `String` | The callback URL to redirect to after authorization. |
+| `code` | `String` | The authorization code received from the OAuth redirect |
+| `code_challenge` | `String` | PKCE code challenge for enhanced security |
+| `code_challenge_method` | `Object` | The method used to generate the code challenge |
+| `code_verifier` | `String` | The code verifier if code_challenge was used in the authorization request |
+| `created_at` | `String` | ISO 8601 timestamp of when the auth code was created |
+| `expires_at` | `Object` | Optional expiration time for the API key to be created |
+| `id` | `String` | The authorization code ID to use in the exchange request |
+| `key` | `String` | The API key to use for OpenRouter requests |
+| `key_label` | `String` | Optional custom label for the API key. |
+| `limit` | `Float` | Credit limit for the API key to be created |
+| `spawn_agent` | `String` | Agent identifier for spawn telemetry |
+| `spawn_cloud` | `String` | Cloud identifier for spawn telemetry |
+| `usage_limit_type` | `String` | Optional credit limit reset interval. |
+| `user_id` | `Object` | User ID associated with the API key |
+| `workspace_id` | `String` | Optional workspace ID to associate the API key with |
 
 #### Example: Create
 
@@ -3434,45 +3434,45 @@ Create an instance: `open_responses_result = client.OpenResponsesResult`
 | Field | Type | Description |
 | --- | --- | --- |
 | `background` | `Object` |  |
-| `cache_control` | `Hash` |  |
-| `debug` | `Hash` |  |
+| `cache_control` | `Hash` | Enable automatic prompt caching. |
+| `debug` | `Hash` | Debug options for inspecting request transformations (streaming only) |
 | `frequency_penalty` | `Object` |  |
-| `image_config` | `Hash` |  |
+| `image_config` | `Hash` | Provider-specific image configuration options. |
 | `include` | `Object` |  |
-| `input` | `Object` |  |
+| `input` | `Object` | Input for a response request - can be a string or array of items |
 | `instructions` | `Object` |  |
 | `max_output_tokens` | `Object` |  |
 | `max_tool_calls` | `Object` |  |
-| `metadata` | `Object` |  |
-| `modalities` | `Array` |  |
+| `metadata` | `Object` | Metadata key-value pairs for the request. |
+| `modalities` | `Array` | Output modalities for the response. |
 | `model` | `String` |  |
 | `models` | `Array` |  |
 | `parallel_tool_calls` | `Object` |  |
-| `plugins` | `Array` |  |
+| `plugins` | `Array` | Plugins you want to enable for this request, including their settings. |
 | `presence_penalty` | `Object` |  |
-| `previous_response_id` | `String` |  |
+| `previous_response_id` | `String` | Not supported. |
 | `prompt` | `Object` |  |
 | `prompt_cache_key` | `Object` |  |
-| `prompt_cache_options` | `Object` |  |
-| `provider` | `Object` |  |
-| `reasoning` | `Object` |  |
-| `route` | `Object` |  |
+| `prompt_cache_options` | `Object` | Request-level prompt-cache controls. |
+| `provider` | `Object` | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `Object` | Configuration for reasoning mode in the response |
+| `route` | `Object` | **DEPRECATED** Use providers.sort.partition instead. |
 | `safety_identifier` | `Object` |  |
 | `service_tier` | `Object` |  |
-| `session_id` | `String` |  |
-| `stop_server_tools_when` | `Array` |  |
+| `session_id` | `String` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop_server_tools_when` | `Array` | Stop conditions for the server-tool agent loop. |
 | `store` | `Boolean` |  |
 | `stream` | `Boolean` |  |
 | `temperature` | `Object` |  |
-| `text` | `Object` |  |
+| `text` | `Object` | Text output configuration including format and verbosity |
 | `tool_choice` | `Object` |  |
 | `tools` | `Array` |  |
 | `top_k` | `Integer` |  |
 | `top_logprobs` | `Object` |  |
 | `top_p` | `Object` |  |
-| `trace` | `Hash` |  |
+| `trace` | `Hash` | Metadata for observability and tracing. |
 | `truncation` | `Object` |  |
-| `user` | `String` |  |
+| `user` | `String` | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
 #### Example: Create
 
@@ -3499,11 +3499,11 @@ Create an instance: `organization = client.Organization`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `String` |  |
-| `first_name` | `Object` |  |
-| `id` | `String` |  |
-| `last_name` | `Object` |  |
-| `role` | `String` |  |
+| `email` | `String` | Email address of the member |
+| `first_name` | `Object` | First name of the member |
+| `id` | `String` | User ID of the organization member |
+| `last_name` | `Object` | Last name of the member |
+| `role` | `String` | Role of the member in the organization |
 
 #### Example: List
 
@@ -3531,12 +3531,12 @@ Create an instance: `preset = client.Preset`
 | `created_at` | `String` |  |
 | `creator_user_id` | `Object` |  |
 | `description` | `Object` |  |
-| `designated_version` | `Object` |  |
+| `designated_version` | `Object` | A specific version of a preset, containing config and optional system prompt. |
 | `designated_version_id` | `Object` |  |
 | `id` | `String` |  |
 | `name` | `String` |  |
 | `slug` | `String` |  |
-| `status` | `String` |  |
+| `status` | `String` | The status of a preset. |
 | `status_updated_at` | `Object` |  |
 | `updated_at` | `String` |  |
 | `workspace_id` | `Object` |  |
@@ -3601,13 +3601,13 @@ Create an instance: `provider = client.Provider`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datacenters` | `Object` |  |
-| `headquarters` | `Object` |  |
-| `name` | `String` |  |
-| `privacy_policy_url` | `Object` |  |
-| `slug` | `String` |  |
-| `status_page_url` | `Object` |  |
-| `terms_of_service_url` | `Object` |  |
+| `datacenters` | `Object` | ISO 3166-1 Alpha-2 country codes of the provider datacenter locations |
+| `headquarters` | `Object` | ISO 3166-1 Alpha-2 country code of the provider headquarters |
+| `name` | `String` | Display name of the provider |
+| `privacy_policy_url` | `Object` | URL to the provider's privacy policy |
+| `slug` | `String` | URL-friendly identifier for the provider |
+| `status_page_url` | `Object` | URL to the provider's status page |
+| `terms_of_service_url` | `Object` | URL to the provider's terms of service |
 
 #### Example: List
 
@@ -3636,9 +3636,9 @@ Create an instance: `rankings_daily = client.RankingsDaily`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | `String` |  |
-| `model_permaslug` | `String` |  |
-| `total_tokens` | `String` |  |
+| `date` | `String` | UTC calendar date the row is aggregated over (YYYY-MM-DD). |
+| `model_permaslug` | `String` | Model variant permaslug (e.g. |
+| `total_tokens` | `String` | Sum of `prompt_tokens + completion_tokens` for the day, returned as a decimal string so 64-bit values are not truncated. |
 
 #### Example: List
 
@@ -3667,14 +3667,14 @@ Create an instance: `rerank = client.Rerank`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `documents` | `Array` |  |
-| `id` | `String` |  |
-| `model` | `String` |  |
-| `provider` | `String` |  |
-| `query` | `String` |  |
-| `results` | `Array` |  |
-| `top_n` | `Integer` |  |
-| `usage` | `Hash` |  |
+| `documents` | `Array` | The list of documents to rerank. |
+| `id` | `String` | Unique identifier for the rerank response (ORID format) |
+| `model` | `String` | The model used for reranking |
+| `provider` | `String` | The provider that served the rerank request |
+| `query` | `String` | The search query to rerank documents against |
+| `results` | `Array` | List of rerank results sorted by relevance |
+| `top_n` | `Integer` | Number of most relevant documents to return |
+| `usage` | `Hash` | Usage statistics |
 
 #### Example: Create
 
@@ -3712,19 +3712,19 @@ Create an instance: `stt = client.Stt`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `duration` | `Float` |  |
-| `input_audio` | `Hash` |  |
-| `language` | `String` |  |
-| `model` | `String` |  |
-| `provider` | `Hash` |  |
-| `response_format` | `String` |  |
-| `segments` | `Array` |  |
-| `task` | `String` |  |
-| `temperature` | `Float` |  |
-| `text` | `String` |  |
-| `timestamp_granularities` | `Array` |  |
-| `usage` | `Hash` |  |
-| `words` | `Array` |  |
+| `duration` | `Float` | Duration of the input audio in seconds, present when response_format is verbose_json |
+| `input_audio` | `Hash` | Base64-encoded audio to transcribe |
+| `language` | `String` | Detected or forced language, present when response_format is verbose_json |
+| `model` | `String` | STT model identifier |
+| `provider` | `Hash` | Provider-specific passthrough configuration |
+| `response_format` | `String` | Output format. |
+| `segments` | `Array` | Timestamped transcript segments, present when response_format is verbose_json |
+| `task` | `String` | The task performed, present when response_format is verbose_json |
+| `temperature` | `Float` | Sampling temperature for transcription |
+| `text` | `String` | The transcribed text |
+| `timestamp_granularities` | `Array` | Timestamp detail levels to include when response_format is "verbose_json". |
+| `usage` | `Hash` | Aggregated usage statistics for the request |
+| `words` | `Array` | Timestamped words, present when the provider returns word-level timestamps |
 
 #### Example: Create
 
@@ -3751,10 +3751,10 @@ Create an instance: `submit_generation_feedback = client.SubmitGenerationFeedbac
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | `String` |  |
-| `comment` | `String` |  |
-| `generation_id` | `String` |  |
-| `success` | `Boolean` |  |
+| `category` | `String` | The category of feedback being reported |
+| `comment` | `String` | An optional free-text comment describing the feedback |
+| `generation_id` | `String` | The generation to submit feedback on |
+| `success` | `Boolean` | Whether the feedback was recorded |
 
 #### Example: Create
 
@@ -3781,10 +3781,10 @@ Create an instance: `task = client.Task`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `as_of` | `String` |  |
-| `classifications` | `Array` |  |
-| `macro_categories` | `Array` |  |
-| `window_days` | `Integer` |  |
+| `as_of` | `String` | UTC date (YYYY-MM-DD) of the window upper bound (yesterday). |
+| `classifications` | `Array` | Per-task classification market-share data, sorted by usage_share descending. |
+| `macro_categories` | `Array` | Aggregate market-share data per macro-category (code, data, agent, general). |
+| `window_days` | `Integer` | Number of trailing days covered by this snapshot. |
 
 #### Example: Load
 
@@ -3813,12 +3813,12 @@ Create an instance: `tts = client.Tts`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `input` | `String` |  |
-| `model` | `String` |  |
-| `provider` | `Hash` |  |
-| `response_format` | `String` |  |
-| `speed` | `Float` |  |
-| `voice` | `String` |  |
+| `input` | `String` | Text to synthesize |
+| `model` | `String` | TTS model identifier |
+| `provider` | `Hash` | Provider-specific passthrough configuration |
+| `response_format` | `String` | Audio output format |
+| `speed` | `Float` | Playback speed multiplier. |
+| `voice` | `String` | Voice identifier (provider-specific). |
 
 #### Example: Create
 
@@ -3870,12 +3870,12 @@ Create an instance: `update_byok_key = client.UpdateByokKey`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_models` | `Object` |  |
-| `allowed_user_ids` | `Object` |  |
-| `disabled` | `Boolean` |  |
-| `is_fallback` | `Boolean` |  |
-| `key` | `String` |  |
-| `name` | `Object` |  |
+| `allowed_models` | `Object` | Optional allowlist of model slugs this credential may be used for. |
+| `allowed_user_ids` | `Object` | Optional allowlist of user IDs that may use this credential. |
+| `disabled` | `Boolean` | Whether this credential is disabled. |
+| `is_fallback` | `Boolean` | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
+| `key` | `String` | A new raw provider API key to rotate the credential in-place. |
+| `name` | `Object` | Optional human-readable name for the credential. |
 
 
 ### UpdateGuardrail
@@ -3892,22 +3892,22 @@ Create an instance: `update_guardrail = client.UpdateGuardrail`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_models` | `Object` |  |
-| `allowed_providers` | `Object` |  |
-| `content_filter_builtins` | `Object` |  |
-| `content_filters` | `Object` |  |
-| `description` | `Object` |  |
-| `enforce_zdr` | `Object` |  |
-| `enforce_zdr_anthropic` | `Object` |  |
-| `enforce_zdr_google` | `Object` |  |
-| `enforce_zdr_openai` | `Object` |  |
-| `enforce_zdr_other` | `Object` |  |
-| `enforce_zdr_xai` | `Object` |  |
-| `ignored_models` | `Object` |  |
-| `ignored_providers` | `Object` |  |
-| `limit_usd` | `Object` |  |
-| `name` | `String` |  |
-| `reset_interval` | `Object` |  |
+| `allowed_models` | `Object` | Array of model identifiers (slug or canonical_slug accepted) |
+| `allowed_providers` | `Object` | New list of allowed provider IDs |
+| `content_filter_builtins` | `Object` | Builtin content filters to apply. |
+| `content_filters` | `Object` | Custom regex content filters to apply. |
+| `description` | `Object` | New description for the guardrail |
+| `enforce_zdr` | `Object` | Deprecated. |
+| `enforce_zdr_anthropic` | `Object` | Whether to enforce zero data retention for Anthropic models. |
+| `enforce_zdr_google` | `Object` | Whether to enforce zero data retention for Google models. |
+| `enforce_zdr_openai` | `Object` | Whether to enforce zero data retention for OpenAI models. |
+| `enforce_zdr_other` | `Object` | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
+| `enforce_zdr_xai` | `Object` | Whether to enforce zero data retention for xAI models. |
+| `ignored_models` | `Object` | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
+| `ignored_providers` | `Object` | List of provider IDs to exclude from routing |
+| `limit_usd` | `Object` | New spending limit in USD |
+| `name` | `String` | New name for the guardrail |
+| `reset_interval` | `Object` | Interval at which the limit resets (daily, weekly, monthly) |
 
 
 ### UpdateObservabilityDestination
@@ -3924,13 +3924,13 @@ Create an instance: `update_observability_destination = client.UpdateObservabili
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key_hashes` | `Object` |  |
-| `config` | `Hash` |  |
-| `enabled` | `Boolean` |  |
+| `api_key_hashes` | `Object` | Optional allowlist of OpenRouter API key hashes. |
+| `config` | `Hash` | Provider-specific configuration fields to update. |
+| `enabled` | `Boolean` | Whether the destination is enabled. |
 | `filter_rules` | `Object` |  |
-| `name` | `String` |  |
-| `privacy_mode` | `Boolean` |  |
-| `sampling_rate` | `Float` |  |
+| `name` | `String` | Human-readable name for the destination. |
+| `privacy_mode` | `Boolean` | When true, request/response bodies are not forwarded — only metadata. |
+| `sampling_rate` | `Float` | Sampling rate between 0.0001 and 1 (1 = 100%). |
 
 
 ### UpdateWorkspace
@@ -3949,21 +3949,21 @@ Create an instance: `update_workspace = client.UpdateWorkspace`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `String` |  |
-| `created_by` | `Object` |  |
-| `default_image_model` | `Object` |  |
-| `default_provider_sort` | `Object` |  |
-| `default_text_model` | `Object` |  |
-| `description` | `Object` |  |
-| `id` | `String` |  |
-| `io_logging_api_key_ids` | `Object` |  |
-| `io_logging_sampling_rate` | `Float` |  |
-| `is_data_discount_logging_enabled` | `Boolean` |  |
-| `is_observability_broadcast_enabled` | `Boolean` |  |
-| `is_observability_io_logging_enabled` | `Boolean` |  |
-| `name` | `String` |  |
-| `slug` | `String` |  |
-| `updated_at` | `Object` |  |
+| `created_at` | `String` | ISO 8601 timestamp of when the workspace was created |
+| `created_by` | `Object` | User ID of the workspace creator |
+| `default_image_model` | `Object` | Default image model for this workspace |
+| `default_provider_sort` | `Object` | Default provider sort preference (price, throughput, latency, exacto) |
+| `default_text_model` | `Object` | Default text model for this workspace |
+| `description` | `Object` | Description of the workspace |
+| `id` | `String` | Unique identifier for the workspace |
+| `io_logging_api_key_ids` | `Object` | Optional array of API key IDs to filter I/O logging |
+| `io_logging_sampling_rate` | `Float` | Sampling rate for I/O logging (0.0001-1) |
+| `is_data_discount_logging_enabled` | `Boolean` | Whether data discount logging is enabled |
+| `is_observability_broadcast_enabled` | `Boolean` | Whether broadcast is enabled |
+| `is_observability_io_logging_enabled` | `Boolean` | Whether private logging is enabled |
+| `name` | `String` | Name for the new workspace |
+| `slug` | `String` | URL-friendly slug (lowercase alphanumeric segments separated by single hyphens, no leading/trailing hyphens) |
+| `updated_at` | `Object` | ISO 8601 timestamp of when the workspace was last updated |
 
 #### Example: List
 
@@ -4000,7 +4000,7 @@ Create an instance: `upsert_workspace_budget = client.UpsertWorkspaceBudget`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `limit_usd` | `Float` |  |
+| `limit_usd` | `Float` | Spending limit in USD. |
 
 
 ### User
@@ -4028,25 +4028,25 @@ Create an instance: `video = client.Video`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aspect_ratio` | `String` |  |
-| `callback_url` | `String` |  |
-| `duration` | `Integer` |  |
+| `aspect_ratio` | `String` | Aspect ratio of the generated video |
+| `callback_url` | `String` | URL to receive a webhook notification when the video generation job completes. |
+| `duration` | `Integer` | Duration of the generated video in seconds |
 | `error` | `String` |  |
-| `frame_images` | `Array` |  |
-| `generate_audio` | `Boolean` |  |
-| `generation_id` | `String` |  |
+| `frame_images` | `Array` | Images to use as the first and/or last frame of the generated video. |
+| `generate_audio` | `Boolean` | Whether to generate audio alongside the video. |
+| `generation_id` | `String` | The generation ID associated with this video generation job. |
 | `id` | `String` |  |
-| `input_references` | `Array` |  |
+| `input_references` | `Array` | Reference assets to guide video generation. |
 | `model` | `String` |  |
 | `polling_url` | `String` |  |
-| `prompt` | `String` |  |
-| `provider` | `Hash` |  |
-| `resolution` | `String` |  |
-| `seed` | `Integer` |  |
-| `size` | `String` |  |
+| `prompt` | `String` | Text prompt describing the video to generate. |
+| `provider` | `Hash` | Provider-specific passthrough configuration |
+| `resolution` | `String` | Resolution of the generated video |
+| `seed` | `Integer` | If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result. |
+| `size` | `String` | Exact pixel dimensions of the generated video in "WIDTHxHEIGHT" format (e.g. |
 | `status` | `String` |  |
 | `unsigned_urls` | `Array` |  |
-| `usage` | `Hash` |  |
+| `usage` | `Hash` | Usage and cost information for the video generation. |
 
 #### Example: Load
 
@@ -4099,21 +4099,21 @@ Create an instance: `video_models_list = client.VideoModelsList`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allowed_passthrough_parameters` | `Array` |  |
-| `canonical_slug` | `String` |  |
-| `created` | `Integer` |  |
-| `description` | `String` |  |
-| `generate_audio` | `Object` |  |
-| `hugging_face_id` | `Object` |  |
-| `id` | `String` |  |
-| `name` | `String` |  |
-| `pricing_skus` | `Object` |  |
-| `seed` | `Object` |  |
-| `supported_aspect_ratios` | `Object` |  |
-| `supported_durations` | `Object` |  |
-| `supported_frame_images` | `Object` |  |
-| `supported_resolutions` | `Object` |  |
-| `supported_sizes` | `Object` |  |
+| `allowed_passthrough_parameters` | `Array` | List of parameters that are allowed to be passed through to the provider |
+| `canonical_slug` | `String` | Canonical slug for the model |
+| `created` | `Integer` | Unix timestamp of when the model was created |
+| `description` | `String` | Description of the model |
+| `generate_audio` | `Object` | Whether the model supports generating audio alongside video |
+| `hugging_face_id` | `Object` | Hugging Face model identifier, if applicable |
+| `id` | `String` | Unique identifier for the model |
+| `name` | `String` | Display name of the model |
+| `pricing_skus` | `Object` | Pricing SKUs with provider prefix stripped, values as strings |
+| `seed` | `Object` | Whether the model supports deterministic generation via seed parameter |
+| `supported_aspect_ratios` | `Object` | Supported output aspect ratios |
+| `supported_durations` | `Object` | Supported video durations in seconds |
+| `supported_frame_images` | `Object` | Supported frame image types (e.g. |
+| `supported_resolutions` | `Object` | Supported output resolutions |
+| `supported_sizes` | `Object` | Supported output sizes (width x height) |
 
 #### Example: List
 
@@ -4138,21 +4138,21 @@ Create an instance: `workspace = client.Workspace`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `String` |  |
-| `created_by` | `Object` |  |
-| `default_image_model` | `Object` |  |
-| `default_provider_sort` | `Object` |  |
-| `default_text_model` | `Object` |  |
-| `description` | `Object` |  |
-| `id` | `String` |  |
-| `io_logging_api_key_ids` | `Object` |  |
-| `io_logging_sampling_rate` | `Float` |  |
-| `is_data_discount_logging_enabled` | `Boolean` |  |
-| `is_observability_broadcast_enabled` | `Boolean` |  |
-| `is_observability_io_logging_enabled` | `Boolean` |  |
-| `name` | `String` |  |
-| `slug` | `String` |  |
-| `updated_at` | `Object` |  |
+| `created_at` | `String` | ISO 8601 timestamp of when the workspace was created |
+| `created_by` | `Object` | User ID of the workspace creator |
+| `default_image_model` | `Object` | Default image model for this workspace |
+| `default_provider_sort` | `Object` | Default provider sort preference (price, throughput, latency, exacto) |
+| `default_text_model` | `Object` | Default text model for this workspace |
+| `description` | `Object` | Description of the workspace |
+| `id` | `String` | Unique identifier for the workspace |
+| `io_logging_api_key_ids` | `Object` | Optional array of API key IDs to filter I/O logging. |
+| `io_logging_sampling_rate` | `Float` | Sampling rate for I/O logging (0.0001-1). |
+| `is_data_discount_logging_enabled` | `Boolean` | Whether data discount logging is enabled for this workspace |
+| `is_observability_broadcast_enabled` | `Boolean` | Whether broadcast is enabled for this workspace |
+| `is_observability_io_logging_enabled` | `Boolean` | Whether private logging is enabled for this workspace |
+| `name` | `String` | Name of the workspace |
+| `slug` | `String` | URL-friendly slug for the workspace |
+| `updated_at` | `Object` | ISO 8601 timestamp of when the workspace was last updated |
 
 #### Example: Load
 

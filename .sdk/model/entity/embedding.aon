@@ -1,0 +1,148 @@
+# Entity: embedding
+
+main: kit: entity: embedding: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "data"
+      req: true
+      short: "List of embedding objects"
+      type: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 3
+      }
+    }
+    {
+      name: "dimensions"
+      req: false
+      short: "The number of dimensions for the output embeddings"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "encoding_format"
+      req: false
+      short: "The format of the output embeddings"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique identifier for the embeddings response"
+      type: "`$STRING`"
+    }
+    {
+      name: "input"
+      req: true
+      short: "Text, token, or multimodal input(s) to embed"
+      type: "`$ANY`"
+      union: {
+        branches: 5
+        count: 2
+        depth: 6
+      }
+    }
+    {
+      name: "input_type"
+      req: false
+      short: "The type of input (e.g."
+      type: "`$STRING`"
+    }
+    {
+      name: "model"
+      req: true
+      short: "The model used for embeddings"
+      type: "`$STRING`"
+    }
+    {
+      name: "object"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "provider"
+      req: false
+      type: "`$ANY`"
+      union: {
+        branches: 2
+        count: 6
+        depth: 5
+      }
+    }
+    {
+      name: "usage"
+      req: true
+      short: "Token usage statistics"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "user"
+      req: false
+      short: "A unique identifier for the end-user"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "embedding"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/embeddings"
+          parts: [
+            "embeddings"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

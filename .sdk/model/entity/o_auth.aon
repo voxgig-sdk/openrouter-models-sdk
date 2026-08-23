@@ -1,0 +1,235 @@
+# Entity: o_auth
+
+main: kit: entity: o_auth: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "app_id"
+      req: true
+      short: "The application ID associated with this auth code"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "callback_url"
+      req: true
+      short: "The callback URL to redirect to after authorization."
+      type: "`$STRING`"
+    }
+    {
+      name: "code"
+      req: true
+      short: "The authorization code received from the OAuth redirect"
+      type: "`$STRING`"
+    }
+    {
+      name: "code_challenge"
+      req: false
+      short: "PKCE code challenge for enhanced security"
+      type: "`$STRING`"
+    }
+    {
+      name: "code_challenge_method"
+      req: false
+      short: "The method used to generate the code challenge"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "code_verifier"
+      req: false
+      short: "The code verifier if code_challenge was used in the authorization request"
+      type: "`$STRING`"
+    }
+    {
+      name: "created_at"
+      req: true
+      short: "ISO 8601 timestamp of when the auth code was created"
+      type: "`$STRING`"
+    }
+    {
+      name: "expires_at"
+      req: false
+      short: "Optional expiration time for the API key to be created"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "id"
+      req: true
+      short: "The authorization code ID to use in the exchange request"
+      type: "`$STRING`"
+    }
+    {
+      name: "key"
+      req: true
+      short: "The API key to use for OpenRouter requests"
+      type: "`$STRING`"
+    }
+    {
+      name: "key_label"
+      req: false
+      short: "Optional custom label for the API key."
+      type: "`$STRING`"
+    }
+    {
+      name: "limit"
+      req: false
+      short: "Credit limit for the API key to be created"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "spawn_agent"
+      req: false
+      short: "Agent identifier for spawn telemetry"
+      type: "`$STRING`"
+    }
+    {
+      name: "spawn_cloud"
+      req: false
+      short: "Cloud identifier for spawn telemetry"
+      type: "`$STRING`"
+    }
+    {
+      name: "usage_limit_type"
+      req: false
+      short: "Optional credit limit reset interval."
+      type: "`$STRING`"
+    }
+    {
+      name: "user_id"
+      req: true
+      short: "User ID associated with the API key"
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "workspace_id"
+      req: false
+      short: "Optional workspace ID to associate the API key with"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "o_auth"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/auth/keys"
+          parts: [
+            "auth"
+            "keys"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "http_referer"
+                orig: "http_referer"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_category"
+                orig: "x_open_router_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "header"
+                name: "x_open_router_title"
+                orig: "x_open_router_title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/auth/keys/code"
+          parts: [
+            "auth"
+            "keys"
+            "code"
+          ]
+          select: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
