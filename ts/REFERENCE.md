@@ -1240,6 +1240,7 @@ const api_key = client.ApiKey()
 | `disabled` | `boolean` | Yes | Whether the API key is disabled |
 | `expires_at` | `string | null` | No | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
 | `hash` | `string` | Yes | Unique hash identifier for the API key |
+| `id` | `string` | No |  |
 | `include_byok_in_limit` | `boolean` | Yes | Whether to include external BYOK usage in the credit limit |
 | `is_free_tier` | `boolean` | Yes | Whether this is a free tier API key |
 | `is_management_key` | `boolean` | Yes | Whether this is a management key |
@@ -1270,6 +1271,7 @@ const api_key = client.ApiKey()
 | `disabled` | - | - | - | Yes | - |
 | `expires_at` | - | - | - | - | - |
 | `hash` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
 | `include_byok_in_limit` | - | - | Yes | Yes | - |
 | `is_free_tier` | - | - | - | - | - |
 | `is_management_key` | - | - | - | - | - |
@@ -1308,8 +1310,8 @@ const result = await client.ApiKey().create({
   is_management_key: true,
   is_provisioning_key: true,
   label: 'example_label',
-  limit: 'example_limit',
-  limit_remaining: 'example_limit_remaining',
+  limit: 1,
+  limit_remaining: 1,
   limit_reset: 'example_limit_reset',
   name: 'example_name',
   rate_limit: {},
@@ -1994,9 +1996,9 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Byok().create({
-  allowed_api_key_hashes: 'example_allowed_api_key_hashes',
-  allowed_models: 'example_allowed_models',
-  allowed_user_ids: 'example_allowed_user_ids',
+  allowed_api_key_hashes: [],
+  allowed_models: [],
+  allowed_user_ids: [],
   created_at: 'example_created_at',
   disabled: true,
   id: 'example_id',
@@ -2191,8 +2193,8 @@ const result = await client.ChatResult().create({
   model: 'example_model',
   object: 'example_object',
   openrouter_metadata: {},
-  prediction: 'example_prediction',
-  prompt_cache_options: 'example_prompt_cache_options',
+  prediction: {},
+  prompt_cache_options: {},
   system_fingerprint: 'example_system_fingerprint',
   usage: {},
 })
@@ -2493,7 +2495,7 @@ Create a new entity with the given data.
 ```ts
 const result = await client.CreateObservabilityDestination().create({
   config: {},
-  filter_rules: 'example_filter_rules',
+  filter_rules: {},
   name: 'example_name',
   type: 'example_type',
 })
@@ -2676,9 +2678,9 @@ const result = await client.CreatePresetFromInference().create({
   slug: 'example_slug',
   cache_control: {},
   messages: [],
-  prediction: 'example_prediction',
-  prompt: 'example_prompt',
-  prompt_cache_options: 'example_prompt_cache_options',
+  prediction: {},
+  prompt: {},
+  prompt_cache_options: {},
 })
 ```
 
@@ -4249,7 +4251,7 @@ Create a new entity with the given data.
 ```ts
 const result = await client.Message().create({
   cache_control: {},
-  messages: 'example_messages',
+  messages: [],
   model: 'example_model',
 })
 ```
@@ -4595,6 +4597,7 @@ const observability_destination = client.ObservabilityDestination()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `Record<string, any>` | No |  |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -4702,8 +4705,8 @@ Create a new entity with the given data.
 ```ts
 const result = await client.OpenResponsesResult().create({
   cache_control: {},
-  prompt: 'example_prompt',
-  prompt_cache_options: 'example_prompt_cache_options',
+  prompt: {},
+  prompt_cache_options: {},
 })
 ```
 
@@ -5574,6 +5577,7 @@ const update_byok_key = client.UpdateByokKey()
 | `allowed_models` | `any[] | null` | No | Optional allowlist of model slugs this credential may be used for. |
 | `allowed_user_ids` | `any[] | null` | No | Optional allowlist of user IDs that may use this credential. |
 | `disabled` | `boolean` | No | Whether this credential is disabled. |
+| `id` | `string` | No |  |
 | `is_fallback` | `boolean` | No | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
 | `key` | `string` | No | A new raw provider API key to rotate the credential in-place. |
 | `name` | `string | null` | No | Optional human-readable name for the credential. |
@@ -5640,6 +5644,7 @@ const update_guardrail = client.UpdateGuardrail()
 | `enforce_zdr_openai` | `boolean | null` | No | Whether to enforce zero data retention for OpenAI models. |
 | `enforce_zdr_other` | `boolean | null` | No | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
 | `enforce_zdr_xai` | `boolean | null` | No | Whether to enforce zero data retention for xAI models. |
+| `id` | `string` | No |  |
 | `ignored_models` | `any[] | null` | No | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
 | `ignored_providers` | `any[] | null` | No | List of provider IDs to exclude from routing |
 | `limit_usd` | `number | null` | No | New spending limit in USD |
@@ -5701,6 +5706,7 @@ const update_observability_destination = client.UpdateObservabilityDestination()
 | `config` | `Record<string, any>` | No | Provider-specific configuration fields to update. |
 | `enabled` | `boolean` | No | Whether the destination is enabled. |
 | `filter_rules` | `any` | No |  |
+| `id` | `string` | No |  |
 | `name` | `string` | No | Human-readable name for the destination. |
 | `privacy_mode` | `boolean` | No | When true, request/response bodies are not forwarded — only metadata. |
 | `sampling_rate` | `number` | No | Sampling rate between 0.0001 and 1 (1 = 100%). |
@@ -5866,6 +5872,7 @@ const upsert_workspace_budget = client.UpsertWorkspaceBudget()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `limit_usd` | `number` | Yes | Spending limit in USD. |
 
 ### Operations
@@ -6064,6 +6071,12 @@ Return a copy of the entity options.
 ```ts
 const video_generation = client.VideoGeneration()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Actions
 
@@ -6264,6 +6277,12 @@ Return a copy of the entity options.
 ```ts
 const workspace_budget = client.WorkspaceBudget()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 

@@ -90,6 +90,11 @@ main: kit: entity: api_key: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "include_byok_in_limit"
       op: {
         create: {
@@ -276,6 +281,11 @@ main: kit: entity: api_key: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "api_key"
   op: {

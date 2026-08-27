@@ -49,6 +49,7 @@ class TestUpdateObservabilityDestinationEntity:
         # UPDATE
         update_observability_destination_ref01_ent = client.UpdateObservabilityDestination(None)
         update_observability_destination_ref01_data_up0_up = {
+            "id": update_observability_destination_ref01_data["id"],
         }
 
         update_observability_destination_ref01_markdef_up0_name = "name"
@@ -57,6 +58,7 @@ class TestUpdateObservabilityDestinationEntity:
 
         update_observability_destination_ref01_resdata_up0 = helpers.to_map(runner.entity_data(update_observability_destination_ref01_ent.update(update_observability_destination_ref01_data_up0_up, None)))
         assert update_observability_destination_ref01_resdata_up0 is not None
+        assert update_observability_destination_ref01_resdata_up0["id"] == update_observability_destination_ref01_data_up0_up["id"]
         assert update_observability_destination_ref01_resdata_up0[update_observability_destination_ref01_markdef_up0_name] == update_observability_destination_ref01_markdef_up0_value
 
 

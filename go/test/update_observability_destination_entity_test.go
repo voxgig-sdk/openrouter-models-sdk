@@ -63,6 +63,7 @@ func TestUpdateObservabilityDestinationEntity(t *testing.T) {
 		// UPDATE
 		updateObservabilityDestinationRef01Ent := client.UpdateObservabilityDestination(nil)
 		updateObservabilityDestinationRef01DataUp0Up := map[string]any{
+			"id": updateObservabilityDestinationRef01Data["id"],
 		}
 
 		updateObservabilityDestinationRef01MarkdefUp0Name := "name"
@@ -76,6 +77,9 @@ func TestUpdateObservabilityDestinationEntity(t *testing.T) {
 		updateObservabilityDestinationRef01ResdataUp0 := core.ToMapAny(entityData(updateObservabilityDestinationRef01ResdataUp0Result))
 		if updateObservabilityDestinationRef01ResdataUp0 == nil {
 			t.Fatal("expected update result to be a map")
+		}
+		if updateObservabilityDestinationRef01ResdataUp0["id"] != updateObservabilityDestinationRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
 		}
 		if updateObservabilityDestinationRef01ResdataUp0[updateObservabilityDestinationRef01MarkdefUp0Name] != updateObservabilityDestinationRef01MarkdefUp0Value {
 			t.Fatalf("expected %s to be updated, got %v", updateObservabilityDestinationRef01MarkdefUp0Name, updateObservabilityDestinationRef01ResdataUp0[updateObservabilityDestinationRef01MarkdefUp0Name])

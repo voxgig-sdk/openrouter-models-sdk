@@ -44,10 +44,14 @@ describe("ObservabilityDestinationEntity", function()
 
     -- LOAD
     local observability_destination_ref01_ent = client:ObservabilityDestination(nil)
-    local observability_destination_ref01_match_dt0 = {}
+    local observability_destination_ref01_match_dt0 = {
+      id = observability_destination_ref01_data["id"],
+    }
     local observability_destination_ref01_data_dt0_loaded, err = observability_destination_ref01_ent:load(observability_destination_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(observability_destination_ref01_data_dt0_loaded)
+    local observability_destination_ref01_data_dt0_load_result = helpers.to_map(type(observability_destination_ref01_data_dt0_loaded) == 'table' and observability_destination_ref01_data_dt0_loaded.data_get and observability_destination_ref01_data_dt0_loaded:data_get() or observability_destination_ref01_data_dt0_loaded)
+    assert.is_not_nil(observability_destination_ref01_data_dt0_load_result)
+    assert.are.equal(observability_destination_ref01_data_dt0_load_result["id"], observability_destination_ref01_data["id"])
 
   end)
 end)

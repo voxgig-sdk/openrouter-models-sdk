@@ -4,6 +4,19 @@ main: kit: entity: video_generation: {
 
   alias: field: {}
 
+  fields: [
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
   name: "video_generation"
   op: {
     load: {

@@ -49,6 +49,7 @@ class TestUpdateByokKeyEntity:
         # UPDATE
         update_byok_key_ref01_ent = client.UpdateByokKey(None)
         update_byok_key_ref01_data_up0_up = {
+            "id": update_byok_key_ref01_data["id"],
         }
 
         update_byok_key_ref01_markdef_up0_name = "key"
@@ -57,6 +58,7 @@ class TestUpdateByokKeyEntity:
 
         update_byok_key_ref01_resdata_up0 = helpers.to_map(runner.entity_data(update_byok_key_ref01_ent.update(update_byok_key_ref01_data_up0_up, None)))
         assert update_byok_key_ref01_resdata_up0 is not None
+        assert update_byok_key_ref01_resdata_up0["id"] == update_byok_key_ref01_data_up0_up["id"]
         assert update_byok_key_ref01_resdata_up0[update_byok_key_ref01_markdef_up0_name] == update_byok_key_ref01_markdef_up0_value
 
 

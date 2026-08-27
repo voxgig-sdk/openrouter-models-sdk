@@ -49,6 +49,7 @@ class UpdateGuardrailEntityTest extends TestCase
         // UPDATE
         $update_guardrail_ref01_ent = $client->UpdateGuardrail(null);
         $update_guardrail_ref01_data_up0_up = [
+            "id" => $update_guardrail_ref01_data["id"],
         ];
 
         $update_guardrail_ref01_markdef_up0_name = "name";
@@ -58,6 +59,7 @@ class UpdateGuardrailEntityTest extends TestCase
         $update_guardrail_ref01_resdata_up0_result = $update_guardrail_ref01_ent->update($update_guardrail_ref01_data_up0_up, null);
         $update_guardrail_ref01_resdata_up0 = Helpers::to_map(is_object($update_guardrail_ref01_resdata_up0_result) && method_exists($update_guardrail_ref01_resdata_up0_result, 'data_get') ? $update_guardrail_ref01_resdata_up0_result->data_get() : $update_guardrail_ref01_resdata_up0_result);
         $this->assertNotNull($update_guardrail_ref01_resdata_up0);
+        $this->assertEquals($update_guardrail_ref01_resdata_up0["id"], $update_guardrail_ref01_data_up0_up["id"]);
         $this->assertEquals($update_guardrail_ref01_resdata_up0[$update_guardrail_ref01_markdef_up0_name], $update_guardrail_ref01_markdef_up0_value);
 
     }

@@ -42,6 +42,7 @@ class UpdateByokKeyEntityTest < Minitest::Test
     # UPDATE
     update_byok_key_ref01_ent = client.UpdateByokKey(nil)
     update_byok_key_ref01_data_up0_up = {
+      "id" => update_byok_key_ref01_data["id"],
     }
 
     update_byok_key_ref01_markdef_up0_name = "key"
@@ -51,6 +52,7 @@ class UpdateByokKeyEntityTest < Minitest::Test
     update_byok_key_ref01_resdata_up0_result = update_byok_key_ref01_ent.update(update_byok_key_ref01_data_up0_up, nil)
     update_byok_key_ref01_resdata_up0 = Helpers.to_map(update_byok_key_ref01_resdata_up0_result.respond_to?(:data_get) ? update_byok_key_ref01_resdata_up0_result.data_get : update_byok_key_ref01_resdata_up0_result)
     assert !update_byok_key_ref01_resdata_up0.nil?
+    assert_equal update_byok_key_ref01_resdata_up0["id"], update_byok_key_ref01_data_up0_up["id"]
     assert_equal update_byok_key_ref01_resdata_up0[update_byok_key_ref01_markdef_up0_name], update_byok_key_ref01_markdef_up0_value
 
   end

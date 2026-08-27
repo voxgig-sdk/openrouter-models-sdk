@@ -62,12 +62,13 @@ describe('UpdateByokKeyEntity', async () => {
     // UPDATE
     const update_byok_key_ref01_ent = client.UpdateByokKey()
     const update_byok_key_ref01_data_up0: any = {}
+    update_byok_key_ref01_data_up0.id = update_byok_key_ref01_data.id
 
     const update_byok_key_ref01_markdef_up0 = { name: 'key', value: 'Mark01-update_byok_key_ref01_' + setup.now }
     ;(update_byok_key_ref01_data_up0 as any)[update_byok_key_ref01_markdef_up0.name] = update_byok_key_ref01_markdef_up0.value
 
     const update_byok_key_ref01_resdata_up0 = (await update_byok_key_ref01_ent.update(update_byok_key_ref01_data_up0)).data()
-    assert(null != update_byok_key_ref01_resdata_up0)
+    assert(update_byok_key_ref01_resdata_up0.id === update_byok_key_ref01_data_up0.id)
 
     assert((update_byok_key_ref01_resdata_up0 as any)[update_byok_key_ref01_markdef_up0.name] === update_byok_key_ref01_markdef_up0.value)
 

@@ -48,9 +48,13 @@ class TestObservabilityDestinationEntity:
 
         # LOAD
         observability_destination_ref01_ent = client.ObservabilityDestination(None)
-        observability_destination_ref01_match_dt0 = {}
+        observability_destination_ref01_match_dt0 = {
+            "id": observability_destination_ref01_data["id"],
+        }
         observability_destination_ref01_data_dt0_loaded = observability_destination_ref01_ent.load(observability_destination_ref01_match_dt0, None)
-        assert observability_destination_ref01_data_dt0_loaded is not None
+        observability_destination_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(observability_destination_ref01_data_dt0_loaded))
+        assert observability_destination_ref01_data_dt0_load_result is not None
+        assert observability_destination_ref01_data_dt0_load_result["id"] == observability_destination_ref01_data["id"]
 
 
 

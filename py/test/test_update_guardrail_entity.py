@@ -49,6 +49,7 @@ class TestUpdateGuardrailEntity:
         # UPDATE
         update_guardrail_ref01_ent = client.UpdateGuardrail(None)
         update_guardrail_ref01_data_up0_up = {
+            "id": update_guardrail_ref01_data["id"],
         }
 
         update_guardrail_ref01_markdef_up0_name = "name"
@@ -57,6 +58,7 @@ class TestUpdateGuardrailEntity:
 
         update_guardrail_ref01_resdata_up0 = helpers.to_map(runner.entity_data(update_guardrail_ref01_ent.update(update_guardrail_ref01_data_up0_up, None)))
         assert update_guardrail_ref01_resdata_up0 is not None
+        assert update_guardrail_ref01_resdata_up0["id"] == update_guardrail_ref01_data_up0_up["id"]
         assert update_guardrail_ref01_resdata_up0[update_guardrail_ref01_markdef_up0_name] == update_guardrail_ref01_markdef_up0_value
 
 

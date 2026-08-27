@@ -62,10 +62,11 @@ describe('UpsertWorkspaceBudgetEntity', async () => {
     // UPDATE
     const upsert_workspace_budget_ref01_ent = client.UpsertWorkspaceBudget()
     const upsert_workspace_budget_ref01_data_up0: any = {}
+    upsert_workspace_budget_ref01_data_up0.id = upsert_workspace_budget_ref01_data.id
     upsert_workspace_budget_ref01_data_up0 ['workspace_id'] = setup.idmap['workspace_id']
 
     const upsert_workspace_budget_ref01_resdata_up0 = (await upsert_workspace_budget_ref01_ent.update(upsert_workspace_budget_ref01_data_up0)).data()
-    assert(null != upsert_workspace_budget_ref01_resdata_up0)
+    assert(upsert_workspace_budget_ref01_resdata_up0.id === upsert_workspace_budget_ref01_data_up0.id)
 
 
   })

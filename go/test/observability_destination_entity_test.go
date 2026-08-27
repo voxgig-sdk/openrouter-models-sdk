@@ -61,13 +61,19 @@ func TestObservabilityDestinationEntity(t *testing.T) {
 
 		// LOAD
 		observabilityDestinationRef01Ent := client.ObservabilityDestination(nil)
-		observabilityDestinationRef01MatchDt0 := map[string]any{}
+		observabilityDestinationRef01MatchDt0 := map[string]any{
+			"id": observabilityDestinationRef01Data["id"],
+		}
 		observabilityDestinationRef01DataDt0Loaded, err := observabilityDestinationRef01Ent.Load(observabilityDestinationRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if observabilityDestinationRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		observabilityDestinationRef01DataDt0LoadResult := core.ToMapAny(entityData(observabilityDestinationRef01DataDt0Loaded))
+		if observabilityDestinationRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if observabilityDestinationRef01DataDt0LoadResult["id"] != observabilityDestinationRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

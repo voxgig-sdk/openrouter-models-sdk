@@ -61,6 +61,7 @@ class ApiKey
     public bool $disabled;
     public mixed $expires_at = null;
     public string $hash;
+    public ?string $id = null;
     public bool $include_byok_in_limit;
     public bool $is_free_tier;
     public bool $is_management_key;
@@ -97,6 +98,7 @@ class ApiKeyListMatch
     public ?bool $disabled = null;
     public mixed $expires_at = null;
     public ?string $hash = null;
+    public ?string $id = null;
     public ?bool $include_byok_in_limit = null;
     public ?bool $is_free_tier = null;
     public ?bool $is_management_key = null;
@@ -127,6 +129,7 @@ class ApiKeyCreateData
     public bool $disabled;
     public mixed $expires_at = null;
     public string $hash;
+    public ?string $id = null;
     public bool $include_byok_in_limit;
     public bool $is_free_tier;
     public bool $is_management_key;
@@ -1600,6 +1603,7 @@ class OAuthCreateData
 class ObservabilityDestination
 {
     public ?array $data = null;
+    public ?string $id = null;
 }
 
 /** Request payload for ObservabilityDestination#load. */
@@ -1989,6 +1993,7 @@ class UpdateByokKey
     public mixed $allowed_models = null;
     public mixed $allowed_user_ids = null;
     public ?bool $disabled = null;
+    public ?string $id = null;
     public ?bool $is_fallback = null;
     public ?string $key = null;
     public mixed $name = null;
@@ -2020,6 +2025,7 @@ class UpdateGuardrail
     public mixed $enforce_zdr_openai = null;
     public mixed $enforce_zdr_other = null;
     public mixed $enforce_zdr_xai = null;
+    public ?string $id = null;
     public mixed $ignored_models = null;
     public mixed $ignored_providers = null;
     public mixed $limit_usd = null;
@@ -2056,6 +2062,7 @@ class UpdateObservabilityDestination
     public ?array $config = null;
     public ?bool $enabled = null;
     public mixed $filter_rules = null;
+    public ?string $id = null;
     public ?string $name = null;
     public ?bool $privacy_mode = null;
     public ?float $sampling_rate = null;
@@ -2157,6 +2164,7 @@ class UpdateWorkspaceUpdateData
 /** UpsertWorkspaceBudget entity data model. */
 class UpsertWorkspaceBudget
 {
+    public ?string $id = null;
     public float $limit_usd;
 }
 
@@ -2235,6 +2243,7 @@ class VideoCreateData
 /** VideoGeneration entity data model. */
 class VideoGeneration
 {
+    public ?string $id = null;
 }
 
 /** Request payload for VideoGeneration#load. */
@@ -2318,6 +2327,7 @@ class WorkspaceRemoveMatch
 /** WorkspaceBudget entity data model. */
 class WorkspaceBudget
 {
+    public ?string $id = null;
 }
 
 /** Request payload for WorkspaceBudget#remove. */

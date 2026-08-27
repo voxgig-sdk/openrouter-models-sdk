@@ -59,9 +59,12 @@ describe('VideoGenerationEntity', async () => {
 
     let video_generation_ref01_data = Object.values(setup.data.existing.video_generation)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const video_generation_ref01_ent = client.VideoGeneration()
+    const video_generation_ref01_match_dt0: any = {}
+    video_generation_ref01_match_dt0.id = video_generation_ref01_data.id
+    const video_generation_ref01_data_dt0 = (await video_generation_ref01_ent.load(video_generation_ref01_match_dt0)).data()
+    assert(video_generation_ref01_data_dt0.id === video_generation_ref01_data.id)
 
 
   })

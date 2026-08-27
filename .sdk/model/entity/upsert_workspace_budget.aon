@@ -6,12 +6,22 @@ main: kit: entity: upsert_workspace_budget: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "limit_usd"
       req: true
       short: "Spending limit in USD."
       type: "`$NUMBER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "upsert_workspace_budget"
   op: {

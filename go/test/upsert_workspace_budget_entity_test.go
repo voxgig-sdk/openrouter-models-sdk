@@ -62,6 +62,7 @@ func TestUpsertWorkspaceBudgetEntity(t *testing.T) {
 		// UPDATE
 		upsertWorkspaceBudgetRef01Ent := client.UpsertWorkspaceBudget(nil)
 		upsertWorkspaceBudgetRef01DataUp0Up := map[string]any{
+			"id": upsertWorkspaceBudgetRef01Data["id"],
 			"workspace_id": setup.idmap["workspace_id"],
 		}
 
@@ -72,6 +73,9 @@ func TestUpsertWorkspaceBudgetEntity(t *testing.T) {
 		upsertWorkspaceBudgetRef01ResdataUp0 := core.ToMapAny(entityData(upsertWorkspaceBudgetRef01ResdataUp0Result))
 		if upsertWorkspaceBudgetRef01ResdataUp0 == nil {
 			t.Fatal("expected update result to be a map")
+		}
+		if upsertWorkspaceBudgetRef01ResdataUp0["id"] != upsertWorkspaceBudgetRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
 		}
 
 	})

@@ -20,6 +20,7 @@ func MakeConfig() map[string]any {
 				"options": map[string]any{
 					"active": false,
 				},
+				"transport": "base",
 			},
 		},
 		"options": map[string]any{
@@ -362,6 +363,10 @@ func MakeConfig() map[string]any {
 						"name": "hash",
 						"req": true,
 						"short": "Unique hash identifier for the API key",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -8705,6 +8710,10 @@ func MakeConfig() map[string]any {
 						"name": "data",
 						"type": "`$OBJECT`",
 					},
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
 				},
 				"name": "observability_destination",
 				"op": map[string]any{
@@ -10686,6 +10695,10 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "is_fallback",
 						"short": "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried.",
 						"type": "`$BOOLEAN`",
@@ -10897,6 +10910,10 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "ignored_models",
 						"short": "Array of model identifiers to exclude from routing (slug or canonical_slug accepted)",
 						"type": []any{
@@ -11043,6 +11060,10 @@ func MakeConfig() map[string]any {
 							"count": 1,
 							"depth": 10,
 						},
+					},
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
@@ -11534,6 +11555,10 @@ func MakeConfig() map[string]any {
 			"upsert_workspace_budget": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "limit_usd",
 						"req": true,
 						"short": "Spending limit in USD.",
@@ -11862,7 +11887,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"video_generation": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "video_generation",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -12412,7 +12442,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"workspace_budget": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "workspace_budget",
 				"op": map[string]any{
 					"remove": map[string]any{

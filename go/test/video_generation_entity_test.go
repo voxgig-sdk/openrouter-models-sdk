@@ -61,13 +61,19 @@ func TestVideoGenerationEntity(t *testing.T) {
 
 		// LOAD
 		videoGenerationRef01Ent := client.VideoGeneration(nil)
-		videoGenerationRef01MatchDt0 := map[string]any{}
+		videoGenerationRef01MatchDt0 := map[string]any{
+			"id": videoGenerationRef01Data["id"],
+		}
 		videoGenerationRef01DataDt0Loaded, err := videoGenerationRef01Ent.Load(videoGenerationRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if videoGenerationRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		videoGenerationRef01DataDt0LoadResult := core.ToMapAny(entityData(videoGenerationRef01DataDt0Loaded))
+		if videoGenerationRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if videoGenerationRef01DataDt0LoadResult["id"] != videoGenerationRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

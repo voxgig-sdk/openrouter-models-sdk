@@ -535,6 +535,7 @@ api_key = client.ApiKey()
 | `disabled` | `bool` | Yes | Whether the API key is disabled |
 | `expires_at` | `str | None` | No | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
 | `hash` | `str` | Yes | Unique hash identifier for the API key |
+| `id` | `str` | No |  |
 | `include_byok_in_limit` | `bool` | Yes | Whether to include external BYOK usage in the credit limit |
 | `is_free_tier` | `bool` | Yes | Whether this is a free tier API key |
 | `is_management_key` | `bool` | Yes | Whether this is a management key |
@@ -565,6 +566,7 @@ api_key = client.ApiKey()
 | `disabled` | - | - | - | Yes | - |
 | `expires_at` | - | - | - | - | - |
 | `hash` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
 | `include_byok_in_limit` | - | - | Yes | Yes | - |
 | `is_free_tier` | - | - | - | - | - |
 | `is_management_key` | - | - | - | - | - |
@@ -603,8 +605,8 @@ result = client.ApiKey().create({
     "is_management_key": True,  # bool
     "is_provisioning_key": True,  # bool
     "label": "example_label",  # str
-    "limit": "example_limit",  # float | None
-    "limit_remaining": "example_limit_remaining",  # float | None
+    "limit": 1,  # float | None
+    "limit_remaining": 1,  # float | None
     "limit_reset": "example_limit_reset",  # str | None
     "name": "example_name",  # str
     "rate_limit": {},  # dict
@@ -1304,9 +1306,9 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Byok().create({
-    "allowed_api_key_hashes": "example_allowed_api_key_hashes",  # list | None
-    "allowed_models": "example_allowed_models",  # list | None
-    "allowed_user_ids": "example_allowed_user_ids",  # list | None
+    "allowed_api_key_hashes": [],  # list | None
+    "allowed_models": [],  # list | None
+    "allowed_user_ids": [],  # list | None
     "created_at": "example_created_at",  # str
     "disabled": True,  # bool
     "id": "example_id",  # str
@@ -1504,8 +1506,8 @@ result = client.ChatResult().create({
     "model": "example_model",  # str
     "object": "example_object",  # str
     "openrouter_metadata": {},  # dict
-    "prediction": "example_prediction",  # dict | None
-    "prompt_cache_options": "example_prompt_cache_options",  # dict | None
+    "prediction": {},  # dict | None
+    "prompt_cache_options": {},  # dict | None
     "system_fingerprint": "example_system_fingerprint",  # str | None
     "usage": {},  # dict
 })
@@ -1814,7 +1816,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.CreateObservabilityDestination().create({
     "config": {},  # dict
-    "filter_rules": "example_filter_rules",  # dict | None
+    "filter_rules": {},  # dict | None
     "name": "example_name",  # str
     "type": "example_type",  # str
 })
@@ -1998,9 +2000,9 @@ result = client.CreatePresetFromInference().create({
     "slug": "example_slug",  # str
     "cache_control": {},  # dict
     "messages": [],  # list
-    "prediction": "example_prediction",  # dict | None
-    "prompt": "example_prompt",  # dict | None
-    "prompt_cache_options": "example_prompt_cache_options",  # dict | None
+    "prediction": {},  # dict | None
+    "prompt": {},  # dict | None
+    "prompt_cache_options": {},  # dict | None
 })
 ```
 
@@ -3559,7 +3561,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.Message().create({
     "cache_control": {},  # dict
-    "messages": "example_messages",  # list | None
+    "messages": [],  # list | None
     "model": "example_model",  # str
 })
 ```
@@ -3915,6 +3917,7 @@ observability_destination = client.ObservabilityDestination()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `dict` | No |  |
+| `id` | `str` | No |  |
 
 ### Operations
 
@@ -4023,8 +4026,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.OpenResponsesResult().create({
     "cache_control": {},  # dict
-    "prompt": "example_prompt",  # dict | None
-    "prompt_cache_options": "example_prompt_cache_options",  # dict | None
+    "prompt": {},  # dict | None
+    "prompt_cache_options": {},  # dict | None
 })
 ```
 
@@ -4902,6 +4905,7 @@ update_byok_key = client.UpdateByokKey()
 | `allowed_models` | `list | None` | No | Optional allowlist of model slugs this credential may be used for. |
 | `allowed_user_ids` | `list | None` | No | Optional allowlist of user IDs that may use this credential. |
 | `disabled` | `bool` | No | Whether this credential is disabled. |
+| `id` | `str` | No |  |
 | `is_fallback` | `bool` | No | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
 | `key` | `str` | No | A new raw provider API key to rotate the credential in-place. |
 | `name` | `str | None` | No | Optional human-readable name for the credential. |
@@ -4969,6 +4973,7 @@ update_guardrail = client.UpdateGuardrail()
 | `enforce_zdr_openai` | `bool | None` | No | Whether to enforce zero data retention for OpenAI models. |
 | `enforce_zdr_other` | `bool | None` | No | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
 | `enforce_zdr_xai` | `bool | None` | No | Whether to enforce zero data retention for xAI models. |
+| `id` | `str` | No |  |
 | `ignored_models` | `list | None` | No | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
 | `ignored_providers` | `list | None` | No | List of provider IDs to exclude from routing |
 | `limit_usd` | `float | None` | No | New spending limit in USD |
@@ -5031,6 +5036,7 @@ update_observability_destination = client.UpdateObservabilityDestination()
 | `config` | `dict` | No | Provider-specific configuration fields to update. |
 | `enabled` | `bool` | No | Whether the destination is enabled. |
 | `filter_rules` | `Any` | No |  |
+| `id` | `str` | No |  |
 | `name` | `str` | No | Human-readable name for the destination. |
 | `privacy_mode` | `bool` | No | When true, request/response bodies are not forwarded — only metadata. |
 | `sampling_rate` | `float` | No | Sampling rate between 0.0001 and 1 (1 = 100%). |
@@ -5200,6 +5206,7 @@ upsert_workspace_budget = client.UpsertWorkspaceBudget()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `str` | No |  |
 | `limit_usd` | `float` | Yes | Spending limit in USD. |
 
 ### Operations
@@ -5403,6 +5410,12 @@ Return the entity name.
 video_generation = client.VideoGeneration()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -5587,6 +5600,12 @@ Return the entity name.
 ```python
 workspace_budget = client.WorkspaceBudget()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 

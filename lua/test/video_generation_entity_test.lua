@@ -44,10 +44,14 @@ describe("VideoGenerationEntity", function()
 
     -- LOAD
     local video_generation_ref01_ent = client:VideoGeneration(nil)
-    local video_generation_ref01_match_dt0 = {}
+    local video_generation_ref01_match_dt0 = {
+      id = video_generation_ref01_data["id"],
+    }
     local video_generation_ref01_data_dt0_loaded, err = video_generation_ref01_ent:load(video_generation_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(video_generation_ref01_data_dt0_loaded)
+    local video_generation_ref01_data_dt0_load_result = helpers.to_map(type(video_generation_ref01_data_dt0_loaded) == 'table' and video_generation_ref01_data_dt0_loaded.data_get and video_generation_ref01_data_dt0_loaded:data_get() or video_generation_ref01_data_dt0_loaded)
+    assert.is_not_nil(video_generation_ref01_data_dt0_load_result)
+    assert.are.equal(video_generation_ref01_data_dt0_load_result["id"], video_generation_ref01_data["id"])
 
   end)
 end)

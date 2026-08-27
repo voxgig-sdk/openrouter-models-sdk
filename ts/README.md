@@ -439,6 +439,7 @@ API path: ``
 | `disabled` | Whether the API key is disabled |
 | `expires_at` | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
 | `hash` | Unique hash identifier for the API key |
+| `id` |  |
 | `include_byok_in_limit` | Whether to include external BYOK usage in the credit limit |
 | `is_free_tier` | Whether this is a free tier API key |
 | `is_management_key` | Whether this is a management key |
@@ -1368,6 +1369,7 @@ API path: `/auth/keys`
 | Field | Description |
 | --- | --- |
 | `data` |  |
+| `id` |  |
 
 Operations: load, remove.
 
@@ -1645,6 +1647,7 @@ API path: `/benchmarks`
 | `allowed_models` | Optional allowlist of model slugs this credential may be used for. |
 | `allowed_user_ids` | Optional allowlist of user IDs that may use this credential. |
 | `disabled` | Whether this credential is disabled. |
+| `id` |  |
 | `is_fallback` | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
 | `key` | A new raw provider API key to rotate the credential in-place. |
 | `name` | Optional human-readable name for the credential. |
@@ -1668,6 +1671,7 @@ API path: `/byok/{id}`
 | `enforce_zdr_openai` | Whether to enforce zero data retention for OpenAI models. |
 | `enforce_zdr_other` | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
 | `enforce_zdr_xai` | Whether to enforce zero data retention for xAI models. |
+| `id` |  |
 | `ignored_models` | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
 | `ignored_providers` | List of provider IDs to exclude from routing |
 | `limit_usd` | New spending limit in USD |
@@ -1686,6 +1690,7 @@ API path: `/guardrails/{id}`
 | `config` | Provider-specific configuration fields to update. |
 | `enabled` | Whether the destination is enabled. |
 | `filter_rules` |  |
+| `id` |  |
 | `name` | Human-readable name for the destination. |
 | `privacy_mode` | When true, request/response bodies are not forwarded — only metadata. |
 | `sampling_rate` | Sampling rate between 0.0001 and 1 (1 = 100%). |
@@ -1722,6 +1727,7 @@ API path: `/workspaces`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `limit_usd` | Spending limit in USD. |
 
 Operations: update.
@@ -1778,6 +1784,7 @@ API path: `/videos`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: load.
 
@@ -1835,6 +1842,7 @@ API path: `/workspaces/{id}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: remove.
 
@@ -1919,6 +1927,7 @@ Create an instance: `const api_key = client.ApiKey()`
 | `disabled` | `boolean` | Whether the API key is disabled |
 | `expires_at` | `string | null` | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
 | `hash` | `string` | Unique hash identifier for the API key |
+| `id` | `string` |  |
 | `include_byok_in_limit` | `boolean` | Whether to include external BYOK usage in the credit limit |
 | `is_free_tier` | `boolean` | Whether this is a free tier API key |
 | `is_management_key` | `boolean` | Whether this is a management key |
@@ -1965,8 +1974,8 @@ const api_key = await client.ApiKey().create({
   is_management_key: true,
   is_provisioning_key: true,
   label: 'example_label',
-  limit: 'example_limit',
-  limit_remaining: 'example_limit_remaining',
+  limit: 1,
+  limit_remaining: 1,
   limit_reset: 'example_limit_reset',
   name: 'example_name',
   rate_limit: {},
@@ -2290,9 +2299,9 @@ const byoks = await client.Byok().list()
 
 ```ts
 const byok = await client.Byok().create({
-  allowed_api_key_hashes: 'example_allowed_api_key_hashes',
-  allowed_models: 'example_allowed_models',
-  allowed_user_ids: 'example_allowed_user_ids',
+  allowed_api_key_hashes: [],
+  allowed_models: [],
+  allowed_user_ids: [],
   created_at: 'example_created_at',
   disabled: true,
   id: 'example_id',
@@ -2382,8 +2391,8 @@ const chat_result = await client.ChatResult().create({
   model: 'example_model',
   object: 'example_object',
   openrouter_metadata: {},
-  prediction: 'example_prediction',
-  prompt_cache_options: 'example_prompt_cache_options',
+  prediction: {},
+  prompt_cache_options: {},
   system_fingerprint: 'example_system_fingerprint',
   usage: {},
 })
@@ -2454,7 +2463,7 @@ Create an instance: `const create_observability_destination = client.CreateObser
 ```ts
 const create_observability_destination = await client.CreateObservabilityDestination().create({
   config: {},
-  filter_rules: 'example_filter_rules',
+  filter_rules: {},
   name: 'example_name',
   type: 'example_type',
 })
@@ -2544,9 +2553,9 @@ const create_preset_from_inference = await client.CreatePresetFromInference().cr
   slug: 'example_slug',
   cache_control: {},
   messages: [],
-  prediction: 'example_prediction',
-  prompt: 'example_prompt',
-  prompt_cache_options: 'example_prompt_cache_options',
+  prediction: {},
+  prompt: {},
+  prompt_cache_options: {},
 })
 ```
 
@@ -3253,7 +3262,7 @@ Create an instance: `const message = client.Message()`
 ```ts
 const message = await client.Message().create({
   cache_control: {},
-  messages: 'example_messages',
+  messages: [],
   model: 'example_model',
 })
 ```
@@ -3439,6 +3448,7 @@ Create an instance: `const observability_destination = client.ObservabilityDesti
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `Record<string, any>` |  |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -3507,8 +3517,8 @@ Create an instance: `const open_responses_result = client.OpenResponsesResult()`
 ```ts
 const open_responses_result = await client.OpenResponsesResult().create({
   cache_control: {},
-  prompt: 'example_prompt',
-  prompt_cache_options: 'example_prompt_cache_options',
+  prompt: {},
+  prompt_cache_options: {},
 })
 ```
 
@@ -3893,6 +3903,7 @@ Create an instance: `const update_byok_key = client.UpdateByokKey()`
 | `allowed_models` | `any[] | null` | Optional allowlist of model slugs this credential may be used for. |
 | `allowed_user_ids` | `any[] | null` | Optional allowlist of user IDs that may use this credential. |
 | `disabled` | `boolean` | Whether this credential is disabled. |
+| `id` | `string` |  |
 | `is_fallback` | `boolean` | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
 | `key` | `string` | A new raw provider API key to rotate the credential in-place. |
 | `name` | `string | null` | Optional human-readable name for the credential. |
@@ -3923,6 +3934,7 @@ Create an instance: `const update_guardrail = client.UpdateGuardrail()`
 | `enforce_zdr_openai` | `boolean | null` | Whether to enforce zero data retention for OpenAI models. |
 | `enforce_zdr_other` | `boolean | null` | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
 | `enforce_zdr_xai` | `boolean | null` | Whether to enforce zero data retention for xAI models. |
+| `id` | `string` |  |
 | `ignored_models` | `any[] | null` | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
 | `ignored_providers` | `any[] | null` | List of provider IDs to exclude from routing |
 | `limit_usd` | `number | null` | New spending limit in USD |
@@ -3948,6 +3960,7 @@ Create an instance: `const update_observability_destination = client.UpdateObser
 | `config` | `Record<string, any>` | Provider-specific configuration fields to update. |
 | `enabled` | `boolean` | Whether the destination is enabled. |
 | `filter_rules` | `any` |  |
+| `id` | `string` |  |
 | `name` | `string` | Human-readable name for the destination. |
 | `privacy_mode` | `boolean` | When true, request/response bodies are not forwarded — only metadata. |
 | `sampling_rate` | `number` | Sampling rate between 0.0001 and 1 (1 = 100%). |
@@ -4019,6 +4032,7 @@ Create an instance: `const upsert_workspace_budget = client.UpsertWorkspaceBudge
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `limit_usd` | `number` | Spending limit in USD. |
 
 
@@ -4094,6 +4108,12 @@ Create an instance: `const video_generation = client.VideoGeneration()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -4186,6 +4206,12 @@ Create an instance: `const workspace_budget = client.WorkspaceBudget()`
 | Method | Description |
 | --- | --- |
 | `remove(match)` | Remove the matching entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 
 ### Zdr

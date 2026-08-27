@@ -57,6 +57,7 @@ type ApiKey struct {
 	Disabled bool `json:"disabled"`
 	ExpiresAt *any `json:"expires_at,omitempty"`
 	Hash string `json:"hash"`
+	Id *string `json:"id,omitempty"`
 	IncludeByokInLimit bool `json:"include_byok_in_limit"`
 	IsFreeTier bool `json:"is_free_tier"`
 	IsManagementKey bool `json:"is_management_key"`
@@ -91,6 +92,7 @@ type ApiKeyListMatch struct {
 	Disabled *bool `json:"disabled,omitempty"`
 	ExpiresAt *any `json:"expires_at,omitempty"`
 	Hash *string `json:"hash,omitempty"`
+	Id *string `json:"id,omitempty"`
 	IncludeByokInLimit *bool `json:"include_byok_in_limit,omitempty"`
 	IsFreeTier *bool `json:"is_free_tier,omitempty"`
 	IsManagementKey *bool `json:"is_management_key,omitempty"`
@@ -120,6 +122,7 @@ type ApiKeyCreateData struct {
 	Disabled bool `json:"disabled"`
 	ExpiresAt *any `json:"expires_at,omitempty"`
 	Hash string `json:"hash"`
+	Id *string `json:"id,omitempty"`
 	IncludeByokInLimit bool `json:"include_byok_in_limit"`
 	IsFreeTier bool `json:"is_free_tier"`
 	IsManagementKey bool `json:"is_management_key"`
@@ -1492,6 +1495,7 @@ type OAuthCreateData struct {
 // ObservabilityDestination is the typed data model for the observability_destination entity.
 type ObservabilityDestination struct {
 	Data *map[string]any `json:"data,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // ObservabilityDestinationLoadMatch is the typed request payload for ObservabilityDestination.LoadTyped.
@@ -1848,6 +1852,7 @@ type UpdateByokKey struct {
 	AllowedModels *any `json:"allowed_models,omitempty"`
 	AllowedUserIds *any `json:"allowed_user_ids,omitempty"`
 	Disabled *bool `json:"disabled,omitempty"`
+	Id *string `json:"id,omitempty"`
 	IsFallback *bool `json:"is_fallback,omitempty"`
 	Key *string `json:"key,omitempty"`
 	Name *any `json:"name,omitempty"`
@@ -1877,6 +1882,7 @@ type UpdateGuardrail struct {
 	EnforceZdrOpenai *any `json:"enforce_zdr_openai,omitempty"`
 	EnforceZdrOther *any `json:"enforce_zdr_other,omitempty"`
 	EnforceZdrXai *any `json:"enforce_zdr_xai,omitempty"`
+	Id *string `json:"id,omitempty"`
 	IgnoredModels *any `json:"ignored_models,omitempty"`
 	IgnoredProviders *any `json:"ignored_providers,omitempty"`
 	LimitUsd *any `json:"limit_usd,omitempty"`
@@ -1911,6 +1917,7 @@ type UpdateObservabilityDestination struct {
 	Config *map[string]any `json:"config,omitempty"`
 	Enabled *bool `json:"enabled,omitempty"`
 	FilterRules *any `json:"filter_rules,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	PrivacyMode *bool `json:"privacy_mode,omitempty"`
 	SamplingRate *float64 `json:"sampling_rate,omitempty"`
@@ -2006,6 +2013,7 @@ type UpdateWorkspaceUpdateData struct {
 
 // UpsertWorkspaceBudget is the typed data model for the upsert_workspace_budget entity.
 type UpsertWorkspaceBudget struct {
+	Id *string `json:"id,omitempty"`
 	LimitUsd float64 `json:"limit_usd"`
 }
 
@@ -2077,6 +2085,7 @@ type VideoCreateData struct {
 
 // VideoGeneration is the typed data model for the video_generation entity.
 type VideoGeneration struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // VideoGenerationLoadMatch is the typed request payload for VideoGeneration.LoadTyped.
@@ -2153,6 +2162,7 @@ type WorkspaceRemoveMatch struct {
 
 // WorkspaceBudget is the typed data model for the workspace_budget entity.
 type WorkspaceBudget struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // WorkspaceBudgetRemoveMatch is the typed request payload for WorkspaceBudget.RemoveTyped.

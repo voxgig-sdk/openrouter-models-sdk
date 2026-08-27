@@ -45,6 +45,7 @@ describe("UpsertWorkspaceBudgetEntity", function()
     -- UPDATE
     local upsert_workspace_budget_ref01_ent = client:UpsertWorkspaceBudget(nil)
     local upsert_workspace_budget_ref01_data_up0_up = {
+      id = upsert_workspace_budget_ref01_data["id"],
       ["workspace_id"] = setup.idmap["workspace_id"],
     }
 
@@ -52,6 +53,7 @@ describe("UpsertWorkspaceBudgetEntity", function()
     assert.is_nil(err)
     local upsert_workspace_budget_ref01_resdata_up0 = helpers.to_map(type(upsert_workspace_budget_ref01_resdata_up0_result) == 'table' and upsert_workspace_budget_ref01_resdata_up0_result.data_get and upsert_workspace_budget_ref01_resdata_up0_result:data_get() or upsert_workspace_budget_ref01_resdata_up0_result)
     assert.is_not_nil(upsert_workspace_budget_ref01_resdata_up0)
+    assert.are.equal(upsert_workspace_budget_ref01_resdata_up0["id"], upsert_workspace_budget_ref01_data_up0_up["id"])
 
   end)
 end)

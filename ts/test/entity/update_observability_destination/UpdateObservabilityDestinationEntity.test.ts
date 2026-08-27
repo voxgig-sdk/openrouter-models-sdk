@@ -62,12 +62,13 @@ describe('UpdateObservabilityDestinationEntity', async () => {
     // UPDATE
     const update_observability_destination_ref01_ent = client.UpdateObservabilityDestination()
     const update_observability_destination_ref01_data_up0: any = {}
+    update_observability_destination_ref01_data_up0.id = update_observability_destination_ref01_data.id
 
     const update_observability_destination_ref01_markdef_up0 = { name: 'name', value: 'Mark01-update_observability_destination_ref01_' + setup.now }
     ;(update_observability_destination_ref01_data_up0 as any)[update_observability_destination_ref01_markdef_up0.name] = update_observability_destination_ref01_markdef_up0.value
 
     const update_observability_destination_ref01_resdata_up0 = (await update_observability_destination_ref01_ent.update(update_observability_destination_ref01_data_up0)).data()
-    assert(null != update_observability_destination_ref01_resdata_up0)
+    assert(update_observability_destination_ref01_resdata_up0.id === update_observability_destination_ref01_data_up0.id)
 
     assert((update_observability_destination_ref01_resdata_up0 as any)[update_observability_destination_ref01_markdef_up0.name] === update_observability_destination_ref01_markdef_up0.value)
 

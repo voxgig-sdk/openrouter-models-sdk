@@ -320,6 +320,12 @@
             },
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "include_byok_in_limit",
               "op": {
                 "create": {
@@ -521,6 +527,10 @@
               "type": "`$STRING`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "api_key",
           "op": {
             "create": {
@@ -10187,8 +10197,18 @@
               "name": "data",
               "req": false,
               "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "observability_destination",
           "op": {
             "load": {
@@ -12581,6 +12601,12 @@
             },
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "is_fallback",
               "req": false,
               "short": "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried.",
@@ -12607,6 +12633,10 @@
               ]
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "update_byok_key",
           "op": {
             "update": {
@@ -12832,6 +12862,12 @@
             },
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "ignored_models",
               "req": false,
               "short": "Array of model identifiers to exclude from routing (slug or canonical_slug accepted)",
@@ -12890,6 +12926,10 @@
               ]
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "update_guardrail",
           "op": {
             "update": {
@@ -13010,6 +13050,12 @@
             },
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "name",
               "req": false,
               "short": "Human-readable name for the destination.",
@@ -13030,6 +13076,10 @@
               "type": "`$NUMBER`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "update_observability_destination",
           "op": {
             "update": {
@@ -13577,12 +13627,22 @@
           "fields": [
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "limit_usd",
               "req": true,
               "short": "Spending limit in USD.",
               "type": "`$NUMBER`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "upsert_workspace_budget",
           "op": {
             "update": {
@@ -13983,7 +14043,18 @@
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": [
+            {
+              "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "video_generation",
           "op": {
             "load": {
@@ -14619,7 +14690,18 @@
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": [
+            {
+              "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "workspace_budget",
           "op": {
             "remove": {
@@ -14822,6 +14904,7 @@
             }
           },
           "title": "In-memory mock transport for testing without a live server",
+          "transport": "base",
           "version": "0.0.1"
         }
       },
@@ -17056,6 +17139,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -17114,6 +17198,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -17188,6 +17273,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -17268,6 +17354,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -17326,6 +17413,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -17390,6 +17478,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -17459,6 +17548,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -17533,6 +17623,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""

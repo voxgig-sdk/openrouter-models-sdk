@@ -41,9 +41,13 @@ class VideoGenerationEntityTest < Minitest::Test
 
     # LOAD
     video_generation_ref01_ent = client.VideoGeneration(nil)
-    video_generation_ref01_match_dt0 = {}
+    video_generation_ref01_match_dt0 = {
+      "id" => video_generation_ref01_data["id"],
+    }
     video_generation_ref01_data_dt0_loaded = video_generation_ref01_ent.load(video_generation_ref01_match_dt0, nil)
-    assert !video_generation_ref01_data_dt0_loaded.nil?
+    video_generation_ref01_data_dt0_load_result = Helpers.to_map(video_generation_ref01_data_dt0_loaded.respond_to?(:data_get) ? video_generation_ref01_data_dt0_loaded.data_get : video_generation_ref01_data_dt0_loaded)
+    assert !video_generation_ref01_data_dt0_load_result.nil?
+    assert_equal video_generation_ref01_data_dt0_load_result["id"], video_generation_ref01_data["id"]
 
   end
 end

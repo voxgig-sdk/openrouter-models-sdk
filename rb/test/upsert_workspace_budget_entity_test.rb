@@ -42,12 +42,14 @@ class UpsertWorkspaceBudgetEntityTest < Minitest::Test
     # UPDATE
     upsert_workspace_budget_ref01_ent = client.UpsertWorkspaceBudget(nil)
     upsert_workspace_budget_ref01_data_up0_up = {
+      "id" => upsert_workspace_budget_ref01_data["id"],
       "workspace_id" => setup[:idmap]["workspace_id"],
     }
 
     upsert_workspace_budget_ref01_resdata_up0_result = upsert_workspace_budget_ref01_ent.update(upsert_workspace_budget_ref01_data_up0_up, nil)
     upsert_workspace_budget_ref01_resdata_up0 = Helpers.to_map(upsert_workspace_budget_ref01_resdata_up0_result.respond_to?(:data_get) ? upsert_workspace_budget_ref01_resdata_up0_result.data_get : upsert_workspace_budget_ref01_resdata_up0_result)
     assert !upsert_workspace_budget_ref01_resdata_up0.nil?
+    assert_equal upsert_workspace_budget_ref01_resdata_up0["id"], upsert_workspace_budget_ref01_data_up0_up["id"]
 
   end
 end

@@ -80,6 +80,7 @@ class TestApiKeyEntity:
 
         api_key_ref01_data = helpers.to_map(runner.entity_data(api_key_ref01_ent.create(api_key_ref01_data, None)))
         assert api_key_ref01_data is not None
+        assert api_key_ref01_data["id"] is not None
 
         # LIST
         api_key_ref01_match = {}
@@ -87,8 +88,14 @@ class TestApiKeyEntity:
         api_key_ref01_list_result = api_key_ref01_ent.list(api_key_ref01_match, None)
         assert isinstance(api_key_ref01_list_result, list)
 
+        found_item = vs.select(
+            runner.entity_list_to_data(api_key_ref01_list_result),
+            {"id": api_key_ref01_data["id"]})
+        assert not vs.isempty(found_item)
+
         # UPDATE
         api_key_ref01_data_up0_up = {
+            "id": api_key_ref01_data["id"],
         }
 
         api_key_ref01_markdef_up0_name = "created_at"
@@ -97,19 +104,34 @@ class TestApiKeyEntity:
 
         api_key_ref01_resdata_up0 = helpers.to_map(runner.entity_data(api_key_ref01_ent.update(api_key_ref01_data_up0_up, None)))
         assert api_key_ref01_resdata_up0 is not None
+        assert api_key_ref01_resdata_up0["id"] == api_key_ref01_data_up0_up["id"]
         assert api_key_ref01_resdata_up0[api_key_ref01_markdef_up0_name] == api_key_ref01_markdef_up0_value
 
         # LOAD
-        api_key_ref01_match_dt0 = {}
+        api_key_ref01_match_dt0 = {
+            "id": api_key_ref01_data["id"],
+        }
         api_key_ref01_data_dt0_loaded = api_key_ref01_ent.load(api_key_ref01_match_dt0, None)
-        assert api_key_ref01_data_dt0_loaded is not None
+        api_key_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(api_key_ref01_data_dt0_loaded))
+        assert api_key_ref01_data_dt0_load_result is not None
+        assert api_key_ref01_data_dt0_load_result["id"] == api_key_ref01_data["id"]
 
+        # REMOVE
+        api_key_ref01_match_rm0 = {
+            "id": api_key_ref01_data["id"],
+        }
+        api_key_ref01_ent.remove(api_key_ref01_match_rm0, None)
 
         # LIST
         api_key_ref01_match_rt0 = {}
 
         api_key_ref01_list_rt0_result = api_key_ref01_ent.list(api_key_ref01_match_rt0, None)
         assert isinstance(api_key_ref01_list_rt0_result, list)
+
+        not_found_item = vs.select(
+            runner.entity_list_to_data(api_key_ref01_list_rt0_result),
+            {"id": api_key_ref01_data["id"]})
+        assert vs.isempty(not_found_item)
 
 
 

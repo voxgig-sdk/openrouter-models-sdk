@@ -41,9 +41,13 @@ class ObservabilityDestinationEntityTest < Minitest::Test
 
     # LOAD
     observability_destination_ref01_ent = client.ObservabilityDestination(nil)
-    observability_destination_ref01_match_dt0 = {}
+    observability_destination_ref01_match_dt0 = {
+      "id" => observability_destination_ref01_data["id"],
+    }
     observability_destination_ref01_data_dt0_loaded = observability_destination_ref01_ent.load(observability_destination_ref01_match_dt0, nil)
-    assert !observability_destination_ref01_data_dt0_loaded.nil?
+    observability_destination_ref01_data_dt0_load_result = Helpers.to_map(observability_destination_ref01_data_dt0_loaded.respond_to?(:data_get) ? observability_destination_ref01_data_dt0_loaded.data_get : observability_destination_ref01_data_dt0_loaded)
+    assert !observability_destination_ref01_data_dt0_load_result.nil?
+    assert_equal observability_destination_ref01_data_dt0_load_result["id"], observability_destination_ref01_data["id"]
 
   end
 end

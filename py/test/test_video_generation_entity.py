@@ -48,9 +48,13 @@ class TestVideoGenerationEntity:
 
         # LOAD
         video_generation_ref01_ent = client.VideoGeneration(None)
-        video_generation_ref01_match_dt0 = {}
+        video_generation_ref01_match_dt0 = {
+            "id": video_generation_ref01_data["id"],
+        }
         video_generation_ref01_data_dt0_loaded = video_generation_ref01_ent.load(video_generation_ref01_match_dt0, None)
-        assert video_generation_ref01_data_dt0_loaded is not None
+        video_generation_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(video_generation_ref01_data_dt0_loaded))
+        assert video_generation_ref01_data_dt0_load_result is not None
+        assert video_generation_ref01_data_dt0_load_result["id"] == video_generation_ref01_data["id"]
 
 
 

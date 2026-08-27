@@ -538,6 +538,7 @@ local api_key = client:ApiKey(nil)
 | `disabled` | `boolean` | Yes | Whether the API key is disabled |
 | `expires_at` | `string|nil` | No | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
 | `hash` | `string` | Yes | Unique hash identifier for the API key |
+| `id` | `string` | No |  |
 | `include_byok_in_limit` | `boolean` | Yes | Whether to include external BYOK usage in the credit limit |
 | `is_free_tier` | `boolean` | Yes | Whether this is a free tier API key |
 | `is_management_key` | `boolean` | Yes | Whether this is a management key |
@@ -568,6 +569,7 @@ local api_key = client:ApiKey(nil)
 | `disabled` | - | - | - | Yes | - |
 | `expires_at` | - | - | - | - | - |
 | `hash` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
 | `include_byok_in_limit` | - | - | Yes | Yes | - |
 | `is_free_tier` | - | - | - | - | - |
 | `is_management_key` | - | - | - | - | - |
@@ -3939,6 +3941,7 @@ local observability_destination = client:ObservabilityDestination(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `table` | No |  |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -4934,6 +4937,7 @@ local update_byok_key = client:UpdateByokKey(nil)
 | `allowed_models` | `table|nil` | No | Optional allowlist of model slugs this credential may be used for. |
 | `allowed_user_ids` | `table|nil` | No | Optional allowlist of user IDs that may use this credential. |
 | `disabled` | `boolean` | No | Whether this credential is disabled. |
+| `id` | `string` | No |  |
 | `is_fallback` | `boolean` | No | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
 | `key` | `string` | No | A new raw provider API key to rotate the credential in-place. |
 | `name` | `string|nil` | No | Optional human-readable name for the credential. |
@@ -5002,6 +5006,7 @@ local update_guardrail = client:UpdateGuardrail(nil)
 | `enforce_zdr_openai` | `boolean|nil` | No | Whether to enforce zero data retention for OpenAI models. |
 | `enforce_zdr_other` | `boolean|nil` | No | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
 | `enforce_zdr_xai` | `boolean|nil` | No | Whether to enforce zero data retention for xAI models. |
+| `id` | `string` | No |  |
 | `ignored_models` | `table|nil` | No | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
 | `ignored_providers` | `table|nil` | No | List of provider IDs to exclude from routing |
 | `limit_usd` | `number|nil` | No | New spending limit in USD |
@@ -5065,6 +5070,7 @@ local update_observability_destination = client:UpdateObservabilityDestination(n
 | `config` | `table` | No | Provider-specific configuration fields to update. |
 | `enabled` | `boolean` | No | Whether the destination is enabled. |
 | `filter_rules` | `any` | No |  |
+| `id` | `string` | No |  |
 | `name` | `string` | No | Human-readable name for the destination. |
 | `privacy_mode` | `boolean` | No | When true, request/response bodies are not forwarded — only metadata. |
 | `sampling_rate` | `number` | No | Sampling rate between 0.0001 and 1 (1 = 100%). |
@@ -5234,6 +5240,7 @@ local upsert_workspace_budget = client:UpsertWorkspaceBudget(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `limit_usd` | `number` | Yes | Spending limit in USD. |
 
 ### Operations
@@ -5441,6 +5448,12 @@ Return the entity name.
 local video_generation = client:VideoGeneration(nil)
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -5626,6 +5639,12 @@ Return the entity name.
 ```lua
 local workspace_budget = client:WorkspaceBudget(nil)
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 

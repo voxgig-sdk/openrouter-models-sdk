@@ -42,6 +42,7 @@ class UpdateGuardrailEntityTest < Minitest::Test
     # UPDATE
     update_guardrail_ref01_ent = client.UpdateGuardrail(nil)
     update_guardrail_ref01_data_up0_up = {
+      "id" => update_guardrail_ref01_data["id"],
     }
 
     update_guardrail_ref01_markdef_up0_name = "name"
@@ -51,6 +52,7 @@ class UpdateGuardrailEntityTest < Minitest::Test
     update_guardrail_ref01_resdata_up0_result = update_guardrail_ref01_ent.update(update_guardrail_ref01_data_up0_up, nil)
     update_guardrail_ref01_resdata_up0 = Helpers.to_map(update_guardrail_ref01_resdata_up0_result.respond_to?(:data_get) ? update_guardrail_ref01_resdata_up0_result.data_get : update_guardrail_ref01_resdata_up0_result)
     assert !update_guardrail_ref01_resdata_up0.nil?
+    assert_equal update_guardrail_ref01_resdata_up0["id"], update_guardrail_ref01_data_up0_up["id"]
     assert_equal update_guardrail_ref01_resdata_up0[update_guardrail_ref01_markdef_up0_name], update_guardrail_ref01_markdef_up0_value
 
   end

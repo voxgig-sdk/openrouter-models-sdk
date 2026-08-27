@@ -28,6 +28,7 @@ module OpenrouterModelsConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -370,6 +371,10 @@ module OpenrouterModelsConfig
               "name" => "hash",
               "req" => true,
               "short" => "Unique hash identifier for the API key",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {
@@ -8713,6 +8718,10 @@ module OpenrouterModelsConfig
               "name" => "data",
               "type" => "`$OBJECT`",
             },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
           ],
           "name" => "observability_destination",
           "op" => {
@@ -10694,6 +10703,10 @@ module OpenrouterModelsConfig
               "type" => "`$BOOLEAN`",
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "is_fallback",
               "short" => "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried.",
               "type" => "`$BOOLEAN`",
@@ -10905,6 +10918,10 @@ module OpenrouterModelsConfig
               ],
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "ignored_models",
               "short" => "Array of model identifiers to exclude from routing (slug or canonical_slug accepted)",
               "type" => [
@@ -11051,6 +11068,10 @@ module OpenrouterModelsConfig
                 "count" => 1,
                 "depth" => 10,
               },
+            },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
             },
             {
               "name" => "name",
@@ -11542,6 +11563,10 @@ module OpenrouterModelsConfig
         "upsert_workspace_budget" => {
           "fields" => [
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "limit_usd",
               "req" => true,
               "short" => "Spending limit in USD.",
@@ -11870,7 +11895,12 @@ module OpenrouterModelsConfig
           },
         },
         "video_generation" => {
-          "fields" => [],
+          "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+          ],
           "name" => "video_generation",
           "op" => {
             "load" => {
@@ -12420,7 +12450,12 @@ module OpenrouterModelsConfig
           },
         },
         "workspace_budget" => {
-          "fields" => [],
+          "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+          ],
           "name" => "workspace_budget",
           "op" => {
             "remove" => {

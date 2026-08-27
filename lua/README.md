@@ -373,6 +373,7 @@ API path: ``
 | `disabled` | Whether the API key is disabled |
 | `expires_at` | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
 | `hash` | Unique hash identifier for the API key |
+| `id` |  |
 | `include_byok_in_limit` | Whether to include external BYOK usage in the credit limit |
 | `is_free_tier` | Whether this is a free tier API key |
 | `is_management_key` | Whether this is a management key |
@@ -1302,6 +1303,7 @@ API path: `/auth/keys`
 | Field | Description |
 | --- | --- |
 | `data` |  |
+| `id` |  |
 
 Operations: Load, Remove.
 
@@ -1579,6 +1581,7 @@ API path: `/benchmarks`
 | `allowed_models` | Optional allowlist of model slugs this credential may be used for. |
 | `allowed_user_ids` | Optional allowlist of user IDs that may use this credential. |
 | `disabled` | Whether this credential is disabled. |
+| `id` |  |
 | `is_fallback` | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
 | `key` | A new raw provider API key to rotate the credential in-place. |
 | `name` | Optional human-readable name for the credential. |
@@ -1602,6 +1605,7 @@ API path: `/byok/{id}`
 | `enforce_zdr_openai` | Whether to enforce zero data retention for OpenAI models. |
 | `enforce_zdr_other` | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
 | `enforce_zdr_xai` | Whether to enforce zero data retention for xAI models. |
+| `id` |  |
 | `ignored_models` | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
 | `ignored_providers` | List of provider IDs to exclude from routing |
 | `limit_usd` | New spending limit in USD |
@@ -1620,6 +1624,7 @@ API path: `/guardrails/{id}`
 | `config` | Provider-specific configuration fields to update. |
 | `enabled` | Whether the destination is enabled. |
 | `filter_rules` |  |
+| `id` |  |
 | `name` | Human-readable name for the destination. |
 | `privacy_mode` | When true, request/response bodies are not forwarded — only metadata. |
 | `sampling_rate` | Sampling rate between 0.0001 and 1 (1 = 100%). |
@@ -1656,6 +1661,7 @@ API path: `/workspaces`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `limit_usd` | Spending limit in USD. |
 
 Operations: Update.
@@ -1712,6 +1718,7 @@ API path: `/videos`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: Load.
 
@@ -1769,6 +1776,7 @@ API path: `/workspaces/{id}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: Remove.
 
@@ -1853,6 +1861,7 @@ Create an instance: `local api_key = client:ApiKey(nil)`
 | `disabled` | `boolean` | Whether the API key is disabled |
 | `expires_at` | `string|nil` | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
 | `hash` | `string` | Unique hash identifier for the API key |
+| `id` | `string` |  |
 | `include_byok_in_limit` | `boolean` | Whether to include external BYOK usage in the credit limit |
 | `is_free_tier` | `boolean` | Whether this is a free tier API key |
 | `is_management_key` | `boolean` | Whether this is a management key |
@@ -1899,8 +1908,8 @@ local api_key, err = client:ApiKey():create({
   is_management_key = true, -- boolean
   is_provisioning_key = true, -- boolean
   label = "example_label", -- string
-  limit = "example_limit", -- number|nil
-  limit_remaining = "example_limit_remaining", -- number|nil
+  limit = 1, -- number|nil
+  limit_remaining = 1, -- number|nil
   limit_reset = "example_limit_reset", -- string|nil
   name = "example_name", -- string
   rate_limit = {}, -- table
@@ -2224,9 +2233,9 @@ local byoks, err = client:Byok():list()
 
 ```lua
 local byok, err = client:Byok():create({
-  allowed_api_key_hashes = "example_allowed_api_key_hashes", -- table|nil
-  allowed_models = "example_allowed_models", -- table|nil
-  allowed_user_ids = "example_allowed_user_ids", -- table|nil
+  allowed_api_key_hashes = {}, -- table|nil
+  allowed_models = {}, -- table|nil
+  allowed_user_ids = {}, -- table|nil
   created_at = "example_created_at", -- string
   disabled = true, -- boolean
   id = "example_id", -- string
@@ -2316,8 +2325,8 @@ local chat_result, err = client:ChatResult():create({
   model = "example_model", -- string
   object = "example_object", -- string
   openrouter_metadata = {}, -- table
-  prediction = "example_prediction", -- table|nil
-  prompt_cache_options = "example_prompt_cache_options", -- table|nil
+  prediction = {}, -- table|nil
+  prompt_cache_options = {}, -- table|nil
   system_fingerprint = "example_system_fingerprint", -- string|nil
   usage = {}, -- table
 })
@@ -2388,7 +2397,7 @@ Create an instance: `local create_observability_destination = client:CreateObser
 ```lua
 local create_observability_destination, err = client:CreateObservabilityDestination():create({
   config = {}, -- table
-  filter_rules = "example_filter_rules", -- table|nil
+  filter_rules = {}, -- table|nil
   name = "example_name", -- string
   type = "example_type", -- string
 })
@@ -2478,9 +2487,9 @@ local create_preset_from_inference, err = client:CreatePresetFromInference():cre
   slug = "example_slug", -- string
   cache_control = {}, -- table
   messages = {}, -- table
-  prediction = "example_prediction", -- table|nil
-  prompt = "example_prompt", -- table|nil
-  prompt_cache_options = "example_prompt_cache_options", -- table|nil
+  prediction = {}, -- table|nil
+  prompt = {}, -- table|nil
+  prompt_cache_options = {}, -- table|nil
 })
 ```
 
@@ -3187,7 +3196,7 @@ Create an instance: `local message = client:Message(nil)`
 ```lua
 local message, err = client:Message():create({
   cache_control = {}, -- table
-  messages = "example_messages", -- table|nil
+  messages = {}, -- table|nil
   model = "example_model", -- string
 })
 ```
@@ -3373,6 +3382,7 @@ Create an instance: `local observability_destination = client:ObservabilityDesti
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `table` |  |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -3441,8 +3451,8 @@ Create an instance: `local open_responses_result = client:OpenResponsesResult(ni
 ```lua
 local open_responses_result, err = client:OpenResponsesResult():create({
   cache_control = {}, -- table
-  prompt = "example_prompt", -- table|nil
-  prompt_cache_options = "example_prompt_cache_options", -- table|nil
+  prompt = {}, -- table|nil
+  prompt_cache_options = {}, -- table|nil
 })
 ```
 
@@ -3827,6 +3837,7 @@ Create an instance: `local update_byok_key = client:UpdateByokKey(nil)`
 | `allowed_models` | `table|nil` | Optional allowlist of model slugs this credential may be used for. |
 | `allowed_user_ids` | `table|nil` | Optional allowlist of user IDs that may use this credential. |
 | `disabled` | `boolean` | Whether this credential is disabled. |
+| `id` | `string` |  |
 | `is_fallback` | `boolean` | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
 | `key` | `string` | A new raw provider API key to rotate the credential in-place. |
 | `name` | `string|nil` | Optional human-readable name for the credential. |
@@ -3857,6 +3868,7 @@ Create an instance: `local update_guardrail = client:UpdateGuardrail(nil)`
 | `enforce_zdr_openai` | `boolean|nil` | Whether to enforce zero data retention for OpenAI models. |
 | `enforce_zdr_other` | `boolean|nil` | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
 | `enforce_zdr_xai` | `boolean|nil` | Whether to enforce zero data retention for xAI models. |
+| `id` | `string` |  |
 | `ignored_models` | `table|nil` | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
 | `ignored_providers` | `table|nil` | List of provider IDs to exclude from routing |
 | `limit_usd` | `number|nil` | New spending limit in USD |
@@ -3882,6 +3894,7 @@ Create an instance: `local update_observability_destination = client:UpdateObser
 | `config` | `table` | Provider-specific configuration fields to update. |
 | `enabled` | `boolean` | Whether the destination is enabled. |
 | `filter_rules` | `any` |  |
+| `id` | `string` |  |
 | `name` | `string` | Human-readable name for the destination. |
 | `privacy_mode` | `boolean` | When true, request/response bodies are not forwarded — only metadata. |
 | `sampling_rate` | `number` | Sampling rate between 0.0001 and 1 (1 = 100%). |
@@ -3953,6 +3966,7 @@ Create an instance: `local upsert_workspace_budget = client:UpsertWorkspaceBudge
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `limit_usd` | `number` | Spending limit in USD. |
 
 
@@ -4028,6 +4042,12 @@ Create an instance: `local video_generation = client:VideoGeneration(nil)`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -4120,6 +4140,12 @@ Create an instance: `local workspace_budget = client:WorkspaceBudget(nil)`
 | Method | Description |
 | --- | --- |
 | `remove(match)` | Remove the matching entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 
 ### Zdr

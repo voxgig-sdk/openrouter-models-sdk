@@ -49,12 +49,14 @@ class UpsertWorkspaceBudgetEntityTest extends TestCase
         // UPDATE
         $upsert_workspace_budget_ref01_ent = $client->UpsertWorkspaceBudget(null);
         $upsert_workspace_budget_ref01_data_up0_up = [
+            "id" => $upsert_workspace_budget_ref01_data["id"],
             "workspace_id" => $setup["idmap"]["workspace_id"],
         ];
 
         $upsert_workspace_budget_ref01_resdata_up0_result = $upsert_workspace_budget_ref01_ent->update($upsert_workspace_budget_ref01_data_up0_up, null);
         $upsert_workspace_budget_ref01_resdata_up0 = Helpers::to_map(is_object($upsert_workspace_budget_ref01_resdata_up0_result) && method_exists($upsert_workspace_budget_ref01_resdata_up0_result, 'data_get') ? $upsert_workspace_budget_ref01_resdata_up0_result->data_get() : $upsert_workspace_budget_ref01_resdata_up0_result);
         $this->assertNotNull($upsert_workspace_budget_ref01_resdata_up0);
+        $this->assertEquals($upsert_workspace_budget_ref01_resdata_up0["id"], $upsert_workspace_budget_ref01_data_up0_up["id"]);
 
     }
 }

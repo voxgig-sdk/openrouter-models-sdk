@@ -36,6 +36,11 @@ main: kit: entity: update_byok_key: {
       type: "`$BOOLEAN`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "is_fallback"
       req: false
       short: "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried."
@@ -60,6 +65,11 @@ main: kit: entity: update_byok_key: {
       ]
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "update_byok_key"
   op: {

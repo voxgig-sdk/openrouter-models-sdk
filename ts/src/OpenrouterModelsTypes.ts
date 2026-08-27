@@ -46,6 +46,7 @@ export interface ApiKey {
   disabled: boolean
   expires_at?: string | null
   hash: string
+  id?: string
   include_byok_in_limit: boolean
   is_free_tier: boolean
   is_management_key: boolean
@@ -78,6 +79,7 @@ export interface ApiKeyListMatch {
   disabled?: boolean
   expires_at?: string | null
   hash?: string
+  id?: string
   include_byok_in_limit?: boolean
   is_free_tier?: boolean
   is_management_key?: boolean
@@ -106,6 +108,7 @@ export interface ApiKeyCreateData {
   disabled: boolean
   expires_at?: string | null
   hash: string
+  id?: string
   include_byok_in_limit: boolean
   is_free_tier: boolean
   is_management_key: boolean
@@ -1395,6 +1398,7 @@ export interface OAuthCreateData {
 
 export interface ObservabilityDestination {
   data?: Record<string, any>
+  id?: string
 }
 
 export interface ObservabilityDestinationLoadMatch {
@@ -1724,6 +1728,7 @@ export interface UpdateByokKey {
   allowed_models?: any[] | null
   allowed_user_ids?: any[] | null
   disabled?: boolean
+  id?: string
   is_fallback?: boolean
   key?: string
   name?: string | null
@@ -1751,6 +1756,7 @@ export interface UpdateGuardrail {
   enforce_zdr_openai?: boolean | null
   enforce_zdr_other?: boolean | null
   enforce_zdr_xai?: boolean | null
+  id?: string
   ignored_models?: any[] | null
   ignored_providers?: any[] | null
   limit_usd?: number | null
@@ -1783,6 +1789,7 @@ export interface UpdateObservabilityDestination {
   config?: Record<string, any>
   enabled?: boolean
   filter_rules?: any
+  id?: string
   name?: string
   privacy_mode?: boolean
   sampling_rate?: number
@@ -1872,6 +1879,7 @@ export interface UpdateWorkspaceUpdateData {
 }
 
 export interface UpsertWorkspaceBudget {
+  id?: string
   limit_usd: number
 }
 
@@ -1936,6 +1944,7 @@ export interface VideoCreateData {
 }
 
 export interface VideoGeneration {
+  id?: string
 }
 
 export interface VideoGenerationLoadMatch {
@@ -2011,6 +2020,7 @@ export interface WorkspaceRemoveMatch {
 }
 
 export interface WorkspaceBudget {
+  id?: string
 }
 
 export interface WorkspaceBudgetRemoveMatch {

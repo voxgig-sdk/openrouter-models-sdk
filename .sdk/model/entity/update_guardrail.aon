@@ -138,6 +138,11 @@ main: kit: entity: update_guardrail: {
       ]
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "ignored_models"
       req: false
       short: "Array of model identifiers to exclude from routing (slug or canonical_slug accepted)"
@@ -192,6 +197,11 @@ main: kit: entity: update_guardrail: {
       ]
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "update_guardrail"
   op: {

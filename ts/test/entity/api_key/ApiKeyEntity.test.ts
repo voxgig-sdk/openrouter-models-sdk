@@ -63,7 +63,7 @@ describe('ApiKeyEntity', async () => {
     let api_key_ref01_data = setup.data.new.api_key['api_key_ref01']
 
     api_key_ref01_data = (await api_key_ref01_ent.create(api_key_ref01_data)).data()
-    assert(null != api_key_ref01_data)
+    assert(null != api_key_ref01_data.id)
 
 
     // LIST
@@ -71,25 +71,40 @@ describe('ApiKeyEntity', async () => {
 
     const api_key_ref01_list = (await api_key_ref01_ent.list(api_key_ref01_match)).map((e: any) => e.data())
 
+    assert(!isempty(select(api_key_ref01_list, { id: api_key_ref01_data.id })))
+
 
     // UPDATE
     const api_key_ref01_data_up0: any = {}
+    api_key_ref01_data_up0.id = api_key_ref01_data.id
 
     const api_key_ref01_markdef_up0 = { name: 'created_at', value: 'Mark01-api_key_ref01_' + setup.now }
     ;(api_key_ref01_data_up0 as any)[api_key_ref01_markdef_up0.name] = api_key_ref01_markdef_up0.value
 
     const api_key_ref01_resdata_up0 = (await api_key_ref01_ent.update(api_key_ref01_data_up0)).data()
-    assert(null != api_key_ref01_resdata_up0)
+    assert(api_key_ref01_resdata_up0.id === api_key_ref01_data_up0.id)
 
     assert((api_key_ref01_resdata_up0 as any)[api_key_ref01_markdef_up0.name] === api_key_ref01_markdef_up0.value)
 
 
+    // LOAD
+    const api_key_ref01_match_dt0: any = {}
+    api_key_ref01_match_dt0.id = api_key_ref01_data.id
+    const api_key_ref01_data_dt0 = (await api_key_ref01_ent.load(api_key_ref01_match_dt0)).data()
+    assert(api_key_ref01_data_dt0.id === api_key_ref01_data.id)
 
+
+    // REMOVE
+    const api_key_ref01_match_rm0: any = { id: api_key_ref01_data.id }
+    await api_key_ref01_ent.remove(api_key_ref01_match_rm0)
+  
 
     // LIST
     const api_key_ref01_match_rt0: any = {}
 
     const api_key_ref01_list_rt0 = (await api_key_ref01_ent.list(api_key_ref01_match_rt0)).map((e: any) => e.data())
+
+    assert(isempty(select(api_key_ref01_list_rt0, { id: api_key_ref01_data.id })))
 
 
   })

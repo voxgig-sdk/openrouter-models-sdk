@@ -63,6 +63,7 @@ func TestUpdateByokKeyEntity(t *testing.T) {
 		// UPDATE
 		updateByokKeyRef01Ent := client.UpdateByokKey(nil)
 		updateByokKeyRef01DataUp0Up := map[string]any{
+			"id": updateByokKeyRef01Data["id"],
 		}
 
 		updateByokKeyRef01MarkdefUp0Name := "key"
@@ -76,6 +77,9 @@ func TestUpdateByokKeyEntity(t *testing.T) {
 		updateByokKeyRef01ResdataUp0 := core.ToMapAny(entityData(updateByokKeyRef01ResdataUp0Result))
 		if updateByokKeyRef01ResdataUp0 == nil {
 			t.Fatal("expected update result to be a map")
+		}
+		if updateByokKeyRef01ResdataUp0["id"] != updateByokKeyRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
 		}
 		if updateByokKeyRef01ResdataUp0[updateByokKeyRef01MarkdefUp0Name] != updateByokKeyRef01MarkdefUp0Value {
 			t.Fatalf("expected %s to be updated, got %v", updateByokKeyRef01MarkdefUp0Name, updateByokKeyRef01ResdataUp0[updateByokKeyRef01MarkdefUp0Name])

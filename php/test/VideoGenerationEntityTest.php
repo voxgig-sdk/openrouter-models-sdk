@@ -48,9 +48,13 @@ class VideoGenerationEntityTest extends TestCase
 
         // LOAD
         $video_generation_ref01_ent = $client->VideoGeneration(null);
-        $video_generation_ref01_match_dt0 = [];
+        $video_generation_ref01_match_dt0 = [
+            "id" => $video_generation_ref01_data["id"],
+        ];
         $video_generation_ref01_data_dt0_loaded = $video_generation_ref01_ent->load($video_generation_ref01_match_dt0, null);
-        $this->assertNotNull($video_generation_ref01_data_dt0_loaded);
+        $video_generation_ref01_data_dt0_load_result = Helpers::to_map(is_object($video_generation_ref01_data_dt0_loaded) && method_exists($video_generation_ref01_data_dt0_loaded, 'data_get') ? $video_generation_ref01_data_dt0_loaded->data_get() : $video_generation_ref01_data_dt0_loaded);
+        $this->assertNotNull($video_generation_ref01_data_dt0_load_result);
+        $this->assertEquals($video_generation_ref01_data_dt0_load_result["id"], $video_generation_ref01_data["id"]);
 
     }
 }

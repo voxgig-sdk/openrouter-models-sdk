@@ -382,6 +382,7 @@ API path: ``
 | `disabled` | Whether the API key is disabled |
 | `expires_at` | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
 | `hash` | Unique hash identifier for the API key |
+| `id` |  |
 | `include_byok_in_limit` | Whether to include external BYOK usage in the credit limit |
 | `is_free_tier` | Whether this is a free tier API key |
 | `is_management_key` | Whether this is a management key |
@@ -1311,6 +1312,7 @@ API path: `/auth/keys`
 | Field | Description |
 | --- | --- |
 | `data` |  |
+| `id` |  |
 
 Operations: Load, Remove.
 
@@ -1588,6 +1590,7 @@ API path: `/benchmarks`
 | `allowed_models` | Optional allowlist of model slugs this credential may be used for. |
 | `allowed_user_ids` | Optional allowlist of user IDs that may use this credential. |
 | `disabled` | Whether this credential is disabled. |
+| `id` |  |
 | `is_fallback` | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
 | `key` | A new raw provider API key to rotate the credential in-place. |
 | `name` | Optional human-readable name for the credential. |
@@ -1611,6 +1614,7 @@ API path: `/byok/{id}`
 | `enforce_zdr_openai` | Whether to enforce zero data retention for OpenAI models. |
 | `enforce_zdr_other` | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
 | `enforce_zdr_xai` | Whether to enforce zero data retention for xAI models. |
+| `id` |  |
 | `ignored_models` | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
 | `ignored_providers` | List of provider IDs to exclude from routing |
 | `limit_usd` | New spending limit in USD |
@@ -1629,6 +1633,7 @@ API path: `/guardrails/{id}`
 | `config` | Provider-specific configuration fields to update. |
 | `enabled` | Whether the destination is enabled. |
 | `filter_rules` |  |
+| `id` |  |
 | `name` | Human-readable name for the destination. |
 | `privacy_mode` | When true, request/response bodies are not forwarded — only metadata. |
 | `sampling_rate` | Sampling rate between 0.0001 and 1 (1 = 100%). |
@@ -1665,6 +1670,7 @@ API path: `/workspaces`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `limit_usd` | Spending limit in USD. |
 
 Operations: Update.
@@ -1721,6 +1727,7 @@ API path: `/videos`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: Load.
 
@@ -1778,6 +1785,7 @@ API path: `/workspaces/{id}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: Remove.
 
@@ -1863,6 +1871,7 @@ Create an instance: `api_key = client.ApiKey`
 | `disabled` | `Boolean` | Whether the API key is disabled |
 | `expires_at` | `Object` | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
 | `hash` | `String` | Unique hash identifier for the API key |
+| `id` | `String` |  |
 | `include_byok_in_limit` | `Boolean` | Whether to include external BYOK usage in the credit limit |
 | `is_free_tier` | `Boolean` | Whether this is a free tier API key |
 | `is_management_key` | `Boolean` | Whether this is a management key |
@@ -1911,8 +1920,8 @@ api_key = client.ApiKey.create({
   "is_management_key" => true, # Boolean
   "is_provisioning_key" => true, # Boolean
   "label" => "example_label", # String
-  "limit" => "example_limit", # Object
-  "limit_remaining" => "example_limit_remaining", # Object
+  "limit" => 1, # Object
+  "limit_remaining" => 1, # Object
   "limit_reset" => "example_limit_reset", # Object
   "name" => "example_name", # String
   "rate_limit" => {}, # Hash
@@ -2240,9 +2249,9 @@ byoks = client.Byok.list
 
 ```ruby
 byok = client.Byok.create({
-  "allowed_api_key_hashes" => "example_allowed_api_key_hashes", # Object
-  "allowed_models" => "example_allowed_models", # Object
-  "allowed_user_ids" => "example_allowed_user_ids", # Object
+  "allowed_api_key_hashes" => [], # Object
+  "allowed_models" => [], # Object
+  "allowed_user_ids" => [], # Object
   "created_at" => "example_created_at", # String
   "disabled" => true, # Boolean
   "id" => "example_id", # String
@@ -2332,8 +2341,8 @@ chat_result = client.ChatResult.create({
   "model" => "example_model", # String
   "object" => "example_object", # String
   "openrouter_metadata" => {}, # Hash
-  "prediction" => "example_prediction", # Object
-  "prompt_cache_options" => "example_prompt_cache_options", # Object
+  "prediction" => {}, # Object
+  "prompt_cache_options" => {}, # Object
   "system_fingerprint" => "example_system_fingerprint", # Object
   "usage" => {}, # Hash
 })
@@ -2404,7 +2413,7 @@ Create an instance: `create_observability_destination = client.CreateObservabili
 ```ruby
 create_observability_destination = client.CreateObservabilityDestination.create({
   "config" => {}, # Hash
-  "filter_rules" => "example_filter_rules", # Object
+  "filter_rules" => {}, # Object
   "name" => "example_name", # String
   "type" => "example_type", # String
 })
@@ -2494,9 +2503,9 @@ create_preset_from_inference = client.CreatePresetFromInference.create({
   "slug" => "example_slug", # String
   "cache_control" => {}, # Hash
   "messages" => [], # Array
-  "prediction" => "example_prediction", # Object
-  "prompt" => "example_prompt", # Object
-  "prompt_cache_options" => "example_prompt_cache_options", # Object
+  "prediction" => {}, # Object
+  "prompt" => {}, # Object
+  "prompt_cache_options" => {}, # Object
 })
 ```
 
@@ -3220,7 +3229,7 @@ Create an instance: `message = client.Message`
 ```ruby
 message = client.Message.create({
   "cache_control" => {}, # Hash
-  "messages" => "example_messages", # Object
+  "messages" => [], # Object
   "model" => "example_model", # String
 })
 ```
@@ -3410,6 +3419,7 @@ Create an instance: `observability_destination = client.ObservabilityDestination
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `Hash` |  |
+| `id` | `String` |  |
 
 #### Example: Load
 
@@ -3479,8 +3489,8 @@ Create an instance: `open_responses_result = client.OpenResponsesResult`
 ```ruby
 open_responses_result = client.OpenResponsesResult.create({
   "cache_control" => {}, # Hash
-  "prompt" => "example_prompt", # Object
-  "prompt_cache_options" => "example_prompt_cache_options", # Object
+  "prompt" => {}, # Object
+  "prompt_cache_options" => {}, # Object
 })
 ```
 
@@ -3873,6 +3883,7 @@ Create an instance: `update_byok_key = client.UpdateByokKey`
 | `allowed_models` | `Object` | Optional allowlist of model slugs this credential may be used for. |
 | `allowed_user_ids` | `Object` | Optional allowlist of user IDs that may use this credential. |
 | `disabled` | `Boolean` | Whether this credential is disabled. |
+| `id` | `String` |  |
 | `is_fallback` | `Boolean` | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
 | `key` | `String` | A new raw provider API key to rotate the credential in-place. |
 | `name` | `Object` | Optional human-readable name for the credential. |
@@ -3903,6 +3914,7 @@ Create an instance: `update_guardrail = client.UpdateGuardrail`
 | `enforce_zdr_openai` | `Object` | Whether to enforce zero data retention for OpenAI models. |
 | `enforce_zdr_other` | `Object` | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
 | `enforce_zdr_xai` | `Object` | Whether to enforce zero data retention for xAI models. |
+| `id` | `String` |  |
 | `ignored_models` | `Object` | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
 | `ignored_providers` | `Object` | List of provider IDs to exclude from routing |
 | `limit_usd` | `Object` | New spending limit in USD |
@@ -3928,6 +3940,7 @@ Create an instance: `update_observability_destination = client.UpdateObservabili
 | `config` | `Hash` | Provider-specific configuration fields to update. |
 | `enabled` | `Boolean` | Whether the destination is enabled. |
 | `filter_rules` | `Object` |  |
+| `id` | `String` |  |
 | `name` | `String` | Human-readable name for the destination. |
 | `privacy_mode` | `Boolean` | When true, request/response bodies are not forwarded — only metadata. |
 | `sampling_rate` | `Float` | Sampling rate between 0.0001 and 1 (1 = 100%). |
@@ -4000,6 +4013,7 @@ Create an instance: `upsert_workspace_budget = client.UpsertWorkspaceBudget`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `String` |  |
 | `limit_usd` | `Float` | Spending limit in USD. |
 
 
@@ -4076,6 +4090,12 @@ Create an instance: `video_generation = client.VideoGeneration`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `String` |  |
 
 #### Example: Load
 
@@ -4171,6 +4191,12 @@ Create an instance: `workspace_budget = client.WorkspaceBudget`
 | Method | Description |
 | --- | --- |
 | `remove(match)` | Remove the matching entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `String` |  |
 
 
 ### Zdr

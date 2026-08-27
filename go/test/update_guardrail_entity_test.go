@@ -63,6 +63,7 @@ func TestUpdateGuardrailEntity(t *testing.T) {
 		// UPDATE
 		updateGuardrailRef01Ent := client.UpdateGuardrail(nil)
 		updateGuardrailRef01DataUp0Up := map[string]any{
+			"id": updateGuardrailRef01Data["id"],
 		}
 
 		updateGuardrailRef01MarkdefUp0Name := "name"
@@ -76,6 +77,9 @@ func TestUpdateGuardrailEntity(t *testing.T) {
 		updateGuardrailRef01ResdataUp0 := core.ToMapAny(entityData(updateGuardrailRef01ResdataUp0Result))
 		if updateGuardrailRef01ResdataUp0 == nil {
 			t.Fatal("expected update result to be a map")
+		}
+		if updateGuardrailRef01ResdataUp0["id"] != updateGuardrailRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
 		}
 		if updateGuardrailRef01ResdataUp0[updateGuardrailRef01MarkdefUp0Name] != updateGuardrailRef01MarkdefUp0Value {
 			t.Fatalf("expected %s to be updated, got %v", updateGuardrailRef01MarkdefUp0Name, updateGuardrailRef01ResdataUp0[updateGuardrailRef01MarkdefUp0Name])

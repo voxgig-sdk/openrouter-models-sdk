@@ -49,11 +49,13 @@ class TestUpsertWorkspaceBudgetEntity:
         # UPDATE
         upsert_workspace_budget_ref01_ent = client.UpsertWorkspaceBudget(None)
         upsert_workspace_budget_ref01_data_up0_up = {
+            "id": upsert_workspace_budget_ref01_data["id"],
             "workspace_id": setup["idmap"]["workspace_id"],
         }
 
         upsert_workspace_budget_ref01_resdata_up0 = helpers.to_map(runner.entity_data(upsert_workspace_budget_ref01_ent.update(upsert_workspace_budget_ref01_data_up0_up, None)))
         assert upsert_workspace_budget_ref01_resdata_up0 is not None
+        assert upsert_workspace_budget_ref01_resdata_up0["id"] == upsert_workspace_budget_ref01_data_up0_up["id"]
 
 
 

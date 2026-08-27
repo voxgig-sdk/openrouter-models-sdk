@@ -40,6 +40,11 @@ main: kit: entity: update_observability_destination: {
       }
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "name"
       req: false
       short: "Human-readable name for the destination."
@@ -58,6 +63,11 @@ main: kit: entity: update_observability_destination: {
       type: "`$NUMBER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "update_observability_destination"
   op: {

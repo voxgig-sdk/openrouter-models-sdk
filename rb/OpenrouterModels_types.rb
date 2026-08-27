@@ -139,6 +139,9 @@ end
 # @!attribute [rw] hash
 #   @return [String]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] include_byok_in_limit
 #   @return [Boolean]
 #
@@ -196,6 +199,7 @@ ApiKey = Struct.new(
   :disabled,
   :expires_at,
   :hash,
+  :id,
   :include_byok_in_limit,
   :is_free_tier,
   :is_management_key,
@@ -251,6 +255,9 @@ ApiKeyLoadMatch = Struct.new(
 #   @return [Object, nil]
 #
 # @!attribute [rw] hash
+#   @return [String, nil]
+#
+# @!attribute [rw] id
 #   @return [String, nil]
 #
 # @!attribute [rw] include_byok_in_limit
@@ -310,6 +317,7 @@ ApiKeyListMatch = Struct.new(
   :disabled,
   :expires_at,
   :hash,
+  :id,
   :include_byok_in_limit,
   :is_free_tier,
   :is_management_key,
@@ -357,6 +365,9 @@ ApiKeyListMatch = Struct.new(
 #
 # @!attribute [rw] hash
 #   @return [String]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
 #
 # @!attribute [rw] include_byok_in_limit
 #   @return [Boolean]
@@ -415,6 +426,7 @@ ApiKeyCreateData = Struct.new(
   :disabled,
   :expires_at,
   :hash,
+  :id,
   :include_byok_in_limit,
   :is_free_tier,
   :is_management_key,
@@ -4723,8 +4735,12 @@ OAuthCreateData = Struct.new(
 #
 # @!attribute [rw] data
 #   @return [Hash, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
 ObservabilityDestination = Struct.new(
   :data,
+  :id,
   keyword_init: true
 )
 
@@ -5778,6 +5794,9 @@ UnifiedBenchmarkListMatch = Struct.new(
 # @!attribute [rw] disabled
 #   @return [Boolean, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] is_fallback
 #   @return [Boolean, nil]
 #
@@ -5790,6 +5809,7 @@ UpdateByokKey = Struct.new(
   :allowed_models,
   :allowed_user_ids,
   :disabled,
+  :id,
   :is_fallback,
   :key,
   :name,
@@ -5864,6 +5884,9 @@ UpdateByokKeyUpdateData = Struct.new(
 # @!attribute [rw] enforce_zdr_xai
 #   @return [Object, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ignored_models
 #   @return [Object, nil]
 #
@@ -5890,6 +5913,7 @@ UpdateGuardrail = Struct.new(
   :enforce_zdr_openai,
   :enforce_zdr_other,
   :enforce_zdr_xai,
+  :id,
   :ignored_models,
   :ignored_providers,
   :limit_usd,
@@ -5985,6 +6009,9 @@ UpdateGuardrailUpdateData = Struct.new(
 # @!attribute [rw] filter_rules
 #   @return [Object, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] name
 #   @return [String, nil]
 #
@@ -5998,6 +6025,7 @@ UpdateObservabilityDestination = Struct.new(
   :config,
   :enabled,
   :filter_rules,
+  :id,
   :name,
   :privacy_mode,
   :sampling_rate,
@@ -6303,9 +6331,13 @@ UpdateWorkspaceUpdateData = Struct.new(
 
 # UpsertWorkspaceBudget entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] limit_usd
 #   @return [Float]
 UpsertWorkspaceBudget = Struct.new(
+  :id,
   :limit_usd,
   keyword_init: true
 )
@@ -6507,8 +6539,13 @@ VideoCreateData = Struct.new(
 )
 
 # VideoGeneration entity data model.
-class VideoGeneration
-end
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+VideoGeneration = Struct.new(
+  :id,
+  keyword_init: true
+)
 
 # Request payload for VideoGeneration#load.
 #
@@ -6733,8 +6770,13 @@ WorkspaceRemoveMatch = Struct.new(
 )
 
 # WorkspaceBudget entity data model.
-class WorkspaceBudget
-end
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+WorkspaceBudget = Struct.new(
+  :id,
+  keyword_init: true
+)
 
 # Request payload for WorkspaceBudget#remove.
 #

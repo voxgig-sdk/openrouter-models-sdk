@@ -2,16 +2,16 @@
   "existing": {
     "workspace_budget": {
       "WORKSPACE_BUDGET00": {
-        "workspace_id": "WORKSPACE01",
-        "id": "WORKSPACE_BUDGET00"
+        "id": "WORKSPACE_BUDGET00",
+        "workspace_id": "WORKSPACE01"
       },
       "WORKSPACE_BUDGET01": {
-        "workspace_id": "WORKSPACE01",
-        "id": "WORKSPACE_BUDGET01"
+        "id": "WORKSPACE_BUDGET01",
+        "workspace_id": "WORKSPACE01"
       },
       "WORKSPACE_BUDGET02": {
-        "workspace_id": "WORKSPACE01",
-        "id": "WORKSPACE_BUDGET02"
+        "id": "WORKSPACE_BUDGET02",
+        "workspace_id": "WORKSPACE01"
       }
     }
   },

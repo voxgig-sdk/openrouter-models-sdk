@@ -111,6 +111,9 @@ func TestApiKeyEntity(t *testing.T) {
 		if apiKeyRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
+		if apiKeyRef01Data["id"] == nil {
+			t.Fatal("expected created entity to have an id")
+		}
 
 		// LIST
 		apiKeyRef01Match := map[string]any{}
@@ -119,13 +122,19 @@ func TestApiKeyEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("list failed: %v", err)
 		}
-		_, apiKeyRef01ListOk := apiKeyRef01ListResult.([]any)
+		apiKeyRef01List, apiKeyRef01ListOk := apiKeyRef01ListResult.([]any)
 		if !apiKeyRef01ListOk {
 			t.Fatalf("expected list result to be an array, got %T", apiKeyRef01ListResult)
 		}
 
+		foundItem := vs.Select(entityListToData(apiKeyRef01List), map[string]any{"id": apiKeyRef01Data["id"]})
+		if vs.IsEmpty(foundItem) {
+			t.Fatal("expected to find created entity in list")
+		}
+
 		// UPDATE
 		apiKeyRef01DataUp0Up := map[string]any{
+			"id": apiKeyRef01Data["id"],
 		}
 
 		apiKeyRef01MarkdefUp0Name := "created_at"
@@ -140,20 +149,37 @@ func TestApiKeyEntity(t *testing.T) {
 		if apiKeyRef01ResdataUp0 == nil {
 			t.Fatal("expected update result to be a map")
 		}
+		if apiKeyRef01ResdataUp0["id"] != apiKeyRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
+		}
 		if apiKeyRef01ResdataUp0[apiKeyRef01MarkdefUp0Name] != apiKeyRef01MarkdefUp0Value {
 			t.Fatalf("expected %s to be updated, got %v", apiKeyRef01MarkdefUp0Name, apiKeyRef01ResdataUp0[apiKeyRef01MarkdefUp0Name])
 		}
 
 		// LOAD
-		apiKeyRef01MatchDt0 := map[string]any{}
+		apiKeyRef01MatchDt0 := map[string]any{
+			"id": apiKeyRef01Data["id"],
+		}
 		apiKeyRef01DataDt0Loaded, err := apiKeyRef01Ent.Load(apiKeyRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if apiKeyRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		apiKeyRef01DataDt0LoadResult := core.ToMapAny(entityData(apiKeyRef01DataDt0Loaded))
+		if apiKeyRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if apiKeyRef01DataDt0LoadResult["id"] != apiKeyRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
+		// REMOVE
+		apiKeyRef01MatchRm0 := map[string]any{
+			"id": apiKeyRef01Data["id"],
+		}
+		_, err = apiKeyRef01Ent.Remove(apiKeyRef01MatchRm0, nil)
+		if err != nil {
+			t.Fatalf("remove failed: %v", err)
+		}
 
 		// LIST
 		apiKeyRef01MatchRt0 := map[string]any{}
@@ -162,9 +188,14 @@ func TestApiKeyEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("list failed: %v", err)
 		}
-		_, apiKeyRef01ListRt0Ok := apiKeyRef01ListRt0Result.([]any)
+		apiKeyRef01ListRt0, apiKeyRef01ListRt0Ok := apiKeyRef01ListRt0Result.([]any)
 		if !apiKeyRef01ListRt0Ok {
 			t.Fatalf("expected list result to be an array, got %T", apiKeyRef01ListRt0Result)
+		}
+
+		notFoundItem := vs.Select(entityListToData(apiKeyRef01ListRt0), map[string]any{"id": apiKeyRef01Data["id"]})
+		if !vs.IsEmpty(notFoundItem) {
+			t.Fatal("expected removed entity to not be in list")
 		}
 
 	})

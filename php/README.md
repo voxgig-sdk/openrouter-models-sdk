@@ -392,6 +392,7 @@ API path: ``
 | `disabled` | Whether the API key is disabled |
 | `expires_at` | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
 | `hash` | Unique hash identifier for the API key |
+| `id` |  |
 | `include_byok_in_limit` | Whether to include external BYOK usage in the credit limit |
 | `is_free_tier` | Whether this is a free tier API key |
 | `is_management_key` | Whether this is a management key |
@@ -1321,6 +1322,7 @@ API path: `/auth/keys`
 | Field | Description |
 | --- | --- |
 | `data` |  |
+| `id` |  |
 
 Operations: Load, Remove.
 
@@ -1598,6 +1600,7 @@ API path: `/benchmarks`
 | `allowed_models` | Optional allowlist of model slugs this credential may be used for. |
 | `allowed_user_ids` | Optional allowlist of user IDs that may use this credential. |
 | `disabled` | Whether this credential is disabled. |
+| `id` |  |
 | `is_fallback` | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
 | `key` | A new raw provider API key to rotate the credential in-place. |
 | `name` | Optional human-readable name for the credential. |
@@ -1621,6 +1624,7 @@ API path: `/byok/{id}`
 | `enforce_zdr_openai` | Whether to enforce zero data retention for OpenAI models. |
 | `enforce_zdr_other` | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
 | `enforce_zdr_xai` | Whether to enforce zero data retention for xAI models. |
+| `id` |  |
 | `ignored_models` | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
 | `ignored_providers` | List of provider IDs to exclude from routing |
 | `limit_usd` | New spending limit in USD |
@@ -1639,6 +1643,7 @@ API path: `/guardrails/{id}`
 | `config` | Provider-specific configuration fields to update. |
 | `enabled` | Whether the destination is enabled. |
 | `filter_rules` |  |
+| `id` |  |
 | `name` | Human-readable name for the destination. |
 | `privacy_mode` | When true, request/response bodies are not forwarded — only metadata. |
 | `sampling_rate` | Sampling rate between 0.0001 and 1 (1 = 100%). |
@@ -1675,6 +1680,7 @@ API path: `/workspaces`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `limit_usd` | Spending limit in USD. |
 
 Operations: Update.
@@ -1731,6 +1737,7 @@ API path: `/videos`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: Load.
 
@@ -1788,6 +1795,7 @@ API path: `/workspaces/{id}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: Remove.
 
@@ -1873,6 +1881,7 @@ Create an instance: `$api_key = $client->ApiKey();`
 | `disabled` | `bool` | Whether the API key is disabled |
 | `expires_at` | `mixed` | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
 | `hash` | `string` | Unique hash identifier for the API key |
+| `id` | `string` |  |
 | `include_byok_in_limit` | `bool` | Whether to include external BYOK usage in the credit limit |
 | `is_free_tier` | `bool` | Whether this is a free tier API key |
 | `is_management_key` | `bool` | Whether this is a management key |
@@ -3420,6 +3429,7 @@ Create an instance: `$observability_destination = $client->ObservabilityDestinat
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `array` |  |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -3883,6 +3893,7 @@ Create an instance: `$update_byok_key = $client->UpdateByokKey();`
 | `allowed_models` | `mixed` | Optional allowlist of model slugs this credential may be used for. |
 | `allowed_user_ids` | `mixed` | Optional allowlist of user IDs that may use this credential. |
 | `disabled` | `bool` | Whether this credential is disabled. |
+| `id` | `string` |  |
 | `is_fallback` | `bool` | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
 | `key` | `string` | A new raw provider API key to rotate the credential in-place. |
 | `name` | `mixed` | Optional human-readable name for the credential. |
@@ -3913,6 +3924,7 @@ Create an instance: `$update_guardrail = $client->UpdateGuardrail();`
 | `enforce_zdr_openai` | `mixed` | Whether to enforce zero data retention for OpenAI models. |
 | `enforce_zdr_other` | `mixed` | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
 | `enforce_zdr_xai` | `mixed` | Whether to enforce zero data retention for xAI models. |
+| `id` | `string` |  |
 | `ignored_models` | `mixed` | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
 | `ignored_providers` | `mixed` | List of provider IDs to exclude from routing |
 | `limit_usd` | `mixed` | New spending limit in USD |
@@ -3938,6 +3950,7 @@ Create an instance: `$update_observability_destination = $client->UpdateObservab
 | `config` | `array` | Provider-specific configuration fields to update. |
 | `enabled` | `bool` | Whether the destination is enabled. |
 | `filter_rules` | `mixed` |  |
+| `id` | `string` |  |
 | `name` | `string` | Human-readable name for the destination. |
 | `privacy_mode` | `bool` | When true, request/response bodies are not forwarded — only metadata. |
 | `sampling_rate` | `float` | Sampling rate between 0.0001 and 1 (1 = 100%). |
@@ -4010,6 +4023,7 @@ Create an instance: `$upsert_workspace_budget = $client->UpsertWorkspaceBudget()
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `limit_usd` | `float` | Spending limit in USD. |
 
 
@@ -4086,6 +4100,12 @@ Create an instance: `$video_generation = $client->VideoGeneration();`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -4181,6 +4201,12 @@ Create an instance: `$workspace_budget = $client->WorkspaceBudget();`
 | Method | Description |
 | --- | --- |
 | `remove(match)` | Remove the matching entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 
 ### Zdr

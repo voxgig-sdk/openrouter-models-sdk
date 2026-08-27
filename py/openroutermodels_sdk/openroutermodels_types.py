@@ -77,6 +77,7 @@ class ApiKeyRequired(TypedDict):
 
 class ApiKey(ApiKeyRequired, total=False):
     expires_at: str | None
+    id: str
 
 
 class ApiKeyLoadMatch(TypedDict):
@@ -93,6 +94,7 @@ class ApiKeyListMatch(TypedDict, total=False):
     disabled: bool
     expires_at: str | None
     hash: str
+    id: str
     include_byok_in_limit: bool
     is_free_tier: bool
     is_management_key: bool
@@ -140,6 +142,7 @@ class ApiKeyCreateDataRequired(TypedDict):
 
 class ApiKeyCreateData(ApiKeyCreateDataRequired, total=False):
     expires_at: str | None
+    id: str
 
 
 class ApiKeyUpdateDataRequired(TypedDict):
@@ -1492,6 +1495,7 @@ class OAuthCreateData(OAuthCreateDataRequired, total=False):
 
 class ObservabilityDestination(TypedDict, total=False):
     data: dict
+    id: str
 
 
 class ObservabilityDestinationLoadMatch(TypedDict):
@@ -1853,6 +1857,7 @@ class UpdateByokKey(TypedDict, total=False):
     allowed_models: list | None
     allowed_user_ids: list | None
     disabled: bool
+    id: str
     is_fallback: bool
     key: str
     name: str | None
@@ -1883,6 +1888,7 @@ class UpdateGuardrail(TypedDict, total=False):
     enforce_zdr_openai: bool | None
     enforce_zdr_other: bool | None
     enforce_zdr_xai: bool | None
+    id: str
     ignored_models: list | None
     ignored_providers: list | None
     limit_usd: float | None
@@ -1918,6 +1924,7 @@ class UpdateObservabilityDestination(TypedDict, total=False):
     config: dict
     enabled: bool
     filter_rules: Any
+    id: str
     name: str
     privacy_mode: bool
     sampling_rate: float
@@ -2018,8 +2025,12 @@ class UpdateWorkspaceUpdateData(UpdateWorkspaceUpdateDataRequired, total=False):
     updated_at: str | None
 
 
-class UpsertWorkspaceBudget(TypedDict):
+class UpsertWorkspaceBudgetRequired(TypedDict):
     limit_usd: float
+
+
+class UpsertWorkspaceBudget(UpsertWorkspaceBudgetRequired, total=False):
+    id: str
 
 
 class UpsertWorkspaceBudgetUpdateDataRequired(TypedDict):
@@ -2093,8 +2104,8 @@ class VideoCreateData(VideoCreateDataRequired, total=False):
     usage: dict
 
 
-class VideoGeneration(TypedDict):
-    pass
+class VideoGeneration(TypedDict, total=False):
+    id: str
 
 
 class VideoGenerationLoadMatch(TypedDict):
@@ -2166,8 +2177,8 @@ class WorkspaceRemoveMatch(TypedDict):
     id: str
 
 
-class WorkspaceBudget(TypedDict):
-    pass
+class WorkspaceBudget(TypedDict, total=False):
+    id: str
 
 
 class WorkspaceBudgetRemoveMatch(TypedDict):

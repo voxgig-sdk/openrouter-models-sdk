@@ -541,6 +541,7 @@ api_key = client.ApiKey
 | `disabled` | `Boolean` | Yes | Whether the API key is disabled |
 | `expires_at` | `Object` | No | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
 | `hash` | `String` | Yes | Unique hash identifier for the API key |
+| `id` | `String` | No |  |
 | `include_byok_in_limit` | `Boolean` | Yes | Whether to include external BYOK usage in the credit limit |
 | `is_free_tier` | `Boolean` | Yes | Whether this is a free tier API key |
 | `is_management_key` | `Boolean` | Yes | Whether this is a management key |
@@ -571,6 +572,7 @@ api_key = client.ApiKey
 | `disabled` | - | - | - | Yes | - |
 | `expires_at` | - | - | - | - | - |
 | `hash` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
 | `include_byok_in_limit` | - | - | Yes | Yes | - |
 | `is_free_tier` | - | - | - | - | - |
 | `is_management_key` | - | - | - | - | - |
@@ -609,8 +611,8 @@ result = client.ApiKey.create({
   "is_management_key" => true, # Boolean
   "is_provisioning_key" => true, # Boolean
   "label" => "example_label", # String
-  "limit" => "example_limit", # Object
-  "limit_remaining" => "example_limit_remaining", # Object
+  "limit" => 1, # Object
+  "limit_remaining" => 1, # Object
   "limit_reset" => "example_limit_reset", # Object
   "name" => "example_name", # String
   "rate_limit" => {}, # Hash
@@ -1317,9 +1319,9 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Byok.create({
-  "allowed_api_key_hashes" => "example_allowed_api_key_hashes", # Object
-  "allowed_models" => "example_allowed_models", # Object
-  "allowed_user_ids" => "example_allowed_user_ids", # Object
+  "allowed_api_key_hashes" => [], # Object
+  "allowed_models" => [], # Object
+  "allowed_user_ids" => [], # Object
   "created_at" => "example_created_at", # String
   "disabled" => true, # Boolean
   "id" => "example_id", # String
@@ -1516,8 +1518,8 @@ result = client.ChatResult.create({
   "model" => "example_model", # String
   "object" => "example_object", # String
   "openrouter_metadata" => {}, # Hash
-  "prediction" => "example_prediction", # Object
-  "prompt_cache_options" => "example_prompt_cache_options", # Object
+  "prediction" => {}, # Object
+  "prompt_cache_options" => {}, # Object
   "system_fingerprint" => "example_system_fingerprint", # Object
   "usage" => {}, # Hash
 })
@@ -1834,7 +1836,7 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.CreateObservabilityDestination.create({
   "config" => {}, # Hash
-  "filter_rules" => "example_filter_rules", # Object
+  "filter_rules" => {}, # Object
   "name" => "example_name", # String
   "type" => "example_type", # String
 })
@@ -2019,9 +2021,9 @@ result = client.CreatePresetFromInference.create({
   "slug" => "example_slug", # String
   "cache_control" => {}, # Hash
   "messages" => [], # Array
-  "prediction" => "example_prediction", # Object
-  "prompt" => "example_prompt", # Object
-  "prompt_cache_options" => "example_prompt_cache_options", # Object
+  "prediction" => {}, # Object
+  "prompt" => {}, # Object
+  "prompt_cache_options" => {}, # Object
 })
 ```
 
@@ -3584,7 +3586,7 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.Message.create({
   "cache_control" => {}, # Hash
-  "messages" => "example_messages", # Object
+  "messages" => [], # Object
   "model" => "example_model", # String
 })
 ```
@@ -3942,6 +3944,7 @@ observability_destination = client.ObservabilityDestination
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `Hash` | No |  |
+| `id` | `String` | No |  |
 
 ### Operations
 
@@ -4051,8 +4054,8 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.OpenResponsesResult.create({
   "cache_control" => {}, # Hash
-  "prompt" => "example_prompt", # Object
-  "prompt_cache_options" => "example_prompt_cache_options", # Object
+  "prompt" => {}, # Object
+  "prompt_cache_options" => {}, # Object
 })
 ```
 
@@ -4937,6 +4940,7 @@ update_byok_key = client.UpdateByokKey
 | `allowed_models` | `Object` | No | Optional allowlist of model slugs this credential may be used for. |
 | `allowed_user_ids` | `Object` | No | Optional allowlist of user IDs that may use this credential. |
 | `disabled` | `Boolean` | No | Whether this credential is disabled. |
+| `id` | `String` | No |  |
 | `is_fallback` | `Boolean` | No | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
 | `key` | `String` | No | A new raw provider API key to rotate the credential in-place. |
 | `name` | `Object` | No | Optional human-readable name for the credential. |
@@ -5005,6 +5009,7 @@ update_guardrail = client.UpdateGuardrail
 | `enforce_zdr_openai` | `Object` | No | Whether to enforce zero data retention for OpenAI models. |
 | `enforce_zdr_other` | `Object` | No | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
 | `enforce_zdr_xai` | `Object` | No | Whether to enforce zero data retention for xAI models. |
+| `id` | `String` | No |  |
 | `ignored_models` | `Object` | No | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
 | `ignored_providers` | `Object` | No | List of provider IDs to exclude from routing |
 | `limit_usd` | `Object` | No | New spending limit in USD |
@@ -5068,6 +5073,7 @@ update_observability_destination = client.UpdateObservabilityDestination
 | `config` | `Hash` | No | Provider-specific configuration fields to update. |
 | `enabled` | `Boolean` | No | Whether the destination is enabled. |
 | `filter_rules` | `Object` | No |  |
+| `id` | `String` | No |  |
 | `name` | `String` | No | Human-readable name for the destination. |
 | `privacy_mode` | `Boolean` | No | When true, request/response bodies are not forwarded — only metadata. |
 | `sampling_rate` | `Float` | No | Sampling rate between 0.0001 and 1 (1 = 100%). |
@@ -5237,6 +5243,7 @@ upsert_workspace_budget = client.UpsertWorkspaceBudget
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `String` | No |  |
 | `limit_usd` | `Float` | Yes | Spending limit in USD. |
 
 ### Operations
@@ -5444,6 +5451,12 @@ Return the entity name.
 video_generation = client.VideoGeneration
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `String` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -5629,6 +5642,12 @@ Return the entity name.
 ```ruby
 workspace_budget = client.WorkspaceBudget
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `String` | No |  |
 
 ### Operations
 

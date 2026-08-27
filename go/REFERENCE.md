@@ -540,6 +540,7 @@ fmt.Println(apiKey.GetName()) // "api_key"
 | `disabled` | `bool` | Yes | Whether the API key is disabled |
 | `expires_at` | `any` | No | ISO 8601 UTC timestamp when the API key expires, or null if no expiration |
 | `hash` | `string` | Yes | Unique hash identifier for the API key |
+| `id` | `string` | No |  |
 | `include_byok_in_limit` | `bool` | Yes | Whether to include external BYOK usage in the credit limit |
 | `is_free_tier` | `bool` | Yes | Whether this is a free tier API key |
 | `is_management_key` | `bool` | Yes | Whether this is a management key |
@@ -570,6 +571,7 @@ fmt.Println(apiKey.GetName()) // "api_key"
 | `disabled` | - | - | - | Yes | - |
 | `expires_at` | - | - | - | - | - |
 | `hash` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
 | `include_byok_in_limit` | - | - | Yes | Yes | - |
 | `is_free_tier` | - | - | - | - | - |
 | `is_management_key` | - | - | - | - | - |
@@ -632,8 +634,8 @@ result, err := client.ApiKey(nil).Create(map[string]any{
     "is_management_key": true,
     "is_provisioning_key": true,
     "label": "example_label",
-    "limit": "example_limit",
-    "limit_remaining": "example_limit_remaining",
+    "limit": 1,
+    "limit_remaining": 1,
     "limit_reset": "example_limit_reset",
     "name": "example_name",
     "rate_limit": map[string]any{},
@@ -1341,9 +1343,9 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Byok(nil).Create(map[string]any{
-    "allowed_api_key_hashes": "example_allowed_api_key_hashes",
-    "allowed_models": "example_allowed_models",
-    "allowed_user_ids": "example_allowed_user_ids",
+    "allowed_api_key_hashes": []any{},
+    "allowed_models": []any{},
+    "allowed_user_ids": []any{},
     "created_at": "example_created_at",
     "disabled": true,
     "id": "example_id",
@@ -1527,8 +1529,8 @@ result, err := client.ChatResult(nil).Create(map[string]any{
     "model": "example_model",
     "object": "example_object",
     "openrouter_metadata": map[string]any{},
-    "prediction": "example_prediction",
-    "prompt_cache_options": "example_prompt_cache_options",
+    "prediction": map[string]any{},
+    "prompt_cache_options": map[string]any{},
     "system_fingerprint": "example_system_fingerprint",
     "usage": map[string]any{},
 }, nil)
@@ -1809,7 +1811,7 @@ Create a new entity with the given data.
 ```go
 result, err := client.CreateObservabilityDestination(nil).Create(map[string]any{
     "config": map[string]any{},
-    "filter_rules": "example_filter_rules",
+    "filter_rules": map[string]any{},
     "name": "example_name",
     "type": "example_type",
 }, nil)
@@ -1993,9 +1995,9 @@ result, err := client.CreatePresetFromInference(nil).Create(map[string]any{
     "slug": "example_slug",
     "cache_control": map[string]any{},
     "messages": []any{},
-    "prediction": "example_prediction",
-    "prompt": "example_prompt",
-    "prompt_cache_options": "example_prompt_cache_options",
+    "prediction": map[string]any{},
+    "prompt": map[string]any{},
+    "prompt_cache_options": map[string]any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -3528,7 +3530,7 @@ Create a new entity with the given data.
 ```go
 result, err := client.Message(nil).Create(map[string]any{
     "cache_control": map[string]any{},
-    "messages": "example_messages",
+    "messages": []any{},
     "model": "example_model",
 }, nil)
 if err != nil {
@@ -3880,6 +3882,7 @@ fmt.Println(observabilityDestination.GetName()) // "observability_destination"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `map[string]any` | No |  |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -3992,8 +3995,8 @@ Create a new entity with the given data.
 ```go
 result, err := client.OpenResponsesResult(nil).Create(map[string]any{
     "cache_control": map[string]any{},
-    "prompt": "example_prompt",
-    "prompt_cache_options": "example_prompt_cache_options",
+    "prompt": map[string]any{},
+    "prompt_cache_options": map[string]any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -4845,6 +4848,7 @@ fmt.Println(updateByokKey.GetName()) // "update_byok_key"
 | `allowed_models` | `any` | No | Optional allowlist of model slugs this credential may be used for. |
 | `allowed_user_ids` | `any` | No | Optional allowlist of user IDs that may use this credential. |
 | `disabled` | `bool` | No | Whether this credential is disabled. |
+| `id` | `string` | No |  |
 | `is_fallback` | `bool` | No | Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried. |
 | `key` | `string` | No | A new raw provider API key to rotate the credential in-place. |
 | `name` | `any` | No | Optional human-readable name for the credential. |
@@ -4912,6 +4916,7 @@ fmt.Println(updateGuardrail.GetName()) // "update_guardrail"
 | `enforce_zdr_openai` | `any` | No | Whether to enforce zero data retention for OpenAI models. |
 | `enforce_zdr_other` | `any` | No | Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. |
 | `enforce_zdr_xai` | `any` | No | Whether to enforce zero data retention for xAI models. |
+| `id` | `string` | No |  |
 | `ignored_models` | `any` | No | Array of model identifiers to exclude from routing (slug or canonical_slug accepted) |
 | `ignored_providers` | `any` | No | List of provider IDs to exclude from routing |
 | `limit_usd` | `any` | No | New spending limit in USD |
@@ -4974,6 +4979,7 @@ fmt.Println(updateObservabilityDestination.GetName()) // "update_observability_d
 | `config` | `map[string]any` | No | Provider-specific configuration fields to update. |
 | `enabled` | `bool` | No | Whether the destination is enabled. |
 | `filter_rules` | `any` | No |  |
+| `id` | `string` | No |  |
 | `name` | `string` | No | Human-readable name for the destination. |
 | `privacy_mode` | `bool` | No | When true, request/response bodies are not forwarded — only metadata. |
 | `sampling_rate` | `float64` | No | Sampling rate between 0.0001 and 1 (1 = 100%). |
@@ -5149,6 +5155,7 @@ fmt.Println(upsertWorkspaceBudget.GetName()) // "upsert_workspace_budget"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `limit_usd` | `float64` | Yes | Spending limit in USD. |
 
 ### Operations
@@ -5348,6 +5355,12 @@ videoGeneration := client.VideoGeneration(nil)
 fmt.Println(videoGeneration.GetName()) // "video_generation"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -5534,6 +5547,12 @@ Return the entity name.
 workspaceBudget := client.WorkspaceBudget(nil)
 fmt.Println(workspaceBudget.GetName()) // "workspace_budget"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 

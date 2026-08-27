@@ -44,6 +44,7 @@
 ---@field disabled boolean
 ---@field expires_at? string|nil
 ---@field hash string
+---@field id? string
 ---@field include_byok_in_limit boolean
 ---@field is_free_tier boolean
 ---@field is_management_key boolean
@@ -74,6 +75,7 @@
 ---@field disabled? boolean
 ---@field expires_at? string|nil
 ---@field hash? string
+---@field id? string
 ---@field include_byok_in_limit? boolean
 ---@field is_free_tier? boolean
 ---@field is_management_key? boolean
@@ -101,6 +103,7 @@
 ---@field disabled boolean
 ---@field expires_at? string|nil
 ---@field hash string
+---@field id? string
 ---@field include_byok_in_limit boolean
 ---@field is_free_tier boolean
 ---@field is_management_key boolean
@@ -1271,6 +1274,7 @@
 
 ---@class ObservabilityDestination
 ---@field data? table
+---@field id? string
 
 ---@class ObservabilityDestinationLoadMatch
 ---@field id string
@@ -1561,6 +1565,7 @@
 ---@field allowed_models? table|nil
 ---@field allowed_user_ids? table|nil
 ---@field disabled? boolean
+---@field id? string
 ---@field is_fallback? boolean
 ---@field key? string
 ---@field name? string|nil
@@ -1586,6 +1591,7 @@
 ---@field enforce_zdr_openai? boolean|nil
 ---@field enforce_zdr_other? boolean|nil
 ---@field enforce_zdr_xai? boolean|nil
+---@field id? string
 ---@field ignored_models? table|nil
 ---@field ignored_providers? table|nil
 ---@field limit_usd? number|nil
@@ -1616,6 +1622,7 @@
 ---@field config? table
 ---@field enabled? boolean
 ---@field filter_rules? any
+---@field id? string
 ---@field name? string
 ---@field privacy_mode? boolean
 ---@field sampling_rate? number
@@ -1699,6 +1706,7 @@
 ---@field updated_at? string|nil
 
 ---@class UpsertWorkspaceBudget
+---@field id? string
 ---@field limit_usd number
 
 ---@class UpsertWorkspaceBudgetUpdateData
@@ -1756,6 +1764,7 @@
 ---@field usage? table
 
 ---@class VideoGeneration
+---@field id? string
 
 ---@class VideoGenerationLoadMatch
 ---@field id string
@@ -1818,6 +1827,7 @@
 ---@field id string
 
 ---@class WorkspaceBudget
+---@field id? string
 
 ---@class WorkspaceBudgetRemoveMatch
 ---@field id string

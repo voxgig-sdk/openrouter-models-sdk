@@ -48,9 +48,13 @@ class ObservabilityDestinationEntityTest extends TestCase
 
         // LOAD
         $observability_destination_ref01_ent = $client->ObservabilityDestination(null);
-        $observability_destination_ref01_match_dt0 = [];
+        $observability_destination_ref01_match_dt0 = [
+            "id" => $observability_destination_ref01_data["id"],
+        ];
         $observability_destination_ref01_data_dt0_loaded = $observability_destination_ref01_ent->load($observability_destination_ref01_match_dt0, null);
-        $this->assertNotNull($observability_destination_ref01_data_dt0_loaded);
+        $observability_destination_ref01_data_dt0_load_result = Helpers::to_map(is_object($observability_destination_ref01_data_dt0_loaded) && method_exists($observability_destination_ref01_data_dt0_loaded, 'data_get') ? $observability_destination_ref01_data_dt0_loaded->data_get() : $observability_destination_ref01_data_dt0_loaded);
+        $this->assertNotNull($observability_destination_ref01_data_dt0_load_result);
+        $this->assertEquals($observability_destination_ref01_data_dt0_load_result["id"], $observability_destination_ref01_data["id"]);
 
     }
 }
