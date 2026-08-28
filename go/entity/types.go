@@ -29,17 +29,9 @@ type Activity struct {
 
 // ActivityListMatch is the typed request payload for Activity.ListTyped.
 type ActivityListMatch struct {
-	ByokUsageInference *float64 `json:"byok_usage_inference,omitempty"`
-	CompletionTokens *int `json:"completion_tokens,omitempty"`
+	ApiKeyHash *string `json:"api_key_hash,omitempty"`
 	Date *string `json:"date,omitempty"`
-	EndpointId *string `json:"endpoint_id,omitempty"`
-	Model *string `json:"model,omitempty"`
-	ModelPermaslug *string `json:"model_permaslug,omitempty"`
-	PromptTokens *int `json:"prompt_tokens,omitempty"`
-	ProviderName *string `json:"provider_name,omitempty"`
-	ReasoningTokens *int `json:"reasoning_tokens,omitempty"`
-	Requests *int `json:"requests,omitempty"`
-	Usage *float64 `json:"usage,omitempty"`
+	UserId *string `json:"user_id,omitempty"`
 }
 
 // Add is the typed data model for the add entity.
@@ -83,31 +75,8 @@ type ApiKeyLoadMatch struct {
 
 // ApiKeyListMatch is the typed request payload for ApiKey.ListTyped.
 type ApiKeyListMatch struct {
-	ByokUsage *float64 `json:"byok_usage,omitempty"`
-	ByokUsageDaily *float64 `json:"byok_usage_daily,omitempty"`
-	ByokUsageMonthly *float64 `json:"byok_usage_monthly,omitempty"`
-	ByokUsageWeekly *float64 `json:"byok_usage_weekly,omitempty"`
-	CreatedAt *string `json:"created_at,omitempty"`
-	CreatorUserId *any `json:"creator_user_id,omitempty"`
-	Disabled *bool `json:"disabled,omitempty"`
-	ExpiresAt *any `json:"expires_at,omitempty"`
-	Hash *string `json:"hash,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IncludeByokInLimit *bool `json:"include_byok_in_limit,omitempty"`
-	IsFreeTier *bool `json:"is_free_tier,omitempty"`
-	IsManagementKey *bool `json:"is_management_key,omitempty"`
-	IsProvisioningKey *bool `json:"is_provisioning_key,omitempty"`
-	Label *string `json:"label,omitempty"`
-	Limit *any `json:"limit,omitempty"`
-	LimitRemaining *any `json:"limit_remaining,omitempty"`
-	LimitReset *any `json:"limit_reset,omitempty"`
-	Name *string `json:"name,omitempty"`
-	RateLimit *map[string]any `json:"rate_limit,omitempty"`
-	UpdatedAt *any `json:"updated_at,omitempty"`
-	Usage *float64 `json:"usage,omitempty"`
-	UsageDaily *float64 `json:"usage_daily,omitempty"`
-	UsageMonthly *float64 `json:"usage_monthly,omitempty"`
-	UsageWeekly *float64 `json:"usage_weekly,omitempty"`
+	IncludeDisabled *bool `json:"include_disabled,omitempty"`
+	Offset *any `json:"offset,omitempty"`
 	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
@@ -187,11 +156,13 @@ type AppRanking struct {
 
 // AppRankingListMatch is the typed request payload for AppRanking.ListTyped.
 type AppRankingListMatch struct {
-	AppId *int `json:"app_id,omitempty"`
-	AppName *string `json:"app_name,omitempty"`
-	Rank *int `json:"rank,omitempty"`
-	TotalRequests *int `json:"total_requests,omitempty"`
-	TotalTokens *string `json:"total_tokens,omitempty"`
+	Category *string `json:"category,omitempty"`
+	EndDate *string `json:"end_date,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *any `json:"offset,omitempty"`
+	Sort *string `json:"sort,omitempty"`
+	StartDate *string `json:"start_date,omitempty"`
+	Subcategory *string `json:"subcategory,omitempty"`
 }
 
 // Benchmark is the typed data model for the benchmark entity.
@@ -366,18 +337,9 @@ type ByokLoadMatch struct {
 
 // ByokListMatch is the typed request payload for Byok.ListTyped.
 type ByokListMatch struct {
-	AllowedApiKeyHashes *any `json:"allowed_api_key_hashes,omitempty"`
-	AllowedModels *any `json:"allowed_models,omitempty"`
-	AllowedUserIds *any `json:"allowed_user_ids,omitempty"`
-	CreatedAt *string `json:"created_at,omitempty"`
-	Disabled *bool `json:"disabled,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IsFallback *bool `json:"is_fallback,omitempty"`
-	Key *string `json:"key,omitempty"`
-	Label *string `json:"label,omitempty"`
-	Name *any `json:"name,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *any `json:"offset,omitempty"`
 	Provider *string `json:"provider,omitempty"`
-	SortOrder *int `json:"sort_order,omitempty"`
 	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
@@ -796,40 +758,35 @@ type EndpointLoadMatch struct {
 
 // EndpointListMatch is the typed request payload for Endpoint.ListTyped.
 type EndpointListMatch struct {
-	Architecture *any `json:"architecture,omitempty"`
-	Benchmarks *map[string]any `json:"benchmarks,omitempty"`
-	CanonicalSlug *string `json:"canonical_slug,omitempty"`
-	ContextLength *any `json:"context_length,omitempty"`
-	Created *int `json:"created,omitempty"`
-	DefaultParameters *any `json:"default_parameters,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Endpoints *[]any `json:"endpoints,omitempty"`
-	ExpirationDate *any `json:"expiration_date,omitempty"`
-	HuggingFaceId *any `json:"hugging_face_id,omitempty"`
-	Id *string `json:"id,omitempty"`
-	KnowledgeCutoff *any `json:"knowledge_cutoff,omitempty"`
-	LatencyLast30m *any `json:"latency_last_30m,omitempty"`
-	Links *map[string]any `json:"links,omitempty"`
-	MaxCompletionTokens *any `json:"max_completion_tokens,omitempty"`
-	MaxPromptTokens *any `json:"max_prompt_tokens,omitempty"`
-	ModelId *string `json:"model_id,omitempty"`
-	ModelName *string `json:"model_name,omitempty"`
-	Name *string `json:"name,omitempty"`
-	PerRequestLimits *any `json:"per_request_limits,omitempty"`
-	Pricing *map[string]any `json:"pricing,omitempty"`
-	ProviderName *string `json:"provider_name,omitempty"`
-	Quantization *any `json:"quantization,omitempty"`
-	Reasoning *map[string]any `json:"reasoning,omitempty"`
-	Status *int `json:"status,omitempty"`
-	SupportedParameters *[]any `json:"supported_parameters,omitempty"`
-	SupportedVoices *any `json:"supported_voices,omitempty"`
-	SupportsImplicitCaching *bool `json:"supports_implicit_caching,omitempty"`
-	Tag *string `json:"tag,omitempty"`
-	ThroughputLast30m *any `json:"throughput_last_30m,omitempty"`
-	TopProvider *map[string]any `json:"top_provider,omitempty"`
-	UptimeLast1d *any `json:"uptime_last_1d,omitempty"`
-	UptimeLast30m *any `json:"uptime_last_30m,omitempty"`
-	UptimeLast5m *any `json:"uptime_last_5m,omitempty"`
+	Arch *string `json:"arch,omitempty"`
+	Category *string `json:"category,omitempty"`
+	Context *int `json:"context,omitempty"`
+	Distillable *string `json:"distillable,omitempty"`
+	InputModality *string `json:"input_modality,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	MaxAgeDay *any `json:"max_age_day,omitempty"`
+	MaxAgenticIndex *any `json:"max_agentic_index,omitempty"`
+	MaxCodingIndex *any `json:"max_coding_index,omitempty"`
+	MaxIntelligenceIndex *any `json:"max_intelligence_index,omitempty"`
+	MaxOutputPrice *any `json:"max_output_price,omitempty"`
+	MaxPrice *any `json:"max_price,omitempty"`
+	MaxToolSuccessRate *any `json:"max_tool_success_rate,omitempty"`
+	MinAgeDay *any `json:"min_age_day,omitempty"`
+	MinAgenticIndex *any `json:"min_agentic_index,omitempty"`
+	MinCodingIndex *any `json:"min_coding_index,omitempty"`
+	MinIntelligenceIndex *any `json:"min_intelligence_index,omitempty"`
+	MinOutputPrice *any `json:"min_output_price,omitempty"`
+	MinPrice *any `json:"min_price,omitempty"`
+	MinToolSuccessRate *any `json:"min_tool_success_rate,omitempty"`
+	ModelAuthor *string `json:"model_author,omitempty"`
+	Offset *any `json:"offset,omitempty"`
+	OutputModality *string `json:"output_modality,omitempty"`
+	Provider *string `json:"provider,omitempty"`
+	Q *string `json:"q,omitempty"`
+	Region *string `json:"region,omitempty"`
+	Sort *string `json:"sort,omitempty"`
+	SupportedParameter *string `json:"supported_parameter,omitempty"`
+	Zdr *string `json:"zdr,omitempty"`
 }
 
 // Feedback is the typed data model for the feedback entity.
@@ -850,21 +807,19 @@ type File struct {
 // FileLoadMatch is the typed request payload for File.LoadTyped.
 type FileLoadMatch struct {
 	Id string `json:"id"`
+	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
 // FileListMatch is the typed request payload for File.ListTyped.
 type FileListMatch struct {
-	CreatedAt *string `json:"created_at,omitempty"`
-	Downloadable *bool `json:"downloadable,omitempty"`
-	Filename *string `json:"filename,omitempty"`
-	Id *string `json:"id,omitempty"`
-	MimeType *string `json:"mime_type,omitempty"`
-	SizeBytes *int `json:"size_bytes,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Cursor *string `json:"cursor,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
 // FileCreateData is the typed request payload for File.CreateTyped.
 type FileCreateData struct {
+	WorkspaceId *string `json:"workspace_id,omitempty"`
 	CreatedAt string `json:"created_at"`
 	Downloadable bool `json:"downloadable"`
 	Filename string `json:"filename"`
@@ -877,6 +832,7 @@ type FileCreateData struct {
 // FileRemoveMatch is the typed request payload for File.RemoveTyped.
 type FileRemoveMatch struct {
 	Id string `json:"id"`
+	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
 // Generation is the typed data model for the generation entity.
@@ -929,50 +885,7 @@ type Generation struct {
 
 // GenerationLoadMatch is the typed request payload for Generation.LoadTyped.
 type GenerationLoadMatch struct {
-	ApiType *any `json:"api_type,omitempty"`
-	AppId *any `json:"app_id,omitempty"`
-	CacheDiscount *any `json:"cache_discount,omitempty"`
-	Cancelled *any `json:"cancelled,omitempty"`
-	CreatedAt *string `json:"created_at,omitempty"`
-	DataRegion *string `json:"data_region,omitempty"`
-	ExternalUser *any `json:"external_user,omitempty"`
-	FinishReason *any `json:"finish_reason,omitempty"`
-	GenerationTime *any `json:"generation_time,omitempty"`
-	HttpReferer *any `json:"http_referer,omitempty"`
 	Id string `json:"id"`
-	IsByok *bool `json:"is_byok,omitempty"`
-	Latency *any `json:"latency,omitempty"`
-	Model *string `json:"model,omitempty"`
-	ModerationLatency *any `json:"moderation_latency,omitempty"`
-	NativeFinishReason *any `json:"native_finish_reason,omitempty"`
-	NativeTokensCached *any `json:"native_tokens_cached,omitempty"`
-	NativeTokensCompletion *any `json:"native_tokens_completion,omitempty"`
-	NativeTokensCompletionImages *any `json:"native_tokens_completion_images,omitempty"`
-	NativeTokensPrompt *any `json:"native_tokens_prompt,omitempty"`
-	NativeTokensReasoning *any `json:"native_tokens_reasoning,omitempty"`
-	NumFetches *any `json:"num_fetches,omitempty"`
-	NumInputAudioPrompt *any `json:"num_input_audio_prompt,omitempty"`
-	NumMediaCompletion *any `json:"num_media_completion,omitempty"`
-	NumMediaPrompt *any `json:"num_media_prompt,omitempty"`
-	NumSearchResults *any `json:"num_search_results,omitempty"`
-	Origin *string `json:"origin,omitempty"`
-	PresetId *any `json:"preset_id,omitempty"`
-	ProviderName *any `json:"provider_name,omitempty"`
-	ProviderResponses *any `json:"provider_responses,omitempty"`
-	RequestId *any `json:"request_id,omitempty"`
-	ResponseCacheSourceId *any `json:"response_cache_source_id,omitempty"`
-	Router *any `json:"router,omitempty"`
-	ServiceTier *any `json:"service_tier,omitempty"`
-	SessionId *any `json:"session_id,omitempty"`
-	Streamed *any `json:"streamed,omitempty"`
-	TokensCompletion *any `json:"tokens_completion,omitempty"`
-	TokensPrompt *any `json:"tokens_prompt,omitempty"`
-	TotalCost *float64 `json:"total_cost,omitempty"`
-	UpstreamId *any `json:"upstream_id,omitempty"`
-	UpstreamInferenceCost *any `json:"upstream_inference_cost,omitempty"`
-	Usage *float64 `json:"usage,omitempty"`
-	UserAgent *any `json:"user_agent,omitempty"`
-	WebSearchEngine *any `json:"web_search_engine,omitempty"`
 }
 
 // GenerationContent is the typed data model for the generation_content entity.
@@ -983,8 +896,7 @@ type GenerationContent struct {
 
 // GenerationContentLoadMatch is the typed request payload for GenerationContent.LoadTyped.
 type GenerationContentLoadMatch struct {
-	Input *any `json:"input,omitempty"`
-	Output *map[string]any `json:"output,omitempty"`
+	Id string `json:"id"`
 }
 
 // Guardrail is the typed data model for the guardrail entity.
@@ -1018,25 +930,8 @@ type GuardrailLoadMatch struct {
 
 // GuardrailListMatch is the typed request payload for Guardrail.ListTyped.
 type GuardrailListMatch struct {
-	AllowedModels *any `json:"allowed_models,omitempty"`
-	AllowedProviders *any `json:"allowed_providers,omitempty"`
-	ContentFilterBuiltins *any `json:"content_filter_builtins,omitempty"`
-	ContentFilters *any `json:"content_filters,omitempty"`
-	CreatedAt *string `json:"created_at,omitempty"`
-	Description *any `json:"description,omitempty"`
-	EnforceZdr *any `json:"enforce_zdr,omitempty"`
-	EnforceZdrAnthropic *any `json:"enforce_zdr_anthropic,omitempty"`
-	EnforceZdrGoogle *any `json:"enforce_zdr_google,omitempty"`
-	EnforceZdrOpenai *any `json:"enforce_zdr_openai,omitempty"`
-	EnforceZdrOther *any `json:"enforce_zdr_other,omitempty"`
-	EnforceZdrXai *any `json:"enforce_zdr_xai,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IgnoredModels *any `json:"ignored_models,omitempty"`
-	IgnoredProviders *any `json:"ignored_providers,omitempty"`
-	LimitUsd *any `json:"limit_usd,omitempty"`
-	Name *string `json:"name,omitempty"`
-	ResetInterval *any `json:"reset_interval,omitempty"`
-	UpdatedAt *any `json:"updated_at,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *any `json:"offset,omitempty"`
 	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
@@ -1177,13 +1072,8 @@ type ListKeyAssignment struct {
 
 // ListKeyAssignmentListMatch is the typed request payload for ListKeyAssignment.ListTyped.
 type ListKeyAssignmentListMatch struct {
-	AssignedBy *any `json:"assigned_by,omitempty"`
-	CreatedAt *string `json:"created_at,omitempty"`
-	GuardrailId *string `json:"guardrail_id,omitempty"`
-	Id *string `json:"id,omitempty"`
-	KeyHash *string `json:"key_hash,omitempty"`
-	KeyLabel *string `json:"key_label,omitempty"`
-	KeyName *string `json:"key_name,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *any `json:"offset,omitempty"`
 }
 
 // ListMemberAssignment is the typed data model for the list_member_assignment entity.
@@ -1198,12 +1088,8 @@ type ListMemberAssignment struct {
 
 // ListMemberAssignmentListMatch is the typed request payload for ListMemberAssignment.ListTyped.
 type ListMemberAssignmentListMatch struct {
-	AssignedBy *any `json:"assigned_by,omitempty"`
-	CreatedAt *string `json:"created_at,omitempty"`
-	GuardrailId *string `json:"guardrail_id,omitempty"`
-	Id *string `json:"id,omitempty"`
-	OrganizationId *string `json:"organization_id,omitempty"`
-	UserId *string `json:"user_id,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *any `json:"offset,omitempty"`
 }
 
 // ListObservabilityDestination is the typed data model for the list_observability_destination entity.
@@ -1214,8 +1100,9 @@ type ListObservabilityDestination struct {
 
 // ListObservabilityDestinationListMatch is the typed request payload for ListObservabilityDestination.ListTyped.
 type ListObservabilityDestinationListMatch struct {
-	Data *[]any `json:"data,omitempty"`
-	TotalCount *int `json:"total_count,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *any `json:"offset,omitempty"`
+	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
 // ListPreset is the typed data model for the list_preset entity.
@@ -1237,6 +1124,8 @@ type ListPresetVersion struct {
 // ListPresetVersionListMatch is the typed request payload for ListPresetVersion.ListTyped.
 type ListPresetVersionListMatch struct {
 	Slug string `json:"slug"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *any `json:"offset,omitempty"`
 }
 
 // ListWorkspace is the typed data model for the list_workspace entity.
@@ -1270,6 +1159,8 @@ type ListWorkspaceMember struct {
 // ListWorkspaceMemberListMatch is the typed request payload for ListWorkspaceMember.ListTyped.
 type ListWorkspaceMemberListMatch struct {
 	WorkspaceId string `json:"workspace_id"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *any `json:"offset,omitempty"`
 }
 
 // Member is the typed data model for the member entity.
@@ -1373,25 +1264,8 @@ type ModelLoadMatch struct {
 
 // ModelListMatch is the typed request payload for Model.ListTyped.
 type ModelListMatch struct {
-	Architecture *map[string]any `json:"architecture,omitempty"`
-	Benchmarks *map[string]any `json:"benchmarks,omitempty"`
-	CanonicalSlug *string `json:"canonical_slug,omitempty"`
-	ContextLength *any `json:"context_length,omitempty"`
-	Created *int `json:"created,omitempty"`
-	DefaultParameters *any `json:"default_parameters,omitempty"`
-	Description *string `json:"description,omitempty"`
-	ExpirationDate *any `json:"expiration_date,omitempty"`
-	HuggingFaceId *any `json:"hugging_face_id,omitempty"`
-	Id *string `json:"id,omitempty"`
-	KnowledgeCutoff *any `json:"knowledge_cutoff,omitempty"`
-	Links *map[string]any `json:"links,omitempty"`
-	Name *string `json:"name,omitempty"`
-	PerRequestLimits *any `json:"per_request_limits,omitempty"`
-	Pricing *map[string]any `json:"pricing,omitempty"`
-	Reasoning *map[string]any `json:"reasoning,omitempty"`
-	SupportedParameters *[]any `json:"supported_parameters,omitempty"`
-	SupportedVoices *any `json:"supported_voices,omitempty"`
-	TopProvider *map[string]any `json:"top_provider,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *any `json:"offset,omitempty"`
 }
 
 // ModelsCount is the typed data model for the models_count entity.
@@ -1401,7 +1275,7 @@ type ModelsCount struct {
 
 // ModelsCountLoadMatch is the typed request payload for ModelsCount.LoadTyped.
 type ModelsCountLoadMatch struct {
-	Count *int `json:"count,omitempty"`
+	OutputModality *string `json:"output_modality,omitempty"`
 }
 
 // ModelsList is the typed data model for the models_list entity.
@@ -1429,25 +1303,8 @@ type ModelsList struct {
 
 // ModelsListListMatch is the typed request payload for ModelsList.ListTyped.
 type ModelsListListMatch struct {
-	Architecture *map[string]any `json:"architecture,omitempty"`
-	Benchmarks *map[string]any `json:"benchmarks,omitempty"`
-	CanonicalSlug *string `json:"canonical_slug,omitempty"`
-	ContextLength *any `json:"context_length,omitempty"`
-	Created *int `json:"created,omitempty"`
-	DefaultParameters *any `json:"default_parameters,omitempty"`
-	Description *string `json:"description,omitempty"`
-	ExpirationDate *any `json:"expiration_date,omitempty"`
-	HuggingFaceId *any `json:"hugging_face_id,omitempty"`
-	Id *string `json:"id,omitempty"`
-	KnowledgeCutoff *any `json:"knowledge_cutoff,omitempty"`
-	Links *map[string]any `json:"links,omitempty"`
-	Name *string `json:"name,omitempty"`
-	PerRequestLimits *any `json:"per_request_limits,omitempty"`
-	Pricing *map[string]any `json:"pricing,omitempty"`
-	Reasoning *map[string]any `json:"reasoning,omitempty"`
-	SupportedParameters *[]any `json:"supported_parameters,omitempty"`
-	SupportedVoices *any `json:"supported_voices,omitempty"`
-	TopProvider *map[string]any `json:"top_provider,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *any `json:"offset,omitempty"`
 }
 
 // OAuth is the typed data model for the o_auth entity.
@@ -1607,11 +1464,8 @@ type Organization struct {
 
 // OrganizationListMatch is the typed request payload for Organization.ListTyped.
 type OrganizationListMatch struct {
-	Email *string `json:"email,omitempty"`
-	FirstName *any `json:"first_name,omitempty"`
-	Id *string `json:"id,omitempty"`
-	LastName *any `json:"last_name,omitempty"`
-	Role *string `json:"role,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *any `json:"offset,omitempty"`
 }
 
 // Preset is the typed data model for the preset entity.
@@ -1637,18 +1491,8 @@ type PresetLoadMatch struct {
 
 // PresetListMatch is the typed request payload for Preset.ListTyped.
 type PresetListMatch struct {
-	CreatedAt *string `json:"created_at,omitempty"`
-	CreatorUserId *any `json:"creator_user_id,omitempty"`
-	Description *any `json:"description,omitempty"`
-	DesignatedVersion *any `json:"designated_version,omitempty"`
-	DesignatedVersionId *any `json:"designated_version_id,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Slug *string `json:"slug,omitempty"`
-	Status *string `json:"status,omitempty"`
-	StatusUpdatedAt *any `json:"status_updated_at,omitempty"`
-	UpdatedAt *string `json:"updated_at,omitempty"`
-	WorkspaceId *any `json:"workspace_id,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *any `json:"offset,omitempty"`
 }
 
 // PresetVersion is the typed data model for the preset_version entity.
@@ -1704,9 +1548,13 @@ type RankingsDaily struct {
 
 // RankingsDailyListMatch is the typed request payload for RankingsDaily.ListTyped.
 type RankingsDailyListMatch struct {
-	Date *string `json:"date,omitempty"`
-	ModelPermaslug *string `json:"model_permaslug,omitempty"`
-	TotalTokens *string `json:"total_tokens,omitempty"`
+	Category *string `json:"category,omitempty"`
+	ContextBucket *string `json:"context_bucket,omitempty"`
+	EndDate *string `json:"end_date,omitempty"`
+	LanguageType *string `json:"language_type,omitempty"`
+	Modality *string `json:"modality,omitempty"`
+	Period *string `json:"period,omitempty"`
+	StartDate *string `json:"start_date,omitempty"`
 }
 
 // Remove is the typed data model for the remove entity.
@@ -1805,10 +1653,7 @@ type Task struct {
 
 // TaskLoadMatch is the typed request payload for Task.LoadTyped.
 type TaskLoadMatch struct {
-	AsOf *string `json:"as_of,omitempty"`
-	Classifications *[]any `json:"classifications,omitempty"`
-	MacroCategories *[]any `json:"macro_categories,omitempty"`
-	WindowDays *int `json:"window_days,omitempty"`
+	Window *string `json:"window,omitempty"`
 }
 
 // Transcription is the typed data model for the transcription entity.
@@ -1843,8 +1688,11 @@ type UnifiedBenchmark struct {
 
 // UnifiedBenchmarkListMatch is the typed request payload for UnifiedBenchmark.ListTyped.
 type UnifiedBenchmarkListMatch struct {
-	Data *[]any `json:"data,omitempty"`
-	Meta *map[string]any `json:"meta,omitempty"`
+	Arena *string `json:"arena,omitempty"`
+	Category *string `json:"category,omitempty"`
+	MaxResult *int `json:"max_result,omitempty"`
+	Source *string `json:"source,omitempty"`
+	TaskType *string `json:"task_type,omitempty"`
 }
 
 // UpdateByokKey is the typed data model for the update_byok_key entity.
@@ -1956,21 +1804,8 @@ type UpdateWorkspace struct {
 
 // UpdateWorkspaceListMatch is the typed request payload for UpdateWorkspace.ListTyped.
 type UpdateWorkspaceListMatch struct {
-	CreatedAt *string `json:"created_at,omitempty"`
-	CreatedBy *any `json:"created_by,omitempty"`
-	DefaultImageModel *any `json:"default_image_model,omitempty"`
-	DefaultProviderSort *any `json:"default_provider_sort,omitempty"`
-	DefaultTextModel *any `json:"default_text_model,omitempty"`
-	Description *any `json:"description,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IoLoggingApiKeyIds *any `json:"io_logging_api_key_ids,omitempty"`
-	IoLoggingSamplingRate *float64 `json:"io_logging_sampling_rate,omitempty"`
-	IsDataDiscountLoggingEnabled *bool `json:"is_data_discount_logging_enabled,omitempty"`
-	IsObservabilityBroadcastEnabled *bool `json:"is_observability_broadcast_enabled,omitempty"`
-	IsObservabilityIoLoggingEnabled *bool `json:"is_observability_io_logging_enabled,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Slug *string `json:"slug,omitempty"`
-	UpdatedAt *any `json:"updated_at,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *any `json:"offset,omitempty"`
 }
 
 // UpdateWorkspaceCreateData is the typed request payload for UpdateWorkspace.CreateTyped.
@@ -2091,6 +1926,7 @@ type VideoGeneration struct {
 // VideoGenerationLoadMatch is the typed request payload for VideoGeneration.LoadTyped.
 type VideoGenerationLoadMatch struct {
 	Id string `json:"id"`
+	Index *any `json:"index,omitempty"`
 }
 
 // VideoModelsList is the typed data model for the video_models_list entity.

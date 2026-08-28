@@ -31,17 +31,9 @@ class Activity(TypedDict):
 
 
 class ActivityListMatch(TypedDict, total=False):
-    byok_usage_inference: float
-    completion_tokens: int
+    api_key_hash: str
     date: str
-    endpoint_id: str
-    model: str
-    model_permaslug: str
-    prompt_tokens: int
-    provider_name: str
-    reasoning_tokens: int
-    requests: int
-    usage: float
+    user_id: str
 
 
 class Add(TypedDict):
@@ -85,31 +77,8 @@ class ApiKeyLoadMatch(TypedDict):
 
 
 class ApiKeyListMatch(TypedDict, total=False):
-    byok_usage: float
-    byok_usage_daily: float
-    byok_usage_monthly: float
-    byok_usage_weekly: float
-    created_at: str
-    creator_user_id: str | None
-    disabled: bool
-    expires_at: str | None
-    hash: str
-    id: str
-    include_byok_in_limit: bool
-    is_free_tier: bool
-    is_management_key: bool
-    is_provisioning_key: bool
-    label: str
-    limit: float | None
-    limit_remaining: float | None
-    limit_reset: str | None
-    name: str
-    rate_limit: dict
-    updated_at: str | None
-    usage: float
-    usage_daily: float
-    usage_monthly: float
-    usage_weekly: float
+    include_disabled: bool
+    offset: int | None
     workspace_id: str
 
 
@@ -190,11 +159,13 @@ class AppRanking(TypedDict):
 
 
 class AppRankingListMatch(TypedDict, total=False):
-    app_id: int
-    app_name: str
-    rank: int
-    total_requests: int
-    total_tokens: str
+    category: str
+    end_date: str
+    limit: int
+    offset: int | None
+    sort: str
+    start_date: str
+    subcategory: str
 
 
 class Benchmark(TypedDict):
@@ -360,18 +331,9 @@ class ByokLoadMatch(TypedDict):
 
 
 class ByokListMatch(TypedDict, total=False):
-    allowed_api_key_hashes: list | None
-    allowed_models: list | None
-    allowed_user_ids: list | None
-    created_at: str
-    disabled: bool
-    id: str
-    is_fallback: bool
-    key: str
-    label: str
-    name: str | None
+    limit: int
+    offset: int | None
     provider: str
-    sort_order: int
     workspace_id: str
 
 
@@ -804,40 +766,35 @@ class EndpointLoadMatch(TypedDict):
 
 
 class EndpointListMatch(TypedDict, total=False):
-    architecture: Any
-    benchmarks: dict
-    canonical_slug: str
-    context_length: int | None
-    created: int
-    default_parameters: dict | None
-    description: str
-    endpoints: list
-    expiration_date: str | None
-    hugging_face_id: str | None
-    id: str
-    knowledge_cutoff: str | None
-    latency_last_30m: dict | None
-    links: dict
-    max_completion_tokens: int | None
-    max_prompt_tokens: int | None
-    model_id: str
-    model_name: str
-    name: str
-    per_request_limits: dict | None
-    pricing: dict
-    provider_name: str
-    quantization: Any
-    reasoning: dict
-    status: int
-    supported_parameters: list
-    supported_voices: list | None
-    supports_implicit_caching: bool
-    tag: str
-    throughput_last_30m: Any
-    top_provider: dict
-    uptime_last_1d: float | None
-    uptime_last_30m: float | None
-    uptime_last_5m: float | None
+    arch: str
+    category: str
+    context: int
+    distillable: str
+    input_modality: str
+    limit: int
+    max_age_day: int | None
+    max_agentic_index: float | None
+    max_coding_index: float | None
+    max_intelligence_index: float | None
+    max_output_price: float | None
+    max_price: float | None
+    max_tool_success_rate: float | None
+    min_age_day: int | None
+    min_agentic_index: float | None
+    min_coding_index: float | None
+    min_intelligence_index: float | None
+    min_output_price: float | None
+    min_price: float | None
+    min_tool_success_rate: float | None
+    model_author: str
+    offset: int | None
+    output_modality: str
+    provider: str
+    q: str
+    region: str
+    sort: str
+    supported_parameter: str
+    zdr: str
 
 
 class Feedback(TypedDict):
@@ -854,11 +811,21 @@ class File(TypedDict):
     type: str
 
 
-class FileLoadMatch(TypedDict):
+class FileLoadMatchRequired(TypedDict):
     id: str
+
+
+class FileLoadMatch(FileLoadMatchRequired, total=False):
+    workspace_id: str
 
 
 class FileListMatch(TypedDict, total=False):
+    cursor: str
+    limit: int
+    workspace_id: str
+
+
+class FileCreateDataRequired(TypedDict):
     created_at: str
     downloadable: bool
     filename: str
@@ -868,18 +835,16 @@ class FileListMatch(TypedDict, total=False):
     type: str
 
 
-class FileCreateData(TypedDict):
-    created_at: str
-    downloadable: bool
-    filename: str
-    id: str
-    mime_type: str
-    size_bytes: int
-    type: str
+class FileCreateData(FileCreateDataRequired, total=False):
+    workspace_id: str
 
 
-class FileRemoveMatch(TypedDict):
+class FileRemoveMatchRequired(TypedDict):
     id: str
+
+
+class FileRemoveMatch(FileRemoveMatchRequired, total=False):
+    workspace_id: str
 
 
 class GenerationRequired(TypedDict):
@@ -932,54 +897,8 @@ class Generation(GenerationRequired, total=False):
     session_id: str | None
 
 
-class GenerationLoadMatchRequired(TypedDict):
+class GenerationLoadMatch(TypedDict):
     id: str
-
-
-class GenerationLoadMatch(GenerationLoadMatchRequired, total=False):
-    api_type: str | None
-    app_id: int | None
-    cache_discount: float | None
-    cancelled: bool | None
-    created_at: str
-    data_region: str
-    external_user: str | None
-    finish_reason: str | None
-    generation_time: float | None
-    http_referer: str | None
-    is_byok: bool
-    latency: float | None
-    model: str
-    moderation_latency: float | None
-    native_finish_reason: str | None
-    native_tokens_cached: int | None
-    native_tokens_completion: int | None
-    native_tokens_completion_images: int | None
-    native_tokens_prompt: int | None
-    native_tokens_reasoning: int | None
-    num_fetches: int | None
-    num_input_audio_prompt: int | None
-    num_media_completion: int | None
-    num_media_prompt: int | None
-    num_search_results: int | None
-    origin: str
-    preset_id: str | None
-    provider_name: str | None
-    provider_responses: list | None
-    request_id: str | None
-    response_cache_source_id: str | None
-    router: str | None
-    service_tier: str | None
-    session_id: str | None
-    streamed: bool | None
-    tokens_completion: int | None
-    tokens_prompt: int | None
-    total_cost: float
-    upstream_id: str | None
-    upstream_inference_cost: float | None
-    usage: float
-    user_agent: str | None
-    web_search_engine: str | None
 
 
 class GenerationContent(TypedDict):
@@ -987,9 +906,8 @@ class GenerationContent(TypedDict):
     output: dict
 
 
-class GenerationContentLoadMatch(TypedDict, total=False):
-    input: Any
-    output: dict
+class GenerationContentLoadMatch(TypedDict):
+    id: str
 
 
 class GuardrailRequired(TypedDict):
@@ -1023,25 +941,8 @@ class GuardrailLoadMatch(TypedDict):
 
 
 class GuardrailListMatch(TypedDict, total=False):
-    allowed_models: list | None
-    allowed_providers: list | None
-    content_filter_builtins: list | None
-    content_filters: list | None
-    created_at: str
-    description: str | None
-    enforce_zdr: bool | None
-    enforce_zdr_anthropic: bool | None
-    enforce_zdr_google: bool | None
-    enforce_zdr_openai: bool | None
-    enforce_zdr_other: bool | None
-    enforce_zdr_xai: bool | None
-    id: str
-    ignored_models: list | None
-    ignored_providers: list | None
-    limit_usd: float | None
-    name: str
-    reset_interval: str | None
-    updated_at: str | None
+    limit: int
+    offset: int | None
     workspace_id: str
 
 
@@ -1181,13 +1082,8 @@ class ListKeyAssignment(TypedDict):
 
 
 class ListKeyAssignmentListMatch(TypedDict, total=False):
-    assigned_by: str | None
-    created_at: str
-    guardrail_id: str
-    id: str
-    key_hash: str
-    key_label: str
-    key_name: str
+    limit: int
+    offset: int | None
 
 
 class ListMemberAssignment(TypedDict):
@@ -1200,12 +1096,8 @@ class ListMemberAssignment(TypedDict):
 
 
 class ListMemberAssignmentListMatch(TypedDict, total=False):
-    assigned_by: str | None
-    created_at: str
-    guardrail_id: str
-    id: str
-    organization_id: str
-    user_id: str
+    limit: int
+    offset: int | None
 
 
 class ListObservabilityDestination(TypedDict):
@@ -1214,8 +1106,9 @@ class ListObservabilityDestination(TypedDict):
 
 
 class ListObservabilityDestinationListMatch(TypedDict, total=False):
-    data: list
-    total_count: int
+    limit: int
+    offset: int | None
+    workspace_id: str
 
 
 class ListPreset(TypedDict):
@@ -1233,8 +1126,13 @@ class ListPresetVersion(TypedDict):
     version: int
 
 
-class ListPresetVersionListMatch(TypedDict):
+class ListPresetVersionListMatchRequired(TypedDict):
     slug: str
+
+
+class ListPresetVersionListMatch(ListPresetVersionListMatchRequired, total=False):
+    limit: int
+    offset: int | None
 
 
 class ListWorkspace(TypedDict):
@@ -1262,8 +1160,13 @@ class ListWorkspaceMember(TypedDict):
     workspace_id: str
 
 
-class ListWorkspaceMemberListMatch(TypedDict):
+class ListWorkspaceMemberListMatchRequired(TypedDict):
     workspace_id: str
+
+
+class ListWorkspaceMemberListMatch(ListWorkspaceMemberListMatchRequired, total=False):
+    limit: int
+    offset: int | None
 
 
 class Member(TypedDict):
@@ -1371,25 +1274,8 @@ class ModelLoadMatch(TypedDict):
 
 
 class ModelListMatch(TypedDict, total=False):
-    architecture: dict
-    benchmarks: dict
-    canonical_slug: str
-    context_length: int | None
-    created: int
-    default_parameters: dict | None
-    description: str
-    expiration_date: str | None
-    hugging_face_id: str | None
-    id: str
-    knowledge_cutoff: str | None
-    links: dict
-    name: str
-    per_request_limits: dict | None
-    pricing: dict
-    reasoning: dict
-    supported_parameters: list
-    supported_voices: list | None
-    top_provider: dict
+    limit: int
+    offset: int | None
 
 
 class ModelsCount(TypedDict):
@@ -1397,7 +1283,7 @@ class ModelsCount(TypedDict):
 
 
 class ModelsCountLoadMatch(TypedDict, total=False):
-    count: int
+    output_modality: str
 
 
 class ModelsListRequired(TypedDict):
@@ -1426,25 +1312,8 @@ class ModelsList(ModelsListRequired, total=False):
 
 
 class ModelsListListMatch(TypedDict, total=False):
-    architecture: dict
-    benchmarks: dict
-    canonical_slug: str
-    context_length: int | None
-    created: int
-    default_parameters: dict | None
-    description: str
-    expiration_date: str | None
-    hugging_face_id: str | None
-    id: str
-    knowledge_cutoff: str | None
-    links: dict
-    name: str
-    per_request_limits: dict | None
-    pricing: dict
-    reasoning: dict
-    supported_parameters: list
-    supported_voices: list | None
-    top_provider: dict
+    limit: int
+    offset: int | None
 
 
 class OAuthRequired(TypedDict):
@@ -1607,11 +1476,8 @@ class Organization(TypedDict):
 
 
 class OrganizationListMatch(TypedDict, total=False):
-    email: str
-    first_name: str | None
-    id: str
-    last_name: str | None
-    role: str
+    limit: int
+    offset: int | None
 
 
 class Preset(TypedDict):
@@ -1634,18 +1500,8 @@ class PresetLoadMatch(TypedDict):
 
 
 class PresetListMatch(TypedDict, total=False):
-    created_at: str
-    creator_user_id: str | None
-    description: str | None
-    designated_version: dict | None
-    designated_version_id: str | None
-    id: str
-    name: str
-    slug: str
-    status: str
-    status_updated_at: str | None
-    updated_at: str
-    workspace_id: str | None
+    limit: int
+    offset: int | None
 
 
 class PresetVersion(TypedDict):
@@ -1698,9 +1554,13 @@ class RankingsDaily(TypedDict):
 
 
 class RankingsDailyListMatch(TypedDict, total=False):
-    date: str
-    model_permaslug: str
-    total_tokens: str
+    category: str
+    context_bucket: str
+    end_date: str
+    language_type: str
+    modality: str
+    period: str
+    start_date: str
 
 
 class Remove(TypedDict):
@@ -1809,10 +1669,7 @@ class Task(TypedDict):
 
 
 class TaskLoadMatch(TypedDict, total=False):
-    as_of: str
-    classifications: list
-    macro_categories: list
-    window_days: int
+    window: str
 
 
 class Transcription(TypedDict):
@@ -1849,8 +1706,11 @@ class UnifiedBenchmark(TypedDict):
 
 
 class UnifiedBenchmarkListMatch(TypedDict, total=False):
-    data: list
-    meta: dict
+    arena: str
+    category: str
+    max_result: int
+    source: str
+    task_type: str
 
 
 class UpdateByokKey(TypedDict, total=False):
@@ -1966,21 +1826,8 @@ class UpdateWorkspace(UpdateWorkspaceRequired, total=False):
 
 
 class UpdateWorkspaceListMatch(TypedDict, total=False):
-    created_at: str
-    created_by: str | None
-    default_image_model: str | None
-    default_provider_sort: str | None
-    default_text_model: str | None
-    description: str | None
-    id: str
-    io_logging_api_key_ids: list | None
-    io_logging_sampling_rate: float
-    is_data_discount_logging_enabled: bool
-    is_observability_broadcast_enabled: bool
-    is_observability_io_logging_enabled: bool
-    name: str
-    slug: str
-    updated_at: str | None
+    limit: int
+    offset: int | None
 
 
 class UpdateWorkspaceCreateDataRequired(TypedDict):
@@ -2108,8 +1955,12 @@ class VideoGeneration(TypedDict, total=False):
     id: str
 
 
-class VideoGenerationLoadMatch(TypedDict):
+class VideoGenerationLoadMatchRequired(TypedDict):
     id: str
+
+
+class VideoGenerationLoadMatch(VideoGenerationLoadMatchRequired, total=False):
+    index: int | None
 
 
 class VideoModelsListRequired(TypedDict):

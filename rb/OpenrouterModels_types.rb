@@ -59,50 +59,18 @@ Activity = Struct.new(
 
 # Request payload for Activity#list.
 #
-# @!attribute [rw] byok_usage_inference
-#   @return [Float, nil]
-#
-# @!attribute [rw] completion_tokens
-#   @return [Integer, nil]
+# @!attribute [rw] api_key_hash
+#   @return [String, nil]
 #
 # @!attribute [rw] date
 #   @return [String, nil]
 #
-# @!attribute [rw] endpoint_id
+# @!attribute [rw] user_id
 #   @return [String, nil]
-#
-# @!attribute [rw] model
-#   @return [String, nil]
-#
-# @!attribute [rw] model_permaslug
-#   @return [String, nil]
-#
-# @!attribute [rw] prompt_tokens
-#   @return [Integer, nil]
-#
-# @!attribute [rw] provider_name
-#   @return [String, nil]
-#
-# @!attribute [rw] reasoning_tokens
-#   @return [Integer, nil]
-#
-# @!attribute [rw] requests
-#   @return [Integer, nil]
-#
-# @!attribute [rw] usage
-#   @return [Float, nil]
 ActivityListMatch = Struct.new(
-  :byok_usage_inference,
-  :completion_tokens,
+  :api_key_hash,
   :date,
-  :endpoint_id,
-  :model,
-  :model_permaslug,
-  :prompt_tokens,
-  :provider_name,
-  :reasoning_tokens,
-  :requests,
-  :usage,
+  :user_id,
   keyword_init: true
 )
 
@@ -230,109 +198,17 @@ ApiKeyLoadMatch = Struct.new(
 
 # Request payload for ApiKey#list.
 #
-# @!attribute [rw] byok_usage
-#   @return [Float, nil]
-#
-# @!attribute [rw] byok_usage_daily
-#   @return [Float, nil]
-#
-# @!attribute [rw] byok_usage_monthly
-#   @return [Float, nil]
-#
-# @!attribute [rw] byok_usage_weekly
-#   @return [Float, nil]
-#
-# @!attribute [rw] created_at
-#   @return [String, nil]
-#
-# @!attribute [rw] creator_user_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] disabled
+# @!attribute [rw] include_disabled
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] expires_at
+# @!attribute [rw] offset
 #   @return [Object, nil]
-#
-# @!attribute [rw] hash
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] include_byok_in_limit
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] is_free_tier
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] is_management_key
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] is_provisioning_key
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] label
-#   @return [String, nil]
-#
-# @!attribute [rw] limit
-#   @return [Object, nil]
-#
-# @!attribute [rw] limit_remaining
-#   @return [Object, nil]
-#
-# @!attribute [rw] limit_reset
-#   @return [Object, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] rate_limit
-#   @return [Hash, nil]
-#
-# @!attribute [rw] updated_at
-#   @return [Object, nil]
-#
-# @!attribute [rw] usage
-#   @return [Float, nil]
-#
-# @!attribute [rw] usage_daily
-#   @return [Float, nil]
-#
-# @!attribute [rw] usage_monthly
-#   @return [Float, nil]
-#
-# @!attribute [rw] usage_weekly
-#   @return [Float, nil]
 #
 # @!attribute [rw] workspace_id
 #   @return [String, nil]
 ApiKeyListMatch = Struct.new(
-  :byok_usage,
-  :byok_usage_daily,
-  :byok_usage_monthly,
-  :byok_usage_weekly,
-  :created_at,
-  :creator_user_id,
-  :disabled,
-  :expires_at,
-  :hash,
-  :id,
-  :include_byok_in_limit,
-  :is_free_tier,
-  :is_management_key,
-  :is_provisioning_key,
-  :label,
-  :limit,
-  :limit_remaining,
-  :limit_reset,
-  :name,
-  :rate_limit,
-  :updated_at,
-  :usage,
-  :usage_daily,
-  :usage_monthly,
-  :usage_weekly,
+  :include_disabled,
+  :offset,
   :workspace_id,
   keyword_init: true
 )
@@ -591,26 +467,34 @@ AppRanking = Struct.new(
 
 # Request payload for AppRanking#list.
 #
-# @!attribute [rw] app_id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] app_name
+# @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] rank
+# @!attribute [rw] end_date
+#   @return [String, nil]
+#
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] total_requests
-#   @return [Integer, nil]
+# @!attribute [rw] offset
+#   @return [Object, nil]
 #
-# @!attribute [rw] total_tokens
+# @!attribute [rw] sort
+#   @return [String, nil]
+#
+# @!attribute [rw] start_date
+#   @return [String, nil]
+#
+# @!attribute [rw] subcategory
 #   @return [String, nil]
 AppRankingListMatch = Struct.new(
-  :app_id,
-  :app_name,
-  :rank,
-  :total_requests,
-  :total_tokens,
+  :category,
+  :end_date,
+  :limit,
+  :offset,
+  :sort,
+  :start_date,
+  :subcategory,
   keyword_init: true
 )
 
@@ -1085,57 +969,21 @@ ByokLoadMatch = Struct.new(
 
 # Request payload for Byok#list.
 #
-# @!attribute [rw] allowed_api_key_hashes
-#   @return [Object, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] allowed_models
-#   @return [Object, nil]
-#
-# @!attribute [rw] allowed_user_ids
-#   @return [Object, nil]
-#
-# @!attribute [rw] created_at
-#   @return [String, nil]
-#
-# @!attribute [rw] disabled
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] is_fallback
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] key
-#   @return [String, nil]
-#
-# @!attribute [rw] label
-#   @return [String, nil]
-#
-# @!attribute [rw] name
+# @!attribute [rw] offset
 #   @return [Object, nil]
 #
 # @!attribute [rw] provider
 #   @return [String, nil]
 #
-# @!attribute [rw] sort_order
-#   @return [Integer, nil]
-#
 # @!attribute [rw] workspace_id
 #   @return [String, nil]
 ByokListMatch = Struct.new(
-  :allowed_api_key_hashes,
-  :allowed_models,
-  :allowed_user_ids,
-  :created_at,
-  :disabled,
-  :id,
-  :is_fallback,
-  :key,
-  :label,
-  :name,
+  :limit,
+  :offset,
   :provider,
-  :sort_order,
   :workspace_id,
   keyword_init: true
 )
@@ -2521,142 +2369,122 @@ EndpointLoadMatch = Struct.new(
 
 # Request payload for Endpoint#list.
 #
-# @!attribute [rw] architecture
-#   @return [Object, nil]
-#
-# @!attribute [rw] benchmarks
-#   @return [Hash, nil]
-#
-# @!attribute [rw] canonical_slug
+# @!attribute [rw] arch
 #   @return [String, nil]
 #
-# @!attribute [rw] context_length
-#   @return [Object, nil]
+# @!attribute [rw] category
+#   @return [String, nil]
 #
-# @!attribute [rw] created
+# @!attribute [rw] context
 #   @return [Integer, nil]
 #
-# @!attribute [rw] default_parameters
-#   @return [Object, nil]
-#
-# @!attribute [rw] description
+# @!attribute [rw] distillable
 #   @return [String, nil]
 #
-# @!attribute [rw] endpoints
-#   @return [Array, nil]
-#
-# @!attribute [rw] expiration_date
-#   @return [Object, nil]
-#
-# @!attribute [rw] hugging_face_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] id
+# @!attribute [rw] input_modality
 #   @return [String, nil]
 #
-# @!attribute [rw] knowledge_cutoff
-#   @return [Object, nil]
-#
-# @!attribute [rw] latency_last_30m
-#   @return [Object, nil]
-#
-# @!attribute [rw] links
-#   @return [Hash, nil]
-#
-# @!attribute [rw] max_completion_tokens
-#   @return [Object, nil]
-#
-# @!attribute [rw] max_prompt_tokens
-#   @return [Object, nil]
-#
-# @!attribute [rw] model_id
-#   @return [String, nil]
-#
-# @!attribute [rw] model_name
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] per_request_limits
-#   @return [Object, nil]
-#
-# @!attribute [rw] pricing
-#   @return [Hash, nil]
-#
-# @!attribute [rw] provider_name
-#   @return [String, nil]
-#
-# @!attribute [rw] quantization
-#   @return [Object, nil]
-#
-# @!attribute [rw] reasoning
-#   @return [Hash, nil]
-#
-# @!attribute [rw] status
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] supported_parameters
-#   @return [Array, nil]
-#
-# @!attribute [rw] supported_voices
+# @!attribute [rw] max_age_day
 #   @return [Object, nil]
 #
-# @!attribute [rw] supports_implicit_caching
-#   @return [Boolean, nil]
+# @!attribute [rw] max_agentic_index
+#   @return [Object, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] max_coding_index
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_intelligence_index
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_output_price
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_price
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_tool_success_rate
+#   @return [Object, nil]
+#
+# @!attribute [rw] min_age_day
+#   @return [Object, nil]
+#
+# @!attribute [rw] min_agentic_index
+#   @return [Object, nil]
+#
+# @!attribute [rw] min_coding_index
+#   @return [Object, nil]
+#
+# @!attribute [rw] min_intelligence_index
+#   @return [Object, nil]
+#
+# @!attribute [rw] min_output_price
+#   @return [Object, nil]
+#
+# @!attribute [rw] min_price
+#   @return [Object, nil]
+#
+# @!attribute [rw] min_tool_success_rate
+#   @return [Object, nil]
+#
+# @!attribute [rw] model_author
 #   @return [String, nil]
 #
-# @!attribute [rw] throughput_last_30m
+# @!attribute [rw] offset
 #   @return [Object, nil]
 #
-# @!attribute [rw] top_provider
-#   @return [Hash, nil]
+# @!attribute [rw] output_modality
+#   @return [String, nil]
 #
-# @!attribute [rw] uptime_last_1d
-#   @return [Object, nil]
+# @!attribute [rw] provider
+#   @return [String, nil]
 #
-# @!attribute [rw] uptime_last_30m
-#   @return [Object, nil]
+# @!attribute [rw] q
+#   @return [String, nil]
 #
-# @!attribute [rw] uptime_last_5m
-#   @return [Object, nil]
+# @!attribute [rw] region
+#   @return [String, nil]
+#
+# @!attribute [rw] sort
+#   @return [String, nil]
+#
+# @!attribute [rw] supported_parameter
+#   @return [String, nil]
+#
+# @!attribute [rw] zdr
+#   @return [String, nil]
 EndpointListMatch = Struct.new(
-  :architecture,
-  :benchmarks,
-  :canonical_slug,
-  :context_length,
-  :created,
-  :default_parameters,
-  :description,
-  :endpoints,
-  :expiration_date,
-  :hugging_face_id,
-  :id,
-  :knowledge_cutoff,
-  :latency_last_30m,
-  :links,
-  :max_completion_tokens,
-  :max_prompt_tokens,
-  :model_id,
-  :model_name,
-  :name,
-  :per_request_limits,
-  :pricing,
-  :provider_name,
-  :quantization,
-  :reasoning,
-  :status,
-  :supported_parameters,
-  :supported_voices,
-  :supports_implicit_caching,
-  :tag,
-  :throughput_last_30m,
-  :top_provider,
-  :uptime_last_1d,
-  :uptime_last_30m,
-  :uptime_last_5m,
+  :arch,
+  :category,
+  :context,
+  :distillable,
+  :input_modality,
+  :limit,
+  :max_age_day,
+  :max_agentic_index,
+  :max_coding_index,
+  :max_intelligence_index,
+  :max_output_price,
+  :max_price,
+  :max_tool_success_rate,
+  :min_age_day,
+  :min_agentic_index,
+  :min_coding_index,
+  :min_intelligence_index,
+  :min_output_price,
+  :min_price,
+  :min_tool_success_rate,
+  :model_author,
+  :offset,
+  :output_modality,
+  :provider,
+  :q,
+  :region,
+  :sort,
+  :supported_parameter,
+  :zdr,
   keyword_init: true
 )
 
@@ -2701,45 +2529,36 @@ FileType = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] workspace_id
+#   @return [String, nil]
 FileLoadMatch = Struct.new(
   :id,
+  :workspace_id,
   keyword_init: true
 )
 
 # Request payload for File#list.
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] cursor
 #   @return [String, nil]
 #
-# @!attribute [rw] downloadable
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] filename
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] mime_type
-#   @return [String, nil]
-#
-# @!attribute [rw] size_bytes
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] type
+# @!attribute [rw] workspace_id
 #   @return [String, nil]
 FileListMatch = Struct.new(
-  :created_at,
-  :downloadable,
-  :filename,
-  :id,
-  :mime_type,
-  :size_bytes,
-  :type,
+  :cursor,
+  :limit,
+  :workspace_id,
   keyword_init: true
 )
 
 # Request payload for File#create.
+#
+# @!attribute [rw] workspace_id
+#   @return [String, nil]
 #
 # @!attribute [rw] created_at
 #   @return [String]
@@ -2762,6 +2581,7 @@ FileListMatch = Struct.new(
 # @!attribute [rw] type
 #   @return [String]
 FileCreateData = Struct.new(
+  :workspace_id,
   :created_at,
   :downloadable,
   :filename,
@@ -2776,8 +2596,12 @@ FileCreateData = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] workspace_id
+#   @return [String, nil]
 FileRemoveMatch = Struct.new(
   :id,
+  :workspace_id,
   keyword_init: true
 )
 
@@ -2964,182 +2788,10 @@ Generation = Struct.new(
 
 # Request payload for Generation#load.
 #
-# @!attribute [rw] api_type
-#   @return [Object, nil]
-#
-# @!attribute [rw] app_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] cache_discount
-#   @return [Object, nil]
-#
-# @!attribute [rw] cancelled
-#   @return [Object, nil]
-#
-# @!attribute [rw] created_at
-#   @return [String, nil]
-#
-# @!attribute [rw] data_region
-#   @return [String, nil]
-#
-# @!attribute [rw] external_user
-#   @return [Object, nil]
-#
-# @!attribute [rw] finish_reason
-#   @return [Object, nil]
-#
-# @!attribute [rw] generation_time
-#   @return [Object, nil]
-#
-# @!attribute [rw] http_referer
-#   @return [Object, nil]
-#
 # @!attribute [rw] id
 #   @return [String]
-#
-# @!attribute [rw] is_byok
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] latency
-#   @return [Object, nil]
-#
-# @!attribute [rw] model
-#   @return [String, nil]
-#
-# @!attribute [rw] moderation_latency
-#   @return [Object, nil]
-#
-# @!attribute [rw] native_finish_reason
-#   @return [Object, nil]
-#
-# @!attribute [rw] native_tokens_cached
-#   @return [Object, nil]
-#
-# @!attribute [rw] native_tokens_completion
-#   @return [Object, nil]
-#
-# @!attribute [rw] native_tokens_completion_images
-#   @return [Object, nil]
-#
-# @!attribute [rw] native_tokens_prompt
-#   @return [Object, nil]
-#
-# @!attribute [rw] native_tokens_reasoning
-#   @return [Object, nil]
-#
-# @!attribute [rw] num_fetches
-#   @return [Object, nil]
-#
-# @!attribute [rw] num_input_audio_prompt
-#   @return [Object, nil]
-#
-# @!attribute [rw] num_media_completion
-#   @return [Object, nil]
-#
-# @!attribute [rw] num_media_prompt
-#   @return [Object, nil]
-#
-# @!attribute [rw] num_search_results
-#   @return [Object, nil]
-#
-# @!attribute [rw] origin
-#   @return [String, nil]
-#
-# @!attribute [rw] preset_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] provider_name
-#   @return [Object, nil]
-#
-# @!attribute [rw] provider_responses
-#   @return [Object, nil]
-#
-# @!attribute [rw] request_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] response_cache_source_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] router
-#   @return [Object, nil]
-#
-# @!attribute [rw] service_tier
-#   @return [Object, nil]
-#
-# @!attribute [rw] session_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] streamed
-#   @return [Object, nil]
-#
-# @!attribute [rw] tokens_completion
-#   @return [Object, nil]
-#
-# @!attribute [rw] tokens_prompt
-#   @return [Object, nil]
-#
-# @!attribute [rw] total_cost
-#   @return [Float, nil]
-#
-# @!attribute [rw] upstream_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] upstream_inference_cost
-#   @return [Object, nil]
-#
-# @!attribute [rw] usage
-#   @return [Float, nil]
-#
-# @!attribute [rw] user_agent
-#   @return [Object, nil]
-#
-# @!attribute [rw] web_search_engine
-#   @return [Object, nil]
 GenerationLoadMatch = Struct.new(
-  :api_type,
-  :app_id,
-  :cache_discount,
-  :cancelled,
-  :created_at,
-  :data_region,
-  :external_user,
-  :finish_reason,
-  :generation_time,
-  :http_referer,
   :id,
-  :is_byok,
-  :latency,
-  :model,
-  :moderation_latency,
-  :native_finish_reason,
-  :native_tokens_cached,
-  :native_tokens_completion,
-  :native_tokens_completion_images,
-  :native_tokens_prompt,
-  :native_tokens_reasoning,
-  :num_fetches,
-  :num_input_audio_prompt,
-  :num_media_completion,
-  :num_media_prompt,
-  :num_search_results,
-  :origin,
-  :preset_id,
-  :provider_name,
-  :provider_responses,
-  :request_id,
-  :response_cache_source_id,
-  :router,
-  :service_tier,
-  :session_id,
-  :streamed,
-  :tokens_completion,
-  :tokens_prompt,
-  :total_cost,
-  :upstream_id,
-  :upstream_inference_cost,
-  :usage,
-  :user_agent,
-  :web_search_engine,
   keyword_init: true
 )
 
@@ -3158,14 +2810,10 @@ GenerationContent = Struct.new(
 
 # Request payload for GenerationContent#load.
 #
-# @!attribute [rw] input
-#   @return [Object, nil]
-#
-# @!attribute [rw] output
-#   @return [Hash, nil]
+# @!attribute [rw] id
+#   @return [String]
 GenerationContentLoadMatch = Struct.new(
-  :input,
-  :output,
+  :id,
   keyword_init: true
 )
 
@@ -3265,85 +2913,17 @@ GuardrailLoadMatch = Struct.new(
 
 # Request payload for Guardrail#list.
 #
-# @!attribute [rw] allowed_models
-#   @return [Object, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] allowed_providers
-#   @return [Object, nil]
-#
-# @!attribute [rw] content_filter_builtins
-#   @return [Object, nil]
-#
-# @!attribute [rw] content_filters
-#   @return [Object, nil]
-#
-# @!attribute [rw] created_at
-#   @return [String, nil]
-#
-# @!attribute [rw] description
-#   @return [Object, nil]
-#
-# @!attribute [rw] enforce_zdr
-#   @return [Object, nil]
-#
-# @!attribute [rw] enforce_zdr_anthropic
-#   @return [Object, nil]
-#
-# @!attribute [rw] enforce_zdr_google
-#   @return [Object, nil]
-#
-# @!attribute [rw] enforce_zdr_openai
-#   @return [Object, nil]
-#
-# @!attribute [rw] enforce_zdr_other
-#   @return [Object, nil]
-#
-# @!attribute [rw] enforce_zdr_xai
-#   @return [Object, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] ignored_models
-#   @return [Object, nil]
-#
-# @!attribute [rw] ignored_providers
-#   @return [Object, nil]
-#
-# @!attribute [rw] limit_usd
-#   @return [Object, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] reset_interval
-#   @return [Object, nil]
-#
-# @!attribute [rw] updated_at
+# @!attribute [rw] offset
 #   @return [Object, nil]
 #
 # @!attribute [rw] workspace_id
 #   @return [String, nil]
 GuardrailListMatch = Struct.new(
-  :allowed_models,
-  :allowed_providers,
-  :content_filter_builtins,
-  :content_filters,
-  :created_at,
-  :description,
-  :enforce_zdr,
-  :enforce_zdr_anthropic,
-  :enforce_zdr_google,
-  :enforce_zdr_openai,
-  :enforce_zdr_other,
-  :enforce_zdr_xai,
-  :id,
-  :ignored_models,
-  :ignored_providers,
-  :limit_usd,
-  :name,
-  :reset_interval,
-  :updated_at,
+  :limit,
+  :offset,
   :workspace_id,
   keyword_init: true
 )
@@ -3755,34 +3335,14 @@ ListKeyAssignment = Struct.new(
 
 # Request payload for ListKeyAssignment#list.
 #
-# @!attribute [rw] assigned_by
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] offset
 #   @return [Object, nil]
-#
-# @!attribute [rw] created_at
-#   @return [String, nil]
-#
-# @!attribute [rw] guardrail_id
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] key_hash
-#   @return [String, nil]
-#
-# @!attribute [rw] key_label
-#   @return [String, nil]
-#
-# @!attribute [rw] key_name
-#   @return [String, nil]
 ListKeyAssignmentListMatch = Struct.new(
-  :assigned_by,
-  :created_at,
-  :guardrail_id,
-  :id,
-  :key_hash,
-  :key_label,
-  :key_name,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -3817,30 +3377,14 @@ ListMemberAssignment = Struct.new(
 
 # Request payload for ListMemberAssignment#list.
 #
-# @!attribute [rw] assigned_by
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] offset
 #   @return [Object, nil]
-#
-# @!attribute [rw] created_at
-#   @return [String, nil]
-#
-# @!attribute [rw] guardrail_id
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] organization_id
-#   @return [String, nil]
-#
-# @!attribute [rw] user_id
-#   @return [String, nil]
 ListMemberAssignmentListMatch = Struct.new(
-  :assigned_by,
-  :created_at,
-  :guardrail_id,
-  :id,
-  :organization_id,
-  :user_id,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -3859,14 +3403,18 @@ ListObservabilityDestination = Struct.new(
 
 # Request payload for ListObservabilityDestination#list.
 #
-# @!attribute [rw] data
-#   @return [Array, nil]
-#
-# @!attribute [rw] total_count
+# @!attribute [rw] limit
 #   @return [Integer, nil]
+#
+# @!attribute [rw] offset
+#   @return [Object, nil]
+#
+# @!attribute [rw] workspace_id
+#   @return [String, nil]
 ListObservabilityDestinationListMatch = Struct.new(
-  :data,
-  :total_count,
+  :limit,
+  :offset,
+  :workspace_id,
   keyword_init: true
 )
 
@@ -3915,8 +3463,16 @@ ListPresetVersion = Struct.new(
 #
 # @!attribute [rw] slug
 #   @return [String]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] offset
+#   @return [Object, nil]
 ListPresetVersionListMatch = Struct.new(
   :slug,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -3991,8 +3547,16 @@ ListWorkspaceMember = Struct.new(
 #
 # @!attribute [rw] workspace_id
 #   @return [String]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] offset
+#   @return [Object, nil]
 ListWorkspaceMemberListMatch = Struct.new(
   :workspace_id,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -4326,82 +3890,14 @@ ModelLoadMatch = Struct.new(
 
 # Request payload for Model#list.
 #
-# @!attribute [rw] architecture
-#   @return [Hash, nil]
-#
-# @!attribute [rw] benchmarks
-#   @return [Hash, nil]
-#
-# @!attribute [rw] canonical_slug
-#   @return [String, nil]
-#
-# @!attribute [rw] context_length
-#   @return [Object, nil]
-#
-# @!attribute [rw] created
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] default_parameters
+# @!attribute [rw] offset
 #   @return [Object, nil]
-#
-# @!attribute [rw] description
-#   @return [String, nil]
-#
-# @!attribute [rw] expiration_date
-#   @return [Object, nil]
-#
-# @!attribute [rw] hugging_face_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] knowledge_cutoff
-#   @return [Object, nil]
-#
-# @!attribute [rw] links
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] per_request_limits
-#   @return [Object, nil]
-#
-# @!attribute [rw] pricing
-#   @return [Hash, nil]
-#
-# @!attribute [rw] reasoning
-#   @return [Hash, nil]
-#
-# @!attribute [rw] supported_parameters
-#   @return [Array, nil]
-#
-# @!attribute [rw] supported_voices
-#   @return [Object, nil]
-#
-# @!attribute [rw] top_provider
-#   @return [Hash, nil]
 ModelListMatch = Struct.new(
-  :architecture,
-  :benchmarks,
-  :canonical_slug,
-  :context_length,
-  :created,
-  :default_parameters,
-  :description,
-  :expiration_date,
-  :hugging_face_id,
-  :id,
-  :knowledge_cutoff,
-  :links,
-  :name,
-  :per_request_limits,
-  :pricing,
-  :reasoning,
-  :supported_parameters,
-  :supported_voices,
-  :top_provider,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -4416,10 +3912,10 @@ ModelsCount = Struct.new(
 
 # Request payload for ModelsCount#load.
 #
-# @!attribute [rw] count
-#   @return [Integer, nil]
+# @!attribute [rw] output_modality
+#   @return [String, nil]
 ModelsCountLoadMatch = Struct.new(
-  :count,
+  :output_modality,
   keyword_init: true
 )
 
@@ -4506,82 +4002,14 @@ ModelsList = Struct.new(
 
 # Request payload for ModelsList#list.
 #
-# @!attribute [rw] architecture
-#   @return [Hash, nil]
-#
-# @!attribute [rw] benchmarks
-#   @return [Hash, nil]
-#
-# @!attribute [rw] canonical_slug
-#   @return [String, nil]
-#
-# @!attribute [rw] context_length
-#   @return [Object, nil]
-#
-# @!attribute [rw] created
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] default_parameters
+# @!attribute [rw] offset
 #   @return [Object, nil]
-#
-# @!attribute [rw] description
-#   @return [String, nil]
-#
-# @!attribute [rw] expiration_date
-#   @return [Object, nil]
-#
-# @!attribute [rw] hugging_face_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] knowledge_cutoff
-#   @return [Object, nil]
-#
-# @!attribute [rw] links
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] per_request_limits
-#   @return [Object, nil]
-#
-# @!attribute [rw] pricing
-#   @return [Hash, nil]
-#
-# @!attribute [rw] reasoning
-#   @return [Hash, nil]
-#
-# @!attribute [rw] supported_parameters
-#   @return [Array, nil]
-#
-# @!attribute [rw] supported_voices
-#   @return [Object, nil]
-#
-# @!attribute [rw] top_provider
-#   @return [Hash, nil]
 ModelsListListMatch = Struct.new(
-  :architecture,
-  :benchmarks,
-  :canonical_slug,
-  :context_length,
-  :created,
-  :default_parameters,
-  :description,
-  :expiration_date,
-  :hugging_face_id,
-  :id,
-  :knowledge_cutoff,
-  :links,
-  :name,
-  :per_request_limits,
-  :pricing,
-  :reasoning,
-  :supported_parameters,
-  :supported_voices,
-  :top_provider,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -5119,26 +4547,14 @@ Organization = Struct.new(
 
 # Request payload for Organization#list.
 #
-# @!attribute [rw] email
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] first_name
+# @!attribute [rw] offset
 #   @return [Object, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] last_name
-#   @return [Object, nil]
-#
-# @!attribute [rw] role
-#   @return [String, nil]
 OrganizationListMatch = Struct.new(
-  :email,
-  :first_name,
-  :id,
-  :last_name,
-  :role,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -5206,54 +4622,14 @@ PresetLoadMatch = Struct.new(
 
 # Request payload for Preset#list.
 #
-# @!attribute [rw] created_at
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] creator_user_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] description
-#   @return [Object, nil]
-#
-# @!attribute [rw] designated_version
-#   @return [Object, nil]
-#
-# @!attribute [rw] designated_version_id
-#   @return [Object, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] slug
-#   @return [String, nil]
-#
-# @!attribute [rw] status
-#   @return [String, nil]
-#
-# @!attribute [rw] status_updated_at
-#   @return [Object, nil]
-#
-# @!attribute [rw] updated_at
-#   @return [String, nil]
-#
-# @!attribute [rw] workspace_id
+# @!attribute [rw] offset
 #   @return [Object, nil]
 PresetListMatch = Struct.new(
-  :created_at,
-  :creator_user_id,
-  :description,
-  :designated_version,
-  :designated_version_id,
-  :id,
-  :name,
-  :slug,
-  :status,
-  :status_updated_at,
-  :updated_at,
-  :workspace_id,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -5396,18 +4772,34 @@ RankingsDaily = Struct.new(
 
 # Request payload for RankingsDaily#list.
 #
-# @!attribute [rw] date
+# @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] model_permaslug
+# @!attribute [rw] context_bucket
 #   @return [String, nil]
 #
-# @!attribute [rw] total_tokens
+# @!attribute [rw] end_date
+#   @return [String, nil]
+#
+# @!attribute [rw] language_type
+#   @return [String, nil]
+#
+# @!attribute [rw] modality
+#   @return [String, nil]
+#
+# @!attribute [rw] period
+#   @return [String, nil]
+#
+# @!attribute [rw] start_date
 #   @return [String, nil]
 RankingsDailyListMatch = Struct.new(
-  :date,
-  :model_permaslug,
-  :total_tokens,
+  :category,
+  :context_bucket,
+  :end_date,
+  :language_type,
+  :modality,
+  :period,
+  :start_date,
   keyword_init: true
 )
 
@@ -5676,22 +5068,10 @@ Task = Struct.new(
 
 # Request payload for Task#load.
 #
-# @!attribute [rw] as_of
+# @!attribute [rw] window
 #   @return [String, nil]
-#
-# @!attribute [rw] classifications
-#   @return [Array, nil]
-#
-# @!attribute [rw] macro_categories
-#   @return [Array, nil]
-#
-# @!attribute [rw] window_days
-#   @return [Integer, nil]
 TaskLoadMatch = Struct.new(
-  :as_of,
-  :classifications,
-  :macro_categories,
-  :window_days,
+  :window,
   keyword_init: true
 )
 
@@ -5772,14 +5152,26 @@ UnifiedBenchmark = Struct.new(
 
 # Request payload for UnifiedBenchmark#list.
 #
-# @!attribute [rw] data
-#   @return [Array, nil]
+# @!attribute [rw] arena
+#   @return [String, nil]
 #
-# @!attribute [rw] meta
-#   @return [Hash, nil]
+# @!attribute [rw] category
+#   @return [String, nil]
+#
+# @!attribute [rw] max_result
+#   @return [Integer, nil]
+#
+# @!attribute [rw] source
+#   @return [String, nil]
+#
+# @!attribute [rw] task_type
+#   @return [String, nil]
 UnifiedBenchmarkListMatch = Struct.new(
-  :data,
-  :meta,
+  :arena,
+  :category,
+  :max_result,
+  :source,
+  :task_type,
   keyword_init: true
 )
 
@@ -6136,66 +5528,14 @@ UpdateWorkspace = Struct.new(
 
 # Request payload for UpdateWorkspace#list.
 #
-# @!attribute [rw] created_at
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] created_by
-#   @return [Object, nil]
-#
-# @!attribute [rw] default_image_model
-#   @return [Object, nil]
-#
-# @!attribute [rw] default_provider_sort
-#   @return [Object, nil]
-#
-# @!attribute [rw] default_text_model
-#   @return [Object, nil]
-#
-# @!attribute [rw] description
-#   @return [Object, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] io_logging_api_key_ids
-#   @return [Object, nil]
-#
-# @!attribute [rw] io_logging_sampling_rate
-#   @return [Float, nil]
-#
-# @!attribute [rw] is_data_discount_logging_enabled
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] is_observability_broadcast_enabled
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] is_observability_io_logging_enabled
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] slug
-#   @return [String, nil]
-#
-# @!attribute [rw] updated_at
+# @!attribute [rw] offset
 #   @return [Object, nil]
 UpdateWorkspaceListMatch = Struct.new(
-  :created_at,
-  :created_by,
-  :default_image_model,
-  :default_provider_sort,
-  :default_text_model,
-  :description,
-  :id,
-  :io_logging_api_key_ids,
-  :io_logging_sampling_rate,
-  :is_data_discount_logging_enabled,
-  :is_observability_broadcast_enabled,
-  :is_observability_io_logging_enabled,
-  :name,
-  :slug,
-  :updated_at,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -6551,8 +5891,12 @@ VideoGeneration = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] index
+#   @return [Object, nil]
 VideoGenerationLoadMatch = Struct.new(
   :id,
+  :index,
   keyword_init: true
 )
 

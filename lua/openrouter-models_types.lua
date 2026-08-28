@@ -20,17 +20,9 @@
 ---@field usage number
 
 ---@class ActivityListMatch
----@field byok_usage_inference? number
----@field completion_tokens? number
+---@field api_key_hash? string
 ---@field date? string
----@field endpoint_id? string
----@field model? string
----@field model_permaslug? string
----@field prompt_tokens? number
----@field provider_name? string
----@field reasoning_tokens? number
----@field requests? number
----@field usage? number
+---@field user_id? string
 
 ---@class Add
 
@@ -66,31 +58,8 @@
 ---@field id string
 
 ---@class ApiKeyListMatch
----@field byok_usage? number
----@field byok_usage_daily? number
----@field byok_usage_monthly? number
----@field byok_usage_weekly? number
----@field created_at? string
----@field creator_user_id? string|nil
----@field disabled? boolean
----@field expires_at? string|nil
----@field hash? string
----@field id? string
----@field include_byok_in_limit? boolean
----@field is_free_tier? boolean
----@field is_management_key? boolean
----@field is_provisioning_key? boolean
----@field label? string
----@field limit? number|nil
----@field limit_remaining? number|nil
----@field limit_reset? string|nil
----@field name? string
----@field rate_limit? table
----@field updated_at? string|nil
----@field usage? number
----@field usage_daily? number
----@field usage_monthly? number
----@field usage_weekly? number
+---@field include_disabled? boolean
+---@field offset? number|nil
 ---@field workspace_id? string
 
 ---@class ApiKeyCreateData
@@ -160,11 +129,13 @@
 ---@field total_tokens string
 
 ---@class AppRankingListMatch
----@field app_id? number
----@field app_name? string
----@field rank? number
----@field total_requests? number
----@field total_tokens? string
+---@field category? string
+---@field end_date? string
+---@field limit? number
+---@field offset? number|nil
+---@field sort? string
+---@field start_date? string
+---@field subcategory? string
 
 ---@class Benchmark
 
@@ -299,18 +270,9 @@
 ---@field id string
 
 ---@class ByokListMatch
----@field allowed_api_key_hashes? table|nil
----@field allowed_models? table|nil
----@field allowed_user_ids? table|nil
----@field created_at? string
----@field disabled? boolean
----@field id? string
----@field is_fallback? boolean
----@field key? string
----@field label? string
----@field name? string|nil
+---@field limit? number
+---@field offset? number|nil
 ---@field provider? string
----@field sort_order? number
 ---@field workspace_id? string
 
 ---@class ByokCreateData
@@ -679,40 +641,35 @@
 ---@field slug string
 
 ---@class EndpointListMatch
----@field architecture? any
----@field benchmarks? table
----@field canonical_slug? string
----@field context_length? number|nil
----@field created? number
----@field default_parameters? table|nil
----@field description? string
----@field endpoints? table
----@field expiration_date? string|nil
----@field hugging_face_id? string|nil
----@field id? string
----@field knowledge_cutoff? string|nil
----@field latency_last_30m? table|nil
----@field links? table
----@field max_completion_tokens? number|nil
----@field max_prompt_tokens? number|nil
----@field model_id? string
----@field model_name? string
----@field name? string
----@field per_request_limits? table|nil
----@field pricing? table
----@field provider_name? string
----@field quantization? any
----@field reasoning? table
----@field status? number
----@field supported_parameters? table
----@field supported_voices? table|nil
----@field supports_implicit_caching? boolean
----@field tag? string
----@field throughput_last_30m? any
----@field top_provider? table
----@field uptime_last_1d? number|nil
----@field uptime_last_30m? number|nil
----@field uptime_last_5m? number|nil
+---@field arch? string
+---@field category? string
+---@field context? number
+---@field distillable? string
+---@field input_modality? string
+---@field limit? number
+---@field max_age_day? number|nil
+---@field max_agentic_index? number|nil
+---@field max_coding_index? number|nil
+---@field max_intelligence_index? number|nil
+---@field max_output_price? number|nil
+---@field max_price? number|nil
+---@field max_tool_success_rate? number|nil
+---@field min_age_day? number|nil
+---@field min_agentic_index? number|nil
+---@field min_coding_index? number|nil
+---@field min_intelligence_index? number|nil
+---@field min_output_price? number|nil
+---@field min_price? number|nil
+---@field min_tool_success_rate? number|nil
+---@field model_author? string
+---@field offset? number|nil
+---@field output_modality? string
+---@field provider? string
+---@field q? string
+---@field region? string
+---@field sort? string
+---@field supported_parameter? string
+---@field zdr? string
 
 ---@class Feedback
 
@@ -727,17 +684,15 @@
 
 ---@class FileLoadMatch
 ---@field id string
+---@field workspace_id? string
 
 ---@class FileListMatch
----@field created_at? string
----@field downloadable? boolean
----@field filename? string
----@field id? string
----@field mime_type? string
----@field size_bytes? number
----@field type? string
+---@field cursor? string
+---@field limit? number
+---@field workspace_id? string
 
 ---@class FileCreateData
+---@field workspace_id? string
 ---@field created_at string
 ---@field downloadable boolean
 ---@field filename string
@@ -748,6 +703,7 @@
 
 ---@class FileRemoveMatch
 ---@field id string
+---@field workspace_id? string
 
 ---@class Generation
 ---@field api_type string|nil
@@ -796,58 +752,14 @@
 ---@field web_search_engine string|nil
 
 ---@class GenerationLoadMatch
----@field api_type? string|nil
----@field app_id? number|nil
----@field cache_discount? number|nil
----@field cancelled? boolean|nil
----@field created_at? string
----@field data_region? string
----@field external_user? string|nil
----@field finish_reason? string|nil
----@field generation_time? number|nil
----@field http_referer? string|nil
 ---@field id string
----@field is_byok? boolean
----@field latency? number|nil
----@field model? string
----@field moderation_latency? number|nil
----@field native_finish_reason? string|nil
----@field native_tokens_cached? number|nil
----@field native_tokens_completion? number|nil
----@field native_tokens_completion_images? number|nil
----@field native_tokens_prompt? number|nil
----@field native_tokens_reasoning? number|nil
----@field num_fetches? number|nil
----@field num_input_audio_prompt? number|nil
----@field num_media_completion? number|nil
----@field num_media_prompt? number|nil
----@field num_search_results? number|nil
----@field origin? string
----@field preset_id? string|nil
----@field provider_name? string|nil
----@field provider_responses? table|nil
----@field request_id? string|nil
----@field response_cache_source_id? string|nil
----@field router? string|nil
----@field service_tier? string|nil
----@field session_id? string|nil
----@field streamed? boolean|nil
----@field tokens_completion? number|nil
----@field tokens_prompt? number|nil
----@field total_cost? number
----@field upstream_id? string|nil
----@field upstream_inference_cost? number|nil
----@field usage? number
----@field user_agent? string|nil
----@field web_search_engine? string|nil
 
 ---@class GenerationContent
 ---@field input any
 ---@field output table
 
 ---@class GenerationContentLoadMatch
----@field input? any
----@field output? table
+---@field id string
 
 ---@class Guardrail
 ---@field allowed_models? table|nil
@@ -875,25 +787,8 @@
 ---@field id string
 
 ---@class GuardrailListMatch
----@field allowed_models? table|nil
----@field allowed_providers? table|nil
----@field content_filter_builtins? table|nil
----@field content_filters? table|nil
----@field created_at? string
----@field description? string|nil
----@field enforce_zdr? boolean|nil
----@field enforce_zdr_anthropic? boolean|nil
----@field enforce_zdr_google? boolean|nil
----@field enforce_zdr_openai? boolean|nil
----@field enforce_zdr_other? boolean|nil
----@field enforce_zdr_xai? boolean|nil
----@field id? string
----@field ignored_models? table|nil
----@field ignored_providers? table|nil
----@field limit_usd? number|nil
----@field name? string
----@field reset_interval? string|nil
----@field updated_at? string|nil
+---@field limit? number
+---@field offset? number|nil
 ---@field workspace_id? string
 
 ---@class GuardrailCreateData
@@ -1008,13 +903,8 @@
 ---@field key_name string
 
 ---@class ListKeyAssignmentListMatch
----@field assigned_by? string|nil
----@field created_at? string
----@field guardrail_id? string
----@field id? string
----@field key_hash? string
----@field key_label? string
----@field key_name? string
+---@field limit? number
+---@field offset? number|nil
 
 ---@class ListMemberAssignment
 ---@field assigned_by string|nil
@@ -1025,20 +915,17 @@
 ---@field user_id string
 
 ---@class ListMemberAssignmentListMatch
----@field assigned_by? string|nil
----@field created_at? string
----@field guardrail_id? string
----@field id? string
----@field organization_id? string
----@field user_id? string
+---@field limit? number
+---@field offset? number|nil
 
 ---@class ListObservabilityDestination
 ---@field data table
 ---@field total_count number
 
 ---@class ListObservabilityDestinationListMatch
----@field data? table
----@field total_count? number
+---@field limit? number
+---@field offset? number|nil
+---@field workspace_id? string
 
 ---@class ListPreset
 
@@ -1054,6 +941,8 @@
 
 ---@class ListPresetVersionListMatch
 ---@field slug string
+---@field limit? number
+---@field offset? number|nil
 
 ---@class ListWorkspace
 
@@ -1077,6 +966,8 @@
 
 ---@class ListWorkspaceMemberListMatch
 ---@field workspace_id string
+---@field limit? number
+---@field offset? number|nil
 
 ---@class Member
 
@@ -1166,31 +1057,14 @@
 ---@field slug string
 
 ---@class ModelListMatch
----@field architecture? table
----@field benchmarks? table
----@field canonical_slug? string
----@field context_length? number|nil
----@field created? number
----@field default_parameters? table|nil
----@field description? string
----@field expiration_date? string|nil
----@field hugging_face_id? string|nil
----@field id? string
----@field knowledge_cutoff? string|nil
----@field links? table
----@field name? string
----@field per_request_limits? table|nil
----@field pricing? table
----@field reasoning? table
----@field supported_parameters? table
----@field supported_voices? table|nil
----@field top_provider? table
+---@field limit? number
+---@field offset? number|nil
 
 ---@class ModelsCount
 ---@field count number
 
 ---@class ModelsCountLoadMatch
----@field count? number
+---@field output_modality? string
 
 ---@class ModelsList
 ---@field architecture table
@@ -1214,25 +1088,8 @@
 ---@field top_provider table
 
 ---@class ModelsListListMatch
----@field architecture? table
----@field benchmarks? table
----@field canonical_slug? string
----@field context_length? number|nil
----@field created? number
----@field default_parameters? table|nil
----@field description? string
----@field expiration_date? string|nil
----@field hugging_face_id? string|nil
----@field id? string
----@field knowledge_cutoff? string|nil
----@field links? table
----@field name? string
----@field per_request_limits? table|nil
----@field pricing? table
----@field reasoning? table
----@field supported_parameters? table
----@field supported_voices? table|nil
----@field top_provider? table
+---@field limit? number
+---@field offset? number|nil
 
 ---@class OAuth
 ---@field app_id number
@@ -1374,11 +1231,8 @@
 ---@field role string
 
 ---@class OrganizationListMatch
----@field email? string
----@field first_name? string|nil
----@field id? string
----@field last_name? string|nil
----@field role? string
+---@field limit? number
+---@field offset? number|nil
 
 ---@class Preset
 ---@field created_at string
@@ -1398,18 +1252,8 @@
 ---@field id string
 
 ---@class PresetListMatch
----@field created_at? string
----@field creator_user_id? string|nil
----@field description? string|nil
----@field designated_version? table|nil
----@field designated_version_id? string|nil
----@field id? string
----@field name? string
----@field slug? string
----@field status? string
----@field status_updated_at? string|nil
----@field updated_at? string
----@field workspace_id? string|nil
+---@field limit? number
+---@field offset? number|nil
 
 ---@class PresetVersion
 ---@field config table
@@ -1451,9 +1295,13 @@
 ---@field total_tokens string
 
 ---@class RankingsDailyListMatch
----@field date? string
----@field model_permaslug? string
----@field total_tokens? string
+---@field category? string
+---@field context_bucket? string
+---@field end_date? string
+---@field language_type? string
+---@field modality? string
+---@field period? string
+---@field start_date? string
 
 ---@class Remove
 
@@ -1530,10 +1378,7 @@
 ---@field window_days number
 
 ---@class TaskLoadMatch
----@field as_of? string
----@field classifications? table
----@field macro_categories? table
----@field window_days? number
+---@field window? string
 
 ---@class Transcription
 
@@ -1558,8 +1403,11 @@
 ---@field meta table
 
 ---@class UnifiedBenchmarkListMatch
----@field data? table
----@field meta? table
+---@field arena? string
+---@field category? string
+---@field max_result? number
+---@field source? string
+---@field task_type? string
 
 ---@class UpdateByokKey
 ---@field allowed_models? table|nil
@@ -1655,21 +1503,8 @@
 ---@field updated_at string|nil
 
 ---@class UpdateWorkspaceListMatch
----@field created_at? string
----@field created_by? string|nil
----@field default_image_model? string|nil
----@field default_provider_sort? string|nil
----@field default_text_model? string|nil
----@field description? string|nil
----@field id? string
----@field io_logging_api_key_ids? table|nil
----@field io_logging_sampling_rate? number
----@field is_data_discount_logging_enabled? boolean
----@field is_observability_broadcast_enabled? boolean
----@field is_observability_io_logging_enabled? boolean
----@field name? string
----@field slug? string
----@field updated_at? string|nil
+---@field limit? number
+---@field offset? number|nil
 
 ---@class UpdateWorkspaceCreateData
 ---@field created_at string
@@ -1768,6 +1603,7 @@
 
 ---@class VideoGenerationLoadMatch
 ---@field id string
+---@field index? number|nil
 
 ---@class VideoModelsList
 ---@field allowed_passthrough_parameters table

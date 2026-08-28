@@ -20,17 +20,9 @@ export interface Activity {
 }
 
 export interface ActivityListMatch {
-  byok_usage_inference?: number
-  completion_tokens?: number
+  api_key_hash?: string
   date?: string
-  endpoint_id?: string
-  model?: string
-  model_permaslug?: string
-  prompt_tokens?: number
-  provider_name?: string
-  reasoning_tokens?: number
-  requests?: number
-  usage?: number
+  user_id?: string
 }
 
 export interface Add {
@@ -70,31 +62,8 @@ export interface ApiKeyLoadMatch {
 }
 
 export interface ApiKeyListMatch {
-  byok_usage?: number
-  byok_usage_daily?: number
-  byok_usage_monthly?: number
-  byok_usage_weekly?: number
-  created_at?: string
-  creator_user_id?: string | null
-  disabled?: boolean
-  expires_at?: string | null
-  hash?: string
-  id?: string
-  include_byok_in_limit?: boolean
-  is_free_tier?: boolean
-  is_management_key?: boolean
-  is_provisioning_key?: boolean
-  label?: string
-  limit?: number | null
-  limit_remaining?: number | null
-  limit_reset?: string | null
-  name?: string
-  rate_limit?: Record<string, any>
-  updated_at?: string | null
-  usage?: number
-  usage_daily?: number
-  usage_monthly?: number
-  usage_weekly?: number
+  include_disabled?: boolean
+  offset?: number | null
   workspace_id?: string
 }
 
@@ -169,11 +138,13 @@ export interface AppRanking {
 }
 
 export interface AppRankingListMatch {
-  app_id?: number
-  app_name?: string
-  rank?: number
-  total_requests?: number
-  total_tokens?: string
+  category?: string
+  end_date?: string
+  limit?: number
+  offset?: number | null
+  sort?: string
+  start_date?: string
+  subcategory?: string
 }
 
 export interface Benchmark {
@@ -328,18 +299,9 @@ export interface ByokLoadMatch {
 }
 
 export interface ByokListMatch {
-  allowed_api_key_hashes?: any[] | null
-  allowed_models?: any[] | null
-  allowed_user_ids?: any[] | null
-  created_at?: string
-  disabled?: boolean
-  id?: string
-  is_fallback?: boolean
-  key?: string
-  label?: string
-  name?: string | null
+  limit?: number
+  offset?: number | null
   provider?: string
-  sort_order?: number
   workspace_id?: string
 }
 
@@ -739,40 +701,35 @@ export interface EndpointLoadMatch {
 }
 
 export interface EndpointListMatch {
-  architecture?: any
-  benchmarks?: Record<string, any>
-  canonical_slug?: string
-  context_length?: number | null
-  created?: number
-  default_parameters?: Record<string, any> | null
-  description?: string
-  endpoints?: any[]
-  expiration_date?: string | null
-  hugging_face_id?: string | null
-  id?: string
-  knowledge_cutoff?: string | null
-  latency_last_30m?: Record<string, any> | null
-  links?: Record<string, any>
-  max_completion_tokens?: number | null
-  max_prompt_tokens?: number | null
-  model_id?: string
-  model_name?: string
-  name?: string
-  per_request_limits?: Record<string, any> | null
-  pricing?: Record<string, any>
-  provider_name?: string
-  quantization?: any
-  reasoning?: Record<string, any>
-  status?: number
-  supported_parameters?: any[]
-  supported_voices?: any[] | null
-  supports_implicit_caching?: boolean
-  tag?: string
-  throughput_last_30m?: any
-  top_provider?: Record<string, any>
-  uptime_last_1d?: number | null
-  uptime_last_30m?: number | null
-  uptime_last_5m?: number | null
+  arch?: string
+  category?: string
+  context?: number
+  distillable?: string
+  input_modality?: string
+  limit?: number
+  max_age_day?: number | null
+  max_agentic_index?: number | null
+  max_coding_index?: number | null
+  max_intelligence_index?: number | null
+  max_output_price?: number | null
+  max_price?: number | null
+  max_tool_success_rate?: number | null
+  min_age_day?: number | null
+  min_agentic_index?: number | null
+  min_coding_index?: number | null
+  min_intelligence_index?: number | null
+  min_output_price?: number | null
+  min_price?: number | null
+  min_tool_success_rate?: number | null
+  model_author?: string
+  offset?: number | null
+  output_modality?: string
+  provider?: string
+  q?: string
+  region?: string
+  sort?: string
+  supported_parameter?: string
+  zdr?: string
 
   // Selects a custom action instead of the plain list:
   //   'zdr'
@@ -796,6 +753,7 @@ export interface File {
 
 export interface FileLoadMatch {
   id: string
+  workspace_id?: string
 
   // Selects a custom action instead of the plain load:
   //   'content'
@@ -805,16 +763,13 @@ export interface FileLoadMatch {
 }
 
 export interface FileListMatch {
-  created_at?: string
-  downloadable?: boolean
-  filename?: string
-  id?: string
-  mime_type?: string
-  size_bytes?: number
-  type?: string
+  cursor?: string
+  limit?: number
+  workspace_id?: string
 }
 
 export interface FileCreateData {
+  workspace_id?: string
   created_at: string
   downloadable: boolean
   filename: string
@@ -826,6 +781,7 @@ export interface FileCreateData {
 
 export interface FileRemoveMatch {
   id: string
+  workspace_id?: string
 }
 
 export interface Generation {
@@ -876,50 +832,7 @@ export interface Generation {
 }
 
 export interface GenerationLoadMatch {
-  api_type?: string | null
-  app_id?: number | null
-  cache_discount?: number | null
-  cancelled?: boolean | null
-  created_at?: string
-  data_region?: string
-  external_user?: string | null
-  finish_reason?: string | null
-  generation_time?: number | null
-  http_referer?: string | null
   id: string
-  is_byok?: boolean
-  latency?: number | null
-  model?: string
-  moderation_latency?: number | null
-  native_finish_reason?: string | null
-  native_tokens_cached?: number | null
-  native_tokens_completion?: number | null
-  native_tokens_completion_images?: number | null
-  native_tokens_prompt?: number | null
-  native_tokens_reasoning?: number | null
-  num_fetches?: number | null
-  num_input_audio_prompt?: number | null
-  num_media_completion?: number | null
-  num_media_prompt?: number | null
-  num_search_results?: number | null
-  origin?: string
-  preset_id?: string | null
-  provider_name?: string | null
-  provider_responses?: any[] | null
-  request_id?: string | null
-  response_cache_source_id?: string | null
-  router?: string | null
-  service_tier?: string | null
-  session_id?: string | null
-  streamed?: boolean | null
-  tokens_completion?: number | null
-  tokens_prompt?: number | null
-  total_cost?: number
-  upstream_id?: string | null
-  upstream_inference_cost?: number | null
-  usage?: number
-  user_agent?: string | null
-  web_search_engine?: string | null
 }
 
 export interface GenerationContent {
@@ -928,8 +841,7 @@ export interface GenerationContent {
 }
 
 export interface GenerationContentLoadMatch {
-  input?: any
-  output?: Record<string, any>
+  id: string
 }
 
 export interface Guardrail {
@@ -960,25 +872,8 @@ export interface GuardrailLoadMatch {
 }
 
 export interface GuardrailListMatch {
-  allowed_models?: any[] | null
-  allowed_providers?: any[] | null
-  content_filter_builtins?: any[] | null
-  content_filters?: any[] | null
-  created_at?: string
-  description?: string | null
-  enforce_zdr?: boolean | null
-  enforce_zdr_anthropic?: boolean | null
-  enforce_zdr_google?: boolean | null
-  enforce_zdr_openai?: boolean | null
-  enforce_zdr_other?: boolean | null
-  enforce_zdr_xai?: boolean | null
-  id?: string
-  ignored_models?: any[] | null
-  ignored_providers?: any[] | null
-  limit_usd?: number | null
-  name?: string
-  reset_interval?: string | null
-  updated_at?: string | null
+  limit?: number
+  offset?: number | null
   workspace_id?: string
 }
 
@@ -1106,13 +1001,8 @@ export interface ListKeyAssignment {
 }
 
 export interface ListKeyAssignmentListMatch {
-  assigned_by?: string | null
-  created_at?: string
-  guardrail_id?: string
-  id?: string
-  key_hash?: string
-  key_label?: string
-  key_name?: string
+  limit?: number
+  offset?: number | null
 }
 
 export interface ListMemberAssignment {
@@ -1125,12 +1015,8 @@ export interface ListMemberAssignment {
 }
 
 export interface ListMemberAssignmentListMatch {
-  assigned_by?: string | null
-  created_at?: string
-  guardrail_id?: string
-  id?: string
-  organization_id?: string
-  user_id?: string
+  limit?: number
+  offset?: number | null
 }
 
 export interface ListObservabilityDestination {
@@ -1139,8 +1025,9 @@ export interface ListObservabilityDestination {
 }
 
 export interface ListObservabilityDestinationListMatch {
-  data?: any[]
-  total_count?: number
+  limit?: number
+  offset?: number | null
+  workspace_id?: string
 }
 
 export interface ListPreset {
@@ -1159,6 +1046,8 @@ export interface ListPresetVersion {
 
 export interface ListPresetVersionListMatch {
   slug: string
+  limit?: number
+  offset?: number | null
 }
 
 export interface ListWorkspace {
@@ -1187,6 +1076,8 @@ export interface ListWorkspaceMember {
 
 export interface ListWorkspaceMemberListMatch {
   workspace_id: string
+  limit?: number
+  offset?: number | null
 }
 
 export interface Member {
@@ -1283,25 +1174,8 @@ export interface ModelLoadMatch {
 }
 
 export interface ModelListMatch {
-  architecture?: Record<string, any>
-  benchmarks?: Record<string, any>
-  canonical_slug?: string
-  context_length?: number | null
-  created?: number
-  default_parameters?: Record<string, any> | null
-  description?: string
-  expiration_date?: string | null
-  hugging_face_id?: string | null
-  id?: string
-  knowledge_cutoff?: string | null
-  links?: Record<string, any>
-  name?: string
-  per_request_limits?: Record<string, any> | null
-  pricing?: Record<string, any>
-  reasoning?: Record<string, any>
-  supported_parameters?: any[]
-  supported_voices?: any[] | null
-  top_provider?: Record<string, any>
+  limit?: number
+  offset?: number | null
 }
 
 export interface ModelsCount {
@@ -1309,7 +1183,7 @@ export interface ModelsCount {
 }
 
 export interface ModelsCountLoadMatch {
-  count?: number
+  output_modality?: string
 }
 
 export interface ModelsList {
@@ -1335,25 +1209,8 @@ export interface ModelsList {
 }
 
 export interface ModelsListListMatch {
-  architecture?: Record<string, any>
-  benchmarks?: Record<string, any>
-  canonical_slug?: string
-  context_length?: number | null
-  created?: number
-  default_parameters?: Record<string, any> | null
-  description?: string
-  expiration_date?: string | null
-  hugging_face_id?: string | null
-  id?: string
-  knowledge_cutoff?: string | null
-  links?: Record<string, any>
-  name?: string
-  per_request_limits?: Record<string, any> | null
-  pricing?: Record<string, any>
-  reasoning?: Record<string, any>
-  supported_parameters?: any[]
-  supported_voices?: any[] | null
-  top_provider?: Record<string, any>
+  limit?: number
+  offset?: number | null
 }
 
 export interface OAuth {
@@ -1504,11 +1361,8 @@ export interface Organization {
 }
 
 export interface OrganizationListMatch {
-  email?: string
-  first_name?: string | null
-  id?: string
-  last_name?: string | null
-  role?: string
+  limit?: number
+  offset?: number | null
 
   // Selects a custom action instead of the plain list:
   //   'member'
@@ -1537,18 +1391,8 @@ export interface PresetLoadMatch {
 }
 
 export interface PresetListMatch {
-  created_at?: string
-  creator_user_id?: string | null
-  description?: string | null
-  designated_version?: Record<string, any> | null
-  designated_version_id?: string | null
-  id?: string
-  name?: string
-  slug?: string
-  status?: string
-  status_updated_at?: string | null
-  updated_at?: string
-  workspace_id?: string | null
+  limit?: number
+  offset?: number | null
 }
 
 export interface PresetVersion {
@@ -1597,9 +1441,13 @@ export interface RankingsDaily {
 }
 
 export interface RankingsDailyListMatch {
-  date?: string
-  model_permaslug?: string
-  total_tokens?: string
+  category?: string
+  context_bucket?: string
+  end_date?: string
+  language_type?: string
+  modality?: string
+  period?: string
+  start_date?: string
 }
 
 export interface Remove {
@@ -1687,10 +1535,7 @@ export interface Task {
 }
 
 export interface TaskLoadMatch {
-  as_of?: string
-  classifications?: any[]
-  macro_categories?: any[]
-  window_days?: number
+  window?: string
 }
 
 export interface Transcription {
@@ -1720,8 +1565,11 @@ export interface UnifiedBenchmark {
 }
 
 export interface UnifiedBenchmarkListMatch {
-  data?: any[]
-  meta?: Record<string, any>
+  arena?: string
+  category?: string
+  max_result?: number
+  source?: string
+  task_type?: string
 }
 
 export interface UpdateByokKey {
@@ -1825,21 +1673,8 @@ export interface UpdateWorkspace {
 }
 
 export interface UpdateWorkspaceListMatch {
-  created_at?: string
-  created_by?: string | null
-  default_image_model?: string | null
-  default_provider_sort?: string | null
-  default_text_model?: string | null
-  description?: string | null
-  id?: string
-  io_logging_api_key_ids?: any[] | null
-  io_logging_sampling_rate?: number
-  is_data_discount_logging_enabled?: boolean
-  is_observability_broadcast_enabled?: boolean
-  is_observability_io_logging_enabled?: boolean
-  name?: string
-  slug?: string
-  updated_at?: string | null
+  limit?: number
+  offset?: number | null
 }
 
 export interface UpdateWorkspaceCreateData {
@@ -1949,6 +1784,7 @@ export interface VideoGeneration {
 
 export interface VideoGenerationLoadMatch {
   id: string
+  index?: number | null
 
   // Selects a custom action instead of the plain load:
   //   'content'

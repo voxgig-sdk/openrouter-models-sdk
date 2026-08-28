@@ -31,17 +31,9 @@ class Activity
 /** Request payload for Activity#list. */
 class ActivityListMatch
 {
-    public ?float $byok_usage_inference = null;
-    public ?int $completion_tokens = null;
+    public ?string $api_key_hash = null;
     public ?string $date = null;
-    public ?string $endpoint_id = null;
-    public ?string $model = null;
-    public ?string $model_permaslug = null;
-    public ?int $prompt_tokens = null;
-    public ?string $provider_name = null;
-    public ?int $reasoning_tokens = null;
-    public ?int $requests = null;
-    public ?float $usage = null;
+    public ?string $user_id = null;
 }
 
 /** Add entity data model. */
@@ -89,31 +81,8 @@ class ApiKeyLoadMatch
 /** Request payload for ApiKey#list. */
 class ApiKeyListMatch
 {
-    public ?float $byok_usage = null;
-    public ?float $byok_usage_daily = null;
-    public ?float $byok_usage_monthly = null;
-    public ?float $byok_usage_weekly = null;
-    public ?string $created_at = null;
-    public mixed $creator_user_id = null;
-    public ?bool $disabled = null;
-    public mixed $expires_at = null;
-    public ?string $hash = null;
-    public ?string $id = null;
-    public ?bool $include_byok_in_limit = null;
-    public ?bool $is_free_tier = null;
-    public ?bool $is_management_key = null;
-    public ?bool $is_provisioning_key = null;
-    public ?string $label = null;
-    public mixed $limit = null;
-    public mixed $limit_remaining = null;
-    public mixed $limit_reset = null;
-    public ?string $name = null;
-    public ?array $rate_limit = null;
-    public mixed $updated_at = null;
-    public ?float $usage = null;
-    public ?float $usage_daily = null;
-    public ?float $usage_monthly = null;
-    public ?float $usage_weekly = null;
+    public ?bool $include_disabled = null;
+    public mixed $offset = null;
     public ?string $workspace_id = null;
 }
 
@@ -198,11 +167,13 @@ class AppRanking
 /** Request payload for AppRanking#list. */
 class AppRankingListMatch
 {
-    public ?int $app_id = null;
-    public ?string $app_name = null;
-    public ?int $rank = null;
-    public ?int $total_requests = null;
-    public ?string $total_tokens = null;
+    public ?string $category = null;
+    public ?string $end_date = null;
+    public ?int $limit = null;
+    public mixed $offset = null;
+    public ?string $sort = null;
+    public ?string $start_date = null;
+    public ?string $subcategory = null;
 }
 
 /** Benchmark entity data model. */
@@ -397,18 +368,9 @@ class ByokLoadMatch
 /** Request payload for Byok#list. */
 class ByokListMatch
 {
-    public mixed $allowed_api_key_hashes = null;
-    public mixed $allowed_models = null;
-    public mixed $allowed_user_ids = null;
-    public ?string $created_at = null;
-    public ?bool $disabled = null;
-    public ?string $id = null;
-    public ?bool $is_fallback = null;
-    public ?string $key = null;
-    public ?string $label = null;
-    public mixed $name = null;
+    public ?int $limit = null;
+    public mixed $offset = null;
     public ?string $provider = null;
-    public ?int $sort_order = null;
     public ?string $workspace_id = null;
 }
 
@@ -852,40 +814,35 @@ class EndpointLoadMatch
 /** Request payload for Endpoint#list. */
 class EndpointListMatch
 {
-    public mixed $architecture = null;
-    public ?array $benchmarks = null;
-    public ?string $canonical_slug = null;
-    public mixed $context_length = null;
-    public ?int $created = null;
-    public mixed $default_parameters = null;
-    public ?string $description = null;
-    public ?array $endpoints = null;
-    public mixed $expiration_date = null;
-    public mixed $hugging_face_id = null;
-    public ?string $id = null;
-    public mixed $knowledge_cutoff = null;
-    public mixed $latency_last_30m = null;
-    public ?array $links = null;
-    public mixed $max_completion_tokens = null;
-    public mixed $max_prompt_tokens = null;
-    public ?string $model_id = null;
-    public ?string $model_name = null;
-    public ?string $name = null;
-    public mixed $per_request_limits = null;
-    public ?array $pricing = null;
-    public ?string $provider_name = null;
-    public mixed $quantization = null;
-    public ?array $reasoning = null;
-    public ?int $status = null;
-    public ?array $supported_parameters = null;
-    public mixed $supported_voices = null;
-    public ?bool $supports_implicit_caching = null;
-    public ?string $tag = null;
-    public mixed $throughput_last_30m = null;
-    public ?array $top_provider = null;
-    public mixed $uptime_last_1d = null;
-    public mixed $uptime_last_30m = null;
-    public mixed $uptime_last_5m = null;
+    public ?string $arch = null;
+    public ?string $category = null;
+    public ?int $context = null;
+    public ?string $distillable = null;
+    public ?string $input_modality = null;
+    public ?int $limit = null;
+    public mixed $max_age_day = null;
+    public mixed $max_agentic_index = null;
+    public mixed $max_coding_index = null;
+    public mixed $max_intelligence_index = null;
+    public mixed $max_output_price = null;
+    public mixed $max_price = null;
+    public mixed $max_tool_success_rate = null;
+    public mixed $min_age_day = null;
+    public mixed $min_agentic_index = null;
+    public mixed $min_coding_index = null;
+    public mixed $min_intelligence_index = null;
+    public mixed $min_output_price = null;
+    public mixed $min_price = null;
+    public mixed $min_tool_success_rate = null;
+    public ?string $model_author = null;
+    public mixed $offset = null;
+    public ?string $output_modality = null;
+    public ?string $provider = null;
+    public ?string $q = null;
+    public ?string $region = null;
+    public ?string $sort = null;
+    public ?string $supported_parameter = null;
+    public ?string $zdr = null;
 }
 
 /** Feedback entity data model. */
@@ -909,23 +866,21 @@ class File
 class FileLoadMatch
 {
     public string $id;
+    public ?string $workspace_id = null;
 }
 
 /** Request payload for File#list. */
 class FileListMatch
 {
-    public ?string $created_at = null;
-    public ?bool $downloadable = null;
-    public ?string $filename = null;
-    public ?string $id = null;
-    public ?string $mime_type = null;
-    public ?int $size_bytes = null;
-    public ?string $type = null;
+    public ?string $cursor = null;
+    public ?int $limit = null;
+    public ?string $workspace_id = null;
 }
 
 /** Request payload for File#create. */
 class FileCreateData
 {
+    public ?string $workspace_id = null;
     public string $created_at;
     public bool $downloadable;
     public string $filename;
@@ -939,6 +894,7 @@ class FileCreateData
 class FileRemoveMatch
 {
     public string $id;
+    public ?string $workspace_id = null;
 }
 
 /** Generation entity data model. */
@@ -993,50 +949,7 @@ class Generation
 /** Request payload for Generation#load. */
 class GenerationLoadMatch
 {
-    public mixed $api_type = null;
-    public mixed $app_id = null;
-    public mixed $cache_discount = null;
-    public mixed $cancelled = null;
-    public ?string $created_at = null;
-    public ?string $data_region = null;
-    public mixed $external_user = null;
-    public mixed $finish_reason = null;
-    public mixed $generation_time = null;
-    public mixed $http_referer = null;
     public string $id;
-    public ?bool $is_byok = null;
-    public mixed $latency = null;
-    public ?string $model = null;
-    public mixed $moderation_latency = null;
-    public mixed $native_finish_reason = null;
-    public mixed $native_tokens_cached = null;
-    public mixed $native_tokens_completion = null;
-    public mixed $native_tokens_completion_images = null;
-    public mixed $native_tokens_prompt = null;
-    public mixed $native_tokens_reasoning = null;
-    public mixed $num_fetches = null;
-    public mixed $num_input_audio_prompt = null;
-    public mixed $num_media_completion = null;
-    public mixed $num_media_prompt = null;
-    public mixed $num_search_results = null;
-    public ?string $origin = null;
-    public mixed $preset_id = null;
-    public mixed $provider_name = null;
-    public mixed $provider_responses = null;
-    public mixed $request_id = null;
-    public mixed $response_cache_source_id = null;
-    public mixed $router = null;
-    public mixed $service_tier = null;
-    public mixed $session_id = null;
-    public mixed $streamed = null;
-    public mixed $tokens_completion = null;
-    public mixed $tokens_prompt = null;
-    public ?float $total_cost = null;
-    public mixed $upstream_id = null;
-    public mixed $upstream_inference_cost = null;
-    public ?float $usage = null;
-    public mixed $user_agent = null;
-    public mixed $web_search_engine = null;
 }
 
 /** GenerationContent entity data model. */
@@ -1049,8 +962,7 @@ class GenerationContent
 /** Request payload for GenerationContent#load. */
 class GenerationContentLoadMatch
 {
-    public mixed $input = null;
-    public ?array $output = null;
+    public string $id;
 }
 
 /** Guardrail entity data model. */
@@ -1087,25 +999,8 @@ class GuardrailLoadMatch
 /** Request payload for Guardrail#list. */
 class GuardrailListMatch
 {
-    public mixed $allowed_models = null;
-    public mixed $allowed_providers = null;
-    public mixed $content_filter_builtins = null;
-    public mixed $content_filters = null;
-    public ?string $created_at = null;
-    public mixed $description = null;
-    public mixed $enforce_zdr = null;
-    public mixed $enforce_zdr_anthropic = null;
-    public mixed $enforce_zdr_google = null;
-    public mixed $enforce_zdr_openai = null;
-    public mixed $enforce_zdr_other = null;
-    public mixed $enforce_zdr_xai = null;
-    public ?string $id = null;
-    public mixed $ignored_models = null;
-    public mixed $ignored_providers = null;
-    public mixed $limit_usd = null;
-    public ?string $name = null;
-    public mixed $reset_interval = null;
-    public mixed $updated_at = null;
+    public ?int $limit = null;
+    public mixed $offset = null;
     public ?string $workspace_id = null;
 }
 
@@ -1259,13 +1154,8 @@ class ListKeyAssignment
 /** Request payload for ListKeyAssignment#list. */
 class ListKeyAssignmentListMatch
 {
-    public mixed $assigned_by = null;
-    public ?string $created_at = null;
-    public ?string $guardrail_id = null;
-    public ?string $id = null;
-    public ?string $key_hash = null;
-    public ?string $key_label = null;
-    public ?string $key_name = null;
+    public ?int $limit = null;
+    public mixed $offset = null;
 }
 
 /** ListMemberAssignment entity data model. */
@@ -1282,12 +1172,8 @@ class ListMemberAssignment
 /** Request payload for ListMemberAssignment#list. */
 class ListMemberAssignmentListMatch
 {
-    public mixed $assigned_by = null;
-    public ?string $created_at = null;
-    public ?string $guardrail_id = null;
-    public ?string $id = null;
-    public ?string $organization_id = null;
-    public ?string $user_id = null;
+    public ?int $limit = null;
+    public mixed $offset = null;
 }
 
 /** ListObservabilityDestination entity data model. */
@@ -1300,8 +1186,9 @@ class ListObservabilityDestination
 /** Request payload for ListObservabilityDestination#list. */
 class ListObservabilityDestinationListMatch
 {
-    public ?array $data = null;
-    public ?int $total_count = null;
+    public ?int $limit = null;
+    public mixed $offset = null;
+    public ?string $workspace_id = null;
 }
 
 /** ListPreset entity data model. */
@@ -1326,6 +1213,8 @@ class ListPresetVersion
 class ListPresetVersionListMatch
 {
     public string $slug;
+    public ?int $limit = null;
+    public mixed $offset = null;
 }
 
 /** ListWorkspace entity data model. */
@@ -1364,6 +1253,8 @@ class ListWorkspaceMember
 class ListWorkspaceMemberListMatch
 {
     public string $workspace_id;
+    public ?int $limit = null;
+    public mixed $offset = null;
 }
 
 /** Member entity data model. */
@@ -1474,25 +1365,8 @@ class ModelLoadMatch
 /** Request payload for Model#list. */
 class ModelListMatch
 {
-    public ?array $architecture = null;
-    public ?array $benchmarks = null;
-    public ?string $canonical_slug = null;
-    public mixed $context_length = null;
-    public ?int $created = null;
-    public mixed $default_parameters = null;
-    public ?string $description = null;
-    public mixed $expiration_date = null;
-    public mixed $hugging_face_id = null;
-    public ?string $id = null;
-    public mixed $knowledge_cutoff = null;
-    public ?array $links = null;
-    public ?string $name = null;
-    public mixed $per_request_limits = null;
-    public ?array $pricing = null;
-    public ?array $reasoning = null;
-    public ?array $supported_parameters = null;
-    public mixed $supported_voices = null;
-    public ?array $top_provider = null;
+    public ?int $limit = null;
+    public mixed $offset = null;
 }
 
 /** ModelsCount entity data model. */
@@ -1504,7 +1378,7 @@ class ModelsCount
 /** Request payload for ModelsCount#load. */
 class ModelsCountLoadMatch
 {
-    public ?int $count = null;
+    public ?string $output_modality = null;
 }
 
 /** ModelsList entity data model. */
@@ -1534,25 +1408,8 @@ class ModelsList
 /** Request payload for ModelsList#list. */
 class ModelsListListMatch
 {
-    public ?array $architecture = null;
-    public ?array $benchmarks = null;
-    public ?string $canonical_slug = null;
-    public mixed $context_length = null;
-    public ?int $created = null;
-    public mixed $default_parameters = null;
-    public ?string $description = null;
-    public mixed $expiration_date = null;
-    public mixed $hugging_face_id = null;
-    public ?string $id = null;
-    public mixed $knowledge_cutoff = null;
-    public ?array $links = null;
-    public ?string $name = null;
-    public mixed $per_request_limits = null;
-    public ?array $pricing = null;
-    public ?array $reasoning = null;
-    public ?array $supported_parameters = null;
-    public mixed $supported_voices = null;
-    public ?array $top_provider = null;
+    public ?int $limit = null;
+    public mixed $offset = null;
 }
 
 /** OAuth entity data model. */
@@ -1721,11 +1578,8 @@ class Organization
 /** Request payload for Organization#list. */
 class OrganizationListMatch
 {
-    public ?string $email = null;
-    public mixed $first_name = null;
-    public ?string $id = null;
-    public mixed $last_name = null;
-    public ?string $role = null;
+    public ?int $limit = null;
+    public mixed $offset = null;
 }
 
 /** Preset entity data model. */
@@ -1754,18 +1608,8 @@ class PresetLoadMatch
 /** Request payload for Preset#list. */
 class PresetListMatch
 {
-    public ?string $created_at = null;
-    public mixed $creator_user_id = null;
-    public mixed $description = null;
-    public mixed $designated_version = null;
-    public mixed $designated_version_id = null;
-    public ?string $id = null;
-    public ?string $name = null;
-    public ?string $slug = null;
-    public ?string $status = null;
-    public mixed $status_updated_at = null;
-    public ?string $updated_at = null;
-    public mixed $workspace_id = null;
+    public ?int $limit = null;
+    public mixed $offset = null;
 }
 
 /** PresetVersion entity data model. */
@@ -1828,9 +1672,13 @@ class RankingsDaily
 /** Request payload for RankingsDaily#list. */
 class RankingsDailyListMatch
 {
-    public ?string $date = null;
-    public ?string $model_permaslug = null;
-    public ?string $total_tokens = null;
+    public ?string $category = null;
+    public ?string $context_bucket = null;
+    public ?string $end_date = null;
+    public ?string $language_type = null;
+    public ?string $modality = null;
+    public ?string $period = null;
+    public ?string $start_date = null;
 }
 
 /** Remove entity data model. */
@@ -1940,10 +1788,7 @@ class Task
 /** Request payload for Task#load. */
 class TaskLoadMatch
 {
-    public ?string $as_of = null;
-    public ?array $classifications = null;
-    public ?array $macro_categories = null;
-    public ?int $window_days = null;
+    public ?string $window = null;
 }
 
 /** Transcription entity data model. */
@@ -1983,8 +1828,11 @@ class UnifiedBenchmark
 /** Request payload for UnifiedBenchmark#list. */
 class UnifiedBenchmarkListMatch
 {
-    public ?array $data = null;
-    public ?array $meta = null;
+    public ?string $arena = null;
+    public ?string $category = null;
+    public ?int $max_result = null;
+    public ?string $source = null;
+    public ?string $task_type = null;
 }
 
 /** UpdateByokKey entity data model. */
@@ -2104,21 +1952,8 @@ class UpdateWorkspace
 /** Request payload for UpdateWorkspace#list. */
 class UpdateWorkspaceListMatch
 {
-    public ?string $created_at = null;
-    public mixed $created_by = null;
-    public mixed $default_image_model = null;
-    public mixed $default_provider_sort = null;
-    public mixed $default_text_model = null;
-    public mixed $description = null;
-    public ?string $id = null;
-    public mixed $io_logging_api_key_ids = null;
-    public ?float $io_logging_sampling_rate = null;
-    public ?bool $is_data_discount_logging_enabled = null;
-    public ?bool $is_observability_broadcast_enabled = null;
-    public ?bool $is_observability_io_logging_enabled = null;
-    public ?string $name = null;
-    public ?string $slug = null;
-    public mixed $updated_at = null;
+    public ?int $limit = null;
+    public mixed $offset = null;
 }
 
 /** Request payload for UpdateWorkspace#create. */
@@ -2250,6 +2085,7 @@ class VideoGeneration
 class VideoGenerationLoadMatch
 {
     public string $id;
+    public mixed $index = null;
 }
 
 /** VideoModelsList entity data model. */
