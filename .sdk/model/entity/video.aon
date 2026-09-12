@@ -12,6 +12,7 @@ main: kit: entity: video: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "callback_url"
       req: false
       short: "URL to receive a webhook notification when the video generation job completes."
@@ -153,8 +154,10 @@ main: kit: entity: video: {
           }
           method: "POST"
           orig: "/videos"
-          parts: [
-            "videos"
+          segments: [
+            {
+              lit: "videos"
+            }
           ]
           select: {
             exist: [
@@ -211,15 +214,19 @@ main: kit: entity: video: {
           }
           method: "GET"
           orig: "/videos/{jobId}"
-          parts: [
-            "videos"
-            "{id}"
-          ]
           rename: {
             param: {
               jobId: "id"
             }
           }
+          segments: [
+            {
+              lit: "videos"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "http_referer"

@@ -89,9 +89,13 @@ main: kit: entity: list_observability_destination: {
           }
           method: "GET"
           orig: "/observability/destinations"
-          parts: [
-            "observability"
-            "destinations"
+          segments: [
+            {
+              lit: "observability"
+            }
+            {
+              lit: "destinations"
+            }
           ]
           select: {
             exist: [

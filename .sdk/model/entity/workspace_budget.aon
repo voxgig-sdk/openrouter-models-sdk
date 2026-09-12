@@ -68,18 +68,26 @@ main: kit: entity: workspace_budget: {
           }
           method: "DELETE"
           orig: "/workspaces/{id}/budgets/{interval}"
-          parts: [
-            "workspaces"
-            "{workspace_id}"
-            "budgets"
-            "{id}"
-          ]
           rename: {
             param: {
               id: "workspace_id"
               interval: "id"
             }
           }
+          segments: [
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "workspace_id"
+            }
+            {
+              lit: "budgets"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "http_referer"

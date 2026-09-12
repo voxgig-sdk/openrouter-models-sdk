@@ -105,18 +105,28 @@ main: kit: entity: image_model_endpoint: {
           }
           method: "GET"
           orig: "/images/models/{author}/{slug}/endpoints"
-          parts: [
-            "images"
-            "models"
-            "{model_id}"
-            "{slug}"
-            "endpoints"
-          ]
           rename: {
             param: {
               author: "model_id"
             }
           }
+          segments: [
+            {
+              lit: "images"
+            }
+            {
+              lit: "models"
+            }
+            {
+              var: "model_id"
+            }
+            {
+              var: "slug"
+            }
+            {
+              lit: "endpoints"
+            }
+          ]
           select: {
             exist: [
               "http_referer"

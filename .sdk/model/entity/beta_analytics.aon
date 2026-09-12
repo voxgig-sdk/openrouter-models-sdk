@@ -6,6 +6,7 @@ main: kit: entity: beta_analytics: {
 
   fields: [
     {
+      format: "double"
       name: "cachedAt"
       req: false
       type: "`$NUMBER`"
@@ -142,9 +143,13 @@ main: kit: entity: beta_analytics: {
           }
           method: "POST"
           orig: "/analytics/query"
-          parts: [
-            "analytics"
-            "query"
+          segments: [
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "query"
+            }
           ]
           select: {
             exist: [
@@ -191,9 +196,13 @@ main: kit: entity: beta_analytics: {
           }
           method: "GET"
           orig: "/analytics/meta"
-          parts: [
-            "analytics"
-            "meta"
+          segments: [
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "meta"
+            }
           ]
           select: {
             exist: [

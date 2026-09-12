@@ -30,6 +30,7 @@ main: kit: entity: tts: {
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "speed"
       req: false
       short: "Playback speed multiplier."
@@ -76,9 +77,13 @@ main: kit: entity: tts: {
           }
           method: "POST"
           orig: "/audio/speech"
-          parts: [
-            "audio"
-            "speech"
+          segments: [
+            {
+              lit: "audio"
+            }
+            {
+              lit: "speech"
+            }
           ]
           select: {
             exist: [

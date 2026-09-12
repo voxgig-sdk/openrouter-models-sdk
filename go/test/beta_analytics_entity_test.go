@@ -52,7 +52,7 @@ func TestBetaAnalyticsEntity(t *testing.T) {
 		// CREATE
 		betaAnalyticsRef01Ent := client.BetaAnalytics(nil)
 		betaAnalyticsRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "beta_analytics"}, setup.data), "beta_analytics_ref01"))
+			vs.GetPath(setup.data, []any{"new", "beta_analytics"}), "beta_analytics_ref01"))
 
 		betaAnalyticsRef01DataResult, err := betaAnalyticsRef01Ent.Create(betaAnalyticsRef01Data, nil)
 		if err != nil {
@@ -100,7 +100,7 @@ func beta_analyticsBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"beta_analytics01", "beta_analytics02", "beta_analytics03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -120,7 +120,7 @@ func beta_analyticsBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENROUTER_MODELS_TEST_BETA_ANALYTICS_ENTID": idmap,
 		"OPENROUTER_MODELS_TEST_LIVE":      "FALSE",
 		"OPENROUTER_MODELS_TEST_EXPLAIN":   "FALSE",
-		"OPENROUTER_MODELS_APIKEY":         "NONE",
+		"OPENROUTER_MODELS_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENROUTER_MODELS_TEST_BETA_ANALYTICS_ENTID"])
@@ -129,11 +129,23 @@ func beta_analyticsBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["OPENROUTER_MODELS_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewOpenrouterModelsSDK(core.ToMapAny(mergedOpts))
 	}

@@ -65,10 +65,16 @@ main: kit: entity: observability_destination: {
           }
           method: "GET"
           orig: "/observability/destinations/{id}"
-          parts: [
-            "observability"
-            "destinations"
-            "{id}"
+          segments: [
+            {
+              lit: "observability"
+            }
+            {
+              lit: "destinations"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -126,10 +132,16 @@ main: kit: entity: observability_destination: {
           }
           method: "DELETE"
           orig: "/observability/destinations/{id}"
-          parts: [
-            "observability"
-            "destinations"
-            "{id}"
+          segments: [
+            {
+              lit: "observability"
+            }
+            {
+              lit: "destinations"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

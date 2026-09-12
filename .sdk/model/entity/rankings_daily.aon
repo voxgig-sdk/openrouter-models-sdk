@@ -116,9 +116,13 @@ main: kit: entity: rankings_daily: {
           }
           method: "GET"
           orig: "/datasets/rankings-daily"
-          parts: [
-            "datasets"
-            "rankings-daily"
+          segments: [
+            {
+              lit: "datasets"
+            }
+            {
+              lit: "rankings-daily"
+            }
           ]
           select: {
             exist: [

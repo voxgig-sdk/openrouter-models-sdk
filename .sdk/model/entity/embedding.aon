@@ -124,8 +124,10 @@ main: kit: entity: embedding: {
           }
           method: "POST"
           orig: "/embeddings"
-          parts: [
-            "embeddings"
+          segments: [
+            {
+              lit: "embeddings"
+            }
           ]
           select: {
             exist: [

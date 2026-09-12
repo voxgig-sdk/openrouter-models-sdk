@@ -118,7 +118,7 @@ def unified_benchmark_basic_setup(extra)
     "OPENROUTER_MODELS_TEST_UNIFIED_BENCHMARK_ENTID" => idmap,
     "OPENROUTER_MODELS_TEST_LIVE" => "FALSE",
     "OPENROUTER_MODELS_TEST_EXPLAIN" => "FALSE",
-    "OPENROUTER_MODELS_APIKEY" => "NONE",
+    "OPENROUTER_MODELS_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -129,6 +129,9 @@ def unified_benchmark_basic_setup(extra)
 
   if env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["OPENROUTER_MODELS_APIKEY"],
       },

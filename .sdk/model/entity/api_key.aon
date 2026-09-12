@@ -6,24 +6,28 @@ main: kit: entity: api_key: {
 
   fields: [
     {
+      format: "double"
       name: "byok_usage"
       req: true
       short: "Total external BYOK usage (in USD) for the API key"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "byok_usage_daily"
       req: true
       short: "External BYOK usage (in USD) for the current UTC day"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "byok_usage_monthly"
       req: true
       short: "External BYOK usage (in USD) for current UTC month"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "byok_usage_weekly"
       req: true
       short: "External BYOK usage (in USD) for the current UTC week (Monday-Sunday)"
@@ -72,6 +76,7 @@ main: kit: entity: api_key: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "date-time"
       name: "expires_at"
       req: false
       short: "ISO 8601 UTC timestamp when the API key expires, or null if no expiration"
@@ -123,6 +128,7 @@ main: kit: entity: api_key: {
       type: "`$BOOLEAN`"
     }
     {
+      deprecated: true
       name: "is_provisioning_key"
       req: true
       short: "Whether this is a management key"
@@ -135,6 +141,7 @@ main: kit: entity: api_key: {
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "limit"
       op: {
         create: {
@@ -169,6 +176,7 @@ main: kit: entity: api_key: {
       ]
     }
     {
+      format: "double"
       name: "limit_remaining"
       req: true
       short: "Remaining spending limit in USD"
@@ -227,6 +235,7 @@ main: kit: entity: api_key: {
       type: "`$STRING`"
     }
     {
+      deprecated: true
       name: "rate_limit"
       req: true
       short: "Legacy rate limit information about a key."
@@ -245,30 +254,35 @@ main: kit: entity: api_key: {
       ]
     }
     {
+      format: "double"
       name: "usage"
       req: true
       short: "Total OpenRouter credit usage (in USD) for the API key"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "usage_daily"
       req: true
       short: "OpenRouter credit usage (in USD) for the current UTC day"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "usage_monthly"
       req: true
       short: "OpenRouter credit usage (in USD) for the current UTC month"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "usage_weekly"
       req: true
       short: "OpenRouter credit usage (in USD) for the current UTC week (Monday-Sunday)"
       type: "`$NUMBER`"
     }
     {
+      format: "uuid"
       name: "workspace_id"
       op: {
         create: {
@@ -320,8 +334,10 @@ main: kit: entity: api_key: {
           }
           method: "POST"
           orig: "/keys"
-          parts: [
-            "keys"
+          segments: [
+            {
+              lit: "keys"
+            }
           ]
           select: {
             exist: [
@@ -400,8 +416,10 @@ main: kit: entity: api_key: {
           }
           method: "GET"
           orig: "/keys"
-          parts: [
-            "keys"
+          segments: [
+            {
+              lit: "keys"
+            }
           ]
           select: {
             exist: [
@@ -461,15 +479,19 @@ main: kit: entity: api_key: {
           }
           method: "GET"
           orig: "/keys/{hash}"
-          parts: [
-            "keys"
-            "{id}"
-          ]
           rename: {
             param: {
               hash: "id"
             }
           }
+          segments: [
+            {
+              lit: "keys"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "http_referer"
@@ -511,8 +533,10 @@ main: kit: entity: api_key: {
           }
           method: "GET"
           orig: "/key"
-          parts: [
-            "key"
+          segments: [
+            {
+              lit: "key"
+            }
           ]
           select: {
             exist: [
@@ -569,15 +593,19 @@ main: kit: entity: api_key: {
           }
           method: "DELETE"
           orig: "/keys/{hash}"
-          parts: [
-            "keys"
-            "{id}"
-          ]
           rename: {
             param: {
               hash: "id"
             }
           }
+          segments: [
+            {
+              lit: "keys"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "http_referer"
@@ -634,15 +662,19 @@ main: kit: entity: api_key: {
           }
           method: "PATCH"
           orig: "/keys/{hash}"
-          parts: [
-            "keys"
-            "{id}"
-          ]
           rename: {
             param: {
               hash: "id"
             }
           }
+          segments: [
+            {
+              lit: "keys"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "http_referer"

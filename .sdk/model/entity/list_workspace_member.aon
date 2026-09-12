@@ -12,6 +12,7 @@ main: kit: entity: list_workspace_member: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "id"
       req: true
       short: "Unique identifier for the workspace membership"
@@ -30,6 +31,7 @@ main: kit: entity: list_workspace_member: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "workspace_id"
       req: true
       short: "ID of the workspace"
@@ -109,16 +111,22 @@ main: kit: entity: list_workspace_member: {
           }
           method: "GET"
           orig: "/workspaces/{id}/members"
-          parts: [
-            "workspaces"
-            "{workspace_id}"
-            "members"
-          ]
           rename: {
             param: {
               id: "workspace_id"
             }
           }
+          segments: [
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "workspace_id"
+            }
+            {
+              lit: "members"
+            }
+          ]
           select: {
             exist: [
               "http_referer"

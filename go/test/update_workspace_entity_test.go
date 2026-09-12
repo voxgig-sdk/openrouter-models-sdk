@@ -101,7 +101,7 @@ func TestUpdateWorkspaceEntity(t *testing.T) {
 		// CREATE
 		updateWorkspaceRef01Ent := client.UpdateWorkspace(nil)
 		updateWorkspaceRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "update_workspace"}, setup.data), "update_workspace_ref01"))
+			vs.GetPath(setup.data, []any{"new", "update_workspace"}), "update_workspace_ref01"))
 
 		updateWorkspaceRef01DataResult, err := updateWorkspaceRef01Ent.Create(updateWorkspaceRef01Data, nil)
 		if err != nil {
@@ -183,7 +183,7 @@ func update_workspaceBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"update_workspace01", "update_workspace02", "update_workspace03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -203,7 +203,7 @@ func update_workspaceBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENROUTER_MODELS_TEST_UPDATE_WORKSPACE_ENTID": idmap,
 		"OPENROUTER_MODELS_TEST_LIVE":      "FALSE",
 		"OPENROUTER_MODELS_TEST_EXPLAIN":   "FALSE",
-		"OPENROUTER_MODELS_APIKEY":         "NONE",
+		"OPENROUTER_MODELS_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENROUTER_MODELS_TEST_UPDATE_WORKSPACE_ENTID"])
@@ -212,11 +212,23 @@ func update_workspaceBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["OPENROUTER_MODELS_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewOpenrouterModelsSDK(core.ToMapAny(mergedOpts))
 	}

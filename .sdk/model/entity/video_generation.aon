@@ -76,16 +76,22 @@ main: kit: entity: video_generation: {
           }
           method: "GET"
           orig: "/videos/{jobId}/content"
-          parts: [
-            "videos"
-            "{id}"
-            "content"
-          ]
           rename: {
             param: {
               jobId: "id"
             }
           }
+          segments: [
+            {
+              lit: "videos"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "content"
+            }
+          ]
           select: {
             "$action": "content"
             exist: [

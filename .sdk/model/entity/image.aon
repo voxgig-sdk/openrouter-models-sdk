@@ -152,8 +152,10 @@ main: kit: entity: image: {
           }
           method: "POST"
           orig: "/images"
-          parts: [
-            "images"
+          segments: [
+            {
+              lit: "images"
+            }
           ]
           select: {
             exist: [

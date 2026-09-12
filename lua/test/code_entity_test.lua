@@ -84,7 +84,7 @@ function code_basic_setup(extra)
     ["OPENROUTER_MODELS_TEST_CODE_ENTID"] = idmap,
     ["OPENROUTER_MODELS_TEST_LIVE"] = "FALSE",
     ["OPENROUTER_MODELS_TEST_EXPLAIN"] = "FALSE",
-    ["OPENROUTER_MODELS_APIKEY"] = "NONE",
+    ["OPENROUTER_MODELS_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -95,6 +95,9 @@ function code_basic_setup(extra)
 
   if env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
         apikey = env["OPENROUTER_MODELS_APIKEY"],
       },

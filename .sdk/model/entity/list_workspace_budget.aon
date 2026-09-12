@@ -12,12 +12,14 @@ main: kit: entity: list_workspace_budget: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "id"
       req: true
       short: "Unique identifier for the budget"
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "limit_usd"
       req: true
       short: "Spending limit in USD for this interval"
@@ -42,6 +44,7 @@ main: kit: entity: list_workspace_budget: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "workspace_id"
       req: true
       short: "ID of the workspace the budget belongs to"
@@ -97,16 +100,22 @@ main: kit: entity: list_workspace_budget: {
           }
           method: "GET"
           orig: "/workspaces/{id}/budgets"
-          parts: [
-            "workspaces"
-            "{workspace_id}"
-            "budgets"
-          ]
           rename: {
             param: {
               id: "workspace_id"
             }
           }
+          segments: [
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "workspace_id"
+            }
+            {
+              lit: "budgets"
+            }
+          ]
           select: {
             exist: [
               "http_referer"

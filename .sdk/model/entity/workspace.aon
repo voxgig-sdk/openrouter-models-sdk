@@ -72,6 +72,7 @@ main: kit: entity: workspace: {
       ]
     }
     {
+      format: "uuid"
       name: "id"
       req: true
       short: "Unique identifier for the workspace"
@@ -90,6 +91,7 @@ main: kit: entity: workspace: {
       ]
     }
     {
+      format: "double"
       name: "io_logging_sampling_rate"
       req: true
       short: "Sampling rate for I/O logging (0.0001-1)."
@@ -187,9 +189,13 @@ main: kit: entity: workspace: {
           }
           method: "GET"
           orig: "/workspaces/{id}"
-          parts: [
-            "workspaces"
-            "{id}"
+          segments: [
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -247,9 +253,13 @@ main: kit: entity: workspace: {
           }
           method: "DELETE"
           orig: "/workspaces/{id}"
-          parts: [
-            "workspaces"
-            "{id}"
+          segments: [
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

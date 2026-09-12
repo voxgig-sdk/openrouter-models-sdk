@@ -30,6 +30,7 @@ main: kit: entity: generation: {
       ]
     }
     {
+      format: "double"
       name: "cache_discount"
       req: true
       short: "Discount applied due to caching"
@@ -90,6 +91,7 @@ main: kit: entity: generation: {
       ]
     }
     {
+      format: "double"
       name: "generation_time"
       req: true
       short: "Time taken for generation in milliseconds"
@@ -126,6 +128,7 @@ main: kit: entity: generation: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "double"
       name: "latency"
       req: true
       short: "Total latency in milliseconds"
@@ -144,6 +147,7 @@ main: kit: entity: generation: {
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "moderation_latency"
       req: true
       short: "Moderation latency in milliseconds"
@@ -426,6 +430,7 @@ main: kit: entity: generation: {
       ]
     }
     {
+      format: "double"
       name: "total_cost"
       req: true
       short: "Total cost of the generation in USD"
@@ -444,6 +449,7 @@ main: kit: entity: generation: {
       ]
     }
     {
+      format: "double"
       name: "upstream_inference_cost"
       req: true
       short: "Cost charged by the upstream provider"
@@ -456,6 +462,7 @@ main: kit: entity: generation: {
       ]
     }
     {
+      format: "double"
       name: "usage"
       req: true
       short: "Usage amount in USD"
@@ -535,8 +542,10 @@ main: kit: entity: generation: {
           }
           method: "GET"
           orig: "/generation"
-          parts: [
-            "generation"
+          segments: [
+            {
+              lit: "generation"
+            }
           ]
           select: {
             exist: [

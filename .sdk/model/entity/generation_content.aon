@@ -67,9 +67,13 @@ main: kit: entity: generation_content: {
           }
           method: "GET"
           orig: "/generation/content"
-          parts: [
-            "generation"
-            "content"
+          segments: [
+            {
+              lit: "generation"
+            }
+            {
+              lit: "content"
+            }
           ]
           select: {
             exist: [

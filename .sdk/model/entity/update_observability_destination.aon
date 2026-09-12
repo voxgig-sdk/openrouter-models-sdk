@@ -57,6 +57,7 @@ main: kit: entity: update_observability_destination: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "double"
       name: "sampling_rate"
       req: false
       short: "Sampling rate between 0.0001 and 1 (1 = 100%)."
@@ -112,10 +113,16 @@ main: kit: entity: update_observability_destination: {
           }
           method: "PATCH"
           orig: "/observability/destinations/{id}"
-          parts: [
-            "observability"
-            "destinations"
-            "{id}"
+          segments: [
+            {
+              lit: "observability"
+            }
+            {
+              lit: "destinations"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

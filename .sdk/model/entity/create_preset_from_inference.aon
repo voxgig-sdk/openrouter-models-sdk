@@ -57,6 +57,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
+      format: "double"
       name: "frequency_penalty"
       req: false
       short: "Frequency penalty (-2.0 to 2.0)"
@@ -200,6 +201,7 @@ main: kit: entity: create_preset_from_inference: {
       type: "`$OBJECT`"
     }
     {
+      format: "double"
       name: "min_p"
       req: false
       short: "Minimum probability threshold relative to the most likely token."
@@ -282,6 +284,7 @@ main: kit: entity: create_preset_from_inference: {
       }
     }
     {
+      format: "double"
       name: "presence_penalty"
       req: false
       short: "Presence penalty (-2.0 to 2.0)"
@@ -374,6 +377,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
+      format: "double"
       name: "repetition_penalty"
       req: false
       short: "Penalizes tokens based on how much they have already appeared in the text."
@@ -392,6 +396,7 @@ main: kit: entity: create_preset_from_inference: {
       type: "`$ANY`"
     }
     {
+      deprecated: true
       name: "route"
       req: false
       short: "**DEPRECATED** Use providers.sort.partition instead."
@@ -505,6 +510,7 @@ main: kit: entity: create_preset_from_inference: {
       }
     }
     {
+      format: "double"
       name: "temperature"
       req: false
       short: "Sampling temperature (0-2)"
@@ -560,6 +566,7 @@ main: kit: entity: create_preset_from_inference: {
       }
     }
     {
+      format: "double"
       name: "top_a"
       req: false
       short: "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token."
@@ -596,6 +603,7 @@ main: kit: entity: create_preset_from_inference: {
       ]
     }
     {
+      format: "double"
       name: "top_p"
       req: false
       short: "Nucleus sampling parameter (0-1)"
@@ -675,11 +683,19 @@ main: kit: entity: create_preset_from_inference: {
           }
           method: "POST"
           orig: "/presets/{slug}/chat/completions"
-          parts: [
-            "presets"
-            "{slug}"
-            "chat"
-            "completions"
+          segments: [
+            {
+              lit: "presets"
+            }
+            {
+              var: "slug"
+            }
+            {
+              lit: "chat"
+            }
+            {
+              lit: "completions"
+            }
           ]
           select: {
             exist: [
@@ -732,10 +748,16 @@ main: kit: entity: create_preset_from_inference: {
           }
           method: "POST"
           orig: "/presets/{slug}/messages"
-          parts: [
-            "presets"
-            "{slug}"
-            "messages"
+          segments: [
+            {
+              lit: "presets"
+            }
+            {
+              var: "slug"
+            }
+            {
+              lit: "messages"
+            }
           ]
           select: {
             exist: [
@@ -788,10 +810,16 @@ main: kit: entity: create_preset_from_inference: {
           }
           method: "POST"
           orig: "/presets/{slug}/responses"
-          parts: [
-            "presets"
-            "{slug}"
-            "responses"
+          segments: [
+            {
+              lit: "presets"
+            }
+            {
+              var: "slug"
+            }
+            {
+              lit: "responses"
+            }
           ]
           select: {
             exist: [

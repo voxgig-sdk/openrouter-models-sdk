@@ -56,9 +56,13 @@ main: kit: entity: models_count: {
           }
           method: "GET"
           orig: "/models/count"
-          parts: [
-            "models"
-            "count"
+          segments: [
+            {
+              lit: "models"
+            }
+            {
+              lit: "count"
+            }
           ]
           select: {
             exist: [

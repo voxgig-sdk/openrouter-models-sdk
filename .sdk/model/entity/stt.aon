@@ -6,6 +6,7 @@ main: kit: entity: stt: {
 
   fields: [
     {
+      format: "double"
       name: "duration"
       req: false
       short: "Duration of the input audio in seconds, present when response_format is verbose_json"
@@ -54,6 +55,7 @@ main: kit: entity: stt: {
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "temperature"
       req: false
       short: "Sampling temperature for transcription"
@@ -118,9 +120,13 @@ main: kit: entity: stt: {
           }
           method: "POST"
           orig: "/audio/transcriptions"
-          parts: [
-            "audio"
-            "transcriptions"
+          segments: [
+            {
+              lit: "audio"
+            }
+            {
+              lit: "transcriptions"
+            }
           ]
           select: {
             exist: [

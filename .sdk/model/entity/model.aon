@@ -166,6 +166,11 @@ main: kit: entity: model: {
   id: {
     field: "id"
     name: "id"
+    parts: [
+      "author"
+      "slug"
+    ]
+    sep: "/"
   }
 
   name: "model"
@@ -225,9 +230,13 @@ main: kit: entity: model: {
           }
           method: "GET"
           orig: "/embeddings/models"
-          parts: [
-            "embeddings"
-            "models"
+          segments: [
+            {
+              lit: "embeddings"
+            }
+            {
+              lit: "models"
+            }
           ]
           select: {
             exist: [
@@ -294,10 +303,16 @@ main: kit: entity: model: {
           }
           method: "GET"
           orig: "/model/{author}/{slug}"
-          parts: [
-            "model"
-            "{author}"
-            "{slug}"
+          segments: [
+            {
+              lit: "model"
+            }
+            {
+              var: "author"
+            }
+            {
+              var: "slug"
+            }
           ]
           select: {
             exist: [

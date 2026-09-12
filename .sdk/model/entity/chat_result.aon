@@ -35,6 +35,7 @@ main: kit: entity: chat_result: {
       type: "`$OBJECT`"
     }
     {
+      format: "double"
       name: "frequency_penalty"
       req: false
       short: "Frequency penalty (-2.0 to 2.0)"
@@ -129,6 +130,7 @@ main: kit: entity: chat_result: {
       type: "`$OBJECT`"
     }
     {
+      format: "double"
       name: "min_p"
       req: false
       short: "Minimum probability threshold relative to the most likely token."
@@ -215,6 +217,7 @@ main: kit: entity: chat_result: {
       }
     }
     {
+      format: "double"
       name: "presence_penalty"
       req: false
       short: "Presence penalty (-2.0 to 2.0)"
@@ -285,6 +288,7 @@ main: kit: entity: chat_result: {
       ]
     }
     {
+      format: "double"
       name: "repetition_penalty"
       req: false
       short: "Penalizes tokens based on how much they have already appeared in the text."
@@ -303,6 +307,7 @@ main: kit: entity: chat_result: {
       type: "`$ANY`"
     }
     {
+      deprecated: true
       name: "route"
       req: false
       short: "**DEPRECATED** Use providers.sort.partition instead."
@@ -392,6 +397,7 @@ main: kit: entity: chat_result: {
       ]
     }
     {
+      format: "double"
       name: "temperature"
       req: false
       short: "Sampling temperature (0-2)"
@@ -426,6 +432,7 @@ main: kit: entity: chat_result: {
       }
     }
     {
+      format: "double"
       name: "top_a"
       req: false
       short: "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token."
@@ -462,6 +469,7 @@ main: kit: entity: chat_result: {
       ]
     }
     {
+      format: "double"
       name: "top_p"
       req: false
       short: "Nucleus sampling parameter (0-1)"
@@ -539,9 +547,13 @@ main: kit: entity: chat_result: {
           }
           method: "POST"
           orig: "/chat/completions"
-          parts: [
-            "chat"
-            "completions"
+          segments: [
+            {
+              lit: "chat"
+            }
+            {
+              lit: "completions"
+            }
           ]
           select: {
             exist: [

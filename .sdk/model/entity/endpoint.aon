@@ -249,6 +249,7 @@ main: kit: entity: endpoint: {
       type: "`$OBJECT`"
     }
     {
+      format: "double"
       name: "uptime_last_1d"
       req: true
       short: "Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100."
@@ -261,6 +262,7 @@ main: kit: entity: endpoint: {
       ]
     }
     {
+      format: "double"
       name: "uptime_last_30m"
       req: true
       type: [
@@ -272,6 +274,7 @@ main: kit: entity: endpoint: {
       ]
     }
     {
+      format: "double"
       name: "uptime_last_5m"
       req: true
       short: "Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100."
@@ -647,8 +650,10 @@ main: kit: entity: endpoint: {
           }
           method: "GET"
           orig: "/models"
-          parts: [
-            "models"
+          segments: [
+            {
+              lit: "models"
+            }
           ]
           select: {
             exist: [
@@ -719,9 +724,13 @@ main: kit: entity: endpoint: {
           }
           method: "GET"
           orig: "/endpoints/zdr"
-          parts: [
-            "endpoints"
-            "zdr"
+          segments: [
+            {
+              lit: "endpoints"
+            }
+            {
+              lit: "zdr"
+            }
           ]
           select: {
             "$action": "zdr"
@@ -787,11 +796,19 @@ main: kit: entity: endpoint: {
           }
           method: "GET"
           orig: "/models/{author}/{slug}/endpoints"
-          parts: [
-            "models"
-            "{author}"
-            "{slug}"
-            "endpoints"
+          segments: [
+            {
+              lit: "models"
+            }
+            {
+              var: "author"
+            }
+            {
+              var: "slug"
+            }
+            {
+              lit: "endpoints"
+            }
           ]
           select: {
             exist: [

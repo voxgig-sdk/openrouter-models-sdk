@@ -189,9 +189,13 @@ main: kit: entity: video_models_list: {
           }
           method: "GET"
           orig: "/videos/models"
-          parts: [
-            "videos"
-            "models"
+          segments: [
+            {
+              lit: "videos"
+            }
+            {
+              lit: "models"
+            }
           ]
           select: {
             exist: [

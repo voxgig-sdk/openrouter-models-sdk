@@ -71,15 +71,17 @@ def preset_version_direct_setup(mockres)
   env = Runner.env_override({
     "OPENROUTER_MODELS_TEST_PRESET_VERSION_ENTID" => {},
     "OPENROUTER_MODELS_TEST_LIVE" => "FALSE",
-    "OPENROUTER_MODELS_APIKEY" => "NONE",
+    "OPENROUTER_MODELS_APIKEY" => "",
   })
 
   live = env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE"
 
   if live
-    merged_opts = {
+    # Merged so the generated fields win: sdk-test-control.json's
+    # test.client.options adds to the live client, it does not redirect it.
+    merged_opts = Runner.live_client_options.merge({
       "apikey" => env["OPENROUTER_MODELS_APIKEY"],
-    }
+    })
     client = OpenrouterModelsSDK.new(merged_opts)
     return {
       client: client,

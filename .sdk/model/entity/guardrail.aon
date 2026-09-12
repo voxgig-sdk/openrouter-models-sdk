@@ -72,6 +72,7 @@ main: kit: entity: guardrail: {
       ]
     }
     {
+      deprecated: true
       name: "enforce_zdr"
       req: false
       short: "Deprecated."
@@ -144,6 +145,7 @@ main: kit: entity: guardrail: {
       ]
     }
     {
+      format: "uuid"
       name: "id"
       req: true
       short: "Unique identifier for the guardrail"
@@ -174,6 +176,7 @@ main: kit: entity: guardrail: {
       ]
     }
     {
+      format: "double"
       name: "limit_usd"
       req: false
       short: "Spending limit in USD"
@@ -216,6 +219,7 @@ main: kit: entity: guardrail: {
       ]
     }
     {
+      format: "uuid"
       name: "workspace_id"
       op: {
         create: {
@@ -267,8 +271,10 @@ main: kit: entity: guardrail: {
           }
           method: "POST"
           orig: "/guardrails"
-          parts: [
-            "guardrails"
+          segments: [
+            {
+              lit: "guardrails"
+            }
           ]
           select: {
             exist: [
@@ -347,8 +353,10 @@ main: kit: entity: guardrail: {
           }
           method: "GET"
           orig: "/guardrails"
-          parts: [
-            "guardrails"
+          segments: [
+            {
+              lit: "guardrails"
+            }
           ]
           select: {
             exist: [
@@ -408,9 +416,13 @@ main: kit: entity: guardrail: {
           }
           method: "GET"
           orig: "/guardrails/{id}"
-          parts: [
-            "guardrails"
-            "{id}"
+          segments: [
+            {
+              lit: "guardrails"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -468,9 +480,13 @@ main: kit: entity: guardrail: {
           }
           method: "DELETE"
           orig: "/guardrails/{id}"
-          parts: [
-            "guardrails"
-            "{id}"
+          segments: [
+            {
+              lit: "guardrails"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

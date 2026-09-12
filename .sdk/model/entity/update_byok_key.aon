@@ -114,9 +114,13 @@ main: kit: entity: update_byok_key: {
           }
           method: "PATCH"
           orig: "/byok/{id}"
-          parts: [
-            "byok"
-            "{id}"
+          segments: [
+            {
+              lit: "byok"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

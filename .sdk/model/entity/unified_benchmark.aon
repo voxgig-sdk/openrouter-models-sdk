@@ -92,8 +92,10 @@ main: kit: entity: unified_benchmark: {
           }
           method: "GET"
           orig: "/benchmarks"
-          parts: [
-            "benchmarks"
+          segments: [
+            {
+              lit: "benchmarks"
+            }
           ]
           select: {
             exist: [

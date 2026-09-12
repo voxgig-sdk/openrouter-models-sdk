@@ -127,14 +127,22 @@ func image_model_endpointDirectSetup(mockres any) *image_model_endpointDirectSet
 	env := envOverride(map[string]any{
 		"OPENROUTER_MODELS_TEST_IMAGE_MODEL_ENDPOINT_ENTID": map[string]any{},
 		"OPENROUTER_MODELS_TEST_LIVE":    "FALSE",
-		"OPENROUTER_MODELS_APIKEY":       "NONE",
+		"OPENROUTER_MODELS_APIKEY":       "",
 	})
 
 	live := env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["OPENROUTER_MODELS_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewOpenrouterModelsSDK(mergedOpts)
 

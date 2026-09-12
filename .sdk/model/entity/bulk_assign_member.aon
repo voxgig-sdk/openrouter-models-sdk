@@ -62,17 +62,25 @@ main: kit: entity: bulk_assign_member: {
           }
           method: "POST"
           orig: "/guardrails/{id}/assignments/members"
-          parts: [
-            "guardrails"
-            "{guardrail_id}"
-            "assignments"
-            "members"
-          ]
           rename: {
             param: {
               id: "guardrail_id"
             }
           }
+          segments: [
+            {
+              lit: "guardrails"
+            }
+            {
+              var: "guardrail_id"
+            }
+            {
+              lit: "assignments"
+            }
+            {
+              lit: "members"
+            }
+          ]
           select: {
             exist: [
               "guardrail_id"

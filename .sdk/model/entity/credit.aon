@@ -6,12 +6,14 @@ main: kit: entity: credit: {
 
   fields: [
     {
+      format: "double"
       name: "total_credits"
       req: true
       short: "Total credits purchased"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "total_usage"
       req: true
       short: "Total credits used"
@@ -52,9 +54,13 @@ main: kit: entity: credit: {
           }
           method: "POST"
           orig: "/credits/coinbase"
-          parts: [
-            "credits"
-            "coinbase"
+          segments: [
+            {
+              lit: "credits"
+            }
+            {
+              lit: "coinbase"
+            }
           ]
           select: {
             "$action": "coinbase"
@@ -102,8 +108,10 @@ main: kit: entity: credit: {
           }
           method: "GET"
           orig: "/credits"
-          parts: [
-            "credits"
+          segments: [
+            {
+              lit: "credits"
+            }
           ]
           select: {
             exist: [

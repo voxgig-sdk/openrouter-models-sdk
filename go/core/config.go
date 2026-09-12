@@ -124,6 +124,7 @@ func MakeConfig() map[string]any {
 			"activity": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "double",
 						"name": "byok_usage_inference",
 						"req": true,
 						"short": "BYOK inference cost in USD (external credits spent)",
@@ -184,6 +185,7 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "usage",
 						"req": true,
 						"short": "Total cost in USD (OpenRouter credits spent)",
@@ -245,8 +247,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/activity",
-								"parts": []any{
-									"activity",
+								"segments": []any{
+									map[string]any{
+										"lit": "activity",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -261,6 +265,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"activity",
 								},
 							},
 						},
@@ -285,24 +292,28 @@ func MakeConfig() map[string]any {
 			"api_key": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "double",
 						"name": "byok_usage",
 						"req": true,
 						"short": "Total external BYOK usage (in USD) for the API key",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "byok_usage_daily",
 						"req": true,
 						"short": "External BYOK usage (in USD) for the current UTC day",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "byok_usage_monthly",
 						"req": true,
 						"short": "External BYOK usage (in USD) for current UTC month",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "byok_usage_weekly",
 						"req": true,
 						"short": "External BYOK usage (in USD) for the current UTC week (Monday-Sunday)",
@@ -349,6 +360,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "expires_at",
 						"short": "ISO 8601 UTC timestamp when the API key expires, or null if no expiration",
 						"type": []any{
@@ -396,6 +408,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"deprecated": true,
 						"name": "is_provisioning_key",
 						"req": true,
 						"short": "Whether this is a management key",
@@ -408,6 +421,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "limit",
 						"op": map[string]any{
 							"create": map[string]any{
@@ -440,6 +454,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "limit_remaining",
 						"req": true,
 						"short": "Remaining spending limit in USD",
@@ -495,6 +510,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"deprecated": true,
 						"name": "rate_limit",
 						"req": true,
 						"short": "Legacy rate limit information about a key.",
@@ -513,30 +529,35 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "usage",
 						"req": true,
 						"short": "Total OpenRouter credit usage (in USD) for the API key",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "usage_daily",
 						"req": true,
 						"short": "OpenRouter credit usage (in USD) for the current UTC day",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "usage_monthly",
 						"req": true,
 						"short": "OpenRouter credit usage (in USD) for the current UTC month",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "usage_weekly",
 						"req": true,
 						"short": "OpenRouter credit usage (in USD) for the current UTC week (Monday-Sunday)",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "workspace_id",
 						"op": map[string]any{
 							"create": map[string]any{
@@ -547,6 +568,10 @@ func MakeConfig() map[string]any {
 						"short": "The workspace ID this API key belongs to.",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "api_key",
 				"op": map[string]any{
@@ -580,8 +605,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/keys",
-								"parts": []any{
-									"keys",
+								"segments": []any{
+									map[string]any{
+										"lit": "keys",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -593,6 +620,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"keys",
 								},
 							},
 						},
@@ -656,8 +686,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/keys",
-								"parts": []any{
-									"keys",
+								"segments": []any{
+									map[string]any{
+										"lit": "keys",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -672,6 +704,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"keys",
 								},
 							},
 						},
@@ -716,13 +751,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/keys/{hash}",
-								"parts": []any{
-									"keys",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"hash": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "keys",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -736,6 +775,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"keys",
+									"{id}",
 								},
 							},
 							map[string]any{
@@ -764,8 +807,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/key",
-								"parts": []any{
-									"key",
+								"segments": []any{
+									map[string]any{
+										"lit": "key",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -777,6 +822,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"key",
 								},
 							},
 						},
@@ -821,13 +869,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/keys/{hash}",
-								"parts": []any{
-									"keys",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"hash": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "keys",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -841,6 +893,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"keys",
+									"{id}",
 								},
 							},
 						},
@@ -885,13 +941,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "PATCH",
 								"orig": "/keys/{hash}",
-								"parts": []any{
-									"keys",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"hash": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "keys",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -905,6 +965,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"keys",
+									"{id}",
 								},
 							},
 						},
@@ -1036,9 +1100,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/datasets/app-rankings",
-								"parts": []any{
-									"datasets",
-									"app-rankings",
+								"segments": []any{
+									map[string]any{
+										"lit": "datasets",
+									},
+									map[string]any{
+										"lit": "app-rankings",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1057,6 +1125,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"datasets",
+									"app-rankings",
 								},
 							},
 						},
@@ -1077,6 +1149,7 @@ func MakeConfig() map[string]any {
 			"beta_analytics": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "double",
 						"name": "cachedAt",
 						"type": "`$NUMBER`",
 					},
@@ -1204,9 +1277,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/analytics/query",
-								"parts": []any{
-									"analytics",
-									"query",
+								"segments": []any{
+									map[string]any{
+										"lit": "analytics",
+									},
+									map[string]any{
+										"lit": "query",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1218,6 +1295,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"analytics",
+									"query",
 								},
 							},
 						},
@@ -1252,9 +1333,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/analytics/meta",
-								"parts": []any{
-									"analytics",
-									"meta",
+								"segments": []any{
+									map[string]any{
+										"lit": "analytics",
+									},
+									map[string]any{
+										"lit": "meta",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1266,6 +1351,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"analytics",
+									"meta",
 								},
 							},
 						},
@@ -1350,15 +1439,23 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/workspaces/{id}/members/add",
-								"parts": []any{
-									"workspaces",
-									"{workspace_id}",
-									"members",
-									"add",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"id": "workspace_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "workspace_id",
+									},
+									map[string]any{
+										"lit": "members",
+									},
+									map[string]any{
+										"lit": "add",
 									},
 								},
 								"select": map[string]any{
@@ -1372,6 +1469,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"workspaces",
+									"{workspace_id}",
+									"members",
+									"add",
 								},
 							},
 						},
@@ -1442,15 +1545,23 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/guardrails/{id}/assignments/keys",
-								"parts": []any{
-									"guardrails",
-									"{guardrail_id}",
-									"assignments",
-									"keys",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"id": "guardrail_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
+									map[string]any{
+										"var": "guardrail_id",
+									},
+									map[string]any{
+										"lit": "assignments",
+									},
+									map[string]any{
+										"lit": "keys",
 									},
 								},
 								"select": map[string]any{
@@ -1464,6 +1575,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"guardrails",
+									"{guardrail_id}",
+									"assignments",
+									"keys",
 								},
 							},
 						},
@@ -1534,15 +1651,23 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/guardrails/{id}/assignments/members",
-								"parts": []any{
-									"guardrails",
-									"{guardrail_id}",
-									"assignments",
-									"members",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"id": "guardrail_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
+									map[string]any{
+										"var": "guardrail_id",
+									},
+									map[string]any{
+										"lit": "assignments",
+									},
+									map[string]any{
+										"lit": "members",
 									},
 								},
 								"select": map[string]any{
@@ -1556,6 +1681,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"guardrails",
+									"{guardrail_id}",
+									"assignments",
+									"members",
 								},
 							},
 						},
@@ -1626,15 +1757,23 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/workspaces/{id}/members/remove",
-								"parts": []any{
-									"workspaces",
-									"{workspace_id}",
-									"members",
-									"remove",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"id": "workspace_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "workspace_id",
+									},
+									map[string]any{
+										"lit": "members",
+									},
+									map[string]any{
+										"lit": "remove",
 									},
 								},
 								"select": map[string]any{
@@ -1648,6 +1787,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"workspaces",
+									"{workspace_id}",
+									"members",
+									"remove",
 								},
 							},
 						},
@@ -1718,16 +1863,26 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/guardrails/{id}/assignments/keys/remove",
-								"parts": []any{
-									"guardrails",
-									"{guardrail_id}",
-									"assignments",
-									"keys",
-									"remove",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"id": "guardrail_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
+									map[string]any{
+										"var": "guardrail_id",
+									},
+									map[string]any{
+										"lit": "assignments",
+									},
+									map[string]any{
+										"lit": "keys",
+									},
+									map[string]any{
+										"lit": "remove",
 									},
 								},
 								"select": map[string]any{
@@ -1741,6 +1896,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"guardrails",
+									"{guardrail_id}",
+									"assignments",
+									"keys",
+									"remove",
 								},
 							},
 						},
@@ -1811,16 +1973,26 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/guardrails/{id}/assignments/members/remove",
-								"parts": []any{
-									"guardrails",
-									"{guardrail_id}",
-									"assignments",
-									"members",
-									"remove",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"id": "guardrail_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
+									map[string]any{
+										"var": "guardrail_id",
+									},
+									map[string]any{
+										"lit": "assignments",
+									},
+									map[string]any{
+										"lit": "members",
+									},
+									map[string]any{
+										"lit": "remove",
 									},
 								},
 								"select": map[string]any{
@@ -1834,6 +2006,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"guardrails",
+									"{guardrail_id}",
+									"assignments",
+									"members",
+									"remove",
 								},
 							},
 						},
@@ -1925,6 +2104,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"req": true,
 						"short": "Stable public identifier for this BYOK credential.",
@@ -1977,6 +2157,7 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "workspace_id",
 						"op": map[string]any{
 							"create": map[string]any{
@@ -1987,6 +2168,10 @@ func MakeConfig() map[string]any {
 						"short": "ID of the workspace this credential belongs to.",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "byok",
 				"op": map[string]any{
@@ -2020,8 +2205,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/byok",
-								"parts": []any{
-									"byok",
+								"segments": []any{
+									map[string]any{
+										"lit": "byok",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -2033,6 +2220,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"byok",
 								},
 							},
 						},
@@ -2103,8 +2293,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/byok",
-								"parts": []any{
-									"byok",
+								"segments": []any{
+									map[string]any{
+										"lit": "byok",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -2120,6 +2312,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"byok",
 								},
 							},
 						},
@@ -2164,9 +2359,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/byok/{id}",
-								"parts": []any{
-									"byok",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "byok",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -2179,6 +2378,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"byok",
+									"{id}",
 								},
 							},
 						},
@@ -2223,9 +2426,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/byok/{id}",
-								"parts": []any{
-									"byok",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "byok",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -2238,6 +2445,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"byok",
+									"{id}",
 								},
 							},
 						},
@@ -2278,6 +2489,7 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "frequency_penalty",
 						"short": "Frequency penalty (-2.0 to 2.0)",
 						"type": []any{
@@ -2365,6 +2577,7 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "min_p",
 						"short": "Minimum probability threshold relative to the most likely token.",
 						"type": []any{
@@ -2445,6 +2658,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "presence_penalty",
 						"short": "Presence penalty (-2.0 to 2.0)",
 						"type": []any{
@@ -2510,6 +2724,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "repetition_penalty",
 						"short": "Penalizes tokens based on how much they have already appeared in the text.",
 						"type": []any{
@@ -2526,6 +2741,7 @@ func MakeConfig() map[string]any {
 						"type": "`$ANY`",
 					},
 					map[string]any{
+						"deprecated": true,
 						"name": "route",
 						"short": "**DEPRECATED** Use providers.sort.partition instead.",
 						"type": []any{
@@ -2607,6 +2823,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "temperature",
 						"short": "Sampling temperature (0-2)",
 						"type": []any{
@@ -2638,6 +2855,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "top_a",
 						"short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
 						"type": []any{
@@ -2671,6 +2889,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "top_p",
 						"short": "Nucleus sampling parameter (0-1)",
 						"type": []any{
@@ -2697,6 +2916,10 @@ func MakeConfig() map[string]any {
 						"short": "Unique user identifier",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "chat_result",
 				"op": map[string]any{
@@ -2737,9 +2960,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/chat/completions",
-								"parts": []any{
-									"chat",
-									"completions",
+								"segments": []any{
+									map[string]any{
+										"lit": "chat",
+									},
+									map[string]any{
+										"lit": "completions",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -2752,6 +2979,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"chat",
+									"completions",
 								},
 							},
 						},
@@ -2874,6 +3105,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "sampling_rate",
 						"short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
 						"type": "`$NUMBER`",
@@ -2885,6 +3117,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "workspace_id",
 						"short": "Optional workspace ID.",
 						"type": "`$STRING`",
@@ -2922,9 +3155,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/observability/destinations",
-								"parts": []any{
-									"observability",
-									"destinations",
+								"segments": []any{
+									map[string]any{
+										"lit": "observability",
+									},
+									map[string]any{
+										"lit": "destinations",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -2936,6 +3173,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"observability",
+									"destinations",
 								},
 							},
 						},
@@ -2995,6 +3236,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "frequency_penalty",
 						"short": "Frequency penalty (-2.0 to 2.0)",
 						"type": []any{
@@ -3126,6 +3368,7 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "min_p",
 						"short": "Minimum probability threshold relative to the most likely token.",
 						"type": []any{
@@ -3201,6 +3444,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "presence_penalty",
 						"short": "Presence penalty (-2.0 to 2.0)",
 						"type": []any{
@@ -3287,6 +3531,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "repetition_penalty",
 						"short": "Penalizes tokens based on how much they have already appeared in the text.",
 						"type": []any{
@@ -3303,6 +3548,7 @@ func MakeConfig() map[string]any {
 						"type": "`$ANY`",
 					},
 					map[string]any{
+						"deprecated": true,
 						"name": "route",
 						"short": "**DEPRECATED** Use providers.sort.partition instead.",
 						"type": []any{
@@ -3403,6 +3649,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "temperature",
 						"short": "Sampling temperature (0-2)",
 						"type": []any{
@@ -3453,6 +3700,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "top_a",
 						"short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
 						"type": []any{
@@ -3486,6 +3734,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "top_p",
 						"short": "Nucleus sampling parameter (0-1)",
 						"type": []any{
@@ -3559,11 +3808,19 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/presets/{slug}/chat/completions",
-								"parts": []any{
-									"presets",
-									"{slug}",
-									"chat",
-									"completions",
+								"segments": []any{
+									map[string]any{
+										"lit": "presets",
+									},
+									map[string]any{
+										"var": "slug",
+									},
+									map[string]any{
+										"lit": "chat",
+									},
+									map[string]any{
+										"lit": "completions",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -3576,6 +3833,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"presets",
+									"{slug}",
+									"chat",
+									"completions",
 								},
 							},
 							map[string]any{
@@ -3614,10 +3877,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/presets/{slug}/messages",
-								"parts": []any{
-									"presets",
-									"{slug}",
-									"messages",
+								"segments": []any{
+									map[string]any{
+										"lit": "presets",
+									},
+									map[string]any{
+										"var": "slug",
+									},
+									map[string]any{
+										"lit": "messages",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -3630,6 +3899,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"presets",
+									"{slug}",
+									"messages",
 								},
 							},
 							map[string]any{
@@ -3668,10 +3942,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/presets/{slug}/responses",
-								"parts": []any{
-									"presets",
-									"{slug}",
-									"responses",
+								"segments": []any{
+									map[string]any{
+										"lit": "presets",
+									},
+									map[string]any{
+										"var": "slug",
+									},
+									map[string]any{
+										"lit": "responses",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -3684,6 +3964,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"presets",
+									"{slug}",
+									"responses",
 								},
 							},
 						},
@@ -3708,12 +3993,14 @@ func MakeConfig() map[string]any {
 			"credit": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "double",
 						"name": "total_credits",
 						"req": true,
 						"short": "Total credits purchased",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "total_usage",
 						"req": true,
 						"short": "Total credits used",
@@ -3752,9 +4039,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/credits/coinbase",
-								"parts": []any{
-									"credits",
-									"coinbase",
+								"segments": []any{
+									map[string]any{
+										"lit": "credits",
+									},
+									map[string]any{
+										"lit": "coinbase",
+									},
 								},
 								"select": map[string]any{
 									"$action": "coinbase",
@@ -3767,6 +4058,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"credits",
+									"coinbase",
 								},
 							},
 						},
@@ -3801,8 +4096,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/credits",
-								"parts": []any{
-									"credits",
+								"segments": []any{
+									map[string]any{
+										"lit": "credits",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -3814,6 +4111,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"credits",
 								},
 							},
 						},
@@ -3907,6 +4207,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "embedding",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -3939,8 +4243,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/embeddings",
-								"parts": []any{
-									"embeddings",
+								"segments": []any{
+									map[string]any{
+										"lit": "embeddings",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -3952,6 +4258,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"embeddings",
 								},
 							},
 						},
@@ -4202,6 +4511,7 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "uptime_last_1d",
 						"req": true,
 						"short": "Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100.",
@@ -4214,6 +4524,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "uptime_last_30m",
 						"req": true,
 						"type": []any{
@@ -4225,6 +4536,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "uptime_last_5m",
 						"req": true,
 						"short": "Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100.",
@@ -4236,6 +4548,10 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "endpoint",
 				"op": map[string]any{
@@ -4564,8 +4880,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/models",
-								"parts": []any{
-									"models",
+								"segments": []any{
+									map[string]any{
+										"lit": "models",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -4607,6 +4925,9 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"models",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{
@@ -4634,9 +4955,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/endpoints/zdr",
-								"parts": []any{
-									"endpoints",
-									"zdr",
+								"segments": []any{
+									map[string]any{
+										"lit": "endpoints",
+									},
+									map[string]any{
+										"lit": "zdr",
+									},
 								},
 								"select": map[string]any{
 									"$action": "zdr",
@@ -4649,6 +4974,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"endpoints",
+									"zdr",
 								},
 							},
 						},
@@ -4701,11 +5030,19 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/models/{author}/{slug}/endpoints",
-								"parts": []any{
-									"models",
-									"{author}",
-									"{slug}",
-									"endpoints",
+								"segments": []any{
+									map[string]any{
+										"lit": "models",
+									},
+									map[string]any{
+										"var": "author",
+									},
+									map[string]any{
+										"var": "slug",
+									},
+									map[string]any{
+										"lit": "endpoints",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -4719,6 +5056,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"models",
+									"{author}",
+									"{slug}",
+									"endpoints",
 								},
 							},
 						},
@@ -4778,6 +5121,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "file",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -4819,8 +5166,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/files",
-								"parts": []any{
-									"files",
+								"segments": []any{
+									map[string]any{
+										"lit": "files",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -4833,6 +5182,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"files",
 								},
 							},
 						},
@@ -4890,8 +5242,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/files",
-								"parts": []any{
-									"files",
+								"segments": []any{
+									map[string]any{
+										"lit": "files",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -4906,6 +5260,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"files",
 								},
 							},
 						},
@@ -4959,13 +5316,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/files/{file_id}",
-								"parts": []any{
-									"files",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"file_id": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "files",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -4980,6 +5341,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"files",
+									"{id}",
 								},
 							},
 							map[string]any{
@@ -5027,14 +5392,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/files/{file_id}/content",
-								"parts": []any{
-									"files",
-									"{id}",
-									"content",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"file_id": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "files",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "content",
 									},
 								},
 								"select": map[string]any{
@@ -5050,6 +5421,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"files",
+									"{id}",
+									"content",
 								},
 							},
 						},
@@ -5103,13 +5479,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/files/{file_id}",
-								"parts": []any{
-									"files",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"file_id": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "files",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -5124,6 +5504,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"files",
+									"{id}",
 								},
 							},
 						},
@@ -5160,6 +5544,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "cache_discount",
 						"req": true,
 						"short": "Discount applied due to caching",
@@ -5220,6 +5605,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "generation_time",
 						"req": true,
 						"short": "Time taken for generation in milliseconds",
@@ -5256,6 +5642,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "latency",
 						"req": true,
 						"short": "Total latency in milliseconds",
@@ -5274,6 +5661,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "moderation_latency",
 						"req": true,
 						"short": "Moderation latency in milliseconds",
@@ -5553,6 +5941,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "total_cost",
 						"req": true,
 						"short": "Total cost of the generation in USD",
@@ -5571,6 +5960,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "upstream_inference_cost",
 						"req": true,
 						"short": "Cost charged by the upstream provider",
@@ -5583,6 +5973,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "usage",
 						"req": true,
 						"short": "Usage amount in USD",
@@ -5612,6 +6003,10 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "generation",
 				"op": map[string]any{
@@ -5655,8 +6050,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/generation",
-								"parts": []any{
-									"generation",
+								"segments": []any{
+									map[string]any{
+										"lit": "generation",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -5669,6 +6066,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"generation",
 								},
 							},
 						},
@@ -5740,9 +6140,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/generation/content",
-								"parts": []any{
-									"generation",
-									"content",
+								"segments": []any{
+									map[string]any{
+										"lit": "generation",
+									},
+									map[string]any{
+										"lit": "content",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -5755,6 +6159,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"generation",
+									"content",
 								},
 							},
 						},
@@ -5828,6 +6236,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"deprecated": true,
 						"name": "enforce_zdr",
 						"short": "Deprecated.",
 						"type": []any{
@@ -5894,6 +6303,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"req": true,
 						"short": "Unique identifier for the guardrail",
@@ -5922,6 +6332,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "limit_usd",
 						"short": "Spending limit in USD",
 						"type": []any{
@@ -5961,6 +6372,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "workspace_id",
 						"op": map[string]any{
 							"create": map[string]any{
@@ -5971,6 +6383,10 @@ func MakeConfig() map[string]any {
 						"short": "The workspace ID this guardrail belongs to.",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "guardrail",
 				"op": map[string]any{
@@ -6004,8 +6420,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/guardrails",
-								"parts": []any{
-									"guardrails",
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -6017,6 +6435,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"guardrails",
 								},
 							},
 						},
@@ -6080,8 +6501,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/guardrails",
-								"parts": []any{
-									"guardrails",
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -6096,6 +6519,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"guardrails",
 								},
 							},
 						},
@@ -6140,9 +6566,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/guardrails/{id}",
-								"parts": []any{
-									"guardrails",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -6155,6 +6585,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"guardrails",
+									"{id}",
 								},
 							},
 						},
@@ -6199,9 +6633,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/guardrails/{id}",
-								"parts": []any{
-									"guardrails",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -6214,6 +6652,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"guardrails",
+									"{id}",
 								},
 							},
 						},
@@ -6358,8 +6800,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/images",
-								"parts": []any{
-									"images",
+								"segments": []any{
+									map[string]any{
+										"lit": "images",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -6371,6 +6815,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"images",
 								},
 							},
 						},
@@ -6480,16 +6927,26 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/images/models/{author}/{slug}/endpoints",
-								"parts": []any{
-									"images",
-									"models",
-									"{model_id}",
-									"{slug}",
-									"endpoints",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"author": "model_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "images",
+									},
+									map[string]any{
+										"lit": "models",
+									},
+									map[string]any{
+										"var": "model_id",
+									},
+									map[string]any{
+										"var": "slug",
+									},
+									map[string]any{
+										"lit": "endpoints",
 									},
 								},
 								"select": map[string]any{
@@ -6504,6 +6961,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.endpoints`",
+								},
+								"parts": []any{
+									"images",
+									"models",
+									"{model_id}",
+									"{slug}",
+									"endpoints",
 								},
 							},
 						},
@@ -6566,6 +7030,10 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "image_models_list",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -6598,9 +7066,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/images/models",
-								"parts": []any{
-									"images",
-									"models",
+								"segments": []any{
+									map[string]any{
+										"lit": "images",
+									},
+									map[string]any{
+										"lit": "models",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -6612,6 +7084,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"images",
+									"models",
 								},
 							},
 						},
@@ -6670,12 +7146,14 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "guardrail_id",
 						"req": true,
 						"short": "ID of the guardrail",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"req": true,
 						"short": "Unique identifier for the assignment",
@@ -6699,6 +7177,10 @@ func MakeConfig() map[string]any {
 						"short": "Name of the API key",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "list_key_assignment",
 				"op": map[string]any{
@@ -6764,15 +7246,23 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/guardrails/{id}/assignments/keys",
-								"parts": []any{
-									"guardrails",
-									"{guardrail_id}",
-									"assignments",
-									"keys",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"id": "guardrail_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
+									map[string]any{
+										"var": "guardrail_id",
+									},
+									map[string]any{
+										"lit": "assignments",
+									},
+									map[string]any{
+										"lit": "keys",
 									},
 								},
 								"select": map[string]any{
@@ -6788,6 +7278,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"guardrails",
+									"{guardrail_id}",
+									"assignments",
+									"keys",
 								},
 							},
 							map[string]any{
@@ -6838,10 +7334,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/guardrails/assignments/keys",
-								"parts": []any{
-									"guardrails",
-									"assignments",
-									"keys",
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
+									map[string]any{
+										"lit": "assignments",
+									},
+									map[string]any{
+										"lit": "keys",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -6855,6 +7357,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"guardrails",
+									"assignments",
+									"keys",
 								},
 							},
 						},
@@ -6889,12 +7396,14 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "guardrail_id",
 						"req": true,
 						"short": "ID of the guardrail",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"req": true,
 						"short": "Unique identifier for the assignment",
@@ -6912,6 +7421,10 @@ func MakeConfig() map[string]any {
 						"short": "Clerk user ID of the assigned member",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "list_member_assignment",
 				"op": map[string]any{
@@ -6977,15 +7490,23 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/guardrails/{id}/assignments/members",
-								"parts": []any{
-									"guardrails",
-									"{guardrail_id}",
-									"assignments",
-									"members",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"id": "guardrail_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
+									map[string]any{
+										"var": "guardrail_id",
+									},
+									map[string]any{
+										"lit": "assignments",
+									},
+									map[string]any{
+										"lit": "members",
 									},
 								},
 								"select": map[string]any{
@@ -7001,6 +7522,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"guardrails",
+									"{guardrail_id}",
+									"assignments",
+									"members",
 								},
 							},
 							map[string]any{
@@ -7051,10 +7578,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/guardrails/assignments/members",
-								"parts": []any{
-									"guardrails",
-									"assignments",
-									"members",
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
+									map[string]any{
+										"lit": "assignments",
+									},
+									map[string]any{
+										"lit": "members",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -7068,6 +7601,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"guardrails",
+									"assignments",
+									"members",
 								},
 							},
 						},
@@ -7162,9 +7700,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/observability/destinations",
-								"parts": []any{
-									"observability",
-									"destinations",
+								"segments": []any{
+									map[string]any{
+										"lit": "observability",
+									},
+									map[string]any{
+										"lit": "destinations",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -7179,6 +7721,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"observability",
+									"destinations",
 								},
 							},
 						},
@@ -7245,6 +7791,10 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "list_preset_version",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -7309,10 +7859,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/presets/{slug}/versions",
-								"parts": []any{
-									"presets",
-									"{slug}",
-									"versions",
+								"segments": []any{
+									map[string]any{
+										"lit": "presets",
+									},
+									map[string]any{
+										"var": "slug",
+									},
+									map[string]any{
+										"lit": "versions",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -7327,6 +7883,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"presets",
+									"{slug}",
+									"versions",
 								},
 							},
 						},
@@ -7357,12 +7918,14 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"req": true,
 						"short": "Unique identifier for the budget",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "limit_usd",
 						"req": true,
 						"short": "Spending limit in USD for this interval",
@@ -7387,11 +7950,16 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "workspace_id",
 						"req": true,
 						"short": "ID of the workspace the budget belongs to",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "list_workspace_budget",
 				"op": map[string]any{
@@ -7435,14 +8003,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/workspaces/{id}/budgets",
-								"parts": []any{
-									"workspaces",
-									"{workspace_id}",
-									"budgets",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"id": "workspace_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "workspace_id",
+									},
+									map[string]any{
+										"lit": "budgets",
 									},
 								},
 								"select": map[string]any{
@@ -7456,6 +8030,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"workspaces",
+									"{workspace_id}",
+									"budgets",
 								},
 							},
 						},
@@ -7478,6 +8057,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"req": true,
 						"short": "Unique identifier for the workspace membership",
@@ -7496,11 +8076,16 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "workspace_id",
 						"req": true,
 						"short": "ID of the workspace",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "list_workspace_member",
 				"op": map[string]any{
@@ -7566,14 +8151,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/workspaces/{id}/members",
-								"parts": []any{
-									"workspaces",
-									"{workspace_id}",
-									"members",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"id": "workspace_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "workspace_id",
+									},
+									map[string]any{
+										"lit": "members",
 									},
 								},
 								"select": map[string]any{
@@ -7589,6 +8180,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"workspaces",
+									"{workspace_id}",
+									"members",
 								},
 							},
 						},
@@ -7713,6 +8309,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"deprecated": true,
 						"name": "route",
 						"short": "**DEPRECATED** Use providers.sort.partition instead.",
 						"type": []any{
@@ -7759,6 +8356,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "temperature",
 						"type": "`$NUMBER`",
 					},
@@ -7794,6 +8392,7 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "top_p",
 						"type": "`$NUMBER`",
 					},
@@ -7847,8 +8446,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/messages",
-								"parts": []any{
-									"messages",
+								"segments": []any{
+									map[string]any{
+										"lit": "messages",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -7861,6 +8462,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"messages",
 								},
 							},
 						},
@@ -8033,6 +8637,15 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+					"parts": []any{
+						"author",
+						"slug",
+					},
+					"sep": "/",
+				},
 				"name": "model",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -8087,9 +8700,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/embeddings/models",
-								"parts": []any{
-									"embeddings",
-									"models",
+								"segments": []any{
+									map[string]any{
+										"lit": "embeddings",
+									},
+									map[string]any{
+										"lit": "models",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -8103,6 +8720,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"embeddings",
+									"models",
 								},
 							},
 						},
@@ -8155,10 +8776,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/model/{author}/{slug}",
-								"parts": []any{
-									"model",
-									"{author}",
-									"{slug}",
+								"segments": []any{
+									map[string]any{
+										"lit": "model",
+									},
+									map[string]any{
+										"var": "author",
+									},
+									map[string]any{
+										"var": "slug",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -8172,6 +8799,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"model",
+									"{author}",
+									"{slug}",
 								},
 							},
 						},
@@ -8235,9 +8867,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/models/count",
-								"parts": []any{
-									"models",
-									"count",
+								"segments": []any{
+									map[string]any{
+										"lit": "models",
+									},
+									map[string]any{
+										"lit": "count",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -8250,6 +8886,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"models",
+									"count",
 								},
 							},
 						},
@@ -8414,6 +9054,10 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "models_list",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -8468,9 +9112,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/models/user",
-								"parts": []any{
-									"models",
-									"user",
+								"segments": []any{
+									map[string]any{
+										"lit": "models",
+									},
+									map[string]any{
+										"lit": "user",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -8484,6 +9132,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"models",
+									"user",
 								},
 							},
 						},
@@ -8502,6 +9154,7 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "callback_url",
 						"req": true,
 						"short": "The callback URL to redirect to after authorization.",
@@ -8541,6 +9194,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "expires_at",
 						"short": "Optional expiration time for the API key to be created",
 						"type": []any{
@@ -8569,6 +9223,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "limit",
 						"short": "Credit limit for the API key to be created",
 						"type": "`$NUMBER`",
@@ -8601,10 +9256,15 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "workspace_id",
 						"short": "Optional workspace ID to associate the API key with",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "o_auth",
 				"op": map[string]any{
@@ -8638,9 +9298,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/keys",
-								"parts": []any{
-									"auth",
-									"keys",
+								"segments": []any{
+									map[string]any{
+										"lit": "auth",
+									},
+									map[string]any{
+										"lit": "keys",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -8652,6 +9316,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"auth",
+									"keys",
 								},
 							},
 							map[string]any{
@@ -8680,10 +9348,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/keys/code",
-								"parts": []any{
-									"auth",
-									"keys",
-									"code",
+								"segments": []any{
+									map[string]any{
+										"lit": "auth",
+									},
+									map[string]any{
+										"lit": "keys",
+									},
+									map[string]any{
+										"lit": "code",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -8695,6 +9369,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"auth",
+									"keys",
+									"code",
 								},
 							},
 						},
@@ -8714,6 +9393,10 @@ func MakeConfig() map[string]any {
 						"name": "id",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "observability_destination",
 				"op": map[string]any{
@@ -8757,10 +9440,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/observability/destinations/{id}",
-								"parts": []any{
-									"observability",
-									"destinations",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "observability",
+									},
+									map[string]any{
+										"lit": "destinations",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -8773,6 +9462,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"observability",
+									"destinations",
+									"{id}",
 								},
 							},
 						},
@@ -8817,10 +9511,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/observability/destinations/{id}",
-								"parts": []any{
-									"observability",
-									"destinations",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "observability",
+									},
+									map[string]any{
+										"lit": "destinations",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -8833,6 +9533,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"observability",
+									"destinations",
+									"{id}",
 								},
 							},
 						},
@@ -8866,6 +9571,7 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "frequency_penalty",
 						"type": []any{
 							"`$ONE`",
@@ -8980,6 +9686,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "presence_penalty",
 						"type": []any{
 							"`$ONE`",
@@ -9054,6 +9761,7 @@ func MakeConfig() map[string]any {
 						"type": "`$ANY`",
 					},
 					map[string]any{
+						"deprecated": true,
 						"name": "route",
 						"short": "**DEPRECATED** Use providers.sort.partition instead.",
 						"type": []any{
@@ -9103,6 +9811,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "temperature",
 						"type": []any{
 							"`$ONE`",
@@ -9155,6 +9864,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "top_p",
 						"type": []any{
 							"`$ONE`",
@@ -9224,8 +9934,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/responses",
-								"parts": []any{
-									"responses",
+								"segments": []any{
+									map[string]any{
+										"lit": "responses",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -9238,6 +9950,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"responses",
 								},
 							},
 						},
@@ -9291,6 +10006,10 @@ func MakeConfig() map[string]any {
 						"short": "Role of the member in the organization",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "organization",
 				"op": map[string]any{
@@ -9346,9 +10065,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/organization/members",
-								"parts": []any{
-									"organization",
-									"members",
+								"segments": []any{
+									map[string]any{
+										"lit": "organization",
+									},
+									map[string]any{
+										"lit": "members",
+									},
 								},
 								"select": map[string]any{
 									"$action": "member",
@@ -9363,6 +10086,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"organization",
+									"members",
 								},
 							},
 						},
@@ -9473,6 +10200,10 @@ func MakeConfig() map[string]any {
 						},
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "preset",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -9527,8 +10258,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/presets",
-								"parts": []any{
-									"presets",
+								"segments": []any{
+									map[string]any{
+										"lit": "presets",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -9542,6 +10275,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"presets",
 								},
 							},
 						},
@@ -9586,13 +10322,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/presets/{slug}",
-								"parts": []any{
-									"presets",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"slug": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "presets",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -9606,6 +10346,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"presets",
+									"{id}",
 								},
 							},
 						},
@@ -9668,6 +10412,10 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "preset_version",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -9718,15 +10466,23 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/presets/{slug}/versions/{version}",
-								"parts": []any{
-									"presets",
-									"{slug}",
-									"versions",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"version": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "presets",
+									},
+									map[string]any{
+										"var": "slug",
+									},
+									map[string]any{
+										"lit": "versions",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -9741,6 +10497,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"presets",
+									"{slug}",
+									"versions",
+									"{id}",
 								},
 							},
 						},
@@ -9857,8 +10619,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/providers",
-								"parts": []any{
-									"providers",
+								"segments": []any{
+									map[string]any{
+										"lit": "providers",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -9870,6 +10634,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"providers",
 								},
 							},
 						},
@@ -9991,9 +10758,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/datasets/rankings-daily",
-								"parts": []any{
-									"datasets",
-									"rankings-daily",
+								"segments": []any{
+									map[string]any{
+										"lit": "datasets",
+									},
+									map[string]any{
+										"lit": "rankings-daily",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -10012,6 +10783,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"datasets",
+									"rankings-daily",
 								},
 							},
 						},
@@ -10088,6 +10863,10 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "rerank",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -10120,8 +10899,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/rerank",
-								"parts": []any{
-									"rerank",
+								"segments": []any{
+									map[string]any{
+										"lit": "rerank",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -10133,6 +10914,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"rerank",
 								},
 							},
 						},
@@ -10161,6 +10945,7 @@ func MakeConfig() map[string]any {
 			"stt": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "double",
 						"name": "duration",
 						"short": "Duration of the input audio in seconds, present when response_format is verbose_json",
 						"type": "`$NUMBER`",
@@ -10203,6 +10988,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "temperature",
 						"short": "Sampling temperature for transcription",
 						"type": "`$NUMBER`",
@@ -10261,9 +11047,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/audio/transcriptions",
-								"parts": []any{
-									"audio",
-									"transcriptions",
+								"segments": []any{
+									map[string]any{
+										"lit": "audio",
+									},
+									map[string]any{
+										"lit": "transcriptions",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -10275,6 +11065,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"audio",
+									"transcriptions",
 								},
 							},
 						},
@@ -10342,9 +11136,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/generation/feedback",
-								"parts": []any{
-									"generation",
-									"feedback",
+								"segments": []any{
+									map[string]any{
+										"lit": "generation",
+									},
+									map[string]any{
+										"lit": "feedback",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -10356,6 +11154,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"generation",
+									"feedback",
 								},
 							},
 						},
@@ -10433,9 +11235,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/classifications/task",
-								"parts": []any{
-									"classifications",
-									"task",
+								"segments": []any{
+									map[string]any{
+										"lit": "classifications",
+									},
+									map[string]any{
+										"lit": "task",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -10448,6 +11254,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"classifications",
+									"task",
 								},
 							},
 						},
@@ -10490,6 +11300,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "speed",
 						"short": "Playback speed multiplier.",
 						"type": "`$NUMBER`",
@@ -10533,9 +11344,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/audio/speech",
-								"parts": []any{
-									"audio",
-									"speech",
+								"segments": []any{
+									map[string]any{
+										"lit": "audio",
+									},
+									map[string]any{
+										"lit": "speech",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -10547,6 +11362,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"audio",
+									"speech",
 								},
 							},
 						},
@@ -10638,8 +11457,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/benchmarks",
-								"parts": []any{
-									"benchmarks",
+								"segments": []any{
+									map[string]any{
+										"lit": "benchmarks",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -10656,6 +11477,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"benchmarks",
 								},
 							},
 						},
@@ -10720,6 +11544,10 @@ func MakeConfig() map[string]any {
 						},
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "update_byok_key",
 				"op": map[string]any{
 					"update": map[string]any{
@@ -10762,9 +11590,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "PATCH",
 								"orig": "/byok/{id}",
-								"parts": []any{
-									"byok",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "byok",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -10777,6 +11609,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"byok",
+									"{id}",
 								},
 							},
 						},
@@ -10844,6 +11680,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"deprecated": true,
 						"name": "enforce_zdr",
 						"short": "Deprecated.",
 						"type": []any{
@@ -10936,6 +11773,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "limit_usd",
 						"short": "New spending limit in USD",
 						"type": []any{
@@ -10962,6 +11800,10 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "update_guardrail",
 				"op": map[string]any{
@@ -11005,9 +11847,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "PATCH",
 								"orig": "/guardrails/{id}",
-								"parts": []any{
-									"guardrails",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -11020,6 +11866,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"guardrails",
+									"{id}",
 								},
 							},
 						},
@@ -11076,10 +11926,15 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "sampling_rate",
 						"short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
 						"type": "`$NUMBER`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "update_observability_destination",
 				"op": map[string]any{
@@ -11123,10 +11978,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "PATCH",
 								"orig": "/observability/destinations/{id}",
-								"parts": []any{
-									"observability",
-									"destinations",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "observability",
+									},
+									map[string]any{
+										"lit": "destinations",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -11139,6 +12000,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"observability",
+									"destinations",
+									"{id}",
 								},
 							},
 						},
@@ -11261,6 +12127,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"req": true,
 						"short": "Unique identifier for the workspace",
@@ -11290,6 +12157,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "io_logging_sampling_rate",
 						"op": map[string]any{
 							"list": map[string]any{
@@ -11368,6 +12236,10 @@ func MakeConfig() map[string]any {
 						},
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "update_workspace",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -11400,8 +12272,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/workspaces",
-								"parts": []any{
-									"workspaces",
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -11413,6 +12287,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"workspaces",
 								},
 							},
 						},
@@ -11469,8 +12346,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/workspaces",
-								"parts": []any{
-									"workspaces",
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -11484,6 +12363,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"workspaces",
 								},
 							},
 						},
@@ -11528,9 +12410,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "PATCH",
 								"orig": "/workspaces/{id}",
-								"parts": []any{
-									"workspaces",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -11543,6 +12429,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"workspaces",
+									"{id}",
 								},
 							},
 						},
@@ -11559,11 +12449,16 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "limit_usd",
 						"req": true,
 						"short": "Spending limit in USD.",
 						"type": "`$NUMBER`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "upsert_workspace_budget",
 				"op": map[string]any{
@@ -11615,16 +12510,24 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "PUT",
 								"orig": "/workspaces/{id}/budgets/{interval}",
-								"parts": []any{
-									"workspaces",
-									"{workspace_id}",
-									"budgets",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"id": "workspace_id",
 										"interval": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "workspace_id",
+									},
+									map[string]any{
+										"lit": "budgets",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -11639,6 +12542,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"workspaces",
+									"{workspace_id}",
+									"budgets",
+									"{id}",
 								},
 							},
 						},
@@ -11680,6 +12589,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "callback_url",
 						"short": "URL to receive a webhook notification when the video generation job completes.",
 						"type": "`$STRING`",
@@ -11768,6 +12678,10 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "video",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -11800,8 +12714,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/videos",
-								"parts": []any{
-									"videos",
+								"segments": []any{
+									map[string]any{
+										"lit": "videos",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -11813,6 +12729,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"videos",
 								},
 							},
 						},
@@ -11857,13 +12776,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/videos/{jobId}",
-								"parts": []any{
-									"videos",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"jobId": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "videos",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -11877,6 +12800,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"videos",
+									"{id}",
 								},
 							},
 						},
@@ -11892,6 +12819,10 @@ func MakeConfig() map[string]any {
 						"name": "id",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "video_generation",
 				"op": map[string]any{
@@ -11950,14 +12881,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/videos/{jobId}/content",
-								"parts": []any{
-									"videos",
-									"{id}",
-									"content",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"jobId": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "videos",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "content",
 									},
 								},
 								"select": map[string]any{
@@ -11973,6 +12910,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"videos",
+									"{id}",
+									"content",
 								},
 							},
 						},
@@ -12126,6 +13068,10 @@ func MakeConfig() map[string]any {
 						},
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "video_models_list",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -12158,9 +13104,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/videos/models",
-								"parts": []any{
-									"videos",
-									"models",
+								"segments": []any{
+									map[string]any{
+										"lit": "videos",
+									},
+									map[string]any{
+										"lit": "models",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -12172,6 +13122,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"videos",
+									"models",
 								},
 							},
 						},
@@ -12250,6 +13204,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"req": true,
 						"short": "Unique identifier for the workspace",
@@ -12268,6 +13223,7 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"format": "double",
 						"name": "io_logging_sampling_rate",
 						"req": true,
 						"short": "Sampling rate for I/O logging (0.0001-1).",
@@ -12316,6 +13272,10 @@ func MakeConfig() map[string]any {
 						},
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "workspace",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -12358,9 +13318,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/workspaces/{id}",
-								"parts": []any{
-									"workspaces",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -12373,6 +13337,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"workspaces",
+									"{id}",
 								},
 							},
 						},
@@ -12417,9 +13385,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/workspaces/{id}",
-								"parts": []any{
-									"workspaces",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -12432,6 +13404,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"workspaces",
+									"{id}",
 								},
 							},
 						},
@@ -12447,6 +13423,10 @@ func MakeConfig() map[string]any {
 						"name": "id",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "workspace_budget",
 				"op": map[string]any{
@@ -12498,16 +13478,24 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/workspaces/{id}/budgets/{interval}",
-								"parts": []any{
-									"workspaces",
-									"{workspace_id}",
-									"budgets",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"id": "workspace_id",
 										"interval": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "workspace_id",
+									},
+									map[string]any{
+										"lit": "budgets",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -12522,6 +13510,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"workspaces",
+									"{workspace_id}",
+									"budgets",
+									"{id}",
 								},
 							},
 						},
@@ -12545,6 +13539,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

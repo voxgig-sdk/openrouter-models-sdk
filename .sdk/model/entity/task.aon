@@ -74,9 +74,13 @@ main: kit: entity: task: {
           }
           method: "GET"
           orig: "/classifications/task"
-          parts: [
-            "classifications"
-            "task"
+          segments: [
+            {
+              lit: "classifications"
+            }
+            {
+              lit: "task"
+            }
           ]
           select: {
             exist: [

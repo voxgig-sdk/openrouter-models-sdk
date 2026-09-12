@@ -24,12 +24,14 @@ main: kit: entity: list_member_assignment: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "guardrail_id"
       req: true
       short: "ID of the guardrail"
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "id"
       req: true
       short: "Unique identifier for the assignment"
@@ -121,17 +123,25 @@ main: kit: entity: list_member_assignment: {
           }
           method: "GET"
           orig: "/guardrails/{id}/assignments/members"
-          parts: [
-            "guardrails"
-            "{guardrail_id}"
-            "assignments"
-            "members"
-          ]
           rename: {
             param: {
               id: "guardrail_id"
             }
           }
+          segments: [
+            {
+              lit: "guardrails"
+            }
+            {
+              var: "guardrail_id"
+            }
+            {
+              lit: "assignments"
+            }
+            {
+              lit: "members"
+            }
+          ]
           select: {
             exist: [
               "guardrail_id"
@@ -199,10 +209,16 @@ main: kit: entity: list_member_assignment: {
           }
           method: "GET"
           orig: "/guardrails/assignments/members"
-          parts: [
-            "guardrails"
-            "assignments"
-            "members"
+          segments: [
+            {
+              lit: "guardrails"
+            }
+            {
+              lit: "assignments"
+            }
+            {
+              lit: "members"
+            }
           ]
           select: {
             exist: [

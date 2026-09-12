@@ -12,6 +12,7 @@ main: kit: entity: o_auth: {
       type: "`$INTEGER`"
     }
     {
+      format: "uri"
       name: "callback_url"
       req: true
       short: "The callback URL to redirect to after authorization."
@@ -54,6 +55,7 @@ main: kit: entity: o_auth: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "expires_at"
       req: false
       short: "Optional expiration time for the API key to be created"
@@ -84,6 +86,7 @@ main: kit: entity: o_auth: {
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "limit"
       req: false
       short: "Credit limit for the API key to be created"
@@ -120,6 +123,7 @@ main: kit: entity: o_auth: {
       ]
     }
     {
+      format: "uuid"
       name: "workspace_id"
       req: false
       short: "Optional workspace ID to associate the API key with"
@@ -165,9 +169,13 @@ main: kit: entity: o_auth: {
           }
           method: "POST"
           orig: "/auth/keys"
-          parts: [
-            "auth"
-            "keys"
+          segments: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "keys"
+            }
           ]
           select: {
             exist: [
@@ -209,10 +217,16 @@ main: kit: entity: o_auth: {
           }
           method: "POST"
           orig: "/auth/keys/code"
-          parts: [
-            "auth"
-            "keys"
-            "code"
+          segments: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "keys"
+            }
+            {
+              lit: "code"
+            }
           ]
           select: {
             exist: [

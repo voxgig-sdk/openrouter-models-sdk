@@ -90,8 +90,10 @@ main: kit: entity: file: {
           }
           method: "POST"
           orig: "/files"
-          parts: [
-            "files"
+          segments: [
+            {
+              lit: "files"
+            }
           ]
           select: {
             exist: [
@@ -165,8 +167,10 @@ main: kit: entity: file: {
           }
           method: "GET"
           orig: "/files"
-          parts: [
-            "files"
+          segments: [
+            {
+              lit: "files"
+            }
           ]
           select: {
             exist: [
@@ -236,15 +240,19 @@ main: kit: entity: file: {
           }
           method: "GET"
           orig: "/files/{file_id}"
-          parts: [
-            "files"
-            "{id}"
-          ]
           rename: {
             param: {
               file_id: "id"
             }
           }
+          segments: [
+            {
+              lit: "files"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "http_referer"
@@ -307,16 +315,22 @@ main: kit: entity: file: {
           }
           method: "GET"
           orig: "/files/{file_id}/content"
-          parts: [
-            "files"
-            "{id}"
-            "content"
-          ]
           rename: {
             param: {
               file_id: "id"
             }
           }
+          segments: [
+            {
+              lit: "files"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "content"
+            }
+          ]
           select: {
             "$action": "content"
             exist: [
@@ -385,15 +399,19 @@ main: kit: entity: file: {
           }
           method: "DELETE"
           orig: "/files/{file_id}"
-          parts: [
-            "files"
-            "{id}"
-          ]
           rename: {
             param: {
               file_id: "id"
             }
           }
+          segments: [
+            {
+              lit: "files"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "http_referer"

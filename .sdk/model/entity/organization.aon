@@ -111,9 +111,13 @@ main: kit: entity: organization: {
           }
           method: "GET"
           orig: "/organization/members"
-          parts: [
-            "organization"
-            "members"
+          segments: [
+            {
+              lit: "organization"
+            }
+            {
+              lit: "members"
+            }
           ]
           select: {
             "$action": "member"

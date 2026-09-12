@@ -98,8 +98,10 @@ main: kit: entity: rerank: {
           }
           method: "POST"
           orig: "/rerank"
-          parts: [
-            "rerank"
+          segments: [
+            {
+              lit: "rerank"
+            }
           ]
           select: {
             exist: [

@@ -29,6 +29,7 @@ main: kit: entity: open_responses_result: {
       type: "`$OBJECT`"
     }
     {
+      format: "double"
       name: "frequency_penalty"
       req: false
       type: [
@@ -156,6 +157,7 @@ main: kit: entity: open_responses_result: {
       }
     }
     {
+      format: "double"
       name: "presence_penalty"
       req: false
       type: [
@@ -235,6 +237,7 @@ main: kit: entity: open_responses_result: {
       type: "`$ANY`"
     }
     {
+      deprecated: true
       name: "route"
       req: false
       short: "**DEPRECATED** Use providers.sort.partition instead."
@@ -291,6 +294,7 @@ main: kit: entity: open_responses_result: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "double"
       name: "temperature"
       req: false
       type: [
@@ -349,6 +353,7 @@ main: kit: entity: open_responses_result: {
       ]
     }
     {
+      format: "double"
       name: "top_p"
       req: false
       type: [
@@ -425,8 +430,10 @@ main: kit: entity: open_responses_result: {
           }
           method: "POST"
           orig: "/responses"
-          parts: [
-            "responses"
+          segments: [
+            {
+              lit: "responses"
+            }
           ]
           select: {
             exist: [

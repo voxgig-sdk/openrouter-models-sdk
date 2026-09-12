@@ -34,6 +34,7 @@
           "fields": [
             {
               "active": true,
+              "format": "double",
               "name": "byok_usage_inference",
               "req": true,
               "short": "BYOK inference cost in USD (external credits spent)",
@@ -104,6 +105,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "usage",
               "req": true,
               "short": "Total cost in USD (OpenRouter credits spent)",
@@ -178,8 +180,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/activity",
-                  "parts": [
-                    "activity"
+                  "segments": [
+                    {
+                      "lit": "activity"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -227,6 +231,7 @@
           "fields": [
             {
               "active": true,
+              "format": "double",
               "name": "byok_usage",
               "req": true,
               "short": "Total external BYOK usage (in USD) for the API key",
@@ -234,6 +239,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "byok_usage_daily",
               "req": true,
               "short": "External BYOK usage (in USD) for the current UTC day",
@@ -241,6 +247,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "byok_usage_monthly",
               "req": true,
               "short": "External BYOK usage (in USD) for current UTC month",
@@ -248,6 +255,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "byok_usage_weekly",
               "req": true,
               "short": "External BYOK usage (in USD) for the current UTC week (Monday-Sunday)",
@@ -300,6 +308,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "expires_at",
               "req": false,
               "short": "ISO 8601 UTC timestamp when the API key expires, or null if no expiration",
@@ -357,6 +366,7 @@
             },
             {
               "active": true,
+              "deprecated": true,
               "name": "is_provisioning_key",
               "req": true,
               "short": "Whether this is a management key",
@@ -371,6 +381,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "limit",
               "op": {
                 "create": {
@@ -406,6 +417,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "limit_remaining",
               "req": true,
               "short": "Remaining spending limit in USD",
@@ -467,6 +479,7 @@
             },
             {
               "active": true,
+              "deprecated": true,
               "name": "rate_limit",
               "req": true,
               "short": "Legacy rate limit information about a key.",
@@ -487,6 +500,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "usage",
               "req": true,
               "short": "Total OpenRouter credit usage (in USD) for the API key",
@@ -494,6 +508,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "usage_daily",
               "req": true,
               "short": "OpenRouter credit usage (in USD) for the current UTC day",
@@ -501,6 +516,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "usage_monthly",
               "req": true,
               "short": "OpenRouter credit usage (in USD) for the current UTC month",
@@ -508,6 +524,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "usage_weekly",
               "req": true,
               "short": "OpenRouter credit usage (in USD) for the current UTC week (Monday-Sunday)",
@@ -515,6 +532,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "workspace_id",
               "op": {
                 "create": {
@@ -570,8 +588,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/keys",
-                  "parts": [
-                    "keys"
+                  "segments": [
+                    {
+                      "lit": "keys"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -659,8 +679,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/keys",
-                  "parts": [
-                    "keys"
+                  "segments": [
+                    {
+                      "lit": "keys"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -727,15 +749,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/keys/{hash}",
-                  "parts": [
-                    "keys",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "hash": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "keys"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -782,8 +808,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/key",
-                  "parts": [
-                    "key"
+                  "segments": [
+                    {
+                      "lit": "key"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -847,15 +875,19 @@
                   "kind": "http",
                   "method": "DELETE",
                   "orig": "/keys/{hash}",
-                  "parts": [
-                    "keys",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "hash": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "keys"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -919,15 +951,19 @@
                   "kind": "http",
                   "method": "PATCH",
                   "orig": "/keys/{hash}",
-                  "parts": [
-                    "keys",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "hash": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "keys"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -1100,9 +1136,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/datasets/app-rankings",
-                  "parts": [
-                    "datasets",
-                    "app-rankings"
+                  "segments": [
+                    {
+                      "lit": "datasets"
+                    },
+                    {
+                      "lit": "app-rankings"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1150,6 +1190,7 @@
           "fields": [
             {
               "active": true,
+              "format": "double",
               "name": "cachedAt",
               "req": false,
               "type": "`$NUMBER`"
@@ -1306,9 +1347,13 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/analytics/query",
-                  "parts": [
-                    "analytics",
-                    "query"
+                  "segments": [
+                    {
+                      "lit": "analytics"
+                    },
+                    {
+                      "lit": "query"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1361,9 +1406,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/analytics/meta",
-                  "parts": [
-                    "analytics",
-                    "meta"
+                  "segments": [
+                    {
+                      "lit": "analytics"
+                    },
+                    {
+                      "lit": "meta"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1478,17 +1527,25 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/workspaces/{id}/members/add",
-                  "parts": [
-                    "workspaces",
-                    "{workspace_id}",
-                    "members",
-                    "add"
-                  ],
                   "rename": {
                     "param": {
                       "id": "workspace_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "workspace_id"
+                    },
+                    {
+                      "lit": "members"
+                    },
+                    {
+                      "lit": "add"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -1584,17 +1641,25 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/guardrails/{id}/assignments/keys",
-                  "parts": [
-                    "guardrails",
-                    "{guardrail_id}",
-                    "assignments",
-                    "keys"
-                  ],
                   "rename": {
                     "param": {
                       "id": "guardrail_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "guardrails"
+                    },
+                    {
+                      "var": "guardrail_id"
+                    },
+                    {
+                      "lit": "assignments"
+                    },
+                    {
+                      "lit": "keys"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "guardrail_id",
@@ -1690,17 +1755,25 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/guardrails/{id}/assignments/members",
-                  "parts": [
-                    "guardrails",
-                    "{guardrail_id}",
-                    "assignments",
-                    "members"
-                  ],
                   "rename": {
                     "param": {
                       "id": "guardrail_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "guardrails"
+                    },
+                    {
+                      "var": "guardrail_id"
+                    },
+                    {
+                      "lit": "assignments"
+                    },
+                    {
+                      "lit": "members"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "guardrail_id",
@@ -1796,17 +1869,25 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/workspaces/{id}/members/remove",
-                  "parts": [
-                    "workspaces",
-                    "{workspace_id}",
-                    "members",
-                    "remove"
-                  ],
                   "rename": {
                     "param": {
                       "id": "workspace_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "workspace_id"
+                    },
+                    {
+                      "lit": "members"
+                    },
+                    {
+                      "lit": "remove"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -1902,18 +1983,28 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/guardrails/{id}/assignments/keys/remove",
-                  "parts": [
-                    "guardrails",
-                    "{guardrail_id}",
-                    "assignments",
-                    "keys",
-                    "remove"
-                  ],
                   "rename": {
                     "param": {
                       "id": "guardrail_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "guardrails"
+                    },
+                    {
+                      "var": "guardrail_id"
+                    },
+                    {
+                      "lit": "assignments"
+                    },
+                    {
+                      "lit": "keys"
+                    },
+                    {
+                      "lit": "remove"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "guardrail_id",
@@ -2009,18 +2100,28 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/guardrails/{id}/assignments/members/remove",
-                  "parts": [
-                    "guardrails",
-                    "{guardrail_id}",
-                    "assignments",
-                    "members",
-                    "remove"
-                  ],
                   "rename": {
                     "param": {
                       "id": "guardrail_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "guardrails"
+                    },
+                    {
+                      "var": "guardrail_id"
+                    },
+                    {
+                      "lit": "assignments"
+                    },
+                    {
+                      "lit": "members"
+                    },
+                    {
+                      "lit": "remove"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "guardrail_id",
@@ -2136,6 +2237,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": true,
               "short": "Stable public identifier for this BYOK credential.",
@@ -2197,6 +2299,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "workspace_id",
               "op": {
                 "create": {
@@ -2252,8 +2355,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/byok",
-                  "parts": [
-                    "byok"
+                  "segments": [
+                    {
+                      "lit": "byok"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2350,8 +2455,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/byok",
-                  "parts": [
-                    "byok"
+                  "segments": [
+                    {
+                      "lit": "byok"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2419,9 +2526,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/byok/{id}",
-                  "parts": [
-                    "byok",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "byok"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2486,9 +2597,13 @@
                   "kind": "http",
                   "method": "DELETE",
                   "orig": "/byok/{id}",
-                  "parts": [
-                    "byok",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "byok"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2551,6 +2666,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "frequency_penalty",
               "req": false,
               "short": "Frequency penalty (-2.0 to 2.0)",
@@ -2654,6 +2770,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "min_p",
               "req": false,
               "short": "Minimum probability threshold relative to the most likely token.",
@@ -2749,6 +2866,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "presence_penalty",
               "req": false,
               "short": "Presence penalty (-2.0 to 2.0)",
@@ -2825,6 +2943,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "repetition_penalty",
               "req": false,
               "short": "Penalizes tokens based on how much they have already appeared in the text.",
@@ -2845,6 +2964,7 @@
             },
             {
               "active": true,
+              "deprecated": true,
               "name": "route",
               "req": false,
               "short": "**DEPRECATED** Use providers.sort.partition instead.",
@@ -2943,6 +3063,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "temperature",
               "req": false,
               "short": "Sampling temperature (0-2)",
@@ -2980,6 +3101,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "top_a",
               "req": false,
               "short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
@@ -3019,6 +3141,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "top_p",
               "req": false,
               "short": "Nucleus sampling parameter (0-1)",
@@ -3104,9 +3227,13 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/chat/completions",
-                  "parts": [
-                    "chat",
-                    "completions"
+                  "segments": [
+                    {
+                      "lit": "chat"
+                    },
+                    {
+                      "lit": "completions"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -3283,6 +3410,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "sampling_rate",
               "req": false,
               "short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
@@ -3297,6 +3425,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "workspace_id",
               "req": false,
               "short": "Optional workspace ID.",
@@ -3342,9 +3471,13 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/observability/destinations",
-                  "parts": [
-                    "observability",
-                    "destinations"
+                  "segments": [
+                    {
+                      "lit": "observability"
+                    },
+                    {
+                      "lit": "destinations"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -3429,6 +3562,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "frequency_penalty",
               "req": false,
               "short": "Frequency penalty (-2.0 to 2.0)",
@@ -3585,6 +3719,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "min_p",
               "req": false,
               "short": "Minimum probability threshold relative to the most likely token.",
@@ -3675,6 +3810,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "presence_penalty",
               "req": false,
               "short": "Presence penalty (-2.0 to 2.0)",
@@ -3775,6 +3911,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "repetition_penalty",
               "req": false,
               "short": "Penalizes tokens based on how much they have already appeared in the text.",
@@ -3795,6 +3932,7 @@
             },
             {
               "active": true,
+              "deprecated": true,
               "name": "route",
               "req": false,
               "short": "**DEPRECATED** Use providers.sort.partition instead.",
@@ -3921,6 +4059,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "temperature",
               "req": false,
               "short": "Sampling temperature (0-2)",
@@ -3981,6 +4120,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "top_a",
               "req": false,
               "short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
@@ -4020,6 +4160,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "top_p",
               "req": false,
               "short": "Nucleus sampling parameter (0-1)",
@@ -4108,11 +4249,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/presets/{slug}/chat/completions",
-                  "parts": [
-                    "presets",
-                    "{slug}",
-                    "chat",
-                    "completions"
+                  "segments": [
+                    {
+                      "lit": "presets"
+                    },
+                    {
+                      "var": "slug"
+                    },
+                    {
+                      "lit": "chat"
+                    },
+                    {
+                      "lit": "completions"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -4171,10 +4320,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/presets/{slug}/messages",
-                  "parts": [
-                    "presets",
-                    "{slug}",
-                    "messages"
+                  "segments": [
+                    {
+                      "lit": "presets"
+                    },
+                    {
+                      "var": "slug"
+                    },
+                    {
+                      "lit": "messages"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -4233,10 +4388,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/presets/{slug}/responses",
-                  "parts": [
-                    "presets",
-                    "{slug}",
-                    "responses"
+                  "segments": [
+                    {
+                      "lit": "presets"
+                    },
+                    {
+                      "var": "slug"
+                    },
+                    {
+                      "lit": "responses"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -4282,6 +4443,7 @@
           "fields": [
             {
               "active": true,
+              "format": "double",
               "name": "total_credits",
               "req": true,
               "short": "Total credits purchased",
@@ -4289,6 +4451,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "total_usage",
               "req": true,
               "short": "Total credits used",
@@ -4334,9 +4497,13 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/credits/coinbase",
-                  "parts": [
-                    "credits",
-                    "coinbase"
+                  "segments": [
+                    {
+                      "lit": "credits"
+                    },
+                    {
+                      "lit": "coinbase"
+                    }
                   ],
                   "select": {
                     "$action": "coinbase",
@@ -4390,8 +4557,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/credits",
-                  "parts": [
-                    "credits"
+                  "segments": [
+                    {
+                      "lit": "credits"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -4564,8 +4733,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/embeddings",
-                  "parts": [
-                    "embeddings"
+                  "segments": [
+                    {
+                      "lit": "embeddings"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -4868,6 +5039,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "uptime_last_1d",
               "req": true,
               "short": "Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100.",
@@ -4881,6 +5053,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "uptime_last_30m",
               "req": true,
               "type": [
@@ -4893,6 +5066,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "uptime_last_5m",
               "req": true,
               "short": "Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100.",
@@ -5301,8 +5475,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/models",
-                  "parts": [
-                    "models"
+                  "segments": [
+                    {
+                      "lit": "models"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -5378,9 +5554,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/endpoints/zdr",
-                  "parts": [
-                    "endpoints",
-                    "zdr"
+                  "segments": [
+                    {
+                      "lit": "endpoints"
+                    },
+                    {
+                      "lit": "zdr"
+                    }
                   ],
                   "select": {
                     "$action": "zdr",
@@ -5454,11 +5634,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/models/{author}/{slug}/endpoints",
-                  "parts": [
-                    "models",
-                    "{author}",
-                    "{slug}",
-                    "endpoints"
+                  "segments": [
+                    {
+                      "lit": "models"
+                    },
+                    {
+                      "var": "author"
+                    },
+                    {
+                      "var": "slug"
+                    },
+                    {
+                      "lit": "endpoints"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -5600,8 +5788,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/files",
-                  "parts": [
-                    "files"
+                  "segments": [
+                    {
+                      "lit": "files"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -5684,8 +5874,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/files",
-                  "parts": [
-                    "files"
+                  "segments": [
+                    {
+                      "lit": "files"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -5763,15 +5955,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/files/{file_id}",
-                  "parts": [
-                    "files",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "file_id": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "files"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -5841,16 +6037,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/files/{file_id}/content",
-                  "parts": [
-                    "files",
-                    "{id}",
-                    "content"
-                  ],
                   "rename": {
                     "param": {
                       "file_id": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "files"
+                    },
+                    {
+                      "var": "id"
+                    },
+                    {
+                      "lit": "content"
+                    }
+                  ],
                   "select": {
                     "$action": "content",
                     "exist": [
@@ -5927,15 +6129,19 @@
                   "kind": "http",
                   "method": "DELETE",
                   "orig": "/files/{file_id}",
-                  "parts": [
-                    "files",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "file_id": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "files"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -5991,6 +6197,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "cache_discount",
               "req": true,
               "short": "Discount applied due to caching",
@@ -6057,6 +6264,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "generation_time",
               "req": true,
               "short": "Time taken for generation in milliseconds",
@@ -6097,6 +6305,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "latency",
               "req": true,
               "short": "Total latency in milliseconds",
@@ -6117,6 +6326,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "moderation_latency",
               "req": true,
               "short": "Moderation latency in milliseconds",
@@ -6423,6 +6633,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "total_cost",
               "req": true,
               "short": "Total cost of the generation in USD",
@@ -6443,6 +6654,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "upstream_inference_cost",
               "req": true,
               "short": "Cost charged by the upstream provider",
@@ -6456,6 +6668,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "usage",
               "req": true,
               "short": "Usage amount in USD",
@@ -6542,8 +6755,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/generation",
-                  "parts": [
-                    "generation"
+                  "segments": [
+                    {
+                      "lit": "generation"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -6641,9 +6856,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/generation/content",
-                  "parts": [
-                    "generation",
-                    "content"
+                  "segments": [
+                    {
+                      "lit": "generation"
+                    },
+                    {
+                      "lit": "content"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -6745,6 +6964,7 @@
             },
             {
               "active": true,
+              "deprecated": true,
               "name": "enforce_zdr",
               "req": false,
               "short": "Deprecated.",
@@ -6823,6 +7043,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": true,
               "short": "Unique identifier for the guardrail",
@@ -6856,6 +7077,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "limit_usd",
               "req": false,
               "short": "Spending limit in USD",
@@ -6902,6 +7124,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "workspace_id",
               "op": {
                 "create": {
@@ -6957,8 +7180,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/guardrails",
-                  "parts": [
-                    "guardrails"
+                  "segments": [
+                    {
+                      "lit": "guardrails"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -7046,8 +7271,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/guardrails",
-                  "parts": [
-                    "guardrails"
+                  "segments": [
+                    {
+                      "lit": "guardrails"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -7114,9 +7341,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/guardrails/{id}",
-                  "parts": [
-                    "guardrails",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "guardrails"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -7181,9 +7412,13 @@
                   "kind": "http",
                   "method": "DELETE",
                   "orig": "/guardrails/{id}",
-                  "parts": [
-                    "guardrails",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "guardrails"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -7380,8 +7615,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/images",
-                  "parts": [
-                    "images"
+                  "segments": [
+                    {
+                      "lit": "images"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -7522,18 +7759,28 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/images/models/{author}/{slug}/endpoints",
-                  "parts": [
-                    "images",
-                    "models",
-                    "{model_id}",
-                    "{slug}",
-                    "endpoints"
-                  ],
                   "rename": {
                     "param": {
                       "author": "model_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "images"
+                    },
+                    {
+                      "lit": "models"
+                    },
+                    {
+                      "var": "model_id"
+                    },
+                    {
+                      "var": "slug"
+                    },
+                    {
+                      "lit": "endpoints"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -7663,9 +7910,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/images/models",
-                  "parts": [
-                    "images",
-                    "models"
+                  "segments": [
+                    {
+                      "lit": "images"
+                    },
+                    {
+                      "lit": "models"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -7754,6 +8005,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "guardrail_id",
               "req": true,
               "short": "ID of the guardrail",
@@ -7761,6 +8013,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": true,
               "short": "Unique identifier for the assignment",
@@ -7868,17 +8121,25 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/guardrails/{id}/assignments/keys",
-                  "parts": [
-                    "guardrails",
-                    "{guardrail_id}",
-                    "assignments",
-                    "keys"
-                  ],
                   "rename": {
                     "param": {
                       "id": "guardrail_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "guardrails"
+                    },
+                    {
+                      "var": "guardrail_id"
+                    },
+                    {
+                      "lit": "assignments"
+                    },
+                    {
+                      "lit": "keys"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "guardrail_id",
@@ -7953,10 +8214,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/guardrails/assignments/keys",
-                  "parts": [
-                    "guardrails",
-                    "assignments",
-                    "keys"
+                  "segments": [
+                    {
+                      "lit": "guardrails"
+                    },
+                    {
+                      "lit": "assignments"
+                    },
+                    {
+                      "lit": "keys"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -8011,6 +8278,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "guardrail_id",
               "req": true,
               "short": "ID of the guardrail",
@@ -8018,6 +8286,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": true,
               "short": "Unique identifier for the assignment",
@@ -8118,17 +8387,25 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/guardrails/{id}/assignments/members",
-                  "parts": [
-                    "guardrails",
-                    "{guardrail_id}",
-                    "assignments",
-                    "members"
-                  ],
                   "rename": {
                     "param": {
                       "id": "guardrail_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "guardrails"
+                    },
+                    {
+                      "var": "guardrail_id"
+                    },
+                    {
+                      "lit": "assignments"
+                    },
+                    {
+                      "lit": "members"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "guardrail_id",
@@ -8203,10 +8480,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/guardrails/assignments/members",
-                  "parts": [
-                    "guardrails",
-                    "assignments",
-                    "members"
+                  "segments": [
+                    {
+                      "lit": "guardrails"
+                    },
+                    {
+                      "lit": "assignments"
+                    },
+                    {
+                      "lit": "members"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -8333,9 +8616,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/observability/destinations",
-                  "parts": [
-                    "observability",
-                    "destinations"
+                  "segments": [
+                    {
+                      "lit": "observability"
+                    },
+                    {
+                      "lit": "destinations"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -8512,10 +8799,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/presets/{slug}/versions",
-                  "parts": [
-                    "presets",
-                    "{slug}",
-                    "versions"
+                  "segments": [
+                    {
+                      "lit": "presets"
+                    },
+                    {
+                      "var": "slug"
+                    },
+                    {
+                      "lit": "versions"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -8570,6 +8863,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": true,
               "short": "Unique identifier for the budget",
@@ -8577,6 +8871,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "limit_usd",
               "req": true,
               "short": "Spending limit in USD for this interval",
@@ -8604,6 +8899,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "workspace_id",
               "req": true,
               "short": "ID of the workspace the budget belongs to",
@@ -8664,16 +8960,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/workspaces/{id}/budgets",
-                  "parts": [
-                    "workspaces",
-                    "{workspace_id}",
-                    "budgets"
-                  ],
                   "rename": {
                     "param": {
                       "id": "workspace_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "workspace_id"
+                    },
+                    {
+                      "lit": "budgets"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -8713,6 +9015,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": true,
               "short": "Unique identifier for the workspace membership",
@@ -8734,6 +9037,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "workspace_id",
               "req": true,
               "short": "ID of the workspace",
@@ -8820,16 +9124,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/workspaces/{id}/members",
-                  "parts": [
-                    "workspaces",
-                    "{workspace_id}",
-                    "members"
-                  ],
                   "rename": {
                     "param": {
                       "id": "workspace_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "workspace_id"
+                    },
+                    {
+                      "lit": "members"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -8995,6 +9305,7 @@
             },
             {
               "active": true,
+              "deprecated": true,
               "name": "route",
               "req": false,
               "short": "**DEPRECATED** Use providers.sort.partition instead.",
@@ -9057,6 +9368,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "temperature",
               "req": false,
               "type": "`$NUMBER`"
@@ -9102,6 +9414,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "top_p",
               "req": false,
               "type": "`$NUMBER`"
@@ -9169,8 +9482,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/messages",
-                  "parts": [
-                    "messages"
+                  "segments": [
+                    {
+                      "lit": "messages"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -9388,7 +9703,12 @@
           ],
           "id": {
             "field": "id",
-            "name": "id"
+            "name": "id",
+            "parts": [
+              "author",
+              "slug"
+            ],
+            "sep": "/"
           },
           "name": "model",
           "op": {
@@ -9455,9 +9775,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/embeddings/models",
-                  "parts": [
-                    "embeddings",
-                    "models"
+                  "segments": [
+                    {
+                      "lit": "embeddings"
+                    },
+                    {
+                      "lit": "models"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -9532,10 +9856,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/model/{author}/{slug}",
-                  "parts": [
-                    "model",
-                    "{author}",
-                    "{slug}"
+                  "segments": [
+                    {
+                      "lit": "model"
+                    },
+                    {
+                      "var": "author"
+                    },
+                    {
+                      "var": "slug"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -9626,9 +9956,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/models/count",
-                  "parts": [
-                    "models",
-                    "count"
+                  "segments": [
+                    {
+                      "lit": "models"
+                    },
+                    {
+                      "lit": "count"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -9901,9 +10235,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/models/user",
-                  "parts": [
-                    "models",
-                    "user"
+                  "segments": [
+                    {
+                      "lit": "models"
+                    },
+                    {
+                      "lit": "user"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -9941,6 +10279,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "callback_url",
               "req": true,
               "short": "The callback URL to redirect to after authorization.",
@@ -9989,6 +10328,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "expires_at",
               "req": false,
               "short": "Optional expiration time for the API key to be created",
@@ -10023,6 +10363,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "limit",
               "req": false,
               "short": "Credit limit for the API key to be created",
@@ -10064,6 +10405,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "workspace_id",
               "req": false,
               "short": "Optional workspace ID to associate the API key with",
@@ -10113,9 +10455,13 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/auth/keys",
-                  "parts": [
-                    "auth",
-                    "keys"
+                  "segments": [
+                    {
+                      "lit": "auth"
+                    },
+                    {
+                      "lit": "keys"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -10162,10 +10508,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/auth/keys/code",
-                  "parts": [
-                    "auth",
-                    "keys",
-                    "code"
+                  "segments": [
+                    {
+                      "lit": "auth"
+                    },
+                    {
+                      "lit": "keys"
+                    },
+                    {
+                      "lit": "code"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -10259,10 +10611,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/observability/destinations/{id}",
-                  "parts": [
-                    "observability",
-                    "destinations",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "observability"
+                    },
+                    {
+                      "lit": "destinations"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -10327,10 +10685,16 @@
                   "kind": "http",
                   "method": "DELETE",
                   "orig": "/observability/destinations/{id}",
-                  "parts": [
-                    "observability",
-                    "destinations",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "observability"
+                    },
+                    {
+                      "lit": "destinations"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -10386,6 +10750,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "frequency_penalty",
               "req": false,
               "type": [
@@ -10526,6 +10891,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "presence_penalty",
               "req": false,
               "type": [
@@ -10612,6 +10978,7 @@
             },
             {
               "active": true,
+              "deprecated": true,
               "name": "route",
               "req": false,
               "short": "**DEPRECATED** Use providers.sort.partition instead.",
@@ -10675,6 +11042,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "temperature",
               "req": false,
               "type": [
@@ -10739,6 +11107,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "top_p",
               "req": false,
               "type": [
@@ -10824,8 +11193,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/responses",
-                  "parts": [
-                    "responses"
+                  "segments": [
+                    {
+                      "lit": "responses"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -10970,9 +11341,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/organization/members",
-                  "parts": [
-                    "organization",
-                    "members"
+                  "segments": [
+                    {
+                      "lit": "organization"
+                    },
+                    {
+                      "lit": "members"
+                    }
                   ],
                   "select": {
                     "$action": "member",
@@ -11182,8 +11557,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/presets",
-                  "parts": [
-                    "presets"
+                  "segments": [
+                    {
+                      "lit": "presets"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -11249,15 +11626,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/presets/{slug}",
-                  "parts": [
-                    "presets",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "slug": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "presets"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -11406,17 +11787,25 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/presets/{slug}/versions/{version}",
-                  "parts": [
-                    "presets",
-                    "{slug}",
-                    "versions",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "version": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "presets"
+                    },
+                    {
+                      "var": "slug"
+                    },
+                    {
+                      "lit": "versions"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -11567,8 +11956,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/providers",
-                  "parts": [
-                    "providers"
+                  "segments": [
+                    {
+                      "lit": "providers"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -11733,9 +12124,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/datasets/rankings-daily",
-                  "parts": [
-                    "datasets",
-                    "rankings-daily"
+                  "segments": [
+                    {
+                      "lit": "datasets"
+                    },
+                    {
+                      "lit": "rankings-daily"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -11893,8 +12288,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/rerank",
-                  "parts": [
-                    "rerank"
+                  "segments": [
+                    {
+                      "lit": "rerank"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -11947,6 +12344,7 @@
           "fields": [
             {
               "active": true,
+              "format": "double",
               "name": "duration",
               "req": false,
               "short": "Duration of the input audio in seconds, present when response_format is verbose_json",
@@ -12003,6 +12401,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "temperature",
               "req": false,
               "short": "Sampling temperature for transcription",
@@ -12076,9 +12475,13 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/audio/transcriptions",
-                  "parts": [
-                    "audio",
-                    "transcriptions"
+                  "segments": [
+                    {
+                      "lit": "audio"
+                    },
+                    {
+                      "lit": "transcriptions"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -12173,9 +12576,13 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/generation/feedback",
-                  "parts": [
-                    "generation",
-                    "feedback"
+                  "segments": [
+                    {
+                      "lit": "generation"
+                    },
+                    {
+                      "lit": "feedback"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -12281,9 +12688,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/classifications/task",
-                  "parts": [
-                    "classifications",
-                    "task"
+                  "segments": [
+                    {
+                      "lit": "classifications"
+                    },
+                    {
+                      "lit": "task"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -12353,6 +12764,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "speed",
               "req": false,
               "short": "Playback speed multiplier.",
@@ -12405,9 +12817,13 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/audio/speech",
-                  "parts": [
-                    "audio",
-                    "speech"
+                  "segments": [
+                    {
+                      "lit": "audio"
+                    },
+                    {
+                      "lit": "speech"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -12533,8 +12949,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/benchmarks",
-                  "parts": [
-                    "benchmarks"
+                  "segments": [
+                    {
+                      "lit": "benchmarks"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -12687,9 +13105,13 @@
                   "kind": "http",
                   "method": "PATCH",
                   "orig": "/byok/{id}",
-                  "parts": [
-                    "byok",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "byok"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -12784,6 +13206,7 @@
             },
             {
               "active": true,
+              "deprecated": true,
               "name": "enforce_zdr",
               "req": false,
               "short": "Deprecated.",
@@ -12894,6 +13317,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "limit_usd",
               "req": false,
               "short": "New spending limit in USD",
@@ -12980,9 +13404,13 @@
                   "kind": "http",
                   "method": "PATCH",
                   "orig": "/guardrails/{id}",
-                  "parts": [
-                    "guardrails",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "guardrails"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -13070,6 +13498,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "sampling_rate",
               "req": false,
               "short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
@@ -13130,10 +13559,16 @@
                   "kind": "http",
                   "method": "PATCH",
                   "orig": "/observability/destinations/{id}",
-                  "parts": [
-                    "observability",
-                    "destinations",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "observability"
+                    },
+                    {
+                      "lit": "destinations"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -13283,6 +13718,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": true,
               "short": "Unique identifier for the workspace",
@@ -13315,6 +13751,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "io_logging_sampling_rate",
               "op": {
                 "list": {
@@ -13448,8 +13885,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/workspaces",
-                  "parts": [
-                    "workspaces"
+                  "segments": [
+                    {
+                      "lit": "workspaces"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -13528,8 +13967,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/workspaces",
-                  "parts": [
-                    "workspaces"
+                  "segments": [
+                    {
+                      "lit": "workspaces"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -13595,9 +14036,13 @@
                   "kind": "http",
                   "method": "PATCH",
                   "orig": "/workspaces/{id}",
-                  "parts": [
-                    "workspaces",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -13633,6 +14078,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "limit_usd",
               "req": true,
               "short": "Spending limit in USD.",
@@ -13702,18 +14148,26 @@
                   "kind": "http",
                   "method": "PUT",
                   "orig": "/workspaces/{id}/budgets/{interval}",
-                  "parts": [
-                    "workspaces",
-                    "{workspace_id}",
-                    "budgets",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "id": "workspace_id",
                       "interval": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "workspace_id"
+                    },
+                    {
+                      "lit": "budgets"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -13782,6 +14236,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "callback_url",
               "req": false,
               "short": "URL to receive a webhook notification when the video generation job completes.",
@@ -13944,8 +14399,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/videos",
-                  "parts": [
-                    "videos"
+                  "segments": [
+                    {
+                      "lit": "videos"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -14009,15 +14466,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/videos/{jobId}",
-                  "parts": [
-                    "videos",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "jobId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "videos"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -14122,16 +14583,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/videos/{jobId}/content",
-                  "parts": [
-                    "videos",
-                    "{id}",
-                    "content"
-                  ],
                   "rename": {
                     "param": {
                       "jobId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "videos"
+                    },
+                    {
+                      "var": "id"
+                    },
+                    {
+                      "lit": "content"
+                    }
+                  ],
                   "select": {
                     "$action": "content",
                     "exist": [
@@ -14363,9 +14830,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/videos/models",
-                  "parts": [
-                    "videos",
-                    "models"
+                  "segments": [
+                    {
+                      "lit": "videos"
+                    },
+                    {
+                      "lit": "models"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -14466,6 +14937,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "id",
               "req": true,
               "short": "Unique identifier for the workspace",
@@ -14486,6 +14958,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "io_logging_sampling_rate",
               "req": true,
               "short": "Sampling rate for I/O logging (0.0001-1).",
@@ -14594,9 +15067,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/workspaces/{id}",
-                  "parts": [
-                    "workspaces",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -14661,9 +15138,13 @@
                   "kind": "http",
                   "method": "DELETE",
                   "orig": "/workspaces/{id}",
-                  "parts": [
-                    "workspaces",
-                    "{id}"
+                  "segments": [
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "id"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -14761,18 +15242,26 @@
                   "kind": "http",
                   "method": "DELETE",
                   "orig": "/workspaces/{id}/budgets/{interval}",
-                  "parts": [
-                    "workspaces",
-                    "{workspace_id}",
-                    "budgets",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "id": "workspace_id",
                       "interval": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "workspace_id"
+                    },
+                    {
+                      "lit": "budgets"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "http_referer",
@@ -14875,8 +15364,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -17145,6 +17637,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -17170,6 +17665,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -17221,6 +17720,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -17245,6 +17745,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -17296,6 +17797,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -17320,6 +17822,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -17360,6 +17863,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -17385,6 +17891,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -17419,6 +17928,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -17444,6 +17956,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -17484,6 +17999,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -17509,6 +18027,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -17554,6 +18075,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -17579,6 +18103,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -17596,11 +18123,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -17629,6 +18151,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -17653,6 +18178,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

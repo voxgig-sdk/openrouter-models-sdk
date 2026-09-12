@@ -109,17 +109,25 @@ main: kit: entity: preset_version: {
           }
           method: "GET"
           orig: "/presets/{slug}/versions/{version}"
-          parts: [
-            "presets"
-            "{slug}"
-            "versions"
-            "{id}"
-          ]
           rename: {
             param: {
               version: "id"
             }
           }
+          segments: [
+            {
+              lit: "presets"
+            }
+            {
+              var: "slug"
+            }
+            {
+              lit: "versions"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "http_referer"

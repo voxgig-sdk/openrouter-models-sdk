@@ -167,8 +167,10 @@ main: kit: entity: preset: {
           }
           method: "GET"
           orig: "/presets"
-          parts: [
-            "presets"
+          segments: [
+            {
+              lit: "presets"
+            }
           ]
           select: {
             exist: [
@@ -227,15 +229,19 @@ main: kit: entity: preset: {
           }
           method: "GET"
           orig: "/presets/{slug}"
-          parts: [
-            "presets"
-            "{id}"
-          ]
           rename: {
             param: {
               slug: "id"
             }
           }
+          segments: [
+            {
+              lit: "presets"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "http_referer"

@@ -101,7 +101,7 @@ func TestApiKeyEntity(t *testing.T) {
 		// CREATE
 		apiKeyRef01Ent := client.ApiKey(nil)
 		apiKeyRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "api_key"}, setup.data), "api_key_ref01"))
+			vs.GetPath(setup.data, []any{"new", "api_key"}), "api_key_ref01"))
 
 		apiKeyRef01DataResult, err := apiKeyRef01Ent.Create(apiKeyRef01Data, nil)
 		if err != nil {
@@ -225,7 +225,7 @@ func api_keyBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"api_key01", "api_key02", "api_key03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -245,7 +245,7 @@ func api_keyBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENROUTER_MODELS_TEST_API_KEY_ENTID": idmap,
 		"OPENROUTER_MODELS_TEST_LIVE":      "FALSE",
 		"OPENROUTER_MODELS_TEST_EXPLAIN":   "FALSE",
-		"OPENROUTER_MODELS_APIKEY":         "NONE",
+		"OPENROUTER_MODELS_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENROUTER_MODELS_TEST_API_KEY_ENTID"])
@@ -254,11 +254,23 @@ func api_keyBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["OPENROUTER_MODELS_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewOpenrouterModelsSDK(core.ToMapAny(mergedOpts))
 	}

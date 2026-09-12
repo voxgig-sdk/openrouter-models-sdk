@@ -91,9 +91,13 @@ main: kit: entity: image_models_list: {
           }
           method: "GET"
           orig: "/images/models"
-          parts: [
-            "images"
-            "models"
+          segments: [
+            {
+              lit: "images"
+            }
+            {
+              lit: "models"
+            }
           ]
           select: {
             exist: [

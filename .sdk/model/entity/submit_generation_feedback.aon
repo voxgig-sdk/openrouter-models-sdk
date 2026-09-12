@@ -64,9 +64,13 @@ main: kit: entity: submit_generation_feedback: {
           }
           method: "POST"
           orig: "/generation/feedback"
-          parts: [
-            "generation"
-            "feedback"
+          segments: [
+            {
+              lit: "generation"
+            }
+            {
+              lit: "feedback"
+            }
           ]
           select: {
             exist: [

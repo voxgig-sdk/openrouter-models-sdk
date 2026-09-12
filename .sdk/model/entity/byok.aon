@@ -84,6 +84,7 @@ main: kit: entity: byok: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "uuid"
       name: "id"
       req: true
       short: "Stable public identifier for this BYOK credential."
@@ -138,6 +139,7 @@ main: kit: entity: byok: {
       type: "`$INTEGER`"
     }
     {
+      format: "uuid"
       name: "workspace_id"
       op: {
         create: {
@@ -189,8 +191,10 @@ main: kit: entity: byok: {
           }
           method: "POST"
           orig: "/byok"
-          parts: [
-            "byok"
+          segments: [
+            {
+              lit: "byok"
+            }
           ]
           select: {
             exist: [
@@ -277,8 +281,10 @@ main: kit: entity: byok: {
           }
           method: "GET"
           orig: "/byok"
-          parts: [
-            "byok"
+          segments: [
+            {
+              lit: "byok"
+            }
           ]
           select: {
             exist: [
@@ -339,9 +345,13 @@ main: kit: entity: byok: {
           }
           method: "GET"
           orig: "/byok/{id}"
-          parts: [
-            "byok"
-            "{id}"
+          segments: [
+            {
+              lit: "byok"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -399,9 +409,13 @@ main: kit: entity: byok: {
           }
           method: "DELETE"
           orig: "/byok/{id}"
-          parts: [
-            "byok"
-            "{id}"
+          segments: [
+            {
+              lit: "byok"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

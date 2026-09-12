@@ -52,7 +52,7 @@ func TestCreatePresetFromInferenceEntity(t *testing.T) {
 		// CREATE
 		createPresetFromInferenceRef01Ent := client.CreatePresetFromInference(nil)
 		createPresetFromInferenceRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "create_preset_from_inference"}, setup.data), "create_preset_from_inference_ref01"))
+			vs.GetPath(setup.data, []any{"new", "create_preset_from_inference"}), "create_preset_from_inference_ref01"))
 		createPresetFromInferenceRef01Data["slug"] = setup.idmap["slug01"]
 
 		createPresetFromInferenceRef01DataResult, err := createPresetFromInferenceRef01Ent.Create(createPresetFromInferenceRef01Data, nil)
@@ -91,7 +91,7 @@ func create_preset_from_inferenceBasicSetup(extra map[string]any) *entityTestSet
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"create_preset_from_inference01", "create_preset_from_inference02", "create_preset_from_inference03", "preset01", "preset02", "preset03", "slug01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -111,7 +111,7 @@ func create_preset_from_inferenceBasicSetup(extra map[string]any) *entityTestSet
 		"OPENROUTER_MODELS_TEST_CREATE_PRESET_FROM_INFERENCE_ENTID": idmap,
 		"OPENROUTER_MODELS_TEST_LIVE":      "FALSE",
 		"OPENROUTER_MODELS_TEST_EXPLAIN":   "FALSE",
-		"OPENROUTER_MODELS_APIKEY":         "NONE",
+		"OPENROUTER_MODELS_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENROUTER_MODELS_TEST_CREATE_PRESET_FROM_INFERENCE_ENTID"])
@@ -120,11 +120,23 @@ func create_preset_from_inferenceBasicSetup(extra map[string]any) *entityTestSet
 	}
 
 	if env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["OPENROUTER_MODELS_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewOpenrouterModelsSDK(core.ToMapAny(mergedOpts))
 	}

@@ -110,6 +110,7 @@ main: kit: entity: message: {
       }
     }
     {
+      deprecated: true
       name: "route"
       req: false
       short: "**DEPRECATED** Use providers.sort.partition instead."
@@ -164,6 +165,7 @@ main: kit: entity: message: {
       }
     }
     {
+      format: "double"
       name: "temperature"
       req: false
       type: "`$NUMBER`"
@@ -204,6 +206,7 @@ main: kit: entity: message: {
       type: "`$INTEGER`"
     }
     {
+      format: "double"
       name: "top_p"
       req: false
       type: "`$NUMBER`"
@@ -263,8 +266,10 @@ main: kit: entity: message: {
           }
           method: "POST"
           orig: "/messages"
-          parts: [
-            "messages"
+          segments: [
+            {
+              lit: "messages"
+            }
           ]
           select: {
             exist: [

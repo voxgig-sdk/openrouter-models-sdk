@@ -62,18 +62,28 @@ main: kit: entity: bulk_unassign_member: {
           }
           method: "POST"
           orig: "/guardrails/{id}/assignments/members/remove"
-          parts: [
-            "guardrails"
-            "{guardrail_id}"
-            "assignments"
-            "members"
-            "remove"
-          ]
           rename: {
             param: {
               id: "guardrail_id"
             }
           }
+          segments: [
+            {
+              lit: "guardrails"
+            }
+            {
+              var: "guardrail_id"
+            }
+            {
+              lit: "assignments"
+            }
+            {
+              lit: "members"
+            }
+            {
+              lit: "remove"
+            }
+          ]
           select: {
             exist: [
               "guardrail_id"

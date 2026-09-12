@@ -62,17 +62,25 @@ main: kit: entity: bulk_remove_workspace_member: {
           }
           method: "POST"
           orig: "/workspaces/{id}/members/remove"
-          parts: [
-            "workspaces"
-            "{workspace_id}"
-            "members"
-            "remove"
-          ]
           rename: {
             param: {
               id: "workspace_id"
             }
           }
+          segments: [
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "workspace_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              lit: "remove"
+            }
+          ]
           select: {
             exist: [
               "http_referer"

@@ -59,6 +59,7 @@ main: kit: entity: create_observability_destination: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "double"
       name: "sampling_rate"
       req: false
       short: "Sampling rate between 0.0001 and 1 (1 = 100%)."
@@ -71,6 +72,7 @@ main: kit: entity: create_observability_destination: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "workspace_id"
       req: false
       short: "Optional workspace ID."
@@ -111,9 +113,13 @@ main: kit: entity: create_observability_destination: {
           }
           method: "POST"
           orig: "/observability/destinations"
-          parts: [
-            "observability"
-            "destinations"
+          segments: [
+            {
+              lit: "observability"
+            }
+            {
+              lit: "destinations"
+            }
           ]
           select: {
             exist: [

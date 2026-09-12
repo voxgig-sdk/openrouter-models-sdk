@@ -50,7 +50,7 @@ func TestGenerationContentEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		generationContentRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.generation_content", setup.data)))
+		generationContentRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.generation_content")))
 		var generationContentRef01Data map[string]any
 		if len(generationContentRef01DataRaw) > 0 {
 			generationContentRef01Data = core.ToMapAny(generationContentRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func generation_contentBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"generation_content01", "generation_content02", "generation_content03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -117,7 +117,7 @@ func generation_contentBasicSetup(extra map[string]any) *entityTestSetup {
 		"OPENROUTER_MODELS_TEST_GENERATION_CONTENT_ENTID": idmap,
 		"OPENROUTER_MODELS_TEST_LIVE":      "FALSE",
 		"OPENROUTER_MODELS_TEST_EXPLAIN":   "FALSE",
-		"OPENROUTER_MODELS_APIKEY":         "NONE",
+		"OPENROUTER_MODELS_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["OPENROUTER_MODELS_TEST_GENERATION_CONTENT_ENTID"])
@@ -126,11 +126,23 @@ func generation_contentBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["OPENROUTER_MODELS_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["OPENROUTER_MODELS_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewOpenrouterModelsSDK(core.ToMapAny(mergedOpts))
 	}

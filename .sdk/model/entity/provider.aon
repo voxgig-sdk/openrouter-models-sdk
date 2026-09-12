@@ -112,8 +112,10 @@ main: kit: entity: provider: {
           }
           method: "GET"
           orig: "/providers"
-          parts: [
-            "providers"
+          segments: [
+            {
+              lit: "providers"
+            }
           ]
           select: {
             exist: [

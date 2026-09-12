@@ -125,10 +125,16 @@ main: kit: entity: list_preset_version: {
           }
           method: "GET"
           orig: "/presets/{slug}/versions"
-          parts: [
-            "presets"
-            "{slug}"
-            "versions"
+          segments: [
+            {
+              lit: "presets"
+            }
+            {
+              var: "slug"
+            }
+            {
+              lit: "versions"
+            }
           ]
           select: {
             exist: [

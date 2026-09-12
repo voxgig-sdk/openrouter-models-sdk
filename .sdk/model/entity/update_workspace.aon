@@ -120,6 +120,7 @@ main: kit: entity: update_workspace: {
       ]
     }
     {
+      format: "uuid"
       name: "id"
       req: true
       short: "Unique identifier for the workspace"
@@ -150,6 +151,7 @@ main: kit: entity: update_workspace: {
       ]
     }
     {
+      format: "double"
       name: "io_logging_sampling_rate"
       op: {
         list: {
@@ -273,8 +275,10 @@ main: kit: entity: update_workspace: {
           }
           method: "POST"
           orig: "/workspaces"
-          parts: [
-            "workspaces"
+          segments: [
+            {
+              lit: "workspaces"
+            }
           ]
           select: {
             exist: [
@@ -345,8 +349,10 @@ main: kit: entity: update_workspace: {
           }
           method: "GET"
           orig: "/workspaces"
-          parts: [
-            "workspaces"
+          segments: [
+            {
+              lit: "workspaces"
+            }
           ]
           select: {
             exist: [
@@ -405,9 +411,13 @@ main: kit: entity: update_workspace: {
           }
           method: "PATCH"
           orig: "/workspaces/{id}"
-          parts: [
-            "workspaces"
-            "{id}"
+          segments: [
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

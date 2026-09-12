@@ -6,6 +6,7 @@ main: kit: entity: activity: {
 
   fields: [
     {
+      format: "double"
       name: "byok_usage_inference"
       req: true
       short: "BYOK inference cost in USD (external credits spent)"
@@ -66,6 +67,7 @@ main: kit: entity: activity: {
       type: "`$INTEGER`"
     }
     {
+      format: "double"
       name: "usage"
       req: true
       short: "Total cost in USD (OpenRouter credits spent)"
@@ -132,8 +134,10 @@ main: kit: entity: activity: {
           }
           method: "GET"
           orig: "/activity"
-          parts: [
-            "activity"
+          segments: [
+            {
+              lit: "activity"
+            }
           ]
           select: {
             exist: [

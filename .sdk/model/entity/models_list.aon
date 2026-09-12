@@ -225,9 +225,13 @@ main: kit: entity: models_list: {
           }
           method: "GET"
           orig: "/models/user"
-          parts: [
-            "models"
-            "user"
+          segments: [
+            {
+              lit: "models"
+            }
+            {
+              lit: "user"
+            }
           ]
           select: {
             exist: [
