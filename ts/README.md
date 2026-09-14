@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { OpenrouterModelsSDK } from '@voxgig-sdk/openrouter-models'
+import { OpenrouterModelsSDK } from '@voxgig-sdk/openrouter-models-sdk'
 
 const client = new OpenrouterModelsSDK({
   apikey: process.env.OPENROUTER_MODELS_APIKEY,
@@ -4348,7 +4348,7 @@ openrouter-models/
 Import the SDK from the package root:
 
 ```ts
-import { OpenrouterModelsSDK } from '@voxgig-sdk/openrouter-models'
+import { OpenrouterModelsSDK } from '@voxgig-sdk/openrouter-models-sdk'
 ```
 
 ### Entity state

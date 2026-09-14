@@ -105,7 +105,7 @@ local results, err = client:Organization():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/openrouter-models` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/releases) |
+| TypeScript | `@voxgig-sdk/openrouter-models-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/releases) |
 | Python | `voxgig-sdk-openrouter-models` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/releases) |
 | PHP | `voxgig-sdk/openrouter-models` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/openrouter-models-sdk/go` | `go get github.com/voxgig-sdk/openrouter-models-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Organization():list()
 ### TypeScript
 
 ```ts
-import { OpenrouterModelsSDK } from '@voxgig-sdk/openrouter-models'
+import { OpenrouterModelsSDK } from '@voxgig-sdk/openrouter-models-sdk'
 
 const client = new OpenrouterModelsSDK({
   apikey: process.env.OPENROUTER_MODELS_APIKEY,
