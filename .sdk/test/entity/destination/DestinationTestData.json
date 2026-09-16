@@ -10,5 +10,6 @@
     "destination": {
       "destination_ref01": {}
     }
-  }
+  },
+  "requests": {}
 }

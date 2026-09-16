@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { OpenrouterModelsSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('WorkspaceBudgetEntity', async () => {
 
     const live = 'TRUE' === process.env.OPENROUTER_MODELS_TEST_LIVE
     for (const op of []) {
-      if (maybeSkipControl(t, 'entityOp', 'workspace_budget.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'workspace_budget.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set OPENROUTER_MODELS_TEST_WORKSPACE_BUDGET_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"id","req":false,"type":"`$STRING`","index$":0}],"id":{"field":"id","name":"id"},"name":"workspace_budget","op":{"remove":{"input":"data","name":"remove","points":[{"active":true,"args":{"header":[{"active":true,"kind":"header","name":"http_referer","orig":"http_referer","reqd":false,"type":"`$STRING`"},{"active":true,"kind":"header","name":"x_open_router_category","orig":"x_open_router_category","reqd":false,"type":"`$STRING`"},{"active":true,"kind":"header","name":"x_open_router_title","orig":"x_open_router_title","reqd":false,"type":"`$STRING`"}],"params":[{"active":true,"example":"monthly","kind":"param","name":"id","orig":"interval","reqd":true,"type":"`$STRING`","index$":0},{"active":true,"example":"production","kind":"param","name":"workspace_id","orig":"id","reqd":true,"type":"`$STRING`","index$":1}]},"contract":{"id":"DELETE /workspaces/{id}/budgets/{interval}","json":"{\"operationId\":\"deleteWorkspaceBudget\",\"parameters\":[{\"description\":\"The app identifier should be your app's URL and is used as the primary identifier for rankings.\\nThis is used to track API usage per application.\\n\",\"in\":\"header\",\"name\":\"HTTP-Referer\",\"schema\":{\"type\":\"string\"}},{\"description\":\"The app display name allows you to customize how your app appears in OpenRouter's dashboard.\\n\",\"in\":\"header\",\"name\":\"X-OpenRouter-Title\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of app categories (e.g. \\\"cli-agent,cloud-agent\\\"). Used for marketplace rankings.\\n\",\"in\":\"header\",\"name\":\"X-OpenRouter-Categories\",\"schema\":{\"type\":\"string\"}},{\"description\":\"The workspace ID (UUID) or slug\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"description\":\"The workspace ID (UUID) or slug\",\"example\":\"production\",\"minLength\":1,\"type\":\"string\"}},{\"description\":\"Budget reset interval. Use \\\"lifetime\\\" for a one-time budget that never resets.\",\"example\":\"monthly\",\"in\":\"path\",\"name\":\"interval\",\"required\":true,\"schema\":{\"description\":\"Budget reset interval. Use \\\"lifetime\\\" for a one-time budget that never resets.\",\"enum\":[\"daily\",\"weekly\",\"monthly\",\"lifetime\"],\"example\":\"monthly\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deleted\":true},\"schema\":{\"example\":{\"deleted\":true},\"properties\":{\"deleted\":{\"const\":true,\"description\":\"Confirmation that the budget was deleted (or did not exist)\",\"example\":true,\"type\":\"boolean\"}},\"required\":[\"deleted\"],\"type\":\"object\"}}},\"description\":\"Budget deleted successfully\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"error\":{\"code\":401,\"message\":\"Missing Authentication header\"}},\"schema\":{\"description\":\"Unauthorized - Authentication required or invalid credentials\",\"example\":{\"error\":{\"code\":401,\"message\":\"Missing Authentication header\"}},\"properties\":{\"error\":{\"description\":\"Error data for UnauthorizedResponse\",\"example\":{\"code\":401,\"message\":\"Missing Authentication header\"},\"properties\":{\"code\":{\"type\":\"integer\"},\"message\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]}},\"required\":[\"code\",\"message\"],\"type\":\"object\"},\"openrouter_metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]},\"user_id\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Unauthorized - Authentication required or invalid credentials\"},\"404\":{\"content\":{\"application/json\":{\"example\":{\"error\":{\"code\":404,\"message\":\"Resource not found\"}},\"schema\":{\"description\":\"Not Found - Resource does not exist\",\"example\":{\"error\":{\"code\":404,\"message\":\"Resource not found\"}},\"properties\":{\"error\":{\"description\":\"Error data for NotFoundResponse\",\"example\":{\"code\":404,\"message\":\"Resource not found\"},\"properties\":{\"code\":{\"type\":\"integer\"},\"message\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]}},\"required\":[\"code\",\"message\"],\"type\":\"object\"},\"openrouter_metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]},\"user_id\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Not Found - Resource does not exist\"},\"500\":{\"content\":{\"application/json\":{\"example\":{\"error\":{\"code\":500,\"message\":\"Internal Server Error\"}},\"schema\":{\"description\":\"Internal Server Error - Unexpected server error\",\"example\":{\"error\":{\"code\":500,\"message\":\"Internal Server Error\"}},\"properties\":{\"error\":{\"description\":\"Error data for InternalServerResponse\",\"example\":{\"code\":500,\"message\":\"Internal Server Error\"},\"properties\":{\"code\":{\"type\":\"integer\"},\"message\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]}},\"required\":[\"code\",\"message\"],\"type\":\"object\"},\"openrouter_metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]},\"user_id\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Internal Server Error - Unexpected server error\"}},\"security\":[{\"apiKey\":[]}],\"securitySchemes\":{\"apiKey\":{\"description\":\"API key as bearer token in Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"},\"bearer\":{\"description\":\"API key as bearer token in Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"DELETE","orig":"/workspaces/{id}/budgets/{interval}","rename":{"param":{"id":"workspace_id","interval":"id"}},"segments":[{"lit":"workspaces"},{"var":"workspace_id"},{"lit":"budgets"},{"var":"id"}],"select":{"exist":["http_referer","id","workspace_id","x_open_router_category","x_open_router_title"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"remove"}},"relations":{"ancestors":[["workspace"]]},"key$":"workspace_budget","name__orig":"workspace_budget","Name":"WorkspaceBudget","name_":"workspace_budget","name-":"workspace-budget","NAME":"WORKSPACE_BUDGET","index$":84}, {"active":true,"entity":"workspace_budget","key$":"BasicWorkspaceBudgetFlow","kind":"basic","name":"BasicWorkspaceBudgetFlow","param":{},"step":[]}, 'WorkspaceBudget')
     }
     const client = setup.client
     const struct = setup.struct
@@ -102,13 +101,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['OPENROUTER_MODELS_TEST_WORKSPACE_BUDGET_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'OPENROUTER_MODELS_TEST_WORKSPACE_BUDGET_ENTID': idmap,
     'OPENROUTER_MODELS_TEST_LIVE': 'FALSE',
@@ -120,7 +112,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.OPENROUTER_MODELS_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['OPENROUTER_MODELS_TEST_WORKSPACE_BUDGET_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new OpenrouterModelsSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -133,7 +131,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -146,7 +145,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.OPENROUTER_MODELS_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

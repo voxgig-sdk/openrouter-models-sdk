@@ -1,12 +1,18 @@
 # OpenrouterModels SDK feature factory
 
 from openroutermodels_sdk.feature.base_feature import OpenrouterModelsBaseFeature
+from openroutermodels_sdk.feature.ratelimit_feature import OpenrouterModelsRatelimitFeature
+from openroutermodels_sdk.feature.retry_feature import OpenrouterModelsRetryFeature
 from openroutermodels_sdk.feature.test_feature import OpenrouterModelsTestFeature
+from openroutermodels_sdk.feature.timeout_feature import OpenrouterModelsTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: OpenrouterModelsBaseFeature(),
+    "ratelimit": lambda: OpenrouterModelsRatelimitFeature(),
+    "retry": lambda: OpenrouterModelsRetryFeature(),
     "test": lambda: OpenrouterModelsTestFeature(),
+    "timeout": lambda: OpenrouterModelsTimeoutFeature(),
 }
 
 

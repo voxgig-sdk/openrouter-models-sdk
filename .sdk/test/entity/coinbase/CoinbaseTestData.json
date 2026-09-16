@@ -10,5 +10,6 @@
     "coinbase": {
       "coinbase_ref01": {}
     }
-  }
+  },
+  "requests": {}
 }

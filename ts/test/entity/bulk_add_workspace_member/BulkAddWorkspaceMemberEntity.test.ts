@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { OpenrouterModelsSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('BulkAddWorkspaceMemberEntity', async () => {
 
     const live = 'TRUE' === process.env.OPENROUTER_MODELS_TEST_LIVE
     for (const op of ['create']) {
-      if (maybeSkipControl(t, 'entityOp', 'bulk_add_workspace_member.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'bulk_add_workspace_member.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set OPENROUTER_MODELS_TEST_BULK_ADD_WORKSPACE_MEMBER_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"added_count","req":true,"short":"Number of workspace memberships created or updated","type":"`$INTEGER`","index$":0},{"active":true,"name":"data","req":true,"short":"List of added workspace memberships","type":"`$ARRAY`","index$":1},{"active":true,"name":"user_ids","req":true,"short":"List of user IDs to add to the workspace.","type":"`$ARRAY`","index$":2}],"name":"bulk_add_workspace_member","op":{"create":{"input":"data","name":"create","points":[{"active":true,"args":{"header":[{"active":true,"kind":"header","name":"http_referer","orig":"http_referer","reqd":false,"type":"`$STRING`"},{"active":true,"kind":"header","name":"x_open_router_category","orig":"x_open_router_category","reqd":false,"type":"`$STRING`"},{"active":true,"kind":"header","name":"x_open_router_title","orig":"x_open_router_title","reqd":false,"type":"`$STRING`"}],"params":[{"active":true,"example":"production","kind":"param","name":"workspace_id","orig":"id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"POST /workspaces/{id}/members/add","json":"{\"operationId\":\"bulkAddWorkspaceMembers\",\"parameters\":[{\"description\":\"The app identifier should be your app's URL and is used as the primary identifier for rankings.\\nThis is used to track API usage per application.\\n\",\"in\":\"header\",\"name\":\"HTTP-Referer\",\"schema\":{\"type\":\"string\"}},{\"description\":\"The app display name allows you to customize how your app appears in OpenRouter's dashboard.\\n\",\"in\":\"header\",\"name\":\"X-OpenRouter-Title\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of app categories (e.g. \\\"cli-agent,cloud-agent\\\"). Used for marketplace rankings.\\n\",\"in\":\"header\",\"name\":\"X-OpenRouter-Categories\",\"schema\":{\"type\":\"string\"}},{\"description\":\"The workspace ID (UUID) or slug\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"description\":\"The workspace ID (UUID) or slug\",\"example\":\"production\",\"minLength\":1,\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"example\":{\"user_ids\":[\"user_abc123\",\"user_def456\"]},\"schema\":{\"example\":{\"user_ids\":[\"user_abc123\",\"user_def456\"]},\"properties\":{\"user_ids\":{\"description\":\"List of user IDs to add to the workspace. Members are assigned the same role they hold in the organization.\",\"example\":[\"user_abc123\",\"user_def456\"],\"items\":{\"type\":\"string\"},\"maxItems\":100,\"minItems\":1,\"type\":\"array\"}},\"required\":[\"user_ids\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"added_count\":1,\"data\":[{\"created_at\":\"2025-08-24T10:30:00Z\",\"id\":\"660e8400-e29b-41d4-a716-446655440000\",\"role\":\"member\",\"user_id\":\"user_abc123\",\"workspace_id\":\"550e8400-e29b-41d4-a716-446655440000\"}]},\"schema\":{\"example\":{\"added_count\":1,\"data\":[{\"created_at\":\"2025-08-24T10:30:00Z\",\"id\":\"660e8400-e29b-41d4-a716-446655440000\",\"role\":\"member\",\"user_id\":\"user_abc123\",\"workspace_id\":\"550e8400-e29b-41d4-a716-446655440000\"}]},\"properties\":{\"added_count\":{\"description\":\"Number of workspace memberships created or updated\",\"example\":2,\"type\":\"integer\"},\"data\":{\"description\":\"List of added workspace memberships\",\"items\":{\"example\":{\"created_at\":\"2025-08-24T10:30:00Z\",\"id\":\"660e8400-e29b-41d4-a716-446655440000\",\"role\":\"member\",\"user_id\":\"user_abc123\",\"workspace_id\":\"550e8400-e29b-41d4-a716-446655440000\"},\"properties\":{\"created_at\":{\"description\":\"ISO 8601 timestamp of when the membership was created\",\"example\":\"2025-08-24T10:30:00Z\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the workspace membership\",\"example\":\"660e8400-e29b-41d4-a716-446655440000\",\"format\":\"uuid\",\"type\":\"string\"},\"role\":{\"description\":\"Role of the member in the workspace\",\"enum\":[\"admin\",\"member\"],\"example\":\"member\",\"type\":\"string\"},\"user_id\":{\"description\":\"Clerk user ID of the member\",\"example\":\"user_abc123\",\"type\":\"string\"},\"workspace_id\":{\"description\":\"ID of the workspace\",\"example\":\"550e8400-e29b-41d4-a716-446655440000\",\"format\":\"uuid\",\"type\":\"string\"}},\"required\":[\"id\",\"workspace_id\",\"user_id\",\"role\",\"created_at\"],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"data\",\"added_count\"],\"type\":\"object\"}}},\"description\":\"Members added successfully\"},\"400\":{\"content\":{\"application/json\":{\"example\":{\"error\":{\"code\":400,\"message\":\"Invalid request parameters\"}},\"schema\":{\"description\":\"Bad Request - Invalid request parameters or malformed input\",\"example\":{\"error\":{\"code\":400,\"message\":\"Invalid request parameters\"}},\"properties\":{\"error\":{\"description\":\"Error data for BadRequestResponse\",\"example\":{\"code\":400,\"message\":\"Invalid request parameters\"},\"properties\":{\"code\":{\"type\":\"integer\"},\"message\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]}},\"required\":[\"code\",\"message\"],\"type\":\"object\"},\"openrouter_metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]},\"user_id\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Bad Request - Invalid request parameters or malformed input\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"error\":{\"code\":401,\"message\":\"Missing Authentication header\"}},\"schema\":{\"description\":\"Unauthorized - Authentication required or invalid credentials\",\"example\":{\"error\":{\"code\":401,\"message\":\"Missing Authentication header\"}},\"properties\":{\"error\":{\"description\":\"Error data for UnauthorizedResponse\",\"example\":{\"code\":401,\"message\":\"Missing Authentication header\"},\"properties\":{\"code\":{\"type\":\"integer\"},\"message\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]}},\"required\":[\"code\",\"message\"],\"type\":\"object\"},\"openrouter_metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]},\"user_id\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Unauthorized - Authentication required or invalid credentials\"},\"403\":{\"content\":{\"application/json\":{\"example\":{\"error\":{\"code\":403,\"message\":\"Only management keys can perform this operation\"}},\"schema\":{\"description\":\"Forbidden - Authentication successful but insufficient permissions\",\"example\":{\"error\":{\"code\":403,\"message\":\"Only management keys can perform this operation\"}},\"properties\":{\"error\":{\"description\":\"Error data for ForbiddenResponse\",\"example\":{\"code\":403,\"message\":\"Only management keys can perform this operation\"},\"properties\":{\"code\":{\"type\":\"integer\"},\"message\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]}},\"required\":[\"code\",\"message\"],\"type\":\"object\"},\"openrouter_metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]},\"user_id\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden - Authentication successful but insufficient permissions\"},\"404\":{\"content\":{\"application/json\":{\"example\":{\"error\":{\"code\":404,\"message\":\"Resource not found\"}},\"schema\":{\"description\":\"Not Found - Resource does not exist\",\"example\":{\"error\":{\"code\":404,\"message\":\"Resource not found\"}},\"properties\":{\"error\":{\"description\":\"Error data for NotFoundResponse\",\"example\":{\"code\":404,\"message\":\"Resource not found\"},\"properties\":{\"code\":{\"type\":\"integer\"},\"message\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]}},\"required\":[\"code\",\"message\"],\"type\":\"object\"},\"openrouter_metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]},\"user_id\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Not Found - Resource does not exist\"},\"500\":{\"content\":{\"application/json\":{\"example\":{\"error\":{\"code\":500,\"message\":\"Internal Server Error\"}},\"schema\":{\"description\":\"Internal Server Error - Unexpected server error\",\"example\":{\"error\":{\"code\":500,\"message\":\"Internal Server Error\"}},\"properties\":{\"error\":{\"description\":\"Error data for InternalServerResponse\",\"example\":{\"code\":500,\"message\":\"Internal Server Error\"},\"properties\":{\"code\":{\"type\":\"integer\"},\"message\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]}},\"required\":[\"code\",\"message\"],\"type\":\"object\"},\"openrouter_metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]},\"user_id\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Internal Server Error - Unexpected server error\"}},\"security\":[{\"apiKey\":[]}],\"securitySchemes\":{\"apiKey\":{\"description\":\"API key as bearer token in Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"},\"bearer\":{\"description\":\"API key as bearer token in Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/workspaces/{id}/members/add","rename":{"param":{"id":"workspace_id"}},"segments":[{"lit":"workspaces"},{"var":"workspace_id"},{"lit":"members"},{"lit":"add"}],"select":{"exist":["http_referer","workspace_id","x_open_router_category","x_open_router_title"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[["workspace"]]},"key$":"bulk_add_workspace_member","name__orig":"bulk_add_workspace_member","Name":"BulkAddWorkspaceMember","name_":"bulk_add_workspace_member","name-":"bulk-add-workspace-member","NAME":"BULK_ADD_WORKSPACE_MEMBER","index$":7}, {"active":true,"entity":"bulk_add_workspace_member","key$":"BasicBulkAddWorkspaceMemberFlow","kind":"basic","name":"BasicBulkAddWorkspaceMemberFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"bulk_add_workspace_member_ref01"},"match":{"workspace_id":"workspace01"},"op":"create","spec":[],"valid":[],"index$":0}]}, 'BulkAddWorkspaceMember')
     }
     const client = setup.client
     const struct = setup.struct
@@ -110,13 +109,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['OPENROUTER_MODELS_TEST_BULK_ADD_WORKSPACE_MEMBER_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'OPENROUTER_MODELS_TEST_BULK_ADD_WORKSPACE_MEMBER_ENTID': idmap,
     'OPENROUTER_MODELS_TEST_LIVE': 'FALSE',
@@ -128,7 +120,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.OPENROUTER_MODELS_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['OPENROUTER_MODELS_TEST_BULK_ADD_WORKSPACE_MEMBER_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new OpenrouterModelsSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -141,7 +139,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -154,7 +153,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.OPENROUTER_MODELS_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

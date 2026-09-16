@@ -7,7 +7,7 @@
         "filename": "s48",
         "id": "FILE00",
         "mime_type": "s4a",
-        "size_bytes": "s4b",
+        "size_bytes": 75,
         "type": "s4c"
       },
       "FILE01": {
@@ -16,7 +16,7 @@
         "filename": "s8e",
         "id": "FILE01",
         "mime_type": "s90",
-        "size_bytes": "s91",
+        "size_bytes": 145,
         "type": "s92"
       },
       "FILE02": {
@@ -25,7 +25,7 @@
         "filename": "sd4",
         "id": "FILE02",
         "mime_type": "sd6",
-        "size_bytes": "sd7",
+        "size_bytes": 215,
         "type": "sd8"
       }
     }
@@ -37,8 +37,2273 @@
         "downloadable": false,
         "filename": "s11a",
         "mime_type": "s11c",
-        "size_bytes": "s11d",
+        "size_bytes": 285,
         "type": "s11e"
+      }
+    }
+  },
+  "requests": {
+    "POST /files": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "uploadFile",
+        "parameters": [
+          {
+            "description": "The app identifier should be your app's URL and is used as the primary identifier for rankings.\nThis is used to track API usage per application.\n",
+            "in": "header",
+            "name": "HTTP-Referer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The app display name allows you to customize how your app appears in OpenRouter's dashboard.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Title",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of app categories (e.g. \"cli-agent,cloud-agent\"). Used for marketplace rankings.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Categories",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Workspace to scope the request to. Defaults to the caller’s default workspace.",
+            "in": "query",
+            "name": "workspace_id",
+            "required": false,
+            "schema": {
+              "description": "Workspace to scope the request to. Defaults to the caller’s default workspace.",
+              "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "example": {
+                "file": "document.pdf"
+              },
+              "schema": {
+                "properties": {
+                  "file": {
+                    "format": "binary",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "file"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "created_at": "2025-01-01T00:00:00Z",
+                  "downloadable": false,
+                  "filename": "document.pdf",
+                  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+                  "mime_type": "application/pdf",
+                  "size_bytes": 1024000,
+                  "type": "file"
+                },
+                "schema": {
+                  "description": "Metadata describing a stored file.",
+                  "example": {
+                    "created_at": "2025-01-01T00:00:00Z",
+                    "downloadable": false,
+                    "filename": "document.pdf",
+                    "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+                    "mime_type": "application/pdf",
+                    "size_bytes": 1024000,
+                    "type": "file"
+                  },
+                  "properties": {
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "downloadable": {
+                      "type": "boolean"
+                    },
+                    "filename": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "mime_type": {
+                      "type": "string"
+                    },
+                    "size_bytes": {
+                      "type": "integer"
+                    },
+                    "type": {
+                      "enum": [
+                        "file"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "filename",
+                    "mime_type",
+                    "size_bytes",
+                    "created_at",
+                    "downloadable"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The uploaded file metadata."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 400,
+                    "message": "Invalid request parameters"
+                  }
+                },
+                "schema": {
+                  "description": "Bad Request - Invalid request parameters or malformed input",
+                  "example": {
+                    "error": {
+                      "code": 400,
+                      "message": "Invalid request parameters"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for BadRequestResponse",
+                      "example": {
+                        "code": 400,
+                        "message": "Invalid request parameters"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request - Invalid request parameters or malformed input"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "Missing Authentication header"
+                  }
+                },
+                "schema": {
+                  "description": "Unauthorized - Authentication required or invalid credentials",
+                  "example": {
+                    "error": {
+                      "code": 401,
+                      "message": "Missing Authentication header"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for UnauthorizedResponse",
+                      "example": {
+                        "code": 401,
+                        "message": "Missing Authentication header"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Authentication required or invalid credentials"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 403,
+                    "message": "Only management keys can perform this operation"
+                  }
+                },
+                "schema": {
+                  "description": "Forbidden - Authentication successful but insufficient permissions",
+                  "example": {
+                    "error": {
+                      "code": 403,
+                      "message": "Only management keys can perform this operation"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for ForbiddenResponse",
+                      "example": {
+                        "code": 403,
+                        "message": "Only management keys can perform this operation"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Forbidden - Authentication successful but insufficient permissions"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 413,
+                    "message": "Request payload too large"
+                  }
+                },
+                "schema": {
+                  "description": "Payload Too Large - Request payload exceeds size limits",
+                  "example": {
+                    "error": {
+                      "code": 413,
+                      "message": "Request payload too large"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for PayloadTooLargeResponse",
+                      "example": {
+                        "code": 413,
+                        "message": "Request payload too large"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Payload Too Large - Request payload exceeds size limits"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 429,
+                    "message": "Rate limit exceeded"
+                  }
+                },
+                "schema": {
+                  "description": "Too Many Requests - Rate limit exceeded",
+                  "example": {
+                    "error": {
+                      "code": 429,
+                      "message": "Rate limit exceeded"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for TooManyRequestsResponse",
+                      "example": {
+                        "code": 429,
+                        "message": "Rate limit exceeded"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Too Many Requests - Rate limit exceeded"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 500,
+                    "message": "Internal Server Error"
+                  }
+                },
+                "schema": {
+                  "description": "Internal Server Error - Unexpected server error",
+                  "example": {
+                    "error": {
+                      "code": 500,
+                      "message": "Internal Server Error"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for InternalServerResponse",
+                      "example": {
+                        "code": 500,
+                        "message": "Internal Server Error"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearer": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /files": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listFiles",
+        "parameters": [
+          {
+            "description": "The app identifier should be your app's URL and is used as the primary identifier for rankings.\nThis is used to track API usage per application.\n",
+            "in": "header",
+            "name": "HTTP-Referer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The app display name allows you to customize how your app appears in OpenRouter's dashboard.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Title",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of app categories (e.g. \"cli-agent,cloud-agent\"). Used for marketplace rankings.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Categories",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Maximum number of files to return (1–1000).",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "description": "Maximum number of files to return (1–1000).",
+              "example": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Opaque pagination cursor from a previous response.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "description": "Opaque pagination cursor from a previous response.",
+              "example": "eyJjdXJzb3IiOiJmaWxlXzAxMUNOaGE4aUNKY1Uxd1hOUjZxNFY4dyJ9",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Workspace to scope the request to. Defaults to the caller’s default workspace.",
+            "in": "query",
+            "name": "workspace_id",
+            "required": false,
+            "schema": {
+              "description": "Workspace to scope the request to. Defaults to the caller’s default workspace.",
+              "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "cursor": null,
+                  "data": [
+                    {
+                      "created_at": "2025-01-01T00:00:00Z",
+                      "downloadable": false,
+                      "filename": "document.pdf",
+                      "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+                      "mime_type": "application/pdf",
+                      "size_bytes": 1024000,
+                      "type": "file"
+                    }
+                  ],
+                  "first_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+                  "has_more": false,
+                  "last_id": "file_011CNha8iCJcU1wXNR6q4V8w"
+                },
+                "schema": {
+                  "description": "A page of files belonging to the requesting workspace.",
+                  "example": {
+                    "cursor": null,
+                    "data": [
+                      {
+                        "created_at": "2025-01-01T00:00:00Z",
+                        "downloadable": false,
+                        "filename": "document.pdf",
+                        "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+                        "mime_type": "application/pdf",
+                        "size_bytes": 1024000,
+                        "type": "file"
+                      }
+                    ],
+                    "first_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+                    "has_more": false,
+                    "last_id": "file_011CNha8iCJcU1wXNR6q4V8w"
+                  },
+                  "properties": {
+                    "cursor": {
+                      "description": "Opaque cursor for the next page; null when there are no more results.",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "data": {
+                      "items": {
+                        "description": "Metadata describing a stored file.",
+                        "example": {
+                          "created_at": "2025-01-01T00:00:00Z",
+                          "downloadable": false,
+                          "filename": "document.pdf",
+                          "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+                          "mime_type": "application/pdf",
+                          "size_bytes": 1024000,
+                          "type": "file"
+                        },
+                        "properties": {
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "downloadable": {
+                            "type": "boolean"
+                          },
+                          "filename": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "mime_type": {
+                            "type": "string"
+                          },
+                          "size_bytes": {
+                            "type": "integer"
+                          },
+                          "type": {
+                            "enum": [
+                              "file"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type",
+                          "filename",
+                          "mime_type",
+                          "size_bytes",
+                          "created_at",
+                          "downloadable"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "first_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    },
+                    "last_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "has_more",
+                    "first_id",
+                    "last_id",
+                    "cursor"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A page of files."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 400,
+                    "message": "Invalid request parameters"
+                  }
+                },
+                "schema": {
+                  "description": "Bad Request - Invalid request parameters or malformed input",
+                  "example": {
+                    "error": {
+                      "code": 400,
+                      "message": "Invalid request parameters"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for BadRequestResponse",
+                      "example": {
+                        "code": 400,
+                        "message": "Invalid request parameters"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request - Invalid request parameters or malformed input"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "Missing Authentication header"
+                  }
+                },
+                "schema": {
+                  "description": "Unauthorized - Authentication required or invalid credentials",
+                  "example": {
+                    "error": {
+                      "code": 401,
+                      "message": "Missing Authentication header"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for UnauthorizedResponse",
+                      "example": {
+                        "code": 401,
+                        "message": "Missing Authentication header"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Authentication required or invalid credentials"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 429,
+                    "message": "Rate limit exceeded"
+                  }
+                },
+                "schema": {
+                  "description": "Too Many Requests - Rate limit exceeded",
+                  "example": {
+                    "error": {
+                      "code": 429,
+                      "message": "Rate limit exceeded"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for TooManyRequestsResponse",
+                      "example": {
+                        "code": 429,
+                        "message": "Rate limit exceeded"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Too Many Requests - Rate limit exceeded"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 500,
+                    "message": "Internal Server Error"
+                  }
+                },
+                "schema": {
+                  "description": "Internal Server Error - Unexpected server error",
+                  "example": {
+                    "error": {
+                      "code": 500,
+                      "message": "Internal Server Error"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for InternalServerResponse",
+                      "example": {
+                        "code": 500,
+                        "message": "Internal Server Error"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearer": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /files/{file_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getFileMetadata",
+        "parameters": [
+          {
+            "description": "The app identifier should be your app's URL and is used as the primary identifier for rankings.\nThis is used to track API usage per application.\n",
+            "in": "header",
+            "name": "HTTP-Referer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The app display name allows you to customize how your app appears in OpenRouter's dashboard.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Title",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of app categories (e.g. \"cli-agent,cloud-agent\"). Used for marketplace rankings.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Categories",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "file_id",
+            "required": true,
+            "schema": {
+              "example": "file_011CNha8iCJcU1wXNR6q4V8w",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Workspace to scope the request to. Defaults to the caller’s default workspace.",
+            "in": "query",
+            "name": "workspace_id",
+            "required": false,
+            "schema": {
+              "description": "Workspace to scope the request to. Defaults to the caller’s default workspace.",
+              "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "created_at": "2025-01-01T00:00:00Z",
+                  "downloadable": false,
+                  "filename": "document.pdf",
+                  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+                  "mime_type": "application/pdf",
+                  "size_bytes": 1024000,
+                  "type": "file"
+                },
+                "schema": {
+                  "description": "Metadata describing a stored file.",
+                  "example": {
+                    "created_at": "2025-01-01T00:00:00Z",
+                    "downloadable": false,
+                    "filename": "document.pdf",
+                    "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+                    "mime_type": "application/pdf",
+                    "size_bytes": 1024000,
+                    "type": "file"
+                  },
+                  "properties": {
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "downloadable": {
+                      "type": "boolean"
+                    },
+                    "filename": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "mime_type": {
+                      "type": "string"
+                    },
+                    "size_bytes": {
+                      "type": "integer"
+                    },
+                    "type": {
+                      "enum": [
+                        "file"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "filename",
+                    "mime_type",
+                    "size_bytes",
+                    "created_at",
+                    "downloadable"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The file metadata."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "Missing Authentication header"
+                  }
+                },
+                "schema": {
+                  "description": "Unauthorized - Authentication required or invalid credentials",
+                  "example": {
+                    "error": {
+                      "code": 401,
+                      "message": "Missing Authentication header"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for UnauthorizedResponse",
+                      "example": {
+                        "code": 401,
+                        "message": "Missing Authentication header"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Authentication required or invalid credentials"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 404,
+                    "message": "Resource not found"
+                  }
+                },
+                "schema": {
+                  "description": "Not Found - Resource does not exist",
+                  "example": {
+                    "error": {
+                      "code": 404,
+                      "message": "Resource not found"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for NotFoundResponse",
+                      "example": {
+                        "code": 404,
+                        "message": "Resource not found"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found - Resource does not exist"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 429,
+                    "message": "Rate limit exceeded"
+                  }
+                },
+                "schema": {
+                  "description": "Too Many Requests - Rate limit exceeded",
+                  "example": {
+                    "error": {
+                      "code": 429,
+                      "message": "Rate limit exceeded"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for TooManyRequestsResponse",
+                      "example": {
+                        "code": 429,
+                        "message": "Rate limit exceeded"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Too Many Requests - Rate limit exceeded"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 500,
+                    "message": "Internal Server Error"
+                  }
+                },
+                "schema": {
+                  "description": "Internal Server Error - Unexpected server error",
+                  "example": {
+                    "error": {
+                      "code": 500,
+                      "message": "Internal Server Error"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for InternalServerResponse",
+                      "example": {
+                        "code": 500,
+                        "message": "Internal Server Error"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearer": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /files/{file_id}/content": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "downloadFileContent",
+        "parameters": [
+          {
+            "description": "The app identifier should be your app's URL and is used as the primary identifier for rankings.\nThis is used to track API usage per application.\n",
+            "in": "header",
+            "name": "HTTP-Referer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The app display name allows you to customize how your app appears in OpenRouter's dashboard.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Title",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of app categories (e.g. \"cli-agent,cloud-agent\"). Used for marketplace rankings.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Categories",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "file_id",
+            "required": true,
+            "schema": {
+              "example": "file_011CNha8iCJcU1wXNR6q4V8w",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Workspace to scope the request to. Defaults to the caller’s default workspace.",
+            "in": "query",
+            "name": "workspace_id",
+            "required": false,
+            "schema": {
+              "description": "Workspace to scope the request to. Defaults to the caller’s default workspace.",
+              "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/octet-stream": {
+                "example": "binary file contents",
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "The raw file content."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 400,
+                    "message": "Invalid request parameters"
+                  }
+                },
+                "schema": {
+                  "description": "Bad Request - Invalid request parameters or malformed input",
+                  "example": {
+                    "error": {
+                      "code": 400,
+                      "message": "Invalid request parameters"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for BadRequestResponse",
+                      "example": {
+                        "code": 400,
+                        "message": "Invalid request parameters"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request - Invalid request parameters or malformed input"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "Missing Authentication header"
+                  }
+                },
+                "schema": {
+                  "description": "Unauthorized - Authentication required or invalid credentials",
+                  "example": {
+                    "error": {
+                      "code": 401,
+                      "message": "Missing Authentication header"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for UnauthorizedResponse",
+                      "example": {
+                        "code": 401,
+                        "message": "Missing Authentication header"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Authentication required or invalid credentials"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 404,
+                    "message": "Resource not found"
+                  }
+                },
+                "schema": {
+                  "description": "Not Found - Resource does not exist",
+                  "example": {
+                    "error": {
+                      "code": 404,
+                      "message": "Resource not found"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for NotFoundResponse",
+                      "example": {
+                        "code": 404,
+                        "message": "Resource not found"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found - Resource does not exist"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 429,
+                    "message": "Rate limit exceeded"
+                  }
+                },
+                "schema": {
+                  "description": "Too Many Requests - Rate limit exceeded",
+                  "example": {
+                    "error": {
+                      "code": 429,
+                      "message": "Rate limit exceeded"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for TooManyRequestsResponse",
+                      "example": {
+                        "code": 429,
+                        "message": "Rate limit exceeded"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Too Many Requests - Rate limit exceeded"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 500,
+                    "message": "Internal Server Error"
+                  }
+                },
+                "schema": {
+                  "description": "Internal Server Error - Unexpected server error",
+                  "example": {
+                    "error": {
+                      "code": 500,
+                      "message": "Internal Server Error"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for InternalServerResponse",
+                      "example": {
+                        "code": 500,
+                        "message": "Internal Server Error"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearer": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /files/{file_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteFile",
+        "parameters": [
+          {
+            "description": "The app identifier should be your app's URL and is used as the primary identifier for rankings.\nThis is used to track API usage per application.\n",
+            "in": "header",
+            "name": "HTTP-Referer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The app display name allows you to customize how your app appears in OpenRouter's dashboard.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Title",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of app categories (e.g. \"cli-agent,cloud-agent\"). Used for marketplace rankings.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Categories",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "file_id",
+            "required": true,
+            "schema": {
+              "example": "file_011CNha8iCJcU1wXNR6q4V8w",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Workspace to scope the request to. Defaults to the caller’s default workspace.",
+            "in": "query",
+            "name": "workspace_id",
+            "required": false,
+            "schema": {
+              "description": "Workspace to scope the request to. Defaults to the caller’s default workspace.",
+              "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+                  "type": "file_deleted"
+                },
+                "schema": {
+                  "description": "Confirmation that a file was deleted.",
+                  "example": {
+                    "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+                    "type": "file_deleted"
+                  },
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "file_deleted"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The file was deleted."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "Missing Authentication header"
+                  }
+                },
+                "schema": {
+                  "description": "Unauthorized - Authentication required or invalid credentials",
+                  "example": {
+                    "error": {
+                      "code": 401,
+                      "message": "Missing Authentication header"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for UnauthorizedResponse",
+                      "example": {
+                        "code": 401,
+                        "message": "Missing Authentication header"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Authentication required or invalid credentials"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 404,
+                    "message": "Resource not found"
+                  }
+                },
+                "schema": {
+                  "description": "Not Found - Resource does not exist",
+                  "example": {
+                    "error": {
+                      "code": 404,
+                      "message": "Resource not found"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for NotFoundResponse",
+                      "example": {
+                        "code": 404,
+                        "message": "Resource not found"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found - Resource does not exist"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 429,
+                    "message": "Rate limit exceeded"
+                  }
+                },
+                "schema": {
+                  "description": "Too Many Requests - Rate limit exceeded",
+                  "example": {
+                    "error": {
+                      "code": 429,
+                      "message": "Rate limit exceeded"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for TooManyRequestsResponse",
+                      "example": {
+                        "code": 429,
+                        "message": "Rate limit exceeded"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Too Many Requests - Rate limit exceeded"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 500,
+                    "message": "Internal Server Error"
+                  }
+                },
+                "schema": {
+                  "description": "Internal Server Error - Unexpected server error",
+                  "example": {
+                    "error": {
+                      "code": 500,
+                      "message": "Internal Server Error"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for InternalServerResponse",
+                      "example": {
+                        "code": 500,
+                        "message": "Internal Server Error"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearer": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
       }
     }
   }

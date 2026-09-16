@@ -93,5 +93,2701 @@
         "workspace_id": "WORKSPACE01"
       }
     }
+  },
+  "requests": {
+    "POST /guardrails": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createGuardrail",
+        "parameters": [
+          {
+            "description": "The app identifier should be your app's URL and is used as the primary identifier for rankings.\nThis is used to track API usage per application.\n",
+            "in": "header",
+            "name": "HTTP-Referer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The app display name allows you to customize how your app appears in OpenRouter's dashboard.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Title",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of app categories (e.g. \"cli-agent,cloud-agent\"). Used for marketplace rankings.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Categories",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "allowed_models": null,
+                "allowed_providers": [
+                  "openai",
+                  "anthropic",
+                  "deepseek"
+                ],
+                "description": "A guardrail for limiting API usage",
+                "enforce_zdr_anthropic": true,
+                "enforce_zdr_google": false,
+                "enforce_zdr_openai": true,
+                "enforce_zdr_other": false,
+                "enforce_zdr_xai": false,
+                "ignored_models": null,
+                "ignored_providers": null,
+                "limit_usd": 50,
+                "name": "My New Guardrail",
+                "reset_interval": "monthly"
+              },
+              "schema": {
+                "example": {
+                  "allowed_models": null,
+                  "allowed_providers": [
+                    "openai",
+                    "anthropic",
+                    "deepseek"
+                  ],
+                  "content_filter_builtins": [
+                    {
+                      "action": "block",
+                      "slug": "regex-prompt-injection"
+                    }
+                  ],
+                  "content_filters": null,
+                  "description": "A guardrail for limiting API usage",
+                  "enforce_zdr_anthropic": true,
+                  "enforce_zdr_google": false,
+                  "enforce_zdr_openai": true,
+                  "enforce_zdr_other": false,
+                  "enforce_zdr_xai": false,
+                  "ignored_models": null,
+                  "ignored_providers": null,
+                  "limit_usd": 50,
+                  "name": "My New Guardrail",
+                  "reset_interval": "monthly"
+                },
+                "properties": {
+                  "allowed_models": {
+                    "description": "Array of model identifiers (slug or canonical_slug accepted)",
+                    "example": [
+                      "openai/gpt-5.2",
+                      "anthropic/claude-4.5-opus-20251124",
+                      "deepseek/deepseek-r1-0528:free"
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                      "array",
+                      "null"
+                    ]
+                  },
+                  "allowed_providers": {
+                    "description": "List of allowed provider IDs",
+                    "example": [
+                      "openai",
+                      "anthropic",
+                      "deepseek"
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                      "array",
+                      "null"
+                    ]
+                  },
+                  "content_filter_builtins": {
+                    "description": "Builtin content filters to apply. Every builtin slug supports \"block\", \"redact\", and the detect-only \"flag\" action.",
+                    "example": [
+                      {
+                        "action": "block",
+                        "slug": "regex-prompt-injection"
+                      }
+                    ],
+                    "items": {
+                      "description": "A builtin content filter entry for create/update requests. Labels are system-assigned and cannot be set by the caller.",
+                      "example": {
+                        "action": "redact",
+                        "slug": "email"
+                      },
+                      "properties": {
+                        "action": {
+                          "description": "Action taken when the builtin filter triggers",
+                          "enum": [
+                            "redact",
+                            "block",
+                            "flag"
+                          ],
+                          "example": "block",
+                          "type": "string"
+                        },
+                        "label": {
+                          "deprecated": true,
+                          "description": "Deprecated: labels are system-assigned and cannot be set by the caller. Accepted for backward compatibility but silently ignored.",
+                          "maxLength": 100,
+                          "type": "string"
+                        },
+                        "scan_scope": {
+                          "description": "Which message roles to scan for prompt injection. Only applies to the regex-prompt-injection builtin. Defaults to all_messages.",
+                          "enum": [
+                            "user_only",
+                            "all_messages"
+                          ],
+                          "example": "user_only",
+                          "type": "string"
+                        },
+                        "slug": {
+                          "description": "The builtin filter identifier",
+                          "enum": [
+                            "email",
+                            "phone",
+                            "ssn",
+                            "credit-card",
+                            "ip-address",
+                            "person-name",
+                            "address",
+                            "regex-prompt-injection"
+                          ],
+                          "example": "regex-prompt-injection",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "slug",
+                        "action"
+                      ],
+                      "type": "object"
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
+                  },
+                  "content_filters": {
+                    "description": "Custom regex content filters to apply to request messages",
+                    "example": [
+                      {
+                        "action": "redact",
+                        "label": "[API_KEY]",
+                        "pattern": "\\b(sk-[a-zA-Z0-9]{48})\\b"
+                      }
+                    ],
+                    "items": {
+                      "description": "A custom regex content filter that scans request messages for matching patterns.",
+                      "example": {
+                        "action": "redact",
+                        "label": "[API_KEY]",
+                        "pattern": "\\b(sk-[a-zA-Z0-9]{48})\\b"
+                      },
+                      "properties": {
+                        "action": {
+                          "description": "Action taken when the pattern matches",
+                          "enum": [
+                            "redact",
+                            "block",
+                            "flag"
+                          ],
+                          "example": "block",
+                          "type": "string"
+                        },
+                        "label": {
+                          "description": "Optional label used in redaction placeholders or error messages",
+                          "example": "[API_KEY]",
+                          "maxLength": 100,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "pattern": {
+                          "description": "A regex pattern to match against request content",
+                          "example": "\\b(sk-[a-zA-Z0-9]{48})\\b",
+                          "minLength": 1,
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "pattern",
+                        "action"
+                      ],
+                      "type": "object"
+                    },
+                    "type": [
+                      "array",
+                      "null"
+                    ]
+                  },
+                  "description": {
+                    "description": "Description of the guardrail",
+                    "example": "A guardrail for limiting API usage",
+                    "maxLength": 1000,
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "enforce_zdr": {
+                    "deprecated": true,
+                    "description": "Deprecated. Use enforce_zdr_anthropic, enforce_zdr_openai, enforce_zdr_google, enforce_zdr_xai, and enforce_zdr_other instead. When provided, its value is copied into any of those per-provider fields that are not explicitly specified on the request.",
+                    "example": false,
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "enforce_zdr_anthropic": {
+                    "description": "Whether to enforce zero data retention for Anthropic models. Falls back to enforce_zdr when not provided.",
+                    "example": false,
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "enforce_zdr_google": {
+                    "description": "Whether to enforce zero data retention for Google models. Falls back to enforce_zdr when not provided.",
+                    "example": false,
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "enforce_zdr_openai": {
+                    "description": "Whether to enforce zero data retention for OpenAI models. Falls back to enforce_zdr when not provided.",
+                    "example": false,
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "enforce_zdr_other": {
+                    "description": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. Falls back to enforce_zdr when not provided.",
+                    "example": false,
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "enforce_zdr_xai": {
+                    "description": "Whether to enforce zero data retention for xAI models. Falls back to enforce_zdr when not provided.",
+                    "example": false,
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "ignored_models": {
+                    "description": "Array of model identifiers to exclude from routing (slug or canonical_slug accepted)",
+                    "example": [
+                      "openai/gpt-4o-mini"
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                      "array",
+                      "null"
+                    ]
+                  },
+                  "ignored_providers": {
+                    "description": "List of provider IDs to exclude from routing",
+                    "example": [
+                      "azure"
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                      "array",
+                      "null"
+                    ]
+                  },
+                  "limit_usd": {
+                    "description": "Spending limit in USD",
+                    "example": 50,
+                    "format": "double",
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "name": {
+                    "description": "Name for the new guardrail",
+                    "example": "My New Guardrail",
+                    "maxLength": 200,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "reset_interval": {
+                    "description": "Interval at which the limit resets (daily, weekly, monthly)",
+                    "enum": [
+                      "daily",
+                      "weekly",
+                      "monthly",
+                      null
+                    ],
+                    "example": "monthly",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "workspace_id": {
+                    "description": "The workspace to create the guardrail in. Defaults to the default workspace if not provided.",
+                    "example": "0df9e665-d932-5740-b2c7-b52af166bc11",
+                    "format": "uuid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "allowed_models": null,
+                    "allowed_providers": [
+                      "openai",
+                      "anthropic",
+                      "google"
+                    ],
+                    "created_at": "2025-08-24T10:30:00Z",
+                    "description": "A guardrail for limiting API usage",
+                    "enforce_zdr": null,
+                    "enforce_zdr_anthropic": true,
+                    "enforce_zdr_google": false,
+                    "enforce_zdr_openai": true,
+                    "enforce_zdr_other": false,
+                    "enforce_zdr_xai": false,
+                    "id": "550e8400-e29b-41d4-a716-446655440000",
+                    "ignored_models": null,
+                    "ignored_providers": null,
+                    "limit_usd": 50,
+                    "name": "My New Guardrail",
+                    "reset_interval": "monthly",
+                    "updated_at": null,
+                    "workspace_id": "0df9e665-d932-5740-b2c7-b52af166bc11"
+                  }
+                },
+                "schema": {
+                  "example": {
+                    "data": {
+                      "allowed_models": null,
+                      "allowed_providers": [
+                        "openai",
+                        "anthropic",
+                        "google"
+                      ],
+                      "content_filter_builtins": [
+                        {
+                          "action": "redact",
+                          "label": "[EMAIL]",
+                          "slug": "email"
+                        }
+                      ],
+                      "content_filters": null,
+                      "created_at": "2025-08-24T10:30:00Z",
+                      "description": "A guardrail for limiting API usage",
+                      "enforce_zdr": null,
+                      "enforce_zdr_anthropic": true,
+                      "enforce_zdr_google": false,
+                      "enforce_zdr_openai": true,
+                      "enforce_zdr_other": false,
+                      "enforce_zdr_xai": false,
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
+                      "ignored_models": null,
+                      "ignored_providers": null,
+                      "limit_usd": 50,
+                      "name": "My New Guardrail",
+                      "reset_interval": "monthly",
+                      "updated_at": null,
+                      "workspace_id": "0df9e665-d932-5740-b2c7-b52af166bc11"
+                    }
+                  },
+                  "properties": {
+                    "data": {
+                      "allOf": [
+                        {
+                          "example": {
+                            "allowed_models": null,
+                            "allowed_providers": [
+                              "openai",
+                              "anthropic",
+                              "google"
+                            ],
+                            "content_filter_builtins": [
+                              {
+                                "action": "redact",
+                                "label": "[EMAIL]",
+                                "slug": "email"
+                              }
+                            ],
+                            "content_filters": null,
+                            "created_at": "2025-08-24T10:30:00Z",
+                            "description": "Guardrail for production environment",
+                            "enforce_zdr": null,
+                            "enforce_zdr_anthropic": true,
+                            "enforce_zdr_google": false,
+                            "enforce_zdr_openai": true,
+                            "enforce_zdr_other": false,
+                            "enforce_zdr_xai": false,
+                            "id": "550e8400-e29b-41d4-a716-446655440000",
+                            "ignored_models": null,
+                            "ignored_providers": null,
+                            "limit_usd": 100,
+                            "name": "Production Guardrail",
+                            "reset_interval": "monthly",
+                            "updated_at": "2025-08-24T15:45:00Z",
+                            "workspace_id": "0df9e665-d932-5740-b2c7-b52af166bc11"
+                          },
+                          "properties": {
+                            "allowed_models": {
+                              "description": "Array of model canonical_slugs (immutable identifiers)",
+                              "example": [
+                                "openai/gpt-5.2-20251211",
+                                "anthropic/claude-4.5-opus-20251124",
+                                "deepseek/deepseek-r1-0528:free"
+                              ],
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
+                            },
+                            "allowed_providers": {
+                              "description": "List of allowed provider IDs",
+                              "example": [
+                                "openai",
+                                "anthropic",
+                                "google"
+                              ],
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
+                            },
+                            "content_filter_builtins": {
+                              "description": "Builtin content filters applied to requests. Includes PII detectors and the regex-based prompt injection detector.",
+                              "example": [
+                                {
+                                  "action": "redact",
+                                  "label": "[EMAIL]",
+                                  "slug": "email"
+                                }
+                              ],
+                              "items": {
+                                "description": "A builtin content filter entry. Builtin filters include PII detectors and the regex-based prompt injection detector.",
+                                "example": {
+                                  "action": "redact",
+                                  "label": "[EMAIL]",
+                                  "slug": "email"
+                                },
+                                "properties": {
+                                  "action": {
+                                    "description": "Action taken when the builtin filter triggers",
+                                    "enum": [
+                                      "redact",
+                                      "block",
+                                      "flag"
+                                    ],
+                                    "example": "block",
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "description": "Read-only, system-assigned redaction placeholder derived from the slug (e.g. \"[EMAIL]\", \"[PHONE]\"). Not settable by the caller.",
+                                    "example": "[EMAIL]",
+                                    "maxLength": 100,
+                                    "type": "string"
+                                  },
+                                  "scan_scope": {
+                                    "description": "Which message roles to scan for prompt injection. Only applies to the regex-prompt-injection builtin. Defaults to all_messages.",
+                                    "enum": [
+                                      "user_only",
+                                      "all_messages"
+                                    ],
+                                    "example": "user_only",
+                                    "type": "string"
+                                  },
+                                  "slug": {
+                                    "description": "The builtin filter identifier",
+                                    "enum": [
+                                      "email",
+                                      "phone",
+                                      "ssn",
+                                      "credit-card",
+                                      "ip-address",
+                                      "person-name",
+                                      "address",
+                                      "regex-prompt-injection"
+                                    ],
+                                    "example": "regex-prompt-injection",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "slug",
+                                  "action"
+                                ],
+                                "type": "object"
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
+                            },
+                            "content_filters": {
+                              "description": "Custom regex content filters applied to request messages",
+                              "example": [
+                                {
+                                  "action": "redact",
+                                  "label": "[API_KEY]",
+                                  "pattern": "\\b(sk-[a-zA-Z0-9]{48})\\b"
+                                }
+                              ],
+                              "items": {
+                                "description": "A custom regex content filter that scans request messages for matching patterns.",
+                                "example": {
+                                  "action": "redact",
+                                  "label": "[API_KEY]",
+                                  "pattern": "\\b(sk-[a-zA-Z0-9]{48})\\b"
+                                },
+                                "properties": {
+                                  "action": {
+                                    "description": "Action taken when the pattern matches",
+                                    "enum": [
+                                      "redact",
+                                      "block",
+                                      "flag"
+                                    ],
+                                    "example": "block",
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "description": "Optional label used in redaction placeholders or error messages",
+                                    "example": "[API_KEY]",
+                                    "maxLength": 100,
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ]
+                                  },
+                                  "pattern": {
+                                    "description": "A regex pattern to match against request content",
+                                    "example": "\\b(sk-[a-zA-Z0-9]{48})\\b",
+                                    "minLength": 1,
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "pattern",
+                                  "action"
+                                ],
+                                "type": "object"
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
+                            },
+                            "created_at": {
+                              "description": "ISO 8601 timestamp of when the guardrail was created",
+                              "example": "2025-08-24T10:30:00Z",
+                              "type": "string"
+                            },
+                            "description": {
+                              "description": "Description of the guardrail",
+                              "example": "Guardrail for production environment",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "enforce_zdr": {
+                              "deprecated": true,
+                              "description": "Deprecated. Use enforce_zdr_anthropic, enforce_zdr_openai, enforce_zdr_google, enforce_zdr_xai, and enforce_zdr_other instead. When provided, its value is copied into any of those per-provider fields that are not explicitly specified on the request.",
+                              "example": false,
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "enforce_zdr_anthropic": {
+                              "description": "Whether to enforce zero data retention for Anthropic models. Falls back to enforce_zdr when not provided.",
+                              "example": false,
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "enforce_zdr_google": {
+                              "description": "Whether to enforce zero data retention for Google models. Falls back to enforce_zdr when not provided.",
+                              "example": false,
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "enforce_zdr_openai": {
+                              "description": "Whether to enforce zero data retention for OpenAI models. Falls back to enforce_zdr when not provided.",
+                              "example": false,
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "enforce_zdr_other": {
+                              "description": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. Falls back to enforce_zdr when not provided.",
+                              "example": false,
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "enforce_zdr_xai": {
+                              "description": "Whether to enforce zero data retention for xAI models. Falls back to enforce_zdr when not provided.",
+                              "example": false,
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "id": {
+                              "description": "Unique identifier for the guardrail",
+                              "example": "550e8400-e29b-41d4-a716-446655440000",
+                              "format": "uuid",
+                              "type": "string"
+                            },
+                            "ignored_models": {
+                              "description": "Array of model canonical_slugs to exclude from routing",
+                              "example": [
+                                "openai/gpt-4o-mini-2024-07-18"
+                              ],
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
+                            },
+                            "ignored_providers": {
+                              "description": "List of provider IDs to exclude from routing",
+                              "example": [
+                                "azure"
+                              ],
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
+                            },
+                            "limit_usd": {
+                              "description": "Spending limit in USD",
+                              "example": 100,
+                              "format": "double",
+                              "type": [
+                                "number",
+                                "null"
+                              ]
+                            },
+                            "name": {
+                              "description": "Name of the guardrail",
+                              "example": "Production Guardrail",
+                              "type": "string"
+                            },
+                            "reset_interval": {
+                              "description": "Interval at which the limit resets (daily, weekly, monthly)",
+                              "enum": [
+                                "daily",
+                                "weekly",
+                                "monthly",
+                                null
+                              ],
+                              "example": "monthly",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "updated_at": {
+                              "description": "ISO 8601 timestamp of when the guardrail was last updated",
+                              "example": "2025-08-24T15:45:00Z",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "workspace_id": {
+                              "description": "The workspace ID this guardrail belongs to.",
+                              "example": "0df9e665-d932-5740-b2c7-b52af166bc11",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "name",
+                            "created_at",
+                            "workspace_id"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "description": "The created guardrail"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Guardrail created successfully"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 400,
+                    "message": "Invalid request parameters"
+                  }
+                },
+                "schema": {
+                  "description": "Bad Request - Invalid request parameters or malformed input",
+                  "example": {
+                    "error": {
+                      "code": 400,
+                      "message": "Invalid request parameters"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for BadRequestResponse",
+                      "example": {
+                        "code": 400,
+                        "message": "Invalid request parameters"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request - Invalid request parameters or malformed input"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "Missing Authentication header"
+                  }
+                },
+                "schema": {
+                  "description": "Unauthorized - Authentication required or invalid credentials",
+                  "example": {
+                    "error": {
+                      "code": 401,
+                      "message": "Missing Authentication header"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for UnauthorizedResponse",
+                      "example": {
+                        "code": 401,
+                        "message": "Missing Authentication header"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Authentication required or invalid credentials"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 403,
+                    "message": "Only management keys can perform this operation"
+                  }
+                },
+                "schema": {
+                  "description": "Forbidden - Authentication successful but insufficient permissions",
+                  "example": {
+                    "error": {
+                      "code": 403,
+                      "message": "Only management keys can perform this operation"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for ForbiddenResponse",
+                      "example": {
+                        "code": 403,
+                        "message": "Only management keys can perform this operation"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Forbidden - Authentication successful but insufficient permissions"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 500,
+                    "message": "Internal Server Error"
+                  }
+                },
+                "schema": {
+                  "description": "Internal Server Error - Unexpected server error",
+                  "example": {
+                    "error": {
+                      "code": 500,
+                      "message": "Internal Server Error"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for InternalServerResponse",
+                      "example": {
+                        "code": 500,
+                        "message": "Internal Server Error"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearer": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /guardrails": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listGuardrails",
+        "parameters": [
+          {
+            "description": "The app identifier should be your app's URL and is used as the primary identifier for rankings.\nThis is used to track API usage per application.\n",
+            "in": "header",
+            "name": "HTTP-Referer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The app display name allows you to customize how your app appears in OpenRouter's dashboard.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Title",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of app categories (e.g. \"cli-agent,cloud-agent\"). Used for marketplace rankings.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Categories",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of records to skip for pagination",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "description": "Number of records to skip for pagination",
+              "example": 0,
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            }
+          },
+          {
+            "description": "Maximum number of records to return (max 100)",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "description": "Maximum number of records to return (max 100)",
+              "example": 50,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Filter guardrails by workspace ID. By default, guardrails in the default workspace are returned.",
+            "in": "query",
+            "name": "workspace_id",
+            "required": false,
+            "schema": {
+              "description": "Filter guardrails by workspace ID. By default, guardrails in the default workspace are returned.",
+              "example": "0df9e665-d932-5740-b2c7-b52af166bc11",
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": [
+                    {
+                      "allowed_models": null,
+                      "allowed_providers": [
+                        "openai",
+                        "anthropic",
+                        "google"
+                      ],
+                      "created_at": "2025-08-24T10:30:00Z",
+                      "description": "Guardrail for production environment",
+                      "enforce_zdr": false,
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
+                      "ignored_models": null,
+                      "ignored_providers": null,
+                      "limit_usd": 100,
+                      "name": "Production Guardrail",
+                      "reset_interval": "monthly",
+                      "updated_at": "2025-08-24T15:45:00Z",
+                      "workspace_id": "0df9e665-d932-5740-b2c7-b52af166bc11"
+                    }
+                  ],
+                  "total_count": 1
+                },
+                "schema": {
+                  "example": {
+                    "data": [
+                      {
+                        "allowed_models": null,
+                        "allowed_providers": [
+                          "openai",
+                          "anthropic",
+                          "google"
+                        ],
+                        "content_filter_builtins": [
+                          {
+                            "action": "redact",
+                            "label": "[EMAIL]",
+                            "slug": "email"
+                          }
+                        ],
+                        "content_filters": null,
+                        "created_at": "2025-08-24T10:30:00Z",
+                        "description": "Guardrail for production environment",
+                        "enforce_zdr": null,
+                        "enforce_zdr_anthropic": true,
+                        "enforce_zdr_google": false,
+                        "enforce_zdr_openai": true,
+                        "enforce_zdr_other": false,
+                        "enforce_zdr_xai": false,
+                        "id": "550e8400-e29b-41d4-a716-446655440000",
+                        "ignored_models": null,
+                        "ignored_providers": null,
+                        "limit_usd": 100,
+                        "name": "Production Guardrail",
+                        "reset_interval": "monthly",
+                        "updated_at": "2025-08-24T15:45:00Z",
+                        "workspace_id": "0df9e665-d932-5740-b2c7-b52af166bc11"
+                      }
+                    ],
+                    "total_count": 1
+                  },
+                  "properties": {
+                    "data": {
+                      "description": "List of guardrails",
+                      "items": {
+                        "example": {
+                          "allowed_models": null,
+                          "allowed_providers": [
+                            "openai",
+                            "anthropic",
+                            "google"
+                          ],
+                          "content_filter_builtins": [
+                            {
+                              "action": "redact",
+                              "label": "[EMAIL]",
+                              "slug": "email"
+                            }
+                          ],
+                          "content_filters": null,
+                          "created_at": "2025-08-24T10:30:00Z",
+                          "description": "Guardrail for production environment",
+                          "enforce_zdr": null,
+                          "enforce_zdr_anthropic": true,
+                          "enforce_zdr_google": false,
+                          "enforce_zdr_openai": true,
+                          "enforce_zdr_other": false,
+                          "enforce_zdr_xai": false,
+                          "id": "550e8400-e29b-41d4-a716-446655440000",
+                          "ignored_models": null,
+                          "ignored_providers": null,
+                          "limit_usd": 100,
+                          "name": "Production Guardrail",
+                          "reset_interval": "monthly",
+                          "updated_at": "2025-08-24T15:45:00Z",
+                          "workspace_id": "0df9e665-d932-5740-b2c7-b52af166bc11"
+                        },
+                        "properties": {
+                          "allowed_models": {
+                            "description": "Array of model canonical_slugs (immutable identifiers)",
+                            "example": [
+                              "openai/gpt-5.2-20251211",
+                              "anthropic/claude-4.5-opus-20251124",
+                              "deepseek/deepseek-r1-0528:free"
+                            ],
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
+                          },
+                          "allowed_providers": {
+                            "description": "List of allowed provider IDs",
+                            "example": [
+                              "openai",
+                              "anthropic",
+                              "google"
+                            ],
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
+                          },
+                          "content_filter_builtins": {
+                            "description": "Builtin content filters applied to requests. Includes PII detectors and the regex-based prompt injection detector.",
+                            "example": [
+                              {
+                                "action": "redact",
+                                "label": "[EMAIL]",
+                                "slug": "email"
+                              }
+                            ],
+                            "items": {
+                              "description": "A builtin content filter entry. Builtin filters include PII detectors and the regex-based prompt injection detector.",
+                              "example": {
+                                "action": "redact",
+                                "label": "[EMAIL]",
+                                "slug": "email"
+                              },
+                              "properties": {
+                                "action": {
+                                  "description": "Action taken when the builtin filter triggers",
+                                  "enum": [
+                                    "redact",
+                                    "block",
+                                    "flag"
+                                  ],
+                                  "example": "block",
+                                  "type": "string"
+                                },
+                                "label": {
+                                  "description": "Read-only, system-assigned redaction placeholder derived from the slug (e.g. \"[EMAIL]\", \"[PHONE]\"). Not settable by the caller.",
+                                  "example": "[EMAIL]",
+                                  "maxLength": 100,
+                                  "type": "string"
+                                },
+                                "scan_scope": {
+                                  "description": "Which message roles to scan for prompt injection. Only applies to the regex-prompt-injection builtin. Defaults to all_messages.",
+                                  "enum": [
+                                    "user_only",
+                                    "all_messages"
+                                  ],
+                                  "example": "user_only",
+                                  "type": "string"
+                                },
+                                "slug": {
+                                  "description": "The builtin filter identifier",
+                                  "enum": [
+                                    "email",
+                                    "phone",
+                                    "ssn",
+                                    "credit-card",
+                                    "ip-address",
+                                    "person-name",
+                                    "address",
+                                    "regex-prompt-injection"
+                                  ],
+                                  "example": "regex-prompt-injection",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "slug",
+                                "action"
+                              ],
+                              "type": "object"
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
+                          },
+                          "content_filters": {
+                            "description": "Custom regex content filters applied to request messages",
+                            "example": [
+                              {
+                                "action": "redact",
+                                "label": "[API_KEY]",
+                                "pattern": "\\b(sk-[a-zA-Z0-9]{48})\\b"
+                              }
+                            ],
+                            "items": {
+                              "description": "A custom regex content filter that scans request messages for matching patterns.",
+                              "example": {
+                                "action": "redact",
+                                "label": "[API_KEY]",
+                                "pattern": "\\b(sk-[a-zA-Z0-9]{48})\\b"
+                              },
+                              "properties": {
+                                "action": {
+                                  "description": "Action taken when the pattern matches",
+                                  "enum": [
+                                    "redact",
+                                    "block",
+                                    "flag"
+                                  ],
+                                  "example": "block",
+                                  "type": "string"
+                                },
+                                "label": {
+                                  "description": "Optional label used in redaction placeholders or error messages",
+                                  "example": "[API_KEY]",
+                                  "maxLength": 100,
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "pattern": {
+                                  "description": "A regex pattern to match against request content",
+                                  "example": "\\b(sk-[a-zA-Z0-9]{48})\\b",
+                                  "minLength": 1,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "pattern",
+                                "action"
+                              ],
+                              "type": "object"
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
+                          },
+                          "created_at": {
+                            "description": "ISO 8601 timestamp of when the guardrail was created",
+                            "example": "2025-08-24T10:30:00Z",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "Description of the guardrail",
+                            "example": "Guardrail for production environment",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "enforce_zdr": {
+                            "deprecated": true,
+                            "description": "Deprecated. Use enforce_zdr_anthropic, enforce_zdr_openai, enforce_zdr_google, enforce_zdr_xai, and enforce_zdr_other instead. When provided, its value is copied into any of those per-provider fields that are not explicitly specified on the request.",
+                            "example": false,
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "enforce_zdr_anthropic": {
+                            "description": "Whether to enforce zero data retention for Anthropic models. Falls back to enforce_zdr when not provided.",
+                            "example": false,
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "enforce_zdr_google": {
+                            "description": "Whether to enforce zero data retention for Google models. Falls back to enforce_zdr when not provided.",
+                            "example": false,
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "enforce_zdr_openai": {
+                            "description": "Whether to enforce zero data retention for OpenAI models. Falls back to enforce_zdr when not provided.",
+                            "example": false,
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "enforce_zdr_other": {
+                            "description": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. Falls back to enforce_zdr when not provided.",
+                            "example": false,
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "enforce_zdr_xai": {
+                            "description": "Whether to enforce zero data retention for xAI models. Falls back to enforce_zdr when not provided.",
+                            "example": false,
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "id": {
+                            "description": "Unique identifier for the guardrail",
+                            "example": "550e8400-e29b-41d4-a716-446655440000",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "ignored_models": {
+                            "description": "Array of model canonical_slugs to exclude from routing",
+                            "example": [
+                              "openai/gpt-4o-mini-2024-07-18"
+                            ],
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
+                          },
+                          "ignored_providers": {
+                            "description": "List of provider IDs to exclude from routing",
+                            "example": [
+                              "azure"
+                            ],
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": [
+                              "array",
+                              "null"
+                            ]
+                          },
+                          "limit_usd": {
+                            "description": "Spending limit in USD",
+                            "example": 100,
+                            "format": "double",
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "name": {
+                            "description": "Name of the guardrail",
+                            "example": "Production Guardrail",
+                            "type": "string"
+                          },
+                          "reset_interval": {
+                            "description": "Interval at which the limit resets (daily, weekly, monthly)",
+                            "enum": [
+                              "daily",
+                              "weekly",
+                              "monthly",
+                              null
+                            ],
+                            "example": "monthly",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "updated_at": {
+                            "description": "ISO 8601 timestamp of when the guardrail was last updated",
+                            "example": "2025-08-24T15:45:00Z",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "workspace_id": {
+                            "description": "The workspace ID this guardrail belongs to.",
+                            "example": "0df9e665-d932-5740-b2c7-b52af166bc11",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "created_at",
+                          "workspace_id"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total_count": {
+                      "description": "Total number of guardrails",
+                      "example": 25,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "total_count"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "List of guardrails"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "Missing Authentication header"
+                  }
+                },
+                "schema": {
+                  "description": "Unauthorized - Authentication required or invalid credentials",
+                  "example": {
+                    "error": {
+                      "code": 401,
+                      "message": "Missing Authentication header"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for UnauthorizedResponse",
+                      "example": {
+                        "code": 401,
+                        "message": "Missing Authentication header"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Authentication required or invalid credentials"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 500,
+                    "message": "Internal Server Error"
+                  }
+                },
+                "schema": {
+                  "description": "Internal Server Error - Unexpected server error",
+                  "example": {
+                    "error": {
+                      "code": 500,
+                      "message": "Internal Server Error"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for InternalServerResponse",
+                      "example": {
+                        "code": 500,
+                        "message": "Internal Server Error"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearer": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /guardrails/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getGuardrail",
+        "parameters": [
+          {
+            "description": "The app identifier should be your app's URL and is used as the primary identifier for rankings.\nThis is used to track API usage per application.\n",
+            "in": "header",
+            "name": "HTTP-Referer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The app display name allows you to customize how your app appears in OpenRouter's dashboard.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Title",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of app categories (e.g. \"cli-agent,cloud-agent\"). Used for marketplace rankings.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Categories",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of the guardrail to retrieve",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "description": "The unique identifier of the guardrail to retrieve",
+              "example": "550e8400-e29b-41d4-a716-446655440000",
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "allowed_models": null,
+                    "allowed_providers": [
+                      "openai",
+                      "anthropic",
+                      "google"
+                    ],
+                    "created_at": "2025-08-24T10:30:00Z",
+                    "description": "Guardrail for production environment",
+                    "enforce_zdr": false,
+                    "id": "550e8400-e29b-41d4-a716-446655440000",
+                    "ignored_models": null,
+                    "ignored_providers": null,
+                    "limit_usd": 100,
+                    "name": "Production Guardrail",
+                    "reset_interval": "monthly",
+                    "updated_at": "2025-08-24T15:45:00Z",
+                    "workspace_id": "0df9e665-d932-5740-b2c7-b52af166bc11"
+                  }
+                },
+                "schema": {
+                  "example": {
+                    "data": {
+                      "allowed_models": null,
+                      "allowed_providers": [
+                        "openai",
+                        "anthropic",
+                        "google"
+                      ],
+                      "content_filter_builtins": [
+                        {
+                          "action": "redact",
+                          "label": "[EMAIL]",
+                          "slug": "email"
+                        }
+                      ],
+                      "content_filters": null,
+                      "created_at": "2025-08-24T10:30:00Z",
+                      "description": "Guardrail for production environment",
+                      "enforce_zdr": null,
+                      "enforce_zdr_anthropic": true,
+                      "enforce_zdr_google": false,
+                      "enforce_zdr_openai": true,
+                      "enforce_zdr_other": false,
+                      "enforce_zdr_xai": false,
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
+                      "ignored_models": null,
+                      "ignored_providers": null,
+                      "limit_usd": 100,
+                      "name": "Production Guardrail",
+                      "reset_interval": "monthly",
+                      "updated_at": "2025-08-24T15:45:00Z",
+                      "workspace_id": "0df9e665-d932-5740-b2c7-b52af166bc11"
+                    }
+                  },
+                  "properties": {
+                    "data": {
+                      "allOf": [
+                        {
+                          "example": {
+                            "allowed_models": null,
+                            "allowed_providers": [
+                              "openai",
+                              "anthropic",
+                              "google"
+                            ],
+                            "content_filter_builtins": [
+                              {
+                                "action": "redact",
+                                "label": "[EMAIL]",
+                                "slug": "email"
+                              }
+                            ],
+                            "content_filters": null,
+                            "created_at": "2025-08-24T10:30:00Z",
+                            "description": "Guardrail for production environment",
+                            "enforce_zdr": null,
+                            "enforce_zdr_anthropic": true,
+                            "enforce_zdr_google": false,
+                            "enforce_zdr_openai": true,
+                            "enforce_zdr_other": false,
+                            "enforce_zdr_xai": false,
+                            "id": "550e8400-e29b-41d4-a716-446655440000",
+                            "ignored_models": null,
+                            "ignored_providers": null,
+                            "limit_usd": 100,
+                            "name": "Production Guardrail",
+                            "reset_interval": "monthly",
+                            "updated_at": "2025-08-24T15:45:00Z",
+                            "workspace_id": "0df9e665-d932-5740-b2c7-b52af166bc11"
+                          },
+                          "properties": {
+                            "allowed_models": {
+                              "description": "Array of model canonical_slugs (immutable identifiers)",
+                              "example": [
+                                "openai/gpt-5.2-20251211",
+                                "anthropic/claude-4.5-opus-20251124",
+                                "deepseek/deepseek-r1-0528:free"
+                              ],
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
+                            },
+                            "allowed_providers": {
+                              "description": "List of allowed provider IDs",
+                              "example": [
+                                "openai",
+                                "anthropic",
+                                "google"
+                              ],
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
+                            },
+                            "content_filter_builtins": {
+                              "description": "Builtin content filters applied to requests. Includes PII detectors and the regex-based prompt injection detector.",
+                              "example": [
+                                {
+                                  "action": "redact",
+                                  "label": "[EMAIL]",
+                                  "slug": "email"
+                                }
+                              ],
+                              "items": {
+                                "description": "A builtin content filter entry. Builtin filters include PII detectors and the regex-based prompt injection detector.",
+                                "example": {
+                                  "action": "redact",
+                                  "label": "[EMAIL]",
+                                  "slug": "email"
+                                },
+                                "properties": {
+                                  "action": {
+                                    "description": "Action taken when the builtin filter triggers",
+                                    "enum": [
+                                      "redact",
+                                      "block",
+                                      "flag"
+                                    ],
+                                    "example": "block",
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "description": "Read-only, system-assigned redaction placeholder derived from the slug (e.g. \"[EMAIL]\", \"[PHONE]\"). Not settable by the caller.",
+                                    "example": "[EMAIL]",
+                                    "maxLength": 100,
+                                    "type": "string"
+                                  },
+                                  "scan_scope": {
+                                    "description": "Which message roles to scan for prompt injection. Only applies to the regex-prompt-injection builtin. Defaults to all_messages.",
+                                    "enum": [
+                                      "user_only",
+                                      "all_messages"
+                                    ],
+                                    "example": "user_only",
+                                    "type": "string"
+                                  },
+                                  "slug": {
+                                    "description": "The builtin filter identifier",
+                                    "enum": [
+                                      "email",
+                                      "phone",
+                                      "ssn",
+                                      "credit-card",
+                                      "ip-address",
+                                      "person-name",
+                                      "address",
+                                      "regex-prompt-injection"
+                                    ],
+                                    "example": "regex-prompt-injection",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "slug",
+                                  "action"
+                                ],
+                                "type": "object"
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
+                            },
+                            "content_filters": {
+                              "description": "Custom regex content filters applied to request messages",
+                              "example": [
+                                {
+                                  "action": "redact",
+                                  "label": "[API_KEY]",
+                                  "pattern": "\\b(sk-[a-zA-Z0-9]{48})\\b"
+                                }
+                              ],
+                              "items": {
+                                "description": "A custom regex content filter that scans request messages for matching patterns.",
+                                "example": {
+                                  "action": "redact",
+                                  "label": "[API_KEY]",
+                                  "pattern": "\\b(sk-[a-zA-Z0-9]{48})\\b"
+                                },
+                                "properties": {
+                                  "action": {
+                                    "description": "Action taken when the pattern matches",
+                                    "enum": [
+                                      "redact",
+                                      "block",
+                                      "flag"
+                                    ],
+                                    "example": "block",
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "description": "Optional label used in redaction placeholders or error messages",
+                                    "example": "[API_KEY]",
+                                    "maxLength": 100,
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ]
+                                  },
+                                  "pattern": {
+                                    "description": "A regex pattern to match against request content",
+                                    "example": "\\b(sk-[a-zA-Z0-9]{48})\\b",
+                                    "minLength": 1,
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "pattern",
+                                  "action"
+                                ],
+                                "type": "object"
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
+                            },
+                            "created_at": {
+                              "description": "ISO 8601 timestamp of when the guardrail was created",
+                              "example": "2025-08-24T10:30:00Z",
+                              "type": "string"
+                            },
+                            "description": {
+                              "description": "Description of the guardrail",
+                              "example": "Guardrail for production environment",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "enforce_zdr": {
+                              "deprecated": true,
+                              "description": "Deprecated. Use enforce_zdr_anthropic, enforce_zdr_openai, enforce_zdr_google, enforce_zdr_xai, and enforce_zdr_other instead. When provided, its value is copied into any of those per-provider fields that are not explicitly specified on the request.",
+                              "example": false,
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "enforce_zdr_anthropic": {
+                              "description": "Whether to enforce zero data retention for Anthropic models. Falls back to enforce_zdr when not provided.",
+                              "example": false,
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "enforce_zdr_google": {
+                              "description": "Whether to enforce zero data retention for Google models. Falls back to enforce_zdr when not provided.",
+                              "example": false,
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "enforce_zdr_openai": {
+                              "description": "Whether to enforce zero data retention for OpenAI models. Falls back to enforce_zdr when not provided.",
+                              "example": false,
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "enforce_zdr_other": {
+                              "description": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI. Falls back to enforce_zdr when not provided.",
+                              "example": false,
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "enforce_zdr_xai": {
+                              "description": "Whether to enforce zero data retention for xAI models. Falls back to enforce_zdr when not provided.",
+                              "example": false,
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "id": {
+                              "description": "Unique identifier for the guardrail",
+                              "example": "550e8400-e29b-41d4-a716-446655440000",
+                              "format": "uuid",
+                              "type": "string"
+                            },
+                            "ignored_models": {
+                              "description": "Array of model canonical_slugs to exclude from routing",
+                              "example": [
+                                "openai/gpt-4o-mini-2024-07-18"
+                              ],
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
+                            },
+                            "ignored_providers": {
+                              "description": "List of provider IDs to exclude from routing",
+                              "example": [
+                                "azure"
+                              ],
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": [
+                                "array",
+                                "null"
+                              ]
+                            },
+                            "limit_usd": {
+                              "description": "Spending limit in USD",
+                              "example": 100,
+                              "format": "double",
+                              "type": [
+                                "number",
+                                "null"
+                              ]
+                            },
+                            "name": {
+                              "description": "Name of the guardrail",
+                              "example": "Production Guardrail",
+                              "type": "string"
+                            },
+                            "reset_interval": {
+                              "description": "Interval at which the limit resets (daily, weekly, monthly)",
+                              "enum": [
+                                "daily",
+                                "weekly",
+                                "monthly",
+                                null
+                              ],
+                              "example": "monthly",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "updated_at": {
+                              "description": "ISO 8601 timestamp of when the guardrail was last updated",
+                              "example": "2025-08-24T15:45:00Z",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "workspace_id": {
+                              "description": "The workspace ID this guardrail belongs to.",
+                              "example": "0df9e665-d932-5740-b2c7-b52af166bc11",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "name",
+                            "created_at",
+                            "workspace_id"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "description": "The guardrail"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Guardrail details"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "Missing Authentication header"
+                  }
+                },
+                "schema": {
+                  "description": "Unauthorized - Authentication required or invalid credentials",
+                  "example": {
+                    "error": {
+                      "code": 401,
+                      "message": "Missing Authentication header"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for UnauthorizedResponse",
+                      "example": {
+                        "code": 401,
+                        "message": "Missing Authentication header"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Authentication required or invalid credentials"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 404,
+                    "message": "Resource not found"
+                  }
+                },
+                "schema": {
+                  "description": "Not Found - Resource does not exist",
+                  "example": {
+                    "error": {
+                      "code": 404,
+                      "message": "Resource not found"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for NotFoundResponse",
+                      "example": {
+                        "code": 404,
+                        "message": "Resource not found"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found - Resource does not exist"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 500,
+                    "message": "Internal Server Error"
+                  }
+                },
+                "schema": {
+                  "description": "Internal Server Error - Unexpected server error",
+                  "example": {
+                    "error": {
+                      "code": 500,
+                      "message": "Internal Server Error"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for InternalServerResponse",
+                      "example": {
+                        "code": 500,
+                        "message": "Internal Server Error"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearer": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /guardrails/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteGuardrail",
+        "parameters": [
+          {
+            "description": "The app identifier should be your app's URL and is used as the primary identifier for rankings.\nThis is used to track API usage per application.\n",
+            "in": "header",
+            "name": "HTTP-Referer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The app display name allows you to customize how your app appears in OpenRouter's dashboard.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Title",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of app categories (e.g. \"cli-agent,cloud-agent\"). Used for marketplace rankings.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Categories",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of the guardrail to delete",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "description": "The unique identifier of the guardrail to delete",
+              "example": "550e8400-e29b-41d4-a716-446655440000",
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "deleted": true
+                },
+                "schema": {
+                  "example": {
+                    "deleted": true
+                  },
+                  "properties": {
+                    "deleted": {
+                      "const": true,
+                      "description": "Confirmation that the guardrail was deleted",
+                      "example": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "deleted"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Guardrail deleted successfully"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "Missing Authentication header"
+                  }
+                },
+                "schema": {
+                  "description": "Unauthorized - Authentication required or invalid credentials",
+                  "example": {
+                    "error": {
+                      "code": 401,
+                      "message": "Missing Authentication header"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for UnauthorizedResponse",
+                      "example": {
+                        "code": 401,
+                        "message": "Missing Authentication header"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Authentication required or invalid credentials"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 404,
+                    "message": "Resource not found"
+                  }
+                },
+                "schema": {
+                  "description": "Not Found - Resource does not exist",
+                  "example": {
+                    "error": {
+                      "code": 404,
+                      "message": "Resource not found"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for NotFoundResponse",
+                      "example": {
+                        "code": 404,
+                        "message": "Resource not found"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found - Resource does not exist"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 500,
+                    "message": "Internal Server Error"
+                  }
+                },
+                "schema": {
+                  "description": "Internal Server Error - Unexpected server error",
+                  "example": {
+                    "error": {
+                      "code": 500,
+                      "message": "Internal Server Error"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for InternalServerResponse",
+                      "example": {
+                        "code": 500,
+                        "message": "Internal Server Error"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearer": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

@@ -10,5 +10,6 @@
     "benchmark": {
       "benchmark_ref01": {}
     }
-  }
+  },
+  "requests": {}
 }

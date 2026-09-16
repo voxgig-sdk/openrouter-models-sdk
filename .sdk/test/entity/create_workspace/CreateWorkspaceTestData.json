@@ -10,5 +10,6 @@
     "create_workspace": {
       "create_workspace_ref01": {}
     }
-  }
+  },
+  "requests": {}
 }

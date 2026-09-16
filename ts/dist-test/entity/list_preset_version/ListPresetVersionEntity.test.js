@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.OPENROUTER_MODELS_TEST_LIVE;
         for (const op of ['list']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'list_preset_version.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'list_preset_version.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set OPENROUTER_MODELS_TEST_LIST_PRESET_VERSION_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "config", "req": true, "type": "`$OBJECT`", "index$": 0 }, { "active": true, "name": "created_at", "req": true, "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "creator_id", "req": true, "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "id", "req": true, "type": "`$STRING`", "index$": 3 }, { "active": true, "name": "preset_id", "req": true, "type": "`$STRING`", "index$": 4 }, { "active": true, "name": "system_prompt", "req": true, "type": ["`$ONE`", ["`$STRING`", "`$NULL`"]], "index$": 5 }, { "active": true, "name": "updated_at", "req": true, "type": "`$STRING`", "index$": 6 }, { "active": true, "name": "version", "req": true, "type": "`$INTEGER`", "index$": 7 }], "id": { "field": "id", "name": "id" }, "name": "list_preset_version", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "header": [{ "active": true, "kind": "header", "name": "http_referer", "orig": "http_referer", "reqd": false, "type": "`$STRING`" }, { "active": true, "kind": "header", "name": "x_open_router_category", "orig": "x_open_router_category", "reqd": false, "type": "`$STRING`" }, { "active": true, "kind": "header", "name": "x_open_router_title", "orig": "x_open_router_title", "reqd": false, "type": "`$STRING`" }], "params": [{ "active": true, "example": "my-preset", "kind": "param", "name": "slug", "orig": "slug", "reqd": true, "type": "`$STRING`", "index$": 0 }], "query": [{ "active": true, "example": 50, "kind": "query", "name": "limit", "orig": "limit", "reqd": false, "type": "`$INTEGER`", "index$": 0 }, { "active": true, "example": 0, "kind": "query", "name": "offset", "orig": "offset", "reqd": false, "type": ["`$ONE`", ["`$INTEGER`", "`$NULL`"]], "index$": 1 }] }, "contract": { "id": "GET /presets/{slug}/versions", "json": "{\"operationId\":\"listPresetVersions\",\"parameters\":[{\"description\":\"The app identifier should be your app's URL and is used as the primary identifier for rankings.\\nThis is used to track API usage per application.\\n\",\"in\":\"header\",\"name\":\"HTTP-Referer\",\"schema\":{\"type\":\"string\"}},{\"description\":\"The app display name allows you to customize how your app appears in OpenRouter's dashboard.\\n\",\"in\":\"header\",\"name\":\"X-OpenRouter-Title\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of app categories (e.g. \\\"cli-agent,cloud-agent\\\"). Used for marketplace rankings.\\n\",\"in\":\"header\",\"name\":\"X-OpenRouter-Categories\",\"schema\":{\"type\":\"string\"}},{\"description\":\"URL-safe slug identifying the preset.\",\"in\":\"path\",\"name\":\"slug\",\"required\":true,\"schema\":{\"description\":\"URL-safe slug identifying the preset.\",\"example\":\"my-preset\",\"minLength\":1,\"type\":\"string\"}},{\"description\":\"Number of records to skip for pagination\",\"in\":\"query\",\"name\":\"offset\",\"required\":false,\"schema\":{\"default\":0,\"description\":\"Number of records to skip for pagination\",\"example\":0,\"minimum\":0,\"type\":[\"integer\",\"null\"]}},{\"description\":\"Maximum number of records to return (max 100)\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":50,\"description\":\"Maximum number of records to return (max 100)\",\"example\":50,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"data\":[{\"config\":{\"model\":\"openai/gpt-4o\",\"temperature\":0.7},\"created_at\":\"2026-04-20T10:00:00Z\",\"creator_id\":\"user_2dHFtVWx2n56w6HkM0000000000\",\"id\":\"550e8400-e29b-41d4-a716-446655440000\",\"preset_id\":\"650e8400-e29b-41d4-a716-446655440001\",\"system_prompt\":\"You are a helpful assistant.\",\"updated_at\":\"2026-04-20T10:00:00Z\",\"version\":1}],\"total_count\":1},\"schema\":{\"description\":\"A paginated list of preset versions.\",\"example\":{\"data\":[{\"config\":{\"model\":\"openai/gpt-4o\",\"temperature\":0.7},\"created_at\":\"2026-04-20T10:00:00Z\",\"creator_id\":\"user_2dHFtVWx2n56w6HkM0000000000\",\"id\":\"550e8400-e29b-41d4-a716-446655440000\",\"preset_id\":\"650e8400-e29b-41d4-a716-446655440001\",\"system_prompt\":\"You are a helpful assistant.\",\"updated_at\":\"2026-04-20T10:00:00Z\",\"version\":1}],\"total_count\":1},\"properties\":{\"data\":{\"items\":{\"description\":\"A specific version of a preset, containing config and optional system prompt.\",\"example\":{\"config\":{\"model\":\"openai/gpt-4o\",\"temperature\":0.7},\"created_at\":\"2026-04-20T10:00:00Z\",\"creator_id\":\"user_2dHFtVWx2n56w6HkM0000000000\",\"id\":\"550e8400-e29b-41d4-a716-446655440000\",\"preset_id\":\"650e8400-e29b-41d4-a716-446655440001\",\"system_prompt\":\"You are a helpful assistant.\",\"updated_at\":\"2026-04-20T10:00:00Z\",\"version\":1},\"properties\":{\"config\":{\"additionalProperties\":{},\"type\":\"object\"},\"created_at\":{\"type\":\"string\"},\"creator_id\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"preset_id\":{\"type\":\"string\"},\"system_prompt\":{\"type\":[\"string\",\"null\"]},\"updated_at\":{\"type\":\"string\"},\"version\":{\"type\":\"integer\"}},\"required\":[\"id\",\"preset_id\",\"creator_id\",\"version\",\"system_prompt\",\"config\",\"created_at\",\"updated_at\"],\"type\":[\"object\",\"null\"]},\"type\":\"array\"},\"total_count\":{\"type\":\"integer\"}},\"required\":[\"data\",\"total_count\"],\"type\":\"object\"}}},\"description\":\"Paginated list of preset versions.\"},\"400\":{\"content\":{\"application/json\":{\"example\":{\"error\":{\"code\":400,\"message\":\"Invalid request parameters\"}},\"schema\":{\"description\":\"Bad Request - Invalid request parameters or malformed input\",\"example\":{\"error\":{\"code\":400,\"message\":\"Invalid request parameters\"}},\"properties\":{\"error\":{\"description\":\"Error data for BadRequestResponse\",\"example\":{\"code\":400,\"message\":\"Invalid request parameters\"},\"properties\":{\"code\":{\"type\":\"integer\"},\"message\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]}},\"required\":[\"code\",\"message\"],\"type\":\"object\"},\"openrouter_metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]},\"user_id\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Bad Request - Invalid request parameters or malformed input\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"error\":{\"code\":401,\"message\":\"Missing Authentication header\"}},\"schema\":{\"description\":\"Unauthorized - Authentication required or invalid credentials\",\"example\":{\"error\":{\"code\":401,\"message\":\"Missing Authentication header\"}},\"properties\":{\"error\":{\"description\":\"Error data for UnauthorizedResponse\",\"example\":{\"code\":401,\"message\":\"Missing Authentication header\"},\"properties\":{\"code\":{\"type\":\"integer\"},\"message\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]}},\"required\":[\"code\",\"message\"],\"type\":\"object\"},\"openrouter_metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]},\"user_id\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Unauthorized - Authentication required or invalid credentials\"},\"404\":{\"content\":{\"application/json\":{\"example\":{\"error\":{\"code\":404,\"message\":\"Resource not found\"}},\"schema\":{\"description\":\"Not Found - Resource does not exist\",\"example\":{\"error\":{\"code\":404,\"message\":\"Resource not found\"}},\"properties\":{\"error\":{\"description\":\"Error data for NotFoundResponse\",\"example\":{\"code\":404,\"message\":\"Resource not found\"},\"properties\":{\"code\":{\"type\":\"integer\"},\"message\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]}},\"required\":[\"code\",\"message\"],\"type\":\"object\"},\"openrouter_metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]},\"user_id\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Not Found - Resource does not exist\"},\"500\":{\"content\":{\"application/json\":{\"example\":{\"error\":{\"code\":500,\"message\":\"Internal Server Error\"}},\"schema\":{\"description\":\"Internal Server Error - Unexpected server error\",\"example\":{\"error\":{\"code\":500,\"message\":\"Internal Server Error\"}},\"properties\":{\"error\":{\"description\":\"Error data for InternalServerResponse\",\"example\":{\"code\":500,\"message\":\"Internal Server Error\"},\"properties\":{\"code\":{\"type\":\"integer\"},\"message\":{\"type\":\"string\"},\"metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]}},\"required\":[\"code\",\"message\"],\"type\":\"object\"},\"openrouter_metadata\":{\"additionalProperties\":{},\"type\":[\"object\",\"null\"]},\"user_id\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Internal Server Error - Unexpected server error\"}},\"security\":[{\"apiKey\":[]}],\"securitySchemes\":{\"apiKey\":{\"description\":\"API key as bearer token in Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"},\"bearer\":{\"description\":\"API key as bearer token in Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/presets/{slug}/versions", "segments": [{ "lit": "presets" }, { "var": "slug" }, { "lit": "versions" }], "select": { "exist": ["http_referer", "limit", "offset", "slug", "x_open_router_category", "x_open_router_title"] }, "transform": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [["preset"]] }, "key$": "list_preset_version", "name__orig": "list_preset_version", "Name": "ListPresetVersion", "name_": "list_preset_version", "name-": "list-preset-version", "NAME": "LIST_PRESET_VERSION", "index$": 44 }, { "active": true, "entity": "list_preset_version", "key$": "BasicListPresetVersionFlow", "kind": "basic", "name": "BasicListPresetVersionFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": { "slug": "slug01" }, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "list_preset_version_ref01" } }], "index$": 0 }] }, 'ListPresetVersion');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -102,12 +100,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['OPENROUTER_MODELS_TEST_LIST_PRESET_VERSION_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'OPENROUTER_MODELS_TEST_LIST_PRESET_VERSION_ENTID': idmap,
         'OPENROUTER_MODELS_TEST_LIVE': 'FALSE',
@@ -116,7 +108,13 @@ function basicSetup(extra) {
     });
     idmap = env['OPENROUTER_MODELS_TEST_LIST_PRESET_VERSION_ENTID'];
     const live = 'TRUE' === env.OPENROUTER_MODELS_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['OPENROUTER_MODELS_TEST_LIST_PRESET_VERSION_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.OpenrouterModelsSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -129,7 +127,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -141,7 +140,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.OPENROUTER_MODELS_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

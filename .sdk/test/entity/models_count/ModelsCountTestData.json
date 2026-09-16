@@ -2,15 +2,15 @@
   "existing": {
     "models_count": {
       "MODELS_COUNT00": {
-        "count": "sa",
+        "count": 10,
         "id": "MODELS_COUNT00"
       },
       "MODELS_COUNT01": {
-        "count": "s14",
+        "count": 20,
         "id": "MODELS_COUNT01"
       },
       "MODELS_COUNT02": {
-        "count": "s1e",
+        "count": 30,
         "id": "MODELS_COUNT02"
       }
     }
@@ -18,7 +18,320 @@
   "new": {
     "models_count": {
       "models_count_ref01": {
-        "count": "s28"
+        "count": 40
+      }
+    }
+  },
+  "requests": {
+    "GET /models/count": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listModelsCount",
+        "parameters": [
+          {
+            "description": "The app identifier should be your app's URL and is used as the primary identifier for rankings.\nThis is used to track API usage per application.\n",
+            "in": "header",
+            "name": "HTTP-Referer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The app display name allows you to customize how your app appears in OpenRouter's dashboard.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Title",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of app categories (e.g. \"cli-agent,cloud-agent\"). Used for marketplace rankings.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Categories",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter models by output modality. Accepts a comma-separated list of modalities (text, image, audio, embeddings) or \"all\" to include all models. Defaults to \"text\".",
+            "in": "query",
+            "name": "output_modalities",
+            "required": false,
+            "schema": {
+              "description": "Filter models by output modality. Accepts a comma-separated list of modalities (text, image, audio, embeddings) or \"all\" to include all models. Defaults to \"text\".",
+              "example": "text",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "count": 150
+                  }
+                },
+                "schema": {
+                  "description": "Model count data",
+                  "example": {
+                    "data": {
+                      "count": 150
+                    }
+                  },
+                  "properties": {
+                    "data": {
+                      "description": "Model count data",
+                      "example": {
+                        "count": 150
+                      },
+                      "properties": {
+                        "count": {
+                          "description": "Total number of available models",
+                          "example": 150,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "count"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns the total count of available models"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 400,
+                    "message": "Invalid request parameters"
+                  }
+                },
+                "schema": {
+                  "description": "Bad Request - Invalid request parameters or malformed input",
+                  "example": {
+                    "error": {
+                      "code": 400,
+                      "message": "Invalid request parameters"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for BadRequestResponse",
+                      "example": {
+                        "code": 400,
+                        "message": "Invalid request parameters"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request - Invalid request parameters or malformed input"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 403,
+                    "message": "Only management keys can perform this operation"
+                  }
+                },
+                "schema": {
+                  "description": "Forbidden - Authentication successful but insufficient permissions",
+                  "example": {
+                    "error": {
+                      "code": 403,
+                      "message": "Only management keys can perform this operation"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for ForbiddenResponse",
+                      "example": {
+                        "code": 403,
+                        "message": "Only management keys can perform this operation"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Forbidden - Authentication successful but insufficient permissions"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 500,
+                    "message": "Internal Server Error"
+                  }
+                },
+                "schema": {
+                  "description": "Internal Server Error - Unexpected server error",
+                  "example": {
+                    "error": {
+                      "code": 500,
+                      "message": "Internal Server Error"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for InternalServerResponse",
+                      "example": {
+                        "code": 500,
+                        "message": "Internal Server Error"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearer": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
       }
     }
   }

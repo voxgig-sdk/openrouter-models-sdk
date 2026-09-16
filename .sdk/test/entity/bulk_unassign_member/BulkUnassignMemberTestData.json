@@ -3,19 +3,19 @@
     "bulk_unassign_member": {
       "BULK_UNASSIGN_MEMBER00": {
         "member_user_ids": [],
-        "unassigned_count": "s15",
+        "unassigned_count": 21,
         "guardrail_id": "GUARDRAIL01",
         "id": "BULK_UNASSIGN_MEMBER00"
       },
       "BULK_UNASSIGN_MEMBER01": {
         "member_user_ids": [],
-        "unassigned_count": "s29",
+        "unassigned_count": 41,
         "guardrail_id": "GUARDRAIL01",
         "id": "BULK_UNASSIGN_MEMBER01"
       },
       "BULK_UNASSIGN_MEMBER02": {
         "member_user_ids": [],
-        "unassigned_count": "s3d",
+        "unassigned_count": 61,
         "guardrail_id": "GUARDRAIL01",
         "id": "BULK_UNASSIGN_MEMBER02"
       }
@@ -25,7 +25,412 @@
     "bulk_unassign_member": {
       "bulk_unassign_member_ref01": {
         "member_user_ids": [],
-        "unassigned_count": "s51"
+        "unassigned_count": 81
+      }
+    }
+  },
+  "requests": {
+    "POST /guardrails/{id}/assignments/members/remove": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "bulkUnassignMembersFromGuardrail",
+        "parameters": [
+          {
+            "description": "The app identifier should be your app's URL and is used as the primary identifier for rankings.\nThis is used to track API usage per application.\n",
+            "in": "header",
+            "name": "HTTP-Referer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The app display name allows you to customize how your app appears in OpenRouter's dashboard.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Title",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of app categories (e.g. \"cli-agent,cloud-agent\"). Used for marketplace rankings.\n",
+            "in": "header",
+            "name": "X-OpenRouter-Categories",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of the guardrail",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "description": "The unique identifier of the guardrail",
+              "example": "550e8400-e29b-41d4-a716-446655440000",
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "member_user_ids": [
+                  "user_abc123",
+                  "user_def456"
+                ]
+              },
+              "schema": {
+                "example": {
+                  "member_user_ids": [
+                    "user_abc123",
+                    "user_def456"
+                  ]
+                },
+                "properties": {
+                  "member_user_ids": {
+                    "description": "Array of member user IDs to unassign from the guardrail",
+                    "example": [
+                      "user_abc123",
+                      "user_def456"
+                    ],
+                    "items": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "member_user_ids"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "unassigned_count": 2
+                },
+                "schema": {
+                  "example": {
+                    "unassigned_count": 2
+                  },
+                  "properties": {
+                    "unassigned_count": {
+                      "description": "Number of members successfully unassigned",
+                      "example": 2,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "unassigned_count"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unassignment result"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 400,
+                    "message": "Invalid request parameters"
+                  }
+                },
+                "schema": {
+                  "description": "Bad Request - Invalid request parameters or malformed input",
+                  "example": {
+                    "error": {
+                      "code": 400,
+                      "message": "Invalid request parameters"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for BadRequestResponse",
+                      "example": {
+                        "code": 400,
+                        "message": "Invalid request parameters"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request - Invalid request parameters or malformed input"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "message": "Missing Authentication header"
+                  }
+                },
+                "schema": {
+                  "description": "Unauthorized - Authentication required or invalid credentials",
+                  "example": {
+                    "error": {
+                      "code": 401,
+                      "message": "Missing Authentication header"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for UnauthorizedResponse",
+                      "example": {
+                        "code": 401,
+                        "message": "Missing Authentication header"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Authentication required or invalid credentials"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 404,
+                    "message": "Resource not found"
+                  }
+                },
+                "schema": {
+                  "description": "Not Found - Resource does not exist",
+                  "example": {
+                    "error": {
+                      "code": 404,
+                      "message": "Resource not found"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for NotFoundResponse",
+                      "example": {
+                        "code": 404,
+                        "message": "Resource not found"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found - Resource does not exist"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": 500,
+                    "message": "Internal Server Error"
+                  }
+                },
+                "schema": {
+                  "description": "Internal Server Error - Unexpected server error",
+                  "example": {
+                    "error": {
+                      "code": 500,
+                      "message": "Internal Server Error"
+                    }
+                  },
+                  "properties": {
+                    "error": {
+                      "description": "Error data for InternalServerResponse",
+                      "example": {
+                        "code": 500,
+                        "message": "Internal Server Error"
+                      },
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "additionalProperties": {},
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "openrouter_metadata": {
+                      "additionalProperties": {},
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unexpected server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearer": {
+            "description": "API key as bearer token in Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
       }
     }
   }

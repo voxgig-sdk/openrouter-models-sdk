@@ -10,5 +10,6 @@
     "create_byok_key": {
       "create_byok_key_ref01": {}
     }
-  }
+  },
+  "requests": {}
 }

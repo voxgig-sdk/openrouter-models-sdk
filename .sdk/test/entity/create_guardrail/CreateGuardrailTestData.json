@@ -10,5 +10,6 @@
     "create_guardrail": {
       "create_guardrail_ref01": {}
     }
-  }
+  },
+  "requests": {}
 }
