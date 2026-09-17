@@ -131,264 +131,264 @@ class Config {
 
     entity: {
       
-      activity: {
-      },
-
-      add: {
-      },
-
-      api_key: {
-      },
-
-      app_ranking: {
-      },
-
-      benchmark: {
-      },
-
-      beta_analytics: {
-      },
-
-      budget: {
-      },
-
-      bulk_add_workspace_member: {
-      },
-
-      bulk_assign_key: {
-      },
-
-      bulk_assign_member: {
-      },
-
-      bulk_remove_workspace_member: {
-      },
-
-      bulk_unassign_key: {
-      },
-
-      bulk_unassign_member: {
-      },
-
-      byok: {
-      },
-
-      chat_result: {
-      },
-
-      code: {
-      },
-
-      coinbase: {
-      },
-
-      completion: {
-      },
-
-      content: {
-      },
-
-      count: {
-      },
-
-      create_byok_key: {
-      },
-
-      create_guardrail: {
-      },
-
-      create_observability_destination: {
-      },
-
-      create_preset_from_inference: {
-      },
-
-      create_workspace: {
-      },
-
-      credit: {
-      },
-
-      destination: {
-      },
-
-      embedding: {
-      },
-
-      endpoint: {
-      },
-
-      feedback: {
-      },
-
-      file: {
-      },
-
-      generation: {
-      },
-
-      generation_content: {
-      },
-
-      guardrail: {
-      },
-
-      image: {
-      },
-
-      image_model_endpoint: {
-      },
-
-      image_models_list: {
-      },
-
-      key: {
-      },
-
-      list_byok_key: {
-      },
-
-      list_guardrail: {
-      },
-
-      list_key_assignment: {
-      },
-
-      list_member_assignment: {
-      },
-
-      list_observability_destination: {
-      },
-
-      list_preset: {
-      },
-
-      list_preset_version: {
-      },
-
-      list_workspace: {
-      },
-
-      list_workspace_budget: {
-      },
-
-      list_workspace_member: {
-      },
-
-      member: {
-      },
-
-      message: {
-      },
-
-      meta: {
-      },
-
-      model: {
-      },
-
-      models_count: {
-      },
-
-      models_list: {
-      },
-
-      o_auth: {
-      },
-
-      observability_destination: {
-      },
-
-      open_responses_result: {
-      },
-
-      organization: {
-      },
-
-      preset: {
-      },
-
-      preset_version: {
-      },
-
-      provider: {
-      },
-
-      query: {
-      },
-
-      rankings_daily: {
-      },
-
-      remove: {
-      },
-
-      rerank: {
-      },
-
-      response: {
-      },
-
-      speech: {
-      },
-
-      stt: {
-      },
-
-      submit_generation_feedback: {
-      },
-
-      task: {
-      },
-
-      transcription: {
-      },
-
-      tts: {
-      },
-
-      unified_benchmark: {
-      },
-
-      update_byok_key: {
-      },
-
-      update_guardrail: {
-      },
-
-      update_observability_destination: {
-      },
-
-      update_workspace: {
-      },
-
-      upsert_workspace_budget: {
-      },
-
-      user: {
-      },
-
-      version: {
-      },
-
-      video: {
-      },
-
-      video_generation: {
-      },
-
-      video_models_list: {
-      },
-
-      workspace: {
-      },
-
-      workspace_budget: {
-      },
-
-      zdr: {
-      },
-
+        activity: {
+        },
+  
+        add: {
+        },
+  
+        api_key: {
+        },
+  
+        app_ranking: {
+        },
+  
+        benchmark: {
+        },
+  
+        beta_analytics: {
+        },
+  
+        budget: {
+        },
+  
+        bulk_add_workspace_member: {
+        },
+  
+        bulk_assign_key: {
+        },
+  
+        bulk_assign_member: {
+        },
+  
+        bulk_remove_workspace_member: {
+        },
+  
+        bulk_unassign_key: {
+        },
+  
+        bulk_unassign_member: {
+        },
+  
+        byok: {
+        },
+  
+        chat_result: {
+        },
+  
+        code: {
+        },
+  
+        coinbase: {
+        },
+  
+        completion: {
+        },
+  
+        content: {
+        },
+  
+        count: {
+        },
+  
+        create_byok_key: {
+        },
+  
+        create_guardrail: {
+        },
+  
+        create_observability_destination: {
+        },
+  
+        create_preset_from_inference: {
+        },
+  
+        create_workspace: {
+        },
+  
+        credit: {
+        },
+  
+        destination: {
+        },
+  
+        embedding: {
+        },
+  
+        endpoint: {
+        },
+  
+        feedback: {
+        },
+  
+        file: {
+        },
+  
+        generation: {
+        },
+  
+        generation_content: {
+        },
+  
+        guardrail: {
+        },
+  
+        image: {
+        },
+  
+        image_model_endpoint: {
+        },
+  
+        image_models_list: {
+        },
+  
+        key: {
+        },
+  
+        list_byok_key: {
+        },
+  
+        list_guardrail: {
+        },
+  
+        list_key_assignment: {
+        },
+  
+        list_member_assignment: {
+        },
+  
+        list_observability_destination: {
+        },
+  
+        list_preset: {
+        },
+  
+        list_preset_version: {
+        },
+  
+        list_workspace: {
+        },
+  
+        list_workspace_budget: {
+        },
+  
+        list_workspace_member: {
+        },
+  
+        member: {
+        },
+  
+        message: {
+        },
+  
+        meta: {
+        },
+  
+        model: {
+        },
+  
+        models_count: {
+        },
+  
+        models_list: {
+        },
+  
+        o_auth: {
+        },
+  
+        observability_destination: {
+        },
+  
+        open_responses_result: {
+        },
+  
+        organization: {
+        },
+  
+        preset: {
+        },
+  
+        preset_version: {
+        },
+  
+        provider: {
+        },
+  
+        query: {
+        },
+  
+        rankings_daily: {
+        },
+  
+        remove: {
+        },
+  
+        rerank: {
+        },
+  
+        response: {
+        },
+  
+        speech: {
+        },
+  
+        stt: {
+        },
+  
+        submit_generation_feedback: {
+        },
+  
+        task: {
+        },
+  
+        transcription: {
+        },
+  
+        tts: {
+        },
+  
+        unified_benchmark: {
+        },
+  
+        update_byok_key: {
+        },
+  
+        update_guardrail: {
+        },
+  
+        update_observability_destination: {
+        },
+  
+        update_workspace: {
+        },
+  
+        upsert_workspace_budget: {
+        },
+  
+        user: {
+        },
+  
+        version: {
+        },
+  
+        video: {
+        },
+  
+        video_generation: {
+        },
+  
+        video_models_list: {
+        },
+  
+        workspace: {
+        },
+  
+        workspace_budget: {
+        },
+  
+        zdr: {
+        },
+  
     }
   }
 
@@ -4650,55 +4650,10 @@ class Config {
           ]
         },
         {
-          "name": "latency_last_30m",
-          "req": true,
-          "short": "Latency percentiles in milliseconds over the last 30 minutes.",
-          "type": [
-            "`$ONE`",
-            [
-              "`$OBJECT`",
-              "`$NULL`"
-            ]
-          ]
-        },
-        {
           "name": "links",
           "req": true,
           "short": "Related API endpoints and resources for this model.",
           "type": "`$OBJECT`"
-        },
-        {
-          "name": "max_completion_tokens",
-          "req": true,
-          "type": [
-            "`$ONE`",
-            [
-              "`$INTEGER`",
-              "`$NULL`"
-            ]
-          ]
-        },
-        {
-          "name": "max_prompt_tokens",
-          "req": true,
-          "type": [
-            "`$ONE`",
-            [
-              "`$INTEGER`",
-              "`$NULL`"
-            ]
-          ]
-        },
-        {
-          "name": "model_id",
-          "req": true,
-          "short": "The unique identifier for the model (permaslug)",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "model_name",
-          "req": true,
-          "type": "`$STRING`"
         },
         {
           "name": "name",
@@ -4725,24 +4680,10 @@ class Config {
           "type": "`$OBJECT`"
         },
         {
-          "name": "provider_name",
-          "req": true,
-          "type": "`$STRING`"
-        },
-        {
-          "name": "quantization",
-          "req": true,
-          "type": "`$ANY`"
-        },
-        {
           "name": "reasoning",
           "req": true,
           "short": "Reasoning effort configuration.",
           "type": "`$OBJECT`"
-        },
-        {
-          "name": "status",
-          "type": "`$INTEGER`"
         },
         {
           "name": "supported_parameters",
@@ -4763,63 +4704,10 @@ class Config {
           ]
         },
         {
-          "name": "supports_implicit_caching",
-          "req": true,
-          "type": "`$BOOLEAN`"
-        },
-        {
-          "name": "tag",
-          "req": true,
-          "type": "`$STRING`"
-        },
-        {
-          "name": "throughput_last_30m",
-          "req": true,
-          "type": "`$ANY`"
-        },
-        {
           "name": "top_provider",
           "req": true,
           "short": "Information about the top provider for this model",
           "type": "`$OBJECT`"
-        },
-        {
-          "format": "double",
-          "name": "uptime_last_1d",
-          "req": true,
-          "short": "Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100.",
-          "type": [
-            "`$ONE`",
-            [
-              "`$NUMBER`",
-              "`$NULL`"
-            ]
-          ]
-        },
-        {
-          "format": "double",
-          "name": "uptime_last_30m",
-          "req": true,
-          "type": [
-            "`$ONE`",
-            [
-              "`$NUMBER`",
-              "`$NULL`"
-            ]
-          ]
-        },
-        {
-          "format": "double",
-          "name": "uptime_last_5m",
-          "req": true,
-          "short": "Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100.",
-          "type": [
-            "`$ONE`",
-            [
-              "`$NUMBER`",
-              "`$NULL`"
-            ]
-          ]
         }
       ],
       "id": {
@@ -10236,54 +10124,7 @@ class Config {
       }
     },
     "organization": {
-      "fields": [
-        {
-          "name": "email",
-          "req": true,
-          "short": "Email address of the member",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "first_name",
-          "req": true,
-          "short": "First name of the member",
-          "type": [
-            "`$ONE`",
-            [
-              "`$STRING`",
-              "`$NULL`"
-            ]
-          ]
-        },
-        {
-          "name": "id",
-          "req": true,
-          "short": "User ID of the organization member",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "last_name",
-          "req": true,
-          "short": "Last name of the member",
-          "type": [
-            "`$ONE`",
-            [
-              "`$STRING`",
-              "`$NULL`"
-            ]
-          ]
-        },
-        {
-          "name": "role",
-          "req": true,
-          "short": "Role of the member in the organization",
-          "type": "`$STRING`"
-        }
-      ],
-      "id": {
-        "field": "id",
-        "name": "id"
-      },
+      "fields": [],
       "name": "organization",
       "op": {
         "list": {

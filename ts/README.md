@@ -73,10 +73,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const organizations = await client.Organization().list()
-  console.log(organizations)
+  const presetversion = await client.PresetVersion().load({ id: "example_id", slug: "example" })
+  console.log(presetversion)
 } catch (err) {
-  console.error('list failed:', err)
+  console.error('load failed:', err)
 }
 ```
 
@@ -140,10 +140,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = OpenrouterModelsSDK.test()
 
-const organization = await client.Organization().list()
-// organization is the entity, populated with mock response data
-// — call organization.data() for the record itself
-console.log(organization)
+const presetversion = await client.PresetVersion().load({ id: 'test01', slug: 'example_slug' })
+// presetversion is the entity, populated with mock response data
+// — call presetversion.data() for the record itself
+console.log(presetversion)
 ```
 
 You can also use the instance method:
@@ -158,10 +158,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Organization()
+const entity = client.PresetVersion()
 
 // First call runs the operation and stores its result
-await entity.list()
+await entity.load({ id: 'example', slug: 'example_slug' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -886,28 +886,14 @@ API path: `/embeddings`
 | `hugging_face_id` | Hugging Face model identifier, if applicable |
 | `id` | Unique identifier for the model |
 | `knowledge_cutoff` | The date up to which the model was trained on data. |
-| `latency_last_30m` | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | Related API endpoints and resources for this model. |
-| `max_completion_tokens` |  |
-| `max_prompt_tokens` |  |
-| `model_id` | The unique identifier for the model (permaslug) |
-| `model_name` |  |
 | `name` | Display name of the model |
 | `per_request_limits` | Per-request token limits |
 | `pricing` | Pricing information for the model |
-| `provider_name` |  |
-| `quantization` |  |
 | `reasoning` | Reasoning effort configuration. |
-| `status` |  |
 | `supported_parameters` | List of supported parameters for this model |
 | `supported_voices` | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` |  |
-| `tag` |  |
-| `throughput_last_30m` |  |
 | `top_provider` | Information about the top provider for this model |
-| `uptime_last_1d` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` |  |
-| `uptime_last_5m` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 Operations: list, load.
 
@@ -1433,11 +1419,6 @@ API path: `/responses`
 
 | Field | Description |
 | --- | --- |
-| `email` | Email address of the member |
-| `first_name` | First name of the member |
-| `id` | User ID of the organization member |
-| `last_name` | Last name of the member |
-| `role` | Role of the member in the organization |
 
 Operations: list.
 
@@ -2675,28 +2656,14 @@ Create an instance: `const endpoint = client.Endpoint()`
 | `hugging_face_id` | `string | null` | Hugging Face model identifier, if applicable |
 | `id` | `string` | Unique identifier for the model |
 | `knowledge_cutoff` | `string | null` | The date up to which the model was trained on data. |
-| `latency_last_30m` | `Record<string, any> | null` | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | `Record<string, any>` | Related API endpoints and resources for this model. |
-| `max_completion_tokens` | `number | null` |  |
-| `max_prompt_tokens` | `number | null` |  |
-| `model_id` | `string` | The unique identifier for the model (permaslug) |
-| `model_name` | `string` |  |
 | `name` | `string` | Display name of the model |
 | `per_request_limits` | `Record<string, any> | null` | Per-request token limits |
 | `pricing` | `Record<string, any>` | Pricing information for the model |
-| `provider_name` | `string` |  |
-| `quantization` | `any` |  |
 | `reasoning` | `Record<string, any>` | Reasoning effort configuration. |
-| `status` | `number` |  |
 | `supported_parameters` | `any[]` | List of supported parameters for this model |
 | `supported_voices` | `any[] | null` | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` | `boolean` |  |
-| `tag` | `string` |  |
-| `throughput_last_30m` | `any` |  |
 | `top_provider` | `Record<string, any>` | Information about the top provider for this model |
-| `uptime_last_1d` | `number | null` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` | `number | null` |  |
-| `uptime_last_5m` | `number | null` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 #### Example: Load
 
@@ -3537,16 +3504,6 @@ Create an instance: `const organization = client.Organization()`
 | Method | Description |
 | --- | --- |
 | `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `email` | `string` | Email address of the member |
-| `first_name` | `string | null` | First name of the member |
-| `id` | `string` | User ID of the organization member |
-| `last_name` | `string | null` | Last name of the member |
-| `role` | `string` | Role of the member in the organization |
 
 #### Example: List
 
@@ -4419,16 +4376,16 @@ import { OpenrouterModelsSDK } from '@voxgig-sdk/openrouter-models-sdk'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const organization = client.Organization()
-await organization.list()
+const presetversion = client.PresetVersion()
+await presetversion.load({ id: "example_id", slug: "example" })
 
-// organization.data() now returns the organization data from the last `list`
-// organization.match() returns the last match criteria
+// presetversion.data() now returns the presetversion data from the last `load`
+// presetversion.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -71,12 +71,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-organizations, err := client.Organization(nil).List(nil, nil)
+presetversion, err := client.PresetVersion(nil).Load(map[string]any{"id": "example_id", "slug": "example"}, nil)
 if err != nil {
     // handle err
     return
 }
-_ = organizations
+_ = presetversion
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -140,13 +140,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-organization, err := client.Organization(nil).List(
-    nil, nil,
+presetVersion, err := client.PresetVersion(nil).Load(
+    map[string]any{"id": "test01", "slug": "example"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(organization) // the returned mock data
+fmt.Println(presetVersion) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -835,28 +835,14 @@ API path: `/embeddings`
 | `"hugging_face_id"` | Hugging Face model identifier, if applicable |
 | `"id"` | Unique identifier for the model |
 | `"knowledge_cutoff"` | The date up to which the model was trained on data. |
-| `"latency_last_30m"` | Latency percentiles in milliseconds over the last 30 minutes. |
 | `"links"` | Related API endpoints and resources for this model. |
-| `"max_completion_tokens"` |  |
-| `"max_prompt_tokens"` |  |
-| `"model_id"` | The unique identifier for the model (permaslug) |
-| `"model_name"` |  |
 | `"name"` | Display name of the model |
 | `"per_request_limits"` | Per-request token limits |
 | `"pricing"` | Pricing information for the model |
-| `"provider_name"` |  |
-| `"quantization"` |  |
 | `"reasoning"` | Reasoning effort configuration. |
-| `"status"` |  |
 | `"supported_parameters"` | List of supported parameters for this model |
 | `"supported_voices"` | List of supported voice identifiers for TTS models. |
-| `"supports_implicit_caching"` |  |
-| `"tag"` |  |
-| `"throughput_last_30m"` |  |
 | `"top_provider"` | Information about the top provider for this model |
-| `"uptime_last_1d"` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `"uptime_last_30m"` |  |
-| `"uptime_last_5m"` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 Operations: List, Load.
 
@@ -1382,11 +1368,6 @@ API path: `/responses`
 
 | Field | Description |
 | --- | --- |
-| `"email"` | Email address of the member |
-| `"first_name"` | First name of the member |
-| `"id"` | User ID of the organization member |
-| `"last_name"` | Last name of the member |
-| `"role"` | Role of the member in the organization |
 
 Operations: List.
 
@@ -2712,28 +2693,14 @@ Create an instance: `endpoint := client.Endpoint(nil)`
 | `hugging_face_id` | `any` | Hugging Face model identifier, if applicable |
 | `id` | `string` | Unique identifier for the model |
 | `knowledge_cutoff` | `any` | The date up to which the model was trained on data. |
-| `latency_last_30m` | `any` | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | `map[string]any` | Related API endpoints and resources for this model. |
-| `max_completion_tokens` | `any` |  |
-| `max_prompt_tokens` | `any` |  |
-| `model_id` | `string` | The unique identifier for the model (permaslug) |
-| `model_name` | `string` |  |
 | `name` | `string` | Display name of the model |
 | `per_request_limits` | `any` | Per-request token limits |
 | `pricing` | `map[string]any` | Pricing information for the model |
-| `provider_name` | `string` |  |
-| `quantization` | `any` |  |
 | `reasoning` | `map[string]any` | Reasoning effort configuration. |
-| `status` | `int` |  |
 | `supported_parameters` | `[]any` | List of supported parameters for this model |
 | `supported_voices` | `any` | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` | `bool` |  |
-| `tag` | `string` |  |
-| `throughput_last_30m` | `any` |  |
 | `top_provider` | `map[string]any` | Information about the top provider for this model |
-| `uptime_last_1d` | `any` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` | `any` |  |
-| `uptime_last_5m` | `any` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 #### Example: Load
 
@@ -3682,16 +3649,6 @@ Create an instance: `organization := client.Organization(nil)`
 | Method | Description |
 | --- | --- |
 | `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `email` | `string` | Email address of the member |
-| `first_name` | `any` | First name of the member |
-| `id` | `string` | User ID of the organization member |
-| `last_name` | `any` | Last name of the member |
-| `role` | `string` | Role of the member in the organization |
 
 #### Example: List
 
@@ -4645,15 +4602,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `List`, the entity
+Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-organization := client.Organization(nil)
-organization.List(nil, nil)
+presetversion := client.PresetVersion(nil)
+presetversion.Load(map[string]any{"id": "example_id", "slug": "example"}, nil)
 
-// organization.Data() now returns the organization data from the last list
-// organization.Match() returns the last match criteria
+// presetversion.Data() now returns the presetversion data from the last load
+// presetversion.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

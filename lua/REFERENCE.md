@@ -2280,28 +2280,14 @@ local endpoint = client:Endpoint(nil)
 | `hugging_face_id` | `string|nil` | No | Hugging Face model identifier, if applicable |
 | `id` | `string` | Yes | Unique identifier for the model |
 | `knowledge_cutoff` | `string|nil` | No | The date up to which the model was trained on data. |
-| `latency_last_30m` | `table|nil` | Yes | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | `table` | Yes | Related API endpoints and resources for this model. |
-| `max_completion_tokens` | `number|nil` | Yes |  |
-| `max_prompt_tokens` | `number|nil` | Yes |  |
-| `model_id` | `string` | Yes | The unique identifier for the model (permaslug) |
-| `model_name` | `string` | Yes |  |
 | `name` | `string` | Yes | Display name of the model |
 | `per_request_limits` | `table|nil` | Yes | Per-request token limits |
 | `pricing` | `table` | Yes | Pricing information for the model |
-| `provider_name` | `string` | Yes |  |
-| `quantization` | `any` | Yes |  |
 | `reasoning` | `table` | Yes | Reasoning effort configuration. |
-| `status` | `number` | No |  |
 | `supported_parameters` | `table` | Yes | List of supported parameters for this model |
 | `supported_voices` | `table|nil` | Yes | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` | `boolean` | Yes |  |
-| `tag` | `string` | Yes |  |
-| `throughput_last_30m` | `any` | Yes |  |
 | `top_provider` | `table` | Yes | Information about the top provider for this model |
-| `uptime_last_1d` | `number|nil` | Yes | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` | `number|nil` | Yes |  |
-| `uptime_last_5m` | `number|nil` | Yes | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 ### Field Usage by Operation
 
@@ -2319,28 +2305,14 @@ local endpoint = client:Endpoint(nil)
 | `hugging_face_id` | - | - |
 | `id` | - | - |
 | `knowledge_cutoff` | - | - |
-| `latency_last_30m` | - | - |
 | `links` | - | - |
-| `max_completion_tokens` | - | - |
-| `max_prompt_tokens` | - | - |
-| `model_id` | - | - |
-| `model_name` | - | - |
 | `name` | - | - |
 | `per_request_limits` | - | - |
 | `pricing` | - | - |
-| `provider_name` | - | - |
-| `quantization` | - | - |
 | `reasoning` | - | - |
-| `status` | - | - |
 | `supported_parameters` | - | - |
 | `supported_voices` | - | - |
-| `supports_implicit_caching` | - | - |
-| `tag` | - | - |
-| `throughput_last_30m` | - | - |
 | `top_provider` | - | - |
-| `uptime_last_1d` | - | - |
-| `uptime_last_30m` | - | - |
-| `uptime_last_5m` | - | - |
 
 ### Operations
 
@@ -4091,16 +4063,6 @@ Return the entity name.
 ```lua
 local organization = client:Organization(nil)
 ```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `email` | `string` | Yes | Email address of the member |
-| `first_name` | `string|nil` | Yes | First name of the member |
-| `id` | `string` | Yes | User ID of the organization member |
-| `last_name` | `string|nil` | Yes | Last name of the member |
-| `role` | `string` | Yes | Role of the member in the organization |
 
 ### Operations
 

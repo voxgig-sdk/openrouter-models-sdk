@@ -66,7 +66,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local organizations, err = client:Organization():list()
+local presetversion, err = client:PresetVersion():load({ id = "example_id", slug = "example" })
 if err then error(err) end
 ```
 
@@ -124,7 +124,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Organization():list()
+local result, err = client:PresetVersion():load({ id = "test01", slug = "example" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -815,28 +815,14 @@ API path: `/embeddings`
 | `hugging_face_id` | Hugging Face model identifier, if applicable |
 | `id` | Unique identifier for the model |
 | `knowledge_cutoff` | The date up to which the model was trained on data. |
-| `latency_last_30m` | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | Related API endpoints and resources for this model. |
-| `max_completion_tokens` |  |
-| `max_prompt_tokens` |  |
-| `model_id` | The unique identifier for the model (permaslug) |
-| `model_name` |  |
 | `name` | Display name of the model |
 | `per_request_limits` | Per-request token limits |
 | `pricing` | Pricing information for the model |
-| `provider_name` |  |
-| `quantization` |  |
 | `reasoning` | Reasoning effort configuration. |
-| `status` |  |
 | `supported_parameters` | List of supported parameters for this model |
 | `supported_voices` | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` |  |
-| `tag` |  |
-| `throughput_last_30m` |  |
 | `top_provider` | Information about the top provider for this model |
-| `uptime_last_1d` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` |  |
-| `uptime_last_5m` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 Operations: List, Load.
 
@@ -1362,11 +1348,6 @@ API path: `/responses`
 
 | Field | Description |
 | --- | --- |
-| `email` | Email address of the member |
-| `first_name` | First name of the member |
-| `id` | User ID of the organization member |
-| `last_name` | Last name of the member |
-| `role` | Role of the member in the organization |
 
 Operations: List.
 
@@ -2604,28 +2585,14 @@ Create an instance: `local endpoint = client:Endpoint(nil)`
 | `hugging_face_id` | `string|nil` | Hugging Face model identifier, if applicable |
 | `id` | `string` | Unique identifier for the model |
 | `knowledge_cutoff` | `string|nil` | The date up to which the model was trained on data. |
-| `latency_last_30m` | `table|nil` | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | `table` | Related API endpoints and resources for this model. |
-| `max_completion_tokens` | `number|nil` |  |
-| `max_prompt_tokens` | `number|nil` |  |
-| `model_id` | `string` | The unique identifier for the model (permaslug) |
-| `model_name` | `string` |  |
 | `name` | `string` | Display name of the model |
 | `per_request_limits` | `table|nil` | Per-request token limits |
 | `pricing` | `table` | Pricing information for the model |
-| `provider_name` | `string` |  |
-| `quantization` | `any` |  |
 | `reasoning` | `table` | Reasoning effort configuration. |
-| `status` | `number` |  |
 | `supported_parameters` | `table` | List of supported parameters for this model |
 | `supported_voices` | `table|nil` | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` | `boolean` |  |
-| `tag` | `string` |  |
-| `throughput_last_30m` | `any` |  |
 | `top_provider` | `table` | Information about the top provider for this model |
-| `uptime_last_1d` | `number|nil` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` | `number|nil` |  |
-| `uptime_last_5m` | `number|nil` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 #### Example: Load
 
@@ -3466,16 +3433,6 @@ Create an instance: `local organization = client:Organization(nil)`
 | Method | Description |
 | --- | --- |
 | `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `email` | `string` | Email address of the member |
-| `first_name` | `string|nil` | First name of the member |
-| `id` | `string` | User ID of the organization member |
-| `last_name` | `string|nil` | Last name of the member |
-| `role` | `string` | Role of the member in the organization |
 
 #### Example: List
 
@@ -4342,6 +4299,7 @@ Use `helpers.to_map()` to safely validate that a value is a table.
 lua/
 ├── openrouter-models_sdk.lua    -- Main SDK module
 ├── config.lua               -- Configuration
+├── schema.lua               -- Generated option + entity specs
 ├── features.lua             -- Feature factory
 ├── core/                    -- Core types and context
 ├── entity/                  -- Entity implementations
@@ -4356,15 +4314,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local organization = client:Organization()
-organization:list()
+local presetversion = client:PresetVersion()
+presetversion:load({ id = "example_id", slug = "example" })
 
--- organization:data_get() now returns the organization data from the last list
--- organization:match_get() returns the last match criteria
+-- presetversion:data_get() now returns the presetversion data from the last load
+-- presetversion:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

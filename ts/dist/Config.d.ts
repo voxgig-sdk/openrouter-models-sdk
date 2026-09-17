@@ -2117,14 +2117,12 @@ declare class Config {
                 short: string;
                 type: string;
                 op?: undefined;
-                format?: undefined;
             } | {
                 name: string;
                 req: boolean;
                 short: string;
                 type: (string | string[])[];
                 op?: undefined;
-                format?: undefined;
             } | {
                 name: string;
                 op: {
@@ -2135,48 +2133,11 @@ declare class Config {
                 req: boolean;
                 short: string;
                 type: string;
-                format?: undefined;
             } | {
                 name: string;
                 short: string;
                 type: (string | string[])[];
                 req?: undefined;
-                op?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
-                req: boolean;
-                type: (string | string[])[];
-                short?: undefined;
-                op?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
-                req: boolean;
-                type: string;
-                short?: undefined;
-                op?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
-                type: string;
-                req?: undefined;
-                short?: undefined;
-                op?: undefined;
-                format?: undefined;
-            } | {
-                format: string;
-                name: string;
-                req: boolean;
-                short: string;
-                type: (string | string[])[];
-                op?: undefined;
-            } | {
-                format: string;
-                name: string;
-                req: boolean;
-                type: (string | string[])[];
-                short?: undefined;
                 op?: undefined;
             })[];
             id: {
@@ -4456,21 +4417,7 @@ declare class Config {
             };
         };
         organization: {
-            fields: ({
-                name: string;
-                req: boolean;
-                short: string;
-                type: string;
-            } | {
-                name: string;
-                req: boolean;
-                short: string;
-                type: (string | string[])[];
-            })[];
-            id: {
-                field: string;
-                name: string;
-            };
+            fields: never[];
             name: string;
             op: {
                 list: {

@@ -67,9 +67,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  organizations = client.Organization.list()
+  presetversion = client.PresetVersion.load({ "id" => "example_id", "slug" => "example" })
 rescue => err
-  warn "list failed: #{err}"
+  warn "load failed: #{err}"
 end
 ```
 
@@ -130,15 +130,18 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = OpenrouterModelsSDK.test
+client = OpenrouterModelsSDK.test({
+  "entity" => { "presetversion" => { "test01" => { "id" => "test01" } } },
+})
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-organization = client.Organization.list()
-puts organization
+presetversion = client.PresetVersion.load({ "id" => "test01", "slug" => "example" })
+puts presetversion
 ```
 
 ### Use a custom fetch function
@@ -824,28 +827,14 @@ API path: `/embeddings`
 | `hugging_face_id` | Hugging Face model identifier, if applicable |
 | `id` | Unique identifier for the model |
 | `knowledge_cutoff` | The date up to which the model was trained on data. |
-| `latency_last_30m` | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | Related API endpoints and resources for this model. |
-| `max_completion_tokens` |  |
-| `max_prompt_tokens` |  |
-| `model_id` | The unique identifier for the model (permaslug) |
-| `model_name` |  |
 | `name` | Display name of the model |
 | `per_request_limits` | Per-request token limits |
 | `pricing` | Pricing information for the model |
-| `provider_name` |  |
-| `quantization` |  |
 | `reasoning` | Reasoning effort configuration. |
-| `status` |  |
 | `supported_parameters` | List of supported parameters for this model |
 | `supported_voices` | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` |  |
-| `tag` |  |
-| `throughput_last_30m` |  |
 | `top_provider` | Information about the top provider for this model |
-| `uptime_last_1d` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` |  |
-| `uptime_last_5m` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 Operations: List, Load.
 
@@ -1371,11 +1360,6 @@ API path: `/responses`
 
 | Field | Description |
 | --- | --- |
-| `email` | Email address of the member |
-| `first_name` | First name of the member |
-| `id` | User ID of the organization member |
-| `last_name` | Last name of the member |
-| `role` | Role of the member in the organization |
 
 Operations: List.
 
@@ -2621,28 +2605,14 @@ Create an instance: `endpoint = client.Endpoint`
 | `hugging_face_id` | `Object` | Hugging Face model identifier, if applicable |
 | `id` | `String` | Unique identifier for the model |
 | `knowledge_cutoff` | `Object` | The date up to which the model was trained on data. |
-| `latency_last_30m` | `Object` | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | `Hash` | Related API endpoints and resources for this model. |
-| `max_completion_tokens` | `Object` |  |
-| `max_prompt_tokens` | `Object` |  |
-| `model_id` | `String` | The unique identifier for the model (permaslug) |
-| `model_name` | `String` |  |
 | `name` | `String` | Display name of the model |
 | `per_request_limits` | `Object` | Per-request token limits |
 | `pricing` | `Hash` | Pricing information for the model |
-| `provider_name` | `String` |  |
-| `quantization` | `Object` |  |
 | `reasoning` | `Hash` | Reasoning effort configuration. |
-| `status` | `Integer` |  |
 | `supported_parameters` | `Array` | List of supported parameters for this model |
 | `supported_voices` | `Object` | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` | `Boolean` |  |
-| `tag` | `String` |  |
-| `throughput_last_30m` | `Object` |  |
 | `top_provider` | `Hash` | Information about the top provider for this model |
-| `uptime_last_1d` | `Object` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` | `Object` |  |
-| `uptime_last_5m` | `Object` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 #### Example: Load
 
@@ -3504,16 +3474,6 @@ Create an instance: `organization = client.Organization`
 | Method | Description |
 | --- | --- |
 | `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `email` | `String` | Email address of the member |
-| `first_name` | `Object` | First name of the member |
-| `id` | `String` | User ID of the organization member |
-| `last_name` | `Object` | Last name of the member |
-| `role` | `String` | Role of the member in the organization |
 
 #### Example: List
 
@@ -4393,6 +4353,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── OpenrouterModels_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations
@@ -4407,15 +4368,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-organization = client.Organization
-organization.list()
+presetversion = client.PresetVersion
+presetversion.load({ "id" => "example_id", "slug" => "example" })
 
-# organization.data_get now returns the organization data from the last list
-# organization.match_get returns the last match criteria
+# presetversion.data_get now returns the presetversion data from the last load
+# presetversion.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

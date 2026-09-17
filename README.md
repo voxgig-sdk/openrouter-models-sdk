@@ -46,23 +46,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = OpenrouterModelsSDK.test({
   entity: {
-    organization: {
+    preset_version: {
       test01: { id: 'test01' },
     },
   },
 })
-const organizations = await client.Organization().list()
-// organizations is an array of Organization entities, populated with mock data
-// — call organizations[0].data() for the record itself
-console.log(organizations)
+const presetversion = await client.PresetVersion().load({ id: 'test01', slug: 'example_slug' })
+// presetversion is the PresetVersion entity, populated with mock data
+// — call presetversion.data() for the record itself
+console.log(presetversion)
 ```
 
 ### Python
 
 ```python
 client = OpenrouterModelsSDK.test()
-organizations = client.Organization().list()
-print(organizations)
+presetversion = client.PresetVersion().load({"id": "test01", "slug": "example"})
+print(presetversion)
 ```
 
 ### PHP
@@ -70,17 +70,17 @@ print(organizations)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = OpenrouterModelsSDK::test([
-    "entity" => ["organization" => ["test01" => []]],
+    "entity" => ["presetversion" => ["test01" => ["id" => "test01"]]],
 ]);
-$organizations = $client->Organization()->list();
+$presetversion = $client->PresetVersion()->load(["id" => "test01", "slug" => "example"]);
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Organization(nil).List(
-    nil, nil,
+result, err := client.PresetVersion(nil).Load(
+    map[string]any{"id": "test01"}, nil,
 )
 ```
 
@@ -89,28 +89,28 @@ result, err := client.Organization(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = OpenrouterModelsSDK.test({
-  "entity" => { "organization" => { "test01" => {} } },
+  "entity" => { "presetversion" => { "test01" => { "id" => "test01" } } },
 })
-organizations = client.Organization.list()
+presetversion = client.PresetVersion.load({ "id" => "test01", "slug" => "example" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Organization():list()
+local result, err = client:PresetVersion():load({ id = "test01", slug = "example" })
 ```
 
 ## Packages
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/openrouter-models-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/releases) |
-| Python | `voxgig-sdk-openrouter-models` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/releases) |
-| PHP | `voxgig-sdk/openrouter-models` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/releases) |
+| TypeScript | `@voxgig-sdk/openrouter-models-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/tags) |
+| Python | `voxgig-sdk-openrouter-models` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/tags) |
+| PHP | `voxgig-sdk/openrouter-models` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/openrouter-models-sdk/go` | `go get github.com/voxgig-sdk/openrouter-models-sdk/go@latest` |
-| Ruby | `voxgig-sdk-openrouter-models` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/releases) |
-| Lua | `voxgig-sdk-openrouter-models` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/releases) |
+| Ruby | `voxgig-sdk-openrouter-models` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/tags) |
+| Lua | `voxgig-sdk-openrouter-models` | publish pending — [install from git tag](https://github.com/voxgig-sdk/openrouter-models-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/openrouter-models-sdk/go-cli` | `go install github.com/voxgig-sdk/openrouter-models-sdk/go-cli/cmd/openrouter-models@latest` |
 | Go MCP server | `github.com/voxgig-sdk/openrouter-models-sdk/go-mcp` | `go get github.com/voxgig-sdk/openrouter-models-sdk/go-mcp@latest` |
 

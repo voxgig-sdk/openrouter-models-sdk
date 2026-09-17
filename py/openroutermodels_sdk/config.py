@@ -4456,55 +4456,10 @@ def make_config():
             ],
           },
           {
-            "name": "latency_last_30m",
-            "req": True,
-            "short": "Latency percentiles in milliseconds over the last 30 minutes.",
-            "type": [
-              "`$ONE`",
-              [
-                "`$OBJECT`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
             "name": "links",
             "req": True,
             "short": "Related API endpoints and resources for this model.",
             "type": "`$OBJECT`",
-          },
-          {
-            "name": "max_completion_tokens",
-            "req": True,
-            "type": [
-              "`$ONE`",
-              [
-                "`$INTEGER`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
-            "name": "max_prompt_tokens",
-            "req": True,
-            "type": [
-              "`$ONE`",
-              [
-                "`$INTEGER`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
-            "name": "model_id",
-            "req": True,
-            "short": "The unique identifier for the model (permaslug)",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "model_name",
-            "req": True,
-            "type": "`$STRING`",
           },
           {
             "name": "name",
@@ -4531,24 +4486,10 @@ def make_config():
             "type": "`$OBJECT`",
           },
           {
-            "name": "provider_name",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "quantization",
-            "req": True,
-            "type": "`$ANY`",
-          },
-          {
             "name": "reasoning",
             "req": True,
             "short": "Reasoning effort configuration.",
             "type": "`$OBJECT`",
-          },
-          {
-            "name": "status",
-            "type": "`$INTEGER`",
           },
           {
             "name": "supported_parameters",
@@ -4569,63 +4510,10 @@ def make_config():
             ],
           },
           {
-            "name": "supports_implicit_caching",
-            "req": True,
-            "type": "`$BOOLEAN`",
-          },
-          {
-            "name": "tag",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "throughput_last_30m",
-            "req": True,
-            "type": "`$ANY`",
-          },
-          {
             "name": "top_provider",
             "req": True,
             "short": "Information about the top provider for this model",
             "type": "`$OBJECT`",
-          },
-          {
-            "format": "double",
-            "name": "uptime_last_1d",
-            "req": True,
-            "short": "Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100.",
-            "type": [
-              "`$ONE`",
-              [
-                "`$NUMBER`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
-            "format": "double",
-            "name": "uptime_last_30m",
-            "req": True,
-            "type": [
-              "`$ONE`",
-              [
-                "`$NUMBER`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
-            "format": "double",
-            "name": "uptime_last_5m",
-            "req": True,
-            "short": "Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100.",
-            "type": [
-              "`$ONE`",
-              [
-                "`$NUMBER`",
-                "`$NULL`",
-              ],
-            ],
           },
         ],
         "id": {
@@ -10042,54 +9930,7 @@ def make_config():
         },
       },
       "organization": {
-        "fields": [
-          {
-            "name": "email",
-            "req": True,
-            "short": "Email address of the member",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "first_name",
-            "req": True,
-            "short": "First name of the member",
-            "type": [
-              "`$ONE`",
-              [
-                "`$STRING`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
-            "name": "id",
-            "req": True,
-            "short": "User ID of the organization member",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "last_name",
-            "req": True,
-            "short": "Last name of the member",
-            "type": [
-              "`$ONE`",
-              [
-                "`$STRING`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
-            "name": "role",
-            "req": True,
-            "short": "Role of the member in the organization",
-            "type": "`$STRING`",
-          },
-        ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
+        "fields": [],
         "name": "organization",
         "op": {
           "list": {

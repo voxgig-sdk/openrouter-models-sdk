@@ -1,37 +1,14 @@
 {
   "existing": {
     "organization": {
-      "ORGANIZATION00": {
-        "email": "s32",
-        "first_name": "s33",
-        "id": "ORGANIZATION00",
-        "last_name": "s35",
-        "role": "s36"
-      },
-      "ORGANIZATION01": {
-        "email": "s64",
-        "first_name": "s65",
-        "id": "ORGANIZATION01",
-        "last_name": "s67",
-        "role": "s68"
-      },
-      "ORGANIZATION02": {
-        "email": "s96",
-        "first_name": "s97",
-        "id": "ORGANIZATION02",
-        "last_name": "s99",
-        "role": "s9a"
-      }
+      "ORGANIZATION00": {},
+      "ORGANIZATION01": {},
+      "ORGANIZATION02": {}
     }
   },
   "new": {
     "organization": {
-      "organization_ref01": {
-        "email": "sc8",
-        "first_name": "sc9",
-        "last_name": "scb",
-        "role": "scc"
-      }
+      "organization_ref01": {}
     }
   },
   "requests": {

@@ -780,28 +780,14 @@ class Endpoint
     public mixed $hugging_face_id = null;
     public string $id;
     public mixed $knowledge_cutoff = null;
-    public mixed $latency_last_30m;
     public array $links;
-    public mixed $max_completion_tokens;
-    public mixed $max_prompt_tokens;
-    public string $model_id;
-    public string $model_name;
     public string $name;
     public mixed $per_request_limits;
     public array $pricing;
-    public string $provider_name;
-    public mixed $quantization;
     public array $reasoning;
-    public ?int $status = null;
     public array $supported_parameters;
     public mixed $supported_voices;
-    public bool $supports_implicit_caching;
-    public string $tag;
-    public mixed $throughput_last_30m;
     public array $top_provider;
-    public mixed $uptime_last_1d;
-    public mixed $uptime_last_30m;
-    public mixed $uptime_last_5m;
 }
 
 /** Request payload for Endpoint#load. */
@@ -1568,11 +1554,6 @@ class OpenResponsesResultCreateData
 /** Organization entity data model. */
 class Organization
 {
-    public string $email;
-    public mixed $first_name;
-    public string $id;
-    public mixed $last_name;
-    public string $role;
 }
 
 /** Request payload for Organization#list. */

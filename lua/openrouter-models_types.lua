@@ -613,28 +613,14 @@
 ---@field hugging_face_id? string|nil
 ---@field id string
 ---@field knowledge_cutoff? string|nil
----@field latency_last_30m table|nil
 ---@field links table
----@field max_completion_tokens number|nil
----@field max_prompt_tokens number|nil
----@field model_id string
----@field model_name string
 ---@field name string
 ---@field per_request_limits table|nil
 ---@field pricing table
----@field provider_name string
----@field quantization any
 ---@field reasoning table
----@field status? number
 ---@field supported_parameters table
 ---@field supported_voices table|nil
----@field supports_implicit_caching boolean
----@field tag string
----@field throughput_last_30m any
 ---@field top_provider table
----@field uptime_last_1d number|nil
----@field uptime_last_30m number|nil
----@field uptime_last_5m number|nil
 
 ---@class EndpointLoadMatch
 ---@field author string
@@ -1224,11 +1210,6 @@
 ---@field user? string
 
 ---@class Organization
----@field email string
----@field first_name string|nil
----@field id string
----@field last_name string|nil
----@field role string
 
 ---@class OrganizationListMatch
 ---@field limit? number

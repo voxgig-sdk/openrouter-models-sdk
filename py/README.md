@@ -73,10 +73,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    organizations = client.Organization().list()
-    print(organizations)
+    presetversion = client.PresetVersion().load({"id": "example_id", "slug": "example"})
+    print(presetversion)
 except Exception as err:
-    print(f"list failed: {err}")
+    print(f"load failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -142,8 +142,8 @@ client = OpenrouterModelsSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-organization = client.Organization().list()
-# organization contains the mock response record
+presetversion = client.PresetVersion().load({"id": "test01", "slug": "example"})
+# presetversion contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -830,28 +830,14 @@ API path: `/embeddings`
 | `hugging_face_id` | Hugging Face model identifier, if applicable |
 | `id` | Unique identifier for the model |
 | `knowledge_cutoff` | The date up to which the model was trained on data. |
-| `latency_last_30m` | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | Related API endpoints and resources for this model. |
-| `max_completion_tokens` |  |
-| `max_prompt_tokens` |  |
-| `model_id` | The unique identifier for the model (permaslug) |
-| `model_name` |  |
 | `name` | Display name of the model |
 | `per_request_limits` | Per-request token limits |
 | `pricing` | Pricing information for the model |
-| `provider_name` |  |
-| `quantization` |  |
 | `reasoning` | Reasoning effort configuration. |
-| `status` |  |
 | `supported_parameters` | List of supported parameters for this model |
 | `supported_voices` | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` |  |
-| `tag` |  |
-| `throughput_last_30m` |  |
 | `top_provider` | Information about the top provider for this model |
-| `uptime_last_1d` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` |  |
-| `uptime_last_5m` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 Operations: List, Load.
 
@@ -1377,11 +1363,6 @@ API path: `/responses`
 
 | Field | Description |
 | --- | --- |
-| `email` | Email address of the member |
-| `first_name` | First name of the member |
-| `id` | User ID of the organization member |
-| `last_name` | Last name of the member |
-| `role` | Role of the member in the organization |
 
 Operations: List.
 
@@ -2619,28 +2600,14 @@ Create an instance: `endpoint = client.Endpoint()`
 | `hugging_face_id` | `str | None` | Hugging Face model identifier, if applicable |
 | `id` | `str` | Unique identifier for the model |
 | `knowledge_cutoff` | `str | None` | The date up to which the model was trained on data. |
-| `latency_last_30m` | `dict | None` | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | `dict` | Related API endpoints and resources for this model. |
-| `max_completion_tokens` | `int | None` |  |
-| `max_prompt_tokens` | `int | None` |  |
-| `model_id` | `str` | The unique identifier for the model (permaslug) |
-| `model_name` | `str` |  |
 | `name` | `str` | Display name of the model |
 | `per_request_limits` | `dict | None` | Per-request token limits |
 | `pricing` | `dict` | Pricing information for the model |
-| `provider_name` | `str` |  |
-| `quantization` | `Any` |  |
 | `reasoning` | `dict` | Reasoning effort configuration. |
-| `status` | `int` |  |
 | `supported_parameters` | `list` | List of supported parameters for this model |
 | `supported_voices` | `list | None` | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` | `bool` |  |
-| `tag` | `str` |  |
-| `throughput_last_30m` | `Any` |  |
 | `top_provider` | `dict` | Information about the top provider for this model |
-| `uptime_last_1d` | `float | None` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` | `float | None` |  |
-| `uptime_last_5m` | `float | None` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 #### Example: Load
 
@@ -3481,16 +3448,6 @@ Create an instance: `organization = client.Organization()`
 | Method | Description |
 | --- | --- |
 | `list()` | List entities, optionally matching the given criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `email` | `str` | Email address of the member |
-| `first_name` | `str | None` | First name of the member |
-| `id` | `str` | User ID of the organization member |
-| `last_name` | `str | None` | Last name of the member |
-| `role` | `str` | Role of the member in the organization |
 
 #### Example: List
 
@@ -4357,6 +4314,7 @@ Use `helpers.to_map()` to safely validate that a value is a dict.
 py/
 ├── openroutermodels_sdk.py         -- Main SDK module
 ├── config.py                    -- Configuration
+├── schema.py                    -- Generated option + entity specs
 ├── features.py                  -- Feature factory
 ├── core/                        -- Core types and context
 ├── entity/                      -- Entity implementations
@@ -4370,15 +4328,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-organization = client.Organization()
-organization.list()
+presetversion = client.PresetVersion()
+presetversion.load({"id": "example_id", "slug": "example"})
 
-# organization.data_get() now returns the organization data from the last list
-# organization.match_get() returns the last match criteria
+# presetversion.data_get() now returns the presetversion data from the last load
+# presetversion.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -2257,28 +2257,14 @@ endpoint = client.Endpoint()
 | `hugging_face_id` | `str | None` | No | Hugging Face model identifier, if applicable |
 | `id` | `str` | Yes | Unique identifier for the model |
 | `knowledge_cutoff` | `str | None` | No | The date up to which the model was trained on data. |
-| `latency_last_30m` | `dict | None` | Yes | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | `dict` | Yes | Related API endpoints and resources for this model. |
-| `max_completion_tokens` | `int | None` | Yes |  |
-| `max_prompt_tokens` | `int | None` | Yes |  |
-| `model_id` | `str` | Yes | The unique identifier for the model (permaslug) |
-| `model_name` | `str` | Yes |  |
 | `name` | `str` | Yes | Display name of the model |
 | `per_request_limits` | `dict | None` | Yes | Per-request token limits |
 | `pricing` | `dict` | Yes | Pricing information for the model |
-| `provider_name` | `str` | Yes |  |
-| `quantization` | `Any` | Yes |  |
 | `reasoning` | `dict` | Yes | Reasoning effort configuration. |
-| `status` | `int` | No |  |
 | `supported_parameters` | `list` | Yes | List of supported parameters for this model |
 | `supported_voices` | `list | None` | Yes | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` | `bool` | Yes |  |
-| `tag` | `str` | Yes |  |
-| `throughput_last_30m` | `Any` | Yes |  |
 | `top_provider` | `dict` | Yes | Information about the top provider for this model |
-| `uptime_last_1d` | `float | None` | Yes | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` | `float | None` | Yes |  |
-| `uptime_last_5m` | `float | None` | Yes | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 ### Field Usage by Operation
 
@@ -2296,28 +2282,14 @@ endpoint = client.Endpoint()
 | `hugging_face_id` | - | - |
 | `id` | - | - |
 | `knowledge_cutoff` | - | - |
-| `latency_last_30m` | - | - |
 | `links` | - | - |
-| `max_completion_tokens` | - | - |
-| `max_prompt_tokens` | - | - |
-| `model_id` | - | - |
-| `model_name` | - | - |
 | `name` | - | - |
 | `per_request_limits` | - | - |
 | `pricing` | - | - |
-| `provider_name` | - | - |
-| `quantization` | - | - |
 | `reasoning` | - | - |
-| `status` | - | - |
 | `supported_parameters` | - | - |
 | `supported_voices` | - | - |
-| `supports_implicit_caching` | - | - |
-| `tag` | - | - |
-| `throughput_last_30m` | - | - |
 | `top_provider` | - | - |
-| `uptime_last_1d` | - | - |
-| `uptime_last_30m` | - | - |
-| `uptime_last_5m` | - | - |
 
 ### Operations
 
@@ -4065,16 +4037,6 @@ Return the entity name.
 ```python
 organization = client.Organization()
 ```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `email` | `str` | Yes | Email address of the member |
-| `first_name` | `str | None` | Yes | First name of the member |
-| `id` | `str` | Yes | User ID of the organization member |
-| `last_name` | `str | None` | Yes | Last name of the member |
-| `role` | `str` | Yes | Role of the member in the organization |
 
 ### Operations
 

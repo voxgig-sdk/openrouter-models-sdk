@@ -4,56 +4,6 @@ main: kit: entity: organization: {
 
   alias: field: {}
 
-  fields: [
-    {
-      name: "email"
-      req: true
-      short: "Email address of the member"
-      type: "`$STRING`"
-    }
-    {
-      name: "first_name"
-      req: true
-      short: "First name of the member"
-      type: [
-        "`$ONE`"
-        [
-          "`$STRING`"
-          "`$NULL`"
-        ]
-      ]
-    }
-    {
-      name: "id"
-      req: true
-      short: "User ID of the organization member"
-      type: "`$STRING`"
-    }
-    {
-      name: "last_name"
-      req: true
-      short: "Last name of the member"
-      type: [
-        "`$ONE`"
-        [
-          "`$STRING`"
-          "`$NULL`"
-        ]
-      ]
-    }
-    {
-      name: "role"
-      req: true
-      short: "Role of the member in the organization"
-      type: "`$STRING`"
-    }
-  ]
-
-  id: {
-    field: "id"
-    name: "id"
-  }
-
   name: "organization"
   op: {
     list: {

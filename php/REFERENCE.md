@@ -2282,28 +2282,14 @@ $endpoint = $client->Endpoint();
 | `hugging_face_id` | `mixed` | No | Hugging Face model identifier, if applicable |
 | `id` | `string` | Yes | Unique identifier for the model |
 | `knowledge_cutoff` | `mixed` | No | The date up to which the model was trained on data. |
-| `latency_last_30m` | `mixed` | Yes | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | `array` | Yes | Related API endpoints and resources for this model. |
-| `max_completion_tokens` | `mixed` | Yes |  |
-| `max_prompt_tokens` | `mixed` | Yes |  |
-| `model_id` | `string` | Yes | The unique identifier for the model (permaslug) |
-| `model_name` | `string` | Yes |  |
 | `name` | `string` | Yes | Display name of the model |
 | `per_request_limits` | `mixed` | Yes | Per-request token limits |
 | `pricing` | `array` | Yes | Pricing information for the model |
-| `provider_name` | `string` | Yes |  |
-| `quantization` | `mixed` | Yes |  |
 | `reasoning` | `array` | Yes | Reasoning effort configuration. |
-| `status` | `int` | No |  |
 | `supported_parameters` | `array` | Yes | List of supported parameters for this model |
 | `supported_voices` | `mixed` | Yes | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` | `bool` | Yes |  |
-| `tag` | `string` | Yes |  |
-| `throughput_last_30m` | `mixed` | Yes |  |
 | `top_provider` | `array` | Yes | Information about the top provider for this model |
-| `uptime_last_1d` | `mixed` | Yes | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` | `mixed` | Yes |  |
-| `uptime_last_5m` | `mixed` | Yes | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 ### Field Usage by Operation
 
@@ -2321,28 +2307,14 @@ $endpoint = $client->Endpoint();
 | `hugging_face_id` | - | - |
 | `id` | - | - |
 | `knowledge_cutoff` | - | - |
-| `latency_last_30m` | - | - |
 | `links` | - | - |
-| `max_completion_tokens` | - | - |
-| `max_prompt_tokens` | - | - |
-| `model_id` | - | - |
-| `model_name` | - | - |
 | `name` | - | - |
 | `per_request_limits` | - | - |
 | `pricing` | - | - |
-| `provider_name` | - | - |
-| `quantization` | - | - |
 | `reasoning` | - | - |
-| `status` | - | - |
 | `supported_parameters` | - | - |
 | `supported_voices` | - | - |
-| `supports_implicit_caching` | - | - |
-| `tag` | - | - |
-| `throughput_last_30m` | - | - |
 | `top_provider` | - | - |
-| `uptime_last_1d` | - | - |
-| `uptime_last_30m` | - | - |
-| `uptime_last_5m` | - | - |
 
 ### Operations
 
@@ -4093,16 +4065,6 @@ Return the entity name.
 ```php
 $organization = $client->Organization();
 ```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `email` | `string` | Yes | Email address of the member |
-| `first_name` | `mixed` | Yes | First name of the member |
-| `id` | `string` | Yes | User ID of the organization member |
-| `last_name` | `mixed` | Yes | Last name of the member |
-| `role` | `string` | Yes | Role of the member in the organization |
 
 ### Operations
 

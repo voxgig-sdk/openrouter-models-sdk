@@ -607,28 +607,14 @@ export interface Endpoint {
     hugging_face_id?: string | null;
     id: string;
     knowledge_cutoff?: string | null;
-    latency_last_30m: Record<string, any> | null;
     links: Record<string, any>;
-    max_completion_tokens: number | null;
-    max_prompt_tokens: number | null;
-    model_id: string;
-    model_name: string;
     name: string;
     per_request_limits: Record<string, any> | null;
     pricing: Record<string, any>;
-    provider_name: string;
-    quantization: any;
     reasoning: Record<string, any>;
-    status?: number;
     supported_parameters: any[];
     supported_voices: any[] | null;
-    supports_implicit_caching: boolean;
-    tag: string;
-    throughput_last_30m: any;
     top_provider: Record<string, any>;
-    uptime_last_1d: number | null;
-    uptime_last_30m: number | null;
-    uptime_last_5m: number | null;
 }
 export interface EndpointLoadMatch {
     author: string;
@@ -1222,11 +1208,6 @@ export interface OpenResponsesResultCreateData {
     user?: string;
 }
 export interface Organization {
-    email: string;
-    first_name: string | null;
-    id: string;
-    last_name: string | null;
-    role: string;
 }
 export interface OrganizationListMatch {
     limit?: number;

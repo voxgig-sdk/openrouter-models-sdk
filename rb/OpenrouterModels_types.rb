@@ -2251,23 +2251,8 @@ EmbeddingCreateData = Struct.new(
 # @!attribute [rw] knowledge_cutoff
 #   @return [Object, nil]
 #
-# @!attribute [rw] latency_last_30m
-#   @return [Object]
-#
 # @!attribute [rw] links
 #   @return [Hash]
-#
-# @!attribute [rw] max_completion_tokens
-#   @return [Object]
-#
-# @!attribute [rw] max_prompt_tokens
-#   @return [Object]
-#
-# @!attribute [rw] model_id
-#   @return [String]
-#
-# @!attribute [rw] model_name
-#   @return [String]
 #
 # @!attribute [rw] name
 #   @return [String]
@@ -2278,17 +2263,8 @@ EmbeddingCreateData = Struct.new(
 # @!attribute [rw] pricing
 #   @return [Hash]
 #
-# @!attribute [rw] provider_name
-#   @return [String]
-#
-# @!attribute [rw] quantization
-#   @return [Object]
-#
 # @!attribute [rw] reasoning
 #   @return [Hash]
-#
-# @!attribute [rw] status
-#   @return [Integer, nil]
 #
 # @!attribute [rw] supported_parameters
 #   @return [Array]
@@ -2296,26 +2272,8 @@ EmbeddingCreateData = Struct.new(
 # @!attribute [rw] supported_voices
 #   @return [Object]
 #
-# @!attribute [rw] supports_implicit_caching
-#   @return [Boolean]
-#
-# @!attribute [rw] tag
-#   @return [String]
-#
-# @!attribute [rw] throughput_last_30m
-#   @return [Object]
-#
 # @!attribute [rw] top_provider
 #   @return [Hash]
-#
-# @!attribute [rw] uptime_last_1d
-#   @return [Object]
-#
-# @!attribute [rw] uptime_last_30m
-#   @return [Object]
-#
-# @!attribute [rw] uptime_last_5m
-#   @return [Object]
 Endpoint = Struct.new(
   :architecture,
   :benchmarks,
@@ -2329,28 +2287,14 @@ Endpoint = Struct.new(
   :hugging_face_id,
   :id,
   :knowledge_cutoff,
-  :latency_last_30m,
   :links,
-  :max_completion_tokens,
-  :max_prompt_tokens,
-  :model_id,
-  :model_name,
   :name,
   :per_request_limits,
   :pricing,
-  :provider_name,
-  :quantization,
   :reasoning,
-  :status,
   :supported_parameters,
   :supported_voices,
-  :supports_implicit_caching,
-  :tag,
-  :throughput_last_30m,
   :top_provider,
-  :uptime_last_1d,
-  :uptime_last_30m,
-  :uptime_last_5m,
   keyword_init: true
 )
 
@@ -4521,29 +4465,8 @@ OpenResponsesResultCreateData = Struct.new(
 )
 
 # Organization entity data model.
-#
-# @!attribute [rw] email
-#   @return [String]
-#
-# @!attribute [rw] first_name
-#   @return [Object]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] last_name
-#   @return [Object]
-#
-# @!attribute [rw] role
-#   @return [String]
-Organization = Struct.new(
-  :email,
-  :first_name,
-  :id,
-  :last_name,
-  :role,
-  keyword_init: true
-)
+class Organization
+end
 
 # Request payload for Organization#list.
 #

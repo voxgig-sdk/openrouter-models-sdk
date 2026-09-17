@@ -726,28 +726,14 @@ type Endpoint struct {
 	HuggingFaceId *any `json:"hugging_face_id,omitempty"`
 	Id string `json:"id"`
 	KnowledgeCutoff *any `json:"knowledge_cutoff,omitempty"`
-	LatencyLast30m any `json:"latency_last_30m"`
 	Links map[string]any `json:"links"`
-	MaxCompletionTokens any `json:"max_completion_tokens"`
-	MaxPromptTokens any `json:"max_prompt_tokens"`
-	ModelId string `json:"model_id"`
-	ModelName string `json:"model_name"`
 	Name string `json:"name"`
 	PerRequestLimits any `json:"per_request_limits"`
 	Pricing map[string]any `json:"pricing"`
-	ProviderName string `json:"provider_name"`
-	Quantization any `json:"quantization"`
 	Reasoning map[string]any `json:"reasoning"`
-	Status *int `json:"status,omitempty"`
 	SupportedParameters []any `json:"supported_parameters"`
 	SupportedVoices any `json:"supported_voices"`
-	SupportsImplicitCaching bool `json:"supports_implicit_caching"`
-	Tag string `json:"tag"`
-	ThroughputLast30m any `json:"throughput_last_30m"`
 	TopProvider map[string]any `json:"top_provider"`
-	UptimeLast1d any `json:"uptime_last_1d"`
-	UptimeLast30m any `json:"uptime_last_30m"`
-	UptimeLast5m any `json:"uptime_last_5m"`
 }
 
 // EndpointLoadMatch is the typed request payload for Endpoint.LoadTyped.
@@ -1455,11 +1441,6 @@ type OpenResponsesResultCreateData struct {
 
 // Organization is the typed data model for the organization entity.
 type Organization struct {
-	Email string `json:"email"`
-	FirstName any `json:"first_name"`
-	Id string `json:"id"`
-	LastName any `json:"last_name"`
-	Role string `json:"role"`
 }
 
 // OrganizationListMatch is the typed request payload for Organization.ListTyped.

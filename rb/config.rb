@@ -4439,55 +4439,10 @@ module OpenrouterModelsConfig
               ],
             },
             {
-              "name" => "latency_last_30m",
-              "req" => true,
-              "short" => "Latency percentiles in milliseconds over the last 30 minutes.",
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$OBJECT`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-            {
               "name" => "links",
               "req" => true,
               "short" => "Related API endpoints and resources for this model.",
               "type" => "`$OBJECT`",
-            },
-            {
-              "name" => "max_completion_tokens",
-              "req" => true,
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-            {
-              "name" => "max_prompt_tokens",
-              "req" => true,
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$INTEGER`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-            {
-              "name" => "model_id",
-              "req" => true,
-              "short" => "The unique identifier for the model (permaslug)",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "model_name",
-              "req" => true,
-              "type" => "`$STRING`",
             },
             {
               "name" => "name",
@@ -4514,24 +4469,10 @@ module OpenrouterModelsConfig
               "type" => "`$OBJECT`",
             },
             {
-              "name" => "provider_name",
-              "req" => true,
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "quantization",
-              "req" => true,
-              "type" => "`$ANY`",
-            },
-            {
               "name" => "reasoning",
               "req" => true,
               "short" => "Reasoning effort configuration.",
               "type" => "`$OBJECT`",
-            },
-            {
-              "name" => "status",
-              "type" => "`$INTEGER`",
             },
             {
               "name" => "supported_parameters",
@@ -4552,63 +4493,10 @@ module OpenrouterModelsConfig
               ],
             },
             {
-              "name" => "supports_implicit_caching",
-              "req" => true,
-              "type" => "`$BOOLEAN`",
-            },
-            {
-              "name" => "tag",
-              "req" => true,
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "throughput_last_30m",
-              "req" => true,
-              "type" => "`$ANY`",
-            },
-            {
               "name" => "top_provider",
               "req" => true,
               "short" => "Information about the top provider for this model",
               "type" => "`$OBJECT`",
-            },
-            {
-              "format" => "double",
-              "name" => "uptime_last_1d",
-              "req" => true,
-              "short" => "Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100.",
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$NUMBER`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-            {
-              "format" => "double",
-              "name" => "uptime_last_30m",
-              "req" => true,
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$NUMBER`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-            {
-              "format" => "double",
-              "name" => "uptime_last_5m",
-              "req" => true,
-              "short" => "Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100.",
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$NUMBER`",
-                  "`$NULL`",
-                ],
-              ],
             },
           ],
           "id" => {
@@ -10025,54 +9913,7 @@ module OpenrouterModelsConfig
           },
         },
         "organization" => {
-          "fields" => [
-            {
-              "name" => "email",
-              "req" => true,
-              "short" => "Email address of the member",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "first_name",
-              "req" => true,
-              "short" => "First name of the member",
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-            {
-              "name" => "id",
-              "req" => true,
-              "short" => "User ID of the organization member",
-              "type" => "`$STRING`",
-            },
-            {
-              "name" => "last_name",
-              "req" => true,
-              "short" => "Last name of the member",
-              "type" => [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`",
-                ],
-              ],
-            },
-            {
-              "name" => "role",
-              "req" => true,
-              "short" => "Role of the member in the organization",
-              "type" => "`$STRING`",
-            },
-          ],
-          "id" => {
-            "field" => "id",
-            "name" => "id",
-          },
+          "fields" => [],
           "name" => "organization",
           "op" => {
             "list" => {

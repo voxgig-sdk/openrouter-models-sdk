@@ -70,7 +70,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $organizations = $client->Organization()->list();
+    $presetversion = $client->PresetVersion()->load(["id" => "example_id", "slug" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -838,28 +838,14 @@ API path: `/embeddings`
 | `hugging_face_id` | Hugging Face model identifier, if applicable |
 | `id` | Unique identifier for the model |
 | `knowledge_cutoff` | The date up to which the model was trained on data. |
-| `latency_last_30m` | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | Related API endpoints and resources for this model. |
-| `max_completion_tokens` |  |
-| `max_prompt_tokens` |  |
-| `model_id` | The unique identifier for the model (permaslug) |
-| `model_name` |  |
 | `name` | Display name of the model |
 | `per_request_limits` | Per-request token limits |
 | `pricing` | Pricing information for the model |
-| `provider_name` |  |
-| `quantization` |  |
 | `reasoning` | Reasoning effort configuration. |
-| `status` |  |
 | `supported_parameters` | List of supported parameters for this model |
 | `supported_voices` | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` |  |
-| `tag` |  |
-| `throughput_last_30m` |  |
 | `top_provider` | Information about the top provider for this model |
-| `uptime_last_1d` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` |  |
-| `uptime_last_5m` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 Operations: List, Load.
 
@@ -1385,11 +1371,6 @@ API path: `/responses`
 
 | Field | Description |
 | --- | --- |
-| `email` | Email address of the member |
-| `first_name` | First name of the member |
-| `id` | User ID of the organization member |
-| `last_name` | Last name of the member |
-| `role` | Role of the member in the organization |
 
 Operations: List.
 
@@ -2635,28 +2616,14 @@ Create an instance: `$endpoint = $client->Endpoint();`
 | `hugging_face_id` | `mixed` | Hugging Face model identifier, if applicable |
 | `id` | `string` | Unique identifier for the model |
 | `knowledge_cutoff` | `mixed` | The date up to which the model was trained on data. |
-| `latency_last_30m` | `mixed` | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | `array` | Related API endpoints and resources for this model. |
-| `max_completion_tokens` | `mixed` |  |
-| `max_prompt_tokens` | `mixed` |  |
-| `model_id` | `string` | The unique identifier for the model (permaslug) |
-| `model_name` | `string` |  |
 | `name` | `string` | Display name of the model |
 | `per_request_limits` | `mixed` | Per-request token limits |
 | `pricing` | `array` | Pricing information for the model |
-| `provider_name` | `string` |  |
-| `quantization` | `mixed` |  |
 | `reasoning` | `array` | Reasoning effort configuration. |
-| `status` | `int` |  |
 | `supported_parameters` | `array` | List of supported parameters for this model |
 | `supported_voices` | `mixed` | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` | `bool` |  |
-| `tag` | `string` |  |
-| `throughput_last_30m` | `mixed` |  |
 | `top_provider` | `array` | Information about the top provider for this model |
-| `uptime_last_1d` | `mixed` | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` | `mixed` |  |
-| `uptime_last_5m` | `mixed` | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 #### Example: Load
 
@@ -3518,16 +3485,6 @@ Create an instance: `$organization = $client->Organization();`
 | Method | Description |
 | --- | --- |
 | `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `email` | `string` | Email address of the member |
-| `first_name` | `mixed` | First name of the member |
-| `id` | `string` | User ID of the organization member |
-| `last_name` | `mixed` | Last name of the member |
-| `role` | `string` | Role of the member in the organization |
 
 #### Example: List
 
@@ -4407,6 +4364,7 @@ Use `Helpers::to_map()` to safely validate that a value is an array.
 php/
 ├── openroutermodels_sdk.php          -- Main SDK class
 ├── config.php                     -- Configuration
+├── schema.php                     -- Generated option + entity specs
 ├── features.php                   -- Feature factory
 ├── core/                          -- Core types and context
 ├── entity/                        -- Entity implementations
@@ -4421,15 +4379,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$organization = $client->Organization();
-$organization->list();
+$presetversion = $client->PresetVersion();
+$presetversion->load(["id" => "example_id", "slug" => "example"]);
 
-// $organization->data_get() now returns the organization data from the last list
-// $organization->match_get() returns the last match criteria
+// $presetversion->data_get() now returns the presetversion data from the last load
+// $presetversion->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

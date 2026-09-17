@@ -2283,28 +2283,14 @@ endpoint = client.Endpoint
 | `hugging_face_id` | `Object` | No | Hugging Face model identifier, if applicable |
 | `id` | `String` | Yes | Unique identifier for the model |
 | `knowledge_cutoff` | `Object` | No | The date up to which the model was trained on data. |
-| `latency_last_30m` | `Object` | Yes | Latency percentiles in milliseconds over the last 30 minutes. |
 | `links` | `Hash` | Yes | Related API endpoints and resources for this model. |
-| `max_completion_tokens` | `Object` | Yes |  |
-| `max_prompt_tokens` | `Object` | Yes |  |
-| `model_id` | `String` | Yes | The unique identifier for the model (permaslug) |
-| `model_name` | `String` | Yes |  |
 | `name` | `String` | Yes | Display name of the model |
 | `per_request_limits` | `Object` | Yes | Per-request token limits |
 | `pricing` | `Hash` | Yes | Pricing information for the model |
-| `provider_name` | `String` | Yes |  |
-| `quantization` | `Object` | Yes |  |
 | `reasoning` | `Hash` | Yes | Reasoning effort configuration. |
-| `status` | `Integer` | No |  |
 | `supported_parameters` | `Array` | Yes | List of supported parameters for this model |
 | `supported_voices` | `Object` | Yes | List of supported voice identifiers for TTS models. |
-| `supports_implicit_caching` | `Boolean` | Yes |  |
-| `tag` | `String` | Yes |  |
-| `throughput_last_30m` | `Object` | Yes |  |
 | `top_provider` | `Hash` | Yes | Information about the top provider for this model |
-| `uptime_last_1d` | `Object` | Yes | Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100. |
-| `uptime_last_30m` | `Object` | Yes |  |
-| `uptime_last_5m` | `Object` | Yes | Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100. |
 
 ### Field Usage by Operation
 
@@ -2322,28 +2308,14 @@ endpoint = client.Endpoint
 | `hugging_face_id` | - | - |
 | `id` | - | - |
 | `knowledge_cutoff` | - | - |
-| `latency_last_30m` | - | - |
 | `links` | - | - |
-| `max_completion_tokens` | - | - |
-| `max_prompt_tokens` | - | - |
-| `model_id` | - | - |
-| `model_name` | - | - |
 | `name` | - | - |
 | `per_request_limits` | - | - |
 | `pricing` | - | - |
-| `provider_name` | - | - |
-| `quantization` | - | - |
 | `reasoning` | - | - |
-| `status` | - | - |
 | `supported_parameters` | - | - |
 | `supported_voices` | - | - |
-| `supports_implicit_caching` | - | - |
-| `tag` | - | - |
-| `throughput_last_30m` | - | - |
 | `top_provider` | - | - |
-| `uptime_last_1d` | - | - |
-| `uptime_last_30m` | - | - |
-| `uptime_last_5m` | - | - |
 
 ### Operations
 
@@ -4094,16 +4066,6 @@ Return the entity name.
 ```ruby
 organization = client.Organization
 ```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `email` | `String` | Yes | Email address of the member |
-| `first_name` | `Object` | Yes | First name of the member |
-| `id` | `String` | Yes | User ID of the organization member |
-| `last_name` | `Object` | Yes | Last name of the member |
-| `role` | `String` | Yes | Role of the member in the organization |
 
 ### Operations
 

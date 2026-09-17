@@ -4431,55 +4431,10 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
-						"name": "latency_last_30m",
-						"req": true,
-						"short": "Latency percentiles in milliseconds over the last 30 minutes.",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$OBJECT`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
 						"name": "links",
 						"req": true,
 						"short": "Related API endpoints and resources for this model.",
 						"type": "`$OBJECT`",
-					},
-					map[string]any{
-						"name": "max_completion_tokens",
-						"req": true,
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$INTEGER`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
-						"name": "max_prompt_tokens",
-						"req": true,
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$INTEGER`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
-						"name": "model_id",
-						"req": true,
-						"short": "The unique identifier for the model (permaslug)",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "model_name",
-						"req": true,
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
@@ -4506,24 +4461,10 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
-						"name": "provider_name",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "quantization",
-						"req": true,
-						"type": "`$ANY`",
-					},
-					map[string]any{
 						"name": "reasoning",
 						"req": true,
 						"short": "Reasoning effort configuration.",
 						"type": "`$OBJECT`",
-					},
-					map[string]any{
-						"name": "status",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "supported_parameters",
@@ -4544,63 +4485,10 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
-						"name": "supports_implicit_caching",
-						"req": true,
-						"type": "`$BOOLEAN`",
-					},
-					map[string]any{
-						"name": "tag",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "throughput_last_30m",
-						"req": true,
-						"type": "`$ANY`",
-					},
-					map[string]any{
 						"name": "top_provider",
 						"req": true,
 						"short": "Information about the top provider for this model",
 						"type": "`$OBJECT`",
-					},
-					map[string]any{
-						"format": "double",
-						"name": "uptime_last_1d",
-						"req": true,
-						"short": "Uptime percentage over the last 1 day, calculated as successful requests / (successful + error requests) * 100.",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$NUMBER`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
-						"format": "double",
-						"name": "uptime_last_30m",
-						"req": true,
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$NUMBER`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
-						"format": "double",
-						"name": "uptime_last_5m",
-						"req": true,
-						"short": "Uptime percentage over the last 5 minutes, calculated as successful requests / (successful + error requests) * 100.",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$NUMBER`",
-								"`$NULL`",
-							},
-						},
 					},
 				},
 				"id": map[string]any{
@@ -10017,54 +9905,7 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"organization": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "email",
-						"req": true,
-						"short": "Email address of the member",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "first_name",
-						"req": true,
-						"short": "First name of the member",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$STRING`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
-						"name": "id",
-						"req": true,
-						"short": "User ID of the organization member",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "last_name",
-						"req": true,
-						"short": "Last name of the member",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$STRING`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
-						"name": "role",
-						"req": true,
-						"short": "Role of the member in the organization",
-						"type": "`$STRING`",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
+				"fields": []any{},
 				"name": "organization",
 				"op": map[string]any{
 					"list": map[string]any{

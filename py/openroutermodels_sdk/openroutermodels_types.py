@@ -730,34 +730,20 @@ class EndpointRequired(TypedDict):
     description: str
     endpoints: list
     id: str
-    latency_last_30m: dict | None
     links: dict
-    max_completion_tokens: int | None
-    max_prompt_tokens: int | None
-    model_id: str
-    model_name: str
     name: str
     per_request_limits: dict | None
     pricing: dict
-    provider_name: str
-    quantization: Any
     reasoning: dict
     supported_parameters: list
     supported_voices: list | None
-    supports_implicit_caching: bool
-    tag: str
-    throughput_last_30m: Any
     top_provider: dict
-    uptime_last_1d: float | None
-    uptime_last_30m: float | None
-    uptime_last_5m: float | None
 
 
 class Endpoint(EndpointRequired, total=False):
     expiration_date: str | None
     hugging_face_id: str | None
     knowledge_cutoff: str | None
-    status: int
 
 
 class EndpointLoadMatch(TypedDict):
@@ -1468,11 +1454,7 @@ class OpenResponsesResultCreateData(OpenResponsesResultCreateDataRequired, total
 
 
 class Organization(TypedDict):
-    email: str
-    first_name: str | None
-    id: str
-    last_name: str | None
-    role: str
+    pass
 
 
 class OrganizationListMatch(TypedDict, total=False):
