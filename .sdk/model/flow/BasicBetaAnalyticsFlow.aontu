@@ -1,0 +1,36 @@
+# BasicBetaAnalyticsFlow
+
+main: kit: flow: BasicBetaAnalyticsFlow:
+{
+  entity: "beta_analytics",
+  kind: "basic",
+  name: "BasicBetaAnalyticsFlow",
+  step: [
+    {
+      i: {
+        ref: "beta_analytics_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "beta_analytics_ref01",
+        srcdatavar: "beta_analytics_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-beta_analytics_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBetaAnalyticsFlow"
+}

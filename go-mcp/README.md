@@ -129,7 +129,7 @@ Both tools take the same argument object:
 
 | Field | Type | Notes |
 |-------|------|-------|
-| `entity` | string | One of the 86 supported entities (see below). |
+| `entity` | string | One of the 58 supported entities (see below). |
 | `query` | object | Optional match map. `{"id":N}` for load; omit or `{}` for list. |
 
 JSON schemas are emitted by the SDK from the `Args` struct's `json` /
@@ -151,9 +151,9 @@ JSON schemas are emitted by the SDK from the `Args` struct's `json` /
 
 ### Entities
 
-The 86 entities valid as the `entity` argument:
+The 58 entities valid as the `entity` argument:
 
-activity | add | api_key | app_ranking | benchmark | beta_analytics | budget | bulk_add_workspace_member | bulk_assign_key | bulk_assign_member | bulk_remove_workspace_member | bulk_unassign_key | bulk_unassign_member | byok | chat_result | code | coinbase | completion | content | count | create_byok_key | create_guardrail | create_observability_destination | create_preset_from_inference | create_workspace | credit | destination | embedding | endpoint | feedback | file | generation | generation_content | guardrail | image | image_model_endpoint | image_models_list | key | list_byok_key | list_guardrail | list_key_assignment | list_member_assignment | list_observability_destination | list_preset | list_preset_version | list_workspace | list_workspace_budget | list_workspace_member | member | message | meta | model | models_count | models_list | o_auth | observability_destination | open_responses_result | organization | preset | preset_version | provider | query | rankings_daily | remove | rerank | response | speech | stt | submit_generation_feedback | task | transcription | tts | unified_benchmark | update_byok_key | update_guardrail | update_observability_destination | update_workspace | upsert_workspace_budget | user | version | video | video_generation | video_models_list | workspace | workspace_budget | zdr
+activity | api_key | app_ranking | beta_analytics | bulk_add_workspace_member | bulk_assign_key | bulk_assign_member | bulk_remove_workspace_member | bulk_unassign_key | bulk_unassign_member | byok | chat_result | completion | create_observability_destination | credit | embedding | endpoint | file | generation | generation_content_data | guardrail | image | image_model_endpoint | image_model_list_item | key | list_observability_destination | list_preset_version | member | message | model | models_count | models_list | o_auth | observability_destination | open_responses_result | organization | preset | preset_version | provider | rankings_daily | rerank | response | stt | submit_generation_feedback | task | tts | unified_benchmark | update_byok_key | update_guardrail | update_observability_destination | update_workspace | upsert_workspace_budget | video | video_generation | video_model | workspace | workspace_budget | workspace_member
 
 ### Smoke test via HTTP (raw JSON-RPC)
 

@@ -1,0 +1,146 @@
+# Entity: credit
+
+main: kit: entity: credit: {
+
+  alias: field: {}
+
+  fields: {
+    total_credits: {
+      fo: "double"
+      h: "Total Credits"
+      n: "total_credits"
+      r: true
+      sh: "Total credits purchased"
+      t: "`$NUMBER`"
+    }
+    total_usage: {
+      fo: "double"
+      h: "Total Usage"
+      n: "total_usage"
+      r: true
+      sh: "Total credits used"
+      t: "`$NUMBER`"
+    }
+  }
+
+  name: "credit"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /credits/coinbase"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/credits/coinbase"
+          q: {
+            "$action": "coinbase"
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "credits"
+            }
+            {
+              lit: "coinbase"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /credits"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/credits"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "credits"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,278 @@
+# Entity: video
+
+main: kit: entity: video: {
+
+  alias: field: {}
+
+  fields: {
+    aspect_ratio: {
+      h: "Aspect Ratio"
+      n: "aspect_ratio"
+      r: false
+      sh: "Aspect ratio of the generated video"
+      t: "`$STRING`"
+    }
+    callback_url: {
+      fo: "uri"
+      h: "Callback Url"
+      n: "callback_url"
+      r: false
+      sh: "URL to receive a webhook notification when the video generation job completes."
+      t: "`$STRING`"
+    }
+    duration: {
+      h: "Duration"
+      n: "duration"
+      r: false
+      sh: "Duration of the generated video in seconds"
+      t: "`$INTEGER`"
+    }
+    error: {
+      h: "Error"
+      n: "error"
+      r: false
+      t: "`$STRING`"
+    }
+    frame_images: {
+      h: "Frame Images"
+      n: "frame_images"
+      r: false
+      sh: "Images to use as the first and/or last frame of the generated video."
+      t: "`$ARRAY`"
+    }
+    generate_audio: {
+      h: "Generate Audio"
+      n: "generate_audio"
+      r: false
+      sh: "Whether to generate audio alongside the video."
+      t: "`$BOOLEAN`"
+    }
+    generation_id: {
+      h: "Generation Id"
+      n: "generation_id"
+      r: false
+      sh: "The generation ID associated with this video generation job."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      t: "`$STRING`"
+    }
+    input_references: {
+      h: "Input References"
+      n: "input_references"
+      r: false
+      sh: "Reference assets to guide video generation."
+      t: "`$ARRAY`"
+    }
+    model: {
+      h: "Model"
+      n: "model"
+      r: true
+      t: "`$STRING`"
+    }
+    polling_url: {
+      h: "Polling Url"
+      n: "polling_url"
+      r: true
+      t: "`$STRING`"
+    }
+    prompt: {
+      h: "Prompt"
+      n: "prompt"
+      r: false
+      sh: "Text prompt describing the video to generate."
+      t: "`$STRING`"
+    }
+    provider: {
+      h: "Provider"
+      n: "provider"
+      r: false
+      sh: "Provider-specific passthrough configuration"
+      t: "`$OBJECT`"
+    }
+    resolution: {
+      h: "Resolution"
+      n: "resolution"
+      r: false
+      sh: "Resolution of the generated video"
+      t: "`$STRING`"
+    }
+    seed: {
+      h: "Seed"
+      n: "seed"
+      r: false
+      sh: "If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result."
+      t: "`$INTEGER`"
+    }
+    size: {
+      h: "Size"
+      n: "size"
+      r: false
+      sh: "Exact pixel dimensions of the generated video in \"WIDTHxHEIGHT\" format (e.g."
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$STRING`"
+    }
+    unsigned_urls: {
+      h: "Unsigned Urls"
+      n: "unsigned_urls"
+      r: false
+      t: "`$ARRAY`"
+    }
+    usage: {
+      h: "Usage"
+      n: "usage"
+      r: false
+      sh: "Usage and cost information for the video generation."
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "video"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /videos"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/videos"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "videos"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /videos/{jobId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "job-abc123"
+                k: "param"
+                n: "id"
+                or: "job_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/videos/{jobId}"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          r: {
+            param: {
+              jobId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "videos"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

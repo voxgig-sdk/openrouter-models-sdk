@@ -46,10 +46,6 @@ client = OpenrouterModelsSDK.test()
 
 Create a new `ActivityEntity` instance. Pass `None` for no initial data.
 
-#### `Add(data=None)`
-
-Create a new `AddEntity` instance. Pass `None` for no initial data.
-
 #### `ApiKey(data=None)`
 
 Create a new `ApiKeyEntity` instance. Pass `None` for no initial data.
@@ -58,17 +54,9 @@ Create a new `ApiKeyEntity` instance. Pass `None` for no initial data.
 
 Create a new `AppRankingEntity` instance. Pass `None` for no initial data.
 
-#### `Benchmark(data=None)`
-
-Create a new `BenchmarkEntity` instance. Pass `None` for no initial data.
-
 #### `BetaAnalytics(data=None)`
 
 Create a new `BetaAnalyticsEntity` instance. Pass `None` for no initial data.
-
-#### `Budget(data=None)`
-
-Create a new `BudgetEntity` instance. Pass `None` for no initial data.
 
 #### `BulkAddWorkspaceMember(data=None)`
 
@@ -102,53 +90,17 @@ Create a new `ByokEntity` instance. Pass `None` for no initial data.
 
 Create a new `ChatResultEntity` instance. Pass `None` for no initial data.
 
-#### `Code(data=None)`
-
-Create a new `CodeEntity` instance. Pass `None` for no initial data.
-
-#### `Coinbase(data=None)`
-
-Create a new `CoinbaseEntity` instance. Pass `None` for no initial data.
-
 #### `Completion(data=None)`
 
 Create a new `CompletionEntity` instance. Pass `None` for no initial data.
-
-#### `Content(data=None)`
-
-Create a new `ContentEntity` instance. Pass `None` for no initial data.
-
-#### `Count(data=None)`
-
-Create a new `CountEntity` instance. Pass `None` for no initial data.
-
-#### `CreateByokKey(data=None)`
-
-Create a new `CreateByokKeyEntity` instance. Pass `None` for no initial data.
-
-#### `CreateGuardrail(data=None)`
-
-Create a new `CreateGuardrailEntity` instance. Pass `None` for no initial data.
 
 #### `CreateObservabilityDestination(data=None)`
 
 Create a new `CreateObservabilityDestinationEntity` instance. Pass `None` for no initial data.
 
-#### `CreatePresetFromInference(data=None)`
-
-Create a new `CreatePresetFromInferenceEntity` instance. Pass `None` for no initial data.
-
-#### `CreateWorkspace(data=None)`
-
-Create a new `CreateWorkspaceEntity` instance. Pass `None` for no initial data.
-
 #### `Credit(data=None)`
 
 Create a new `CreditEntity` instance. Pass `None` for no initial data.
-
-#### `Destination(data=None)`
-
-Create a new `DestinationEntity` instance. Pass `None` for no initial data.
 
 #### `Embedding(data=None)`
 
@@ -158,10 +110,6 @@ Create a new `EmbeddingEntity` instance. Pass `None` for no initial data.
 
 Create a new `EndpointEntity` instance. Pass `None` for no initial data.
 
-#### `Feedback(data=None)`
-
-Create a new `FeedbackEntity` instance. Pass `None` for no initial data.
-
 #### `File(data=None)`
 
 Create a new `FileEntity` instance. Pass `None` for no initial data.
@@ -170,9 +118,9 @@ Create a new `FileEntity` instance. Pass `None` for no initial data.
 
 Create a new `GenerationEntity` instance. Pass `None` for no initial data.
 
-#### `GenerationContent(data=None)`
+#### `GenerationContentData(data=None)`
 
-Create a new `GenerationContentEntity` instance. Pass `None` for no initial data.
+Create a new `GenerationContentDataEntity` instance. Pass `None` for no initial data.
 
 #### `Guardrail(data=None)`
 
@@ -186,53 +134,21 @@ Create a new `ImageEntity` instance. Pass `None` for no initial data.
 
 Create a new `ImageModelEndpointEntity` instance. Pass `None` for no initial data.
 
-#### `ImageModelsList(data=None)`
+#### `ImageModelListItem(data=None)`
 
-Create a new `ImageModelsListEntity` instance. Pass `None` for no initial data.
+Create a new `ImageModelListItemEntity` instance. Pass `None` for no initial data.
 
 #### `Key(data=None)`
 
 Create a new `KeyEntity` instance. Pass `None` for no initial data.
 
-#### `ListByokKey(data=None)`
-
-Create a new `ListByokKeyEntity` instance. Pass `None` for no initial data.
-
-#### `ListGuardrail(data=None)`
-
-Create a new `ListGuardrailEntity` instance. Pass `None` for no initial data.
-
-#### `ListKeyAssignment(data=None)`
-
-Create a new `ListKeyAssignmentEntity` instance. Pass `None` for no initial data.
-
-#### `ListMemberAssignment(data=None)`
-
-Create a new `ListMemberAssignmentEntity` instance. Pass `None` for no initial data.
-
 #### `ListObservabilityDestination(data=None)`
 
 Create a new `ListObservabilityDestinationEntity` instance. Pass `None` for no initial data.
 
-#### `ListPreset(data=None)`
-
-Create a new `ListPresetEntity` instance. Pass `None` for no initial data.
-
 #### `ListPresetVersion(data=None)`
 
 Create a new `ListPresetVersionEntity` instance. Pass `None` for no initial data.
-
-#### `ListWorkspace(data=None)`
-
-Create a new `ListWorkspaceEntity` instance. Pass `None` for no initial data.
-
-#### `ListWorkspaceBudget(data=None)`
-
-Create a new `ListWorkspaceBudgetEntity` instance. Pass `None` for no initial data.
-
-#### `ListWorkspaceMember(data=None)`
-
-Create a new `ListWorkspaceMemberEntity` instance. Pass `None` for no initial data.
 
 #### `Member(data=None)`
 
@@ -241,10 +157,6 @@ Create a new `MemberEntity` instance. Pass `None` for no initial data.
 #### `Message(data=None)`
 
 Create a new `MessageEntity` instance. Pass `None` for no initial data.
-
-#### `Meta(data=None)`
-
-Create a new `MetaEntity` instance. Pass `None` for no initial data.
 
 #### `Model(data=None)`
 
@@ -286,17 +198,9 @@ Create a new `PresetVersionEntity` instance. Pass `None` for no initial data.
 
 Create a new `ProviderEntity` instance. Pass `None` for no initial data.
 
-#### `Query(data=None)`
-
-Create a new `QueryEntity` instance. Pass `None` for no initial data.
-
 #### `RankingsDaily(data=None)`
 
 Create a new `RankingsDailyEntity` instance. Pass `None` for no initial data.
-
-#### `Remove(data=None)`
-
-Create a new `RemoveEntity` instance. Pass `None` for no initial data.
 
 #### `Rerank(data=None)`
 
@@ -305,10 +209,6 @@ Create a new `RerankEntity` instance. Pass `None` for no initial data.
 #### `Response(data=None)`
 
 Create a new `ResponseEntity` instance. Pass `None` for no initial data.
-
-#### `Speech(data=None)`
-
-Create a new `SpeechEntity` instance. Pass `None` for no initial data.
 
 #### `Stt(data=None)`
 
@@ -321,10 +221,6 @@ Create a new `SubmitGenerationFeedbackEntity` instance. Pass `None` for no initi
 #### `Task(data=None)`
 
 Create a new `TaskEntity` instance. Pass `None` for no initial data.
-
-#### `Transcription(data=None)`
-
-Create a new `TranscriptionEntity` instance. Pass `None` for no initial data.
 
 #### `Tts(data=None)`
 
@@ -354,14 +250,6 @@ Create a new `UpdateWorkspaceEntity` instance. Pass `None` for no initial data.
 
 Create a new `UpsertWorkspaceBudgetEntity` instance. Pass `None` for no initial data.
 
-#### `User(data=None)`
-
-Create a new `UserEntity` instance. Pass `None` for no initial data.
-
-#### `Version(data=None)`
-
-Create a new `VersionEntity` instance. Pass `None` for no initial data.
-
 #### `Video(data=None)`
 
 Create a new `VideoEntity` instance. Pass `None` for no initial data.
@@ -370,9 +258,9 @@ Create a new `VideoEntity` instance. Pass `None` for no initial data.
 
 Create a new `VideoGenerationEntity` instance. Pass `None` for no initial data.
 
-#### `VideoModelsList(data=None)`
+#### `VideoModel(data=None)`
 
-Create a new `VideoModelsListEntity` instance. Pass `None` for no initial data.
+Create a new `VideoModelEntity` instance. Pass `None` for no initial data.
 
 #### `Workspace(data=None)`
 
@@ -382,9 +270,9 @@ Create a new `WorkspaceEntity` instance. Pass `None` for no initial data.
 
 Create a new `WorkspaceBudgetEntity` instance. Pass `None` for no initial data.
 
-#### `Zdr(data=None)`
+#### `WorkspaceMember(data=None)`
 
-Create a new `ZdrEntity` instance. Pass `None` for no initial data.
+Create a new `WorkspaceMemberEntity` instance. Pass `None` for no initial data.
 
 #### `options_map() -> dict`
 
@@ -473,41 +361,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `ActivityEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## AddEntity
-
-```python
-add = client.Add()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `AddEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -742,41 +595,6 @@ Return the entity name.
 
 ---
 
-## BenchmarkEntity
-
-```python
-benchmark = client.Benchmark()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `BenchmarkEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## BetaAnalyticsEntity
 
 ```python
@@ -875,41 +693,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `BetaAnalyticsEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## BudgetEntity
-
-```python
-budget = client.Budget()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `BudgetEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -1542,80 +1325,73 @@ Return the entity name.
 
 ---
 
-## CodeEntity
-
-```python
-code = client.Code()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CodeEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## CoinbaseEntity
-
-```python
-coinbase = client.Coinbase()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CoinbaseEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## CompletionEntity
 
 ```python
 completion = client.Completion()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `cache_control` | `dict` | Yes | Enable automatic prompt caching. |
+| `debug` | `dict` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `float | None` | No | Frequency penalty (-2.0 to 2.0) |
+| `image_config` | `dict` | No | Provider-specific image configuration options. |
+| `logit_bias` | `dict | None` | No | Token logit bias adjustments |
+| `logprobs` | `bool | None` | No | Return log probabilities |
+| `max_completion_tokens` | `int | None` | No | Maximum tokens in completion |
+| `max_tokens` | `int | None` | No | Maximum tokens (deprecated, use max_completion_tokens). |
+| `messages` | `list` | Yes | List of messages for the conversation |
+| `metadata` | `dict` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `float | None` | No | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `list` | No | Output modalities for the response. |
+| `model` | `str` | No | Model to use for completion |
+| `models` | `list` | No | Models to use for completion |
+| `parallel_tool_calls` | `bool | None` | No | Whether to enable parallel function calling during tool use. |
+| `plugins` | `list` | No | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `dict | None` | Yes | Static predicted output content. |
+| `presence_penalty` | `float | None` | No | Presence penalty (-2.0 to 2.0) |
+| `prompt_cache_key` | `str | None` | No |  |
+| `prompt_cache_options` | `dict | None` | Yes | Request-level prompt-cache controls. |
+| `provider` | `dict | None` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `dict` | No | Configuration options for reasoning models |
+| `reasoning_effort` | `str | None` | No | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `float | None` | No | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `Any` | No | Response format configuration |
+| `route` | `str | None` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `seed` | `int | None` | No | Random seed for deterministic outputs |
+| `service_tier` | `str | None` | No | The service tier to use for processing this request. |
+| `session_id` | `str` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop` | `Any` | No | Stop sequences (up to 4) |
+| `stop_server_tools_when` | `list` | No | Stop conditions for the server-tool agent loop. |
+| `stream` | `bool` | No | Enable streaming response |
+| `stream_options` | `dict | None` | No | Streaming configuration options |
+| `temperature` | `float | None` | No | Sampling temperature (0-2) |
+| `tool_choice` | `Any` | No | Tool choice configuration |
+| `tools` | `list` | No | Available tools for function calling |
+| `top_a` | `float | None` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `int | None` | No | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `int | None` | No | Number of top log probabilities to return (0-20) |
+| `top_p` | `float | None` | No | Nucleus sampling parameter (0-1) |
+| `trace` | `dict` | No | Metadata for observability and tracing. |
+| `user` | `str` | No | Unique user identifier |
+
+### Operations
+
+#### `create(reqdata, ctrl=None) -> dict`
+
+Create a new entity with the given data. Returns the created entity data and raises on error.
+
+```python
+result = client.Completion().create({
+    "slug": "example_slug",  # str
+    "cache_control": {},  # dict
+    "messages": [],  # list
+    "prediction": {},  # dict | None
+    "prompt_cache_options": {},  # dict | None
+})
 ```
 
 ### Common Methods
@@ -1639,146 +1415,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `CompletionEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## ContentEntity
-
-```python
-content = client.Content()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ContentEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## CountEntity
-
-```python
-count = client.Count()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CountEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## CreateByokKeyEntity
-
-```python
-create_byok_key = client.CreateByokKey()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CreateByokKeyEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## CreateGuardrailEntity
-
-```python
-create_guardrail = client.CreateGuardrail()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CreateGuardrailEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -1851,225 +1487,6 @@ Return the entity name.
 
 ---
 
-## CreatePresetFromInferenceEntity
-
-```python
-create_preset_from_inference = client.CreatePresetFromInference()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `background` | `bool | None` | No |  |
-| `cache_control` | `dict` | Yes | Enable automatic prompt caching. |
-| `context_management` | `dict | None` | No |  |
-| `debug` | `dict` | No | Debug options for inspecting request transformations (streaming only) |
-| `fallbacks` | `list | None` | No | Fallback models to try if the primary model fails or refuses, in order. |
-| `frequency_penalty` | `float | None` | No | Frequency penalty (-2.0 to 2.0) |
-| `image_config` | `dict` | No | Provider-specific image configuration options. |
-| `include` | `list | None` | No |  |
-| `input` | `Any` | No | Input for a response request - can be a string or array of items |
-| `instructions` | `str | None` | No |  |
-| `logit_bias` | `dict | None` | No | Token logit bias adjustments |
-| `logprobs` | `bool | None` | No | Return log probabilities |
-| `max_completion_tokens` | `int | None` | No | Maximum tokens in completion |
-| `max_output_tokens` | `int | None` | No |  |
-| `max_tokens` | `int | None` | No | Maximum tokens (deprecated, use max_completion_tokens). |
-| `max_tool_calls` | `int | None` | No |  |
-| `messages` | `list` | Yes | List of messages for the conversation |
-| `metadata` | `dict` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
-| `min_p` | `float | None` | No | Minimum probability threshold relative to the most likely token. |
-| `modalities` | `list` | No | Output modalities for the response. |
-| `model` | `str` | No | Model to use for completion |
-| `models` | `list` | No | Models to use for completion |
-| `output_config` | `dict` | No | Configuration for controlling output behavior. |
-| `parallel_tool_calls` | `bool | None` | No | Whether to enable parallel function calling during tool use. |
-| `plugins` | `list` | No | Plugins you want to enable for this request, including their settings. |
-| `prediction` | `dict | None` | Yes | Static predicted output content. |
-| `presence_penalty` | `float | None` | No | Presence penalty (-2.0 to 2.0) |
-| `previous_response_id` | `str` | No | Not supported. |
-| `prompt` | `dict | None` | Yes |  |
-| `prompt_cache_key` | `str | None` | No |  |
-| `prompt_cache_options` | `dict | None` | Yes | Request-level prompt-cache controls. |
-| `provider` | `dict | None` | No | When multiple model providers are available, optionally indicate your routing preference. |
-| `reasoning` | `dict` | No | Configuration options for reasoning models |
-| `reasoning_effort` | `str | None` | No | Shorthand for setting reasoning effort. |
-| `repetition_penalty` | `float | None` | No | Penalizes tokens based on how much they have already appeared in the text. |
-| `response_format` | `Any` | No | Response format configuration |
-| `route` | `str | None` | No | **DEPRECATED** Use providers.sort.partition instead. |
-| `safety_identifier` | `str | None` | No |  |
-| `seed` | `int | None` | No | Random seed for deterministic outputs |
-| `service_tier` | `str | None` | No | The service tier to use for processing this request. |
-| `session_id` | `str` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
-| `speed` | `Any` | No |  |
-| `stop` | `Any` | No | Stop sequences (up to 4) |
-| `stop_sequences` | `list` | No |  |
-| `stop_server_tools_when` | `list` | No | Stop conditions for the server-tool agent loop. |
-| `store` | `bool` | No |  |
-| `stream` | `bool` | No | Enable streaming response |
-| `stream_options` | `dict | None` | No | Streaming configuration options |
-| `system` | `Any` | No |  |
-| `temperature` | `float | None` | No | Sampling temperature (0-2) |
-| `text` | `Any` | No | Text output configuration including format and verbosity |
-| `thinking` | `Any` | No |  |
-| `tool_choice` | `Any` | No | Tool choice configuration |
-| `tools` | `list` | No | Available tools for function calling |
-| `top_a` | `float | None` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
-| `top_k` | `int | None` | No | Limits the model to choose from the top K most likely tokens at each step. |
-| `top_logprobs` | `int | None` | No | Number of top log probabilities to return (0-20) |
-| `top_p` | `float | None` | No | Nucleus sampling parameter (0-1) |
-| `trace` | `dict` | No | Metadata for observability and tracing. |
-| `truncation` | `str | None` | No |  |
-| `user` | `str` | No | Unique user identifier |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `background` | - |
-| `cache_control` | - |
-| `context_management` | - |
-| `debug` | - |
-| `fallbacks` | - |
-| `frequency_penalty` | - |
-| `image_config` | - |
-| `include` | - |
-| `input` | - |
-| `instructions` | - |
-| `logit_bias` | - |
-| `logprobs` | - |
-| `max_completion_tokens` | - |
-| `max_output_tokens` | - |
-| `max_tokens` | - |
-| `max_tool_calls` | - |
-| `messages` | - |
-| `metadata` | - |
-| `min_p` | - |
-| `modalities` | - |
-| `model` | Yes |
-| `models` | - |
-| `output_config` | - |
-| `parallel_tool_calls` | - |
-| `plugins` | - |
-| `prediction` | - |
-| `presence_penalty` | - |
-| `previous_response_id` | - |
-| `prompt` | - |
-| `prompt_cache_key` | - |
-| `prompt_cache_options` | - |
-| `provider` | - |
-| `reasoning` | - |
-| `reasoning_effort` | - |
-| `repetition_penalty` | - |
-| `response_format` | - |
-| `route` | - |
-| `safety_identifier` | - |
-| `seed` | - |
-| `service_tier` | - |
-| `session_id` | - |
-| `speed` | - |
-| `stop` | - |
-| `stop_sequences` | - |
-| `stop_server_tools_when` | - |
-| `store` | - |
-| `stream` | - |
-| `stream_options` | - |
-| `system` | - |
-| `temperature` | - |
-| `text` | - |
-| `thinking` | - |
-| `tool_choice` | - |
-| `tools` | - |
-| `top_a` | - |
-| `top_k` | - |
-| `top_logprobs` | - |
-| `top_p` | - |
-| `trace` | - |
-| `truncation` | - |
-| `user` | - |
-
-### Operations
-
-#### `create(reqdata, ctrl=None) -> dict`
-
-Create a new entity with the given data. Returns the created entity data and raises on error.
-
-```python
-result = client.CreatePresetFromInference().create({
-    "slug": "example_slug",  # str
-    "cache_control": {},  # dict
-    "messages": [],  # list
-    "prediction": {},  # dict | None
-    "prompt": {},  # dict | None
-    "prompt_cache_options": {},  # dict | None
-})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CreatePresetFromInferenceEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## CreateWorkspaceEntity
-
-```python
-create_workspace = client.CreateWorkspace()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CreateWorkspaceEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## CreditEntity
 
 ```python
@@ -2125,41 +1542,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `CreditEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## DestinationEntity
-
-```python
-destination = client.Destination()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `DestinationEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -2332,41 +1714,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `EndpointEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## FeedbackEntity
-
-```python
-feedback = client.Feedback()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `FeedbackEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -2560,10 +1907,10 @@ Return the entity name.
 
 ---
 
-## GenerationContentEntity
+## GenerationContentDataEntity
 
 ```python
-generation_content = client.GenerationContent()
+generation_content_data = client.GenerationContentData()
 ```
 
 ### Fields
@@ -2580,7 +1927,7 @@ generation_content = client.GenerationContent()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.GenerationContent().load({"id": "generation_content_id"})
+result = client.GenerationContentData().load({"id": "generation_content_data_id"})
 ```
 
 ### Common Methods
@@ -2603,7 +1950,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `GenerationContentEntity` instance with the same options.
+Create a new `GenerationContentDataEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -2870,10 +2217,10 @@ Return the entity name.
 
 ---
 
-## ImageModelsListEntity
+## ImageModelListItemEntity
 
 ```python
-image_models_list = client.ImageModelsList()
+image_model_list_item = client.ImageModelListItem()
 ```
 
 ### Fields
@@ -2896,9 +2243,9 @@ image_models_list = client.ImageModelsList()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ImageModelsList().list()
-for image_models_list in results:
-    print(image_models_list)
+results = client.ImageModelListItem().list()
+for image_model_list_item in results:
+    print(image_model_list_item)
 ```
 
 ### Common Methods
@@ -2921,7 +2268,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `ImageModelsListEntity` instance with the same options.
+Create a new `ImageModelListItemEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -2934,6 +2281,30 @@ Return the entity name.
 
 ```python
 key = client.Key()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `assigned_by` | `str | None` | Yes | User ID of who made the assignment |
+| `created_at` | `str` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `str` | Yes | ID of the guardrail |
+| `id` | `str` | Yes | Unique identifier for the assignment |
+| `key_hash` | `str` | Yes | Hash of the assigned API key |
+| `key_label` | `str` | Yes | Label of the API key |
+| `key_name` | `str` | Yes | Name of the API key |
+
+### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.Key().list()
+for key in results:
+    print(key)
 ```
 
 ### Common Methods
@@ -2957,193 +2328,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `KeyEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## ListByokKeyEntity
-
-```python
-list_byok_key = client.ListByokKey()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListByokKeyEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## ListGuardrailEntity
-
-```python
-list_guardrail = client.ListGuardrail()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListGuardrailEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## ListKeyAssignmentEntity
-
-```python
-list_key_assignment = client.ListKeyAssignment()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `assigned_by` | `str | None` | Yes | User ID of who made the assignment |
-| `created_at` | `str` | Yes | ISO 8601 timestamp of when the assignment was created |
-| `guardrail_id` | `str` | Yes | ID of the guardrail |
-| `id` | `str` | Yes | Unique identifier for the assignment |
-| `key_hash` | `str` | Yes | Hash of the assigned API key |
-| `key_label` | `str` | Yes | Label of the API key |
-| `key_name` | `str` | Yes | Name of the API key |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
-
-```python
-results = client.ListKeyAssignment().list()
-for list_key_assignment in results:
-    print(list_key_assignment)
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListKeyAssignmentEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## ListMemberAssignmentEntity
-
-```python
-list_member_assignment = client.ListMemberAssignment()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `assigned_by` | `str | None` | Yes | User ID of who made the assignment |
-| `created_at` | `str` | Yes | ISO 8601 timestamp of when the assignment was created |
-| `guardrail_id` | `str` | Yes | ID of the guardrail |
-| `id` | `str` | Yes | Unique identifier for the assignment |
-| `organization_id` | `str` | Yes | Organization ID |
-| `user_id` | `str` | Yes | Clerk user ID of the assigned member |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
-
-```python
-results = client.ListMemberAssignment().list()
-for list_member_assignment in results:
-    print(list_member_assignment)
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListMemberAssignmentEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -3198,41 +2382,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `ListObservabilityDestinationEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## ListPresetEntity
-
-```python
-list_preset = client.ListPreset()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListPresetEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -3301,160 +2450,33 @@ Return the entity name.
 
 ---
 
-## ListWorkspaceEntity
-
-```python
-list_workspace = client.ListWorkspace()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListWorkspaceEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## ListWorkspaceBudgetEntity
-
-```python
-list_workspace_budget = client.ListWorkspaceBudget()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `created_at` | `str` | Yes | ISO 8601 timestamp of when the budget was created |
-| `id` | `str` | Yes | Unique identifier for the budget |
-| `limit_usd` | `float` | Yes | Spending limit in USD for this interval |
-| `reset_interval` | `str | None` | Yes | Interval at which spend resets. |
-| `updated_at` | `str` | Yes | ISO 8601 timestamp of when the budget was last updated |
-| `workspace_id` | `str` | Yes | ID of the workspace the budget belongs to |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
-
-```python
-results = client.ListWorkspaceBudget().list({"workspace_id": "example"})
-for list_workspace_budget in results:
-    print(list_workspace_budget)
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListWorkspaceBudgetEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## ListWorkspaceMemberEntity
-
-```python
-list_workspace_member = client.ListWorkspaceMember()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `created_at` | `str` | Yes | ISO 8601 timestamp of when the membership was created |
-| `id` | `str` | Yes | Unique identifier for the workspace membership |
-| `role` | `str` | Yes | Role of the member in the workspace |
-| `user_id` | `str` | Yes | Clerk user ID of the member |
-| `workspace_id` | `str` | Yes | ID of the workspace |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
-
-```python
-results = client.ListWorkspaceMember().list({"workspace_id": "example"})
-for list_workspace_member in results:
-    print(list_workspace_member)
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListWorkspaceMemberEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## MemberEntity
 
 ```python
 member = client.Member()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `assigned_by` | `str | None` | Yes | User ID of who made the assignment |
+| `created_at` | `str` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `str` | Yes | ID of the guardrail |
+| `id` | `str` | Yes | Unique identifier for the assignment |
+| `organization_id` | `str` | Yes | Organization ID |
+| `user_id` | `str` | Yes | Clerk user ID of the assigned member |
+
+### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.Member().list()
+for member in results:
+    print(member)
 ```
 
 ### Common Methods
@@ -3559,41 +2581,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `MessageEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## MetaEntity
-
-```python
-meta = client.Meta()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `MetaEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -4268,41 +3255,6 @@ Return the entity name.
 
 ---
 
-## QueryEntity
-
-```python
-query = client.Query()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `QueryEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## RankingsDailyEntity
 
 ```python
@@ -4350,41 +3302,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `RankingsDailyEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## RemoveEntity
-
-```python
-remove = client.Remove()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `RemoveEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -4462,39 +3379,64 @@ Return the entity name.
 response = client.Response()
 ```
 
-### Common Methods
+### Fields
 
-#### `data_get() -> dict`
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `background` | `bool | None` | No |  |
+| `cache_control` | `dict` | Yes | Enable automatic prompt caching. |
+| `debug` | `dict` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `float | None` | No |  |
+| `image_config` | `dict` | No | Provider-specific image configuration options. |
+| `include` | `list | None` | No |  |
+| `input` | `Any` | No | Input for a response request - can be a string or array of items |
+| `instructions` | `str | None` | No |  |
+| `max_output_tokens` | `int | None` | No |  |
+| `max_tool_calls` | `int | None` | No |  |
+| `metadata` | `dict | None` | No | Metadata key-value pairs for the request. |
+| `modalities` | `list` | No | Output modalities for the response. |
+| `model` | `str` | No |  |
+| `models` | `list` | No |  |
+| `parallel_tool_calls` | `bool | None` | No |  |
+| `plugins` | `list` | No | Plugins you want to enable for this request, including their settings. |
+| `presence_penalty` | `float | None` | No |  |
+| `previous_response_id` | `str` | No | Not supported. |
+| `prompt` | `dict | None` | Yes |  |
+| `prompt_cache_key` | `str | None` | No |  |
+| `prompt_cache_options` | `dict | None` | Yes | Request-level prompt-cache controls. |
+| `provider` | `dict | None` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `Any` | No | Configuration for reasoning mode in the response |
+| `route` | `str | None` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `safety_identifier` | `str | None` | No |  |
+| `service_tier` | `str | None` | No |  |
+| `session_id` | `str` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop_server_tools_when` | `list` | No | Stop conditions for the server-tool agent loop. |
+| `store` | `bool` | No |  |
+| `stream` | `bool` | No |  |
+| `temperature` | `float | None` | No |  |
+| `text` | `Any` | No | Text output configuration including format and verbosity |
+| `tool_choice` | `Any` | No |  |
+| `tools` | `list` | No |  |
+| `top_k` | `int` | No |  |
+| `top_logprobs` | `int | None` | No |  |
+| `top_p` | `float | None` | No |  |
+| `trace` | `dict` | No | Metadata for observability and tracing. |
+| `truncation` | `str | None` | No |  |
+| `user` | `str` | No | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
-Get the entity data.
+### Operations
 
-#### `data_set(data)`
+#### `create(reqdata, ctrl=None) -> dict`
 
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ResponseEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## SpeechEntity
+Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-speech = client.Speech()
+result = client.Response().create({
+    "slug": "example_slug",  # str
+    "cache_control": {},  # dict
+    "prompt": {},  # dict | None
+    "prompt_cache_options": {},  # dict | None
+})
 ```
 
 ### Common Methods
@@ -4517,7 +3459,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `SpeechEntity` instance with the same options.
+Create a new `ResponseEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -4697,41 +3639,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `TaskEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## TranscriptionEntity
-
-```python
-transcription = client.Transcription()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `TranscriptionEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -5214,76 +4121,6 @@ Return the entity name.
 
 ---
 
-## UserEntity
-
-```python
-user = client.User()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `UserEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## VersionEntity
-
-```python
-version = client.Version()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `VersionEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## VideoEntity
 
 ```python
@@ -5417,10 +4254,10 @@ Return the entity name.
 
 ---
 
-## VideoModelsListEntity
+## VideoModelEntity
 
 ```python
-video_models_list = client.VideoModelsList()
+video_model = client.VideoModel()
 ```
 
 ### Fields
@@ -5450,9 +4287,9 @@ video_models_list = client.VideoModelsList()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.VideoModelsList().list()
-for video_models_list in results:
-    print(video_models_list)
+results = client.VideoModel().list()
+for video_model in results:
+    print(video_model)
 ```
 
 ### Common Methods
@@ -5475,7 +4312,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `VideoModelsListEntity` instance with the same options.
+Create a new `VideoModelEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -5567,9 +4404,24 @@ workspace_budget = client.WorkspaceBudget()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `str` | No |  |
+| `created_at` | `str` | Yes | ISO 8601 timestamp of when the budget was created |
+| `id` | `str` | Yes | Unique identifier for the budget |
+| `limit_usd` | `float` | Yes | Spending limit in USD for this interval |
+| `reset_interval` | `str | None` | Yes | Interval at which spend resets. |
+| `updated_at` | `str` | Yes | ISO 8601 timestamp of when the budget was last updated |
+| `workspace_id` | `str` | Yes | ID of the workspace the budget belongs to |
 
 ### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.WorkspaceBudget().list({"id": "example"})
+for workspace_budget in results:
+    print(workspace_budget)
+```
 
 #### `remove(reqmatch, ctrl=None) -> dict`
 
@@ -5608,10 +4460,32 @@ Return the entity name.
 
 ---
 
-## ZdrEntity
+## WorkspaceMemberEntity
 
 ```python
-zdr = client.Zdr()
+workspace_member = client.WorkspaceMember()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `created_at` | `str` | Yes | ISO 8601 timestamp of when the membership was created |
+| `id` | `str` | Yes | Unique identifier for the workspace membership |
+| `role` | `str` | Yes | Role of the member in the workspace |
+| `user_id` | `str` | Yes | Clerk user ID of the member |
+| `workspace_id` | `str` | Yes | ID of the workspace |
+
+### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.WorkspaceMember().list({"id": "example"})
+for workspace_member in results:
+    print(workspace_member)
 ```
 
 ### Common Methods
@@ -5634,7 +4508,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `ZdrEntity` instance with the same options.
+Create a new `WorkspaceMemberEntity` instance with the same options.
 
 #### `get_name() -> str`
 

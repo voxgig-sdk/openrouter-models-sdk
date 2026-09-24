@@ -1,0 +1,128 @@
+# Entity: upsert_workspace_budget
+
+main: kit: entity: upsert_workspace_budget: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    limit_usd: {
+      fo: "double"
+      h: "Limit Usd"
+      n: "limit_usd"
+      r: true
+      sh: "Spending limit in USD."
+      t: "`$NUMBER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "upsert_workspace_budget"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /workspaces/{id}/budgets/{interval}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "monthly"
+                k: "param"
+                n: "id"
+                or: "interval"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "production"
+                k: "param"
+                n: "workspace_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/workspaces/{id}/budgets/{interval}"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "workspace_id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          r: {
+            param: {
+              id: "workspace_id"
+              interval: "id"
+            }
+          }
+          s: [
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "workspace_id"
+            }
+            {
+              lit: "budgets"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.workspace")]
+  ]
+
+}

@@ -87,12 +87,9 @@ func MakeConfig() map[string]any {
 			},
 			"entity": map[string]any{
 				"activity": map[string]any{},
-				"add": map[string]any{},
 				"api_key": map[string]any{},
 				"app_ranking": map[string]any{},
-				"benchmark": map[string]any{},
 				"beta_analytics": map[string]any{},
-				"budget": map[string]any{},
 				"bulk_add_workspace_member": map[string]any{},
 				"bulk_assign_key": map[string]any{},
 				"bulk_assign_member": map[string]any{},
@@ -101,42 +98,23 @@ func MakeConfig() map[string]any {
 				"bulk_unassign_member": map[string]any{},
 				"byok": map[string]any{},
 				"chat_result": map[string]any{},
-				"code": map[string]any{},
-				"coinbase": map[string]any{},
 				"completion": map[string]any{},
-				"content": map[string]any{},
-				"count": map[string]any{},
-				"create_byok_key": map[string]any{},
-				"create_guardrail": map[string]any{},
 				"create_observability_destination": map[string]any{},
-				"create_preset_from_inference": map[string]any{},
-				"create_workspace": map[string]any{},
 				"credit": map[string]any{},
-				"destination": map[string]any{},
 				"embedding": map[string]any{},
 				"endpoint": map[string]any{},
-				"feedback": map[string]any{},
 				"file": map[string]any{},
 				"generation": map[string]any{},
-				"generation_content": map[string]any{},
+				"generation_content_data": map[string]any{},
 				"guardrail": map[string]any{},
 				"image": map[string]any{},
 				"image_model_endpoint": map[string]any{},
-				"image_models_list": map[string]any{},
+				"image_model_list_item": map[string]any{},
 				"key": map[string]any{},
-				"list_byok_key": map[string]any{},
-				"list_guardrail": map[string]any{},
-				"list_key_assignment": map[string]any{},
-				"list_member_assignment": map[string]any{},
 				"list_observability_destination": map[string]any{},
-				"list_preset": map[string]any{},
 				"list_preset_version": map[string]any{},
-				"list_workspace": map[string]any{},
-				"list_workspace_budget": map[string]any{},
-				"list_workspace_member": map[string]any{},
 				"member": map[string]any{},
 				"message": map[string]any{},
-				"meta": map[string]any{},
 				"model": map[string]any{},
 				"models_count": map[string]any{},
 				"models_list": map[string]any{},
@@ -147,16 +125,12 @@ func MakeConfig() map[string]any {
 				"preset": map[string]any{},
 				"preset_version": map[string]any{},
 				"provider": map[string]any{},
-				"query": map[string]any{},
 				"rankings_daily": map[string]any{},
-				"remove": map[string]any{},
 				"rerank": map[string]any{},
 				"response": map[string]any{},
-				"speech": map[string]any{},
 				"stt": map[string]any{},
 				"submit_generation_feedback": map[string]any{},
 				"task": map[string]any{},
-				"transcription": map[string]any{},
 				"tts": map[string]any{},
 				"unified_benchmark": map[string]any{},
 				"update_byok_key": map[string]any{},
@@ -164,86 +138,95 @@ func MakeConfig() map[string]any {
 				"update_observability_destination": map[string]any{},
 				"update_workspace": map[string]any{},
 				"upsert_workspace_budget": map[string]any{},
-				"user": map[string]any{},
-				"version": map[string]any{},
 				"video": map[string]any{},
 				"video_generation": map[string]any{},
-				"video_models_list": map[string]any{},
+				"video_model": map[string]any{},
 				"workspace": map[string]any{},
 				"workspace_budget": map[string]any{},
-				"zdr": map[string]any{},
+				"workspace_member": map[string]any{},
 			},
 		},
 		"entity": map[string]any{
 			"activity": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "double",
 						"name": "byok_usage_inference",
+						"title": "Byok Usage Inference",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "BYOK inference cost in USD (external credits spent)",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "completion_tokens",
+						"title": "Completion Tokens",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Total completion tokens generated",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "date",
+						"title": "Date",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Date of the activity (YYYY-MM-DD format)",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "endpoint_id",
+						"title": "Endpoint Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique identifier for the endpoint",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "model",
+						"title": "Model",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Model slug (e.g., \"openai/gpt-4.1\")",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "model_permaslug",
+						"title": "Model Permaslug",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Model permaslug (e.g., \"openai/gpt-4.1-2025-04-14\")",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "prompt_tokens",
+						"title": "Prompt Tokens",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Total prompt tokens used",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "provider_name",
+						"title": "Provider Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Name of the provider serving this endpoint",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "reasoning_tokens",
+						"title": "Reasoning Tokens",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Total reasoning tokens used",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "requests",
+						"title": "Requests",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Number of requests made",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "usage",
+						"title": "Usage",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "Total cost in USD (OpenRouter credits spent)",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 				},
 				"name": "activity",
@@ -253,57 +236,65 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "abc123def456...",
-											"kind": "query",
-											"name": "api_key_hash",
-											"orig": "api_key_hash",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "2025-08-24",
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "user_abc123",
-											"kind": "query",
-											"name": "user_id",
-											"orig": "user_id",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/activity",
 								"segments": []any{
 									map[string]any{
 										"lit": "activity",
+									},
+								},
+								"parts": []any{
+									"activity",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "api_key_hash",
+											"orig": "api_key_hash",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "abc123def456...",
+										},
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "2025-08-24",
+										},
+										map[string]any{
+											"name": "user_id",
+											"orig": "user_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "user_abc123",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -316,13 +307,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"activity",
-								},
 							},
 						},
 					},
@@ -331,56 +315,58 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"add": map[string]any{
-				"fields": []any{},
-				"name": "add",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"workspace",
-						},
-					},
-				},
-			},
 			"api_key": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "double",
 						"name": "byok_usage",
+						"title": "Byok Usage",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "Total external BYOK usage (in USD) for the API key",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "byok_usage_daily",
+						"title": "Byok Usage Daily",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "External BYOK usage (in USD) for the current UTC day",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "byok_usage_monthly",
+						"title": "Byok Usage Monthly",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "External BYOK usage (in USD) for current UTC month",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "byok_usage_weekly",
+						"title": "Byok Usage Weekly",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "External BYOK usage (in USD) for the current UTC week (Monday-Sunday)",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "created_at",
+						"title": "Created At",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "ISO 8601 timestamp of when the API key was created",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "creator_user_id",
+						"title": "Creator User Id",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$STRING`",
+								"`$NULL`",
+							},
+						},
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": []any{
@@ -392,31 +378,23 @@ func MakeConfig() map[string]any {
 								},
 							},
 						},
-						"req": true,
 						"short": "The user ID of the key creator.",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$STRING`",
-								"`$NULL`",
-							},
-						},
 					},
 					map[string]any{
 						"name": "disabled",
+						"title": "Disabled",
+						"type": "`$BOOLEAN`",
+						"req": true,
 						"op": map[string]any{
 							"update": map[string]any{
 								"type": "`$BOOLEAN`",
 							},
 						},
-						"req": true,
 						"short": "Whether the API key is disabled",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "expires_at",
-						"short": "ISO 8601 UTC timestamp when the API key expires, or null if no expiration",
+						"title": "Expires At",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -424,19 +402,26 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "ISO 8601 UTC timestamp when the API key expires, or null if no expiration",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "hash",
+						"title": "Hash",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique hash identifier for the API key",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "include_byok_in_limit",
+						"title": "Include Byok In Limit",
+						"type": "`$BOOLEAN`",
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": "`$BOOLEAN`",
@@ -445,38 +430,48 @@ func MakeConfig() map[string]any {
 								"type": "`$BOOLEAN`",
 							},
 						},
-						"req": true,
 						"short": "Whether to include external BYOK usage in the credit limit",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "is_free_tier",
+						"title": "Is Free Tier",
+						"type": "`$BOOLEAN`",
 						"req": true,
 						"short": "Whether this is a free tier API key",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "is_management_key",
+						"title": "Is Management Key",
+						"type": "`$BOOLEAN`",
 						"req": true,
 						"short": "Whether this is a management key",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
-						"deprecated": true,
 						"name": "is_provisioning_key",
+						"title": "Is Provisioning Key",
+						"type": "`$BOOLEAN`",
 						"req": true,
 						"short": "Whether this is a management key",
-						"type": "`$BOOLEAN`",
+						"deprecated": true,
 					},
 					map[string]any{
 						"name": "label",
+						"title": "Label",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Human-readable label for the API key",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "limit",
+						"title": "Limit",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$NUMBER`",
+								"`$NULL`",
+							},
+						},
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": []any{
@@ -497,21 +492,12 @@ func MakeConfig() map[string]any {
 								},
 							},
 						},
-						"req": true,
 						"short": "Spending limit for the API key in USD",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$NUMBER`",
-								"`$NULL`",
-							},
-						},
+						"format": "double",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "limit_remaining",
-						"req": true,
-						"short": "Remaining spending limit in USD",
+						"title": "Limit Remaining",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -519,9 +505,21 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Remaining spending limit in USD",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "limit_reset",
+						"title": "Limit Reset",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$STRING`",
+								"`$NULL`",
+							},
+						},
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": []any{
@@ -542,38 +540,31 @@ func MakeConfig() map[string]any {
 								},
 							},
 						},
-						"req": true,
 						"short": "Type of limit reset for the API key",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$STRING`",
-								"`$NULL`",
-							},
-						},
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
+						"req": true,
 						"op": map[string]any{
 							"update": map[string]any{
 								"type": "`$STRING`",
 							},
 						},
-						"req": true,
 						"short": "Name of the API key",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"deprecated": true,
 						"name": "rate_limit",
+						"title": "Rate Limit",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Legacy rate limit information about a key.",
-						"type": "`$OBJECT`",
+						"deprecated": true,
 					},
 					map[string]any{
 						"name": "updated_at",
-						"req": true,
-						"short": "ISO 8601 timestamp of when the API key was last updated",
+						"title": "Updated At",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -581,46 +572,53 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "ISO 8601 timestamp of when the API key was last updated",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "usage",
+						"title": "Usage",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "Total OpenRouter credit usage (in USD) for the API key",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "usage_daily",
+						"title": "Usage Daily",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "OpenRouter credit usage (in USD) for the current UTC day",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "usage_monthly",
+						"title": "Usage Monthly",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "OpenRouter credit usage (in USD) for the current UTC month",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "usage_weekly",
+						"title": "Usage Weekly",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "OpenRouter credit usage (in USD) for the current UTC week (Monday-Sunday)",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "workspace_id",
+						"title": "Workspace Id",
+						"type": "`$STRING`",
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": "`$STRING`",
 							},
 						},
-						"req": true,
 						"short": "The workspace ID this API key belongs to.",
-						"type": "`$STRING`",
+						"format": "uuid",
 					},
 				},
 				"id": map[string]any{
@@ -634,34 +632,42 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/keys",
 								"segments": []any{
 									map[string]any{
 										"lit": "keys",
+									},
+								},
+								"parts": []any{
+									"keys",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -671,13 +677,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"keys",
-								},
 							},
 						},
 					},
@@ -686,38 +685,52 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/keys",
+								"segments": []any{
+									map[string]any{
+										"lit": "keys",
+									},
+								},
+								"parts": []any{
+									"keys",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
 								"args": map[string]any{
 									"header": []any{
 										map[string]any{
-											"kind": "header",
 											"name": "http_referer",
 											"orig": "http_referer",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_category",
 											"orig": "x_open_router_category",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_title",
 											"orig": "x_open_router_title",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 									},
 									"query": []any{
 										map[string]any{
-											"example": "false",
-											"kind": "query",
 											"name": "include_disabled",
 											"orig": "include_disabled",
 											"type": "`$BOOLEAN`",
+											"kind": "query",
+											"example": "false",
 										},
 										map[string]any{
-											"example": 0,
-											"kind": "query",
 											"name": "offset",
 											"orig": "offset",
 											"type": []any{
@@ -727,22 +740,16 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 0,
 										},
 										map[string]any{
-											"example": "0df9e665-d932-5740-b2c7-b52af166bc11",
-											"kind": "query",
 											"name": "workspace_id",
 											"orig": "workspace_id",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "0df9e665-d932-5740-b2c7-b52af166bc11",
 										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/keys",
-								"segments": []any{
-									map[string]any{
-										"lit": "keys",
 									},
 								},
 								"select": map[string]any{
@@ -755,13 +762,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"keys",
-								},
 							},
 						},
 					},
@@ -770,52 +770,60 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
-											"kind": "param",
-											"name": "id",
-											"orig": "hash",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/keys/{hash}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"hash": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "keys",
 									},
 									map[string]any{
 										"var": "id",
+									},
+								},
+								"parts": []any{
+									"keys",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"hash": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "hash",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -826,38 +834,8 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"keys",
-									"{id}",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/key",
@@ -866,19 +844,42 @@ func MakeConfig() map[string]any {
 										"lit": "key",
 									},
 								},
+								"parts": []any{
+									"key",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"key",
 								},
 							},
 						},
@@ -888,52 +889,60 @@ func MakeConfig() map[string]any {
 						"name": "remove",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
-											"kind": "param",
-											"name": "id",
-											"orig": "hash",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/keys/{hash}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"hash": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "keys",
 									},
 									map[string]any{
 										"var": "id",
+									},
+								},
+								"parts": []any{
+									"keys",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"hash": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "hash",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -943,14 +952,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"keys",
-									"{id}",
 								},
 							},
 						},
@@ -960,52 +961,60 @@ func MakeConfig() map[string]any {
 						"name": "update",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
-											"kind": "param",
-											"name": "id",
-											"orig": "hash",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "PATCH",
 								"orig": "/keys/{hash}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"hash": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "keys",
 									},
 									map[string]any{
 										"var": "id",
+									},
+								},
+								"parts": []any{
+									"keys",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"hash": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "hash",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -1015,14 +1024,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"keys",
-									"{id}",
 								},
 							},
 						},
@@ -1036,33 +1037,38 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "app_id",
+						"title": "App Id",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Stable numeric identifier of the app on OpenRouter.",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "app_name",
+						"title": "App Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Public display name of the app.",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rank",
+						"title": "Rank",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "1-based position of the app within this response, per the requested `sort`.",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "total_requests",
+						"title": "Total Requests",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Number of requests attributed to the app inside the date window.",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "total_tokens",
+						"title": "Total Tokens",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Sum of `prompt_tokens + completion_tokens` attributed to the app inside the date window, returned as a decimal string so 64-bit values are not truncated.",
-						"type": "`$STRING`",
 					},
 				},
 				"name": "app_ranking",
@@ -1072,85 +1078,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "coding",
-											"kind": "query",
-											"name": "category",
-											"orig": "category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "2026-05-11",
-											"kind": "query",
-											"name": "end_date",
-											"orig": "end_date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 50,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "offset",
-											"orig": "offset",
-											"type": []any{
-												"`$ONE`",
-												[]any{
-													"`$INTEGER`",
-													"`$NULL`",
-												},
-											},
-										},
-										map[string]any{
-											"example": "popular",
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "2026-04-12",
-											"kind": "query",
-											"name": "start_date",
-											"orig": "start_date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "cli-agent",
-											"kind": "query",
-											"name": "subcategory",
-											"orig": "subcategory",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/datasets/app-rankings",
@@ -1160,6 +1087,94 @@ func MakeConfig() map[string]any {
 									},
 									map[string]any{
 										"lit": "app-rankings",
+									},
+								},
+								"parts": []any{
+									"datasets",
+									"app-rankings",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "category",
+											"orig": "category",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "coding",
+										},
+										map[string]any{
+											"name": "end_date",
+											"orig": "end_date",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "2026-05-11",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "offset",
+											"orig": "offset",
+											"type": []any{
+												"`$ONE`",
+												[]any{
+													"`$INTEGER`",
+													"`$NULL`",
+												},
+											},
+											"kind": "query",
+											"example": 0,
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "popular",
+										},
+										map[string]any{
+											"name": "start_date",
+											"orig": "start_date",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "2026-04-12",
+										},
+										map[string]any{
+											"name": "subcategory",
+											"orig": "subcategory",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "cli-agent",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -1176,26 +1191,10 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"datasets",
-									"app-rankings",
-								},
 							},
 						},
 					},
 				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"benchmark": map[string]any{
-				"fields": []any{},
-				"name": "benchmark",
-				"op": map[string]any{},
 				"relations": map[string]any{
 					"ancestors": []any{},
 				},
@@ -1203,100 +1202,106 @@ func MakeConfig() map[string]any {
 			"beta_analytics": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "double",
 						"name": "cachedAt",
+						"title": "Cached At",
 						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "classifier_dimensions",
+						"title": "Classifier Dimensions",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Group results by custom classifier tags, breaking down metrics by the specified dimension values.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "classifier_filters",
+						"title": "Classifier Filters",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Filter results to generations with specific classifier tag values.",
-						"type": "`$OBJECT`",
-						"union": map[string]any{
-							"branches": 3,
-							"count": 2,
-							"depth": 8,
-						},
 					},
 					map[string]any{
 						"name": "data",
-						"req": true,
+						"title": "Data",
 						"type": "`$ARRAY`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "dimensions",
+						"title": "Dimensions",
+						"type": "`$ARRAY`",
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": "`$ARRAY`",
 							},
 						},
-						"req": true,
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "filters",
+						"title": "Filters",
 						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 3,
-							"count": 2,
-							"depth": 6,
-						},
 					},
 					map[string]any{
 						"name": "granularities",
-						"req": true,
+						"title": "Granularities",
 						"type": "`$ARRAY`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "granularity",
-						"short": "Time granularity",
+						"title": "Granularity",
 						"type": "`$STRING`",
+						"short": "Time granularity",
 					},
 					map[string]any{
 						"name": "group_limit",
-						"short": "Maximum rows per distinct combination of dimensions.",
+						"title": "Group Limit",
 						"type": "`$INTEGER`",
+						"short": "Maximum rows per distinct combination of dimensions.",
 					},
 					map[string]any{
 						"name": "limit",
-						"short": "Maximum total rows returned.",
+						"title": "Limit",
 						"type": "`$INTEGER`",
+						"short": "Maximum total rows returned.",
 					},
 					map[string]any{
 						"name": "metadata",
-						"req": true,
+						"title": "Metadata",
 						"type": "`$OBJECT`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "metrics",
-						"req": true,
+						"title": "Metrics",
 						"type": "`$ARRAY`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "operators",
-						"req": true,
+						"title": "Operators",
 						"type": "`$ARRAY`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "order_by",
-						"req": true,
+						"title": "Order By",
 						"type": "`$OBJECT`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "time_range",
-						"req": true,
+						"title": "Time Range",
 						"type": "`$OBJECT`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "warnings",
-						"short": "Warnings about filter resolution issues (e.g.",
+						"title": "Warnings",
 						"type": "`$ARRAY`",
+						"short": "Warnings about filter resolution issues (e.g.",
 					},
 				},
 				"name": "beta_analytics",
@@ -1306,28 +1311,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/analytics/query",
@@ -1339,20 +1322,43 @@ func MakeConfig() map[string]any {
 										"lit": "query",
 									},
 								},
+								"parts": []any{
+									"analytics",
+									"query",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"analytics",
-									"query",
 								},
 							},
 						},
@@ -1362,28 +1368,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/analytics/meta",
@@ -1395,20 +1379,43 @@ func MakeConfig() map[string]any {
 										"lit": "meta",
 									},
 								},
+								"parts": []any{
+									"analytics",
+									"meta",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"analytics",
-									"meta",
 								},
 							},
 						},
@@ -1418,37 +1425,28 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"budget": map[string]any{
-				"fields": []any{},
-				"name": "budget",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"workspace",
-						},
-					},
-				},
-			},
 			"bulk_add_workspace_member": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "added_count",
+						"title": "Added Count",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Number of workspace memberships created or updated",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "data",
+						"title": "Data",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of added workspace memberships",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "user_ids",
+						"title": "User Ids",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of user IDs to add to the workspace.",
-						"type": "`$ARRAY`",
 					},
 				},
 				"name": "bulk_add_workspace_member",
@@ -1458,46 +1456,9 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "production",
-											"kind": "param",
-											"name": "workspace_id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/workspaces/{id}/members/add",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"id": "workspace_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "workspaces",
@@ -1512,6 +1473,53 @@ func MakeConfig() map[string]any {
 										"lit": "add",
 									},
 								},
+								"parts": []any{
+									"workspaces",
+									"{workspace_id}",
+									"members",
+									"add",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"id": "workspace_id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "production",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -1520,16 +1528,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"workspaces",
-									"{workspace_id}",
-									"members",
-									"add",
-								},
 							},
 						},
 					},
@@ -1537,7 +1535,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"workspace",
+							"$.main.kit.entity.workspace",
 						},
 					},
 				},
@@ -1546,15 +1544,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "assigned_count",
+						"title": "Assigned Count",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Number of keys successfully assigned",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "key_hashes",
+						"title": "Key Hashes",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "Array of API key hashes to assign to the guardrail",
-						"type": "`$ARRAY`",
 					},
 				},
 				"name": "bulk_assign_key",
@@ -1564,46 +1564,9 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "550e8400-e29b-41d4-a716-446655440000",
-											"kind": "param",
-											"name": "guardrail_id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/guardrails/{id}/assignments/keys",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"id": "guardrail_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "guardrails",
@@ -1618,6 +1581,53 @@ func MakeConfig() map[string]any {
 										"lit": "keys",
 									},
 								},
+								"parts": []any{
+									"guardrails",
+									"{guardrail_id}",
+									"assignments",
+									"keys",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"id": "guardrail_id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "guardrail_id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "550e8400-e29b-41d4-a716-446655440000",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"guardrail_id",
@@ -1626,16 +1636,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"guardrails",
-									"{guardrail_id}",
-									"assignments",
-									"keys",
-								},
 							},
 						},
 					},
@@ -1643,7 +1643,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"guardrail",
+							"$.main.kit.entity.guardrail",
 						},
 					},
 				},
@@ -1652,15 +1652,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "assigned_count",
+						"title": "Assigned Count",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Number of members successfully assigned",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "member_user_ids",
+						"title": "Member User Ids",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "Array of member user IDs to assign to the guardrail",
-						"type": "`$ARRAY`",
 					},
 				},
 				"name": "bulk_assign_member",
@@ -1670,46 +1672,9 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "550e8400-e29b-41d4-a716-446655440000",
-											"kind": "param",
-											"name": "guardrail_id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/guardrails/{id}/assignments/members",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"id": "guardrail_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "guardrails",
@@ -1724,6 +1689,53 @@ func MakeConfig() map[string]any {
 										"lit": "members",
 									},
 								},
+								"parts": []any{
+									"guardrails",
+									"{guardrail_id}",
+									"assignments",
+									"members",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"id": "guardrail_id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "guardrail_id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "550e8400-e29b-41d4-a716-446655440000",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"guardrail_id",
@@ -1732,16 +1744,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"guardrails",
-									"{guardrail_id}",
-									"assignments",
-									"members",
-								},
 							},
 						},
 					},
@@ -1749,7 +1751,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"guardrail",
+							"$.main.kit.entity.guardrail",
 						},
 					},
 				},
@@ -1758,15 +1760,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "removed_count",
+						"title": "Removed Count",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Number of members removed",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "user_ids",
+						"title": "User Ids",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of user IDs to remove from the workspace",
-						"type": "`$ARRAY`",
 					},
 				},
 				"name": "bulk_remove_workspace_member",
@@ -1776,46 +1780,9 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "production",
-											"kind": "param",
-											"name": "workspace_id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/workspaces/{id}/members/remove",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"id": "workspace_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "workspaces",
@@ -1830,6 +1797,53 @@ func MakeConfig() map[string]any {
 										"lit": "remove",
 									},
 								},
+								"parts": []any{
+									"workspaces",
+									"{workspace_id}",
+									"members",
+									"remove",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"id": "workspace_id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "production",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -1838,16 +1852,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"workspaces",
-									"{workspace_id}",
-									"members",
-									"remove",
-								},
 							},
 						},
 					},
@@ -1855,7 +1859,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"workspace",
+							"$.main.kit.entity.workspace",
 						},
 					},
 				},
@@ -1864,15 +1868,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "key_hashes",
+						"title": "Key Hashes",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "Array of API key hashes to unassign from the guardrail",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "unassigned_count",
+						"title": "Unassigned Count",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Number of keys successfully unassigned",
-						"type": "`$INTEGER`",
 					},
 				},
 				"name": "bulk_unassign_key",
@@ -1882,46 +1888,9 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "550e8400-e29b-41d4-a716-446655440000",
-											"kind": "param",
-											"name": "guardrail_id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/guardrails/{id}/assignments/keys/remove",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"id": "guardrail_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "guardrails",
@@ -1939,6 +1908,54 @@ func MakeConfig() map[string]any {
 										"lit": "remove",
 									},
 								},
+								"parts": []any{
+									"guardrails",
+									"{guardrail_id}",
+									"assignments",
+									"keys",
+									"remove",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"id": "guardrail_id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "guardrail_id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "550e8400-e29b-41d4-a716-446655440000",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"guardrail_id",
@@ -1947,17 +1964,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"guardrails",
-									"{guardrail_id}",
-									"assignments",
-									"keys",
-									"remove",
-								},
 							},
 						},
 					},
@@ -1965,7 +1971,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"guardrail",
+							"$.main.kit.entity.guardrail",
 						},
 					},
 				},
@@ -1974,15 +1980,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "member_user_ids",
+						"title": "Member User Ids",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "Array of member user IDs to unassign from the guardrail",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "unassigned_count",
+						"title": "Unassigned Count",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Number of members successfully unassigned",
-						"type": "`$INTEGER`",
 					},
 				},
 				"name": "bulk_unassign_member",
@@ -1992,46 +2000,9 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "550e8400-e29b-41d4-a716-446655440000",
-											"kind": "param",
-											"name": "guardrail_id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/guardrails/{id}/assignments/members/remove",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"id": "guardrail_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "guardrails",
@@ -2049,6 +2020,54 @@ func MakeConfig() map[string]any {
 										"lit": "remove",
 									},
 								},
+								"parts": []any{
+									"guardrails",
+									"{guardrail_id}",
+									"assignments",
+									"members",
+									"remove",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"id": "guardrail_id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "guardrail_id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "550e8400-e29b-41d4-a716-446655440000",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"guardrail_id",
@@ -2057,17 +2076,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"guardrails",
-									"{guardrail_id}",
-									"assignments",
-									"members",
-									"remove",
-								},
 							},
 						},
 					},
@@ -2075,7 +2083,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"guardrail",
+							"$.main.kit.entity.guardrail",
 						},
 					},
 				},
@@ -2084,8 +2092,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "allowed_api_key_hashes",
-						"req": true,
-						"short": "Optional allowlist of OpenRouter API key hashes (`api_keys.hash`) that may use this credential.",
+						"title": "Allowed Api Key Hashes",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2093,9 +2100,20 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Optional allowlist of OpenRouter API key hashes (`api_keys.hash`) that may use this credential.",
 					},
 					map[string]any{
 						"name": "allowed_models",
+						"title": "Allowed Models",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$ARRAY`",
+								"`$NULL`",
+							},
+						},
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": []any{
@@ -2107,18 +2125,19 @@ func MakeConfig() map[string]any {
 								},
 							},
 						},
-						"req": true,
 						"short": "Optional allowlist of model slugs this credential may be used for.",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$ARRAY`",
-								"`$NULL`",
-							},
-						},
 					},
 					map[string]any{
 						"name": "allowed_user_ids",
+						"title": "Allowed User Ids",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$ARRAY`",
+								"`$NULL`",
+							},
+						},
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": []any{
@@ -2130,66 +2149,64 @@ func MakeConfig() map[string]any {
 								},
 							},
 						},
-						"req": true,
 						"short": "Optional allowlist of user IDs that may use this credential.",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$ARRAY`",
-								"`$NULL`",
-							},
-						},
 					},
 					map[string]any{
 						"name": "created_at",
+						"title": "Created At",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "ISO timestamp of when the credential was created.",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "disabled",
+						"title": "Disabled",
+						"type": "`$BOOLEAN`",
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": "`$BOOLEAN`",
 							},
 						},
-						"req": true,
 						"short": "Whether this credential is currently disabled.",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Stable public identifier for this BYOK credential.",
-						"type": "`$STRING`",
+						"format": "uuid",
 					},
 					map[string]any{
 						"name": "is_fallback",
+						"title": "Is Fallback",
+						"type": "`$BOOLEAN`",
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": "`$BOOLEAN`",
 							},
 						},
-						"req": true,
 						"short": "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried.",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "key",
+						"title": "Key",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The raw provider API key or credential.",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "label",
+						"title": "Label",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Short masked snippet of the key (e.g.",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Optional human-readable name for the credential.",
+						"title": "Name",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2197,30 +2214,34 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Optional human-readable name for the credential.",
 					},
 					map[string]any{
 						"name": "provider",
+						"title": "Provider",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The upstream provider this credential authenticates against, as a lowercase slug (e.g.",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "sort_order",
+						"title": "Sort Order",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Position within the provider — credentials are tried in ascending sort order.",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "workspace_id",
+						"title": "Workspace Id",
+						"type": "`$STRING`",
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": "`$STRING`",
 							},
 						},
-						"req": true,
 						"short": "ID of the workspace this credential belongs to.",
-						"type": "`$STRING`",
+						"format": "uuid",
 					},
 				},
 				"id": map[string]any{
@@ -2234,34 +2255,42 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/byok",
 								"segments": []any{
 									map[string]any{
 										"lit": "byok",
+									},
+								},
+								"parts": []any{
+									"byok",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -2271,13 +2300,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"byok",
-								},
 							},
 						},
 					},
@@ -2286,38 +2308,52 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/byok",
+								"segments": []any{
+									map[string]any{
+										"lit": "byok",
+									},
+								},
+								"parts": []any{
+									"byok",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
 								"args": map[string]any{
 									"header": []any{
 										map[string]any{
-											"kind": "header",
 											"name": "http_referer",
 											"orig": "http_referer",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_category",
 											"orig": "x_open_router_category",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_title",
 											"orig": "x_open_router_title",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 									},
 									"query": []any{
 										map[string]any{
-											"example": 50,
-											"kind": "query",
 											"name": "limit",
 											"orig": "limit",
 											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
 										},
 										map[string]any{
-											"example": 0,
-											"kind": "query",
 											"name": "offset",
 											"orig": "offset",
 											"type": []any{
@@ -2327,29 +2363,23 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 0,
 										},
 										map[string]any{
-											"example": "openai",
-											"kind": "query",
 											"name": "provider",
 											"orig": "provider",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "openai",
 										},
 										map[string]any{
-											"example": "550e8400-e29b-41d4-a716-446655440000",
-											"kind": "query",
 											"name": "workspace_id",
 											"orig": "workspace_id",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "550e8400-e29b-41d4-a716-446655440000",
 										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/byok",
-								"segments": []any{
-									map[string]any{
-										"lit": "byok",
 									},
 								},
 								"select": map[string]any{
@@ -2363,13 +2393,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"byok",
-								},
 							},
 						},
 					},
@@ -2378,38 +2401,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "11111111-2222-3333-4444-555555555555",
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/byok/{id}",
@@ -2421,6 +2412,47 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"byok",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "11111111-2222-3333-4444-555555555555",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -2428,14 +2460,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"byok",
-									"{id}",
 								},
 							},
 						},
@@ -2445,38 +2469,6 @@ func MakeConfig() map[string]any {
 						"name": "remove",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "11111111-2222-3333-4444-555555555555",
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/byok/{id}",
@@ -2488,6 +2480,47 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"byok",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "11111111-2222-3333-4444-555555555555",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -2495,14 +2528,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"byok",
-									"{id}",
 								},
 							},
 						},
@@ -2516,36 +2541,34 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "cache_control",
+						"title": "Cache Control",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Enable automatic prompt caching.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "choices",
+						"title": "Choices",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of completion choices",
-						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 5,
-						},
 					},
 					map[string]any{
 						"name": "created",
+						"title": "Created",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Unix timestamp of creation",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "debug",
-						"short": "Debug options for inspecting request transformations (streaming only)",
+						"title": "Debug",
 						"type": "`$OBJECT`",
+						"short": "Debug options for inspecting request transformations (streaming only)",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "frequency_penalty",
-						"short": "Frequency penalty (-2.0 to 2.0)",
+						"title": "Frequency Penalty",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2553,26 +2576,25 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Frequency penalty (-2.0 to 2.0)",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique completion identifier",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "image_config",
-						"short": "Provider-specific image configuration options.",
+						"title": "Image Config",
 						"type": "`$OBJECT`",
-						"union": map[string]any{
-							"branches": 3,
-							"count": 1,
-							"depth": 1,
-						},
+						"short": "Provider-specific image configuration options.",
 					},
 					map[string]any{
 						"name": "logit_bias",
-						"short": "Token logit bias adjustments",
+						"title": "Logit Bias",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2580,10 +2602,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Token logit bias adjustments",
 					},
 					map[string]any{
 						"name": "logprobs",
-						"short": "Return log probabilities",
+						"title": "Logprobs",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2591,10 +2614,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Return log probabilities",
 					},
 					map[string]any{
 						"name": "max_completion_tokens",
-						"short": "Maximum tokens in completion",
+						"title": "Max Completion Tokens",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2602,10 +2626,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Maximum tokens in completion",
 					},
 					map[string]any{
 						"name": "max_tokens",
-						"short": "Maximum tokens (deprecated, use max_completion_tokens).",
+						"title": "Max Tokens",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2613,27 +2638,24 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Maximum tokens (deprecated, use max_completion_tokens).",
 					},
 					map[string]any{
 						"name": "messages",
+						"title": "Messages",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of messages for the conversation",
-						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 5,
-							"depth": 5,
-						},
 					},
 					map[string]any{
 						"name": "metadata",
-						"short": "Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values)",
+						"title": "Metadata",
 						"type": "`$OBJECT`",
+						"short": "Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values)",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "min_p",
-						"short": "Minimum probability threshold relative to the most likely token.",
+						"title": "Min P",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2641,41 +2663,48 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Minimum probability threshold relative to the most likely token.",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "modalities",
-						"short": "Output modalities for the response.",
+						"title": "Modalities",
 						"type": "`$ARRAY`",
+						"short": "Output modalities for the response.",
 					},
 					map[string]any{
 						"name": "model",
+						"title": "Model",
+						"type": "`$STRING`",
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": "`$STRING`",
 							},
 						},
-						"req": true,
 						"short": "Model used for completion",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "models",
-						"short": "Models to use for completion",
+						"title": "Models",
 						"type": "`$ARRAY`",
+						"short": "Models to use for completion",
 					},
 					map[string]any{
 						"name": "object",
-						"req": true,
+						"title": "Object",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "openrouter_metadata",
-						"req": true,
+						"title": "Openrouter Metadata",
 						"type": "`$OBJECT`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "parallel_tool_calls",
-						"short": "Whether to enable parallel function calling during tool use.",
+						"title": "Parallel Tool Calls",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2683,21 +2712,17 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Whether to enable parallel function calling during tool use.",
 					},
 					map[string]any{
 						"name": "plugins",
-						"short": "Plugins you want to enable for this request, including their settings.",
+						"title": "Plugins",
 						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 5,
-							"count": 4,
-							"depth": 12,
-						},
+						"short": "Plugins you want to enable for this request, including their settings.",
 					},
 					map[string]any{
 						"name": "prediction",
-						"req": true,
-						"short": "Static predicted output content.",
+						"title": "Prediction",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2705,16 +2730,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 2,
-						},
+						"req": true,
+						"short": "Static predicted output content.",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "presence_penalty",
-						"short": "Presence penalty (-2.0 to 2.0)",
+						"title": "Presence Penalty",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2722,9 +2743,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Presence penalty (-2.0 to 2.0)",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "prompt_cache_key",
+						"title": "Prompt Cache Key",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2735,8 +2759,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "prompt_cache_options",
-						"req": true,
-						"short": "Request-level prompt-cache controls.",
+						"title": "Prompt Cache Options",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2744,10 +2767,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Request-level prompt-cache controls.",
 					},
 					map[string]any{
 						"name": "provider",
-						"short": "When multiple model providers are available, optionally indicate your routing preference.",
+						"title": "Provider",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2755,20 +2780,17 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-						"union": map[string]any{
-							"branches": 2,
-							"count": 6,
-							"depth": 3,
-						},
+						"short": "When multiple model providers are available, optionally indicate your routing preference.",
 					},
 					map[string]any{
 						"name": "reasoning",
-						"short": "Configuration options for reasoning models",
+						"title": "Reasoning",
 						"type": "`$OBJECT`",
+						"short": "Configuration options for reasoning models",
 					},
 					map[string]any{
 						"name": "reasoning_effort",
-						"short": "Shorthand for setting reasoning effort.",
+						"title": "Reasoning Effort",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2776,11 +2798,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Shorthand for setting reasoning effort.",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "repetition_penalty",
-						"short": "Penalizes tokens based on how much they have already appeared in the text.",
+						"title": "Repetition Penalty",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2788,16 +2810,18 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Penalizes tokens based on how much they have already appeared in the text.",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "response_format",
-						"short": "Response format configuration",
+						"title": "Response Format",
 						"type": "`$ANY`",
+						"short": "Response format configuration",
 					},
 					map[string]any{
-						"deprecated": true,
 						"name": "route",
-						"short": "**DEPRECATED** Use providers.sort.partition instead.",
+						"title": "Route",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2805,10 +2829,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "**DEPRECATED** Use providers.sort.partition instead.",
+						"deprecated": true,
 					},
 					map[string]any{
 						"name": "seed",
-						"short": "Random seed for deterministic outputs",
+						"title": "Seed",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2816,10 +2842,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Random seed for deterministic outputs",
 					},
 					map[string]any{
 						"name": "service_tier",
-						"short": "The service tier used by the upstream provider for this request",
+						"title": "Service Tier",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2827,35 +2854,35 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "The service tier used by the upstream provider for this request",
 					},
 					map[string]any{
 						"name": "session_id",
-						"short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
+						"title": "Session Id",
 						"type": "`$STRING`",
+						"short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
 					},
 					map[string]any{
 						"name": "stop",
-						"short": "Stop sequences (up to 4)",
+						"title": "Stop",
 						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 0,
-						},
+						"short": "Stop sequences (up to 4)",
 					},
 					map[string]any{
 						"name": "stop_server_tools_when",
-						"short": "Stop conditions for the server-tool agent loop.",
+						"title": "Stop Server Tools When",
 						"type": "`$ARRAY`",
+						"short": "Stop conditions for the server-tool agent loop.",
 					},
 					map[string]any{
 						"name": "stream",
-						"short": "Enable streaming response",
+						"title": "Stream",
 						"type": "`$BOOLEAN`",
+						"short": "Enable streaming response",
 					},
 					map[string]any{
 						"name": "stream_options",
-						"short": "Streaming configuration options",
+						"title": "Stream Options",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2863,11 +2890,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Streaming configuration options",
 					},
 					map[string]any{
 						"name": "system_fingerprint",
-						"req": true,
-						"short": "System fingerprint",
+						"title": "System Fingerprint",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2875,11 +2902,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "System fingerprint",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "temperature",
-						"short": "Sampling temperature (0-2)",
+						"title": "Temperature",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2887,31 +2915,24 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Sampling temperature (0-2)",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "tool_choice",
-						"short": "Tool choice configuration",
+						"title": "Tool Choice",
 						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 5,
-							"count": 1,
-							"depth": 0,
-						},
+						"short": "Tool choice configuration",
 					},
 					map[string]any{
 						"name": "tools",
-						"short": "Available tools for function calling",
+						"title": "Tools",
 						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 12,
-							"count": 2,
-							"depth": 6,
-						},
+						"short": "Available tools for function calling",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "top_a",
-						"short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
+						"title": "Top A",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2919,10 +2940,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "top_k",
-						"short": "Limits the model to choose from the top K most likely tokens at each step.",
+						"title": "Top K",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2930,10 +2953,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Limits the model to choose from the top K most likely tokens at each step.",
 					},
 					map[string]any{
 						"name": "top_logprobs",
-						"short": "Number of top log probabilities to return (0-20)",
+						"title": "Top Logprobs",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2941,11 +2965,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Number of top log probabilities to return (0-20)",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "top_p",
-						"short": "Nucleus sampling parameter (0-1)",
+						"title": "Top P",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -2953,22 +2977,27 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Nucleus sampling parameter (0-1)",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "trace",
-						"short": "Metadata for observability and tracing.",
+						"title": "Trace",
 						"type": "`$OBJECT`",
+						"short": "Metadata for observability and tracing.",
 					},
 					map[string]any{
 						"name": "usage",
+						"title": "Usage",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Token usage statistics",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "user",
-						"short": "Unique user identifier",
+						"title": "User",
 						"type": "`$STRING`",
+						"short": "Unique user identifier",
 					},
 				},
 				"id": map[string]any{
@@ -2982,35 +3011,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "enabled",
-											"kind": "header",
-											"name": "x_open_router_metadata",
-											"orig": "x_open_router_metadata",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/chat/completions",
@@ -3022,6 +3022,44 @@ func MakeConfig() map[string]any {
 										"lit": "completions",
 									},
 								},
+								"parts": []any{
+									"chat",
+									"completions",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_metadata",
+											"orig": "x_open_router_metadata",
+											"type": "`$STRING`",
+											"kind": "header",
+											"example": "enabled",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -3030,269 +3068,32 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"chat",
-									"completions",
-								},
 							},
 						},
 					},
 				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"code": map[string]any{
-				"fields": []any{},
-				"name": "code",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"coinbase": map[string]any{
-				"fields": []any{},
-				"name": "coinbase",
-				"op": map[string]any{},
 				"relations": map[string]any{
 					"ancestors": []any{},
 				},
 			},
 			"completion": map[string]any{
-				"fields": []any{},
-				"name": "completion",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"preset",
-						},
-					},
-				},
-			},
-			"content": map[string]any{
-				"fields": []any{},
-				"name": "content",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"count": map[string]any{
-				"fields": []any{},
-				"name": "count",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"create_byok_key": map[string]any{
-				"fields": []any{},
-				"name": "create_byok_key",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"create_guardrail": map[string]any{
-				"fields": []any{},
-				"name": "create_guardrail",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"create_observability_destination": map[string]any{
 				"fields": []any{
-					map[string]any{
-						"name": "api_key_hashes",
-						"short": "Optional allowlist of OpenRouter API key hashes whose traffic is forwarded.",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$ARRAY`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
-						"name": "config",
-						"req": true,
-						"short": "Provider-specific configuration.",
-						"type": "`$OBJECT`",
-					},
-					map[string]any{
-						"name": "enabled",
-						"short": "Whether this destination should be enabled immediately.",
-						"type": "`$BOOLEAN`",
-					},
-					map[string]any{
-						"name": "filter_rules",
-						"req": true,
-						"short": "Optional structured filter rules controlling which events are forwarded.",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$OBJECT`",
-								"`$NULL`",
-							},
-						},
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 8,
-						},
-					},
-					map[string]any{
-						"name": "name",
-						"req": true,
-						"short": "Human-readable name for the destination.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "privacy_mode",
-						"short": "When true, request/response bodies are not forwarded — only metadata.",
-						"type": "`$BOOLEAN`",
-					},
-					map[string]any{
-						"format": "double",
-						"name": "sampling_rate",
-						"short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "type",
-						"req": true,
-						"short": "The destination type.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uuid",
-						"name": "workspace_id",
-						"short": "Optional workspace ID.",
-						"type": "`$STRING`",
-					},
-				},
-				"name": "create_observability_destination",
-				"op": map[string]any{
-					"create": map[string]any{
-						"input": "data",
-						"name": "create",
-						"points": []any{
-							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
-								"kind": "http",
-								"method": "POST",
-								"orig": "/observability/destinations",
-								"segments": []any{
-									map[string]any{
-										"lit": "observability",
-									},
-									map[string]any{
-										"lit": "destinations",
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"http_referer",
-										"x_open_router_category",
-										"x_open_router_title",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"observability",
-									"destinations",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"create_preset_from_inference": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "background",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$BOOLEAN`",
-								"`$NULL`",
-							},
-						},
-					},
 					map[string]any{
 						"name": "cache_control",
+						"title": "Cache Control",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Enable automatic prompt caching.",
-						"type": "`$OBJECT`",
-					},
-					map[string]any{
-						"name": "context_management",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$OBJECT`",
-								"`$NULL`",
-							},
-						},
-						"union": map[string]any{
-							"branches": 3,
-							"count": 3,
-							"depth": 7,
-						},
 					},
 					map[string]any{
 						"name": "debug",
-						"short": "Debug options for inspecting request transformations (streaming only)",
+						"title": "Debug",
 						"type": "`$OBJECT`",
+						"short": "Debug options for inspecting request transformations (streaming only)",
 					},
 					map[string]any{
-						"name": "fallbacks",
-						"short": "Fallback models to try if the primary model fails or refuses, in order.",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$ARRAY`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
-						"format": "double",
 						"name": "frequency_penalty",
-						"short": "Frequency penalty (-2.0 to 2.0)",
+						"title": "Frequency Penalty",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3300,50 +3101,18 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Frequency penalty (-2.0 to 2.0)",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "image_config",
-						"short": "Provider-specific image configuration options.",
+						"title": "Image Config",
 						"type": "`$OBJECT`",
-						"union": map[string]any{
-							"branches": 3,
-							"count": 1,
-							"depth": 1,
-						},
-					},
-					map[string]any{
-						"name": "include",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$ARRAY`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
-						"name": "input",
-						"short": "Input for a response request - can be a string or array of items",
-						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 49,
-							"count": 35,
-							"depth": 19,
-						},
-					},
-					map[string]any{
-						"name": "instructions",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$STRING`",
-								"`$NULL`",
-							},
-						},
+						"short": "Provider-specific image configuration options.",
 					},
 					map[string]any{
 						"name": "logit_bias",
-						"short": "Token logit bias adjustments",
+						"title": "Logit Bias",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3351,10 +3120,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Token logit bias adjustments",
 					},
 					map[string]any{
 						"name": "logprobs",
-						"short": "Return log probabilities",
+						"title": "Logprobs",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3362,69 +3132,48 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Return log probabilities",
 					},
 					map[string]any{
 						"name": "max_completion_tokens",
+						"title": "Max Completion Tokens",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$INTEGER`",
+								"`$NULL`",
+							},
+						},
 						"short": "Maximum tokens in completion",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$INTEGER`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
-						"name": "max_output_tokens",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$INTEGER`",
-								"`$NULL`",
-							},
-						},
 					},
 					map[string]any{
 						"name": "max_tokens",
+						"title": "Max Tokens",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$INTEGER`",
+								"`$NULL`",
+							},
+						},
 						"short": "Maximum tokens (deprecated, use max_completion_tokens).",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$INTEGER`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
-						"name": "max_tool_calls",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$INTEGER`",
-								"`$NULL`",
-							},
-						},
 					},
 					map[string]any{
 						"name": "messages",
+						"title": "Messages",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of messages for the conversation",
-						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 5,
-							"depth": 5,
-						},
 					},
 					map[string]any{
 						"name": "metadata",
-						"short": "Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values)",
+						"title": "Metadata",
 						"type": "`$OBJECT`",
+						"short": "Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values)",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "min_p",
-						"short": "Minimum probability threshold relative to the most likely token.",
+						"title": "Min P",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3432,36 +3181,30 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Minimum probability threshold relative to the most likely token.",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "modalities",
-						"short": "Output modalities for the response.",
+						"title": "Modalities",
 						"type": "`$ARRAY`",
+						"short": "Output modalities for the response.",
 					},
 					map[string]any{
 						"name": "model",
-						"op": map[string]any{
-							"create": map[string]any{
-								"req": true,
-								"type": "`$STRING`",
-							},
-						},
-						"short": "Model to use for completion",
+						"title": "Model",
 						"type": "`$STRING`",
+						"short": "Model to use for completion",
 					},
 					map[string]any{
 						"name": "models",
-						"short": "Models to use for completion",
+						"title": "Models",
 						"type": "`$ARRAY`",
-					},
-					map[string]any{
-						"name": "output_config",
-						"short": "Configuration for controlling output behavior.",
-						"type": "`$OBJECT`",
+						"short": "Models to use for completion",
 					},
 					map[string]any{
 						"name": "parallel_tool_calls",
-						"short": "Whether to enable parallel function calling during tool use.",
+						"title": "Parallel Tool Calls",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3469,21 +3212,17 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Whether to enable parallel function calling during tool use.",
 					},
 					map[string]any{
 						"name": "plugins",
-						"short": "Plugins you want to enable for this request, including their settings.",
+						"title": "Plugins",
 						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 5,
-							"count": 4,
-							"depth": 12,
-						},
+						"short": "Plugins you want to enable for this request, including their settings.",
 					},
 					map[string]any{
 						"name": "prediction",
-						"req": true,
-						"short": "Static predicted output content.",
+						"title": "Prediction",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3491,16 +3230,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 2,
-						},
+						"req": true,
+						"short": "Static predicted output content.",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "presence_penalty",
-						"short": "Presence penalty (-2.0 to 2.0)",
+						"title": "Presence Penalty",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3508,30 +3243,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-					},
-					map[string]any{
-						"name": "previous_response_id",
-						"short": "Not supported.",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "prompt",
-						"req": true,
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$OBJECT`",
-								"`$NULL`",
-							},
-						},
-						"union": map[string]any{
-							"branches": 4,
-							"count": 1,
-							"depth": 3,
-						},
+						"short": "Presence penalty (-2.0 to 2.0)",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "prompt_cache_key",
+						"title": "Prompt Cache Key",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3542,8 +3259,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "prompt_cache_options",
-						"req": true,
-						"short": "Request-level prompt-cache controls.",
+						"title": "Prompt Cache Options",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3551,10 +3267,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Request-level prompt-cache controls.",
 					},
 					map[string]any{
 						"name": "provider",
-						"short": "When multiple model providers are available, optionally indicate your routing preference.",
+						"title": "Provider",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3562,20 +3280,17 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-						"union": map[string]any{
-							"branches": 2,
-							"count": 6,
-							"depth": 3,
-						},
+						"short": "When multiple model providers are available, optionally indicate your routing preference.",
 					},
 					map[string]any{
 						"name": "reasoning",
-						"short": "Configuration options for reasoning models",
+						"title": "Reasoning",
 						"type": "`$OBJECT`",
+						"short": "Configuration options for reasoning models",
 					},
 					map[string]any{
 						"name": "reasoning_effort",
-						"short": "Shorthand for setting reasoning effort.",
+						"title": "Reasoning Effort",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3583,11 +3298,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Shorthand for setting reasoning effort.",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "repetition_penalty",
-						"short": "Penalizes tokens based on how much they have already appeared in the text.",
+						"title": "Repetition Penalty",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3595,37 +3310,31 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Penalizes tokens based on how much they have already appeared in the text.",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "response_format",
-						"short": "Response format configuration",
+						"title": "Response Format",
 						"type": "`$ANY`",
+						"short": "Response format configuration",
 					},
 					map[string]any{
-						"deprecated": true,
 						"name": "route",
+						"title": "Route",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$STRING`",
+								"`$NULL`",
+							},
+						},
 						"short": "**DEPRECATED** Use providers.sort.partition instead.",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$STRING`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
-						"name": "safety_identifier",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$STRING`",
-								"`$NULL`",
-							},
-						},
+						"deprecated": true,
 					},
 					map[string]any{
 						"name": "seed",
-						"short": "Random seed for deterministic outputs",
+						"title": "Seed",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3633,10 +3342,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Random seed for deterministic outputs",
 					},
 					map[string]any{
 						"name": "service_tier",
-						"short": "The service tier to use for processing this request.",
+						"title": "Service Tier",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3644,47 +3354,35 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "The service tier to use for processing this request.",
 					},
 					map[string]any{
 						"name": "session_id",
-						"short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
+						"title": "Session Id",
 						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "speed",
-						"type": "`$ANY`",
+						"short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
 					},
 					map[string]any{
 						"name": "stop",
-						"short": "Stop sequences (up to 4)",
+						"title": "Stop",
 						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 0,
-						},
-					},
-					map[string]any{
-						"name": "stop_sequences",
-						"type": "`$ARRAY`",
+						"short": "Stop sequences (up to 4)",
 					},
 					map[string]any{
 						"name": "stop_server_tools_when",
-						"short": "Stop conditions for the server-tool agent loop.",
+						"title": "Stop Server Tools When",
 						"type": "`$ARRAY`",
-					},
-					map[string]any{
-						"name": "store",
-						"type": "`$BOOLEAN`",
+						"short": "Stop conditions for the server-tool agent loop.",
 					},
 					map[string]any{
 						"name": "stream",
-						"short": "Enable streaming response",
+						"title": "Stream",
 						"type": "`$BOOLEAN`",
+						"short": "Enable streaming response",
 					},
 					map[string]any{
 						"name": "stream_options",
-						"short": "Streaming configuration options",
+						"title": "Stream Options",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3692,20 +3390,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Streaming configuration options",
 					},
 					map[string]any{
-						"name": "system",
-						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 0,
-						},
-					},
-					map[string]any{
-						"format": "double",
 						"name": "temperature",
-						"short": "Sampling temperature (0-2)",
+						"title": "Temperature",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3713,50 +3402,24 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-					},
-					map[string]any{
-						"name": "text",
-						"short": "Text output configuration including format and verbosity",
-						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 3,
-							"count": 1,
-							"depth": 4,
-						},
-					},
-					map[string]any{
-						"name": "thinking",
-						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 3,
-							"count": 1,
-							"depth": 0,
-						},
+						"short": "Sampling temperature (0-2)",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "tool_choice",
-						"short": "Tool choice configuration",
+						"title": "Tool Choice",
 						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 5,
-							"count": 1,
-							"depth": 0,
-						},
+						"short": "Tool choice configuration",
 					},
 					map[string]any{
 						"name": "tools",
-						"short": "Available tools for function calling",
+						"title": "Tools",
 						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 12,
-							"count": 2,
-							"depth": 6,
-						},
+						"short": "Available tools for function calling",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "top_a",
-						"short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
+						"title": "Top A",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3764,10 +3427,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "top_k",
-						"short": "Limits the model to choose from the top K most likely tokens at each step.",
+						"title": "Top K",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3775,10 +3440,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Limits the model to choose from the top K most likely tokens at each step.",
 					},
 					map[string]any{
 						"name": "top_logprobs",
-						"short": "Number of top log probabilities to return (0-20)",
+						"title": "Top Logprobs",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3786,11 +3452,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Number of top log probabilities to return (0-20)",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "top_p",
-						"short": "Nucleus sampling parameter (0-1)",
+						"title": "Top P",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -3798,67 +3464,29 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Nucleus sampling parameter (0-1)",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "trace",
-						"short": "Metadata for observability and tracing.",
+						"title": "Trace",
 						"type": "`$OBJECT`",
-					},
-					map[string]any{
-						"name": "truncation",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$STRING`",
-								"`$NULL`",
-							},
-						},
+						"short": "Metadata for observability and tracing.",
 					},
 					map[string]any{
 						"name": "user",
-						"short": "Unique user identifier",
+						"title": "User",
 						"type": "`$STRING`",
+						"short": "Unique user identifier",
 					},
 				},
-				"name": "create_preset_from_inference",
+				"name": "completion",
 				"op": map[string]any{
 					"create": map[string]any{
 						"input": "data",
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "my-preset",
-											"kind": "param",
-											"name": "slug",
-											"orig": "slug",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/presets/{slug}/chat/completions",
@@ -3876,70 +3504,47 @@ func MakeConfig() map[string]any {
 										"lit": "completions",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"http_referer",
-										"slug",
-										"x_open_router_category",
-										"x_open_router_title",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
 								"parts": []any{
 									"presets",
 									"{slug}",
 									"chat",
 									"completions",
 								},
-							},
-							map[string]any{
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
 								"args": map[string]any{
 									"header": []any{
 										map[string]any{
-											"kind": "header",
 											"name": "http_referer",
 											"orig": "http_referer",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_category",
 											"orig": "x_open_router_category",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_title",
 											"orig": "x_open_router_title",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 									},
 									"params": []any{
 										map[string]any{
-											"example": "my-preset",
-											"kind": "param",
 											"name": "slug",
 											"orig": "slug",
-											"reqd": true,
 											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "my-preset",
 										},
-									},
-								},
-								"kind": "http",
-								"method": "POST",
-								"orig": "/presets/{slug}/messages",
-								"segments": []any{
-									map[string]any{
-										"lit": "presets",
-									},
-									map[string]any{
-										"var": "slug",
-									},
-									map[string]any{
-										"lit": "messages",
 									},
 								},
 								"select": map[string]any{
@@ -3949,80 +3554,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"presets",
-									"{slug}",
-									"messages",
-								},
-							},
-							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "my-preset",
-											"kind": "param",
-											"name": "slug",
-											"orig": "slug",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
-								"kind": "http",
-								"method": "POST",
-								"orig": "/presets/{slug}/responses",
-								"segments": []any{
-									map[string]any{
-										"lit": "presets",
-									},
-									map[string]any{
-										"var": "slug",
-									},
-									map[string]any{
-										"lit": "responses",
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"http_referer",
-										"slug",
-										"x_open_router_category",
-										"x_open_router_title",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"presets",
-									"{slug}",
-									"responses",
 								},
 							},
 						},
@@ -4031,15 +3562,146 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"preset",
+							"$.main.kit.entity.preset",
 						},
 					},
 				},
 			},
-			"create_workspace": map[string]any{
-				"fields": []any{},
-				"name": "create_workspace",
-				"op": map[string]any{},
+			"create_observability_destination": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "api_key_hashes",
+						"title": "Api Key Hashes",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$ARRAY`",
+								"`$NULL`",
+							},
+						},
+						"short": "Optional allowlist of OpenRouter API key hashes whose traffic is forwarded.",
+					},
+					map[string]any{
+						"name": "config",
+						"title": "Config",
+						"type": "`$OBJECT`",
+						"req": true,
+						"short": "Provider-specific configuration.",
+					},
+					map[string]any{
+						"name": "enabled",
+						"title": "Enabled",
+						"type": "`$BOOLEAN`",
+						"short": "Whether this destination should be enabled immediately.",
+					},
+					map[string]any{
+						"name": "filter_rules",
+						"title": "Filter Rules",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$OBJECT`",
+								"`$NULL`",
+							},
+						},
+						"req": true,
+						"short": "Optional structured filter rules controlling which events are forwarded.",
+					},
+					map[string]any{
+						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "Human-readable name for the destination.",
+					},
+					map[string]any{
+						"name": "privacy_mode",
+						"title": "Privacy Mode",
+						"type": "`$BOOLEAN`",
+						"short": "When true, request/response bodies are not forwarded — only metadata.",
+					},
+					map[string]any{
+						"name": "sampling_rate",
+						"title": "Sampling Rate",
+						"type": "`$NUMBER`",
+						"short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
+						"format": "double",
+					},
+					map[string]any{
+						"name": "type",
+						"title": "Type",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "The destination type.",
+					},
+					map[string]any{
+						"name": "workspace_id",
+						"title": "Workspace Id",
+						"type": "`$STRING`",
+						"short": "Optional workspace ID.",
+						"format": "uuid",
+					},
+				},
+				"name": "create_observability_destination",
+				"op": map[string]any{
+					"create": map[string]any{
+						"input": "data",
+						"name": "create",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/observability/destinations",
+								"segments": []any{
+									map[string]any{
+										"lit": "observability",
+									},
+									map[string]any{
+										"lit": "destinations",
+									},
+								},
+								"parts": []any{
+									"observability",
+									"destinations",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"http_referer",
+										"x_open_router_category",
+										"x_open_router_title",
+									},
+								},
+							},
+						},
+					},
+				},
 				"relations": map[string]any{
 					"ancestors": []any{},
 				},
@@ -4047,18 +3709,20 @@ func MakeConfig() map[string]any {
 			"credit": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "double",
 						"name": "total_credits",
+						"title": "Total Credits",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "Total credits purchased",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "total_usage",
+						"title": "Total Usage",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "Total credits used",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 				},
 				"name": "credit",
@@ -4068,28 +3732,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/credits/coinbase",
@@ -4101,6 +3743,37 @@ func MakeConfig() map[string]any {
 										"lit": "coinbase",
 									},
 								},
+								"parts": []any{
+									"credits",
+									"coinbase",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "coinbase",
 									"exist": []any{
@@ -4108,14 +3781,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"credits",
-									"coinbase",
 								},
 							},
 						},
@@ -4125,34 +3790,42 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/credits",
 								"segments": []any{
 									map[string]any{
 										"lit": "credits",
+									},
+								},
+								"parts": []any{
+									"credits",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -4162,13 +3835,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"credits",
-								},
 							},
 						},
 					},
@@ -4177,88 +3843,76 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"destination": map[string]any{
-				"fields": []any{},
-				"name": "destination",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
 			"embedding": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "data",
+						"title": "Data",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of embedding objects",
-						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 3,
-						},
 					},
 					map[string]any{
 						"name": "dimensions",
-						"short": "The number of dimensions for the output embeddings",
+						"title": "Dimensions",
 						"type": "`$INTEGER`",
+						"short": "The number of dimensions for the output embeddings",
 					},
 					map[string]any{
 						"name": "encoding_format",
-						"short": "The format of the output embeddings",
+						"title": "Encoding Format",
 						"type": "`$STRING`",
+						"short": "The format of the output embeddings",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the embeddings response",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the embeddings response",
 					},
 					map[string]any{
 						"name": "input",
+						"title": "Input",
+						"type": "`$ANY`",
 						"req": true,
 						"short": "Text, token, or multimodal input(s) to embed",
-						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 5,
-							"count": 2,
-							"depth": 6,
-						},
 					},
 					map[string]any{
 						"name": "input_type",
-						"short": "The type of input (e.g.",
+						"title": "Input Type",
 						"type": "`$STRING`",
+						"short": "The type of input (e.g.",
 					},
 					map[string]any{
 						"name": "model",
+						"title": "Model",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The model used for embeddings",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "object",
-						"req": true,
+						"title": "Object",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "provider",
+						"title": "Provider",
 						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 6,
-							"depth": 5,
-						},
 					},
 					map[string]any{
 						"name": "usage",
+						"title": "Usage",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Token usage statistics",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "user",
-						"short": "A unique identifier for the end-user",
+						"title": "User",
 						"type": "`$STRING`",
+						"short": "A unique identifier for the end-user",
 					},
 				},
 				"id": map[string]any{
@@ -4272,28 +3926,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/embeddings",
@@ -4302,19 +3934,42 @@ func MakeConfig() map[string]any {
 										"lit": "embeddings",
 									},
 								},
+								"parts": []any{
+									"embeddings",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"embeddings",
 								},
 							},
 						},
@@ -4328,26 +3983,28 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "architecture",
+						"title": "Architecture",
+						"type": "`$ANY`",
 						"req": true,
 						"short": "Model architecture information",
-						"type": "`$ANY`",
 					},
 					map[string]any{
 						"name": "benchmarks",
+						"title": "Benchmarks",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Third-party benchmark rankings for this model.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "canonical_slug",
+						"title": "Canonical Slug",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Canonical slug for the model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "context_length",
-						"req": true,
-						"short": "Maximum context length in tokens",
+						"title": "Context Length",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -4355,17 +4012,19 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Maximum context length in tokens",
 					},
 					map[string]any{
 						"name": "created",
+						"title": "Created",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Unix timestamp of when the model was created",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "default_parameters",
-						"req": true,
-						"short": "Default parameters for this model",
+						"title": "Default Parameters",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -4373,27 +4032,31 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Default parameters for this model",
 					},
 					map[string]any{
 						"name": "description",
+						"title": "Description",
+						"type": "`$STRING`",
+						"req": true,
 						"op": map[string]any{
 							"list": map[string]any{
 								"type": "`$STRING`",
 							},
 						},
-						"req": true,
 						"short": "Description of the model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "endpoints",
+						"title": "Endpoints",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of available endpoints for this model",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "expiration_date",
-						"short": "The date after which the model may be removed.",
+						"title": "Expiration Date",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -4401,10 +4064,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "The date after which the model may be removed.",
 					},
 					map[string]any{
 						"name": "hugging_face_id",
-						"short": "Hugging Face model identifier, if applicable",
+						"title": "Hugging Face Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -4412,16 +4076,18 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Hugging Face model identifier, if applicable",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique identifier for the model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "knowledge_cutoff",
-						"short": "The date up to which the model was trained on data.",
+						"title": "Knowledge Cutoff",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -4429,23 +4095,25 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "The date up to which the model was trained on data.",
 					},
 					map[string]any{
 						"name": "links",
+						"title": "Links",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Related API endpoints and resources for this model.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Display name of the model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "per_request_limits",
-						"req": true,
-						"short": "Per-request token limits",
+						"title": "Per Request Limits",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -4453,29 +4121,33 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Per-request token limits",
 					},
 					map[string]any{
 						"name": "pricing",
+						"title": "Pricing",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Pricing information for the model",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "reasoning",
+						"title": "Reasoning",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Reasoning effort configuration.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "supported_parameters",
+						"title": "Supported Parameters",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of supported parameters for this model",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "supported_voices",
-						"req": true,
-						"short": "List of supported voice identifiers for TTS models.",
+						"title": "Supported Voices",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -4483,12 +4155,15 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "List of supported voice identifiers for TTS models.",
 					},
 					map[string]any{
 						"name": "top_provider",
+						"title": "Top Provider",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Information about the top provider for this model",
-						"type": "`$OBJECT`",
 					},
 				},
 				"id": map[string]any{
@@ -4502,73 +4177,87 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/models",
+								"segments": []any{
+									map[string]any{
+										"lit": "models",
+									},
+								},
+								"parts": []any{
+									"models",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
 								"args": map[string]any{
 									"header": []any{
 										map[string]any{
-											"kind": "header",
 											"name": "http_referer",
 											"orig": "http_referer",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_category",
 											"orig": "x_open_router_category",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_title",
 											"orig": "x_open_router_title",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 									},
 									"query": []any{
 										map[string]any{
-											"example": "GPT",
-											"kind": "query",
 											"name": "arch",
 											"orig": "arch",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "GPT",
 										},
 										map[string]any{
-											"example": "programming",
-											"kind": "query",
 											"name": "category",
 											"orig": "category",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "programming",
 										},
 										map[string]any{
-											"example": 128000,
-											"kind": "query",
 											"name": "context",
 											"orig": "context",
 											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 128000,
 										},
 										map[string]any{
-											"example": "true",
-											"kind": "query",
 											"name": "distillable",
 											"orig": "distillable",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "true",
 										},
 										map[string]any{
-											"example": "text,image",
-											"kind": "query",
 											"name": "input_modality",
 											"orig": "input_modality",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "text,image",
 										},
 										map[string]any{
-											"example": 500,
-											"kind": "query",
 											"name": "limit",
 											"orig": "limit",
 											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 500,
 										},
 										map[string]any{
-											"example": 90,
-											"kind": "query",
 											"name": "max_age_day",
 											"orig": "max_age_day",
 											"type": []any{
@@ -4578,10 +4267,10 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 90,
 										},
 										map[string]any{
-											"example": 100,
-											"kind": "query",
 											"name": "max_agentic_index",
 											"orig": "max_agentic_index",
 											"type": []any{
@@ -4591,10 +4280,10 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 100,
 										},
 										map[string]any{
-											"example": 100,
-											"kind": "query",
 											"name": "max_coding_index",
 											"orig": "max_coding_index",
 											"type": []any{
@@ -4604,10 +4293,10 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 100,
 										},
 										map[string]any{
-											"example": 100,
-											"kind": "query",
 											"name": "max_intelligence_index",
 											"orig": "max_intelligence_index",
 											"type": []any{
@@ -4617,10 +4306,10 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 100,
 										},
 										map[string]any{
-											"example": 10,
-											"kind": "query",
 											"name": "max_output_price",
 											"orig": "max_output_price",
 											"type": []any{
@@ -4630,10 +4319,10 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 10,
 										},
 										map[string]any{
-											"example": 10,
-											"kind": "query",
 											"name": "max_price",
 											"orig": "max_price",
 											"type": []any{
@@ -4643,10 +4332,10 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 10,
 										},
 										map[string]any{
-											"example": 1,
-											"kind": "query",
 											"name": "max_tool_success_rate",
 											"orig": "max_tool_success_rate",
 											"type": []any{
@@ -4656,10 +4345,10 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 1,
 										},
 										map[string]any{
-											"example": 0,
-											"kind": "query",
 											"name": "min_age_day",
 											"orig": "min_age_day",
 											"type": []any{
@@ -4669,10 +4358,10 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 0,
 										},
 										map[string]any{
-											"example": 50,
-											"kind": "query",
 											"name": "min_agentic_index",
 											"orig": "min_agentic_index",
 											"type": []any{
@@ -4682,10 +4371,10 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 50,
 										},
 										map[string]any{
-											"example": 50,
-											"kind": "query",
 											"name": "min_coding_index",
 											"orig": "min_coding_index",
 											"type": []any{
@@ -4695,10 +4384,10 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 50,
 										},
 										map[string]any{
-											"example": 50,
-											"kind": "query",
 											"name": "min_intelligence_index",
 											"orig": "min_intelligence_index",
 											"type": []any{
@@ -4708,10 +4397,10 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 50,
 										},
 										map[string]any{
-											"example": 0,
-											"kind": "query",
 											"name": "min_output_price",
 											"orig": "min_output_price",
 											"type": []any{
@@ -4721,10 +4410,10 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 0,
 										},
 										map[string]any{
-											"example": 0,
-											"kind": "query",
 											"name": "min_price",
 											"orig": "min_price",
 											"type": []any{
@@ -4734,10 +4423,10 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 0,
 										},
 										map[string]any{
-											"example": 0.9,
-											"kind": "query",
 											"name": "min_tool_success_rate",
 											"orig": "min_tool_success_rate",
 											"type": []any{
@@ -4747,17 +4436,17 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 0.9,
 										},
 										map[string]any{
-											"example": "openai,anthropic",
-											"kind": "query",
 											"name": "model_author",
 											"orig": "model_author",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "openai,anthropic",
 										},
 										map[string]any{
-											"example": 0,
-											"kind": "query",
 											"name": "offset",
 											"orig": "offset",
 											"type": []any{
@@ -4767,64 +4456,58 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 0,
 										},
 										map[string]any{
-											"example": "text",
-											"kind": "query",
 											"name": "output_modality",
 											"orig": "output_modality",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "text",
 										},
 										map[string]any{
-											"example": "OpenAI,Anthropic",
-											"kind": "query",
 											"name": "provider",
 											"orig": "provider",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "OpenAI,Anthropic",
 										},
 										map[string]any{
-											"example": "gpt-4",
-											"kind": "query",
 											"name": "q",
 											"orig": "q",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "gpt-4",
 										},
 										map[string]any{
-											"example": "eu",
-											"kind": "query",
 											"name": "region",
 											"orig": "region",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "eu",
 										},
 										map[string]any{
-											"example": "newest",
-											"kind": "query",
 											"name": "sort",
 											"orig": "sort",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "newest",
 										},
 										map[string]any{
-											"example": "temperature",
-											"kind": "query",
 											"name": "supported_parameter",
 											"orig": "supported_parameter",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "temperature",
 										},
 										map[string]any{
-											"example": "true",
-											"kind": "query",
 											"name": "zdr",
 											"orig": "zdr",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "true",
 										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/models",
-								"segments": []any{
-									map[string]any{
-										"lit": "models",
 									},
 								},
 								"select": map[string]any{
@@ -4863,37 +4546,8 @@ func MakeConfig() map[string]any {
 										"zdr",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"models",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/endpoints/zdr",
@@ -4905,6 +4559,37 @@ func MakeConfig() map[string]any {
 										"lit": "zdr",
 									},
 								},
+								"parts": []any{
+									"endpoints",
+									"zdr",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "zdr",
 									"exist": []any{
@@ -4912,14 +4597,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"endpoints",
-									"zdr",
 								},
 							},
 						},
@@ -4929,46 +4606,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "openai",
-											"kind": "param",
-											"name": "author",
-											"orig": "author",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "gpt-4",
-											"kind": "param",
-											"name": "slug",
-											"orig": "slug",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/models/{author}/{slug}/endpoints",
@@ -4986,6 +4623,57 @@ func MakeConfig() map[string]any {
 										"lit": "endpoints",
 									},
 								},
+								"parts": []any{
+									"models",
+									"{author}",
+									"{slug}",
+									"endpoints",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "author",
+											"orig": "author",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "openai",
+										},
+										map[string]any{
+											"name": "slug",
+											"orig": "slug",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "gpt-4",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"author",
@@ -4995,16 +4683,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"models",
-									"{author}",
-									"{slug}",
-									"endpoints",
-								},
 							},
 						},
 					},
@@ -5012,55 +4690,54 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"model",
+							"$.main.kit.entity.model",
 						},
 					},
-				},
-			},
-			"feedback": map[string]any{
-				"fields": []any{},
-				"name": "feedback",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
 				},
 			},
 			"file": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "created_at",
-						"req": true,
+						"title": "Created At",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "downloadable",
-						"req": true,
+						"title": "Downloadable",
 						"type": "`$BOOLEAN`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "filename",
-						"req": true,
+						"title": "Filename",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "id",
-						"req": true,
+						"title": "Id",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "mime_type",
-						"req": true,
+						"title": "Mime Type",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "size_bytes",
-						"req": true,
+						"title": "Size Bytes",
 						"type": "`$INTEGER`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "type",
-						"req": true,
+						"title": "Type",
 						"type": "`$STRING`",
+						"req": true,
 					},
 				},
 				"id": map[string]any{
@@ -5074,43 +4751,51 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
-											"kind": "query",
-											"name": "workspace_id",
-											"orig": "workspace_id",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/files",
 								"segments": []any{
 									map[string]any{
 										"lit": "files",
+									},
+								},
+								"parts": []any{
+									"files",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "workspace_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -5121,13 +4806,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"files",
-								},
 							},
 						},
 					},
@@ -5136,57 +4814,65 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "eyJjdXJzb3IiOiJmaWxlXzAxMUNOaGE4aUNKY1Uxd1hOUjZxNFY4dyJ9",
-											"kind": "query",
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 100,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
-											"kind": "query",
-											"name": "workspace_id",
-											"orig": "workspace_id",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/files",
 								"segments": []any{
 									map[string]any{
 										"lit": "files",
+									},
+								},
+								"parts": []any{
+									"files",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "eyJjdXJzb3IiOiJmaWxlXzAxMUNOaGE4aUNKY1Uxd1hOUjZxNFY4dyJ9",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 100,
+										},
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "workspace_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -5199,13 +4885,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"files",
-								},
 							},
 						},
 					},
@@ -5214,61 +4893,69 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "file_011CNha8iCJcU1wXNR6q4V8w",
-											"kind": "param",
-											"name": "id",
-											"orig": "file_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
-											"kind": "query",
-											"name": "workspace_id",
-											"orig": "workspace_id",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/files/{file_id}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"file_id": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "files",
 									},
 									map[string]any{
 										"var": "id",
+									},
+								},
+								"parts": []any{
+									"files",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"file_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "file_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "file_011CNha8iCJcU1wXNR6q4V8w",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "workspace_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -5280,65 +4967,11 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"files",
-									"{id}",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "file_011CNha8iCJcU1wXNR6q4V8w",
-											"kind": "param",
-											"name": "id",
-											"orig": "file_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
-											"kind": "query",
-											"name": "workspace_id",
-											"orig": "workspace_id",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/files/{file_id}/content",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"file_id": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "files",
@@ -5348,6 +4981,61 @@ func MakeConfig() map[string]any {
 									},
 									map[string]any{
 										"lit": "content",
+									},
+								},
+								"parts": []any{
+									"files",
+									"{id}",
+									"content",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"file_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "file_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "file_011CNha8iCJcU1wXNR6q4V8w",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "workspace_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -5360,15 +5048,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"files",
-									"{id}",
-									"content",
-								},
 							},
 						},
 					},
@@ -5377,61 +5056,69 @@ func MakeConfig() map[string]any {
 						"name": "remove",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "file_011CNha8iCJcU1wXNR6q4V8w",
-											"kind": "param",
-											"name": "id",
-											"orig": "file_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
-											"kind": "query",
-											"name": "workspace_id",
-											"orig": "workspace_id",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/files/{file_id}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"file_id": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "files",
 									},
 									map[string]any{
 										"var": "id",
+									},
+								},
+								"parts": []any{
+									"files",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"file_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "file_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "file_011CNha8iCJcU1wXNR6q4V8w",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "workspace_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -5442,14 +5129,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"files",
-									"{id}",
 								},
 							},
 						},
@@ -5463,8 +5142,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_type",
-						"req": true,
-						"short": "Type of API used for the generation",
+						"title": "Api Type",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5472,11 +5150,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Type of API used for the generation",
 					},
 					map[string]any{
 						"name": "app_id",
-						"req": true,
-						"short": "ID of the app that made the request",
+						"title": "App Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5484,12 +5163,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "ID of the app that made the request",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "cache_discount",
-						"req": true,
-						"short": "Discount applied due to caching",
+						"title": "Cache Discount",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5497,11 +5176,13 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Discount applied due to caching",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "cancelled",
-						"req": true,
-						"short": "Whether the generation was cancelled",
+						"title": "Cancelled",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5509,23 +5190,26 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Whether the generation was cancelled",
 					},
 					map[string]any{
 						"name": "created_at",
+						"title": "Created At",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "ISO 8601 timestamp of when the generation was created",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "data_region",
+						"title": "Data Region",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The data region this generation was routed through.",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "external_user",
-						"req": true,
-						"short": "External user identifier",
+						"title": "External User",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5533,11 +5217,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "External user identifier",
 					},
 					map[string]any{
 						"name": "finish_reason",
-						"req": true,
-						"short": "Reason the generation finished",
+						"title": "Finish Reason",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5545,12 +5230,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Reason the generation finished",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "generation_time",
-						"req": true,
-						"short": "Time taken for generation in milliseconds",
+						"title": "Generation Time",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5558,11 +5243,13 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Time taken for generation in milliseconds",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "http_referer",
-						"req": true,
-						"short": "Referer header from the request",
+						"title": "Http Referer",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5570,24 +5257,26 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Referer header from the request",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique identifier for the generation",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "is_byok",
+						"title": "Is Byok",
+						"type": "`$BOOLEAN`",
 						"req": true,
 						"short": "Whether this used bring-your-own-key",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "latency",
-						"req": true,
-						"short": "Total latency in milliseconds",
+						"title": "Latency",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5595,18 +5284,20 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Total latency in milliseconds",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "model",
+						"title": "Model",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Model used for the generation",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "moderation_latency",
-						"req": true,
-						"short": "Moderation latency in milliseconds",
+						"title": "Moderation Latency",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5614,11 +5305,13 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Moderation latency in milliseconds",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "native_finish_reason",
-						"req": true,
-						"short": "Native finish reason as reported by provider",
+						"title": "Native Finish Reason",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5626,11 +5319,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Native finish reason as reported by provider",
 					},
 					map[string]any{
 						"name": "native_tokens_cached",
-						"req": true,
-						"short": "Native cached tokens as reported by provider",
+						"title": "Native Tokens Cached",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5638,11 +5332,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Native cached tokens as reported by provider",
 					},
 					map[string]any{
 						"name": "native_tokens_completion",
-						"req": true,
-						"short": "Native completion tokens as reported by provider",
+						"title": "Native Tokens Completion",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5650,11 +5345,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Native completion tokens as reported by provider",
 					},
 					map[string]any{
 						"name": "native_tokens_completion_images",
-						"req": true,
-						"short": "Native completion image tokens as reported by provider",
+						"title": "Native Tokens Completion Images",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5662,11 +5358,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Native completion image tokens as reported by provider",
 					},
 					map[string]any{
 						"name": "native_tokens_prompt",
-						"req": true,
-						"short": "Native prompt tokens as reported by provider",
+						"title": "Native Tokens Prompt",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5674,11 +5371,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Native prompt tokens as reported by provider",
 					},
 					map[string]any{
 						"name": "native_tokens_reasoning",
-						"req": true,
-						"short": "Native reasoning tokens as reported by provider",
+						"title": "Native Tokens Reasoning",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5686,11 +5384,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Native reasoning tokens as reported by provider",
 					},
 					map[string]any{
 						"name": "num_fetches",
-						"req": true,
-						"short": "Number of web fetches performed",
+						"title": "Num Fetches",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5698,11 +5397,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Number of web fetches performed",
 					},
 					map[string]any{
 						"name": "num_input_audio_prompt",
-						"req": true,
-						"short": "Number of audio inputs in the prompt",
+						"title": "Num Input Audio Prompt",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5710,11 +5410,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Number of audio inputs in the prompt",
 					},
 					map[string]any{
 						"name": "num_media_completion",
-						"req": true,
-						"short": "Number of media items in the completion",
+						"title": "Num Media Completion",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5722,11 +5423,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Number of media items in the completion",
 					},
 					map[string]any{
 						"name": "num_media_prompt",
-						"req": true,
-						"short": "Number of media items in the prompt",
+						"title": "Num Media Prompt",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5734,11 +5436,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Number of media items in the prompt",
 					},
 					map[string]any{
 						"name": "num_search_results",
-						"req": true,
-						"short": "Number of search results included",
+						"title": "Num Search Results",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5746,17 +5449,19 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Number of search results included",
 					},
 					map[string]any{
 						"name": "origin",
+						"title": "Origin",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Origin URL of the request",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "preset_id",
-						"req": true,
-						"short": "ID of the preset used for this generation, null if no preset was used",
+						"title": "Preset Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5764,11 +5469,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "ID of the preset used for this generation, null if no preset was used",
 					},
 					map[string]any{
 						"name": "provider_name",
-						"req": true,
-						"short": "Name of the provider that served the request",
+						"title": "Provider Name",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5776,11 +5482,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Name of the provider that served the request",
 					},
 					map[string]any{
 						"name": "provider_responses",
-						"req": true,
-						"short": "List of provider responses for this generation, including fallback attempts",
+						"title": "Provider Responses",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5788,10 +5495,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "List of provider responses for this generation, including fallback attempts",
 					},
 					map[string]any{
 						"name": "request_id",
-						"short": "Unique identifier grouping all generations from a single API request",
+						"title": "Request Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5799,10 +5508,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Unique identifier grouping all generations from a single API request",
 					},
 					map[string]any{
 						"name": "response_cache_source_id",
-						"short": "If this generation was served from response cache, contains the original generation ID.",
+						"title": "Response Cache Source Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5810,11 +5520,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "If this generation was served from response cache, contains the original generation ID.",
 					},
 					map[string]any{
 						"name": "router",
-						"req": true,
-						"short": "Router used for the request (e.g., openrouter/auto)",
+						"title": "Router",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5822,11 +5532,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Router used for the request (e.g., openrouter/auto)",
 					},
 					map[string]any{
 						"name": "service_tier",
-						"req": true,
-						"short": "Service tier the upstream provider reported running this request on, or null if it did not report one.",
+						"title": "Service Tier",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5834,10 +5545,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Service tier the upstream provider reported running this request on, or null if it did not report one.",
 					},
 					map[string]any{
 						"name": "session_id",
-						"short": "Session identifier grouping multiple generations in the same session",
+						"title": "Session Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5845,11 +5558,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Session identifier grouping multiple generations in the same session",
 					},
 					map[string]any{
 						"name": "streamed",
-						"req": true,
-						"short": "Whether the response was streamed",
+						"title": "Streamed",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5857,11 +5570,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Whether the response was streamed",
 					},
 					map[string]any{
 						"name": "tokens_completion",
-						"req": true,
-						"short": "Number of tokens in the completion",
+						"title": "Tokens Completion",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5869,11 +5583,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Number of tokens in the completion",
 					},
 					map[string]any{
 						"name": "tokens_prompt",
-						"req": true,
-						"short": "Number of tokens in the prompt",
+						"title": "Tokens Prompt",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5881,18 +5596,20 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Number of tokens in the prompt",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "total_cost",
+						"title": "Total Cost",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "Total cost of the generation in USD",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "upstream_id",
-						"req": true,
-						"short": "Upstream provider's identifier for this generation",
+						"title": "Upstream Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5900,12 +5617,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Upstream provider's identifier for this generation",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "upstream_inference_cost",
-						"req": true,
-						"short": "Cost charged by the upstream provider",
+						"title": "Upstream Inference Cost",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5913,18 +5630,21 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Cost charged by the upstream provider",
+						"format": "double",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "usage",
+						"title": "Usage",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "Usage amount in USD",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "user_agent",
-						"req": true,
-						"short": "User-Agent header from the request",
+						"title": "User Agent",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5932,11 +5652,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "User-Agent header from the request",
 					},
 					map[string]any{
 						"name": "web_search_engine",
-						"req": true,
-						"short": "The resolved web search engine used for this generation (e.g.",
+						"title": "Web Search Engine",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -5944,6 +5665,8 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "The resolved web search engine used for this generation (e.g.",
 					},
 				},
 				"id": map[string]any{
@@ -5957,44 +5680,52 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "gen-1234567890",
-											"kind": "query",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/generation",
 								"segments": []any{
 									map[string]any{
 										"lit": "generation",
+									},
+								},
+								"parts": []any{
+									"generation",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"example": "gen-1234567890",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -6005,13 +5736,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"generation",
-								},
 							},
 						},
 					},
@@ -6020,65 +5744,30 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"generation_content": map[string]any{
+			"generation_content_data": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "input",
+						"title": "Input",
+						"type": "`$ANY`",
 						"req": true,
 						"short": "The input to the generation — either a prompt string or an array of messages",
-						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 0,
-						},
 					},
 					map[string]any{
 						"name": "output",
+						"title": "Output",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "The output from the generation",
-						"type": "`$OBJECT`",
 					},
 				},
-				"name": "generation_content",
+				"name": "generation_content_data",
 				"op": map[string]any{
 					"load": map[string]any{
 						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "gen-1234567890",
-											"kind": "query",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/generation/content",
@@ -6090,6 +5779,47 @@ func MakeConfig() map[string]any {
 										"lit": "content",
 									},
 								},
+								"parts": []any{
+									"generation",
+									"content",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"example": "gen-1234567890",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -6097,14 +5827,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"generation",
-									"content",
 								},
 							},
 						},
@@ -6118,7 +5840,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "allowed_models",
-						"short": "Array of model canonical_slugs (immutable identifiers)",
+						"title": "Allowed Models",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6126,10 +5848,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Array of model canonical_slugs (immutable identifiers)",
 					},
 					map[string]any{
 						"name": "allowed_providers",
-						"short": "List of allowed provider IDs",
+						"title": "Allowed Providers",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6137,10 +5860,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "List of allowed provider IDs",
 					},
 					map[string]any{
 						"name": "content_filter_builtins",
-						"short": "Builtin content filters applied to requests.",
+						"title": "Content Filter Builtins",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6148,10 +5872,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Builtin content filters applied to requests.",
 					},
 					map[string]any{
 						"name": "content_filters",
-						"short": "Custom regex content filters applied to request messages",
+						"title": "Content Filters",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6159,16 +5884,18 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Custom regex content filters applied to request messages",
 					},
 					map[string]any{
 						"name": "created_at",
+						"title": "Created At",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "ISO 8601 timestamp of when the guardrail was created",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Description of the guardrail",
+						"title": "Description",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6176,11 +5903,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Description of the guardrail",
 					},
 					map[string]any{
-						"deprecated": true,
 						"name": "enforce_zdr",
-						"short": "Deprecated.",
+						"title": "Enforce Zdr",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6188,10 +5915,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Deprecated.",
+						"deprecated": true,
 					},
 					map[string]any{
 						"name": "enforce_zdr_anthropic",
-						"short": "Whether to enforce zero data retention for Anthropic models.",
+						"title": "Enforce Zdr Anthropic",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6199,10 +5928,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Whether to enforce zero data retention for Anthropic models.",
 					},
 					map[string]any{
 						"name": "enforce_zdr_google",
-						"short": "Whether to enforce zero data retention for Google models.",
+						"title": "Enforce Zdr Google",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6210,10 +5940,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Whether to enforce zero data retention for Google models.",
 					},
 					map[string]any{
 						"name": "enforce_zdr_openai",
-						"short": "Whether to enforce zero data retention for OpenAI models.",
+						"title": "Enforce Zdr Openai",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6221,10 +5952,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Whether to enforce zero data retention for OpenAI models.",
 					},
 					map[string]any{
 						"name": "enforce_zdr_other",
-						"short": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI.",
+						"title": "Enforce Zdr Other",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6232,10 +5964,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI.",
 					},
 					map[string]any{
 						"name": "enforce_zdr_xai",
-						"short": "Whether to enforce zero data retention for xAI models.",
+						"title": "Enforce Zdr Xai",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6243,17 +5976,19 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Whether to enforce zero data retention for xAI models.",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique identifier for the guardrail",
-						"type": "`$STRING`",
+						"format": "uuid",
 					},
 					map[string]any{
 						"name": "ignored_models",
-						"short": "Array of model canonical_slugs to exclude from routing",
+						"title": "Ignored Models",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6261,10 +5996,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Array of model canonical_slugs to exclude from routing",
 					},
 					map[string]any{
 						"name": "ignored_providers",
-						"short": "List of provider IDs to exclude from routing",
+						"title": "Ignored Providers",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6272,11 +6008,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "List of provider IDs to exclude from routing",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "limit_usd",
-						"short": "Spending limit in USD",
+						"title": "Limit Usd",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6284,16 +6020,19 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Spending limit in USD",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Name of the guardrail",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "reset_interval",
-						"short": "Interval at which the limit resets (daily, weekly, monthly)",
+						"title": "Reset Interval",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6301,10 +6040,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Interval at which the limit resets (daily, weekly, monthly)",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "ISO 8601 timestamp of when the guardrail was last updated",
+						"title": "Updated At",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6312,18 +6052,20 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "ISO 8601 timestamp of when the guardrail was last updated",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "workspace_id",
+						"title": "Workspace Id",
+						"type": "`$STRING`",
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": "`$STRING`",
 							},
 						},
-						"req": true,
 						"short": "The workspace ID this guardrail belongs to.",
-						"type": "`$STRING`",
+						"format": "uuid",
 					},
 				},
 				"id": map[string]any{
@@ -6337,34 +6079,42 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/guardrails",
 								"segments": []any{
 									map[string]any{
 										"lit": "guardrails",
+									},
+								},
+								"parts": []any{
+									"guardrails",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -6374,13 +6124,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"guardrails",
-								},
 							},
 						},
 					},
@@ -6389,38 +6132,52 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/guardrails",
+								"segments": []any{
+									map[string]any{
+										"lit": "guardrails",
+									},
+								},
+								"parts": []any{
+									"guardrails",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
 								"args": map[string]any{
 									"header": []any{
 										map[string]any{
-											"kind": "header",
 											"name": "http_referer",
 											"orig": "http_referer",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_category",
 											"orig": "x_open_router_category",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_title",
 											"orig": "x_open_router_title",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 									},
 									"query": []any{
 										map[string]any{
-											"example": 50,
-											"kind": "query",
 											"name": "limit",
 											"orig": "limit",
 											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
 										},
 										map[string]any{
-											"example": 0,
-											"kind": "query",
 											"name": "offset",
 											"orig": "offset",
 											"type": []any{
@@ -6430,22 +6187,16 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 0,
 										},
 										map[string]any{
-											"example": "0df9e665-d932-5740-b2c7-b52af166bc11",
-											"kind": "query",
 											"name": "workspace_id",
 											"orig": "workspace_id",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "0df9e665-d932-5740-b2c7-b52af166bc11",
 										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/guardrails",
-								"segments": []any{
-									map[string]any{
-										"lit": "guardrails",
 									},
 								},
 								"select": map[string]any{
@@ -6458,13 +6209,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"guardrails",
-								},
 							},
 						},
 					},
@@ -6473,38 +6217,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "550e8400-e29b-41d4-a716-446655440000",
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/guardrails/{id}",
@@ -6516,6 +6228,47 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"guardrails",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "550e8400-e29b-41d4-a716-446655440000",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -6523,14 +6276,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"guardrails",
-									"{id}",
 								},
 							},
 						},
@@ -6540,38 +6285,6 @@ func MakeConfig() map[string]any {
 						"name": "remove",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "550e8400-e29b-41d4-a716-446655440000",
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/guardrails/{id}",
@@ -6583,6 +6296,47 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"guardrails",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "550e8400-e29b-41d4-a716-446655440000",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -6590,14 +6344,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"guardrails",
-									"{id}",
 								},
 							},
 						},
@@ -6611,103 +6357,110 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "aspect_ratio",
-						"short": "Normalized aspect ratio of the generated image.",
+						"title": "Aspect Ratio",
 						"type": "`$STRING`",
+						"short": "Normalized aspect ratio of the generated image.",
 					},
 					map[string]any{
 						"name": "background",
-						"short": "Background treatment.",
+						"title": "Background",
 						"type": "`$STRING`",
+						"short": "Background treatment.",
 					},
 					map[string]any{
 						"name": "created",
+						"title": "Created",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Unix timestamp (seconds) when the image was generated",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "data",
+						"title": "Data",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "Generated images",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "input_references",
-						"short": "Reference images to guide image-to-image generation, as base64 data URLs or HTTP(S) URLs.",
+						"title": "Input References",
 						"type": "`$ARRAY`",
+						"short": "Reference images to guide image-to-image generation, as base64 data URLs or HTTP(S) URLs.",
 					},
 					map[string]any{
 						"name": "model",
+						"title": "Model",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The image generation model to use",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "n",
-						"short": "Number of images to generate (1-10).",
+						"title": "N",
 						"type": "`$INTEGER`",
+						"short": "Number of images to generate (1-10).",
 					},
 					map[string]any{
 						"name": "output_compression",
-						"short": "Compression level (0-100) for webp/jpeg output.",
+						"title": "Output Compression",
 						"type": "`$INTEGER`",
+						"short": "Compression level (0-100) for webp/jpeg output.",
 					},
 					map[string]any{
 						"name": "output_format",
-						"short": "Encoding of the returned image bytes.",
+						"title": "Output Format",
 						"type": "`$STRING`",
+						"short": "Encoding of the returned image bytes.",
 					},
 					map[string]any{
 						"name": "prompt",
+						"title": "Prompt",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Text description of the desired image",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "provider",
-						"short": "Provider routing preferences and provider-specific passthrough configuration.",
+						"title": "Provider",
 						"type": "`$OBJECT`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 4,
-							"depth": 3,
-						},
+						"short": "Provider routing preferences and provider-specific passthrough configuration.",
 					},
 					map[string]any{
 						"name": "quality",
-						"short": "Rendering quality.",
+						"title": "Quality",
 						"type": "`$STRING`",
+						"short": "Rendering quality.",
 					},
 					map[string]any{
 						"name": "resolution",
-						"short": "Normalized resolution tier of the generated image.",
+						"title": "Resolution",
 						"type": "`$STRING`",
+						"short": "Normalized resolution tier of the generated image.",
 					},
 					map[string]any{
 						"name": "seed",
-						"short": "If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result.",
+						"title": "Seed",
 						"type": "`$INTEGER`",
+						"short": "If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result.",
 					},
 					map[string]any{
 						"name": "size",
-						"short": "Optional.",
+						"title": "Size",
 						"type": "`$STRING`",
+						"short": "Optional.",
 					},
 					map[string]any{
 						"name": "stream",
-						"short": "If true, partial images are streamed as SSE events as they become available.",
+						"title": "Stream",
 						"type": "`$BOOLEAN`",
+						"short": "If true, partial images are streamed as SSE events as they become available.",
 					},
 					map[string]any{
 						"name": "usage",
+						"title": "Usage",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Token and cost usage for the image generation request, when available",
-						"type": "`$OBJECT`",
-						"union": map[string]any{
-							"branches": 4,
-							"count": 1,
-							"depth": 3,
-						},
 					},
 				},
 				"name": "image",
@@ -6717,28 +6470,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/images",
@@ -6747,19 +6478,42 @@ func MakeConfig() map[string]any {
 										"lit": "images",
 									},
 								},
+								"parts": []any{
+									"images",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"images",
 								},
 							},
 						},
@@ -6773,32 +6527,35 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "allowed_passthrough_parameters",
+						"title": "Allowed Passthrough Parameters",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "Provider-specific options accepted under provider.options[provider_slug].",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "pricing",
+						"title": "Pricing",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "Billable pricing lines for this endpoint.",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "provider_name",
+						"title": "Provider Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Provider display name",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "provider_slug",
+						"title": "Provider Slug",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Provider slug",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "provider_tag",
-						"req": true,
-						"short": "Provider tag for request-side selection",
+						"title": "Provider Tag",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -6806,17 +6563,21 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Provider tag for request-side selection",
 					},
 					map[string]any{
 						"name": "supported_parameters",
-						"req": true,
+						"title": "Supported Parameters",
 						"type": "`$ANY`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "supports_streaming",
+						"title": "Supports Streaming",
+						"type": "`$BOOLEAN`",
 						"req": true,
 						"short": "Whether this endpoint supports native SSE streaming (`stream: true` in the request).",
-						"type": "`$BOOLEAN`",
 					},
 				},
 				"name": "image_model_endpoint",
@@ -6826,54 +6587,9 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "bytedance-seed",
-											"kind": "param",
-											"name": "model_id",
-											"orig": "author",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "seedream-4.5",
-											"kind": "param",
-											"name": "slug",
-											"orig": "slug",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/images/models/{author}/{slug}/endpoints",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"author": "model_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "images",
@@ -6891,6 +6607,62 @@ func MakeConfig() map[string]any {
 										"lit": "endpoints",
 									},
 								},
+								"parts": []any{
+									"images",
+									"models",
+									"{model_id}",
+									"{slug}",
+									"endpoints",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"author": "model_id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.endpoints`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "model_id",
+											"orig": "author",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "bytedance-seed",
+										},
+										map[string]any{
+											"name": "slug",
+											"orig": "slug",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "seedream-4.5",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -6900,17 +6672,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.endpoints`",
-								},
-								"parts": []any{
-									"images",
-									"models",
-									"{model_id}",
-									"{slug}",
-									"endpoints",
-								},
 							},
 						},
 					},
@@ -6918,93 +6679,79 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"model",
+							"$.main.kit.entity.model",
 						},
 					},
 				},
 			},
-			"image_models_list": map[string]any{
+			"image_model_list_item": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "architecture",
-						"req": true,
+						"title": "Architecture",
 						"type": "`$OBJECT`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "created",
+						"title": "Created",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Unix timestamp (seconds) of when the model was created",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "description",
-						"req": true,
+						"title": "Description",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "endpoints",
+						"title": "Endpoints",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Relative URL to the full per-endpoint records for this model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Model slug",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Display name",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "supported_parameters",
+						"title": "Supported Parameters",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Union of supported parameters across every endpoint of this model.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "supports_streaming",
+						"title": "Supports Streaming",
+						"type": "`$BOOLEAN`",
 						"req": true,
 						"short": "Whether any endpoint of this model supports native SSE streaming on the dedicated Image API (i.e.",
-						"type": "`$BOOLEAN`",
 					},
 				},
 				"id": map[string]any{
 					"field": "id",
 					"name": "id",
 				},
-				"name": "image_models_list",
+				"name": "image_model_list_item",
 				"op": map[string]any{
 					"list": map[string]any{
 						"input": "data",
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/images/models",
@@ -7016,20 +6763,43 @@ func MakeConfig() map[string]any {
 										"lit": "models",
 									},
 								},
+								"parts": []any{
+									"images",
+									"models",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"images",
-									"models",
 								},
 							},
 						},
@@ -7040,39 +6810,10 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"key": map[string]any{
-				"fields": []any{},
-				"name": "key",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"guardrail",
-						},
-					},
-				},
-			},
-			"list_byok_key": map[string]any{
-				"fields": []any{},
-				"name": "list_byok_key",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"list_guardrail": map[string]any{
-				"fields": []any{},
-				"name": "list_guardrail",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"list_key_assignment": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "assigned_by",
-						"req": true,
-						"short": "User ID of who made the assignment",
+						"title": "Assigned By",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -7080,119 +6821,68 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "User ID of who made the assignment",
 					},
 					map[string]any{
 						"name": "created_at",
+						"title": "Created At",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "ISO 8601 timestamp of when the assignment was created",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "guardrail_id",
+						"title": "Guardrail Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "ID of the guardrail",
-						"type": "`$STRING`",
+						"format": "uuid",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique identifier for the assignment",
-						"type": "`$STRING`",
+						"format": "uuid",
 					},
 					map[string]any{
 						"name": "key_hash",
+						"title": "Key Hash",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Hash of the assigned API key",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "key_label",
+						"title": "Key Label",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Label of the API key",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "key_name",
+						"title": "Key Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Name of the API key",
-						"type": "`$STRING`",
 					},
 				},
 				"id": map[string]any{
 					"field": "id",
 					"name": "id",
 				},
-				"name": "list_key_assignment",
+				"name": "key",
 				"op": map[string]any{
 					"list": map[string]any{
 						"input": "data",
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "550e8400-e29b-41d4-a716-446655440000",
-											"kind": "param",
-											"name": "guardrail_id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": 50,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "offset",
-											"orig": "offset",
-											"type": []any{
-												"`$ONE`",
-												[]any{
-													"`$INTEGER`",
-													"`$NULL`",
-												},
-											},
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/guardrails/{id}/assignments/keys",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"id": "guardrail_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "guardrails",
@@ -7207,6 +6897,75 @@ func MakeConfig() map[string]any {
 										"lit": "keys",
 									},
 								},
+								"parts": []any{
+									"guardrails",
+									"{guardrail_id}",
+									"assignments",
+									"keys",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"id": "guardrail_id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "guardrail_id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "550e8400-e29b-41d4-a716-446655440000",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "offset",
+											"orig": "offset",
+											"type": []any{
+												"`$ONE`",
+												[]any{
+													"`$INTEGER`",
+													"`$NULL`",
+												},
+											},
+											"kind": "query",
+											"example": 0,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"guardrail_id",
@@ -7217,62 +6976,8 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"guardrails",
-									"{guardrail_id}",
-									"assignments",
-									"keys",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": 50,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "offset",
-											"orig": "offset",
-											"type": []any{
-												"`$ONE`",
-												[]any{
-													"`$INTEGER`",
-													"`$NULL`",
-												},
-											},
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/guardrails/assignments/keys",
@@ -7287,224 +6992,46 @@ func MakeConfig() map[string]any {
 										"lit": "keys",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"http_referer",
-										"limit",
-										"offset",
-										"x_open_router_category",
-										"x_open_router_title",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
 								"parts": []any{
 									"guardrails",
 									"assignments",
 									"keys",
 								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"guardrail",
-						},
-					},
-				},
-			},
-			"list_member_assignment": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "assigned_by",
-						"req": true,
-						"short": "User ID of who made the assignment",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$STRING`",
-								"`$NULL`",
-							},
-						},
-					},
-					map[string]any{
-						"name": "created_at",
-						"req": true,
-						"short": "ISO 8601 timestamp of when the assignment was created",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uuid",
-						"name": "guardrail_id",
-						"req": true,
-						"short": "ID of the guardrail",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uuid",
-						"name": "id",
-						"req": true,
-						"short": "Unique identifier for the assignment",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "organization_id",
-						"req": true,
-						"short": "Organization ID",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "user_id",
-						"req": true,
-						"short": "Clerk user ID of the assigned member",
-						"type": "`$STRING`",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "list_member_assignment",
-				"op": map[string]any{
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "550e8400-e29b-41d4-a716-446655440000",
-											"kind": "param",
-											"name": "guardrail_id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": 50,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "offset",
-											"orig": "offset",
-											"type": []any{
-												"`$ONE`",
-												[]any{
-													"`$INTEGER`",
-													"`$NULL`",
-												},
-											},
-										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/guardrails/{id}/assignments/members",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"id": "guardrail_id",
-									},
-								},
-								"segments": []any{
-									map[string]any{
-										"lit": "guardrails",
-									},
-									map[string]any{
-										"var": "guardrail_id",
-									},
-									map[string]any{
-										"lit": "assignments",
-									},
-									map[string]any{
-										"lit": "members",
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"guardrail_id",
-										"http_referer",
-										"limit",
-										"offset",
-										"x_open_router_category",
-										"x_open_router_title",
-									},
-								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"guardrails",
-									"{guardrail_id}",
-									"assignments",
-									"members",
-								},
-							},
-							map[string]any{
 								"args": map[string]any{
 									"header": []any{
 										map[string]any{
-											"kind": "header",
 											"name": "http_referer",
 											"orig": "http_referer",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_category",
 											"orig": "x_open_router_category",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_title",
 											"orig": "x_open_router_title",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 									},
 									"query": []any{
 										map[string]any{
-											"example": 50,
-											"kind": "query",
 											"name": "limit",
 											"orig": "limit",
 											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
 										},
 										map[string]any{
-											"example": 0,
-											"kind": "query",
 											"name": "offset",
 											"orig": "offset",
 											"type": []any{
@@ -7514,21 +7041,9 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 0,
 										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/guardrails/assignments/members",
-								"segments": []any{
-									map[string]any{
-										"lit": "guardrails",
-									},
-									map[string]any{
-										"lit": "assignments",
-									},
-									map[string]any{
-										"lit": "members",
 									},
 								},
 								"select": map[string]any{
@@ -7540,15 +7055,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"guardrails",
-									"assignments",
-									"members",
-								},
 							},
 						},
 					},
@@ -7556,7 +7062,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"guardrail",
+							"$.main.kit.entity.guardrail",
 						},
 					},
 				},
@@ -7565,20 +7071,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "data",
+						"title": "Data",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of observability destinations.",
-						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 11,
-							"depth": 13,
-						},
 					},
 					map[string]any{
 						"name": "total_count",
+						"title": "Total Count",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Total number of destinations matching the filters.",
-						"type": "`$INTEGER`",
 					},
 				},
 				"name": "list_observability_destination",
@@ -7588,57 +7091,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": 50,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "offset",
-											"orig": "offset",
-											"type": []any{
-												"`$ONE`",
-												[]any{
-													"`$INTEGER`",
-													"`$NULL`",
-												},
-											},
-										},
-										map[string]any{
-											"example": "550e8400-e29b-41d4-a716-446655440000",
-											"kind": "query",
-											"name": "workspace_id",
-											"orig": "workspace_id",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/observability/destinations",
@@ -7648,6 +7100,66 @@ func MakeConfig() map[string]any {
 									},
 									map[string]any{
 										"lit": "destinations",
+									},
+								},
+								"parts": []any{
+									"observability",
+									"destinations",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "offset",
+											"orig": "offset",
+											"type": []any{
+												"`$ONE`",
+												[]any{
+													"`$INTEGER`",
+													"`$NULL`",
+												},
+											},
+											"kind": "query",
+											"example": 0,
+										},
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "workspace_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "550e8400-e29b-41d4-a716-446655440000",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -7660,26 +7172,10 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"observability",
-									"destinations",
-								},
 							},
 						},
 					},
 				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"list_preset": map[string]any{
-				"fields": []any{},
-				"name": "list_preset",
-				"op": map[string]any{},
 				"relations": map[string]any{
 					"ancestors": []any{},
 				},
@@ -7688,32 +7184,37 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "config",
-						"req": true,
+						"title": "Config",
 						"type": "`$OBJECT`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "created_at",
-						"req": true,
+						"title": "Created At",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "creator_id",
-						"req": true,
+						"title": "Creator Id",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "id",
-						"req": true,
+						"title": "Id",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "preset_id",
-						"req": true,
+						"title": "Preset Id",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "system_prompt",
-						"req": true,
+						"title": "System Prompt",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -7721,16 +7222,19 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
 					},
 					map[string]any{
 						"name": "updated_at",
-						"req": true,
+						"title": "Updated At",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "version",
-						"req": true,
+						"title": "Version",
 						"type": "`$INTEGER`",
+						"req": true,
 					},
 				},
 				"id": map[string]any{
@@ -7744,60 +7248,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "my-preset",
-											"kind": "param",
-											"name": "slug",
-											"orig": "slug",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": 50,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "offset",
-											"orig": "offset",
-											"type": []any{
-												"`$ONE`",
-												[]any{
-													"`$INTEGER`",
-													"`$NULL`",
-												},
-											},
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/presets/{slug}/versions",
@@ -7812,6 +7262,70 @@ func MakeConfig() map[string]any {
 										"lit": "versions",
 									},
 								},
+								"parts": []any{
+									"presets",
+									"{slug}",
+									"versions",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "slug",
+											"orig": "slug",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "my-preset",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "offset",
+											"orig": "offset",
+											"type": []any{
+												"`$ONE`",
+												[]any{
+													"`$INTEGER`",
+													"`$NULL`",
+												},
+											},
+											"kind": "query",
+											"example": 0,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -7822,15 +7336,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"presets",
-									"{slug}",
-									"versions",
-								},
 							},
 						},
 					},
@@ -7838,45 +7343,16 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"preset",
+							"$.main.kit.entity.preset",
 						},
 					},
 				},
 			},
-			"list_workspace": map[string]any{
-				"fields": []any{},
-				"name": "list_workspace",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"list_workspace_budget": map[string]any{
+			"member": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "created_at",
-						"req": true,
-						"short": "ISO 8601 timestamp of when the budget was created",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uuid",
-						"name": "id",
-						"req": true,
-						"short": "Unique identifier for the budget",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "double",
-						"name": "limit_usd",
-						"req": true,
-						"short": "Spending limit in USD for this interval",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"name": "reset_interval",
-						"req": true,
-						"short": "Interval at which spend resets.",
+						"name": "assigned_by",
+						"title": "Assigned By",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -7884,200 +7360,130 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-					},
-					map[string]any{
-						"name": "updated_at",
 						"req": true,
-						"short": "ISO 8601 timestamp of when the budget was last updated",
-						"type": "`$STRING`",
+						"short": "User ID of who made the assignment",
 					},
 					map[string]any{
+						"name": "created_at",
+						"title": "Created At",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "ISO 8601 timestamp of when the assignment was created",
+					},
+					map[string]any{
+						"name": "guardrail_id",
+						"title": "Guardrail Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "ID of the guardrail",
 						"format": "uuid",
-						"name": "workspace_id",
-						"req": true,
-						"short": "ID of the workspace the budget belongs to",
+					},
+					map[string]any{
+						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
+						"req": true,
+						"short": "Unique identifier for the assignment",
+						"format": "uuid",
+					},
+					map[string]any{
+						"name": "organization_id",
+						"title": "Organization Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "Organization ID",
+					},
+					map[string]any{
+						"name": "user_id",
+						"title": "User Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "Clerk user ID of the assigned member",
 					},
 				},
 				"id": map[string]any{
 					"field": "id",
 					"name": "id",
 				},
-				"name": "list_workspace_budget",
+				"name": "member",
 				"op": map[string]any{
 					"list": map[string]any{
 						"input": "data",
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "production",
-											"kind": "param",
-											"name": "workspace_id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
-								"orig": "/workspaces/{id}/budgets",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"id": "workspace_id",
-									},
-								},
+								"orig": "/guardrails/{id}/assignments/members",
 								"segments": []any{
 									map[string]any{
-										"lit": "workspaces",
+										"lit": "guardrails",
 									},
 									map[string]any{
-										"var": "workspace_id",
+										"var": "guardrail_id",
 									},
 									map[string]any{
-										"lit": "budgets",
+										"lit": "assignments",
+									},
+									map[string]any{
+										"lit": "members",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"http_referer",
-										"workspace_id",
-										"x_open_router_category",
-										"x_open_router_title",
+								"parts": []any{
+									"guardrails",
+									"{guardrail_id}",
+									"assignments",
+									"members",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"id": "guardrail_id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"workspaces",
-									"{workspace_id}",
-									"budgets",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"workspace",
-						},
-					},
-				},
-			},
-			"list_workspace_member": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "created_at",
-						"req": true,
-						"short": "ISO 8601 timestamp of when the membership was created",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uuid",
-						"name": "id",
-						"req": true,
-						"short": "Unique identifier for the workspace membership",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "role",
-						"req": true,
-						"short": "Role of the member in the workspace",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "user_id",
-						"req": true,
-						"short": "Clerk user ID of the member",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uuid",
-						"name": "workspace_id",
-						"req": true,
-						"short": "ID of the workspace",
-						"type": "`$STRING`",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "list_workspace_member",
-				"op": map[string]any{
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
 								"args": map[string]any{
 									"header": []any{
 										map[string]any{
-											"kind": "header",
 											"name": "http_referer",
 											"orig": "http_referer",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_category",
 											"orig": "x_open_router_category",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_title",
 											"orig": "x_open_router_title",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 									},
 									"params": []any{
 										map[string]any{
-											"example": "production",
-											"kind": "param",
-											"name": "workspace_id",
+											"name": "guardrail_id",
 											"orig": "id",
-											"reqd": true,
 											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "550e8400-e29b-41d4-a716-446655440000",
 										},
 									},
 									"query": []any{
 										map[string]any{
-											"example": 50,
-											"kind": "query",
 											"name": "limit",
 											"orig": "limit",
 											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
 										},
 										map[string]any{
-											"example": 0,
-											"kind": "query",
 											"name": "offset",
 											"orig": "offset",
 											"type": []any{
@@ -8087,26 +7493,89 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 0,
 										},
 									},
 								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/workspaces/{id}/members",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"id": "workspace_id",
+								"select": map[string]any{
+									"exist": []any{
+										"guardrail_id",
+										"http_referer",
+										"limit",
+										"offset",
+										"x_open_router_category",
+										"x_open_router_title",
 									},
 								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/guardrails/assignments/members",
 								"segments": []any{
 									map[string]any{
-										"lit": "workspaces",
+										"lit": "guardrails",
 									},
 									map[string]any{
-										"var": "workspace_id",
+										"lit": "assignments",
 									},
 									map[string]any{
 										"lit": "members",
+									},
+								},
+								"parts": []any{
+									"guardrails",
+									"assignments",
+									"members",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "offset",
+											"orig": "offset",
+											"type": []any{
+												"`$ONE`",
+												[]any{
+													"`$INTEGER`",
+													"`$NULL`",
+												},
+											},
+											"kind": "query",
+											"example": 0,
+										},
 									},
 								},
 								"select": map[string]any{
@@ -8114,19 +7583,9 @@ func MakeConfig() map[string]any {
 										"http_referer",
 										"limit",
 										"offset",
-										"workspace_id",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"workspaces",
-									"{workspace_id}",
-									"members",
 								},
 							},
 						},
@@ -8135,19 +7594,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"workspace",
-						},
-					},
-				},
-			},
-			"member": map[string]any{
-				"fields": []any{},
-				"name": "member",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"guardrail",
+							"$.main.kit.entity.guardrail",
 						},
 					},
 				},
@@ -8156,28 +7603,25 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "cache_control",
+						"title": "Cache Control",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Enable automatic prompt caching.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "context_management",
+						"title": "Context Management",
 						"type": []any{
 							"`$ONE`",
 							[]any{
 								"`$OBJECT`",
 								"`$NULL`",
 							},
-						},
-						"union": map[string]any{
-							"branches": 3,
-							"count": 3,
-							"depth": 7,
 						},
 					},
 					map[string]any{
 						"name": "fallbacks",
-						"short": "Fallback models to try if the primary model fails or refuses, in order.",
+						"title": "Fallbacks",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8185,14 +7629,16 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Fallback models to try if the primary model fails or refuses, in order.",
 					},
 					map[string]any{
 						"name": "max_tokens",
+						"title": "Max Tokens",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "messages",
-						"req": true,
+						"title": "Messages",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8200,43 +7646,39 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-						"union": map[string]any{
-							"branches": 12,
-							"count": 7,
-							"depth": 14,
-						},
+						"req": true,
 					},
 					map[string]any{
 						"name": "metadata",
+						"title": "Metadata",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "model",
-						"req": true,
+						"title": "Model",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "models",
+						"title": "Models",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "output_config",
-						"short": "Configuration for controlling output behavior.",
+						"title": "Output Config",
 						"type": "`$OBJECT`",
+						"short": "Configuration for controlling output behavior.",
 					},
 					map[string]any{
 						"name": "plugins",
-						"short": "Plugins you want to enable for this request, including their settings.",
+						"title": "Plugins",
 						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 5,
-							"count": 4,
-							"depth": 12,
-						},
+						"short": "Plugins you want to enable for this request, including their settings.",
 					},
 					map[string]any{
 						"name": "provider",
-						"short": "When multiple model providers are available, optionally indicate your routing preference.",
+						"title": "Provider",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8244,16 +7686,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-						"union": map[string]any{
-							"branches": 2,
-							"count": 6,
-							"depth": 3,
-						},
+						"short": "When multiple model providers are available, optionally indicate your routing preference.",
 					},
 					map[string]any{
-						"deprecated": true,
 						"name": "route",
-						"short": "**DEPRECATED** Use providers.sort.partition instead.",
+						"title": "Route",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8261,92 +7698,89 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "**DEPRECATED** Use providers.sort.partition instead.",
+						"deprecated": true,
 					},
 					map[string]any{
 						"name": "service_tier",
+						"title": "Service Tier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "session_id",
-						"short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
+						"title": "Session Id",
 						"type": "`$STRING`",
+						"short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
 					},
 					map[string]any{
 						"name": "speed",
+						"title": "Speed",
 						"type": "`$ANY`",
 					},
 					map[string]any{
 						"name": "stop_sequences",
+						"title": "Stop Sequences",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "stop_server_tools_when",
-						"short": "Stop conditions for the server-tool agent loop.",
+						"title": "Stop Server Tools When",
 						"type": "`$ARRAY`",
+						"short": "Stop conditions for the server-tool agent loop.",
 					},
 					map[string]any{
 						"name": "stream",
+						"title": "Stream",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "system",
+						"title": "System",
 						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 0,
-						},
 					},
 					map[string]any{
-						"format": "double",
 						"name": "temperature",
+						"title": "Temperature",
 						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "thinking",
+						"title": "Thinking",
 						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 3,
-							"count": 1,
-							"depth": 0,
-						},
 					},
 					map[string]any{
 						"name": "tool_choice",
+						"title": "Tool Choice",
 						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 4,
-							"count": 1,
-							"depth": 0,
-						},
 					},
 					map[string]any{
 						"name": "tools",
+						"title": "Tools",
 						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 13,
-							"count": 2,
-							"depth": 6,
-						},
 					},
 					map[string]any{
 						"name": "top_k",
+						"title": "Top K",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "top_p",
+						"title": "Top P",
 						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "trace",
-						"short": "Metadata for observability and tracing.",
+						"title": "Trace",
 						"type": "`$OBJECT`",
+						"short": "Metadata for observability and tracing.",
 					},
 					map[string]any{
 						"name": "user",
-						"short": "A unique identifier representing your end-user, which helps distinguish between different users of your app.",
+						"title": "User",
 						"type": "`$STRING`",
+						"short": "A unique identifier representing your end-user, which helps distinguish between different users of your app.",
 					},
 				},
 				"name": "message",
@@ -8356,41 +7790,115 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/presets/{slug}/messages",
+								"segments": []any{
+									map[string]any{
+										"lit": "presets",
+									},
+									map[string]any{
+										"var": "slug",
+									},
+									map[string]any{
+										"lit": "messages",
+									},
+								},
+								"parts": []any{
+									"presets",
+									"{slug}",
+									"messages",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
 								"args": map[string]any{
 									"header": []any{
 										map[string]any{
-											"kind": "header",
 											"name": "http_referer",
 											"orig": "http_referer",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_category",
 											"orig": "x_open_router_category",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"example": "enabled",
-											"kind": "header",
-											"name": "x_open_router_metadata",
-											"orig": "x_open_router_metadata",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_title",
 											"orig": "x_open_router_title",
 											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "slug",
+											"orig": "slug",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "my-preset",
 										},
 									},
 								},
+								"select": map[string]any{
+									"exist": []any{
+										"http_referer",
+										"slug",
+										"x_open_router_category",
+										"x_open_router_title",
+									},
+								},
+							},
+							map[string]any{
 								"kind": "http",
 								"method": "POST",
 								"orig": "/messages",
 								"segments": []any{
 									map[string]any{
 										"lit": "messages",
+									},
+								},
+								"parts": []any{
+									"messages",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_metadata",
+											"orig": "x_open_router_metadata",
+											"type": "`$STRING`",
+											"kind": "header",
+											"example": "enabled",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -8401,53 +7909,44 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"messages",
-								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"meta": map[string]any{
-				"fields": []any{},
-				"name": "meta",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
+					"ancestors": []any{
+						[]any{
+							"$.main.kit.entity.preset",
+						},
+					},
 				},
 			},
 			"model": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "architecture",
+						"title": "Architecture",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Model architecture information",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "benchmarks",
+						"title": "Benchmarks",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Third-party benchmark rankings for this model.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "canonical_slug",
+						"title": "Canonical Slug",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Canonical slug for the model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "context_length",
-						"req": true,
-						"short": "Maximum context length in tokens",
+						"title": "Context Length",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8455,17 +7954,19 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Maximum context length in tokens",
 					},
 					map[string]any{
 						"name": "created",
+						"title": "Created",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Unix timestamp of when the model was created",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "default_parameters",
-						"req": true,
-						"short": "Default parameters for this model",
+						"title": "Default Parameters",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8473,15 +7974,18 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Default parameters for this model",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Description of the model",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Description of the model",
 					},
 					map[string]any{
 						"name": "expiration_date",
-						"short": "The date after which the model may be removed.",
+						"title": "Expiration Date",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8489,10 +7993,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "The date after which the model may be removed.",
 					},
 					map[string]any{
 						"name": "hugging_face_id",
-						"short": "Hugging Face model identifier, if applicable",
+						"title": "Hugging Face Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8500,16 +8005,18 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Hugging Face model identifier, if applicable",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique identifier for the model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "knowledge_cutoff",
-						"short": "The date up to which the model was trained on data.",
+						"title": "Knowledge Cutoff",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8517,23 +8024,25 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "The date up to which the model was trained on data.",
 					},
 					map[string]any{
 						"name": "links",
+						"title": "Links",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Related API endpoints and resources for this model.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Display name of the model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "per_request_limits",
-						"req": true,
-						"short": "Per-request token limits",
+						"title": "Per Request Limits",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8541,29 +8050,33 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Per-request token limits",
 					},
 					map[string]any{
 						"name": "pricing",
+						"title": "Pricing",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Pricing information for the model",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "reasoning",
+						"title": "Reasoning",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Reasoning effort configuration.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "supported_parameters",
+						"title": "Supported Parameters",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of supported parameters for this model",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "supported_voices",
-						"req": true,
-						"short": "List of supported voice identifiers for TTS models.",
+						"title": "Supported Voices",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8571,12 +8084,15 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "List of supported voice identifiers for TTS models.",
 					},
 					map[string]any{
 						"name": "top_provider",
+						"title": "Top Provider",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Information about the top provider for this model",
-						"type": "`$OBJECT`",
 					},
 				},
 				"id": map[string]any{
@@ -8595,50 +8111,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": 500,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "offset",
-											"orig": "offset",
-											"type": []any{
-												"`$ONE`",
-												[]any{
-													"`$INTEGER`",
-													"`$NULL`",
-												},
-											},
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/embeddings/models",
@@ -8650,6 +8122,59 @@ func MakeConfig() map[string]any {
 										"lit": "models",
 									},
 								},
+								"parts": []any{
+									"embeddings",
+									"models",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 500,
+										},
+										map[string]any{
+											"name": "offset",
+											"orig": "offset",
+											"type": []any{
+												"`$ONE`",
+												[]any{
+													"`$INTEGER`",
+													"`$NULL`",
+												},
+											},
+											"kind": "query",
+											"example": 0,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -8659,14 +8184,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"embeddings",
-									"models",
-								},
 							},
 						},
 					},
@@ -8675,46 +8192,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "openai",
-											"kind": "param",
-											"name": "author",
-											"orig": "author",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "gpt-4",
-											"kind": "param",
-											"name": "slug",
-											"orig": "slug",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/model/{author}/{slug}",
@@ -8729,6 +8206,56 @@ func MakeConfig() map[string]any {
 										"var": "slug",
 									},
 								},
+								"parts": []any{
+									"model",
+									"{author}",
+									"{slug}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "author",
+											"orig": "author",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "openai",
+										},
+										map[string]any{
+											"name": "slug",
+											"orig": "slug",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "gpt-4",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"author",
@@ -8738,34 +8265,22 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"model",
-									"{author}",
-									"{slug}",
-								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"model",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"models_count": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "count",
+						"title": "Count",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Total number of available models",
-						"type": "`$INTEGER`",
 					},
 				},
 				"name": "models_count",
@@ -8775,37 +8290,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "text",
-											"kind": "query",
-											"name": "output_modality",
-											"orig": "output_modality",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/models/count",
@@ -8817,6 +8301,46 @@ func MakeConfig() map[string]any {
 										"lit": "count",
 									},
 								},
+								"parts": []any{
+									"models",
+									"count",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "output_modality",
+											"orig": "output_modality",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "text",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -8824,14 +8348,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"models",
-									"count",
 								},
 							},
 						},
@@ -8845,26 +8361,28 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "architecture",
+						"title": "Architecture",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Model architecture information",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "benchmarks",
+						"title": "Benchmarks",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Third-party benchmark rankings for this model.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "canonical_slug",
+						"title": "Canonical Slug",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Canonical slug for the model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "context_length",
-						"req": true,
-						"short": "Maximum context length in tokens",
+						"title": "Context Length",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8872,17 +8390,19 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Maximum context length in tokens",
 					},
 					map[string]any{
 						"name": "created",
+						"title": "Created",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Unix timestamp of when the model was created",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "default_parameters",
-						"req": true,
-						"short": "Default parameters for this model",
+						"title": "Default Parameters",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8890,15 +8410,18 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Default parameters for this model",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Description of the model",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Description of the model",
 					},
 					map[string]any{
 						"name": "expiration_date",
-						"short": "The date after which the model may be removed.",
+						"title": "Expiration Date",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8906,10 +8429,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "The date after which the model may be removed.",
 					},
 					map[string]any{
 						"name": "hugging_face_id",
-						"short": "Hugging Face model identifier, if applicable",
+						"title": "Hugging Face Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8917,16 +8441,18 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Hugging Face model identifier, if applicable",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique identifier for the model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "knowledge_cutoff",
-						"short": "The date up to which the model was trained on data.",
+						"title": "Knowledge Cutoff",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8934,23 +8460,25 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "The date up to which the model was trained on data.",
 					},
 					map[string]any{
 						"name": "links",
+						"title": "Links",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Related API endpoints and resources for this model.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Display name of the model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "per_request_limits",
-						"req": true,
-						"short": "Per-request token limits",
+						"title": "Per Request Limits",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8958,29 +8486,33 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Per-request token limits",
 					},
 					map[string]any{
 						"name": "pricing",
+						"title": "Pricing",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Pricing information for the model",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "reasoning",
+						"title": "Reasoning",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Reasoning effort configuration.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "supported_parameters",
+						"title": "Supported Parameters",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of supported parameters for this model",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "supported_voices",
-						"req": true,
-						"short": "List of supported voice identifiers for TTS models.",
+						"title": "Supported Voices",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -8988,12 +8520,15 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "List of supported voice identifiers for TTS models.",
 					},
 					map[string]any{
 						"name": "top_provider",
+						"title": "Top Provider",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Information about the top provider for this model",
-						"type": "`$OBJECT`",
 					},
 				},
 				"id": map[string]any{
@@ -9007,50 +8542,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": 500,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "offset",
-											"orig": "offset",
-											"type": []any{
-												"`$ONE`",
-												[]any{
-													"`$INTEGER`",
-													"`$NULL`",
-												},
-											},
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/models/user",
@@ -9062,6 +8553,59 @@ func MakeConfig() map[string]any {
 										"lit": "user",
 									},
 								},
+								"parts": []any{
+									"models",
+									"user",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 500,
+										},
+										map[string]any{
+											"name": "offset",
+											"orig": "offset",
+											"type": []any{
+												"`$ONE`",
+												[]any{
+													"`$INTEGER`",
+													"`$NULL`",
+												},
+											},
+											"kind": "query",
+											"example": 0,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -9070,14 +8614,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"models",
-									"user",
 								},
 							},
 						},
@@ -9091,31 +8627,35 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "app_id",
+						"title": "App Id",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "The application ID associated with this auth code",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "callback_url",
+						"title": "Callback Url",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The callback URL to redirect to after authorization.",
-						"type": "`$STRING`",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "code",
+						"title": "Code",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The authorization code received from the OAuth redirect",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "code_challenge",
-						"short": "PKCE code challenge for enhanced security",
+						"title": "Code Challenge",
 						"type": "`$STRING`",
+						"short": "PKCE code challenge for enhanced security",
 					},
 					map[string]any{
 						"name": "code_challenge_method",
-						"short": "The method used to generate the code challenge",
+						"title": "Code Challenge Method",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9123,22 +8663,24 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "The method used to generate the code challenge",
 					},
 					map[string]any{
 						"name": "code_verifier",
-						"short": "The code verifier if code_challenge was used in the authorization request",
+						"title": "Code Verifier",
 						"type": "`$STRING`",
+						"short": "The code verifier if code_challenge was used in the authorization request",
 					},
 					map[string]any{
 						"name": "created_at",
+						"title": "Created At",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "ISO 8601 timestamp of when the auth code was created",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "expires_at",
-						"short": "Optional expiration time for the API key to be created",
+						"title": "Expires At",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9146,49 +8688,57 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Optional expiration time for the API key to be created",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The authorization code ID to use in the exchange request",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "key",
+						"title": "Key",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The API key to use for OpenRouter requests",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "key_label",
-						"short": "Optional custom label for the API key.",
+						"title": "Key Label",
 						"type": "`$STRING`",
+						"short": "Optional custom label for the API key.",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "limit",
-						"short": "Credit limit for the API key to be created",
+						"title": "Limit",
 						"type": "`$NUMBER`",
+						"short": "Credit limit for the API key to be created",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "spawn_agent",
-						"short": "Agent identifier for spawn telemetry",
+						"title": "Spawn Agent",
 						"type": "`$STRING`",
+						"short": "Agent identifier for spawn telemetry",
 					},
 					map[string]any{
 						"name": "spawn_cloud",
-						"short": "Cloud identifier for spawn telemetry",
+						"title": "Spawn Cloud",
 						"type": "`$STRING`",
+						"short": "Cloud identifier for spawn telemetry",
 					},
 					map[string]any{
 						"name": "usage_limit_type",
-						"short": "Optional credit limit reset interval.",
+						"title": "Usage Limit Type",
 						"type": "`$STRING`",
+						"short": "Optional credit limit reset interval.",
 					},
 					map[string]any{
 						"name": "user_id",
-						"req": true,
-						"short": "User ID associated with the API key",
+						"title": "User Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9196,12 +8746,15 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "User ID associated with the API key",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "workspace_id",
-						"short": "Optional workspace ID to associate the API key with",
+						"title": "Workspace Id",
 						"type": "`$STRING`",
+						"short": "Optional workspace ID to associate the API key with",
+						"format": "uuid",
 					},
 				},
 				"id": map[string]any{
@@ -9215,28 +8768,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/keys",
@@ -9248,6 +8779,37 @@ func MakeConfig() map[string]any {
 										"lit": "keys",
 									},
 								},
+								"parts": []any{
+									"auth",
+									"keys",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -9255,38 +8817,8 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"auth",
-									"keys",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/keys/code",
@@ -9301,21 +8833,44 @@ func MakeConfig() map[string]any {
 										"lit": "code",
 									},
 								},
+								"parts": []any{
+									"auth",
+									"keys",
+									"code",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"auth",
-									"keys",
-									"code",
 								},
 							},
 						},
@@ -9329,10 +8884,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "data",
+						"title": "Data",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 				},
@@ -9347,38 +8904,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/observability/destinations/{id}",
@@ -9393,6 +8918,48 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"observability",
+									"destinations",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -9400,15 +8967,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"observability",
-									"destinations",
-									"{id}",
 								},
 							},
 						},
@@ -9418,38 +8976,6 @@ func MakeConfig() map[string]any {
 						"name": "remove",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/observability/destinations/{id}",
@@ -9464,6 +8990,48 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"observability",
+									"destinations",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -9471,15 +9039,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"observability",
-									"destinations",
-									"{id}",
 								},
 							},
 						},
@@ -9493,6 +9052,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "background",
+						"title": "Background",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9503,18 +9063,20 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "cache_control",
+						"title": "Cache Control",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Enable automatic prompt caching.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "debug",
-						"short": "Debug options for inspecting request transformations (streaming only)",
+						"title": "Debug",
 						"type": "`$OBJECT`",
+						"short": "Debug options for inspecting request transformations (streaming only)",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "frequency_penalty",
+						"title": "Frequency Penalty",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9522,19 +9084,17 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"format": "double",
 					},
 					map[string]any{
 						"name": "image_config",
-						"short": "Provider-specific image configuration options.",
+						"title": "Image Config",
 						"type": "`$OBJECT`",
-						"union": map[string]any{
-							"branches": 3,
-							"count": 1,
-							"depth": 1,
-						},
+						"short": "Provider-specific image configuration options.",
 					},
 					map[string]any{
 						"name": "include",
+						"title": "Include",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9545,16 +9105,13 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "input",
-						"short": "Input for a response request - can be a string or array of items",
+						"title": "Input",
 						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 49,
-							"count": 35,
-							"depth": 19,
-						},
+						"short": "Input for a response request - can be a string or array of items",
 					},
 					map[string]any{
 						"name": "instructions",
+						"title": "Instructions",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9565,6 +9122,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "max_output_tokens",
+						"title": "Max Output Tokens",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9575,6 +9133,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "max_tool_calls",
+						"title": "Max Tool Calls",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9585,7 +9144,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "metadata",
-						"short": "Metadata key-value pairs for the request.",
+						"title": "Metadata",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9593,22 +9152,27 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Metadata key-value pairs for the request.",
 					},
 					map[string]any{
 						"name": "modalities",
-						"short": "Output modalities for the response.",
+						"title": "Modalities",
 						"type": "`$ARRAY`",
+						"short": "Output modalities for the response.",
 					},
 					map[string]any{
 						"name": "model",
+						"title": "Model",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "models",
+						"title": "Models",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "parallel_tool_calls",
+						"title": "Parallel Tool Calls",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9619,17 +9183,13 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "plugins",
-						"short": "Plugins you want to enable for this request, including their settings.",
+						"title": "Plugins",
 						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 5,
-							"count": 4,
-							"depth": 12,
-						},
+						"short": "Plugins you want to enable for this request, including their settings.",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "presence_penalty",
+						"title": "Presence Penalty",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9637,15 +9197,17 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"format": "double",
 					},
 					map[string]any{
 						"name": "previous_response_id",
-						"short": "Not supported.",
+						"title": "Previous Response Id",
 						"type": "`$STRING`",
+						"short": "Not supported.",
 					},
 					map[string]any{
 						"name": "prompt",
-						"req": true,
+						"title": "Prompt",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9653,14 +9215,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-						"union": map[string]any{
-							"branches": 4,
-							"count": 1,
-							"depth": 3,
-						},
+						"req": true,
 					},
 					map[string]any{
 						"name": "prompt_cache_key",
+						"title": "Prompt Cache Key",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9671,8 +9230,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "prompt_cache_options",
-						"req": true,
-						"short": "Request-level prompt-cache controls.",
+						"title": "Prompt Cache Options",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9680,10 +9238,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Request-level prompt-cache controls.",
 					},
 					map[string]any{
 						"name": "provider",
-						"short": "When multiple model providers are available, optionally indicate your routing preference.",
+						"title": "Provider",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9691,21 +9251,17 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-						"union": map[string]any{
-							"branches": 2,
-							"count": 6,
-							"depth": 3,
-						},
+						"short": "When multiple model providers are available, optionally indicate your routing preference.",
 					},
 					map[string]any{
 						"name": "reasoning",
-						"short": "Configuration for reasoning mode in the response",
+						"title": "Reasoning",
 						"type": "`$ANY`",
+						"short": "Configuration for reasoning mode in the response",
 					},
 					map[string]any{
-						"deprecated": true,
 						"name": "route",
-						"short": "**DEPRECATED** Use providers.sort.partition instead.",
+						"title": "Route",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9713,9 +9269,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "**DEPRECATED** Use providers.sort.partition instead.",
+						"deprecated": true,
 					},
 					map[string]any{
 						"name": "safety_identifier",
+						"title": "Safety Identifier",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9726,6 +9285,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "service_tier",
+						"title": "Service Tier",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9736,25 +9296,29 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "session_id",
-						"short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
+						"title": "Session Id",
 						"type": "`$STRING`",
+						"short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
 					},
 					map[string]any{
 						"name": "stop_server_tools_when",
-						"short": "Stop conditions for the server-tool agent loop.",
+						"title": "Stop Server Tools When",
 						"type": "`$ARRAY`",
+						"short": "Stop conditions for the server-tool agent loop.",
 					},
 					map[string]any{
 						"name": "store",
+						"title": "Store",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "stream",
+						"title": "Stream",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "temperature",
+						"title": "Temperature",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9762,41 +9326,32 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"format": "double",
 					},
 					map[string]any{
 						"name": "text",
-						"short": "Text output configuration including format and verbosity",
+						"title": "Text",
 						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 3,
-							"count": 1,
-							"depth": 4,
-						},
+						"short": "Text output configuration including format and verbosity",
 					},
 					map[string]any{
 						"name": "tool_choice",
+						"title": "Tool Choice",
 						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 8,
-							"count": 3,
-							"depth": 4,
-						},
 					},
 					map[string]any{
 						"name": "tools",
+						"title": "Tools",
 						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 27,
-							"count": 10,
-							"depth": 12,
-						},
 					},
 					map[string]any{
 						"name": "top_k",
+						"title": "Top K",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "top_logprobs",
+						"title": "Top Logprobs",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9806,8 +9361,8 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
-						"format": "double",
 						"name": "top_p",
+						"title": "Top P",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9815,14 +9370,17 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"format": "double",
 					},
 					map[string]any{
 						"name": "trace",
-						"short": "Metadata for observability and tracing.",
+						"title": "Trace",
 						"type": "`$OBJECT`",
+						"short": "Metadata for observability and tracing.",
 					},
 					map[string]any{
 						"name": "truncation",
+						"title": "Truncation",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -9833,8 +9391,9 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "user",
-						"short": "A unique identifier representing your end-user, which helps distinguish between different users of your app.",
+						"title": "User",
 						"type": "`$STRING`",
+						"short": "A unique identifier representing your end-user, which helps distinguish between different users of your app.",
 					},
 				},
 				"name": "open_responses_result",
@@ -9844,41 +9403,49 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "enabled",
-											"kind": "header",
-											"name": "x_open_router_metadata",
-											"orig": "x_open_router_metadata",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/responses",
 								"segments": []any{
 									map[string]any{
 										"lit": "responses",
+									},
+								},
+								"parts": []any{
+									"responses",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_metadata",
+											"orig": "x_open_router_metadata",
+											"type": "`$STRING`",
+											"kind": "header",
+											"example": "enabled",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -9888,13 +9455,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_metadata",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"responses",
 								},
 							},
 						},
@@ -9913,50 +9473,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": 50,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "offset",
-											"orig": "offset",
-											"type": []any{
-												"`$ONE`",
-												[]any{
-													"`$INTEGER`",
-													"`$NULL`",
-												},
-											},
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/organization/members",
@@ -9968,6 +9484,59 @@ func MakeConfig() map[string]any {
 										"lit": "members",
 									},
 								},
+								"parts": []any{
+									"organization",
+									"members",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "offset",
+											"orig": "offset",
+											"type": []any{
+												"`$ONE`",
+												[]any{
+													"`$INTEGER`",
+													"`$NULL`",
+												},
+											},
+											"kind": "query",
+											"example": 0,
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "member",
 									"exist": []any{
@@ -9977,14 +9546,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"organization",
-									"members",
 								},
 							},
 						},
@@ -9998,12 +9559,13 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "created_at",
-						"req": true,
+						"title": "Created At",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "creator_user_id",
-						"req": true,
+						"title": "Creator User Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -10011,10 +9573,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
 					},
 					map[string]any{
 						"name": "description",
-						"req": true,
+						"title": "Description",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -10022,11 +9585,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
 					},
 					map[string]any{
 						"name": "designated_version",
-						"req": true,
-						"short": "A specific version of a preset, containing config and optional system prompt.",
+						"title": "Designated Version",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -10034,10 +9597,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "A specific version of a preset, containing config and optional system prompt.",
 					},
 					map[string]any{
 						"name": "designated_version_id",
-						"req": true,
+						"title": "Designated Version Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -10045,31 +9610,36 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
 					},
 					map[string]any{
 						"name": "id",
-						"req": true,
+						"title": "Id",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "name",
-						"req": true,
+						"title": "Name",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "slug",
-						"req": true,
+						"title": "Slug",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "status",
+						"title": "Status",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The status of a preset.",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "status_updated_at",
-						"req": true,
+						"title": "Status Updated At",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -10077,15 +9647,17 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
 					},
 					map[string]any{
 						"name": "updated_at",
-						"req": true,
+						"title": "Updated At",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "workspace_id",
-						"req": true,
+						"title": "Workspace Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -10093,6 +9665,7 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
 					},
 				},
 				"id": map[string]any{
@@ -10106,38 +9679,52 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/presets",
+								"segments": []any{
+									map[string]any{
+										"lit": "presets",
+									},
+								},
+								"parts": []any{
+									"presets",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
 								"args": map[string]any{
 									"header": []any{
 										map[string]any{
-											"kind": "header",
 											"name": "http_referer",
 											"orig": "http_referer",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_category",
 											"orig": "x_open_router_category",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_title",
 											"orig": "x_open_router_title",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 									},
 									"query": []any{
 										map[string]any{
-											"example": 50,
-											"kind": "query",
 											"name": "limit",
 											"orig": "limit",
 											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
 										},
 										map[string]any{
-											"example": 0,
-											"kind": "query",
 											"name": "offset",
 											"orig": "offset",
 											"type": []any{
@@ -10147,15 +9734,9 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 0,
 										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/presets",
-								"segments": []any{
-									map[string]any{
-										"lit": "presets",
 									},
 								},
 								"select": map[string]any{
@@ -10167,13 +9748,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"presets",
-								},
 							},
 						},
 					},
@@ -10182,52 +9756,60 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "my-preset",
-											"kind": "param",
-											"name": "id",
-											"orig": "slug",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/presets/{slug}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"slug": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "presets",
 									},
 									map[string]any{
 										"var": "id",
+									},
+								},
+								"parts": []any{
+									"presets",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"slug": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "slug",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "my-preset",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -10238,56 +9820,49 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"presets",
-									"{id}",
-								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"preset",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"preset_version": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "config",
-						"req": true,
+						"title": "Config",
 						"type": "`$OBJECT`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "created_at",
-						"req": true,
+						"title": "Created At",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "creator_id",
-						"req": true,
+						"title": "Creator Id",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "id",
-						"req": true,
+						"title": "Id",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "preset_id",
-						"req": true,
+						"title": "Preset Id",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "system_prompt",
-						"req": true,
+						"title": "System Prompt",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -10295,16 +9870,19 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
 					},
 					map[string]any{
 						"name": "updated_at",
-						"req": true,
+						"title": "Updated At",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "version",
-						"req": true,
+						"title": "Version",
 						"type": "`$INTEGER`",
+						"req": true,
 					},
 				},
 				"id": map[string]any{
@@ -10318,54 +9896,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "1",
-											"kind": "param",
-											"name": "id",
-											"orig": "version",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "my-preset",
-											"kind": "param",
-											"name": "slug",
-											"orig": "slug",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/presets/{slug}/versions/{version}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"version": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "presets",
@@ -10380,6 +9913,61 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"presets",
+									"{slug}",
+									"versions",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"version": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "version",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "1",
+										},
+										map[string]any{
+											"name": "slug",
+											"orig": "slug",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "my-preset",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -10389,16 +9977,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"presets",
-									"{slug}",
-									"versions",
-									"{id}",
-								},
 							},
 						},
 					},
@@ -10406,7 +9984,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"preset",
+							"$.main.kit.entity.preset",
 						},
 					},
 				},
@@ -10415,7 +9993,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "datacenters",
-						"short": "ISO 3166-1 Alpha-2 country codes of the provider datacenter locations",
+						"title": "Datacenters",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -10423,10 +10001,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "ISO 3166-1 Alpha-2 country codes of the provider datacenter locations",
 					},
 					map[string]any{
 						"name": "headquarters",
-						"short": "ISO 3166-1 Alpha-2 country code of the provider headquarters",
+						"title": "Headquarters",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -10434,17 +10013,18 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "ISO 3166-1 Alpha-2 country code of the provider headquarters",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Display name of the provider",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "privacy_policy_url",
-						"req": true,
-						"short": "URL to the provider's privacy policy",
+						"title": "Privacy Policy Url",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -10452,16 +10032,19 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "URL to the provider's privacy policy",
 					},
 					map[string]any{
 						"name": "slug",
+						"title": "Slug",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "URL-friendly identifier for the provider",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "status_page_url",
-						"short": "URL to the provider's status page",
+						"title": "Status Page Url",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -10469,10 +10052,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "URL to the provider's status page",
 					},
 					map[string]any{
 						"name": "terms_of_service_url",
-						"short": "URL to the provider's terms of service",
+						"title": "Terms Of Service Url",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -10480,6 +10064,7 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "URL to the provider's terms of service",
 					},
 				},
 				"name": "provider",
@@ -10489,34 +10074,42 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/providers",
 								"segments": []any{
 									map[string]any{
 										"lit": "providers",
+									},
+								},
+								"parts": []any{
+									"providers",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -10526,13 +10119,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"providers",
-								},
 							},
 						},
 					},
@@ -10541,33 +10127,28 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"query": map[string]any{
-				"fields": []any{},
-				"name": "query",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
 			"rankings_daily": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "date",
+						"title": "Date",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "UTC calendar date the row is aggregated over (YYYY-MM-DD).",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "model_permaslug",
+						"title": "Model Permaslug",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Model variant permaslug (e.g.",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "total_tokens",
+						"title": "Total Tokens",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Sum of `prompt_tokens + completion_tokens` for the day, returned as a decimal string so 64-bit values are not truncated.",
-						"type": "`$STRING`",
 					},
 				},
 				"name": "rankings_daily",
@@ -10577,79 +10158,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "programming",
-											"kind": "query",
-											"name": "category",
-											"orig": "category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "100K",
-											"kind": "query",
-											"name": "context_bucket",
-											"orig": "context_bucket",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "2026-05-11",
-											"kind": "query",
-											"name": "end_date",
-											"orig": "end_date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "natural",
-											"kind": "query",
-											"name": "language_type",
-											"orig": "language_type",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "text",
-											"kind": "query",
-											"name": "modality",
-											"orig": "modality",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "day",
-											"kind": "query",
-											"name": "period",
-											"orig": "period",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "2026-04-12",
-											"kind": "query",
-											"name": "start_date",
-											"orig": "start_date",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/datasets/rankings-daily",
@@ -10659,6 +10167,88 @@ func MakeConfig() map[string]any {
 									},
 									map[string]any{
 										"lit": "rankings-daily",
+									},
+								},
+								"parts": []any{
+									"datasets",
+									"rankings-daily",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "category",
+											"orig": "category",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "programming",
+										},
+										map[string]any{
+											"name": "context_bucket",
+											"orig": "context_bucket",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "100K",
+										},
+										map[string]any{
+											"name": "end_date",
+											"orig": "end_date",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "2026-05-11",
+										},
+										map[string]any{
+											"name": "language_type",
+											"orig": "language_type",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "natural",
+										},
+										map[string]any{
+											"name": "modality",
+											"orig": "modality",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "text",
+										},
+										map[string]any{
+											"name": "period",
+											"orig": "period",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "day",
+										},
+										map[string]any{
+											"name": "start_date",
+											"orig": "start_date",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "2026-04-12",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -10675,14 +10265,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"datasets",
-									"rankings-daily",
-								},
 							},
 						},
 					},
@@ -10691,71 +10273,59 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"remove": map[string]any{
-				"fields": []any{},
-				"name": "remove",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"guardrail",
-						},
-						[]any{
-							"workspace",
-						},
-					},
-				},
-			},
 			"rerank": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "documents",
+						"title": "Documents",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "The list of documents to rerank.",
-						"type": "`$ARRAY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 1,
-						},
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the rerank response (ORID format)",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the rerank response (ORID format)",
 					},
 					map[string]any{
 						"name": "model",
+						"title": "Model",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The model used for reranking",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "provider",
-						"short": "The provider that served the rerank request",
+						"title": "Provider",
 						"type": "`$STRING`",
+						"short": "The provider that served the rerank request",
 					},
 					map[string]any{
 						"name": "query",
+						"title": "Query",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The search query to rerank documents against",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "results",
+						"title": "Results",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of rerank results sorted by relevance",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "top_n",
-						"short": "Number of most relevant documents to return",
+						"title": "Top N",
 						"type": "`$INTEGER`",
+						"short": "Number of most relevant documents to return",
 					},
 					map[string]any{
 						"name": "usage",
-						"short": "Usage statistics",
+						"title": "Usage",
 						"type": "`$OBJECT`",
+						"short": "Usage statistics",
 					},
 				},
 				"id": map[string]any{
@@ -10769,28 +10339,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/rerank",
@@ -10799,19 +10347,42 @@ func MakeConfig() map[string]any {
 										"lit": "rerank",
 									},
 								},
+								"parts": []any{
+									"rerank",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"rerank",
 								},
 							},
 						},
@@ -10822,92 +10393,520 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"response": map[string]any{
-				"fields": []any{},
-				"name": "response",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "background",
+						"title": "Background",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$BOOLEAN`",
+								"`$NULL`",
+							},
+						},
+					},
+					map[string]any{
+						"name": "cache_control",
+						"title": "Cache Control",
+						"type": "`$OBJECT`",
+						"req": true,
+						"short": "Enable automatic prompt caching.",
+					},
+					map[string]any{
+						"name": "debug",
+						"title": "Debug",
+						"type": "`$OBJECT`",
+						"short": "Debug options for inspecting request transformations (streaming only)",
+					},
+					map[string]any{
+						"name": "frequency_penalty",
+						"title": "Frequency Penalty",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$NUMBER`",
+								"`$NULL`",
+							},
+						},
+						"format": "double",
+					},
+					map[string]any{
+						"name": "image_config",
+						"title": "Image Config",
+						"type": "`$OBJECT`",
+						"short": "Provider-specific image configuration options.",
+					},
+					map[string]any{
+						"name": "include",
+						"title": "Include",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$ARRAY`",
+								"`$NULL`",
+							},
+						},
+					},
+					map[string]any{
+						"name": "input",
+						"title": "Input",
+						"type": "`$ANY`",
+						"short": "Input for a response request - can be a string or array of items",
+					},
+					map[string]any{
+						"name": "instructions",
+						"title": "Instructions",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$STRING`",
+								"`$NULL`",
+							},
+						},
+					},
+					map[string]any{
+						"name": "max_output_tokens",
+						"title": "Max Output Tokens",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$INTEGER`",
+								"`$NULL`",
+							},
+						},
+					},
+					map[string]any{
+						"name": "max_tool_calls",
+						"title": "Max Tool Calls",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$INTEGER`",
+								"`$NULL`",
+							},
+						},
+					},
+					map[string]any{
+						"name": "metadata",
+						"title": "Metadata",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$OBJECT`",
+								"`$NULL`",
+							},
+						},
+						"short": "Metadata key-value pairs for the request.",
+					},
+					map[string]any{
+						"name": "modalities",
+						"title": "Modalities",
+						"type": "`$ARRAY`",
+						"short": "Output modalities for the response.",
+					},
+					map[string]any{
+						"name": "model",
+						"title": "Model",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "models",
+						"title": "Models",
+						"type": "`$ARRAY`",
+					},
+					map[string]any{
+						"name": "parallel_tool_calls",
+						"title": "Parallel Tool Calls",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$BOOLEAN`",
+								"`$NULL`",
+							},
+						},
+					},
+					map[string]any{
+						"name": "plugins",
+						"title": "Plugins",
+						"type": "`$ARRAY`",
+						"short": "Plugins you want to enable for this request, including their settings.",
+					},
+					map[string]any{
+						"name": "presence_penalty",
+						"title": "Presence Penalty",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$NUMBER`",
+								"`$NULL`",
+							},
+						},
+						"format": "double",
+					},
+					map[string]any{
+						"name": "previous_response_id",
+						"title": "Previous Response Id",
+						"type": "`$STRING`",
+						"short": "Not supported.",
+					},
+					map[string]any{
+						"name": "prompt",
+						"title": "Prompt",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$OBJECT`",
+								"`$NULL`",
+							},
+						},
+						"req": true,
+					},
+					map[string]any{
+						"name": "prompt_cache_key",
+						"title": "Prompt Cache Key",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$STRING`",
+								"`$NULL`",
+							},
+						},
+					},
+					map[string]any{
+						"name": "prompt_cache_options",
+						"title": "Prompt Cache Options",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$OBJECT`",
+								"`$NULL`",
+							},
+						},
+						"req": true,
+						"short": "Request-level prompt-cache controls.",
+					},
+					map[string]any{
+						"name": "provider",
+						"title": "Provider",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$OBJECT`",
+								"`$NULL`",
+							},
+						},
+						"short": "When multiple model providers are available, optionally indicate your routing preference.",
+					},
+					map[string]any{
+						"name": "reasoning",
+						"title": "Reasoning",
+						"type": "`$ANY`",
+						"short": "Configuration for reasoning mode in the response",
+					},
+					map[string]any{
+						"name": "route",
+						"title": "Route",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$STRING`",
+								"`$NULL`",
+							},
+						},
+						"short": "**DEPRECATED** Use providers.sort.partition instead.",
+						"deprecated": true,
+					},
+					map[string]any{
+						"name": "safety_identifier",
+						"title": "Safety Identifier",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$STRING`",
+								"`$NULL`",
+							},
+						},
+					},
+					map[string]any{
+						"name": "service_tier",
+						"title": "Service Tier",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$STRING`",
+								"`$NULL`",
+							},
+						},
+					},
+					map[string]any{
+						"name": "session_id",
+						"title": "Session Id",
+						"type": "`$STRING`",
+						"short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
+					},
+					map[string]any{
+						"name": "stop_server_tools_when",
+						"title": "Stop Server Tools When",
+						"type": "`$ARRAY`",
+						"short": "Stop conditions for the server-tool agent loop.",
+					},
+					map[string]any{
+						"name": "store",
+						"title": "Store",
+						"type": "`$BOOLEAN`",
+					},
+					map[string]any{
+						"name": "stream",
+						"title": "Stream",
+						"type": "`$BOOLEAN`",
+					},
+					map[string]any{
+						"name": "temperature",
+						"title": "Temperature",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$NUMBER`",
+								"`$NULL`",
+							},
+						},
+						"format": "double",
+					},
+					map[string]any{
+						"name": "text",
+						"title": "Text",
+						"type": "`$ANY`",
+						"short": "Text output configuration including format and verbosity",
+					},
+					map[string]any{
+						"name": "tool_choice",
+						"title": "Tool Choice",
+						"type": "`$ANY`",
+					},
+					map[string]any{
+						"name": "tools",
+						"title": "Tools",
+						"type": "`$ARRAY`",
+					},
+					map[string]any{
+						"name": "top_k",
+						"title": "Top K",
+						"type": "`$INTEGER`",
+					},
+					map[string]any{
+						"name": "top_logprobs",
+						"title": "Top Logprobs",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$INTEGER`",
+								"`$NULL`",
+							},
+						},
+					},
+					map[string]any{
+						"name": "top_p",
+						"title": "Top P",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$NUMBER`",
+								"`$NULL`",
+							},
+						},
+						"format": "double",
+					},
+					map[string]any{
+						"name": "trace",
+						"title": "Trace",
+						"type": "`$OBJECT`",
+						"short": "Metadata for observability and tracing.",
+					},
+					map[string]any{
+						"name": "truncation",
+						"title": "Truncation",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$STRING`",
+								"`$NULL`",
+							},
+						},
+					},
+					map[string]any{
+						"name": "user",
+						"title": "User",
+						"type": "`$STRING`",
+						"short": "A unique identifier representing your end-user, which helps distinguish between different users of your app.",
+					},
 				},
-			},
-			"speech": map[string]any{
-				"fields": []any{},
-				"name": "speech",
-				"op": map[string]any{},
+				"name": "response",
+				"op": map[string]any{
+					"create": map[string]any{
+						"input": "data",
+						"name": "create",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/presets/{slug}/responses",
+								"segments": []any{
+									map[string]any{
+										"lit": "presets",
+									},
+									map[string]any{
+										"var": "slug",
+									},
+									map[string]any{
+										"lit": "responses",
+									},
+								},
+								"parts": []any{
+									"presets",
+									"{slug}",
+									"responses",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "slug",
+											"orig": "slug",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "my-preset",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"http_referer",
+										"slug",
+										"x_open_router_category",
+										"x_open_router_title",
+									},
+								},
+							},
+						},
+					},
+				},
 				"relations": map[string]any{
-					"ancestors": []any{},
+					"ancestors": []any{
+						[]any{
+							"$.main.kit.entity.preset",
+						},
+					},
 				},
 			},
 			"stt": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "double",
 						"name": "duration",
-						"short": "Duration of the input audio in seconds, present when response_format is verbose_json",
+						"title": "Duration",
 						"type": "`$NUMBER`",
+						"short": "Duration of the input audio in seconds, present when response_format is verbose_json",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "input_audio",
+						"title": "Input Audio",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Base64-encoded audio to transcribe",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "language",
-						"short": "Detected or forced language, present when response_format is verbose_json",
+						"title": "Language",
 						"type": "`$STRING`",
+						"short": "Detected or forced language, present when response_format is verbose_json",
 					},
 					map[string]any{
 						"name": "model",
+						"title": "Model",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "STT model identifier",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "provider",
-						"short": "Provider-specific passthrough configuration",
+						"title": "Provider",
 						"type": "`$OBJECT`",
+						"short": "Provider-specific passthrough configuration",
 					},
 					map[string]any{
 						"name": "response_format",
-						"short": "Output format.",
+						"title": "Response Format",
 						"type": "`$STRING`",
+						"short": "Output format.",
 					},
 					map[string]any{
 						"name": "segments",
-						"short": "Timestamped transcript segments, present when response_format is verbose_json",
+						"title": "Segments",
 						"type": "`$ARRAY`",
+						"short": "Timestamped transcript segments, present when response_format is verbose_json",
 					},
 					map[string]any{
 						"name": "task",
-						"short": "The task performed, present when response_format is verbose_json",
+						"title": "Task",
 						"type": "`$STRING`",
+						"short": "The task performed, present when response_format is verbose_json",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "temperature",
-						"short": "Sampling temperature for transcription",
+						"title": "Temperature",
 						"type": "`$NUMBER`",
+						"short": "Sampling temperature for transcription",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "text",
+						"title": "Text",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The transcribed text",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timestamp_granularities",
-						"short": "Timestamp detail levels to include when response_format is \"verbose_json\".",
+						"title": "Timestamp Granularities",
 						"type": "`$ARRAY`",
+						"short": "Timestamp detail levels to include when response_format is \"verbose_json\".",
 					},
 					map[string]any{
 						"name": "usage",
-						"short": "Aggregated usage statistics for the request",
+						"title": "Usage",
 						"type": "`$OBJECT`",
+						"short": "Aggregated usage statistics for the request",
 					},
 					map[string]any{
 						"name": "words",
-						"short": "Timestamped words, present when the provider returns word-level timestamps",
+						"title": "Words",
 						"type": "`$ARRAY`",
+						"short": "Timestamped words, present when the provider returns word-level timestamps",
 					},
 				},
 				"name": "stt",
@@ -10917,28 +10916,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/audio/transcriptions",
@@ -10950,20 +10927,43 @@ func MakeConfig() map[string]any {
 										"lit": "transcriptions",
 									},
 								},
+								"parts": []any{
+									"audio",
+									"transcriptions",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"audio",
-									"transcriptions",
 								},
 							},
 						},
@@ -10977,26 +10977,30 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "category",
+						"title": "Category",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The category of feedback being reported",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "comment",
-						"short": "An optional free-text comment describing the feedback",
+						"title": "Comment",
 						"type": "`$STRING`",
+						"short": "An optional free-text comment describing the feedback",
 					},
 					map[string]any{
 						"name": "generation_id",
+						"title": "Generation Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The generation to submit feedback on",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "success",
+						"title": "Success",
+						"type": "`$BOOLEAN`",
 						"req": true,
 						"short": "Whether the feedback was recorded",
-						"type": "`$BOOLEAN`",
 					},
 				},
 				"name": "submit_generation_feedback",
@@ -11006,28 +11010,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/generation/feedback",
@@ -11039,20 +11021,43 @@ func MakeConfig() map[string]any {
 										"lit": "feedback",
 									},
 								},
+								"parts": []any{
+									"generation",
+									"feedback",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"generation",
-									"feedback",
 								},
 							},
 						},
@@ -11066,27 +11071,31 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "as_of",
+						"title": "As Of",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "UTC date (YYYY-MM-DD) of the window upper bound (yesterday).",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "classifications",
+						"title": "Classifications",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "Per-task classification market-share data, sorted by usage_share descending.",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "macro_categories",
+						"title": "Macro Categories",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "Aggregate market-share data per macro-category (code, data, agent, general).",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "window_days",
+						"title": "Window Days",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Number of trailing days covered by this snapshot.",
-						"type": "`$INTEGER`",
 					},
 				},
 				"name": "task",
@@ -11096,37 +11105,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "7d",
-											"kind": "query",
-											"name": "window",
-											"orig": "window",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/classifications/task",
@@ -11138,6 +11116,46 @@ func MakeConfig() map[string]any {
 										"lit": "task",
 									},
 								},
+								"parts": []any{
+									"classifications",
+									"task",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "window",
+											"orig": "window",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "7d",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -11145,14 +11163,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"classifications",
-									"task",
 								},
 							},
 						},
@@ -11162,49 +11172,47 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"transcription": map[string]any{
-				"fields": []any{},
-				"name": "transcription",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
 			"tts": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "input",
+						"title": "Input",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Text to synthesize",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "model",
+						"title": "Model",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "TTS model identifier",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "provider",
-						"short": "Provider-specific passthrough configuration",
+						"title": "Provider",
 						"type": "`$OBJECT`",
+						"short": "Provider-specific passthrough configuration",
 					},
 					map[string]any{
 						"name": "response_format",
-						"short": "Audio output format",
+						"title": "Response Format",
 						"type": "`$STRING`",
+						"short": "Audio output format",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "speed",
-						"short": "Playback speed multiplier.",
+						"title": "Speed",
 						"type": "`$NUMBER`",
+						"short": "Playback speed multiplier.",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "voice",
+						"title": "Voice",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Voice identifier (provider-specific).",
-						"type": "`$STRING`",
 					},
 				},
 				"name": "tts",
@@ -11214,28 +11222,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/audio/speech",
@@ -11247,20 +11233,43 @@ func MakeConfig() map[string]any {
 										"lit": "speech",
 									},
 								},
+								"parts": []any{
+									"audio",
+									"speech",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"audio",
-									"speech",
 								},
 							},
 						},
@@ -11274,13 +11283,15 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "data",
-						"req": true,
+						"title": "Data",
 						"type": "`$ARRAY`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "meta",
-						"req": true,
+						"title": "Meta",
 						"type": "`$OBJECT`",
+						"req": true,
 					},
 				},
 				"name": "unified_benchmark",
@@ -11290,71 +11301,79 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "models",
-											"kind": "query",
-											"name": "arena",
-											"orig": "arena",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "codecategories",
-											"kind": "query",
-											"name": "category",
-											"orig": "category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 50,
-											"kind": "query",
-											"name": "max_result",
-											"orig": "max_result",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": "artificial-analysis",
-											"kind": "query",
-											"name": "source",
-											"orig": "source",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "coding",
-											"kind": "query",
-											"name": "task_type",
-											"orig": "task_type",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/benchmarks",
 								"segments": []any{
 									map[string]any{
 										"lit": "benchmarks",
+									},
+								},
+								"parts": []any{
+									"benchmarks",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "arena",
+											"orig": "arena",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "models",
+										},
+										map[string]any{
+											"name": "category",
+											"orig": "category",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "codecategories",
+										},
+										map[string]any{
+											"name": "max_result",
+											"orig": "max_result",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "source",
+											"orig": "source",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "artificial-analysis",
+										},
+										map[string]any{
+											"name": "task_type",
+											"orig": "task_type",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "coding",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -11369,13 +11388,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"benchmarks",
-								},
 							},
 						},
 					},
@@ -11388,7 +11400,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "allowed_models",
-						"short": "Optional allowlist of model slugs this credential may be used for.",
+						"title": "Allowed Models",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11396,10 +11408,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Optional allowlist of model slugs this credential may be used for.",
 					},
 					map[string]any{
 						"name": "allowed_user_ids",
-						"short": "Optional allowlist of user IDs that may use this credential.",
+						"title": "Allowed User Ids",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11407,29 +11420,34 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Optional allowlist of user IDs that may use this credential.",
 					},
 					map[string]any{
 						"name": "disabled",
-						"short": "Whether this credential is disabled.",
+						"title": "Disabled",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this credential is disabled.",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "is_fallback",
-						"short": "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried.",
+						"title": "Is Fallback",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried.",
 					},
 					map[string]any{
 						"name": "key",
-						"short": "A new raw provider API key to rotate the credential in-place.",
+						"title": "Key",
 						"type": "`$STRING`",
+						"short": "A new raw provider API key to rotate the credential in-place.",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Optional human-readable name for the credential.",
+						"title": "Name",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11437,6 +11455,7 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Optional human-readable name for the credential.",
 					},
 				},
 				"id": map[string]any{
@@ -11450,38 +11469,6 @@ func MakeConfig() map[string]any {
 						"name": "update",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "11111111-2222-3333-4444-555555555555",
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "PATCH",
 								"orig": "/byok/{id}",
@@ -11493,6 +11480,47 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"byok",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "11111111-2222-3333-4444-555555555555",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -11500,14 +11528,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"byok",
-									"{id}",
 								},
 							},
 						},
@@ -11521,7 +11541,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "allowed_models",
-						"short": "Array of model identifiers (slug or canonical_slug accepted)",
+						"title": "Allowed Models",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11529,10 +11549,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Array of model identifiers (slug or canonical_slug accepted)",
 					},
 					map[string]any{
 						"name": "allowed_providers",
-						"short": "New list of allowed provider IDs",
+						"title": "Allowed Providers",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11540,10 +11561,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "New list of allowed provider IDs",
 					},
 					map[string]any{
 						"name": "content_filter_builtins",
-						"short": "Builtin content filters to apply.",
+						"title": "Content Filter Builtins",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11551,10 +11573,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Builtin content filters to apply.",
 					},
 					map[string]any{
 						"name": "content_filters",
-						"short": "Custom regex content filters to apply.",
+						"title": "Content Filters",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11562,10 +11585,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Custom regex content filters to apply.",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "New description for the guardrail",
+						"title": "Description",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11573,11 +11597,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "New description for the guardrail",
 					},
 					map[string]any{
-						"deprecated": true,
 						"name": "enforce_zdr",
-						"short": "Deprecated.",
+						"title": "Enforce Zdr",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11585,10 +11609,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Deprecated.",
+						"deprecated": true,
 					},
 					map[string]any{
 						"name": "enforce_zdr_anthropic",
-						"short": "Whether to enforce zero data retention for Anthropic models.",
+						"title": "Enforce Zdr Anthropic",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11596,10 +11622,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Whether to enforce zero data retention for Anthropic models.",
 					},
 					map[string]any{
 						"name": "enforce_zdr_google",
-						"short": "Whether to enforce zero data retention for Google models.",
+						"title": "Enforce Zdr Google",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11607,10 +11634,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Whether to enforce zero data retention for Google models.",
 					},
 					map[string]any{
 						"name": "enforce_zdr_openai",
-						"short": "Whether to enforce zero data retention for OpenAI models.",
+						"title": "Enforce Zdr Openai",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11618,10 +11646,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Whether to enforce zero data retention for OpenAI models.",
 					},
 					map[string]any{
 						"name": "enforce_zdr_other",
-						"short": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI.",
+						"title": "Enforce Zdr Other",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11629,10 +11658,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI.",
 					},
 					map[string]any{
 						"name": "enforce_zdr_xai",
-						"short": "Whether to enforce zero data retention for xAI models.",
+						"title": "Enforce Zdr Xai",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11640,14 +11670,16 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Whether to enforce zero data retention for xAI models.",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ignored_models",
-						"short": "Array of model identifiers to exclude from routing (slug or canonical_slug accepted)",
+						"title": "Ignored Models",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11655,10 +11687,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Array of model identifiers to exclude from routing (slug or canonical_slug accepted)",
 					},
 					map[string]any{
 						"name": "ignored_providers",
-						"short": "List of provider IDs to exclude from routing",
+						"title": "Ignored Providers",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11666,11 +11699,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "List of provider IDs to exclude from routing",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "limit_usd",
-						"short": "New spending limit in USD",
+						"title": "Limit Usd",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11678,15 +11711,18 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "New spending limit in USD",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "New name for the guardrail",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "New name for the guardrail",
 					},
 					map[string]any{
 						"name": "reset_interval",
-						"short": "Interval at which the limit resets (daily, weekly, monthly)",
+						"title": "Reset Interval",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11694,6 +11730,7 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Interval at which the limit resets (daily, weekly, monthly)",
 					},
 				},
 				"id": map[string]any{
@@ -11707,38 +11744,6 @@ func MakeConfig() map[string]any {
 						"name": "update",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "550e8400-e29b-41d4-a716-446655440000",
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "PATCH",
 								"orig": "/guardrails/{id}",
@@ -11750,6 +11755,47 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"guardrails",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "550e8400-e29b-41d4-a716-446655440000",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -11757,14 +11803,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"guardrails",
-									"{id}",
 								},
 							},
 						},
@@ -11778,7 +11816,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_key_hashes",
-						"short": "Optional allowlist of OpenRouter API key hashes.",
+						"title": "Api Key Hashes",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11786,45 +11824,48 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Optional allowlist of OpenRouter API key hashes.",
 					},
 					map[string]any{
 						"name": "config",
-						"short": "Provider-specific configuration fields to update.",
+						"title": "Config",
 						"type": "`$OBJECT`",
+						"short": "Provider-specific configuration fields to update.",
 					},
 					map[string]any{
 						"name": "enabled",
-						"short": "Whether the destination is enabled.",
+						"title": "Enabled",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the destination is enabled.",
 					},
 					map[string]any{
 						"name": "filter_rules",
+						"title": "Filter Rules",
 						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 10,
-						},
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Human-readable name for the destination.",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Human-readable name for the destination.",
 					},
 					map[string]any{
 						"name": "privacy_mode",
-						"short": "When true, request/response bodies are not forwarded — only metadata.",
+						"title": "Privacy Mode",
 						"type": "`$BOOLEAN`",
+						"short": "When true, request/response bodies are not forwarded — only metadata.",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "sampling_rate",
-						"short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
+						"title": "Sampling Rate",
 						"type": "`$NUMBER`",
+						"short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
+						"format": "double",
 					},
 				},
 				"id": map[string]any{
@@ -11838,38 +11879,6 @@ func MakeConfig() map[string]any {
 						"name": "update",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "PATCH",
 								"orig": "/observability/destinations/{id}",
@@ -11884,6 +11893,48 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"observability",
+									"destinations",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -11891,15 +11942,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"observability",
-									"destinations",
-									"{id}",
 								},
 							},
 						},
@@ -11913,14 +11955,14 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "created_at",
+						"title": "Created At",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "ISO 8601 timestamp of when the workspace was created",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "created_by",
-						"req": true,
-						"short": "User ID of the workspace creator",
+						"title": "Created By",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11928,9 +11970,19 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "User ID of the workspace creator",
 					},
 					map[string]any{
 						"name": "default_image_model",
+						"title": "Default Image Model",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$STRING`",
+								"`$NULL`",
+							},
+						},
 						"op": map[string]any{
 							"list": map[string]any{
 								"req": true,
@@ -11944,6 +11996,10 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Default image model for this workspace",
+					},
+					map[string]any{
+						"name": "default_provider_sort",
+						"title": "Default Provider Sort",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11951,9 +12007,6 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-					},
-					map[string]any{
-						"name": "default_provider_sort",
 						"op": map[string]any{
 							"list": map[string]any{
 								"req": true,
@@ -11967,6 +12020,10 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Default provider sort preference (price, throughput, latency, exacto)",
+					},
+					map[string]any{
+						"name": "default_text_model",
+						"title": "Default Text Model",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11974,9 +12031,6 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-					},
-					map[string]any{
-						"name": "default_text_model",
 						"op": map[string]any{
 							"list": map[string]any{
 								"req": true,
@@ -11990,6 +12044,10 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Default text model for this workspace",
+					},
+					map[string]any{
+						"name": "description",
+						"title": "Description",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -11997,9 +12055,6 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
-					},
-					map[string]any{
-						"name": "description",
 						"op": map[string]any{
 							"list": map[string]any{
 								"req": true,
@@ -12013,23 +12068,25 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Description of the workspace",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$STRING`",
-								"`$NULL`",
-							},
-						},
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique identifier for the workspace",
-						"type": "`$STRING`",
+						"format": "uuid",
 					},
 					map[string]any{
 						"name": "io_logging_api_key_ids",
+						"title": "Io Logging Api Key Ids",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$ARRAY`",
+								"`$NULL`",
+							},
+						},
 						"op": map[string]any{
 							"list": map[string]any{
 								"req": true,
@@ -12043,17 +12100,11 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Optional array of API key IDs to filter I/O logging",
-						"type": []any{
-							"`$ONE`",
-							[]any{
-								"`$ARRAY`",
-								"`$NULL`",
-							},
-						},
 					},
 					map[string]any{
-						"format": "double",
 						"name": "io_logging_sampling_rate",
+						"title": "Io Logging Sampling Rate",
+						"type": "`$NUMBER`",
 						"op": map[string]any{
 							"list": map[string]any{
 								"req": true,
@@ -12061,10 +12112,12 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Sampling rate for I/O logging (0.0001-1)",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "is_data_discount_logging_enabled",
+						"title": "Is Data Discount Logging Enabled",
+						"type": "`$BOOLEAN`",
 						"op": map[string]any{
 							"list": map[string]any{
 								"req": true,
@@ -12072,10 +12125,11 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Whether data discount logging is enabled",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "is_observability_broadcast_enabled",
+						"title": "Is Observability Broadcast Enabled",
+						"type": "`$BOOLEAN`",
 						"op": map[string]any{
 							"list": map[string]any{
 								"req": true,
@@ -12083,10 +12137,11 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Whether broadcast is enabled",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "is_observability_io_logging_enabled",
+						"title": "Is Observability Io Logging Enabled",
+						"type": "`$BOOLEAN`",
 						"op": map[string]any{
 							"list": map[string]any{
 								"req": true,
@@ -12094,34 +12149,34 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Whether private logging is enabled",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
+						"req": true,
 						"op": map[string]any{
 							"update": map[string]any{
 								"type": "`$STRING`",
 							},
 						},
-						"req": true,
 						"short": "Name for the new workspace",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "slug",
+						"title": "Slug",
+						"type": "`$STRING`",
+						"req": true,
 						"op": map[string]any{
 							"update": map[string]any{
 								"type": "`$STRING`",
 							},
 						},
-						"req": true,
 						"short": "URL-friendly slug (lowercase alphanumeric segments separated by single hyphens, no leading/trailing hyphens)",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"req": true,
-						"short": "ISO 8601 timestamp of when the workspace was last updated",
+						"title": "Updated At",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -12129,6 +12184,8 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "ISO 8601 timestamp of when the workspace was last updated",
 					},
 				},
 				"id": map[string]any{
@@ -12142,34 +12199,42 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/workspaces",
 								"segments": []any{
 									map[string]any{
 										"lit": "workspaces",
+									},
+								},
+								"parts": []any{
+									"workspaces",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -12179,13 +12244,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"workspaces",
-								},
 							},
 						},
 					},
@@ -12194,38 +12252,52 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/workspaces",
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
+								},
+								"parts": []any{
+									"workspaces",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
 								"args": map[string]any{
 									"header": []any{
 										map[string]any{
-											"kind": "header",
 											"name": "http_referer",
 											"orig": "http_referer",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_category",
 											"orig": "x_open_router_category",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 										map[string]any{
-											"kind": "header",
 											"name": "x_open_router_title",
 											"orig": "x_open_router_title",
 											"type": "`$STRING`",
+											"kind": "header",
 										},
 									},
 									"query": []any{
 										map[string]any{
-											"example": 50,
-											"kind": "query",
 											"name": "limit",
 											"orig": "limit",
 											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
 										},
 										map[string]any{
-											"example": 0,
-											"kind": "query",
 											"name": "offset",
 											"orig": "offset",
 											"type": []any{
@@ -12235,15 +12307,9 @@ func MakeConfig() map[string]any {
 													"`$NULL`",
 												},
 											},
+											"kind": "query",
+											"example": 0,
 										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/workspaces",
-								"segments": []any{
-									map[string]any{
-										"lit": "workspaces",
 									},
 								},
 								"select": map[string]any{
@@ -12255,13 +12321,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"workspaces",
-								},
 							},
 						},
 					},
@@ -12270,38 +12329,6 @@ func MakeConfig() map[string]any {
 						"name": "update",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "production",
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "PATCH",
 								"orig": "/workspaces/{id}",
@@ -12313,6 +12340,47 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"workspaces",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "production",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -12320,14 +12388,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"workspaces",
-									"{id}",
 								},
 							},
 						},
@@ -12341,14 +12401,16 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "limit_usd",
+						"title": "Limit Usd",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "Spending limit in USD.",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 				},
 				"id": map[string]any{
@@ -12362,55 +12424,9 @@ func MakeConfig() map[string]any {
 						"name": "update",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "monthly",
-											"kind": "param",
-											"name": "id",
-											"orig": "interval",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "production",
-											"kind": "param",
-											"name": "workspace_id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "PUT",
 								"orig": "/workspaces/{id}/budgets/{interval}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"id": "workspace_id",
-										"interval": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "workspaces",
@@ -12425,6 +12441,62 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"workspaces",
+									"{workspace_id}",
+									"budgets",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"id": "workspace_id",
+										"interval": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "interval",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "monthly",
+										},
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "production",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -12434,16 +12506,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"workspaces",
-									"{workspace_id}",
-									"budgets",
-									"{id}",
-								},
 							},
 						},
 					},
@@ -12451,27 +12513,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"workspace",
-						},
-					},
-				},
-			},
-			"user": map[string]any{
-				"fields": []any{},
-				"name": "user",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"version": map[string]any{
-				"fields": []any{},
-				"name": "version",
-				"op": map[string]any{},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"preset",
+							"$.main.kit.entity.workspace",
 						},
 					},
 				},
@@ -12480,97 +12522,116 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "aspect_ratio",
-						"short": "Aspect ratio of the generated video",
+						"title": "Aspect Ratio",
 						"type": "`$STRING`",
+						"short": "Aspect ratio of the generated video",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "callback_url",
-						"short": "URL to receive a webhook notification when the video generation job completes.",
+						"title": "Callback Url",
 						"type": "`$STRING`",
+						"short": "URL to receive a webhook notification when the video generation job completes.",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "duration",
-						"short": "Duration of the generated video in seconds",
+						"title": "Duration",
 						"type": "`$INTEGER`",
+						"short": "Duration of the generated video in seconds",
 					},
 					map[string]any{
 						"name": "error",
+						"title": "Error",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "frame_images",
-						"short": "Images to use as the first and/or last frame of the generated video.",
+						"title": "Frame Images",
 						"type": "`$ARRAY`",
+						"short": "Images to use as the first and/or last frame of the generated video.",
 					},
 					map[string]any{
 						"name": "generate_audio",
-						"short": "Whether to generate audio alongside the video.",
+						"title": "Generate Audio",
 						"type": "`$BOOLEAN`",
+						"short": "Whether to generate audio alongside the video.",
 					},
 					map[string]any{
 						"name": "generation_id",
-						"short": "The generation ID associated with this video generation job.",
+						"title": "Generation Id",
 						"type": "`$STRING`",
+						"short": "The generation ID associated with this video generation job.",
 					},
 					map[string]any{
 						"name": "id",
-						"req": true,
+						"title": "Id",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "input_references",
-						"short": "Reference assets to guide video generation.",
+						"title": "Input References",
 						"type": "`$ARRAY`",
+						"short": "Reference assets to guide video generation.",
 					},
 					map[string]any{
 						"name": "model",
-						"req": true,
+						"title": "Model",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "polling_url",
-						"req": true,
+						"title": "Polling Url",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "prompt",
-						"short": "Text prompt describing the video to generate.",
+						"title": "Prompt",
 						"type": "`$STRING`",
+						"short": "Text prompt describing the video to generate.",
 					},
 					map[string]any{
 						"name": "provider",
-						"short": "Provider-specific passthrough configuration",
+						"title": "Provider",
 						"type": "`$OBJECT`",
+						"short": "Provider-specific passthrough configuration",
 					},
 					map[string]any{
 						"name": "resolution",
-						"short": "Resolution of the generated video",
+						"title": "Resolution",
 						"type": "`$STRING`",
+						"short": "Resolution of the generated video",
 					},
 					map[string]any{
 						"name": "seed",
-						"short": "If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result.",
+						"title": "Seed",
 						"type": "`$INTEGER`",
+						"short": "If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result.",
 					},
 					map[string]any{
 						"name": "size",
-						"short": "Exact pixel dimensions of the generated video in \"WIDTHxHEIGHT\" format (e.g.",
+						"title": "Size",
 						"type": "`$STRING`",
+						"short": "Exact pixel dimensions of the generated video in \"WIDTHxHEIGHT\" format (e.g.",
 					},
 					map[string]any{
 						"name": "status",
-						"req": true,
+						"title": "Status",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "unsigned_urls",
+						"title": "Unsigned Urls",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "usage",
-						"short": "Usage and cost information for the video generation.",
+						"title": "Usage",
 						"type": "`$OBJECT`",
+						"short": "Usage and cost information for the video generation.",
 					},
 				},
 				"id": map[string]any{
@@ -12584,28 +12645,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/videos",
@@ -12614,19 +12653,42 @@ func MakeConfig() map[string]any {
 										"lit": "videos",
 									},
 								},
+								"parts": []any{
+									"videos",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"videos",
 								},
 							},
 						},
@@ -12636,52 +12698,60 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "job-abc123",
-											"kind": "param",
-											"name": "id",
-											"orig": "job_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/videos/{jobId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"jobId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "videos",
 									},
 									map[string]any{
 										"var": "id",
+									},
+								},
+								"parts": []any{
+									"videos",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"jobId": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "job_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "job-abc123",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -12691,14 +12761,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"videos",
-									"{id}",
 								},
 							},
 						},
@@ -12712,6 +12774,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 				},
@@ -12726,61 +12789,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "job-abc123",
-											"kind": "param",
-											"name": "id",
-											"orig": "job_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "index",
-											"orig": "index",
-											"type": []any{
-												"`$ONE`",
-												[]any{
-													"`$INTEGER`",
-													"`$NULL`",
-												},
-											},
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/videos/{jobId}/content",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"jobId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "videos",
@@ -12790,6 +12801,67 @@ func MakeConfig() map[string]any {
 									},
 									map[string]any{
 										"lit": "content",
+									},
+								},
+								"parts": []any{
+									"videos",
+									"{id}",
+									"content",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"jobId": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "job_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "job-abc123",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "index",
+											"orig": "index",
+											"type": []any{
+												"`$ONE`",
+												[]any{
+													"`$INTEGER`",
+													"`$NULL`",
+												},
+											},
+											"kind": "query",
+											"example": 0,
+										},
 									},
 								},
 								"select": map[string]any{
@@ -12802,15 +12874,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"videos",
-									"{id}",
-									"content",
-								},
 							},
 						},
 					},
@@ -12819,35 +12882,38 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"video_models_list": map[string]any{
+			"video_model": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "allowed_passthrough_parameters",
+						"title": "Allowed Passthrough Parameters",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "List of parameters that are allowed to be passed through to the provider",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "canonical_slug",
+						"title": "Canonical Slug",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Canonical slug for the model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "created",
+						"title": "Created",
+						"type": "`$INTEGER`",
 						"req": true,
 						"short": "Unix timestamp of when the model was created",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Description of the model",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Description of the model",
 					},
 					map[string]any{
 						"name": "generate_audio",
-						"req": true,
-						"short": "Whether the model supports generating audio alongside video",
+						"title": "Generate Audio",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -12855,10 +12921,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Whether the model supports generating audio alongside video",
 					},
 					map[string]any{
 						"name": "hugging_face_id",
-						"short": "Hugging Face model identifier, if applicable",
+						"title": "Hugging Face Id",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -12866,22 +12934,25 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Hugging Face model identifier, if applicable",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique identifier for the model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Display name of the model",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "pricing_skus",
-						"short": "Pricing SKUs with provider prefix stripped, values as strings",
+						"title": "Pricing Skus",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -12889,11 +12960,11 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"short": "Pricing SKUs with provider prefix stripped, values as strings",
 					},
 					map[string]any{
 						"name": "seed",
-						"req": true,
-						"short": "Whether the model supports deterministic generation via seed parameter",
+						"title": "Seed",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -12901,11 +12972,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Whether the model supports deterministic generation via seed parameter",
 					},
 					map[string]any{
 						"name": "supported_aspect_ratios",
-						"req": true,
-						"short": "Supported output aspect ratios",
+						"title": "Supported Aspect Ratios",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -12913,11 +12985,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Supported output aspect ratios",
 					},
 					map[string]any{
 						"name": "supported_durations",
-						"req": true,
-						"short": "Supported video durations in seconds",
+						"title": "Supported Durations",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -12925,11 +12998,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Supported video durations in seconds",
 					},
 					map[string]any{
 						"name": "supported_frame_images",
-						"req": true,
-						"short": "Supported frame image types (e.g.",
+						"title": "Supported Frame Images",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -12937,11 +13011,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Supported frame image types (e.g.",
 					},
 					map[string]any{
 						"name": "supported_resolutions",
-						"req": true,
-						"short": "Supported output resolutions",
+						"title": "Supported Resolutions",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -12949,11 +13024,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Supported output resolutions",
 					},
 					map[string]any{
 						"name": "supported_sizes",
-						"req": true,
-						"short": "Supported output sizes (width x height)",
+						"title": "Supported Sizes",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -12961,41 +13037,21 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Supported output sizes (width x height)",
 					},
 				},
 				"id": map[string]any{
 					"field": "id",
 					"name": "id",
 				},
-				"name": "video_models_list",
+				"name": "video_model",
 				"op": map[string]any{
 					"list": map[string]any{
 						"input": "data",
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/videos/models",
@@ -13007,20 +13063,43 @@ func MakeConfig() map[string]any {
 										"lit": "models",
 									},
 								},
+								"parts": []any{
+									"videos",
+									"models",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"videos",
-									"models",
 								},
 							},
 						},
@@ -13034,14 +13113,14 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "created_at",
+						"title": "Created At",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "ISO 8601 timestamp of when the workspace was created",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "created_by",
-						"req": true,
-						"short": "User ID of the workspace creator",
+						"title": "Created By",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -13049,11 +13128,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "User ID of the workspace creator",
 					},
 					map[string]any{
 						"name": "default_image_model",
-						"req": true,
-						"short": "Default image model for this workspace",
+						"title": "Default Image Model",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -13061,11 +13141,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Default image model for this workspace",
 					},
 					map[string]any{
 						"name": "default_provider_sort",
-						"req": true,
-						"short": "Default provider sort preference (price, throughput, latency, exacto)",
+						"title": "Default Provider Sort",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -13073,11 +13154,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Default provider sort preference (price, throughput, latency, exacto)",
 					},
 					map[string]any{
 						"name": "default_text_model",
-						"req": true,
-						"short": "Default text model for this workspace",
+						"title": "Default Text Model",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -13085,11 +13167,12 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Default text model for this workspace",
 					},
 					map[string]any{
 						"name": "description",
-						"req": true,
-						"short": "Description of the workspace",
+						"title": "Description",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -13097,18 +13180,20 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Description of the workspace",
 					},
 					map[string]any{
-						"format": "uuid",
 						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Unique identifier for the workspace",
-						"type": "`$STRING`",
+						"format": "uuid",
 					},
 					map[string]any{
 						"name": "io_logging_api_key_ids",
-						"req": true,
-						"short": "Optional array of API key IDs to filter I/O logging.",
+						"title": "Io Logging Api Key Ids",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -13116,48 +13201,55 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "Optional array of API key IDs to filter I/O logging.",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "io_logging_sampling_rate",
+						"title": "Io Logging Sampling Rate",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "Sampling rate for I/O logging (0.0001-1).",
-						"type": "`$NUMBER`",
+						"format": "double",
 					},
 					map[string]any{
 						"name": "is_data_discount_logging_enabled",
+						"title": "Is Data Discount Logging Enabled",
+						"type": "`$BOOLEAN`",
 						"req": true,
 						"short": "Whether data discount logging is enabled for this workspace",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "is_observability_broadcast_enabled",
+						"title": "Is Observability Broadcast Enabled",
+						"type": "`$BOOLEAN`",
 						"req": true,
 						"short": "Whether broadcast is enabled for this workspace",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "is_observability_io_logging_enabled",
+						"title": "Is Observability Io Logging Enabled",
+						"type": "`$BOOLEAN`",
 						"req": true,
 						"short": "Whether private logging is enabled for this workspace",
-						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Name of the workspace",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "slug",
+						"title": "Slug",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "URL-friendly slug for the workspace",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"req": true,
-						"short": "ISO 8601 timestamp of when the workspace was last updated",
+						"title": "Updated At",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -13165,6 +13257,8 @@ func MakeConfig() map[string]any {
 								"`$NULL`",
 							},
 						},
+						"req": true,
+						"short": "ISO 8601 timestamp of when the workspace was last updated",
 					},
 				},
 				"id": map[string]any{
@@ -13178,38 +13272,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "production",
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/workspaces/{id}",
@@ -13221,6 +13283,47 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"workspaces",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "production",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -13228,14 +13331,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"workspaces",
-									"{id}",
 								},
 							},
 						},
@@ -13245,38 +13340,6 @@ func MakeConfig() map[string]any {
 						"name": "remove",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "production",
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/workspaces/{id}",
@@ -13288,6 +13351,47 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"workspaces",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "production",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -13295,14 +13399,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_category",
 										"x_open_router_title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"workspaces",
-									"{id}",
 								},
 							},
 						},
@@ -13315,8 +13411,55 @@ func MakeConfig() map[string]any {
 			"workspace_budget": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "id",
+						"name": "created_at",
+						"title": "Created At",
 						"type": "`$STRING`",
+						"req": true,
+						"short": "ISO 8601 timestamp of when the budget was created",
+					},
+					map[string]any{
+						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "Unique identifier for the budget",
+						"format": "uuid",
+					},
+					map[string]any{
+						"name": "limit_usd",
+						"title": "Limit Usd",
+						"type": "`$NUMBER`",
+						"req": true,
+						"short": "Spending limit in USD for this interval",
+						"format": "double",
+					},
+					map[string]any{
+						"name": "reset_interval",
+						"title": "Reset Interval",
+						"type": []any{
+							"`$ONE`",
+							[]any{
+								"`$STRING`",
+								"`$NULL`",
+							},
+						},
+						"req": true,
+						"short": "Interval at which spend resets.",
+					},
+					map[string]any{
+						"name": "updated_at",
+						"title": "Updated At",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "ISO 8601 timestamp of when the budget was last updated",
+					},
+					map[string]any{
+						"name": "workspace_id",
+						"title": "Workspace Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "ID of the workspace the budget belongs to",
+						"format": "uuid",
 					},
 				},
 				"id": map[string]any{
@@ -13325,60 +13468,86 @@ func MakeConfig() map[string]any {
 				},
 				"name": "workspace_budget",
 				"op": map[string]any{
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/workspaces/{id}/budgets",
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "budgets",
+									},
+								},
+								"parts": []any{
+									"workspaces",
+									"{id}",
+									"budgets",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "production",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"http_referer",
+										"id",
+										"x_open_router_category",
+										"x_open_router_title",
+									},
+								},
+							},
+						},
+					},
 					"remove": map[string]any{
 						"input": "data",
 						"name": "remove",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"header": []any{
-										map[string]any{
-											"kind": "header",
-											"name": "http_referer",
-											"orig": "http_referer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_category",
-											"orig": "x_open_router_category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "header",
-											"name": "x_open_router_title",
-											"orig": "x_open_router_title",
-											"type": "`$STRING`",
-										},
-									},
-									"params": []any{
-										map[string]any{
-											"example": "monthly",
-											"kind": "param",
-											"name": "id",
-											"orig": "interval",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "production",
-											"kind": "param",
-											"name": "workspace_id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "DELETE",
 								"orig": "/workspaces/{id}/budgets/{interval}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"id": "workspace_id",
-										"interval": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "workspaces",
@@ -13393,6 +13562,62 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"workspaces",
+									"{workspace_id}",
+									"budgets",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"id": "workspace_id",
+										"interval": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "interval",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "monthly",
+										},
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "production",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"http_referer",
@@ -13402,16 +13627,6 @@ func MakeConfig() map[string]any {
 										"x_open_router_title",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"workspaces",
-									"{workspace_id}",
-									"budgets",
-									"{id}",
-								},
 							},
 						},
 					},
@@ -13419,15 +13634,154 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"workspace",
+							"$.main.kit.entity.workspace",
 						},
 					},
 				},
 			},
-			"zdr": map[string]any{
-				"fields": []any{},
-				"name": "zdr",
-				"op": map[string]any{},
+			"workspace_member": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "created_at",
+						"title": "Created At",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "ISO 8601 timestamp of when the membership was created",
+					},
+					map[string]any{
+						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "Unique identifier for the workspace membership",
+						"format": "uuid",
+					},
+					map[string]any{
+						"name": "role",
+						"title": "Role",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "Role of the member in the workspace",
+					},
+					map[string]any{
+						"name": "user_id",
+						"title": "User Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "Clerk user ID of the member",
+					},
+					map[string]any{
+						"name": "workspace_id",
+						"title": "Workspace Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "ID of the workspace",
+						"format": "uuid",
+					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
+				"name": "workspace_member",
+				"op": map[string]any{
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/workspaces/{id}/members",
+								"segments": []any{
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "members",
+									},
+								},
+								"parts": []any{
+									"workspaces",
+									"{id}",
+									"members",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"header": []any{
+										map[string]any{
+											"name": "http_referer",
+											"orig": "http_referer",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_category",
+											"orig": "x_open_router_category",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+										map[string]any{
+											"name": "x_open_router_title",
+											"orig": "x_open_router_title",
+											"type": "`$STRING`",
+											"kind": "header",
+										},
+									},
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "production",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "offset",
+											"orig": "offset",
+											"type": []any{
+												"`$ONE`",
+												[]any{
+													"`$INTEGER`",
+													"`$NULL`",
+												},
+											},
+											"kind": "query",
+											"example": 0,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"http_referer",
+										"id",
+										"limit",
+										"offset",
+										"x_open_router_category",
+										"x_open_router_title",
+									},
+								},
+							},
+						},
+					},
+				},
 				"relations": map[string]any{
 					"ancestors": []any{},
 				},

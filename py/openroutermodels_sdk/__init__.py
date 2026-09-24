@@ -313,12 +313,6 @@ class OpenrouterModelsSDK:
         return ActivityEntity(self, data)
 
 
-    def Add(self, data=None) -> "AddEntity":
-        """Entity factory: client.Add().list() / client.Add().load({"id": ...})."""
-        from openroutermodels_sdk.entity.add_entity import AddEntity
-        return AddEntity(self, data)
-
-
     def ApiKey(self, data=None) -> "ApiKeyEntity":
         """Entity factory: client.ApiKey().list() / client.ApiKey().load({"id": ...})."""
         from openroutermodels_sdk.entity.api_key_entity import ApiKeyEntity
@@ -331,22 +325,10 @@ class OpenrouterModelsSDK:
         return AppRankingEntity(self, data)
 
 
-    def Benchmark(self, data=None) -> "BenchmarkEntity":
-        """Entity factory: client.Benchmark().list() / client.Benchmark().load({"id": ...})."""
-        from openroutermodels_sdk.entity.benchmark_entity import BenchmarkEntity
-        return BenchmarkEntity(self, data)
-
-
     def BetaAnalytics(self, data=None) -> "BetaAnalyticsEntity":
         """Entity factory: client.BetaAnalytics().list() / client.BetaAnalytics().load({"id": ...})."""
         from openroutermodels_sdk.entity.beta_analytics_entity import BetaAnalyticsEntity
         return BetaAnalyticsEntity(self, data)
-
-
-    def Budget(self, data=None) -> "BudgetEntity":
-        """Entity factory: client.Budget().list() / client.Budget().load({"id": ...})."""
-        from openroutermodels_sdk.entity.budget_entity import BudgetEntity
-        return BudgetEntity(self, data)
 
 
     def BulkAddWorkspaceMember(self, data=None) -> "BulkAddWorkspaceMemberEntity":
@@ -397,46 +379,10 @@ class OpenrouterModelsSDK:
         return ChatResultEntity(self, data)
 
 
-    def Code(self, data=None) -> "CodeEntity":
-        """Entity factory: client.Code().list() / client.Code().load({"id": ...})."""
-        from openroutermodels_sdk.entity.code_entity import CodeEntity
-        return CodeEntity(self, data)
-
-
-    def Coinbase(self, data=None) -> "CoinbaseEntity":
-        """Entity factory: client.Coinbase().list() / client.Coinbase().load({"id": ...})."""
-        from openroutermodels_sdk.entity.coinbase_entity import CoinbaseEntity
-        return CoinbaseEntity(self, data)
-
-
     def Completion(self, data=None) -> "CompletionEntity":
         """Entity factory: client.Completion().list() / client.Completion().load({"id": ...})."""
         from openroutermodels_sdk.entity.completion_entity import CompletionEntity
         return CompletionEntity(self, data)
-
-
-    def Content(self, data=None) -> "ContentEntity":
-        """Entity factory: client.Content().list() / client.Content().load({"id": ...})."""
-        from openroutermodels_sdk.entity.content_entity import ContentEntity
-        return ContentEntity(self, data)
-
-
-    def Count(self, data=None) -> "CountEntity":
-        """Entity factory: client.Count().list() / client.Count().load({"id": ...})."""
-        from openroutermodels_sdk.entity.count_entity import CountEntity
-        return CountEntity(self, data)
-
-
-    def CreateByokKey(self, data=None) -> "CreateByokKeyEntity":
-        """Entity factory: client.CreateByokKey().list() / client.CreateByokKey().load({"id": ...})."""
-        from openroutermodels_sdk.entity.create_byok_key_entity import CreateByokKeyEntity
-        return CreateByokKeyEntity(self, data)
-
-
-    def CreateGuardrail(self, data=None) -> "CreateGuardrailEntity":
-        """Entity factory: client.CreateGuardrail().list() / client.CreateGuardrail().load({"id": ...})."""
-        from openroutermodels_sdk.entity.create_guardrail_entity import CreateGuardrailEntity
-        return CreateGuardrailEntity(self, data)
 
 
     def CreateObservabilityDestination(self, data=None) -> "CreateObservabilityDestinationEntity":
@@ -445,28 +391,10 @@ class OpenrouterModelsSDK:
         return CreateObservabilityDestinationEntity(self, data)
 
 
-    def CreatePresetFromInference(self, data=None) -> "CreatePresetFromInferenceEntity":
-        """Entity factory: client.CreatePresetFromInference().list() / client.CreatePresetFromInference().load({"id": ...})."""
-        from openroutermodels_sdk.entity.create_preset_from_inference_entity import CreatePresetFromInferenceEntity
-        return CreatePresetFromInferenceEntity(self, data)
-
-
-    def CreateWorkspace(self, data=None) -> "CreateWorkspaceEntity":
-        """Entity factory: client.CreateWorkspace().list() / client.CreateWorkspace().load({"id": ...})."""
-        from openroutermodels_sdk.entity.create_workspace_entity import CreateWorkspaceEntity
-        return CreateWorkspaceEntity(self, data)
-
-
     def Credit(self, data=None) -> "CreditEntity":
         """Entity factory: client.Credit().list() / client.Credit().load({"id": ...})."""
         from openroutermodels_sdk.entity.credit_entity import CreditEntity
         return CreditEntity(self, data)
-
-
-    def Destination(self, data=None) -> "DestinationEntity":
-        """Entity factory: client.Destination().list() / client.Destination().load({"id": ...})."""
-        from openroutermodels_sdk.entity.destination_entity import DestinationEntity
-        return DestinationEntity(self, data)
 
 
     def Embedding(self, data=None) -> "EmbeddingEntity":
@@ -481,12 +409,6 @@ class OpenrouterModelsSDK:
         return EndpointEntity(self, data)
 
 
-    def Feedback(self, data=None) -> "FeedbackEntity":
-        """Entity factory: client.Feedback().list() / client.Feedback().load({"id": ...})."""
-        from openroutermodels_sdk.entity.feedback_entity import FeedbackEntity
-        return FeedbackEntity(self, data)
-
-
     def File(self, data=None) -> "FileEntity":
         """Entity factory: client.File().list() / client.File().load({"id": ...})."""
         from openroutermodels_sdk.entity.file_entity import FileEntity
@@ -499,10 +421,10 @@ class OpenrouterModelsSDK:
         return GenerationEntity(self, data)
 
 
-    def GenerationContent(self, data=None) -> "GenerationContentEntity":
-        """Entity factory: client.GenerationContent().list() / client.GenerationContent().load({"id": ...})."""
-        from openroutermodels_sdk.entity.generation_content_entity import GenerationContentEntity
-        return GenerationContentEntity(self, data)
+    def GenerationContentData(self, data=None) -> "GenerationContentDataEntity":
+        """Entity factory: client.GenerationContentData().list() / client.GenerationContentData().load({"id": ...})."""
+        from openroutermodels_sdk.entity.generation_content_data_entity import GenerationContentDataEntity
+        return GenerationContentDataEntity(self, data)
 
 
     def Guardrail(self, data=None) -> "GuardrailEntity":
@@ -523,10 +445,10 @@ class OpenrouterModelsSDK:
         return ImageModelEndpointEntity(self, data)
 
 
-    def ImageModelsList(self, data=None) -> "ImageModelsListEntity":
-        """Entity factory: client.ImageModelsList().list() / client.ImageModelsList().load({"id": ...})."""
-        from openroutermodels_sdk.entity.image_models_list_entity import ImageModelsListEntity
-        return ImageModelsListEntity(self, data)
+    def ImageModelListItem(self, data=None) -> "ImageModelListItemEntity":
+        """Entity factory: client.ImageModelListItem().list() / client.ImageModelListItem().load({"id": ...})."""
+        from openroutermodels_sdk.entity.image_model_list_item_entity import ImageModelListItemEntity
+        return ImageModelListItemEntity(self, data)
 
 
     def Key(self, data=None) -> "KeyEntity":
@@ -535,64 +457,16 @@ class OpenrouterModelsSDK:
         return KeyEntity(self, data)
 
 
-    def ListByokKey(self, data=None) -> "ListByokKeyEntity":
-        """Entity factory: client.ListByokKey().list() / client.ListByokKey().load({"id": ...})."""
-        from openroutermodels_sdk.entity.list_byok_key_entity import ListByokKeyEntity
-        return ListByokKeyEntity(self, data)
-
-
-    def ListGuardrail(self, data=None) -> "ListGuardrailEntity":
-        """Entity factory: client.ListGuardrail().list() / client.ListGuardrail().load({"id": ...})."""
-        from openroutermodels_sdk.entity.list_guardrail_entity import ListGuardrailEntity
-        return ListGuardrailEntity(self, data)
-
-
-    def ListKeyAssignment(self, data=None) -> "ListKeyAssignmentEntity":
-        """Entity factory: client.ListKeyAssignment().list() / client.ListKeyAssignment().load({"id": ...})."""
-        from openroutermodels_sdk.entity.list_key_assignment_entity import ListKeyAssignmentEntity
-        return ListKeyAssignmentEntity(self, data)
-
-
-    def ListMemberAssignment(self, data=None) -> "ListMemberAssignmentEntity":
-        """Entity factory: client.ListMemberAssignment().list() / client.ListMemberAssignment().load({"id": ...})."""
-        from openroutermodels_sdk.entity.list_member_assignment_entity import ListMemberAssignmentEntity
-        return ListMemberAssignmentEntity(self, data)
-
-
     def ListObservabilityDestination(self, data=None) -> "ListObservabilityDestinationEntity":
         """Entity factory: client.ListObservabilityDestination().list() / client.ListObservabilityDestination().load({"id": ...})."""
         from openroutermodels_sdk.entity.list_observability_destination_entity import ListObservabilityDestinationEntity
         return ListObservabilityDestinationEntity(self, data)
 
 
-    def ListPreset(self, data=None) -> "ListPresetEntity":
-        """Entity factory: client.ListPreset().list() / client.ListPreset().load({"id": ...})."""
-        from openroutermodels_sdk.entity.list_preset_entity import ListPresetEntity
-        return ListPresetEntity(self, data)
-
-
     def ListPresetVersion(self, data=None) -> "ListPresetVersionEntity":
         """Entity factory: client.ListPresetVersion().list() / client.ListPresetVersion().load({"id": ...})."""
         from openroutermodels_sdk.entity.list_preset_version_entity import ListPresetVersionEntity
         return ListPresetVersionEntity(self, data)
-
-
-    def ListWorkspace(self, data=None) -> "ListWorkspaceEntity":
-        """Entity factory: client.ListWorkspace().list() / client.ListWorkspace().load({"id": ...})."""
-        from openroutermodels_sdk.entity.list_workspace_entity import ListWorkspaceEntity
-        return ListWorkspaceEntity(self, data)
-
-
-    def ListWorkspaceBudget(self, data=None) -> "ListWorkspaceBudgetEntity":
-        """Entity factory: client.ListWorkspaceBudget().list() / client.ListWorkspaceBudget().load({"id": ...})."""
-        from openroutermodels_sdk.entity.list_workspace_budget_entity import ListWorkspaceBudgetEntity
-        return ListWorkspaceBudgetEntity(self, data)
-
-
-    def ListWorkspaceMember(self, data=None) -> "ListWorkspaceMemberEntity":
-        """Entity factory: client.ListWorkspaceMember().list() / client.ListWorkspaceMember().load({"id": ...})."""
-        from openroutermodels_sdk.entity.list_workspace_member_entity import ListWorkspaceMemberEntity
-        return ListWorkspaceMemberEntity(self, data)
 
 
     def Member(self, data=None) -> "MemberEntity":
@@ -605,12 +479,6 @@ class OpenrouterModelsSDK:
         """Entity factory: client.Message().list() / client.Message().load({"id": ...})."""
         from openroutermodels_sdk.entity.message_entity import MessageEntity
         return MessageEntity(self, data)
-
-
-    def Meta(self, data=None) -> "MetaEntity":
-        """Entity factory: client.Meta().list() / client.Meta().load({"id": ...})."""
-        from openroutermodels_sdk.entity.meta_entity import MetaEntity
-        return MetaEntity(self, data)
 
 
     def Model(self, data=None) -> "ModelEntity":
@@ -673,22 +541,10 @@ class OpenrouterModelsSDK:
         return ProviderEntity(self, data)
 
 
-    def Query(self, data=None) -> "QueryEntity":
-        """Entity factory: client.Query().list() / client.Query().load({"id": ...})."""
-        from openroutermodels_sdk.entity.query_entity import QueryEntity
-        return QueryEntity(self, data)
-
-
     def RankingsDaily(self, data=None) -> "RankingsDailyEntity":
         """Entity factory: client.RankingsDaily().list() / client.RankingsDaily().load({"id": ...})."""
         from openroutermodels_sdk.entity.rankings_daily_entity import RankingsDailyEntity
         return RankingsDailyEntity(self, data)
-
-
-    def Remove(self, data=None) -> "RemoveEntity":
-        """Entity factory: client.Remove().list() / client.Remove().load({"id": ...})."""
-        from openroutermodels_sdk.entity.remove_entity import RemoveEntity
-        return RemoveEntity(self, data)
 
 
     def Rerank(self, data=None) -> "RerankEntity":
@@ -701,12 +557,6 @@ class OpenrouterModelsSDK:
         """Entity factory: client.Response().list() / client.Response().load({"id": ...})."""
         from openroutermodels_sdk.entity.response_entity import ResponseEntity
         return ResponseEntity(self, data)
-
-
-    def Speech(self, data=None) -> "SpeechEntity":
-        """Entity factory: client.Speech().list() / client.Speech().load({"id": ...})."""
-        from openroutermodels_sdk.entity.speech_entity import SpeechEntity
-        return SpeechEntity(self, data)
 
 
     def Stt(self, data=None) -> "SttEntity":
@@ -725,12 +575,6 @@ class OpenrouterModelsSDK:
         """Entity factory: client.Task().list() / client.Task().load({"id": ...})."""
         from openroutermodels_sdk.entity.task_entity import TaskEntity
         return TaskEntity(self, data)
-
-
-    def Transcription(self, data=None) -> "TranscriptionEntity":
-        """Entity factory: client.Transcription().list() / client.Transcription().load({"id": ...})."""
-        from openroutermodels_sdk.entity.transcription_entity import TranscriptionEntity
-        return TranscriptionEntity(self, data)
 
 
     def Tts(self, data=None) -> "TtsEntity":
@@ -775,18 +619,6 @@ class OpenrouterModelsSDK:
         return UpsertWorkspaceBudgetEntity(self, data)
 
 
-    def User(self, data=None) -> "UserEntity":
-        """Entity factory: client.User().list() / client.User().load({"id": ...})."""
-        from openroutermodels_sdk.entity.user_entity import UserEntity
-        return UserEntity(self, data)
-
-
-    def Version(self, data=None) -> "VersionEntity":
-        """Entity factory: client.Version().list() / client.Version().load({"id": ...})."""
-        from openroutermodels_sdk.entity.version_entity import VersionEntity
-        return VersionEntity(self, data)
-
-
     def Video(self, data=None) -> "VideoEntity":
         """Entity factory: client.Video().list() / client.Video().load({"id": ...})."""
         from openroutermodels_sdk.entity.video_entity import VideoEntity
@@ -799,10 +631,10 @@ class OpenrouterModelsSDK:
         return VideoGenerationEntity(self, data)
 
 
-    def VideoModelsList(self, data=None) -> "VideoModelsListEntity":
-        """Entity factory: client.VideoModelsList().list() / client.VideoModelsList().load({"id": ...})."""
-        from openroutermodels_sdk.entity.video_models_list_entity import VideoModelsListEntity
-        return VideoModelsListEntity(self, data)
+    def VideoModel(self, data=None) -> "VideoModelEntity":
+        """Entity factory: client.VideoModel().list() / client.VideoModel().load({"id": ...})."""
+        from openroutermodels_sdk.entity.video_model_entity import VideoModelEntity
+        return VideoModelEntity(self, data)
 
 
     def Workspace(self, data=None) -> "WorkspaceEntity":
@@ -817,10 +649,10 @@ class OpenrouterModelsSDK:
         return WorkspaceBudgetEntity(self, data)
 
 
-    def Zdr(self, data=None) -> "ZdrEntity":
-        """Entity factory: client.Zdr().list() / client.Zdr().load({"id": ...})."""
-        from openroutermodels_sdk.entity.zdr_entity import ZdrEntity
-        return ZdrEntity(self, data)
+    def WorkspaceMember(self, data=None) -> "WorkspaceMemberEntity":
+        """Entity factory: client.WorkspaceMember().list() / client.WorkspaceMember().load({"id": ...})."""
+        from openroutermodels_sdk.entity.workspace_member_entity import WorkspaceMemberEntity
+        return WorkspaceMemberEntity(self, data)
 
 
 
@@ -851,12 +683,9 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from openroutermodels_sdk.entity.activity_entity import ActivityEntity
-    from openroutermodels_sdk.entity.add_entity import AddEntity
     from openroutermodels_sdk.entity.api_key_entity import ApiKeyEntity
     from openroutermodels_sdk.entity.app_ranking_entity import AppRankingEntity
-    from openroutermodels_sdk.entity.benchmark_entity import BenchmarkEntity
     from openroutermodels_sdk.entity.beta_analytics_entity import BetaAnalyticsEntity
-    from openroutermodels_sdk.entity.budget_entity import BudgetEntity
     from openroutermodels_sdk.entity.bulk_add_workspace_member_entity import BulkAddWorkspaceMemberEntity
     from openroutermodels_sdk.entity.bulk_assign_key_entity import BulkAssignKeyEntity
     from openroutermodels_sdk.entity.bulk_assign_member_entity import BulkAssignMemberEntity
@@ -865,42 +694,23 @@ if TYPE_CHECKING:
     from openroutermodels_sdk.entity.bulk_unassign_member_entity import BulkUnassignMemberEntity
     from openroutermodels_sdk.entity.byok_entity import ByokEntity
     from openroutermodels_sdk.entity.chat_result_entity import ChatResultEntity
-    from openroutermodels_sdk.entity.code_entity import CodeEntity
-    from openroutermodels_sdk.entity.coinbase_entity import CoinbaseEntity
     from openroutermodels_sdk.entity.completion_entity import CompletionEntity
-    from openroutermodels_sdk.entity.content_entity import ContentEntity
-    from openroutermodels_sdk.entity.count_entity import CountEntity
-    from openroutermodels_sdk.entity.create_byok_key_entity import CreateByokKeyEntity
-    from openroutermodels_sdk.entity.create_guardrail_entity import CreateGuardrailEntity
     from openroutermodels_sdk.entity.create_observability_destination_entity import CreateObservabilityDestinationEntity
-    from openroutermodels_sdk.entity.create_preset_from_inference_entity import CreatePresetFromInferenceEntity
-    from openroutermodels_sdk.entity.create_workspace_entity import CreateWorkspaceEntity
     from openroutermodels_sdk.entity.credit_entity import CreditEntity
-    from openroutermodels_sdk.entity.destination_entity import DestinationEntity
     from openroutermodels_sdk.entity.embedding_entity import EmbeddingEntity
     from openroutermodels_sdk.entity.endpoint_entity import EndpointEntity
-    from openroutermodels_sdk.entity.feedback_entity import FeedbackEntity
     from openroutermodels_sdk.entity.file_entity import FileEntity
     from openroutermodels_sdk.entity.generation_entity import GenerationEntity
-    from openroutermodels_sdk.entity.generation_content_entity import GenerationContentEntity
+    from openroutermodels_sdk.entity.generation_content_data_entity import GenerationContentDataEntity
     from openroutermodels_sdk.entity.guardrail_entity import GuardrailEntity
     from openroutermodels_sdk.entity.image_entity import ImageEntity
     from openroutermodels_sdk.entity.image_model_endpoint_entity import ImageModelEndpointEntity
-    from openroutermodels_sdk.entity.image_models_list_entity import ImageModelsListEntity
+    from openroutermodels_sdk.entity.image_model_list_item_entity import ImageModelListItemEntity
     from openroutermodels_sdk.entity.key_entity import KeyEntity
-    from openroutermodels_sdk.entity.list_byok_key_entity import ListByokKeyEntity
-    from openroutermodels_sdk.entity.list_guardrail_entity import ListGuardrailEntity
-    from openroutermodels_sdk.entity.list_key_assignment_entity import ListKeyAssignmentEntity
-    from openroutermodels_sdk.entity.list_member_assignment_entity import ListMemberAssignmentEntity
     from openroutermodels_sdk.entity.list_observability_destination_entity import ListObservabilityDestinationEntity
-    from openroutermodels_sdk.entity.list_preset_entity import ListPresetEntity
     from openroutermodels_sdk.entity.list_preset_version_entity import ListPresetVersionEntity
-    from openroutermodels_sdk.entity.list_workspace_entity import ListWorkspaceEntity
-    from openroutermodels_sdk.entity.list_workspace_budget_entity import ListWorkspaceBudgetEntity
-    from openroutermodels_sdk.entity.list_workspace_member_entity import ListWorkspaceMemberEntity
     from openroutermodels_sdk.entity.member_entity import MemberEntity
     from openroutermodels_sdk.entity.message_entity import MessageEntity
-    from openroutermodels_sdk.entity.meta_entity import MetaEntity
     from openroutermodels_sdk.entity.model_entity import ModelEntity
     from openroutermodels_sdk.entity.models_count_entity import ModelsCountEntity
     from openroutermodels_sdk.entity.models_list_entity import ModelsListEntity
@@ -911,16 +721,12 @@ if TYPE_CHECKING:
     from openroutermodels_sdk.entity.preset_entity import PresetEntity
     from openroutermodels_sdk.entity.preset_version_entity import PresetVersionEntity
     from openroutermodels_sdk.entity.provider_entity import ProviderEntity
-    from openroutermodels_sdk.entity.query_entity import QueryEntity
     from openroutermodels_sdk.entity.rankings_daily_entity import RankingsDailyEntity
-    from openroutermodels_sdk.entity.remove_entity import RemoveEntity
     from openroutermodels_sdk.entity.rerank_entity import RerankEntity
     from openroutermodels_sdk.entity.response_entity import ResponseEntity
-    from openroutermodels_sdk.entity.speech_entity import SpeechEntity
     from openroutermodels_sdk.entity.stt_entity import SttEntity
     from openroutermodels_sdk.entity.submit_generation_feedback_entity import SubmitGenerationFeedbackEntity
     from openroutermodels_sdk.entity.task_entity import TaskEntity
-    from openroutermodels_sdk.entity.transcription_entity import TranscriptionEntity
     from openroutermodels_sdk.entity.tts_entity import TtsEntity
     from openroutermodels_sdk.entity.unified_benchmark_entity import UnifiedBenchmarkEntity
     from openroutermodels_sdk.entity.update_byok_key_entity import UpdateByokKeyEntity
@@ -928,11 +734,9 @@ if TYPE_CHECKING:
     from openroutermodels_sdk.entity.update_observability_destination_entity import UpdateObservabilityDestinationEntity
     from openroutermodels_sdk.entity.update_workspace_entity import UpdateWorkspaceEntity
     from openroutermodels_sdk.entity.upsert_workspace_budget_entity import UpsertWorkspaceBudgetEntity
-    from openroutermodels_sdk.entity.user_entity import UserEntity
-    from openroutermodels_sdk.entity.version_entity import VersionEntity
     from openroutermodels_sdk.entity.video_entity import VideoEntity
     from openroutermodels_sdk.entity.video_generation_entity import VideoGenerationEntity
-    from openroutermodels_sdk.entity.video_models_list_entity import VideoModelsListEntity
+    from openroutermodels_sdk.entity.video_model_entity import VideoModelEntity
     from openroutermodels_sdk.entity.workspace_entity import WorkspaceEntity
     from openroutermodels_sdk.entity.workspace_budget_entity import WorkspaceBudgetEntity
-    from openroutermodels_sdk.entity.zdr_entity import ZdrEntity
+    from openroutermodels_sdk.entity.workspace_member_entity import WorkspaceMemberEntity

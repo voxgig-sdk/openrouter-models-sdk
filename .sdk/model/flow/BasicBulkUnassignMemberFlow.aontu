@@ -1,0 +1,22 @@
+# BasicBulkUnassignMemberFlow
+
+main: kit: flow: BasicBulkUnassignMemberFlow:
+{
+  entity: "bulk_unassign_member",
+  kind: "basic",
+  name: "BasicBulkUnassignMemberFlow",
+  step: [
+    {
+      i: {
+        ref: "bulk_unassign_member_ref01"
+      }
+
+      m: {
+        guardrail_id: "guardrail01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicBulkUnassignMemberFlow"
+}

@@ -19,7 +19,7 @@ describe("CompletionEntity", function()
     local setup = completion_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
-    for _, _op in ipairs({}) do
+    for _, _op in ipairs({"create"}) do
       local _should_skip, _reason = runner.is_control_skipped("entityOp", "completion." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
@@ -34,13 +34,16 @@ describe("CompletionEntity", function()
     end
     local client = setup.client
 
-    -- Bootstrap entity data from existing test data.
-    local completion_ref01_data_raw = vs.items(helpers.to_map(
-      vs.getpath(setup.data, "existing.completion")))
-    local completion_ref01_data = nil
-    if #completion_ref01_data_raw > 0 then
-      completion_ref01_data = helpers.to_map(completion_ref01_data_raw[1][2])
-    end
+    -- CREATE
+    local completion_ref01_ent = client:Completion(nil)
+    local completion_ref01_data = helpers.to_map(vs.getprop(
+      vs.getpath(setup.data, "new.completion"), "completion_ref01"))
+    completion_ref01_data["slug"] = setup.idmap["slug01"]
+
+    local completion_ref01_data_result, err = completion_ref01_ent:create(completion_ref01_data, nil)
+    assert.is_nil(err)
+    completion_ref01_data = helpers.to_map(type(completion_ref01_data_result) == 'table' and completion_ref01_data_result.data_get and completion_ref01_data_result:data_get() or completion_ref01_data_result)
+    assert.is_not_nil(completion_ref01_data)
 
   end)
 end)
@@ -65,7 +68,7 @@ function completion_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "completion01", "completion02", "completion03", "preset01", "preset02", "preset03" },
+    { "completion01", "completion02", "completion03", "preset01", "preset02", "preset03", "slug01" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

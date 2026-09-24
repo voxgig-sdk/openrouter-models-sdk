@@ -19,7 +19,6 @@ import type {
   ProviderListMatch,
 } from '../OpenrouterModelsTypes'
 
-// TODO: needs Entity superclass
 class ProviderEntity extends OpenrouterModelsEntityBase<Provider> {
 
   constructor(client: OpenrouterModelsSDK, entopts: any) {

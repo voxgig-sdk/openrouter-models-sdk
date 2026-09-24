@@ -19,7 +19,6 @@ import type {
   ListPresetVersionListMatch,
 } from '../OpenrouterModelsTypes'
 
-// TODO: needs Entity superclass
 class ListPresetVersionEntity extends OpenrouterModelsEntityBase<ListPresetVersion> {
 
   constructor(client: OpenrouterModelsSDK, entopts: any) {

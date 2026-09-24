@@ -1,0 +1,22 @@
+# BasicWorkspaceBudgetFlow
+
+main: kit: flow: BasicWorkspaceBudgetFlow:
+{
+  entity: "workspace_budget",
+  kind: "basic",
+  name: "BasicWorkspaceBudgetFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "workspace_budget_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWorkspaceBudgetFlow"
+}

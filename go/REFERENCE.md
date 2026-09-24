@@ -52,10 +52,6 @@ client := sdk.TestSDK(testopts, sdkopts)
 
 Create a new `Activity` entity instance. Pass `nil` for no initial data.
 
-#### `Add(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Add` entity instance. Pass `nil` for no initial data.
-
 #### `ApiKey(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `ApiKey` entity instance. Pass `nil` for no initial data.
@@ -64,17 +60,9 @@ Create a new `ApiKey` entity instance. Pass `nil` for no initial data.
 
 Create a new `AppRanking` entity instance. Pass `nil` for no initial data.
 
-#### `Benchmark(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Benchmark` entity instance. Pass `nil` for no initial data.
-
 #### `BetaAnalytics(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `BetaAnalytics` entity instance. Pass `nil` for no initial data.
-
-#### `Budget(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Budget` entity instance. Pass `nil` for no initial data.
 
 #### `BulkAddWorkspaceMember(data map[string]any) OpenrouterModelsEntity`
 
@@ -108,53 +96,17 @@ Create a new `Byok` entity instance. Pass `nil` for no initial data.
 
 Create a new `ChatResult` entity instance. Pass `nil` for no initial data.
 
-#### `Code(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Code` entity instance. Pass `nil` for no initial data.
-
-#### `Coinbase(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Coinbase` entity instance. Pass `nil` for no initial data.
-
 #### `Completion(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `Completion` entity instance. Pass `nil` for no initial data.
-
-#### `Content(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Content` entity instance. Pass `nil` for no initial data.
-
-#### `Count(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Count` entity instance. Pass `nil` for no initial data.
-
-#### `CreateByokKey(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `CreateByokKey` entity instance. Pass `nil` for no initial data.
-
-#### `CreateGuardrail(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `CreateGuardrail` entity instance. Pass `nil` for no initial data.
 
 #### `CreateObservabilityDestination(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `CreateObservabilityDestination` entity instance. Pass `nil` for no initial data.
 
-#### `CreatePresetFromInference(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `CreatePresetFromInference` entity instance. Pass `nil` for no initial data.
-
-#### `CreateWorkspace(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `CreateWorkspace` entity instance. Pass `nil` for no initial data.
-
 #### `Credit(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `Credit` entity instance. Pass `nil` for no initial data.
-
-#### `Destination(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Destination` entity instance. Pass `nil` for no initial data.
 
 #### `Embedding(data map[string]any) OpenrouterModelsEntity`
 
@@ -164,10 +116,6 @@ Create a new `Embedding` entity instance. Pass `nil` for no initial data.
 
 Create a new `Endpoint` entity instance. Pass `nil` for no initial data.
 
-#### `Feedback(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Feedback` entity instance. Pass `nil` for no initial data.
-
 #### `File(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `File` entity instance. Pass `nil` for no initial data.
@@ -176,9 +124,9 @@ Create a new `File` entity instance. Pass `nil` for no initial data.
 
 Create a new `Generation` entity instance. Pass `nil` for no initial data.
 
-#### `GenerationContent(data map[string]any) OpenrouterModelsEntity`
+#### `GenerationContentData(data map[string]any) OpenrouterModelsEntity`
 
-Create a new `GenerationContent` entity instance. Pass `nil` for no initial data.
+Create a new `GenerationContentData` entity instance. Pass `nil` for no initial data.
 
 #### `Guardrail(data map[string]any) OpenrouterModelsEntity`
 
@@ -192,53 +140,21 @@ Create a new `Image` entity instance. Pass `nil` for no initial data.
 
 Create a new `ImageModelEndpoint` entity instance. Pass `nil` for no initial data.
 
-#### `ImageModelsList(data map[string]any) OpenrouterModelsEntity`
+#### `ImageModelListItem(data map[string]any) OpenrouterModelsEntity`
 
-Create a new `ImageModelsList` entity instance. Pass `nil` for no initial data.
+Create a new `ImageModelListItem` entity instance. Pass `nil` for no initial data.
 
 #### `Key(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `Key` entity instance. Pass `nil` for no initial data.
 
-#### `ListByokKey(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `ListByokKey` entity instance. Pass `nil` for no initial data.
-
-#### `ListGuardrail(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `ListGuardrail` entity instance. Pass `nil` for no initial data.
-
-#### `ListKeyAssignment(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `ListKeyAssignment` entity instance. Pass `nil` for no initial data.
-
-#### `ListMemberAssignment(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `ListMemberAssignment` entity instance. Pass `nil` for no initial data.
-
 #### `ListObservabilityDestination(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `ListObservabilityDestination` entity instance. Pass `nil` for no initial data.
 
-#### `ListPreset(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `ListPreset` entity instance. Pass `nil` for no initial data.
-
 #### `ListPresetVersion(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `ListPresetVersion` entity instance. Pass `nil` for no initial data.
-
-#### `ListWorkspace(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `ListWorkspace` entity instance. Pass `nil` for no initial data.
-
-#### `ListWorkspaceBudget(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `ListWorkspaceBudget` entity instance. Pass `nil` for no initial data.
-
-#### `ListWorkspaceMember(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `ListWorkspaceMember` entity instance. Pass `nil` for no initial data.
 
 #### `Member(data map[string]any) OpenrouterModelsEntity`
 
@@ -247,10 +163,6 @@ Create a new `Member` entity instance. Pass `nil` for no initial data.
 #### `Message(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `Message` entity instance. Pass `nil` for no initial data.
-
-#### `Meta(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Meta` entity instance. Pass `nil` for no initial data.
 
 #### `Model(data map[string]any) OpenrouterModelsEntity`
 
@@ -292,17 +204,9 @@ Create a new `PresetVersion` entity instance. Pass `nil` for no initial data.
 
 Create a new `Provider` entity instance. Pass `nil` for no initial data.
 
-#### `Query(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Query` entity instance. Pass `nil` for no initial data.
-
 #### `RankingsDaily(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `RankingsDaily` entity instance. Pass `nil` for no initial data.
-
-#### `Remove(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Remove` entity instance. Pass `nil` for no initial data.
 
 #### `Rerank(data map[string]any) OpenrouterModelsEntity`
 
@@ -311,10 +215,6 @@ Create a new `Rerank` entity instance. Pass `nil` for no initial data.
 #### `Response(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `Response` entity instance. Pass `nil` for no initial data.
-
-#### `Speech(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Speech` entity instance. Pass `nil` for no initial data.
 
 #### `Stt(data map[string]any) OpenrouterModelsEntity`
 
@@ -327,10 +227,6 @@ Create a new `SubmitGenerationFeedback` entity instance. Pass `nil` for no initi
 #### `Task(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `Task` entity instance. Pass `nil` for no initial data.
-
-#### `Transcription(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Transcription` entity instance. Pass `nil` for no initial data.
 
 #### `Tts(data map[string]any) OpenrouterModelsEntity`
 
@@ -360,14 +256,6 @@ Create a new `UpdateWorkspace` entity instance. Pass `nil` for no initial data.
 
 Create a new `UpsertWorkspaceBudget` entity instance. Pass `nil` for no initial data.
 
-#### `User(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `User` entity instance. Pass `nil` for no initial data.
-
-#### `Version(data map[string]any) OpenrouterModelsEntity`
-
-Create a new `Version` entity instance. Pass `nil` for no initial data.
-
 #### `Video(data map[string]any) OpenrouterModelsEntity`
 
 Create a new `Video` entity instance. Pass `nil` for no initial data.
@@ -376,9 +264,9 @@ Create a new `Video` entity instance. Pass `nil` for no initial data.
 
 Create a new `VideoGeneration` entity instance. Pass `nil` for no initial data.
 
-#### `VideoModelsList(data map[string]any) OpenrouterModelsEntity`
+#### `VideoModel(data map[string]any) OpenrouterModelsEntity`
 
-Create a new `VideoModelsList` entity instance. Pass `nil` for no initial data.
+Create a new `VideoModel` entity instance. Pass `nil` for no initial data.
 
 #### `Workspace(data map[string]any) OpenrouterModelsEntity`
 
@@ -388,9 +276,9 @@ Create a new `Workspace` entity instance. Pass `nil` for no initial data.
 
 Create a new `WorkspaceBudget` entity instance. Pass `nil` for no initial data.
 
-#### `Zdr(data map[string]any) OpenrouterModelsEntity`
+#### `WorkspaceMember(data map[string]any) OpenrouterModelsEntity`
 
-Create a new `Zdr` entity instance. Pass `nil` for no initial data.
+Create a new `WorkspaceMember` entity instance. Pass `nil` for no initial data.
 
 #### `OptionsMap() map[string]any`
 
@@ -480,37 +368,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `ActivityEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## AddEntity
-
-```go
-add := client.Add(nil)
-fmt.Println(add.GetName()) // "add"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `AddEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -758,37 +615,6 @@ Return the entity name.
 
 ---
 
-## BenchmarkEntity
-
-```go
-benchmark := client.Benchmark(nil)
-fmt.Println(benchmark.GetName()) // "benchmark"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `BenchmarkEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## BetaAnalyticsEntity
 
 ```go
@@ -890,37 +716,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `BetaAnalyticsEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## BudgetEntity
-
-```go
-budget := client.Budget(nil)
-fmt.Println(budget.GetName()) // "budget"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `BudgetEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -1564,73 +1359,78 @@ Return the entity name.
 
 ---
 
-## CodeEntity
-
-```go
-code := client.Code(nil)
-fmt.Println(code.GetName()) // "code"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `CodeEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## CoinbaseEntity
-
-```go
-coinbase := client.Coinbase(nil)
-fmt.Println(coinbase.GetName()) // "coinbase"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `CoinbaseEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## CompletionEntity
 
 ```go
 completion := client.Completion(nil)
 fmt.Println(completion.GetName()) // "completion"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `cache_control` | `map[string]any` | Yes | Enable automatic prompt caching. |
+| `debug` | `map[string]any` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `any` | No | Frequency penalty (-2.0 to 2.0) |
+| `image_config` | `map[string]any` | No | Provider-specific image configuration options. |
+| `logit_bias` | `any` | No | Token logit bias adjustments |
+| `logprobs` | `any` | No | Return log probabilities |
+| `max_completion_tokens` | `any` | No | Maximum tokens in completion |
+| `max_tokens` | `any` | No | Maximum tokens (deprecated, use max_completion_tokens). |
+| `messages` | `[]any` | Yes | List of messages for the conversation |
+| `metadata` | `map[string]any` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `any` | No | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `[]any` | No | Output modalities for the response. |
+| `model` | `string` | No | Model to use for completion |
+| `models` | `[]any` | No | Models to use for completion |
+| `parallel_tool_calls` | `any` | No | Whether to enable parallel function calling during tool use. |
+| `plugins` | `[]any` | No | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `any` | Yes | Static predicted output content. |
+| `presence_penalty` | `any` | No | Presence penalty (-2.0 to 2.0) |
+| `prompt_cache_key` | `any` | No |  |
+| `prompt_cache_options` | `any` | Yes | Request-level prompt-cache controls. |
+| `provider` | `any` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `map[string]any` | No | Configuration options for reasoning models |
+| `reasoning_effort` | `any` | No | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `any` | No | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `any` | No | Response format configuration |
+| `route` | `any` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `seed` | `any` | No | Random seed for deterministic outputs |
+| `service_tier` | `any` | No | The service tier to use for processing this request. |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop` | `any` | No | Stop sequences (up to 4) |
+| `stop_server_tools_when` | `[]any` | No | Stop conditions for the server-tool agent loop. |
+| `stream` | `bool` | No | Enable streaming response |
+| `stream_options` | `any` | No | Streaming configuration options |
+| `temperature` | `any` | No | Sampling temperature (0-2) |
+| `tool_choice` | `any` | No | Tool choice configuration |
+| `tools` | `[]any` | No | Available tools for function calling |
+| `top_a` | `any` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `any` | No | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `any` | No | Number of top log probabilities to return (0-20) |
+| `top_p` | `any` | No | Nucleus sampling parameter (0-1) |
+| `trace` | `map[string]any` | No | Metadata for observability and tracing. |
+| `user` | `string` | No | Unique user identifier |
+
+### Operations
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data.
+
+```go
+result, err := client.Completion(nil).Create(map[string]any{
+    "slug": "example_slug",
+    "cache_control": map[string]any{},
+    "messages": []any{},
+    "prediction": map[string]any{},
+    "prompt_cache_options": map[string]any{},
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -1648,130 +1448,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `CompletionEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## ContentEntity
-
-```go
-content := client.Content(nil)
-fmt.Println(content.GetName()) // "content"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ContentEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## CountEntity
-
-```go
-count := client.Count(nil)
-fmt.Println(count.GetName()) // "count"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `CountEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## CreateByokKeyEntity
-
-```go
-createByokKey := client.CreateByokKey(nil)
-fmt.Println(createByokKey.GetName()) // "create_byok_key"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `CreateByokKeyEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## CreateGuardrailEntity
-
-```go
-createGuardrail := client.CreateGuardrail(nil)
-fmt.Println(createGuardrail.GetName()) // "create_guardrail"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `CreateGuardrailEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -1845,221 +1521,6 @@ Return the entity name.
 
 ---
 
-## CreatePresetFromInferenceEntity
-
-```go
-createPresetFromInference := client.CreatePresetFromInference(nil)
-fmt.Println(createPresetFromInference.GetName()) // "create_preset_from_inference"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `background` | `any` | No |  |
-| `cache_control` | `map[string]any` | Yes | Enable automatic prompt caching. |
-| `context_management` | `any` | No |  |
-| `debug` | `map[string]any` | No | Debug options for inspecting request transformations (streaming only) |
-| `fallbacks` | `any` | No | Fallback models to try if the primary model fails or refuses, in order. |
-| `frequency_penalty` | `any` | No | Frequency penalty (-2.0 to 2.0) |
-| `image_config` | `map[string]any` | No | Provider-specific image configuration options. |
-| `include` | `any` | No |  |
-| `input` | `any` | No | Input for a response request - can be a string or array of items |
-| `instructions` | `any` | No |  |
-| `logit_bias` | `any` | No | Token logit bias adjustments |
-| `logprobs` | `any` | No | Return log probabilities |
-| `max_completion_tokens` | `any` | No | Maximum tokens in completion |
-| `max_output_tokens` | `any` | No |  |
-| `max_tokens` | `any` | No | Maximum tokens (deprecated, use max_completion_tokens). |
-| `max_tool_calls` | `any` | No |  |
-| `messages` | `[]any` | Yes | List of messages for the conversation |
-| `metadata` | `map[string]any` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
-| `min_p` | `any` | No | Minimum probability threshold relative to the most likely token. |
-| `modalities` | `[]any` | No | Output modalities for the response. |
-| `model` | `string` | No | Model to use for completion |
-| `models` | `[]any` | No | Models to use for completion |
-| `output_config` | `map[string]any` | No | Configuration for controlling output behavior. |
-| `parallel_tool_calls` | `any` | No | Whether to enable parallel function calling during tool use. |
-| `plugins` | `[]any` | No | Plugins you want to enable for this request, including their settings. |
-| `prediction` | `any` | Yes | Static predicted output content. |
-| `presence_penalty` | `any` | No | Presence penalty (-2.0 to 2.0) |
-| `previous_response_id` | `string` | No | Not supported. |
-| `prompt` | `any` | Yes |  |
-| `prompt_cache_key` | `any` | No |  |
-| `prompt_cache_options` | `any` | Yes | Request-level prompt-cache controls. |
-| `provider` | `any` | No | When multiple model providers are available, optionally indicate your routing preference. |
-| `reasoning` | `map[string]any` | No | Configuration options for reasoning models |
-| `reasoning_effort` | `any` | No | Shorthand for setting reasoning effort. |
-| `repetition_penalty` | `any` | No | Penalizes tokens based on how much they have already appeared in the text. |
-| `response_format` | `any` | No | Response format configuration |
-| `route` | `any` | No | **DEPRECATED** Use providers.sort.partition instead. |
-| `safety_identifier` | `any` | No |  |
-| `seed` | `any` | No | Random seed for deterministic outputs |
-| `service_tier` | `any` | No | The service tier to use for processing this request. |
-| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
-| `speed` | `any` | No |  |
-| `stop` | `any` | No | Stop sequences (up to 4) |
-| `stop_sequences` | `[]any` | No |  |
-| `stop_server_tools_when` | `[]any` | No | Stop conditions for the server-tool agent loop. |
-| `store` | `bool` | No |  |
-| `stream` | `bool` | No | Enable streaming response |
-| `stream_options` | `any` | No | Streaming configuration options |
-| `system` | `any` | No |  |
-| `temperature` | `any` | No | Sampling temperature (0-2) |
-| `text` | `any` | No | Text output configuration including format and verbosity |
-| `thinking` | `any` | No |  |
-| `tool_choice` | `any` | No | Tool choice configuration |
-| `tools` | `[]any` | No | Available tools for function calling |
-| `top_a` | `any` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
-| `top_k` | `any` | No | Limits the model to choose from the top K most likely tokens at each step. |
-| `top_logprobs` | `any` | No | Number of top log probabilities to return (0-20) |
-| `top_p` | `any` | No | Nucleus sampling parameter (0-1) |
-| `trace` | `map[string]any` | No | Metadata for observability and tracing. |
-| `truncation` | `any` | No |  |
-| `user` | `string` | No | Unique user identifier |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `background` | - |
-| `cache_control` | - |
-| `context_management` | - |
-| `debug` | - |
-| `fallbacks` | - |
-| `frequency_penalty` | - |
-| `image_config` | - |
-| `include` | - |
-| `input` | - |
-| `instructions` | - |
-| `logit_bias` | - |
-| `logprobs` | - |
-| `max_completion_tokens` | - |
-| `max_output_tokens` | - |
-| `max_tokens` | - |
-| `max_tool_calls` | - |
-| `messages` | - |
-| `metadata` | - |
-| `min_p` | - |
-| `modalities` | - |
-| `model` | Yes |
-| `models` | - |
-| `output_config` | - |
-| `parallel_tool_calls` | - |
-| `plugins` | - |
-| `prediction` | - |
-| `presence_penalty` | - |
-| `previous_response_id` | - |
-| `prompt` | - |
-| `prompt_cache_key` | - |
-| `prompt_cache_options` | - |
-| `provider` | - |
-| `reasoning` | - |
-| `reasoning_effort` | - |
-| `repetition_penalty` | - |
-| `response_format` | - |
-| `route` | - |
-| `safety_identifier` | - |
-| `seed` | - |
-| `service_tier` | - |
-| `session_id` | - |
-| `speed` | - |
-| `stop` | - |
-| `stop_sequences` | - |
-| `stop_server_tools_when` | - |
-| `store` | - |
-| `stream` | - |
-| `stream_options` | - |
-| `system` | - |
-| `temperature` | - |
-| `text` | - |
-| `thinking` | - |
-| `tool_choice` | - |
-| `tools` | - |
-| `top_a` | - |
-| `top_k` | - |
-| `top_logprobs` | - |
-| `top_p` | - |
-| `trace` | - |
-| `truncation` | - |
-| `user` | - |
-
-### Operations
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data.
-
-```go
-result, err := client.CreatePresetFromInference(nil).Create(map[string]any{
-    "slug": "example_slug",
-    "cache_control": map[string]any{},
-    "messages": []any{},
-    "prediction": map[string]any{},
-    "prompt": map[string]any{},
-    "prompt_cache_options": map[string]any{},
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `CreatePresetFromInferenceEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## CreateWorkspaceEntity
-
-```go
-createWorkspace := client.CreateWorkspace(nil)
-fmt.Println(createWorkspace.GetName()) // "create_workspace"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `CreateWorkspaceEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## CreditEntity
 
 ```go
@@ -2118,37 +1579,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `CreditEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## DestinationEntity
-
-```go
-destination := client.Destination(nil)
-fmt.Println(destination.GetName()) // "destination"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `DestinationEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -2323,37 +1753,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `EndpointEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## FeedbackEntity
-
-```go
-feedback := client.Feedback(nil)
-fmt.Println(feedback.GetName()) // "feedback"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `FeedbackEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -2558,11 +1957,11 @@ Return the entity name.
 
 ---
 
-## GenerationContentEntity
+## GenerationContentDataEntity
 
 ```go
-generationContent := client.GenerationContent(nil)
-fmt.Println(generationContent.GetName()) // "generation_content"
+generationContentData := client.GenerationContentData(nil)
+fmt.Println(generationContentData.GetName()) // "generation_content_data"
 ```
 
 ### Fields
@@ -2579,7 +1978,7 @@ fmt.Println(generationContent.GetName()) // "generation_content"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.GenerationContent(nil).Load(map[string]any{"id": "generation_content_id"}, nil)
+result, err := client.GenerationContentData(nil).Load(map[string]any{"id": "generation_content_data_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -2600,7 +1999,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `GenerationContentEntity` instance with the same client and
+Create a new `GenerationContentDataEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -2876,11 +2275,11 @@ Return the entity name.
 
 ---
 
-## ImageModelsListEntity
+## ImageModelListItemEntity
 
 ```go
-imageModelsList := client.ImageModelsList(nil)
-fmt.Println(imageModelsList.GetName()) // "image_models_list"
+imageModelListItem := client.ImageModelListItem(nil)
+fmt.Println(imageModelListItem.GetName()) // "image_model_list_item"
 ```
 
 ### Fields
@@ -2903,7 +2302,7 @@ fmt.Println(imageModelsList.GetName()) // "image_models_list"
 List entities matching the given criteria. Returns an array.
 
 ```go
-results, err := client.ImageModelsList(nil).List(nil, nil)
+results, err := client.ImageModelListItem(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -2924,7 +2323,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `ImageModelsListEntity` instance with the same client and
+Create a new `ImageModelListItemEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -2939,99 +2338,6 @@ Return the entity name.
 ```go
 key := client.Key(nil)
 fmt.Println(key.GetName()) // "key"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `KeyEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## ListByokKeyEntity
-
-```go
-listByokKey := client.ListByokKey(nil)
-fmt.Println(listByokKey.GetName()) // "list_byok_key"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ListByokKeyEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## ListGuardrailEntity
-
-```go
-listGuardrail := client.ListGuardrail(nil)
-fmt.Println(listGuardrail.GetName()) // "list_guardrail"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ListGuardrailEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## ListKeyAssignmentEntity
-
-```go
-listKeyAssignment := client.ListKeyAssignment(nil)
-fmt.Println(listKeyAssignment.GetName()) // "list_key_assignment"
 ```
 
 ### Fields
@@ -3053,7 +2359,7 @@ fmt.Println(listKeyAssignment.GetName()) // "list_key_assignment"
 List entities matching the given criteria. Returns an array.
 
 ```go
-results, err := client.ListKeyAssignment(nil).List(nil, nil)
+results, err := client.Key(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -3074,63 +2380,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `ListKeyAssignmentEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## ListMemberAssignmentEntity
-
-```go
-listMemberAssignment := client.ListMemberAssignment(nil)
-fmt.Println(listMemberAssignment.GetName()) // "list_member_assignment"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `assigned_by` | `any` | Yes | User ID of who made the assignment |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
-| `guardrail_id` | `string` | Yes | ID of the guardrail |
-| `id` | `string` | Yes | Unique identifier for the assignment |
-| `organization_id` | `string` | Yes | Organization ID |
-| `user_id` | `string` | Yes | Clerk user ID of the assigned member |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns an array.
-
-```go
-results, err := client.ListMemberAssignment(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(results)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ListMemberAssignmentEntity` instance with the same client and
+Create a new `KeyEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -3183,37 +2433,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `ListObservabilityDestinationEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## ListPresetEntity
-
-```go
-listPreset := client.ListPreset(nil)
-fmt.Println(listPreset.GetName()) // "list_preset"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ListPresetEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -3281,153 +2500,36 @@ Return the entity name.
 
 ---
 
-## ListWorkspaceEntity
-
-```go
-listWorkspace := client.ListWorkspace(nil)
-fmt.Println(listWorkspace.GetName()) // "list_workspace"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ListWorkspaceEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## ListWorkspaceBudgetEntity
-
-```go
-listWorkspaceBudget := client.ListWorkspaceBudget(nil)
-fmt.Println(listWorkspaceBudget.GetName()) // "list_workspace_budget"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the budget was created |
-| `id` | `string` | Yes | Unique identifier for the budget |
-| `limit_usd` | `float64` | Yes | Spending limit in USD for this interval |
-| `reset_interval` | `any` | Yes | Interval at which spend resets. |
-| `updated_at` | `string` | Yes | ISO 8601 timestamp of when the budget was last updated |
-| `workspace_id` | `string` | Yes | ID of the workspace the budget belongs to |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns an array.
-
-```go
-results, err := client.ListWorkspaceBudget(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(results)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ListWorkspaceBudgetEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## ListWorkspaceMemberEntity
-
-```go
-listWorkspaceMember := client.ListWorkspaceMember(nil)
-fmt.Println(listWorkspaceMember.GetName()) // "list_workspace_member"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the membership was created |
-| `id` | `string` | Yes | Unique identifier for the workspace membership |
-| `role` | `string` | Yes | Role of the member in the workspace |
-| `user_id` | `string` | Yes | Clerk user ID of the member |
-| `workspace_id` | `string` | Yes | ID of the workspace |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns an array.
-
-```go
-results, err := client.ListWorkspaceMember(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(results)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ListWorkspaceMemberEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## MemberEntity
 
 ```go
 member := client.Member(nil)
 fmt.Println(member.GetName()) // "member"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `assigned_by` | `any` | Yes | User ID of who made the assignment |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `string` | Yes | ID of the guardrail |
+| `id` | `string` | Yes | Unique identifier for the assignment |
+| `organization_id` | `string` | Yes | Organization ID |
+| `user_id` | `string` | Yes | Clerk user ID of the assigned member |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.Member(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -3526,37 +2628,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `MessageEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## MetaEntity
-
-```go
-meta := client.Meta(nil)
-fmt.Println(meta.GetName()) // "meta"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `MetaEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -4234,37 +3305,6 @@ Return the entity name.
 
 ---
 
-## QueryEntity
-
-```go
-query := client.Query(nil)
-fmt.Println(query.GetName()) // "query"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `QueryEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## RankingsDailyEntity
 
 ```go
@@ -4309,37 +3349,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `RankingsDailyEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## RemoveEntity
-
-```go
-remove := client.Remove(nil)
-fmt.Println(remove.GetName()) // "remove"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `RemoveEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -4419,35 +3428,68 @@ response := client.Response(nil)
 fmt.Println(response.GetName()) // "response"
 ```
 
-### Common Methods
+### Fields
 
-#### `Data(args ...any) any`
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `background` | `any` | No |  |
+| `cache_control` | `map[string]any` | Yes | Enable automatic prompt caching. |
+| `debug` | `map[string]any` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `any` | No |  |
+| `image_config` | `map[string]any` | No | Provider-specific image configuration options. |
+| `include` | `any` | No |  |
+| `input` | `any` | No | Input for a response request - can be a string or array of items |
+| `instructions` | `any` | No |  |
+| `max_output_tokens` | `any` | No |  |
+| `max_tool_calls` | `any` | No |  |
+| `metadata` | `any` | No | Metadata key-value pairs for the request. |
+| `modalities` | `[]any` | No | Output modalities for the response. |
+| `model` | `string` | No |  |
+| `models` | `[]any` | No |  |
+| `parallel_tool_calls` | `any` | No |  |
+| `plugins` | `[]any` | No | Plugins you want to enable for this request, including their settings. |
+| `presence_penalty` | `any` | No |  |
+| `previous_response_id` | `string` | No | Not supported. |
+| `prompt` | `any` | Yes |  |
+| `prompt_cache_key` | `any` | No |  |
+| `prompt_cache_options` | `any` | Yes | Request-level prompt-cache controls. |
+| `provider` | `any` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `any` | No | Configuration for reasoning mode in the response |
+| `route` | `any` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `safety_identifier` | `any` | No |  |
+| `service_tier` | `any` | No |  |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop_server_tools_when` | `[]any` | No | Stop conditions for the server-tool agent loop. |
+| `store` | `bool` | No |  |
+| `stream` | `bool` | No |  |
+| `temperature` | `any` | No |  |
+| `text` | `any` | No | Text output configuration including format and verbosity |
+| `tool_choice` | `any` | No |  |
+| `tools` | `[]any` | No |  |
+| `top_k` | `int` | No |  |
+| `top_logprobs` | `any` | No |  |
+| `top_p` | `any` | No |  |
+| `trace` | `map[string]any` | No | Metadata for observability and tracing. |
+| `truncation` | `any` | No |  |
+| `user` | `string` | No | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
+### Operations
 
-#### `Match(args ...any) any`
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
 
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ResponseEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## SpeechEntity
+Create a new entity with the given data.
 
 ```go
-speech := client.Speech(nil)
-fmt.Println(speech.GetName()) // "speech"
+result, err := client.Response(nil).Create(map[string]any{
+    "slug": "example_slug",
+    "cache_control": map[string]any{},
+    "prompt": map[string]any{},
+    "prompt_cache_options": map[string]any{},
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -4464,7 +3506,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `SpeechEntity` instance with the same client and
+Create a new `ResponseEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -4644,37 +3686,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `TaskEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## TranscriptionEntity
-
-```go
-transcription := client.Transcription(nil)
-fmt.Println(transcription.GetName()) // "transcription"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `TranscriptionEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -5162,68 +4173,6 @@ Return the entity name.
 
 ---
 
-## UserEntity
-
-```go
-user := client.User(nil)
-fmt.Println(user.GetName()) // "user"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `UserEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## VersionEntity
-
-```go
-version := client.Version(nil)
-fmt.Println(version.GetName()) // "version"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `VersionEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## VideoEntity
 
 ```go
@@ -5361,11 +4310,11 @@ Return the entity name.
 
 ---
 
-## VideoModelsListEntity
+## VideoModelEntity
 
 ```go
-videoModelsList := client.VideoModelsList(nil)
-fmt.Println(videoModelsList.GetName()) // "video_models_list"
+videoModel := client.VideoModel(nil)
+fmt.Println(videoModel.GetName()) // "video_model"
 ```
 
 ### Fields
@@ -5395,7 +4344,7 @@ fmt.Println(videoModelsList.GetName()) // "video_models_list"
 List entities matching the given criteria. Returns an array.
 
 ```go
-results, err := client.VideoModelsList(nil).List(nil, nil)
+results, err := client.VideoModel(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -5416,7 +4365,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `VideoModelsListEntity` instance with the same client and
+Create a new `VideoModelEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -5514,9 +4463,26 @@ fmt.Println(workspaceBudget.GetName()) // "workspace_budget"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the budget was created |
+| `id` | `string` | Yes | Unique identifier for the budget |
+| `limit_usd` | `float64` | Yes | Spending limit in USD for this interval |
+| `reset_interval` | `any` | Yes | Interval at which spend resets. |
+| `updated_at` | `string` | Yes | ISO 8601 timestamp of when the budget was last updated |
+| `workspace_id` | `string` | Yes | ID of the workspace the budget belongs to |
 
 ### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.WorkspaceBudget(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
 
 #### `Remove(reqmatch, ctrl map[string]any) (any, error)`
 
@@ -5554,11 +4520,35 @@ Return the entity name.
 
 ---
 
-## ZdrEntity
+## WorkspaceMemberEntity
 
 ```go
-zdr := client.Zdr(nil)
-fmt.Println(zdr.GetName()) // "zdr"
+workspaceMember := client.WorkspaceMember(nil)
+fmt.Println(workspaceMember.GetName()) // "workspace_member"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the membership was created |
+| `id` | `string` | Yes | Unique identifier for the workspace membership |
+| `role` | `string` | Yes | Role of the member in the workspace |
+| `user_id` | `string` | Yes | Clerk user ID of the member |
+| `workspace_id` | `string` | Yes | ID of the workspace |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.WorkspaceMember(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -5575,7 +4565,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `ZdrEntity` instance with the same client and
+Create a new `WorkspaceMemberEntity` instance with the same client and
 options.
 
 #### `GetName() string`

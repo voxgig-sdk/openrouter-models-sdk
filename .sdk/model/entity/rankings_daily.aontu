@@ -1,0 +1,160 @@
+# Entity: rankings_daily
+
+main: kit: entity: rankings_daily: {
+
+  alias: field: {}
+
+  fields: {
+    date: {
+      h: "Date"
+      n: "date"
+      r: true
+      sh: "UTC calendar date the row is aggregated over (YYYY-MM-DD)."
+      t: "`$STRING`"
+    }
+    model_permaslug: {
+      h: "Model Permaslug"
+      n: "model_permaslug"
+      r: true
+      sh: "Model variant permaslug (e.g."
+      t: "`$STRING`"
+    }
+    total_tokens: {
+      h: "Total Tokens"
+      n: "total_tokens"
+      r: true
+      sh: "Sum of `prompt_tokens + completion_tokens` for the day, returned as a decimal string so 64-bit values are not truncated."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "rankings_daily"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /datasets/rankings-daily"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "programming"
+                k: "query"
+                n: "category"
+                or: "category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "100K"
+                k: "query"
+                n: "context_bucket"
+                or: "context_bucket"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "2026-05-11"
+                k: "query"
+                n: "end_date"
+                or: "end_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "natural"
+                k: "query"
+                n: "language_type"
+                or: "language_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "text"
+                k: "query"
+                n: "modality"
+                or: "modality"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "day"
+                k: "query"
+                n: "period"
+                or: "period"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "2026-04-12"
+                k: "query"
+                n: "start_date"
+                or: "start_date"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/datasets/rankings-daily"
+          q: {
+            exist: [
+              "category"
+              "context_bucket"
+              "end_date"
+              "http_referer"
+              "language_type"
+              "modality"
+              "period"
+              "start_date"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "datasets"
+            }
+            {
+              lit: "rankings-daily"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

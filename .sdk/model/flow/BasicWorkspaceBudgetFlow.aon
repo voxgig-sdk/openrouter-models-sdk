@@ -1,9 +1,0 @@
-# BasicWorkspaceBudgetFlow
-
-main: kit: flow: BasicWorkspaceBudgetFlow:
-{
-  entity: "workspace_budget",
-  kind: "basic",
-  name: "BasicWorkspaceBudgetFlow",
-  "key$": "BasicWorkspaceBudgetFlow"
-}

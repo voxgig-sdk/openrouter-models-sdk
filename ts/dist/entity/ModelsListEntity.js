@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ModelsListEntity = void 0;
 const OpenrouterModelsEntityBase_1 = require("../OpenrouterModelsEntityBase");
-// TODO: needs Entity superclass
 class ModelsListEntity extends OpenrouterModelsEntityBase_1.OpenrouterModelsEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

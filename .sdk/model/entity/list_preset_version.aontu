@@ -1,0 +1,176 @@
+# Entity: list_preset_version
+
+main: kit: entity: list_preset_version: {
+
+  alias: field: {}
+
+  fields: {
+    config: {
+      h: "Config"
+      n: "config"
+      r: true
+      t: "`$OBJECT`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: true
+      t: "`$STRING`"
+    }
+    creator_id: {
+      h: "Creator Id"
+      n: "creator_id"
+      r: true
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      t: "`$STRING`"
+    }
+    preset_id: {
+      h: "Preset Id"
+      n: "preset_id"
+      r: true
+      t: "`$STRING`"
+    }
+    system_prompt: {
+      h: "System Prompt"
+      n: "system_prompt"
+      r: true
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: true
+      t: "`$STRING`"
+    }
+    version: {
+      h: "Version"
+      n: "version"
+      r: true
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "list_preset_version"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /presets/{slug}/versions"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "my-preset"
+                k: "param"
+                n: "slug"
+                or: "slug"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+            ]
+          }
+          m: "GET"
+          o: "/presets/{slug}/versions"
+          q: {
+            exist: [
+              "http_referer"
+              "limit"
+              "offset"
+              "slug"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "presets"
+            }
+            {
+              var: "slug"
+            }
+            {
+              lit: "versions"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.preset")]
+  ]
+
+}

@@ -1,0 +1,133 @@
+# Entity: image_model_list_item
+
+main: kit: entity: image_model_list_item: {
+
+  alias: field: {}
+
+  fields: {
+    architecture: {
+      h: "Architecture"
+      n: "architecture"
+      r: true
+      t: "`$OBJECT`"
+    }
+    created: {
+      h: "Created"
+      n: "created"
+      r: true
+      sh: "Unix timestamp (seconds) of when the model was created"
+      t: "`$INTEGER`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: true
+      t: "`$STRING`"
+    }
+    endpoints: {
+      h: "Endpoints"
+      n: "endpoints"
+      r: true
+      sh: "Relative URL to the full per-endpoint records for this model"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "Model slug"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      sh: "Display name"
+      t: "`$STRING`"
+    }
+    supported_parameters: {
+      h: "Supported Parameters"
+      n: "supported_parameters"
+      r: true
+      sh: "Union of supported parameters across every endpoint of this model."
+      t: "`$OBJECT`"
+    }
+    supports_streaming: {
+      h: "Supports Streaming"
+      n: "supports_streaming"
+      r: true
+      sh: "Whether any endpoint of this model supports native SSE streaming on the dedicated Image API (i.e."
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "image_model_list_item"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /images/models"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/images/models"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "images"
+            }
+            {
+              lit: "models"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

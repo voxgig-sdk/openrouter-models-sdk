@@ -1,0 +1,122 @@
+# Entity: video_generation
+
+main: kit: entity: video_generation: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "video_generation"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /videos/{jobId}/content"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "job-abc123"
+                k: "param"
+                n: "id"
+                or: "job_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 0
+                k: "query"
+                n: "index"
+                or: "index"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+            ]
+          }
+          m: "GET"
+          o: "/videos/{jobId}/content"
+          q: {
+            "$action": "content"
+            exist: [
+              "http_referer"
+              "id"
+              "index"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          r: {
+            param: {
+              jobId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "videos"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "content"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

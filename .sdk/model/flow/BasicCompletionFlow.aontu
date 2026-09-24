@@ -1,0 +1,22 @@
+# BasicCompletionFlow
+
+main: kit: flow: BasicCompletionFlow:
+{
+  entity: "completion",
+  kind: "basic",
+  name: "BasicCompletionFlow",
+  step: [
+    {
+      i: {
+        ref: "completion_ref01"
+      }
+
+      m: {
+        slug: "slug01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicCompletionFlow"
+}

@@ -1,9 +1,0 @@
-# BasicMetaFlow
-
-main: kit: flow: BasicMetaFlow:
-{
-  entity: "meta",
-  kind: "basic",
-  name: "BasicMetaFlow",
-  "key$": "BasicMetaFlow"
-}

@@ -1,0 +1,507 @@
+# Generated from the API definition and overwritten on every build: do not
+# edit this file. Put customizations in the guide entry file, which includes
+# this one and overrides its defaults:
+#   guide.aontu
+
+guide: {
+  metrics: count: entity: 58
+  metrics: count: path: 69
+  metrics: count: method: 89
+
+  entity: activity: {
+    path: "/activity": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: api_key: {
+    path: "/key": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+    }
+    path: "/keys": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/keys/{hash}": {
+      rename: param: "hash": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+      op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.data`")|top
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: app_ranking: {
+    path: "/datasets/app-rankings": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: beta_analytics: {
+    path: "/analytics/meta": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+    }
+    path: "/analytics/query": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: bulk_add_workspace_member: {
+    path: "/workspaces/{id}/members/add": {
+      rename: param: "id": *"workspace_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: bulk_assign_key: {
+    path: "/guardrails/{id}/assignments/keys": {
+      rename: param: "id": *"guardrail_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: bulk_assign_member: {
+    path: "/guardrails/{id}/assignments/members": {
+      rename: param: "id": *"guardrail_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: bulk_remove_workspace_member: {
+    path: "/workspaces/{id}/members/remove": {
+      rename: param: "id": *"workspace_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: bulk_unassign_key: {
+    path: "/guardrails/{id}/assignments/keys/remove": {
+      rename: param: "id": *"guardrail_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: bulk_unassign_member: {
+    path: "/guardrails/{id}/assignments/members/remove": {
+      rename: param: "id": *"guardrail_id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: byok: {
+    path: "/byok": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/byok/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: chat_result: {
+    path: "/chat/completions": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: completion: {
+    path: "/presets/{slug}/chat/completions": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: create_observability_destination: {
+    path: "/observability/destinations": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: credit: {
+    path: "/credits": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+    }
+    path: "/credits/coinbase": {
+      action: "coinbase": {}
+      op: create: method: *POST
+    }
+  }
+
+  entity: embedding: {
+    path: "/embeddings": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: endpoint: {
+    path: "/endpoints/zdr": {
+      action: "zdr": {}
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/models": {
+      op: list: method: *GET
+    }
+    path: "/models/{author}/{slug}/endpoints": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: file: {
+    path: "/files": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/files/{file_id}": {
+      rename: param: "file_id": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/files/{file_id}/content": {
+      action: "content": {}
+      rename: param: "file_id": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: generation: {
+    path: "/generation": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: generation_content_data: {
+    path: "/generation/content": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: guardrail: {
+    path: "/guardrails": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/guardrails/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: image: {
+    path: "/images": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: image_model_endpoint: {
+    path: "/images/models/{author}/{slug}/endpoints": {
+      rename: param: "author": *"model_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.endpoints`")|top
+    }
+  }
+
+  entity: image_model_list_item: {
+    path: "/images/models": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: key: {
+    path: "/guardrails/assignments/keys": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/guardrails/{id}/assignments/keys": {
+      rename: param: "id": *"guardrail_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: list_observability_destination: {
+    path: "/observability/destinations": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: list_preset_version: {
+    path: "/presets/{slug}/versions": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: member: {
+    path: "/guardrails/assignments/members": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/guardrails/{id}/assignments/members": {
+      rename: param: "id": *"guardrail_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: message: {
+    path: "/messages": {
+      op: create: method: *POST
+    }
+    path: "/presets/{slug}/messages": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: model: {
+    path: "/embeddings/models": {
+      op: list: method: *GET
+    }
+    path: "/model/{author}/{slug}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: models_count: {
+    path: "/models/count": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: models_list: {
+    path: "/models/user": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: o_auth: {
+    path: "/auth/keys": {
+      op: create: method: *POST
+    }
+    path: "/auth/keys/code": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: observability_destination: {
+    path: "/observability/destinations/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: open_responses_result: {
+    path: "/responses": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: organization: {
+    path: "/organization/members": {
+      action: "member": {}
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: preset: {
+    path: "/presets": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/presets/{slug}": {
+      rename: param: "slug": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: preset_version: {
+    path: "/presets/{slug}/versions/{version}": {
+      rename: param: "version": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: provider: {
+    path: "/providers": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: rankings_daily: {
+    path: "/datasets/rankings-daily": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: rerank: {
+    path: "/rerank": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: response: {
+    path: "/presets/{slug}/responses": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: stt: {
+    path: "/audio/transcriptions": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: submit_generation_feedback: {
+    path: "/generation/feedback": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: task: {
+    path: "/classifications/task": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: tts: {
+    path: "/audio/speech": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: unified_benchmark: {
+    path: "/benchmarks": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: update_byok_key: {
+    path: "/byok/{id}": {
+      op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: update_guardrail: {
+    path: "/guardrails/{id}": {
+      op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: update_observability_destination: {
+    path: "/observability/destinations/{id}": {
+      op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: update_workspace: {
+    path: "/workspaces": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/workspaces/{id}": {
+      op: patch: method: *PATCH
+      op: patch: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: upsert_workspace_budget: {
+    path: "/workspaces/{id}/budgets/{interval}": {
+      rename: param: "id": *"workspace_id"
+      rename: param: "interval": *"id"
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: video: {
+    path: "/videos": {
+      op: create: method: *POST
+    }
+    path: "/videos/{jobId}": {
+      rename: param: "jobId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: video_generation: {
+    path: "/videos/{jobId}/content": {
+      action: "content": {}
+      rename: param: "jobId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: video_model: {
+    path: "/videos/models": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: workspace: {
+    path: "/workspaces/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: workspace_budget: {
+    path: "/workspaces/{id}/budgets": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/workspaces/{id}/budgets/{interval}": {
+      rename: param: "id": *"workspace_id"
+      rename: param: "interval": *"id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: workspace_member: {
+    path: "/workspaces/{id}/members": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+}

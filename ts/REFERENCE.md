@@ -61,18 +61,6 @@ Create a new `Activity` entity instance.
 
 **Returns:** `ActivityEntity` instance.
 
-#### `Add(data?: object)`
-
-Create a new `Add` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `AddEntity` instance.
-
 #### `ApiKey(data?: object)`
 
 Create a new `ApiKey` entity instance.
@@ -97,18 +85,6 @@ Create a new `AppRanking` entity instance.
 
 **Returns:** `AppRankingEntity` instance.
 
-#### `Benchmark(data?: object)`
-
-Create a new `Benchmark` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `BenchmarkEntity` instance.
-
 #### `BetaAnalytics(data?: object)`
 
 Create a new `BetaAnalytics` entity instance.
@@ -120,18 +96,6 @@ Create a new `BetaAnalytics` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `BetaAnalyticsEntity` instance.
-
-#### `Budget(data?: object)`
-
-Create a new `Budget` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `BudgetEntity` instance.
 
 #### `BulkAddWorkspaceMember(data?: object)`
 
@@ -229,30 +193,6 @@ Create a new `ChatResult` entity instance.
 
 **Returns:** `ChatResultEntity` instance.
 
-#### `Code(data?: object)`
-
-Create a new `Code` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `CodeEntity` instance.
-
-#### `Coinbase(data?: object)`
-
-Create a new `Coinbase` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `CoinbaseEntity` instance.
-
 #### `Completion(data?: object)`
 
 Create a new `Completion` entity instance.
@@ -264,54 +204,6 @@ Create a new `Completion` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `CompletionEntity` instance.
-
-#### `Content(data?: object)`
-
-Create a new `Content` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ContentEntity` instance.
-
-#### `Count(data?: object)`
-
-Create a new `Count` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `CountEntity` instance.
-
-#### `CreateByokKey(data?: object)`
-
-Create a new `CreateByokKey` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `CreateByokKeyEntity` instance.
-
-#### `CreateGuardrail(data?: object)`
-
-Create a new `CreateGuardrail` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `CreateGuardrailEntity` instance.
 
 #### `CreateObservabilityDestination(data?: object)`
 
@@ -325,30 +217,6 @@ Create a new `CreateObservabilityDestination` entity instance.
 
 **Returns:** `CreateObservabilityDestinationEntity` instance.
 
-#### `CreatePresetFromInference(data?: object)`
-
-Create a new `CreatePresetFromInference` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `CreatePresetFromInferenceEntity` instance.
-
-#### `CreateWorkspace(data?: object)`
-
-Create a new `CreateWorkspace` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `CreateWorkspaceEntity` instance.
-
 #### `Credit(data?: object)`
 
 Create a new `Credit` entity instance.
@@ -360,18 +228,6 @@ Create a new `Credit` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `CreditEntity` instance.
-
-#### `Destination(data?: object)`
-
-Create a new `Destination` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `DestinationEntity` instance.
 
 #### `Embedding(data?: object)`
 
@@ -397,18 +253,6 @@ Create a new `Endpoint` entity instance.
 
 **Returns:** `EndpointEntity` instance.
 
-#### `Feedback(data?: object)`
-
-Create a new `Feedback` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `FeedbackEntity` instance.
-
 #### `File(data?: object)`
 
 Create a new `File` entity instance.
@@ -433,9 +277,9 @@ Create a new `Generation` entity instance.
 
 **Returns:** `GenerationEntity` instance.
 
-#### `GenerationContent(data?: object)`
+#### `GenerationContentData(data?: object)`
 
-Create a new `GenerationContent` entity instance.
+Create a new `GenerationContentData` entity instance.
 
 **Parameters:**
 
@@ -443,7 +287,7 @@ Create a new `GenerationContent` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `GenerationContentEntity` instance.
+**Returns:** `GenerationContentDataEntity` instance.
 
 #### `Guardrail(data?: object)`
 
@@ -481,9 +325,9 @@ Create a new `ImageModelEndpoint` entity instance.
 
 **Returns:** `ImageModelEndpointEntity` instance.
 
-#### `ImageModelsList(data?: object)`
+#### `ImageModelListItem(data?: object)`
 
-Create a new `ImageModelsList` entity instance.
+Create a new `ImageModelListItem` entity instance.
 
 **Parameters:**
 
@@ -491,7 +335,7 @@ Create a new `ImageModelsList` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `ImageModelsListEntity` instance.
+**Returns:** `ImageModelListItemEntity` instance.
 
 #### `Key(data?: object)`
 
@@ -505,54 +349,6 @@ Create a new `Key` entity instance.
 
 **Returns:** `KeyEntity` instance.
 
-#### `ListByokKey(data?: object)`
-
-Create a new `ListByokKey` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ListByokKeyEntity` instance.
-
-#### `ListGuardrail(data?: object)`
-
-Create a new `ListGuardrail` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ListGuardrailEntity` instance.
-
-#### `ListKeyAssignment(data?: object)`
-
-Create a new `ListKeyAssignment` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ListKeyAssignmentEntity` instance.
-
-#### `ListMemberAssignment(data?: object)`
-
-Create a new `ListMemberAssignment` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ListMemberAssignmentEntity` instance.
-
 #### `ListObservabilityDestination(data?: object)`
 
 Create a new `ListObservabilityDestination` entity instance.
@@ -565,18 +361,6 @@ Create a new `ListObservabilityDestination` entity instance.
 
 **Returns:** `ListObservabilityDestinationEntity` instance.
 
-#### `ListPreset(data?: object)`
-
-Create a new `ListPreset` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ListPresetEntity` instance.
-
 #### `ListPresetVersion(data?: object)`
 
 Create a new `ListPresetVersion` entity instance.
@@ -588,42 +372,6 @@ Create a new `ListPresetVersion` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `ListPresetVersionEntity` instance.
-
-#### `ListWorkspace(data?: object)`
-
-Create a new `ListWorkspace` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ListWorkspaceEntity` instance.
-
-#### `ListWorkspaceBudget(data?: object)`
-
-Create a new `ListWorkspaceBudget` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ListWorkspaceBudgetEntity` instance.
-
-#### `ListWorkspaceMember(data?: object)`
-
-Create a new `ListWorkspaceMember` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ListWorkspaceMemberEntity` instance.
 
 #### `Member(data?: object)`
 
@@ -648,18 +396,6 @@ Create a new `Message` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `MessageEntity` instance.
-
-#### `Meta(data?: object)`
-
-Create a new `Meta` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `MetaEntity` instance.
 
 #### `Model(data?: object)`
 
@@ -781,18 +517,6 @@ Create a new `Provider` entity instance.
 
 **Returns:** `ProviderEntity` instance.
 
-#### `Query(data?: object)`
-
-Create a new `Query` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `QueryEntity` instance.
-
 #### `RankingsDaily(data?: object)`
 
 Create a new `RankingsDaily` entity instance.
@@ -804,18 +528,6 @@ Create a new `RankingsDaily` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `RankingsDailyEntity` instance.
-
-#### `Remove(data?: object)`
-
-Create a new `Remove` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `RemoveEntity` instance.
 
 #### `Rerank(data?: object)`
 
@@ -840,18 +552,6 @@ Create a new `Response` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `ResponseEntity` instance.
-
-#### `Speech(data?: object)`
-
-Create a new `Speech` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `SpeechEntity` instance.
 
 #### `Stt(data?: object)`
 
@@ -888,18 +588,6 @@ Create a new `Task` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `TaskEntity` instance.
-
-#### `Transcription(data?: object)`
-
-Create a new `Transcription` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `TranscriptionEntity` instance.
 
 #### `Tts(data?: object)`
 
@@ -985,30 +673,6 @@ Create a new `UpsertWorkspaceBudget` entity instance.
 
 **Returns:** `UpsertWorkspaceBudgetEntity` instance.
 
-#### `User(data?: object)`
-
-Create a new `User` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `UserEntity` instance.
-
-#### `Version(data?: object)`
-
-Create a new `Version` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `VersionEntity` instance.
-
 #### `Video(data?: object)`
 
 Create a new `Video` entity instance.
@@ -1033,9 +697,9 @@ Create a new `VideoGeneration` entity instance.
 
 **Returns:** `VideoGenerationEntity` instance.
 
-#### `VideoModelsList(data?: object)`
+#### `VideoModel(data?: object)`
 
-Create a new `VideoModelsList` entity instance.
+Create a new `VideoModel` entity instance.
 
 **Parameters:**
 
@@ -1043,7 +707,7 @@ Create a new `VideoModelsList` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `VideoModelsListEntity` instance.
+**Returns:** `VideoModelEntity` instance.
 
 #### `Workspace(data?: object)`
 
@@ -1069,9 +733,9 @@ Create a new `WorkspaceBudget` entity instance.
 
 **Returns:** `WorkspaceBudgetEntity` instance.
 
-#### `Zdr(data?: object)`
+#### `WorkspaceMember(data?: object)`
 
-Create a new `Zdr` entity instance.
+Create a new `WorkspaceMember` entity instance.
 
 **Parameters:**
 
@@ -1079,7 +743,7 @@ Create a new `Zdr` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `ZdrEntity` instance.
+**Returns:** `WorkspaceMemberEntity` instance.
 
 #### `options()`
 
@@ -1174,40 +838,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `ActivityEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## AddEntity
-
-```ts
-const add = client.Add()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `AddEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -1441,40 +1071,6 @@ Return a copy of the entity options.
 
 ---
 
-## BenchmarkEntity
-
-```ts
-const benchmark = client.Benchmark()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `BenchmarkEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## BetaAnalyticsEntity
 
 ```ts
@@ -1567,40 +1163,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `BetaAnalyticsEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## BudgetEntity
-
-```ts
-const budget = client.Budget()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `BudgetEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -2228,78 +1790,73 @@ Return a copy of the entity options.
 
 ---
 
-## CodeEntity
-
-```ts
-const code = client.Code()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `CodeEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## CoinbaseEntity
-
-```ts
-const coinbase = client.Coinbase()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `CoinbaseEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## CompletionEntity
 
 ```ts
 const completion = client.Completion()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `cache_control` | `Record<string, any>` | Yes | Enable automatic prompt caching. |
+| `debug` | `Record<string, any>` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `number | null` | No | Frequency penalty (-2.0 to 2.0) |
+| `image_config` | `Record<string, any>` | No | Provider-specific image configuration options. |
+| `logit_bias` | `Record<string, any> | null` | No | Token logit bias adjustments |
+| `logprobs` | `boolean | null` | No | Return log probabilities |
+| `max_completion_tokens` | `number | null` | No | Maximum tokens in completion |
+| `max_tokens` | `number | null` | No | Maximum tokens (deprecated, use max_completion_tokens). |
+| `messages` | `any[]` | Yes | List of messages for the conversation |
+| `metadata` | `Record<string, any>` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `number | null` | No | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `any[]` | No | Output modalities for the response. |
+| `model` | `string` | No | Model to use for completion |
+| `models` | `any[]` | No | Models to use for completion |
+| `parallel_tool_calls` | `boolean | null` | No | Whether to enable parallel function calling during tool use. |
+| `plugins` | `any[]` | No | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `Record<string, any> | null` | Yes | Static predicted output content. |
+| `presence_penalty` | `number | null` | No | Presence penalty (-2.0 to 2.0) |
+| `prompt_cache_key` | `string | null` | No |  |
+| `prompt_cache_options` | `Record<string, any> | null` | Yes | Request-level prompt-cache controls. |
+| `provider` | `Record<string, any> | null` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `Record<string, any>` | No | Configuration options for reasoning models |
+| `reasoning_effort` | `string | null` | No | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `number | null` | No | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `any` | No | Response format configuration |
+| `route` | `string | null` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `seed` | `number | null` | No | Random seed for deterministic outputs |
+| `service_tier` | `string | null` | No | The service tier to use for processing this request. |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop` | `any` | No | Stop sequences (up to 4) |
+| `stop_server_tools_when` | `any[]` | No | Stop conditions for the server-tool agent loop. |
+| `stream` | `boolean` | No | Enable streaming response |
+| `stream_options` | `Record<string, any> | null` | No | Streaming configuration options |
+| `temperature` | `number | null` | No | Sampling temperature (0-2) |
+| `tool_choice` | `any` | No | Tool choice configuration |
+| `tools` | `any[]` | No | Available tools for function calling |
+| `top_a` | `number | null` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `number | null` | No | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `number | null` | No | Number of top log probabilities to return (0-20) |
+| `top_p` | `number | null` | No | Nucleus sampling parameter (0-1) |
+| `trace` | `Record<string, any>` | No | Metadata for observability and tracing. |
+| `user` | `string` | No | Unique user identifier |
+
+### Operations
+
+#### `create(data: object, ctrl?: object)`
+
+Create a new entity with the given data.
+
+```ts
+const result = await client.Completion().create({
+  slug: 'example_slug',
+  cache_control: {},
+  messages: [],
+  prediction: {},
+  prompt_cache_options: {},
+})
 ```
 
 ### Common Methods
@@ -2317,142 +1874,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `CompletionEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## ContentEntity
-
-```ts
-const content = client.Content()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ContentEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## CountEntity
-
-```ts
-const count = client.Count()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `CountEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## CreateByokKeyEntity
-
-```ts
-const create_byok_key = client.CreateByokKey()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `CreateByokKeyEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## CreateGuardrailEntity
-
-```ts
-const create_guardrail = client.CreateGuardrail()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `CreateGuardrailEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -2516,223 +1937,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `CreateObservabilityDestinationEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## CreatePresetFromInferenceEntity
-
-```ts
-const create_preset_from_inference = client.CreatePresetFromInference()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `background` | `boolean | null` | No |  |
-| `cache_control` | `Record<string, any>` | Yes | Enable automatic prompt caching. |
-| `context_management` | `Record<string, any> | null` | No |  |
-| `debug` | `Record<string, any>` | No | Debug options for inspecting request transformations (streaming only) |
-| `fallbacks` | `any[] | null` | No | Fallback models to try if the primary model fails or refuses, in order. |
-| `frequency_penalty` | `number | null` | No | Frequency penalty (-2.0 to 2.0) |
-| `image_config` | `Record<string, any>` | No | Provider-specific image configuration options. |
-| `include` | `any[] | null` | No |  |
-| `input` | `any` | No | Input for a response request - can be a string or array of items |
-| `instructions` | `string | null` | No |  |
-| `logit_bias` | `Record<string, any> | null` | No | Token logit bias adjustments |
-| `logprobs` | `boolean | null` | No | Return log probabilities |
-| `max_completion_tokens` | `number | null` | No | Maximum tokens in completion |
-| `max_output_tokens` | `number | null` | No |  |
-| `max_tokens` | `number | null` | No | Maximum tokens (deprecated, use max_completion_tokens). |
-| `max_tool_calls` | `number | null` | No |  |
-| `messages` | `any[]` | Yes | List of messages for the conversation |
-| `metadata` | `Record<string, any>` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
-| `min_p` | `number | null` | No | Minimum probability threshold relative to the most likely token. |
-| `modalities` | `any[]` | No | Output modalities for the response. |
-| `model` | `string` | No | Model to use for completion |
-| `models` | `any[]` | No | Models to use for completion |
-| `output_config` | `Record<string, any>` | No | Configuration for controlling output behavior. |
-| `parallel_tool_calls` | `boolean | null` | No | Whether to enable parallel function calling during tool use. |
-| `plugins` | `any[]` | No | Plugins you want to enable for this request, including their settings. |
-| `prediction` | `Record<string, any> | null` | Yes | Static predicted output content. |
-| `presence_penalty` | `number | null` | No | Presence penalty (-2.0 to 2.0) |
-| `previous_response_id` | `string` | No | Not supported. |
-| `prompt` | `Record<string, any> | null` | Yes |  |
-| `prompt_cache_key` | `string | null` | No |  |
-| `prompt_cache_options` | `Record<string, any> | null` | Yes | Request-level prompt-cache controls. |
-| `provider` | `Record<string, any> | null` | No | When multiple model providers are available, optionally indicate your routing preference. |
-| `reasoning` | `Record<string, any>` | No | Configuration options for reasoning models |
-| `reasoning_effort` | `string | null` | No | Shorthand for setting reasoning effort. |
-| `repetition_penalty` | `number | null` | No | Penalizes tokens based on how much they have already appeared in the text. |
-| `response_format` | `any` | No | Response format configuration |
-| `route` | `string | null` | No | **DEPRECATED** Use providers.sort.partition instead. |
-| `safety_identifier` | `string | null` | No |  |
-| `seed` | `number | null` | No | Random seed for deterministic outputs |
-| `service_tier` | `string | null` | No | The service tier to use for processing this request. |
-| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
-| `speed` | `any` | No |  |
-| `stop` | `any` | No | Stop sequences (up to 4) |
-| `stop_sequences` | `any[]` | No |  |
-| `stop_server_tools_when` | `any[]` | No | Stop conditions for the server-tool agent loop. |
-| `store` | `boolean` | No |  |
-| `stream` | `boolean` | No | Enable streaming response |
-| `stream_options` | `Record<string, any> | null` | No | Streaming configuration options |
-| `system` | `any` | No |  |
-| `temperature` | `number | null` | No | Sampling temperature (0-2) |
-| `text` | `any` | No | Text output configuration including format and verbosity |
-| `thinking` | `any` | No |  |
-| `tool_choice` | `any` | No | Tool choice configuration |
-| `tools` | `any[]` | No | Available tools for function calling |
-| `top_a` | `number | null` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
-| `top_k` | `number | null` | No | Limits the model to choose from the top K most likely tokens at each step. |
-| `top_logprobs` | `number | null` | No | Number of top log probabilities to return (0-20) |
-| `top_p` | `number | null` | No | Nucleus sampling parameter (0-1) |
-| `trace` | `Record<string, any>` | No | Metadata for observability and tracing. |
-| `truncation` | `string | null` | No |  |
-| `user` | `string` | No | Unique user identifier |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `background` | - |
-| `cache_control` | - |
-| `context_management` | - |
-| `debug` | - |
-| `fallbacks` | - |
-| `frequency_penalty` | - |
-| `image_config` | - |
-| `include` | - |
-| `input` | - |
-| `instructions` | - |
-| `logit_bias` | - |
-| `logprobs` | - |
-| `max_completion_tokens` | - |
-| `max_output_tokens` | - |
-| `max_tokens` | - |
-| `max_tool_calls` | - |
-| `messages` | - |
-| `metadata` | - |
-| `min_p` | - |
-| `modalities` | - |
-| `model` | Yes |
-| `models` | - |
-| `output_config` | - |
-| `parallel_tool_calls` | - |
-| `plugins` | - |
-| `prediction` | - |
-| `presence_penalty` | - |
-| `previous_response_id` | - |
-| `prompt` | - |
-| `prompt_cache_key` | - |
-| `prompt_cache_options` | - |
-| `provider` | - |
-| `reasoning` | - |
-| `reasoning_effort` | - |
-| `repetition_penalty` | - |
-| `response_format` | - |
-| `route` | - |
-| `safety_identifier` | - |
-| `seed` | - |
-| `service_tier` | - |
-| `session_id` | - |
-| `speed` | - |
-| `stop` | - |
-| `stop_sequences` | - |
-| `stop_server_tools_when` | - |
-| `store` | - |
-| `stream` | - |
-| `stream_options` | - |
-| `system` | - |
-| `temperature` | - |
-| `text` | - |
-| `thinking` | - |
-| `tool_choice` | - |
-| `tools` | - |
-| `top_a` | - |
-| `top_k` | - |
-| `top_logprobs` | - |
-| `top_p` | - |
-| `trace` | - |
-| `truncation` | - |
-| `user` | - |
-
-### Operations
-
-#### `create(data: object, ctrl?: object)`
-
-Create a new entity with the given data.
-
-```ts
-const result = await client.CreatePresetFromInference().create({
-  slug: 'example_slug',
-  cache_control: {},
-  messages: [],
-  prediction: {},
-  prompt: {},
-  prompt_cache_options: {},
-})
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `CreatePresetFromInferenceEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## CreateWorkspaceEntity
-
-```ts
-const create_workspace = client.CreateWorkspace()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `CreateWorkspaceEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -2815,40 +2019,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `CreditEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## DestinationEntity
-
-```ts
-const destination = client.Destination()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `DestinationEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -3037,40 +2207,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `EndpointEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## FeedbackEntity
-
-```ts
-const feedback = client.Feedback()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `FeedbackEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -3285,10 +2421,10 @@ Return a copy of the entity options.
 
 ---
 
-## GenerationContentEntity
+## GenerationContentDataEntity
 
 ```ts
-const generation_content = client.GenerationContent()
+const generation_content_data = client.GenerationContentData()
 ```
 
 ### Fields
@@ -3305,7 +2441,7 @@ const generation_content = client.GenerationContent()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GenerationContent().load({ id: 'generation_content_id' })
+const result = await client.GenerationContentData().load({ id: 'generation_content_data_id' })
 ```
 
 ### Common Methods
@@ -3322,7 +2458,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `GenerationContentEntity` instance with the same client and
+Create a new `GenerationContentDataEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -3587,10 +2723,10 @@ Return a copy of the entity options.
 
 ---
 
-## ImageModelsListEntity
+## ImageModelListItemEntity
 
 ```ts
-const image_models_list = client.ImageModelsList()
+const image_model_list_item = client.ImageModelListItem()
 ```
 
 ### Fields
@@ -3613,7 +2749,7 @@ const image_models_list = client.ImageModelsList()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.ImageModelsList().list()
+const results = await client.ImageModelListItem().list()
 ```
 
 ### Common Methods
@@ -3630,7 +2766,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `ImageModelsListEntity` instance with the same client and
+Create a new `ImageModelListItemEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -3648,108 +2784,6 @@ Return a copy of the entity options.
 
 ```ts
 const key = client.Key()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `KeyEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## ListByokKeyEntity
-
-```ts
-const list_byok_key = client.ListByokKey()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ListByokKeyEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## ListGuardrailEntity
-
-```ts
-const list_guardrail = client.ListGuardrail()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ListGuardrailEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## ListKeyAssignmentEntity
-
-```ts
-const list_key_assignment = client.ListKeyAssignment()
 ```
 
 ### Fields
@@ -3771,7 +2805,7 @@ const list_key_assignment = client.ListKeyAssignment()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.ListKeyAssignment().list()
+const results = await client.Key().list()
 ```
 
 ### Common Methods
@@ -3788,62 +2822,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `ListKeyAssignmentEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## ListMemberAssignmentEntity
-
-```ts
-const list_member_assignment = client.ListMemberAssignment()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `assigned_by` | `string | null` | Yes | User ID of who made the assignment |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
-| `guardrail_id` | `string` | Yes | ID of the guardrail |
-| `id` | `string` | Yes | Unique identifier for the assignment |
-| `organization_id` | `string` | Yes | Organization ID |
-| `user_id` | `string` | Yes | Clerk user ID of the assigned member |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Returns an array.
-
-```ts
-const results = await client.ListMemberAssignment().list()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ListMemberAssignmentEntity` instance with the same client and
+Create a new `KeyEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -3895,40 +2874,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `ListObservabilityDestinationEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## ListPresetEntity
-
-```ts
-const list_preset = client.ListPreset()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ListPresetEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -3999,153 +2944,31 @@ Return a copy of the entity options.
 
 ---
 
-## ListWorkspaceEntity
-
-```ts
-const list_workspace = client.ListWorkspace()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ListWorkspaceEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## ListWorkspaceBudgetEntity
-
-```ts
-const list_workspace_budget = client.ListWorkspaceBudget()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the budget was created |
-| `id` | `string` | Yes | Unique identifier for the budget |
-| `limit_usd` | `number` | Yes | Spending limit in USD for this interval |
-| `reset_interval` | `string | null` | Yes | Interval at which spend resets. |
-| `updated_at` | `string` | Yes | ISO 8601 timestamp of when the budget was last updated |
-| `workspace_id` | `string` | Yes | ID of the workspace the budget belongs to |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Returns an array.
-
-```ts
-const results = await client.ListWorkspaceBudget().list({ workspace_id: "example" })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ListWorkspaceBudgetEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## ListWorkspaceMemberEntity
-
-```ts
-const list_workspace_member = client.ListWorkspaceMember()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the membership was created |
-| `id` | `string` | Yes | Unique identifier for the workspace membership |
-| `role` | `string` | Yes | Role of the member in the workspace |
-| `user_id` | `string` | Yes | Clerk user ID of the member |
-| `workspace_id` | `string` | Yes | ID of the workspace |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Returns an array.
-
-```ts
-const results = await client.ListWorkspaceMember().list({ workspace_id: "example" })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ListWorkspaceMemberEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## MemberEntity
 
 ```ts
 const member = client.Member()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `assigned_by` | `string | null` | Yes | User ID of who made the assignment |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `string` | Yes | ID of the guardrail |
+| `id` | `string` | Yes | Unique identifier for the assignment |
+| `organization_id` | `string` | Yes | Organization ID |
+| `user_id` | `string` | Yes | Clerk user ID of the assigned member |
+
+### Operations
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Returns an array.
+
+```ts
+const results = await client.Member().list()
 ```
 
 ### Common Methods
@@ -4243,40 +3066,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `MessageEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## MetaEntity
-
-```ts
-const meta = client.Meta()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `MetaEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -4956,40 +3745,6 @@ Return a copy of the entity options.
 
 ---
 
-## QueryEntity
-
-```ts
-const query = client.Query()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `QueryEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## RankingsDailyEntity
 
 ```ts
@@ -5029,40 +3784,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `RankingsDailyEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## RemoveEntity
-
-```ts
-const remove = client.Remove()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `RemoveEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -5144,38 +3865,64 @@ Return a copy of the entity options.
 const response = client.Response()
 ```
 
-### Common Methods
+### Fields
 
-#### `data(data?: object)`
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `background` | `boolean | null` | No |  |
+| `cache_control` | `Record<string, any>` | Yes | Enable automatic prompt caching. |
+| `debug` | `Record<string, any>` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `number | null` | No |  |
+| `image_config` | `Record<string, any>` | No | Provider-specific image configuration options. |
+| `include` | `any[] | null` | No |  |
+| `input` | `any` | No | Input for a response request - can be a string or array of items |
+| `instructions` | `string | null` | No |  |
+| `max_output_tokens` | `number | null` | No |  |
+| `max_tool_calls` | `number | null` | No |  |
+| `metadata` | `Record<string, any> | null` | No | Metadata key-value pairs for the request. |
+| `modalities` | `any[]` | No | Output modalities for the response. |
+| `model` | `string` | No |  |
+| `models` | `any[]` | No |  |
+| `parallel_tool_calls` | `boolean | null` | No |  |
+| `plugins` | `any[]` | No | Plugins you want to enable for this request, including their settings. |
+| `presence_penalty` | `number | null` | No |  |
+| `previous_response_id` | `string` | No | Not supported. |
+| `prompt` | `Record<string, any> | null` | Yes |  |
+| `prompt_cache_key` | `string | null` | No |  |
+| `prompt_cache_options` | `Record<string, any> | null` | Yes | Request-level prompt-cache controls. |
+| `provider` | `Record<string, any> | null` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `any` | No | Configuration for reasoning mode in the response |
+| `route` | `string | null` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `safety_identifier` | `string | null` | No |  |
+| `service_tier` | `string | null` | No |  |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop_server_tools_when` | `any[]` | No | Stop conditions for the server-tool agent loop. |
+| `store` | `boolean` | No |  |
+| `stream` | `boolean` | No |  |
+| `temperature` | `number | null` | No |  |
+| `text` | `any` | No | Text output configuration including format and verbosity |
+| `tool_choice` | `any` | No |  |
+| `tools` | `any[]` | No |  |
+| `top_k` | `number` | No |  |
+| `top_logprobs` | `number | null` | No |  |
+| `top_p` | `number | null` | No |  |
+| `trace` | `Record<string, any>` | No | Metadata for observability and tracing. |
+| `truncation` | `string | null` | No |  |
+| `user` | `string` | No | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
+### Operations
 
-#### `match(match?: object)`
+#### `create(data: object, ctrl?: object)`
 
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ResponseEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## SpeechEntity
+Create a new entity with the given data.
 
 ```ts
-const speech = client.Speech()
+const result = await client.Response().create({
+  slug: 'example_slug',
+  cache_control: {},
+  prompt: {},
+  prompt_cache_options: {},
+})
 ```
 
 ### Common Methods
@@ -5192,7 +3939,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `SpeechEntity` instance with the same client and
+Create a new `ResponseEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -5369,40 +4116,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `TaskEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## TranscriptionEntity
-
-```ts
-const transcription = client.Transcription()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `TranscriptionEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -5879,74 +4592,6 @@ Return a copy of the entity options.
 
 ---
 
-## UserEntity
-
-```ts
-const user = client.User()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `UserEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## VersionEntity
-
-```ts
-const version = client.Version()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `VersionEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `OpenrouterModelsSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## VideoEntity
 
 ```ts
@@ -6098,10 +4743,10 @@ Return a copy of the entity options.
 
 ---
 
-## VideoModelsListEntity
+## VideoModelEntity
 
 ```ts
-const video_models_list = client.VideoModelsList()
+const video_model = client.VideoModel()
 ```
 
 ### Fields
@@ -6131,7 +4776,7 @@ const video_models_list = client.VideoModelsList()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.VideoModelsList().list()
+const results = await client.VideoModel().list()
 ```
 
 ### Common Methods
@@ -6148,7 +4793,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `VideoModelsListEntity` instance with the same client and
+Create a new `VideoModelEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -6244,9 +4889,22 @@ const workspace_budget = client.WorkspaceBudget()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the budget was created |
+| `id` | `string` | Yes | Unique identifier for the budget |
+| `limit_usd` | `number` | Yes | Spending limit in USD for this interval |
+| `reset_interval` | `string | null` | Yes | Interval at which spend resets. |
+| `updated_at` | `string` | Yes | ISO 8601 timestamp of when the budget was last updated |
+| `workspace_id` | `string` | Yes | ID of the workspace the budget belongs to |
 
 ### Operations
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Returns an array.
+
+```ts
+const results = await client.WorkspaceBudget().list({ id: "example" })
+```
 
 #### `remove(match: object, ctrl?: object)`
 
@@ -6284,10 +4942,30 @@ Return a copy of the entity options.
 
 ---
 
-## ZdrEntity
+## WorkspaceMemberEntity
 
 ```ts
-const zdr = client.Zdr()
+const workspace_member = client.WorkspaceMember()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the membership was created |
+| `id` | `string` | Yes | Unique identifier for the workspace membership |
+| `role` | `string` | Yes | Role of the member in the workspace |
+| `user_id` | `string` | Yes | Clerk user ID of the member |
+| `workspace_id` | `string` | Yes | ID of the workspace |
+
+### Operations
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Returns an array.
+
+```ts
+const results = await client.WorkspaceMember().list({ id: "example" })
 ```
 
 ### Common Methods
@@ -6304,7 +4982,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `ZdrEntity` instance with the same client and
+Create a new `WorkspaceMemberEntity` instance with the same client and
 options.
 
 #### `client()`

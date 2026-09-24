@@ -1,9 +1,0 @@
-# BasicBudgetFlow
-
-main: kit: flow: BasicBudgetFlow:
-{
-  entity: "budget",
-  kind: "basic",
-  name: "BasicBudgetFlow",
-  "key$": "BasicBudgetFlow"
-}

@@ -1,0 +1,137 @@
+# Entity: rerank
+
+main: kit: entity: rerank: {
+
+  alias: field: {}
+
+  fields: {
+    documents: {
+      h: "Documents"
+      n: "documents"
+      r: true
+      sh: "The list of documents to rerank."
+      t: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 1
+      }
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the rerank response (ORID format)"
+      t: "`$STRING`"
+    }
+    model: {
+      h: "Model"
+      n: "model"
+      r: true
+      sh: "The model used for reranking"
+      t: "`$STRING`"
+    }
+    provider: {
+      h: "Provider"
+      n: "provider"
+      r: false
+      sh: "The provider that served the rerank request"
+      t: "`$STRING`"
+    }
+    query: {
+      h: "Query"
+      n: "query"
+      r: true
+      sh: "The search query to rerank documents against"
+      t: "`$STRING`"
+    }
+    results: {
+      h: "Results"
+      n: "results"
+      r: true
+      sh: "List of rerank results sorted by relevance"
+      t: "`$ARRAY`"
+    }
+    top_n: {
+      h: "Top N"
+      n: "top_n"
+      r: false
+      sh: "Number of most relevant documents to return"
+      t: "`$INTEGER`"
+    }
+    usage: {
+      h: "Usage"
+      n: "usage"
+      r: false
+      sh: "Usage statistics"
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "rerank"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /rerank"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/rerank"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "rerank"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

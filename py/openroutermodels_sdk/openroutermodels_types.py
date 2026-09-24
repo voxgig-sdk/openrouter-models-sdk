@@ -1,7 +1,7 @@
 # Typed models for the OpenrouterModels SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Field/param types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
 #
@@ -34,10 +34,6 @@ class ActivityListMatch(TypedDict, total=False):
     api_key_hash: str
     date: str
     user_id: str
-
-
-class Add(TypedDict):
-    pass
 
 
 class ApiKeyRequired(TypedDict):
@@ -168,10 +164,6 @@ class AppRankingListMatch(TypedDict, total=False):
     subcategory: str
 
 
-class Benchmark(TypedDict):
-    pass
-
-
 class BetaAnalyticsRequired(TypedDict):
     classifier_dimensions: dict
     classifier_filters: dict
@@ -233,10 +225,6 @@ class BetaAnalyticsCreateData(BetaAnalyticsCreateDataRequired, total=False):
     group_limit: int
     limit: int
     warnings: list
-
-
-class Budget(TypedDict):
-    pass
 
 
 class BulkAddWorkspaceMember(TypedDict):
@@ -470,32 +458,101 @@ class ChatResultCreateData(ChatResultCreateDataRequired, total=False):
     user: str
 
 
-class Code(TypedDict):
-    pass
+class CompletionRequired(TypedDict):
+    cache_control: dict
+    messages: list
+    prediction: dict | None
+    prompt_cache_options: dict | None
 
 
-class Coinbase(TypedDict):
-    pass
+class Completion(CompletionRequired, total=False):
+    debug: dict
+    frequency_penalty: float | None
+    image_config: dict
+    logit_bias: dict | None
+    logprobs: bool | None
+    max_completion_tokens: int | None
+    max_tokens: int | None
+    metadata: dict
+    min_p: float | None
+    modalities: list
+    model: str
+    models: list
+    parallel_tool_calls: bool | None
+    plugins: list
+    presence_penalty: float | None
+    prompt_cache_key: str | None
+    provider: dict | None
+    reasoning: dict
+    reasoning_effort: str | None
+    repetition_penalty: float | None
+    response_format: Any
+    route: str | None
+    seed: int | None
+    service_tier: str | None
+    session_id: str
+    stop: Any
+    stop_server_tools_when: list
+    stream: bool
+    stream_options: dict | None
+    temperature: float | None
+    tool_choice: Any
+    tools: list
+    top_a: float | None
+    top_k: int | None
+    top_logprobs: int | None
+    top_p: float | None
+    trace: dict
+    user: str
 
 
-class Completion(TypedDict):
-    pass
+class CompletionCreateDataRequired(TypedDict):
+    slug: str
+    cache_control: dict
+    messages: list
+    prediction: dict | None
+    prompt_cache_options: dict | None
 
 
-class Content(TypedDict):
-    pass
-
-
-class Count(TypedDict):
-    pass
-
-
-class CreateByokKey(TypedDict):
-    pass
-
-
-class CreateGuardrail(TypedDict):
-    pass
+class CompletionCreateData(CompletionCreateDataRequired, total=False):
+    debug: dict
+    frequency_penalty: float | None
+    image_config: dict
+    logit_bias: dict | None
+    logprobs: bool | None
+    max_completion_tokens: int | None
+    max_tokens: int | None
+    metadata: dict
+    min_p: float | None
+    modalities: list
+    model: str
+    models: list
+    parallel_tool_calls: bool | None
+    plugins: list
+    presence_penalty: float | None
+    prompt_cache_key: str | None
+    provider: dict | None
+    reasoning: dict
+    reasoning_effort: str | None
+    repetition_penalty: float | None
+    response_format: Any
+    route: str | None
+    seed: int | None
+    service_tier: str | None
+    session_id: str
+    stop: Any
+    stop_server_tools_when: list
+    stream: bool
+    stream_options: dict | None
+    temperature: float | None
+    tool_choice: Any
+    tools: list
+    top_a: float | None
+    top_k: int | None
+    top_logprobs: int | None
+    top_p: float | None
+    trace: dict
+    user: str
 
 
 class CreateObservabilityDestinationRequired(TypedDict):
@@ -528,145 +585,6 @@ class CreateObservabilityDestinationCreateData(CreateObservabilityDestinationCre
     workspace_id: str
 
 
-class CreatePresetFromInferenceRequired(TypedDict):
-    cache_control: dict
-    messages: list
-    prediction: dict | None
-    prompt: dict | None
-    prompt_cache_options: dict | None
-
-
-class CreatePresetFromInference(CreatePresetFromInferenceRequired, total=False):
-    background: bool | None
-    context_management: dict | None
-    debug: dict
-    fallbacks: list | None
-    frequency_penalty: float | None
-    image_config: dict
-    include: list | None
-    input: Any
-    instructions: str | None
-    logit_bias: dict | None
-    logprobs: bool | None
-    max_completion_tokens: int | None
-    max_output_tokens: int | None
-    max_tokens: int | None
-    max_tool_calls: int | None
-    metadata: dict
-    min_p: float | None
-    modalities: list
-    model: str
-    models: list
-    output_config: dict
-    parallel_tool_calls: bool | None
-    plugins: list
-    presence_penalty: float | None
-    previous_response_id: str
-    prompt_cache_key: str | None
-    provider: dict | None
-    reasoning: dict
-    reasoning_effort: str | None
-    repetition_penalty: float | None
-    response_format: Any
-    route: str | None
-    safety_identifier: str | None
-    seed: int | None
-    service_tier: str | None
-    session_id: str
-    speed: Any
-    stop: Any
-    stop_sequences: list
-    stop_server_tools_when: list
-    store: bool
-    stream: bool
-    stream_options: dict | None
-    system: Any
-    temperature: float | None
-    text: Any
-    thinking: Any
-    tool_choice: Any
-    tools: list
-    top_a: float | None
-    top_k: int | None
-    top_logprobs: int | None
-    top_p: float | None
-    trace: dict
-    truncation: str | None
-    user: str
-
-
-class CreatePresetFromInferenceCreateDataRequired(TypedDict):
-    slug: str
-    cache_control: dict
-    messages: list
-    prediction: dict | None
-    prompt: dict | None
-    prompt_cache_options: dict | None
-
-
-class CreatePresetFromInferenceCreateData(CreatePresetFromInferenceCreateDataRequired, total=False):
-    background: bool | None
-    context_management: dict | None
-    debug: dict
-    fallbacks: list | None
-    frequency_penalty: float | None
-    image_config: dict
-    include: list | None
-    input: Any
-    instructions: str | None
-    logit_bias: dict | None
-    logprobs: bool | None
-    max_completion_tokens: int | None
-    max_output_tokens: int | None
-    max_tokens: int | None
-    max_tool_calls: int | None
-    metadata: dict
-    min_p: float | None
-    modalities: list
-    model: str
-    models: list
-    output_config: dict
-    parallel_tool_calls: bool | None
-    plugins: list
-    presence_penalty: float | None
-    previous_response_id: str
-    prompt_cache_key: str | None
-    provider: dict | None
-    reasoning: dict
-    reasoning_effort: str | None
-    repetition_penalty: float | None
-    response_format: Any
-    route: str | None
-    safety_identifier: str | None
-    seed: int | None
-    service_tier: str | None
-    session_id: str
-    speed: Any
-    stop: Any
-    stop_sequences: list
-    stop_server_tools_when: list
-    store: bool
-    stream: bool
-    stream_options: dict | None
-    system: Any
-    temperature: float | None
-    text: Any
-    thinking: Any
-    tool_choice: Any
-    tools: list
-    top_a: float | None
-    top_k: int | None
-    top_logprobs: int | None
-    top_p: float | None
-    trace: dict
-    truncation: str | None
-    user: str
-
-
-class CreateWorkspace(TypedDict):
-    pass
-
-
 class Credit(TypedDict):
     total_credits: float
     total_usage: float
@@ -680,10 +598,6 @@ class CreditLoadMatch(TypedDict, total=False):
 class CreditCreateData(TypedDict):
     total_credits: float
     total_usage: float
-
-
-class Destination(TypedDict):
-    pass
 
 
 class EmbeddingRequired(TypedDict):
@@ -781,10 +695,6 @@ class EndpointListMatch(TypedDict, total=False):
     sort: str
     supported_parameter: str
     zdr: str
-
-
-class Feedback(TypedDict):
-    pass
 
 
 class File(TypedDict):
@@ -887,12 +797,12 @@ class GenerationLoadMatch(TypedDict):
     id: str
 
 
-class GenerationContent(TypedDict):
+class GenerationContentData(TypedDict):
     input: Any
     output: dict
 
 
-class GenerationContentLoadMatch(TypedDict):
+class GenerationContentDataLoadMatch(TypedDict):
     id: str
 
 
@@ -1023,7 +933,7 @@ class ImageModelEndpointListMatch(TypedDict):
     slug: str
 
 
-class ImageModelsList(TypedDict):
+class ImageModelListItem(TypedDict):
     architecture: dict
     created: int
     description: str
@@ -1034,7 +944,7 @@ class ImageModelsList(TypedDict):
     supports_streaming: bool
 
 
-class ImageModelsListListMatch(TypedDict, total=False):
+class ImageModelListItemListMatch(TypedDict, total=False):
     architecture: dict
     created: int
     description: str
@@ -1046,18 +956,6 @@ class ImageModelsListListMatch(TypedDict, total=False):
 
 
 class Key(TypedDict):
-    pass
-
-
-class ListByokKey(TypedDict):
-    pass
-
-
-class ListGuardrail(TypedDict):
-    pass
-
-
-class ListKeyAssignment(TypedDict):
     assigned_by: str | None
     created_at: str
     guardrail_id: str
@@ -1067,21 +965,7 @@ class ListKeyAssignment(TypedDict):
     key_name: str
 
 
-class ListKeyAssignmentListMatch(TypedDict, total=False):
-    limit: int
-    offset: int | None
-
-
-class ListMemberAssignment(TypedDict):
-    assigned_by: str | None
-    created_at: str
-    guardrail_id: str
-    id: str
-    organization_id: str
-    user_id: str
-
-
-class ListMemberAssignmentListMatch(TypedDict, total=False):
+class KeyListMatch(TypedDict, total=False):
     limit: int
     offset: int | None
 
@@ -1095,10 +979,6 @@ class ListObservabilityDestinationListMatch(TypedDict, total=False):
     limit: int
     offset: int | None
     workspace_id: str
-
-
-class ListPreset(TypedDict):
-    pass
 
 
 class ListPresetVersion(TypedDict):
@@ -1121,42 +1001,18 @@ class ListPresetVersionListMatch(ListPresetVersionListMatchRequired, total=False
     offset: int | None
 
 
-class ListWorkspace(TypedDict):
-    pass
-
-
-class ListWorkspaceBudget(TypedDict):
+class Member(TypedDict):
+    assigned_by: str | None
     created_at: str
+    guardrail_id: str
     id: str
-    limit_usd: float
-    reset_interval: str | None
-    updated_at: str
-    workspace_id: str
-
-
-class ListWorkspaceBudgetListMatch(TypedDict):
-    workspace_id: str
-
-
-class ListWorkspaceMember(TypedDict):
-    created_at: str
-    id: str
-    role: str
+    organization_id: str
     user_id: str
-    workspace_id: str
 
 
-class ListWorkspaceMemberListMatchRequired(TypedDict):
-    workspace_id: str
-
-
-class ListWorkspaceMemberListMatch(ListWorkspaceMemberListMatchRequired, total=False):
+class MemberListMatch(TypedDict, total=False):
     limit: int
     offset: int | None
-
-
-class Member(TypedDict):
-    pass
 
 
 class MessageRequired(TypedDict):
@@ -1223,10 +1079,6 @@ class MessageCreateData(MessageCreateDataRequired, total=False):
     top_p: float
     trace: dict
     user: str
-
-
-class Meta(TypedDict):
-    pass
 
 
 class ModelRequired(TypedDict):
@@ -1525,10 +1377,6 @@ class ProviderListMatch(TypedDict, total=False):
     terms_of_service_url: str | None
 
 
-class Query(TypedDict):
-    pass
-
-
 class RankingsDaily(TypedDict):
     date: str
     model_permaslug: str
@@ -1543,10 +1391,6 @@ class RankingsDailyListMatch(TypedDict, total=False):
     modality: str
     period: str
     start_date: str
-
-
-class Remove(TypedDict):
-    pass
 
 
 class RerankRequired(TypedDict):
@@ -1577,12 +1421,97 @@ class RerankCreateData(RerankCreateDataRequired, total=False):
     usage: dict
 
 
-class Response(TypedDict):
-    pass
+class ResponseRequired(TypedDict):
+    cache_control: dict
+    prompt: dict | None
+    prompt_cache_options: dict | None
 
 
-class Speech(TypedDict):
-    pass
+class Response(ResponseRequired, total=False):
+    background: bool | None
+    debug: dict
+    frequency_penalty: float | None
+    image_config: dict
+    include: list | None
+    input: Any
+    instructions: str | None
+    max_output_tokens: int | None
+    max_tool_calls: int | None
+    metadata: dict | None
+    modalities: list
+    model: str
+    models: list
+    parallel_tool_calls: bool | None
+    plugins: list
+    presence_penalty: float | None
+    previous_response_id: str
+    prompt_cache_key: str | None
+    provider: dict | None
+    reasoning: Any
+    route: str | None
+    safety_identifier: str | None
+    service_tier: str | None
+    session_id: str
+    stop_server_tools_when: list
+    store: bool
+    stream: bool
+    temperature: float | None
+    text: Any
+    tool_choice: Any
+    tools: list
+    top_k: int
+    top_logprobs: int | None
+    top_p: float | None
+    trace: dict
+    truncation: str | None
+    user: str
+
+
+class ResponseCreateDataRequired(TypedDict):
+    slug: str
+    cache_control: dict
+    prompt: dict | None
+    prompt_cache_options: dict | None
+
+
+class ResponseCreateData(ResponseCreateDataRequired, total=False):
+    background: bool | None
+    debug: dict
+    frequency_penalty: float | None
+    image_config: dict
+    include: list | None
+    input: Any
+    instructions: str | None
+    max_output_tokens: int | None
+    max_tool_calls: int | None
+    metadata: dict | None
+    modalities: list
+    model: str
+    models: list
+    parallel_tool_calls: bool | None
+    plugins: list
+    presence_penalty: float | None
+    previous_response_id: str
+    prompt_cache_key: str | None
+    provider: dict | None
+    reasoning: Any
+    route: str | None
+    safety_identifier: str | None
+    service_tier: str | None
+    session_id: str
+    stop_server_tools_when: list
+    store: bool
+    stream: bool
+    temperature: float | None
+    text: Any
+    tool_choice: Any
+    tools: list
+    top_k: int
+    top_logprobs: int | None
+    top_p: float | None
+    trace: dict
+    truncation: str | None
+    user: str
 
 
 class SttRequired(TypedDict):
@@ -1652,10 +1581,6 @@ class Task(TypedDict):
 
 class TaskLoadMatch(TypedDict, total=False):
     window: str
-
-
-class Transcription(TypedDict):
-    pass
 
 
 class TtsRequired(TypedDict):
@@ -1871,14 +1796,6 @@ class UpsertWorkspaceBudgetUpdateData(UpsertWorkspaceBudgetUpdateDataRequired, t
     limit_usd: float
 
 
-class User(TypedDict):
-    pass
-
-
-class Version(TypedDict):
-    pass
-
-
 class VideoRequired(TypedDict):
     id: str
     model: str
@@ -1945,7 +1862,7 @@ class VideoGenerationLoadMatch(VideoGenerationLoadMatchRequired, total=False):
     index: int | None
 
 
-class VideoModelsListRequired(TypedDict):
+class VideoModelRequired(TypedDict):
     allowed_passthrough_parameters: list
     canonical_slug: str
     created: int
@@ -1960,13 +1877,13 @@ class VideoModelsListRequired(TypedDict):
     supported_sizes: list | None
 
 
-class VideoModelsList(VideoModelsListRequired, total=False):
+class VideoModel(VideoModelRequired, total=False):
     description: str
     hugging_face_id: str | None
     pricing_skus: dict | None
 
 
-class VideoModelsListListMatch(TypedDict, total=False):
+class VideoModelListMatch(TypedDict, total=False):
     allowed_passthrough_parameters: list
     canonical_slug: str
     created: int
@@ -2010,7 +1927,16 @@ class WorkspaceRemoveMatch(TypedDict):
     id: str
 
 
-class WorkspaceBudget(TypedDict, total=False):
+class WorkspaceBudget(TypedDict):
+    created_at: str
+    id: str
+    limit_usd: float
+    reset_interval: str | None
+    updated_at: str
+    workspace_id: str
+
+
+class WorkspaceBudgetListMatch(TypedDict):
     id: str
 
 
@@ -2019,5 +1945,18 @@ class WorkspaceBudgetRemoveMatch(TypedDict):
     workspace_id: str
 
 
-class Zdr(TypedDict):
-    pass
+class WorkspaceMember(TypedDict):
+    created_at: str
+    id: str
+    role: str
+    user_id: str
+    workspace_id: str
+
+
+class WorkspaceMemberListMatchRequired(TypedDict):
+    id: str
+
+
+class WorkspaceMemberListMatch(WorkspaceMemberListMatchRequired, total=False):
+    limit: int
+    offset: int | None

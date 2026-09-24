@@ -1,0 +1,22 @@
+# BasicBulkUnassignKeyFlow
+
+main: kit: flow: BasicBulkUnassignKeyFlow:
+{
+  entity: "bulk_unassign_key",
+  kind: "basic",
+  name: "BasicBulkUnassignKeyFlow",
+  step: [
+    {
+      i: {
+        ref: "bulk_unassign_key_ref01"
+      }
+
+      m: {
+        guardrail_id: "guardrail01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicBulkUnassignKeyFlow"
+}

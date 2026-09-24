@@ -1,0 +1,395 @@
+# Entity: message
+
+main: kit: entity: message: {
+
+  alias: field: {}
+
+  fields: {
+    cache_control: {
+      h: "Cache Control"
+      n: "cache_control"
+      r: true
+      sh: "Enable automatic prompt caching."
+      t: "`$OBJECT`"
+    }
+    context_management: {
+      h: "Context Management"
+      n: "context_management"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 3
+        count: 3
+        depth: 7
+      }
+    }
+    fallbacks: {
+      h: "Fallbacks"
+      n: "fallbacks"
+      r: false
+      sh: "Fallback models to try if the primary model fails or refuses, in order."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    max_tokens: {
+      h: "Max Tokens"
+      n: "max_tokens"
+      r: false
+      t: "`$INTEGER`"
+    }
+    messages: {
+      h: "Messages"
+      n: "messages"
+      r: true
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 12
+        count: 7
+        depth: 14
+      }
+    }
+    metadata: {
+      h: "Metadata"
+      n: "metadata"
+      r: false
+      t: "`$OBJECT`"
+    }
+    model: {
+      h: "Model"
+      n: "model"
+      r: true
+      t: "`$STRING`"
+    }
+    models: {
+      h: "Models"
+      n: "models"
+      r: false
+      t: "`$ARRAY`"
+    }
+    output_config: {
+      h: "Output Config"
+      n: "output_config"
+      r: false
+      sh: "Configuration for controlling output behavior."
+      t: "`$OBJECT`"
+    }
+    plugins: {
+      h: "Plugins"
+      n: "plugins"
+      r: false
+      sh: "Plugins you want to enable for this request, including their settings."
+      t: "`$ARRAY`"
+      union: {
+        branches: 5
+        count: 4
+        depth: 12
+      }
+    }
+    provider: {
+      h: "Provider"
+      n: "provider"
+      r: false
+      sh: "When multiple model providers are available, optionally indicate your routing preference."
+      t: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 2
+        count: 6
+        depth: 3
+      }
+    }
+    route: {
+      de: true
+      h: "Route"
+      n: "route"
+      r: false
+      sh: "**DEPRECATED** Use providers.sort.partition instead."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    service_tier: {
+      h: "Service Tier"
+      n: "service_tier"
+      r: false
+      t: "`$STRING`"
+    }
+    session_id: {
+      h: "Session Id"
+      n: "session_id"
+      r: false
+      sh: "A unique identifier for grouping related requests (e.g., a conversation or agent workflow)."
+      t: "`$STRING`"
+    }
+    speed: {
+      h: "Speed"
+      n: "speed"
+      r: false
+      t: "`$ANY`"
+    }
+    stop_sequences: {
+      h: "Stop Sequences"
+      n: "stop_sequences"
+      r: false
+      t: "`$ARRAY`"
+    }
+    stop_server_tools_when: {
+      h: "Stop Server Tools When"
+      n: "stop_server_tools_when"
+      r: false
+      sh: "Stop conditions for the server-tool agent loop."
+      t: "`$ARRAY`"
+    }
+    stream: {
+      h: "Stream"
+      n: "stream"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    system: {
+      h: "System"
+      n: "system"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    temperature: {
+      fo: "double"
+      h: "Temperature"
+      n: "temperature"
+      r: false
+      t: "`$NUMBER`"
+    }
+    thinking: {
+      h: "Thinking"
+      n: "thinking"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 0
+      }
+    }
+    tool_choice: {
+      h: "Tool Choice"
+      n: "tool_choice"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 4
+        count: 1
+        depth: 0
+      }
+    }
+    tools: {
+      h: "Tools"
+      n: "tools"
+      r: false
+      t: "`$ARRAY`"
+      union: {
+        branches: 13
+        count: 2
+        depth: 6
+      }
+    }
+    top_k: {
+      h: "Top K"
+      n: "top_k"
+      r: false
+      t: "`$INTEGER`"
+    }
+    top_p: {
+      fo: "double"
+      h: "Top P"
+      n: "top_p"
+      r: false
+      t: "`$NUMBER`"
+    }
+    trace: {
+      h: "Trace"
+      n: "trace"
+      r: false
+      sh: "Metadata for observability and tracing."
+      t: "`$OBJECT`"
+    }
+    user: {
+      h: "User"
+      n: "user"
+      r: false
+      sh: "A unique identifier representing your end-user, which helps distinguish between different users of your app."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "message"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /presets/{slug}/messages"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "my-preset"
+                k: "param"
+                n: "slug"
+                or: "slug"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/presets/{slug}/messages"
+          q: {
+            exist: [
+              "http_referer"
+              "slug"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "presets"
+            }
+            {
+              var: "slug"
+            }
+            {
+              lit: "messages"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "POST /messages"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "enabled"
+                k: "header"
+                n: "x_open_router_metadata"
+                or: "x_open_router_metadata"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/messages"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_metadata"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "messages"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.preset")]
+  ]
+
+}

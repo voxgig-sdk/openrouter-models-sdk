@@ -1,0 +1,165 @@
+# Entity: image_model_endpoint
+
+main: kit: entity: image_model_endpoint: {
+
+  alias: field: {}
+
+  fields: {
+    allowed_passthrough_parameters: {
+      h: "Allowed Passthrough Parameters"
+      n: "allowed_passthrough_parameters"
+      r: true
+      sh: "Provider-specific options accepted under provider.options[provider_slug]."
+      t: "`$ARRAY`"
+    }
+    pricing: {
+      h: "Pricing"
+      n: "pricing"
+      r: true
+      sh: "Billable pricing lines for this endpoint."
+      t: "`$ARRAY`"
+    }
+    provider_name: {
+      h: "Provider Name"
+      n: "provider_name"
+      r: true
+      sh: "Provider display name"
+      t: "`$STRING`"
+    }
+    provider_slug: {
+      h: "Provider Slug"
+      n: "provider_slug"
+      r: true
+      sh: "Provider slug"
+      t: "`$STRING`"
+    }
+    provider_tag: {
+      h: "Provider Tag"
+      n: "provider_tag"
+      r: true
+      sh: "Provider tag for request-side selection"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    supported_parameters: {
+      h: "Supported Parameters"
+      n: "supported_parameters"
+      r: true
+      t: "`$ANY`"
+    }
+    supports_streaming: {
+      h: "Supports Streaming"
+      n: "supports_streaming"
+      r: true
+      sh: "Whether this endpoint supports native SSE streaming (`stream: true` in the request)."
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  name: "image_model_endpoint"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /images/models/{author}/{slug}/endpoints"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "bytedance-seed"
+                k: "param"
+                n: "model_id"
+                or: "author"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "seedream-4.5"
+                k: "param"
+                n: "slug"
+                or: "slug"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/images/models/{author}/{slug}/endpoints"
+          q: {
+            exist: [
+              "http_referer"
+              "model_id"
+              "slug"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          r: {
+            param: {
+              author: "model_id"
+            }
+          }
+          s: [
+            {
+              lit: "images"
+            }
+            {
+              lit: "models"
+            }
+            {
+              var: "model_id"
+            }
+            {
+              var: "slug"
+            }
+            {
+              lit: "endpoints"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.endpoints`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.model")]
+  ]
+
+}

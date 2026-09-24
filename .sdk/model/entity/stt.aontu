@@ -1,0 +1,167 @@
+# Entity: stt
+
+main: kit: entity: stt: {
+
+  alias: field: {}
+
+  fields: {
+    duration: {
+      fo: "double"
+      h: "Duration"
+      n: "duration"
+      r: false
+      sh: "Duration of the input audio in seconds, present when response_format is verbose_json"
+      t: "`$NUMBER`"
+    }
+    input_audio: {
+      h: "Input Audio"
+      n: "input_audio"
+      r: true
+      sh: "Base64-encoded audio to transcribe"
+      t: "`$OBJECT`"
+    }
+    language: {
+      h: "Language"
+      n: "language"
+      r: false
+      sh: "Detected or forced language, present when response_format is verbose_json"
+      t: "`$STRING`"
+    }
+    model: {
+      h: "Model"
+      n: "model"
+      r: true
+      sh: "STT model identifier"
+      t: "`$STRING`"
+    }
+    provider: {
+      h: "Provider"
+      n: "provider"
+      r: false
+      sh: "Provider-specific passthrough configuration"
+      t: "`$OBJECT`"
+    }
+    response_format: {
+      h: "Response Format"
+      n: "response_format"
+      r: false
+      sh: "Output format."
+      t: "`$STRING`"
+    }
+    segments: {
+      h: "Segments"
+      n: "segments"
+      r: false
+      sh: "Timestamped transcript segments, present when response_format is verbose_json"
+      t: "`$ARRAY`"
+    }
+    task: {
+      h: "Task"
+      n: "task"
+      r: false
+      sh: "The task performed, present when response_format is verbose_json"
+      t: "`$STRING`"
+    }
+    temperature: {
+      fo: "double"
+      h: "Temperature"
+      n: "temperature"
+      r: false
+      sh: "Sampling temperature for transcription"
+      t: "`$NUMBER`"
+    }
+    text: {
+      h: "Text"
+      n: "text"
+      r: true
+      sh: "The transcribed text"
+      t: "`$STRING`"
+    }
+    timestamp_granularities: {
+      h: "Timestamp Granularities"
+      n: "timestamp_granularities"
+      r: false
+      sh: "Timestamp detail levels to include when response_format is \"verbose_json\"."
+      t: "`$ARRAY`"
+    }
+    usage: {
+      h: "Usage"
+      n: "usage"
+      r: false
+      sh: "Aggregated usage statistics for the request"
+      t: "`$OBJECT`"
+    }
+    words: {
+      h: "Words"
+      n: "words"
+      r: false
+      sh: "Timestamped words, present when the provider returns word-level timestamps"
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "stt"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /audio/transcriptions"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/audio/transcriptions"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "audio"
+            }
+            {
+              lit: "transcriptions"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

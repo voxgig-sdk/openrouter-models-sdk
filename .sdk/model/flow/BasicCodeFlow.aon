@@ -1,9 +1,0 @@
-# BasicCodeFlow
-
-main: kit: flow: BasicCodeFlow:
-{
-  entity: "code",
-  kind: "basic",
-  name: "BasicCodeFlow",
-  "key$": "BasicCodeFlow"
-}

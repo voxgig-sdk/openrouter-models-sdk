@@ -45,10 +45,6 @@ local client = sdk.test()
 
 Create a new `Activity` entity instance. Pass `nil` for no initial data.
 
-#### `Add(data)`
-
-Create a new `Add` entity instance. Pass `nil` for no initial data.
-
 #### `ApiKey(data)`
 
 Create a new `ApiKey` entity instance. Pass `nil` for no initial data.
@@ -57,17 +53,9 @@ Create a new `ApiKey` entity instance. Pass `nil` for no initial data.
 
 Create a new `AppRanking` entity instance. Pass `nil` for no initial data.
 
-#### `Benchmark(data)`
-
-Create a new `Benchmark` entity instance. Pass `nil` for no initial data.
-
 #### `BetaAnalytics(data)`
 
 Create a new `BetaAnalytics` entity instance. Pass `nil` for no initial data.
-
-#### `Budget(data)`
-
-Create a new `Budget` entity instance. Pass `nil` for no initial data.
 
 #### `BulkAddWorkspaceMember(data)`
 
@@ -101,53 +89,17 @@ Create a new `Byok` entity instance. Pass `nil` for no initial data.
 
 Create a new `ChatResult` entity instance. Pass `nil` for no initial data.
 
-#### `Code(data)`
-
-Create a new `Code` entity instance. Pass `nil` for no initial data.
-
-#### `Coinbase(data)`
-
-Create a new `Coinbase` entity instance. Pass `nil` for no initial data.
-
 #### `Completion(data)`
 
 Create a new `Completion` entity instance. Pass `nil` for no initial data.
-
-#### `Content(data)`
-
-Create a new `Content` entity instance. Pass `nil` for no initial data.
-
-#### `Count(data)`
-
-Create a new `Count` entity instance. Pass `nil` for no initial data.
-
-#### `CreateByokKey(data)`
-
-Create a new `CreateByokKey` entity instance. Pass `nil` for no initial data.
-
-#### `CreateGuardrail(data)`
-
-Create a new `CreateGuardrail` entity instance. Pass `nil` for no initial data.
 
 #### `CreateObservabilityDestination(data)`
 
 Create a new `CreateObservabilityDestination` entity instance. Pass `nil` for no initial data.
 
-#### `CreatePresetFromInference(data)`
-
-Create a new `CreatePresetFromInference` entity instance. Pass `nil` for no initial data.
-
-#### `CreateWorkspace(data)`
-
-Create a new `CreateWorkspace` entity instance. Pass `nil` for no initial data.
-
 #### `Credit(data)`
 
 Create a new `Credit` entity instance. Pass `nil` for no initial data.
-
-#### `Destination(data)`
-
-Create a new `Destination` entity instance. Pass `nil` for no initial data.
 
 #### `Embedding(data)`
 
@@ -157,10 +109,6 @@ Create a new `Embedding` entity instance. Pass `nil` for no initial data.
 
 Create a new `Endpoint` entity instance. Pass `nil` for no initial data.
 
-#### `Feedback(data)`
-
-Create a new `Feedback` entity instance. Pass `nil` for no initial data.
-
 #### `File(data)`
 
 Create a new `File` entity instance. Pass `nil` for no initial data.
@@ -169,9 +117,9 @@ Create a new `File` entity instance. Pass `nil` for no initial data.
 
 Create a new `Generation` entity instance. Pass `nil` for no initial data.
 
-#### `GenerationContent(data)`
+#### `GenerationContentData(data)`
 
-Create a new `GenerationContent` entity instance. Pass `nil` for no initial data.
+Create a new `GenerationContentData` entity instance. Pass `nil` for no initial data.
 
 #### `Guardrail(data)`
 
@@ -185,53 +133,21 @@ Create a new `Image` entity instance. Pass `nil` for no initial data.
 
 Create a new `ImageModelEndpoint` entity instance. Pass `nil` for no initial data.
 
-#### `ImageModelsList(data)`
+#### `ImageModelListItem(data)`
 
-Create a new `ImageModelsList` entity instance. Pass `nil` for no initial data.
+Create a new `ImageModelListItem` entity instance. Pass `nil` for no initial data.
 
 #### `Key(data)`
 
 Create a new `Key` entity instance. Pass `nil` for no initial data.
 
-#### `ListByokKey(data)`
-
-Create a new `ListByokKey` entity instance. Pass `nil` for no initial data.
-
-#### `ListGuardrail(data)`
-
-Create a new `ListGuardrail` entity instance. Pass `nil` for no initial data.
-
-#### `ListKeyAssignment(data)`
-
-Create a new `ListKeyAssignment` entity instance. Pass `nil` for no initial data.
-
-#### `ListMemberAssignment(data)`
-
-Create a new `ListMemberAssignment` entity instance. Pass `nil` for no initial data.
-
 #### `ListObservabilityDestination(data)`
 
 Create a new `ListObservabilityDestination` entity instance. Pass `nil` for no initial data.
 
-#### `ListPreset(data)`
-
-Create a new `ListPreset` entity instance. Pass `nil` for no initial data.
-
 #### `ListPresetVersion(data)`
 
 Create a new `ListPresetVersion` entity instance. Pass `nil` for no initial data.
-
-#### `ListWorkspace(data)`
-
-Create a new `ListWorkspace` entity instance. Pass `nil` for no initial data.
-
-#### `ListWorkspaceBudget(data)`
-
-Create a new `ListWorkspaceBudget` entity instance. Pass `nil` for no initial data.
-
-#### `ListWorkspaceMember(data)`
-
-Create a new `ListWorkspaceMember` entity instance. Pass `nil` for no initial data.
 
 #### `Member(data)`
 
@@ -240,10 +156,6 @@ Create a new `Member` entity instance. Pass `nil` for no initial data.
 #### `Message(data)`
 
 Create a new `Message` entity instance. Pass `nil` for no initial data.
-
-#### `Meta(data)`
-
-Create a new `Meta` entity instance. Pass `nil` for no initial data.
 
 #### `Model(data)`
 
@@ -285,17 +197,9 @@ Create a new `PresetVersion` entity instance. Pass `nil` for no initial data.
 
 Create a new `Provider` entity instance. Pass `nil` for no initial data.
 
-#### `Query(data)`
-
-Create a new `Query` entity instance. Pass `nil` for no initial data.
-
 #### `RankingsDaily(data)`
 
 Create a new `RankingsDaily` entity instance. Pass `nil` for no initial data.
-
-#### `Remove(data)`
-
-Create a new `Remove` entity instance. Pass `nil` for no initial data.
 
 #### `Rerank(data)`
 
@@ -304,10 +208,6 @@ Create a new `Rerank` entity instance. Pass `nil` for no initial data.
 #### `Response(data)`
 
 Create a new `Response` entity instance. Pass `nil` for no initial data.
-
-#### `Speech(data)`
-
-Create a new `Speech` entity instance. Pass `nil` for no initial data.
 
 #### `Stt(data)`
 
@@ -320,10 +220,6 @@ Create a new `SubmitGenerationFeedback` entity instance. Pass `nil` for no initi
 #### `Task(data)`
 
 Create a new `Task` entity instance. Pass `nil` for no initial data.
-
-#### `Transcription(data)`
-
-Create a new `Transcription` entity instance. Pass `nil` for no initial data.
 
 #### `Tts(data)`
 
@@ -353,14 +249,6 @@ Create a new `UpdateWorkspace` entity instance. Pass `nil` for no initial data.
 
 Create a new `UpsertWorkspaceBudget` entity instance. Pass `nil` for no initial data.
 
-#### `User(data)`
-
-Create a new `User` entity instance. Pass `nil` for no initial data.
-
-#### `Version(data)`
-
-Create a new `Version` entity instance. Pass `nil` for no initial data.
-
 #### `Video(data)`
 
 Create a new `Video` entity instance. Pass `nil` for no initial data.
@@ -369,9 +257,9 @@ Create a new `Video` entity instance. Pass `nil` for no initial data.
 
 Create a new `VideoGeneration` entity instance. Pass `nil` for no initial data.
 
-#### `VideoModelsList(data)`
+#### `VideoModel(data)`
 
-Create a new `VideoModelsList` entity instance. Pass `nil` for no initial data.
+Create a new `VideoModel` entity instance. Pass `nil` for no initial data.
 
 #### `Workspace(data)`
 
@@ -381,9 +269,9 @@ Create a new `Workspace` entity instance. Pass `nil` for no initial data.
 
 Create a new `WorkspaceBudget` entity instance. Pass `nil` for no initial data.
 
-#### `Zdr(data)`
+#### `WorkspaceMember(data)`
 
-Create a new `Zdr` entity instance. Pass `nil` for no initial data.
+Create a new `WorkspaceMember` entity instance. Pass `nil` for no initial data.
 
 #### `options_map() -> table`
 
@@ -474,42 +362,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `ActivityEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## AddEntity
-
-```lua
-local add = client:Add(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `AddEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -743,42 +595,6 @@ Return the entity name.
 
 ---
 
-## BenchmarkEntity
-
-```lua
-local benchmark = client:Benchmark(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `BenchmarkEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
 ## BetaAnalyticsEntity
 
 ```lua
@@ -877,42 +693,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `BetaAnalyticsEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## BudgetEntity
-
-```lua
-local budget = client:Budget(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `BudgetEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -1552,82 +1332,73 @@ Return the entity name.
 
 ---
 
-## CodeEntity
-
-```lua
-local code = client:Code(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CodeEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## CoinbaseEntity
-
-```lua
-local coinbase = client:Coinbase(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CoinbaseEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
 ## CompletionEntity
 
 ```lua
 local completion = client:Completion(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `cache_control` | `table` | Yes | Enable automatic prompt caching. |
+| `debug` | `table` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `number|nil` | No | Frequency penalty (-2.0 to 2.0) |
+| `image_config` | `table` | No | Provider-specific image configuration options. |
+| `logit_bias` | `table|nil` | No | Token logit bias adjustments |
+| `logprobs` | `boolean|nil` | No | Return log probabilities |
+| `max_completion_tokens` | `number|nil` | No | Maximum tokens in completion |
+| `max_tokens` | `number|nil` | No | Maximum tokens (deprecated, use max_completion_tokens). |
+| `messages` | `table` | Yes | List of messages for the conversation |
+| `metadata` | `table` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `number|nil` | No | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `table` | No | Output modalities for the response. |
+| `model` | `string` | No | Model to use for completion |
+| `models` | `table` | No | Models to use for completion |
+| `parallel_tool_calls` | `boolean|nil` | No | Whether to enable parallel function calling during tool use. |
+| `plugins` | `table` | No | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `table|nil` | Yes | Static predicted output content. |
+| `presence_penalty` | `number|nil` | No | Presence penalty (-2.0 to 2.0) |
+| `prompt_cache_key` | `string|nil` | No |  |
+| `prompt_cache_options` | `table|nil` | Yes | Request-level prompt-cache controls. |
+| `provider` | `table|nil` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `table` | No | Configuration options for reasoning models |
+| `reasoning_effort` | `string|nil` | No | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `number|nil` | No | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `any` | No | Response format configuration |
+| `route` | `string|nil` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `seed` | `number|nil` | No | Random seed for deterministic outputs |
+| `service_tier` | `string|nil` | No | The service tier to use for processing this request. |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop` | `any` | No | Stop sequences (up to 4) |
+| `stop_server_tools_when` | `table` | No | Stop conditions for the server-tool agent loop. |
+| `stream` | `boolean` | No | Enable streaming response |
+| `stream_options` | `table|nil` | No | Streaming configuration options |
+| `temperature` | `number|nil` | No | Sampling temperature (0-2) |
+| `tool_choice` | `any` | No | Tool choice configuration |
+| `tools` | `table` | No | Available tools for function calling |
+| `top_a` | `number|nil` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `number|nil` | No | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `number|nil` | No | Number of top log probabilities to return (0-20) |
+| `top_p` | `number|nil` | No | Nucleus sampling parameter (0-1) |
+| `trace` | `table` | No | Metadata for observability and tracing. |
+| `user` | `string` | No | Unique user identifier |
+
+### Operations
+
+#### `create(reqdata, ctrl) -> any, err`
+
+Create a new entity with the given data.
+
+```lua
+local result, err = client:Completion():create({
+  slug = --[[ string ]],
+  cache_control = --[[ table ]],
+  messages = --[[ table ]],
+  prediction = --[[ table|nil ]],
+  prompt_cache_options = --[[ table|nil ]],
+})
 ```
 
 ### Common Methods
@@ -1651,150 +1422,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `CompletionEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## ContentEntity
-
-```lua
-local content = client:Content(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ContentEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## CountEntity
-
-```lua
-local count = client:Count(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CountEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## CreateByokKeyEntity
-
-```lua
-local create_byok_key = client:CreateByokKey(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CreateByokKeyEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## CreateGuardrailEntity
-
-```lua
-local create_guardrail = client:CreateGuardrail(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CreateGuardrailEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -1869,227 +1496,6 @@ Return the entity name.
 
 ---
 
-## CreatePresetFromInferenceEntity
-
-```lua
-local create_preset_from_inference = client:CreatePresetFromInference(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `background` | `boolean|nil` | No |  |
-| `cache_control` | `table` | Yes | Enable automatic prompt caching. |
-| `context_management` | `table|nil` | No |  |
-| `debug` | `table` | No | Debug options for inspecting request transformations (streaming only) |
-| `fallbacks` | `table|nil` | No | Fallback models to try if the primary model fails or refuses, in order. |
-| `frequency_penalty` | `number|nil` | No | Frequency penalty (-2.0 to 2.0) |
-| `image_config` | `table` | No | Provider-specific image configuration options. |
-| `include` | `table|nil` | No |  |
-| `input` | `any` | No | Input for a response request - can be a string or array of items |
-| `instructions` | `string|nil` | No |  |
-| `logit_bias` | `table|nil` | No | Token logit bias adjustments |
-| `logprobs` | `boolean|nil` | No | Return log probabilities |
-| `max_completion_tokens` | `number|nil` | No | Maximum tokens in completion |
-| `max_output_tokens` | `number|nil` | No |  |
-| `max_tokens` | `number|nil` | No | Maximum tokens (deprecated, use max_completion_tokens). |
-| `max_tool_calls` | `number|nil` | No |  |
-| `messages` | `table` | Yes | List of messages for the conversation |
-| `metadata` | `table` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
-| `min_p` | `number|nil` | No | Minimum probability threshold relative to the most likely token. |
-| `modalities` | `table` | No | Output modalities for the response. |
-| `model` | `string` | No | Model to use for completion |
-| `models` | `table` | No | Models to use for completion |
-| `output_config` | `table` | No | Configuration for controlling output behavior. |
-| `parallel_tool_calls` | `boolean|nil` | No | Whether to enable parallel function calling during tool use. |
-| `plugins` | `table` | No | Plugins you want to enable for this request, including their settings. |
-| `prediction` | `table|nil` | Yes | Static predicted output content. |
-| `presence_penalty` | `number|nil` | No | Presence penalty (-2.0 to 2.0) |
-| `previous_response_id` | `string` | No | Not supported. |
-| `prompt` | `table|nil` | Yes |  |
-| `prompt_cache_key` | `string|nil` | No |  |
-| `prompt_cache_options` | `table|nil` | Yes | Request-level prompt-cache controls. |
-| `provider` | `table|nil` | No | When multiple model providers are available, optionally indicate your routing preference. |
-| `reasoning` | `table` | No | Configuration options for reasoning models |
-| `reasoning_effort` | `string|nil` | No | Shorthand for setting reasoning effort. |
-| `repetition_penalty` | `number|nil` | No | Penalizes tokens based on how much they have already appeared in the text. |
-| `response_format` | `any` | No | Response format configuration |
-| `route` | `string|nil` | No | **DEPRECATED** Use providers.sort.partition instead. |
-| `safety_identifier` | `string|nil` | No |  |
-| `seed` | `number|nil` | No | Random seed for deterministic outputs |
-| `service_tier` | `string|nil` | No | The service tier to use for processing this request. |
-| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
-| `speed` | `any` | No |  |
-| `stop` | `any` | No | Stop sequences (up to 4) |
-| `stop_sequences` | `table` | No |  |
-| `stop_server_tools_when` | `table` | No | Stop conditions for the server-tool agent loop. |
-| `store` | `boolean` | No |  |
-| `stream` | `boolean` | No | Enable streaming response |
-| `stream_options` | `table|nil` | No | Streaming configuration options |
-| `system` | `any` | No |  |
-| `temperature` | `number|nil` | No | Sampling temperature (0-2) |
-| `text` | `any` | No | Text output configuration including format and verbosity |
-| `thinking` | `any` | No |  |
-| `tool_choice` | `any` | No | Tool choice configuration |
-| `tools` | `table` | No | Available tools for function calling |
-| `top_a` | `number|nil` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
-| `top_k` | `number|nil` | No | Limits the model to choose from the top K most likely tokens at each step. |
-| `top_logprobs` | `number|nil` | No | Number of top log probabilities to return (0-20) |
-| `top_p` | `number|nil` | No | Nucleus sampling parameter (0-1) |
-| `trace` | `table` | No | Metadata for observability and tracing. |
-| `truncation` | `string|nil` | No |  |
-| `user` | `string` | No | Unique user identifier |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `background` | - |
-| `cache_control` | - |
-| `context_management` | - |
-| `debug` | - |
-| `fallbacks` | - |
-| `frequency_penalty` | - |
-| `image_config` | - |
-| `include` | - |
-| `input` | - |
-| `instructions` | - |
-| `logit_bias` | - |
-| `logprobs` | - |
-| `max_completion_tokens` | - |
-| `max_output_tokens` | - |
-| `max_tokens` | - |
-| `max_tool_calls` | - |
-| `messages` | - |
-| `metadata` | - |
-| `min_p` | - |
-| `modalities` | - |
-| `model` | Yes |
-| `models` | - |
-| `output_config` | - |
-| `parallel_tool_calls` | - |
-| `plugins` | - |
-| `prediction` | - |
-| `presence_penalty` | - |
-| `previous_response_id` | - |
-| `prompt` | - |
-| `prompt_cache_key` | - |
-| `prompt_cache_options` | - |
-| `provider` | - |
-| `reasoning` | - |
-| `reasoning_effort` | - |
-| `repetition_penalty` | - |
-| `response_format` | - |
-| `route` | - |
-| `safety_identifier` | - |
-| `seed` | - |
-| `service_tier` | - |
-| `session_id` | - |
-| `speed` | - |
-| `stop` | - |
-| `stop_sequences` | - |
-| `stop_server_tools_when` | - |
-| `store` | - |
-| `stream` | - |
-| `stream_options` | - |
-| `system` | - |
-| `temperature` | - |
-| `text` | - |
-| `thinking` | - |
-| `tool_choice` | - |
-| `tools` | - |
-| `top_a` | - |
-| `top_k` | - |
-| `top_logprobs` | - |
-| `top_p` | - |
-| `trace` | - |
-| `truncation` | - |
-| `user` | - |
-
-### Operations
-
-#### `create(reqdata, ctrl) -> any, err`
-
-Create a new entity with the given data.
-
-```lua
-local result, err = client:CreatePresetFromInference():create({
-  slug = --[[ string ]],
-  cache_control = --[[ table ]],
-  messages = --[[ table ]],
-  prediction = --[[ table|nil ]],
-  prompt = --[[ table|nil ]],
-  prompt_cache_options = --[[ table|nil ]],
-})
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CreatePresetFromInferenceEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## CreateWorkspaceEntity
-
-```lua
-local create_workspace = client:CreateWorkspace(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `CreateWorkspaceEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
 ## CreditEntity
 
 ```lua
@@ -2145,42 +1551,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `CreditEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## DestinationEntity
-
-```lua
-local destination = client:Destination(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `DestinationEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -2353,42 +1723,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `EndpointEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## FeedbackEntity
-
-```lua
-local feedback = client:Feedback(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `FeedbackEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -2583,10 +1917,10 @@ Return the entity name.
 
 ---
 
-## GenerationContentEntity
+## GenerationContentDataEntity
 
 ```lua
-local generation_content = client:GenerationContent(nil)
+local generation_content_data = client:GenerationContentData(nil)
 ```
 
 ### Fields
@@ -2603,7 +1937,7 @@ local generation_content = client:GenerationContent(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GenerationContent():load({ id = "generation_content_id" })
+local result, err = client:GenerationContentData():load({ id = "generation_content_data_id" })
 ```
 
 ### Common Methods
@@ -2626,7 +1960,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `GenerationContentEntity` instance with the same client and
+Create a new `GenerationContentDataEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -2893,10 +2227,10 @@ Return the entity name.
 
 ---
 
-## ImageModelsListEntity
+## ImageModelListItemEntity
 
 ```lua
-local image_models_list = client:ImageModelsList(nil)
+local image_model_list_item = client:ImageModelListItem(nil)
 ```
 
 ### Fields
@@ -2919,7 +2253,7 @@ local image_models_list = client:ImageModelsList(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:ImageModelsList():list()
+local results, err = client:ImageModelListItem():list()
 ```
 
 ### Common Methods
@@ -2942,7 +2276,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `ImageModelsListEntity` instance with the same client and
+Create a new `ImageModelListItemEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -2956,6 +2290,28 @@ Return the entity name.
 
 ```lua
 local key = client:Key(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `assigned_by` | `string|nil` | Yes | User ID of who made the assignment |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `string` | Yes | ID of the guardrail |
+| `id` | `string` | Yes | Unique identifier for the assignment |
+| `key_hash` | `string` | Yes | Hash of the assigned API key |
+| `key_label` | `string` | Yes | Label of the API key |
+| `key_name` | `string` | Yes | Name of the API key |
+
+### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:Key():list()
 ```
 
 ### Common Methods
@@ -2979,193 +2335,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `KeyEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## ListByokKeyEntity
-
-```lua
-local list_byok_key = client:ListByokKey(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListByokKeyEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## ListGuardrailEntity
-
-```lua
-local list_guardrail = client:ListGuardrail(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListGuardrailEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## ListKeyAssignmentEntity
-
-```lua
-local list_key_assignment = client:ListKeyAssignment(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `assigned_by` | `string|nil` | Yes | User ID of who made the assignment |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
-| `guardrail_id` | `string` | Yes | ID of the guardrail |
-| `id` | `string` | Yes | Unique identifier for the assignment |
-| `key_hash` | `string` | Yes | Hash of the assigned API key |
-| `key_label` | `string` | Yes | Label of the API key |
-| `key_name` | `string` | Yes | Name of the API key |
-
-### Operations
-
-#### `list(reqmatch, ctrl) -> any, err`
-
-List entities matching the given criteria. Returns an array.
-
-```lua
-local results, err = client:ListKeyAssignment():list()
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListKeyAssignmentEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## ListMemberAssignmentEntity
-
-```lua
-local list_member_assignment = client:ListMemberAssignment(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `assigned_by` | `string|nil` | Yes | User ID of who made the assignment |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
-| `guardrail_id` | `string` | Yes | ID of the guardrail |
-| `id` | `string` | Yes | Unique identifier for the assignment |
-| `organization_id` | `string` | Yes | Organization ID |
-| `user_id` | `string` | Yes | Clerk user ID of the assigned member |
-
-### Operations
-
-#### `list(reqmatch, ctrl) -> any, err`
-
-List entities matching the given criteria. Returns an array.
-
-```lua
-local results, err = client:ListMemberAssignment():list()
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListMemberAssignmentEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -3219,42 +2388,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `ListObservabilityDestinationEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## ListPresetEntity
-
-```lua
-local list_preset = client:ListPreset(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListPresetEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -3323,159 +2456,31 @@ Return the entity name.
 
 ---
 
-## ListWorkspaceEntity
-
-```lua
-local list_workspace = client:ListWorkspace(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListWorkspaceEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## ListWorkspaceBudgetEntity
-
-```lua
-local list_workspace_budget = client:ListWorkspaceBudget(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the budget was created |
-| `id` | `string` | Yes | Unique identifier for the budget |
-| `limit_usd` | `number` | Yes | Spending limit in USD for this interval |
-| `reset_interval` | `string|nil` | Yes | Interval at which spend resets. |
-| `updated_at` | `string` | Yes | ISO 8601 timestamp of when the budget was last updated |
-| `workspace_id` | `string` | Yes | ID of the workspace the budget belongs to |
-
-### Operations
-
-#### `list(reqmatch, ctrl) -> any, err`
-
-List entities matching the given criteria. Returns an array.
-
-```lua
-local results, err = client:ListWorkspaceBudget():list()
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListWorkspaceBudgetEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## ListWorkspaceMemberEntity
-
-```lua
-local list_workspace_member = client:ListWorkspaceMember(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the membership was created |
-| `id` | `string` | Yes | Unique identifier for the workspace membership |
-| `role` | `string` | Yes | Role of the member in the workspace |
-| `user_id` | `string` | Yes | Clerk user ID of the member |
-| `workspace_id` | `string` | Yes | ID of the workspace |
-
-### Operations
-
-#### `list(reqmatch, ctrl) -> any, err`
-
-List entities matching the given criteria. Returns an array.
-
-```lua
-local results, err = client:ListWorkspaceMember():list()
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ListWorkspaceMemberEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
 ## MemberEntity
 
 ```lua
 local member = client:Member(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `assigned_by` | `string|nil` | Yes | User ID of who made the assignment |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `string` | Yes | ID of the guardrail |
+| `id` | `string` | Yes | Unique identifier for the assignment |
+| `organization_id` | `string` | Yes | Organization ID |
+| `user_id` | `string` | Yes | Clerk user ID of the assigned member |
+
+### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:Member():list()
 ```
 
 ### Common Methods
@@ -3581,42 +2586,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `MessageEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## MetaEntity
-
-```lua
-local meta = client:Meta(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `MetaEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -4292,42 +3261,6 @@ Return the entity name.
 
 ---
 
-## QueryEntity
-
-```lua
-local query = client:Query(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `QueryEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
 ## RankingsDailyEntity
 
 ```lua
@@ -4373,42 +3306,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `RankingsDailyEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## RemoveEntity
-
-```lua
-local remove = client:Remove(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `RemoveEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -4488,40 +3385,64 @@ Return the entity name.
 local response = client:Response(nil)
 ```
 
-### Common Methods
+### Fields
 
-#### `data_get() -> table`
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `background` | `boolean|nil` | No |  |
+| `cache_control` | `table` | Yes | Enable automatic prompt caching. |
+| `debug` | `table` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `number|nil` | No |  |
+| `image_config` | `table` | No | Provider-specific image configuration options. |
+| `include` | `table|nil` | No |  |
+| `input` | `any` | No | Input for a response request - can be a string or array of items |
+| `instructions` | `string|nil` | No |  |
+| `max_output_tokens` | `number|nil` | No |  |
+| `max_tool_calls` | `number|nil` | No |  |
+| `metadata` | `table|nil` | No | Metadata key-value pairs for the request. |
+| `modalities` | `table` | No | Output modalities for the response. |
+| `model` | `string` | No |  |
+| `models` | `table` | No |  |
+| `parallel_tool_calls` | `boolean|nil` | No |  |
+| `plugins` | `table` | No | Plugins you want to enable for this request, including their settings. |
+| `presence_penalty` | `number|nil` | No |  |
+| `previous_response_id` | `string` | No | Not supported. |
+| `prompt` | `table|nil` | Yes |  |
+| `prompt_cache_key` | `string|nil` | No |  |
+| `prompt_cache_options` | `table|nil` | Yes | Request-level prompt-cache controls. |
+| `provider` | `table|nil` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `any` | No | Configuration for reasoning mode in the response |
+| `route` | `string|nil` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `safety_identifier` | `string|nil` | No |  |
+| `service_tier` | `string|nil` | No |  |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop_server_tools_when` | `table` | No | Stop conditions for the server-tool agent loop. |
+| `store` | `boolean` | No |  |
+| `stream` | `boolean` | No |  |
+| `temperature` | `number|nil` | No |  |
+| `text` | `any` | No | Text output configuration including format and verbosity |
+| `tool_choice` | `any` | No |  |
+| `tools` | `table` | No |  |
+| `top_k` | `number` | No |  |
+| `top_logprobs` | `number|nil` | No |  |
+| `top_p` | `number|nil` | No |  |
+| `trace` | `table` | No | Metadata for observability and tracing. |
+| `truncation` | `string|nil` | No |  |
+| `user` | `string` | No | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
-Get the entity data. Returns a copy of the current data.
+### Operations
 
-#### `data_set(data)`
+#### `create(reqdata, ctrl) -> any, err`
 
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ResponseEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## SpeechEntity
+Create a new entity with the given data.
 
 ```lua
-local speech = client:Speech(nil)
+local result, err = client:Response():create({
+  slug = --[[ string ]],
+  cache_control = --[[ table ]],
+  prompt = --[[ table|nil ]],
+  prompt_cache_options = --[[ table|nil ]],
+})
 ```
 
 ### Common Methods
@@ -4544,7 +3465,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `SpeechEntity` instance with the same client and
+Create a new `ResponseEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -4727,42 +3648,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `TaskEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## TranscriptionEntity
-
-```lua
-local transcription = client:Transcription(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `TranscriptionEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -5249,78 +4134,6 @@ Return the entity name.
 
 ---
 
-## UserEntity
-
-```lua
-local user = client:User(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `UserEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## VersionEntity
-
-```lua
-local version = client:Version(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `VersionEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
 ## VideoEntity
 
 ```lua
@@ -5456,10 +4269,10 @@ Return the entity name.
 
 ---
 
-## VideoModelsListEntity
+## VideoModelEntity
 
 ```lua
-local video_models_list = client:VideoModelsList(nil)
+local video_model = client:VideoModel(nil)
 ```
 
 ### Fields
@@ -5489,7 +4302,7 @@ local video_models_list = client:VideoModelsList(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:VideoModelsList():list()
+local results, err = client:VideoModel():list()
 ```
 
 ### Common Methods
@@ -5512,7 +4325,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `VideoModelsListEntity` instance with the same client and
+Create a new `VideoModelEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -5606,9 +4419,22 @@ local workspace_budget = client:WorkspaceBudget(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the budget was created |
+| `id` | `string` | Yes | Unique identifier for the budget |
+| `limit_usd` | `number` | Yes | Spending limit in USD for this interval |
+| `reset_interval` | `string|nil` | Yes | Interval at which spend resets. |
+| `updated_at` | `string` | Yes | ISO 8601 timestamp of when the budget was last updated |
+| `workspace_id` | `string` | Yes | ID of the workspace the budget belongs to |
 
 ### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:WorkspaceBudget():list()
+```
 
 #### `remove(reqmatch, ctrl) -> any, err`
 
@@ -5648,10 +4474,30 @@ Return the entity name.
 
 ---
 
-## ZdrEntity
+## WorkspaceMemberEntity
 
 ```lua
-local zdr = client:Zdr(nil)
+local workspace_member = client:WorkspaceMember(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the membership was created |
+| `id` | `string` | Yes | Unique identifier for the workspace membership |
+| `role` | `string` | Yes | Role of the member in the workspace |
+| `user_id` | `string` | Yes | Clerk user ID of the member |
+| `workspace_id` | `string` | Yes | ID of the workspace |
+
+### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:WorkspaceMember():list()
 ```
 
 ### Common Methods
@@ -5674,7 +4520,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `ZdrEntity` instance with the same client and
+Create a new `WorkspaceMemberEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`

@@ -1,0 +1,237 @@
+# Entity: workspace_budget
+
+main: kit: entity: workspace_budget: {
+
+  alias: field: {}
+
+  fields: {
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: true
+      sh: "ISO 8601 timestamp of when the budget was created"
+      t: "`$STRING`"
+    }
+    id: {
+      fo: "uuid"
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "Unique identifier for the budget"
+      t: "`$STRING`"
+    }
+    limit_usd: {
+      fo: "double"
+      h: "Limit Usd"
+      n: "limit_usd"
+      r: true
+      sh: "Spending limit in USD for this interval"
+      t: "`$NUMBER`"
+    }
+    reset_interval: {
+      h: "Reset Interval"
+      n: "reset_interval"
+      r: true
+      sh: "Interval at which spend resets."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: true
+      sh: "ISO 8601 timestamp of when the budget was last updated"
+      t: "`$STRING`"
+    }
+    workspace_id: {
+      fo: "uuid"
+      h: "Workspace Id"
+      n: "workspace_id"
+      r: true
+      sh: "ID of the workspace the budget belongs to"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "workspace_budget"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /workspaces/{id}/budgets"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "production"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/workspaces/{id}/budgets"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "budgets"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /workspaces/{id}/budgets/{interval}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "monthly"
+                k: "param"
+                n: "id"
+                or: "interval"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "production"
+                k: "param"
+                n: "workspace_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/workspaces/{id}/budgets/{interval}"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "workspace_id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          r: {
+            param: {
+              id: "workspace_id"
+              interval: "id"
+            }
+          }
+          s: [
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "workspace_id"
+            }
+            {
+              lit: "budgets"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.workspace")]
+  ]
+
+}

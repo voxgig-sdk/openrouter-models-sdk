@@ -19,7 +19,6 @@ import type {
   ListObservabilityDestinationListMatch,
 } from '../OpenrouterModelsTypes'
 
-// TODO: needs Entity superclass
 class ListObservabilityDestinationEntity extends OpenrouterModelsEntityBase<ListObservabilityDestination> {
 
   constructor(client: OpenrouterModelsSDK, entopts: any) {

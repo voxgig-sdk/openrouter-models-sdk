@@ -19,7 +19,6 @@ import type {
   AppRankingListMatch,
 } from '../OpenrouterModelsTypes'
 
-// TODO: needs Entity superclass
 class AppRankingEntity extends OpenrouterModelsEntityBase<AppRanking> {
 
   constructor(client: OpenrouterModelsSDK, entopts: any) {

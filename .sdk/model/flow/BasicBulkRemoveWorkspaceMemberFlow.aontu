@@ -1,0 +1,22 @@
+# BasicBulkRemoveWorkspaceMemberFlow
+
+main: kit: flow: BasicBulkRemoveWorkspaceMemberFlow:
+{
+  entity: "bulk_remove_workspace_member",
+  kind: "basic",
+  name: "BasicBulkRemoveWorkspaceMemberFlow",
+  step: [
+    {
+      i: {
+        ref: "bulk_remove_workspace_member_ref01"
+      }
+
+      m: {
+        workspace_id: "workspace01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicBulkRemoveWorkspaceMemberFlow"
+}

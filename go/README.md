@@ -71,12 +71,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-presetversion, err := client.PresetVersion(nil).Load(map[string]any{"id": "example_id", "slug": "example"}, nil)
+providers, err := client.Provider(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = presetversion
+_ = providers
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -140,13 +140,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-presetVersion, err := client.PresetVersion(nil).Load(
-    map[string]any{"id": "test01", "slug": "example"}, nil,
+provider, err := client.Provider(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(presetVersion) // the returned mock data
+fmt.Println(provider) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -226,12 +226,9 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
 | `Activity` | `(data map[string]any) OpenrouterModelsEntity` | Create an Activity entity instance. |
-| `Add` | `(data map[string]any) OpenrouterModelsEntity` | Create an Add entity instance. |
 | `ApiKey` | `(data map[string]any) OpenrouterModelsEntity` | Create an ApiKey entity instance. |
 | `AppRanking` | `(data map[string]any) OpenrouterModelsEntity` | Create an AppRanking entity instance. |
-| `Benchmark` | `(data map[string]any) OpenrouterModelsEntity` | Create a Benchmark entity instance. |
 | `BetaAnalytics` | `(data map[string]any) OpenrouterModelsEntity` | Create a BetaAnalytics entity instance. |
-| `Budget` | `(data map[string]any) OpenrouterModelsEntity` | Create a Budget entity instance. |
 | `BulkAddWorkspaceMember` | `(data map[string]any) OpenrouterModelsEntity` | Create a BulkAddWorkspaceMember entity instance. |
 | `BulkAssignKey` | `(data map[string]any) OpenrouterModelsEntity` | Create a BulkAssignKey entity instance. |
 | `BulkAssignMember` | `(data map[string]any) OpenrouterModelsEntity` | Create a BulkAssignMember entity instance. |
@@ -240,42 +237,23 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `BulkUnassignMember` | `(data map[string]any) OpenrouterModelsEntity` | Create a BulkUnassignMember entity instance. |
 | `Byok` | `(data map[string]any) OpenrouterModelsEntity` | Create a Byok entity instance. |
 | `ChatResult` | `(data map[string]any) OpenrouterModelsEntity` | Create a ChatResult entity instance. |
-| `Code` | `(data map[string]any) OpenrouterModelsEntity` | Create a Code entity instance. |
-| `Coinbase` | `(data map[string]any) OpenrouterModelsEntity` | Create a Coinbase entity instance. |
 | `Completion` | `(data map[string]any) OpenrouterModelsEntity` | Create a Completion entity instance. |
-| `Content` | `(data map[string]any) OpenrouterModelsEntity` | Create a Content entity instance. |
-| `Count` | `(data map[string]any) OpenrouterModelsEntity` | Create a Count entity instance. |
-| `CreateByokKey` | `(data map[string]any) OpenrouterModelsEntity` | Create a CreateByokKey entity instance. |
-| `CreateGuardrail` | `(data map[string]any) OpenrouterModelsEntity` | Create a CreateGuardrail entity instance. |
 | `CreateObservabilityDestination` | `(data map[string]any) OpenrouterModelsEntity` | Create a CreateObservabilityDestination entity instance. |
-| `CreatePresetFromInference` | `(data map[string]any) OpenrouterModelsEntity` | Create a CreatePresetFromInference entity instance. |
-| `CreateWorkspace` | `(data map[string]any) OpenrouterModelsEntity` | Create a CreateWorkspace entity instance. |
 | `Credit` | `(data map[string]any) OpenrouterModelsEntity` | Create a Credit entity instance. |
-| `Destination` | `(data map[string]any) OpenrouterModelsEntity` | Create a Destination entity instance. |
 | `Embedding` | `(data map[string]any) OpenrouterModelsEntity` | Create an Embedding entity instance. |
 | `Endpoint` | `(data map[string]any) OpenrouterModelsEntity` | Create an Endpoint entity instance. |
-| `Feedback` | `(data map[string]any) OpenrouterModelsEntity` | Create a Feedback entity instance. |
 | `File` | `(data map[string]any) OpenrouterModelsEntity` | Create a File entity instance. |
 | `Generation` | `(data map[string]any) OpenrouterModelsEntity` | Create a Generation entity instance. |
-| `GenerationContent` | `(data map[string]any) OpenrouterModelsEntity` | Create a GenerationContent entity instance. |
+| `GenerationContentData` | `(data map[string]any) OpenrouterModelsEntity` | Create a GenerationContentData entity instance. |
 | `Guardrail` | `(data map[string]any) OpenrouterModelsEntity` | Create a Guardrail entity instance. |
 | `Image` | `(data map[string]any) OpenrouterModelsEntity` | Create an Image entity instance. |
 | `ImageModelEndpoint` | `(data map[string]any) OpenrouterModelsEntity` | Create an ImageModelEndpoint entity instance. |
-| `ImageModelsList` | `(data map[string]any) OpenrouterModelsEntity` | Create an ImageModelsList entity instance. |
+| `ImageModelListItem` | `(data map[string]any) OpenrouterModelsEntity` | Create an ImageModelListItem entity instance. |
 | `Key` | `(data map[string]any) OpenrouterModelsEntity` | Create a Key entity instance. |
-| `ListByokKey` | `(data map[string]any) OpenrouterModelsEntity` | Create a ListByokKey entity instance. |
-| `ListGuardrail` | `(data map[string]any) OpenrouterModelsEntity` | Create a ListGuardrail entity instance. |
-| `ListKeyAssignment` | `(data map[string]any) OpenrouterModelsEntity` | Create a ListKeyAssignment entity instance. |
-| `ListMemberAssignment` | `(data map[string]any) OpenrouterModelsEntity` | Create a ListMemberAssignment entity instance. |
 | `ListObservabilityDestination` | `(data map[string]any) OpenrouterModelsEntity` | Create a ListObservabilityDestination entity instance. |
-| `ListPreset` | `(data map[string]any) OpenrouterModelsEntity` | Create a ListPreset entity instance. |
 | `ListPresetVersion` | `(data map[string]any) OpenrouterModelsEntity` | Create a ListPresetVersion entity instance. |
-| `ListWorkspace` | `(data map[string]any) OpenrouterModelsEntity` | Create a ListWorkspace entity instance. |
-| `ListWorkspaceBudget` | `(data map[string]any) OpenrouterModelsEntity` | Create a ListWorkspaceBudget entity instance. |
-| `ListWorkspaceMember` | `(data map[string]any) OpenrouterModelsEntity` | Create a ListWorkspaceMember entity instance. |
 | `Member` | `(data map[string]any) OpenrouterModelsEntity` | Create a Member entity instance. |
 | `Message` | `(data map[string]any) OpenrouterModelsEntity` | Create a Message entity instance. |
-| `Meta` | `(data map[string]any) OpenrouterModelsEntity` | Create a Meta entity instance. |
 | `Model` | `(data map[string]any) OpenrouterModelsEntity` | Create a Model entity instance. |
 | `ModelsCount` | `(data map[string]any) OpenrouterModelsEntity` | Create a ModelsCount entity instance. |
 | `ModelsList` | `(data map[string]any) OpenrouterModelsEntity` | Create a ModelsList entity instance. |
@@ -286,16 +264,12 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Preset` | `(data map[string]any) OpenrouterModelsEntity` | Create a Preset entity instance. |
 | `PresetVersion` | `(data map[string]any) OpenrouterModelsEntity` | Create a PresetVersion entity instance. |
 | `Provider` | `(data map[string]any) OpenrouterModelsEntity` | Create a Provider entity instance. |
-| `Query` | `(data map[string]any) OpenrouterModelsEntity` | Create a Query entity instance. |
 | `RankingsDaily` | `(data map[string]any) OpenrouterModelsEntity` | Create a RankingsDaily entity instance. |
-| `Remove` | `(data map[string]any) OpenrouterModelsEntity` | Create a Remove entity instance. |
 | `Rerank` | `(data map[string]any) OpenrouterModelsEntity` | Create a Rerank entity instance. |
 | `Response` | `(data map[string]any) OpenrouterModelsEntity` | Create a Response entity instance. |
-| `Speech` | `(data map[string]any) OpenrouterModelsEntity` | Create a Speech entity instance. |
 | `Stt` | `(data map[string]any) OpenrouterModelsEntity` | Create a Stt entity instance. |
 | `SubmitGenerationFeedback` | `(data map[string]any) OpenrouterModelsEntity` | Create a SubmitGenerationFeedback entity instance. |
 | `Task` | `(data map[string]any) OpenrouterModelsEntity` | Create a Task entity instance. |
-| `Transcription` | `(data map[string]any) OpenrouterModelsEntity` | Create a Transcription entity instance. |
 | `Tts` | `(data map[string]any) OpenrouterModelsEntity` | Create a Tts entity instance. |
 | `UnifiedBenchmark` | `(data map[string]any) OpenrouterModelsEntity` | Create an UnifiedBenchmark entity instance. |
 | `UpdateByokKey` | `(data map[string]any) OpenrouterModelsEntity` | Create an UpdateByokKey entity instance. |
@@ -303,14 +277,12 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `UpdateObservabilityDestination` | `(data map[string]any) OpenrouterModelsEntity` | Create an UpdateObservabilityDestination entity instance. |
 | `UpdateWorkspace` | `(data map[string]any) OpenrouterModelsEntity` | Create an UpdateWorkspace entity instance. |
 | `UpsertWorkspaceBudget` | `(data map[string]any) OpenrouterModelsEntity` | Create an UpsertWorkspaceBudget entity instance. |
-| `User` | `(data map[string]any) OpenrouterModelsEntity` | Create an User entity instance. |
-| `Version` | `(data map[string]any) OpenrouterModelsEntity` | Create a Version entity instance. |
 | `Video` | `(data map[string]any) OpenrouterModelsEntity` | Create a Video entity instance. |
 | `VideoGeneration` | `(data map[string]any) OpenrouterModelsEntity` | Create a VideoGeneration entity instance. |
-| `VideoModelsList` | `(data map[string]any) OpenrouterModelsEntity` | Create a VideoModelsList entity instance. |
+| `VideoModel` | `(data map[string]any) OpenrouterModelsEntity` | Create a VideoModel entity instance. |
 | `Workspace` | `(data map[string]any) OpenrouterModelsEntity` | Create a Workspace entity instance. |
 | `WorkspaceBudget` | `(data map[string]any) OpenrouterModelsEntity` | Create a WorkspaceBudget entity instance. |
-| `Zdr` | `(data map[string]any) OpenrouterModelsEntity` | Create a Zdr entity instance. |
+| `WorkspaceMember` | `(data map[string]any) OpenrouterModelsEntity` | Create a WorkspaceMember entity instance. |
 
 ### Entity interface (OpenrouterModelsEntity)
 
@@ -371,15 +343,6 @@ Operations: List.
 
 API path: `/activity`
 
-#### Add
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### ApiKey
 
 | Field | Description |
@@ -429,15 +392,6 @@ Operations: List.
 
 API path: `/datasets/app-rankings`
 
-#### Benchmark
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### BetaAnalytics
 
 | Field | Description |
@@ -462,15 +416,6 @@ API path: ``
 Operations: Create, Load.
 
 API path: `/analytics/query`
-
-#### Budget
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### BulkAddWorkspaceMember
 
@@ -619,68 +564,56 @@ Operations: Create.
 
 API path: `/chat/completions`
 
-#### Code
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### Coinbase
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### Completion
 
 | Field | Description |
 | --- | --- |
+| `"cache_control"` | Enable automatic prompt caching. |
+| `"debug"` | Debug options for inspecting request transformations (streaming only) |
+| `"frequency_penalty"` | Frequency penalty (-2.0 to 2.0) |
+| `"image_config"` | Provider-specific image configuration options. |
+| `"logit_bias"` | Token logit bias adjustments |
+| `"logprobs"` | Return log probabilities |
+| `"max_completion_tokens"` | Maximum tokens in completion |
+| `"max_tokens"` | Maximum tokens (deprecated, use max_completion_tokens). |
+| `"messages"` | List of messages for the conversation |
+| `"metadata"` | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `"min_p"` | Minimum probability threshold relative to the most likely token. |
+| `"modalities"` | Output modalities for the response. |
+| `"model"` | Model to use for completion |
+| `"models"` | Models to use for completion |
+| `"parallel_tool_calls"` | Whether to enable parallel function calling during tool use. |
+| `"plugins"` | Plugins you want to enable for this request, including their settings. |
+| `"prediction"` | Static predicted output content. |
+| `"presence_penalty"` | Presence penalty (-2.0 to 2.0) |
+| `"prompt_cache_key"` |  |
+| `"prompt_cache_options"` | Request-level prompt-cache controls. |
+| `"provider"` | When multiple model providers are available, optionally indicate your routing preference. |
+| `"reasoning"` | Configuration options for reasoning models |
+| `"reasoning_effort"` | Shorthand for setting reasoning effort. |
+| `"repetition_penalty"` | Penalizes tokens based on how much they have already appeared in the text. |
+| `"response_format"` | Response format configuration |
+| `"route"` | **DEPRECATED** Use providers.sort.partition instead. |
+| `"seed"` | Random seed for deterministic outputs |
+| `"service_tier"` | The service tier to use for processing this request. |
+| `"session_id"` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `"stop"` | Stop sequences (up to 4) |
+| `"stop_server_tools_when"` | Stop conditions for the server-tool agent loop. |
+| `"stream"` | Enable streaming response |
+| `"stream_options"` | Streaming configuration options |
+| `"temperature"` | Sampling temperature (0-2) |
+| `"tool_choice"` | Tool choice configuration |
+| `"tools"` | Available tools for function calling |
+| `"top_a"` | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `"top_k"` | Limits the model to choose from the top K most likely tokens at each step. |
+| `"top_logprobs"` | Number of top log probabilities to return (0-20) |
+| `"top_p"` | Nucleus sampling parameter (0-1) |
+| `"trace"` | Metadata for observability and tracing. |
+| `"user"` | Unique user identifier |
 
-Operations: .
+Operations: Create.
 
-API path: ``
-
-#### Content
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### Count
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### CreateByokKey
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### CreateGuardrail
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
+API path: `/presets/{slug}/chat/completions`
 
 #### CreateObservabilityDestination
 
@@ -700,85 +633,6 @@ Operations: Create.
 
 API path: `/observability/destinations`
 
-#### CreatePresetFromInference
-
-| Field | Description |
-| --- | --- |
-| `"background"` |  |
-| `"cache_control"` | Enable automatic prompt caching. |
-| `"context_management"` |  |
-| `"debug"` | Debug options for inspecting request transformations (streaming only) |
-| `"fallbacks"` | Fallback models to try if the primary model fails or refuses, in order. |
-| `"frequency_penalty"` | Frequency penalty (-2.0 to 2.0) |
-| `"image_config"` | Provider-specific image configuration options. |
-| `"include"` |  |
-| `"input"` | Input for a response request - can be a string or array of items |
-| `"instructions"` |  |
-| `"logit_bias"` | Token logit bias adjustments |
-| `"logprobs"` | Return log probabilities |
-| `"max_completion_tokens"` | Maximum tokens in completion |
-| `"max_output_tokens"` |  |
-| `"max_tokens"` | Maximum tokens (deprecated, use max_completion_tokens). |
-| `"max_tool_calls"` |  |
-| `"messages"` | List of messages for the conversation |
-| `"metadata"` | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
-| `"min_p"` | Minimum probability threshold relative to the most likely token. |
-| `"modalities"` | Output modalities for the response. |
-| `"model"` | Model to use for completion |
-| `"models"` | Models to use for completion |
-| `"output_config"` | Configuration for controlling output behavior. |
-| `"parallel_tool_calls"` | Whether to enable parallel function calling during tool use. |
-| `"plugins"` | Plugins you want to enable for this request, including their settings. |
-| `"prediction"` | Static predicted output content. |
-| `"presence_penalty"` | Presence penalty (-2.0 to 2.0) |
-| `"previous_response_id"` | Not supported. |
-| `"prompt"` |  |
-| `"prompt_cache_key"` |  |
-| `"prompt_cache_options"` | Request-level prompt-cache controls. |
-| `"provider"` | When multiple model providers are available, optionally indicate your routing preference. |
-| `"reasoning"` | Configuration options for reasoning models |
-| `"reasoning_effort"` | Shorthand for setting reasoning effort. |
-| `"repetition_penalty"` | Penalizes tokens based on how much they have already appeared in the text. |
-| `"response_format"` | Response format configuration |
-| `"route"` | **DEPRECATED** Use providers.sort.partition instead. |
-| `"safety_identifier"` |  |
-| `"seed"` | Random seed for deterministic outputs |
-| `"service_tier"` | The service tier to use for processing this request. |
-| `"session_id"` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
-| `"speed"` |  |
-| `"stop"` | Stop sequences (up to 4) |
-| `"stop_sequences"` |  |
-| `"stop_server_tools_when"` | Stop conditions for the server-tool agent loop. |
-| `"store"` |  |
-| `"stream"` | Enable streaming response |
-| `"stream_options"` | Streaming configuration options |
-| `"system"` |  |
-| `"temperature"` | Sampling temperature (0-2) |
-| `"text"` | Text output configuration including format and verbosity |
-| `"thinking"` |  |
-| `"tool_choice"` | Tool choice configuration |
-| `"tools"` | Available tools for function calling |
-| `"top_a"` | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
-| `"top_k"` | Limits the model to choose from the top K most likely tokens at each step. |
-| `"top_logprobs"` | Number of top log probabilities to return (0-20) |
-| `"top_p"` | Nucleus sampling parameter (0-1) |
-| `"trace"` | Metadata for observability and tracing. |
-| `"truncation"` |  |
-| `"user"` | Unique user identifier |
-
-Operations: Create.
-
-API path: `/presets/{slug}/chat/completions`
-
-#### CreateWorkspace
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### Credit
 
 | Field | Description |
@@ -789,15 +643,6 @@ API path: ``
 Operations: Create, Load.
 
 API path: `/credits/coinbase`
-
-#### Destination
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### Embedding
 
@@ -847,15 +692,6 @@ API path: `/embeddings`
 Operations: List, Load.
 
 API path: `/models`
-
-#### Feedback
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### File
 
@@ -926,7 +762,7 @@ Operations: Load.
 
 API path: `/generation`
 
-#### GenerationContent
+#### GenerationContentData
 
 | Field | Description |
 | --- | --- |
@@ -1008,7 +844,7 @@ Operations: List.
 
 API path: `/images/models/{author}/{slug}/endpoints`
 
-#### ImageModelsList
+#### ImageModelListItem
 
 | Field | Description |
 | --- | --- |
@@ -1029,33 +865,6 @@ API path: `/images/models`
 
 | Field | Description |
 | --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### ListByokKey
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### ListGuardrail
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### ListKeyAssignment
-
-| Field | Description |
-| --- | --- |
 | `"assigned_by"` | User ID of who made the assignment |
 | `"created_at"` | ISO 8601 timestamp of when the assignment was created |
 | `"guardrail_id"` | ID of the guardrail |
@@ -1068,21 +877,6 @@ Operations: List.
 
 API path: `/guardrails/{id}/assignments/keys`
 
-#### ListMemberAssignment
-
-| Field | Description |
-| --- | --- |
-| `"assigned_by"` | User ID of who made the assignment |
-| `"created_at"` | ISO 8601 timestamp of when the assignment was created |
-| `"guardrail_id"` | ID of the guardrail |
-| `"id"` | Unique identifier for the assignment |
-| `"organization_id"` | Organization ID |
-| `"user_id"` | Clerk user ID of the assigned member |
-
-Operations: List.
-
-API path: `/guardrails/{id}/assignments/members`
-
 #### ListObservabilityDestination
 
 | Field | Description |
@@ -1093,15 +887,6 @@ API path: `/guardrails/{id}/assignments/members`
 Operations: List.
 
 API path: `/observability/destinations`
-
-#### ListPreset
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### ListPresetVersion
 
@@ -1120,52 +905,20 @@ Operations: List.
 
 API path: `/presets/{slug}/versions`
 
-#### ListWorkspace
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### ListWorkspaceBudget
-
-| Field | Description |
-| --- | --- |
-| `"created_at"` | ISO 8601 timestamp of when the budget was created |
-| `"id"` | Unique identifier for the budget |
-| `"limit_usd"` | Spending limit in USD for this interval |
-| `"reset_interval"` | Interval at which spend resets. |
-| `"updated_at"` | ISO 8601 timestamp of when the budget was last updated |
-| `"workspace_id"` | ID of the workspace the budget belongs to |
-
-Operations: List.
-
-API path: `/workspaces/{id}/budgets`
-
-#### ListWorkspaceMember
-
-| Field | Description |
-| --- | --- |
-| `"created_at"` | ISO 8601 timestamp of when the membership was created |
-| `"id"` | Unique identifier for the workspace membership |
-| `"role"` | Role of the member in the workspace |
-| `"user_id"` | Clerk user ID of the member |
-| `"workspace_id"` | ID of the workspace |
-
-Operations: List.
-
-API path: `/workspaces/{id}/members`
-
 #### Member
 
 | Field | Description |
 | --- | --- |
+| `"assigned_by"` | User ID of who made the assignment |
+| `"created_at"` | ISO 8601 timestamp of when the assignment was created |
+| `"guardrail_id"` | ID of the guardrail |
+| `"id"` | Unique identifier for the assignment |
+| `"organization_id"` | Organization ID |
+| `"user_id"` | Clerk user ID of the assigned member |
 
-Operations: .
+Operations: List.
 
-API path: ``
+API path: `/guardrails/{id}/assignments/members`
 
 #### Message
 
@@ -1201,16 +954,7 @@ API path: ``
 
 Operations: Create.
 
-API path: `/messages`
-
-#### Meta
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
+API path: `/presets/{slug}/messages`
 
 #### Model
 
@@ -1427,15 +1171,6 @@ Operations: List.
 
 API path: `/providers`
 
-#### Query
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### RankingsDaily
 
 | Field | Description |
@@ -1447,15 +1182,6 @@ API path: ``
 Operations: List.
 
 API path: `/datasets/rankings-daily`
-
-#### Remove
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### Rerank
 
@@ -1478,19 +1204,50 @@ API path: `/rerank`
 
 | Field | Description |
 | --- | --- |
+| `"background"` |  |
+| `"cache_control"` | Enable automatic prompt caching. |
+| `"debug"` | Debug options for inspecting request transformations (streaming only) |
+| `"frequency_penalty"` |  |
+| `"image_config"` | Provider-specific image configuration options. |
+| `"include"` |  |
+| `"input"` | Input for a response request - can be a string or array of items |
+| `"instructions"` |  |
+| `"max_output_tokens"` |  |
+| `"max_tool_calls"` |  |
+| `"metadata"` | Metadata key-value pairs for the request. |
+| `"modalities"` | Output modalities for the response. |
+| `"model"` |  |
+| `"models"` |  |
+| `"parallel_tool_calls"` |  |
+| `"plugins"` | Plugins you want to enable for this request, including their settings. |
+| `"presence_penalty"` |  |
+| `"previous_response_id"` | Not supported. |
+| `"prompt"` |  |
+| `"prompt_cache_key"` |  |
+| `"prompt_cache_options"` | Request-level prompt-cache controls. |
+| `"provider"` | When multiple model providers are available, optionally indicate your routing preference. |
+| `"reasoning"` | Configuration for reasoning mode in the response |
+| `"route"` | **DEPRECATED** Use providers.sort.partition instead. |
+| `"safety_identifier"` |  |
+| `"service_tier"` |  |
+| `"session_id"` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `"stop_server_tools_when"` | Stop conditions for the server-tool agent loop. |
+| `"store"` |  |
+| `"stream"` |  |
+| `"temperature"` |  |
+| `"text"` | Text output configuration including format and verbosity |
+| `"tool_choice"` |  |
+| `"tools"` |  |
+| `"top_k"` |  |
+| `"top_logprobs"` |  |
+| `"top_p"` |  |
+| `"trace"` | Metadata for observability and tracing. |
+| `"truncation"` |  |
+| `"user"` | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
-Operations: .
+Operations: Create.
 
-API path: ``
-
-#### Speech
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
+API path: `/presets/{slug}/responses`
 
 #### Stt
 
@@ -1539,15 +1296,6 @@ API path: `/generation/feedback`
 Operations: Load.
 
 API path: `/classifications/task`
-
-#### Transcription
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### Tts
 
@@ -1669,24 +1417,6 @@ Operations: Update.
 
 API path: `/workspaces/{id}/budgets/{interval}`
 
-#### User
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### Version
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### Video
 
 | Field | Description |
@@ -1725,7 +1455,7 @@ Operations: Load.
 
 API path: `/videos/{jobId}/content`
 
-#### VideoModelsList
+#### VideoModel
 
 | Field | Description |
 | --- | --- |
@@ -1777,20 +1507,30 @@ API path: `/workspaces/{id}`
 
 | Field | Description |
 | --- | --- |
-| `"id"` |  |
+| `"created_at"` | ISO 8601 timestamp of when the budget was created |
+| `"id"` | Unique identifier for the budget |
+| `"limit_usd"` | Spending limit in USD for this interval |
+| `"reset_interval"` | Interval at which spend resets. |
+| `"updated_at"` | ISO 8601 timestamp of when the budget was last updated |
+| `"workspace_id"` | ID of the workspace the budget belongs to |
 
-Operations: Remove.
+Operations: List, Remove.
 
-API path: `/workspaces/{id}/budgets/{interval}`
+API path: `/workspaces/{id}/budgets`
 
-#### Zdr
+#### WorkspaceMember
 
 | Field | Description |
 | --- | --- |
+| `"created_at"` | ISO 8601 timestamp of when the membership was created |
+| `"id"` | Unique identifier for the workspace membership |
+| `"role"` | Role of the member in the workspace |
+| `"user_id"` | Clerk user ID of the member |
+| `"workspace_id"` | ID of the workspace |
 
-Operations: .
+Operations: List.
 
-API path: ``
+API path: `/workspaces/{id}/members`
 
 
 
@@ -1832,11 +1572,6 @@ if err != nil {
 }
 fmt.Println(activitys) // the array of records
 ```
-
-
-### Add
-
-Create an instance: `add := client.Add(nil)`
 
 
 ### ApiKey
@@ -1971,11 +1706,6 @@ fmt.Println(appRankings) // the array of records
 ```
 
 
-### Benchmark
-
-Create an instance: `benchmark := client.Benchmark(nil)`
-
-
 ### BetaAnalytics
 
 Create an instance: `betaAnalytics := client.BetaAnalytics(nil)`
@@ -2038,11 +1768,6 @@ if err != nil {
 }
 fmt.Println(result)
 ```
-
-
-### Budget
-
-Create an instance: `budget := client.Budget(nil)`
 
 
 ### BulkAddWorkspaceMember
@@ -2402,39 +2127,78 @@ fmt.Println(result)
 ```
 
 
-### Code
-
-Create an instance: `code := client.Code(nil)`
-
-
-### Coinbase
-
-Create an instance: `coinbase := client.Coinbase(nil)`
-
-
 ### Completion
 
 Create an instance: `completion := client.Completion(nil)`
 
+#### Operations
 
-### Content
+| Method | Description |
+| --- | --- |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
-Create an instance: `content := client.Content(nil)`
+#### Fields
 
+| Field | Type | Description |
+| --- | --- | --- |
+| `cache_control` | `map[string]any` | Enable automatic prompt caching. |
+| `debug` | `map[string]any` | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `any` | Frequency penalty (-2.0 to 2.0) |
+| `image_config` | `map[string]any` | Provider-specific image configuration options. |
+| `logit_bias` | `any` | Token logit bias adjustments |
+| `logprobs` | `any` | Return log probabilities |
+| `max_completion_tokens` | `any` | Maximum tokens in completion |
+| `max_tokens` | `any` | Maximum tokens (deprecated, use max_completion_tokens). |
+| `messages` | `[]any` | List of messages for the conversation |
+| `metadata` | `map[string]any` | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `any` | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `[]any` | Output modalities for the response. |
+| `model` | `string` | Model to use for completion |
+| `models` | `[]any` | Models to use for completion |
+| `parallel_tool_calls` | `any` | Whether to enable parallel function calling during tool use. |
+| `plugins` | `[]any` | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `any` | Static predicted output content. |
+| `presence_penalty` | `any` | Presence penalty (-2.0 to 2.0) |
+| `prompt_cache_key` | `any` |  |
+| `prompt_cache_options` | `any` | Request-level prompt-cache controls. |
+| `provider` | `any` | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `map[string]any` | Configuration options for reasoning models |
+| `reasoning_effort` | `any` | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `any` | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `any` | Response format configuration |
+| `route` | `any` | **DEPRECATED** Use providers.sort.partition instead. |
+| `seed` | `any` | Random seed for deterministic outputs |
+| `service_tier` | `any` | The service tier to use for processing this request. |
+| `session_id` | `string` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop` | `any` | Stop sequences (up to 4) |
+| `stop_server_tools_when` | `[]any` | Stop conditions for the server-tool agent loop. |
+| `stream` | `bool` | Enable streaming response |
+| `stream_options` | `any` | Streaming configuration options |
+| `temperature` | `any` | Sampling temperature (0-2) |
+| `tool_choice` | `any` | Tool choice configuration |
+| `tools` | `[]any` | Available tools for function calling |
+| `top_a` | `any` | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `any` | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `any` | Number of top log probabilities to return (0-20) |
+| `top_p` | `any` | Nucleus sampling parameter (0-1) |
+| `trace` | `map[string]any` | Metadata for observability and tracing. |
+| `user` | `string` | Unique user identifier |
 
-### Count
+#### Example: Create
 
-Create an instance: `count := client.Count(nil)`
-
-
-### CreateByokKey
-
-Create an instance: `createByokKey := client.CreateByokKey(nil)`
-
-
-### CreateGuardrail
-
-Create an instance: `createGuardrail := client.CreateGuardrail(nil)`
+```go
+result, err := client.Completion(nil).Create(map[string]any{
+    "slug": "example_slug",
+    "cache_control": map[string]any{},
+    "messages": []any{},
+    "prediction": map[string]any{},
+    "prompt_cache_options": map[string]any{},
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
 
 
 ### CreateObservabilityDestination
@@ -2477,105 +2241,6 @@ fmt.Println(result)
 ```
 
 
-### CreatePresetFromInference
-
-Create an instance: `createPresetFromInference := client.CreatePresetFromInference(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `background` | `any` |  |
-| `cache_control` | `map[string]any` | Enable automatic prompt caching. |
-| `context_management` | `any` |  |
-| `debug` | `map[string]any` | Debug options for inspecting request transformations (streaming only) |
-| `fallbacks` | `any` | Fallback models to try if the primary model fails or refuses, in order. |
-| `frequency_penalty` | `any` | Frequency penalty (-2.0 to 2.0) |
-| `image_config` | `map[string]any` | Provider-specific image configuration options. |
-| `include` | `any` |  |
-| `input` | `any` | Input for a response request - can be a string or array of items |
-| `instructions` | `any` |  |
-| `logit_bias` | `any` | Token logit bias adjustments |
-| `logprobs` | `any` | Return log probabilities |
-| `max_completion_tokens` | `any` | Maximum tokens in completion |
-| `max_output_tokens` | `any` |  |
-| `max_tokens` | `any` | Maximum tokens (deprecated, use max_completion_tokens). |
-| `max_tool_calls` | `any` |  |
-| `messages` | `[]any` | List of messages for the conversation |
-| `metadata` | `map[string]any` | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
-| `min_p` | `any` | Minimum probability threshold relative to the most likely token. |
-| `modalities` | `[]any` | Output modalities for the response. |
-| `model` | `string` | Model to use for completion |
-| `models` | `[]any` | Models to use for completion |
-| `output_config` | `map[string]any` | Configuration for controlling output behavior. |
-| `parallel_tool_calls` | `any` | Whether to enable parallel function calling during tool use. |
-| `plugins` | `[]any` | Plugins you want to enable for this request, including their settings. |
-| `prediction` | `any` | Static predicted output content. |
-| `presence_penalty` | `any` | Presence penalty (-2.0 to 2.0) |
-| `previous_response_id` | `string` | Not supported. |
-| `prompt` | `any` |  |
-| `prompt_cache_key` | `any` |  |
-| `prompt_cache_options` | `any` | Request-level prompt-cache controls. |
-| `provider` | `any` | When multiple model providers are available, optionally indicate your routing preference. |
-| `reasoning` | `map[string]any` | Configuration options for reasoning models |
-| `reasoning_effort` | `any` | Shorthand for setting reasoning effort. |
-| `repetition_penalty` | `any` | Penalizes tokens based on how much they have already appeared in the text. |
-| `response_format` | `any` | Response format configuration |
-| `route` | `any` | **DEPRECATED** Use providers.sort.partition instead. |
-| `safety_identifier` | `any` |  |
-| `seed` | `any` | Random seed for deterministic outputs |
-| `service_tier` | `any` | The service tier to use for processing this request. |
-| `session_id` | `string` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
-| `speed` | `any` |  |
-| `stop` | `any` | Stop sequences (up to 4) |
-| `stop_sequences` | `[]any` |  |
-| `stop_server_tools_when` | `[]any` | Stop conditions for the server-tool agent loop. |
-| `store` | `bool` |  |
-| `stream` | `bool` | Enable streaming response |
-| `stream_options` | `any` | Streaming configuration options |
-| `system` | `any` |  |
-| `temperature` | `any` | Sampling temperature (0-2) |
-| `text` | `any` | Text output configuration including format and verbosity |
-| `thinking` | `any` |  |
-| `tool_choice` | `any` | Tool choice configuration |
-| `tools` | `[]any` | Available tools for function calling |
-| `top_a` | `any` | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
-| `top_k` | `any` | Limits the model to choose from the top K most likely tokens at each step. |
-| `top_logprobs` | `any` | Number of top log probabilities to return (0-20) |
-| `top_p` | `any` | Nucleus sampling parameter (0-1) |
-| `trace` | `map[string]any` | Metadata for observability and tracing. |
-| `truncation` | `any` |  |
-| `user` | `string` | Unique user identifier |
-
-#### Example: Create
-
-```go
-result, err := client.CreatePresetFromInference(nil).Create(map[string]any{
-    "slug": "example_slug",
-    "cache_control": map[string]any{},
-    "messages": []any{},
-    "prediction": map[string]any{},
-    "prompt": map[string]any{},
-    "prompt_cache_options": map[string]any{},
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-
-### CreateWorkspace
-
-Create an instance: `createWorkspace := client.CreateWorkspace(nil)`
-
-
 ### Credit
 
 Create an instance: `credit := client.Credit(nil)`
@@ -2616,11 +2281,6 @@ if err != nil {
 }
 fmt.Println(result)
 ```
-
-
-### Destination
-
-Create an instance: `destination := client.Destination(nil)`
 
 
 ### Embedding
@@ -2721,11 +2381,6 @@ if err != nil {
 }
 fmt.Println(endpoints) // the array of records
 ```
-
-
-### Feedback
-
-Create an instance: `feedback := client.Feedback(nil)`
 
 
 ### File
@@ -2862,9 +2517,9 @@ fmt.Println(generation) // the loaded record
 ```
 
 
-### GenerationContent
+### GenerationContentData
 
-Create an instance: `generationContent := client.GenerationContent(nil)`
+Create an instance: `generationContentData := client.GenerationContentData(nil)`
 
 #### Operations
 
@@ -2882,11 +2537,11 @@ Create an instance: `generationContent := client.GenerationContent(nil)`
 #### Example: Load
 
 ```go
-generationContent, err := client.GenerationContent(nil).Load(map[string]any{"id": "generation_content_id"}, nil)
+generationContentData, err := client.GenerationContentData(nil).Load(map[string]any{"id": "generation_content_data_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(generationContent) // the loaded record
+fmt.Println(generationContentData) // the loaded record
 ```
 
 
@@ -3046,9 +2701,9 @@ fmt.Println(imageModelEndpoints) // the array of records
 ```
 
 
-### ImageModelsList
+### ImageModelListItem
 
-Create an instance: `imageModelsList := client.ImageModelsList(nil)`
+Create an instance: `imageModelListItem := client.ImageModelListItem(nil)`
 
 #### Operations
 
@@ -3072,32 +2727,17 @@ Create an instance: `imageModelsList := client.ImageModelsList(nil)`
 #### Example: List
 
 ```go
-imageModelsLists, err := client.ImageModelsList(nil).List(nil, nil)
+imageModelListItems, err := client.ImageModelListItem(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(imageModelsLists) // the array of records
+fmt.Println(imageModelListItems) // the array of records
 ```
 
 
 ### Key
 
 Create an instance: `key := client.Key(nil)`
-
-
-### ListByokKey
-
-Create an instance: `listByokKey := client.ListByokKey(nil)`
-
-
-### ListGuardrail
-
-Create an instance: `listGuardrail := client.ListGuardrail(nil)`
-
-
-### ListKeyAssignment
-
-Create an instance: `listKeyAssignment := client.ListKeyAssignment(nil)`
 
 #### Operations
 
@@ -3120,43 +2760,11 @@ Create an instance: `listKeyAssignment := client.ListKeyAssignment(nil)`
 #### Example: List
 
 ```go
-listKeyAssignments, err := client.ListKeyAssignment(nil).List(nil, nil)
+keys, err := client.Key(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(listKeyAssignments) // the array of records
-```
-
-
-### ListMemberAssignment
-
-Create an instance: `listMemberAssignment := client.ListMemberAssignment(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `assigned_by` | `any` | User ID of who made the assignment |
-| `created_at` | `string` | ISO 8601 timestamp of when the assignment was created |
-| `guardrail_id` | `string` | ID of the guardrail |
-| `id` | `string` | Unique identifier for the assignment |
-| `organization_id` | `string` | Organization ID |
-| `user_id` | `string` | Clerk user ID of the assigned member |
-
-#### Example: List
-
-```go
-listMemberAssignments, err := client.ListMemberAssignment(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(listMemberAssignments) // the array of records
+fmt.Println(keys) // the array of records
 ```
 
 
@@ -3186,11 +2794,6 @@ if err != nil {
 }
 fmt.Println(listObservabilityDestinations) // the array of records
 ```
-
-
-### ListPreset
-
-Create an instance: `listPreset := client.ListPreset(nil)`
 
 
 ### ListPresetVersion
@@ -3227,77 +2830,36 @@ fmt.Println(listPresetVersions) // the array of records
 ```
 
 
-### ListWorkspace
-
-Create an instance: `listWorkspace := client.ListWorkspace(nil)`
-
-
-### ListWorkspaceBudget
-
-Create an instance: `listWorkspaceBudget := client.ListWorkspaceBudget(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `created_at` | `string` | ISO 8601 timestamp of when the budget was created |
-| `id` | `string` | Unique identifier for the budget |
-| `limit_usd` | `float64` | Spending limit in USD for this interval |
-| `reset_interval` | `any` | Interval at which spend resets. |
-| `updated_at` | `string` | ISO 8601 timestamp of when the budget was last updated |
-| `workspace_id` | `string` | ID of the workspace the budget belongs to |
-
-#### Example: List
-
-```go
-listWorkspaceBudgets, err := client.ListWorkspaceBudget(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(listWorkspaceBudgets) // the array of records
-```
-
-
-### ListWorkspaceMember
-
-Create an instance: `listWorkspaceMember := client.ListWorkspaceMember(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `created_at` | `string` | ISO 8601 timestamp of when the membership was created |
-| `id` | `string` | Unique identifier for the workspace membership |
-| `role` | `string` | Role of the member in the workspace |
-| `user_id` | `string` | Clerk user ID of the member |
-| `workspace_id` | `string` | ID of the workspace |
-
-#### Example: List
-
-```go
-listWorkspaceMembers, err := client.ListWorkspaceMember(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(listWorkspaceMembers) // the array of records
-```
-
-
 ### Member
 
 Create an instance: `member := client.Member(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `assigned_by` | `any` | User ID of who made the assignment |
+| `created_at` | `string` | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `string` | ID of the guardrail |
+| `id` | `string` | Unique identifier for the assignment |
+| `organization_id` | `string` | Organization ID |
+| `user_id` | `string` | Clerk user ID of the assigned member |
+
+#### Example: List
+
+```go
+members, err := client.Member(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(members) // the array of records
+```
 
 
 ### Message
@@ -3355,11 +2917,6 @@ if err != nil {
 }
 fmt.Println(result)
 ```
-
-
-### Meta
-
-Create an instance: `meta := client.Meta(nil)`
 
 
 ### Model
@@ -3777,11 +3334,6 @@ fmt.Println(providers) // the array of records
 ```
 
 
-### Query
-
-Create an instance: `query := client.Query(nil)`
-
-
 ### RankingsDaily
 
 Create an instance: `rankingsDaily := client.RankingsDaily(nil)`
@@ -3809,11 +3361,6 @@ if err != nil {
 }
 fmt.Println(rankingsDailys) // the array of records
 ```
-
-
-### Remove
-
-Create an instance: `remove := client.Remove(nil)`
 
 
 ### Rerank
@@ -3859,10 +3406,71 @@ fmt.Println(result)
 
 Create an instance: `response := client.Response(nil)`
 
+#### Operations
 
-### Speech
+| Method | Description |
+| --- | --- |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
-Create an instance: `speech := client.Speech(nil)`
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `background` | `any` |  |
+| `cache_control` | `map[string]any` | Enable automatic prompt caching. |
+| `debug` | `map[string]any` | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `any` |  |
+| `image_config` | `map[string]any` | Provider-specific image configuration options. |
+| `include` | `any` |  |
+| `input` | `any` | Input for a response request - can be a string or array of items |
+| `instructions` | `any` |  |
+| `max_output_tokens` | `any` |  |
+| `max_tool_calls` | `any` |  |
+| `metadata` | `any` | Metadata key-value pairs for the request. |
+| `modalities` | `[]any` | Output modalities for the response. |
+| `model` | `string` |  |
+| `models` | `[]any` |  |
+| `parallel_tool_calls` | `any` |  |
+| `plugins` | `[]any` | Plugins you want to enable for this request, including their settings. |
+| `presence_penalty` | `any` |  |
+| `previous_response_id` | `string` | Not supported. |
+| `prompt` | `any` |  |
+| `prompt_cache_key` | `any` |  |
+| `prompt_cache_options` | `any` | Request-level prompt-cache controls. |
+| `provider` | `any` | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `any` | Configuration for reasoning mode in the response |
+| `route` | `any` | **DEPRECATED** Use providers.sort.partition instead. |
+| `safety_identifier` | `any` |  |
+| `service_tier` | `any` |  |
+| `session_id` | `string` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop_server_tools_when` | `[]any` | Stop conditions for the server-tool agent loop. |
+| `store` | `bool` |  |
+| `stream` | `bool` |  |
+| `temperature` | `any` |  |
+| `text` | `any` | Text output configuration including format and verbosity |
+| `tool_choice` | `any` |  |
+| `tools` | `[]any` |  |
+| `top_k` | `int` |  |
+| `top_logprobs` | `any` |  |
+| `top_p` | `any` |  |
+| `trace` | `map[string]any` | Metadata for observability and tracing. |
+| `truncation` | `any` |  |
+| `user` | `string` | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
+
+#### Example: Create
+
+```go
+result, err := client.Response(nil).Create(map[string]any{
+    "slug": "example_slug",
+    "cache_control": map[string]any{},
+    "prompt": map[string]any{},
+    "prompt_cache_options": map[string]any{},
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
 
 
 ### Stt
@@ -3970,11 +3578,6 @@ if err != nil {
 }
 fmt.Println(task) // the loaded record
 ```
-
-
-### Transcription
-
-Create an instance: `transcription := client.Transcription(nil)`
 
 
 ### Tts
@@ -4199,16 +3802,6 @@ Create an instance: `upsertWorkspaceBudget := client.UpsertWorkspaceBudget(nil)`
 | `limit_usd` | `float64` | Spending limit in USD. |
 
 
-### User
-
-Create an instance: `user := client.User(nil)`
-
-
-### Version
-
-Create an instance: `version := client.Version(nil)`
-
-
 ### Video
 
 Create an instance: `video := client.Video(nil)`
@@ -4297,9 +3890,9 @@ fmt.Println(videoGeneration) // the loaded record
 ```
 
 
-### VideoModelsList
+### VideoModel
 
-Create an instance: `videoModelsList := client.VideoModelsList(nil)`
+Create an instance: `videoModel := client.VideoModel(nil)`
 
 #### Operations
 
@@ -4330,11 +3923,11 @@ Create an instance: `videoModelsList := client.VideoModelsList(nil)`
 #### Example: List
 
 ```go
-videoModelsLists, err := client.VideoModelsList(nil).List(nil, nil)
+videoModels, err := client.VideoModel(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(videoModelsLists) // the array of records
+fmt.Println(videoModels) // the array of records
 ```
 
 
@@ -4388,18 +3981,60 @@ Create an instance: `workspaceBudget := client.WorkspaceBudget(nil)`
 
 | Method | Description |
 | --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `string` |  |
+| `created_at` | `string` | ISO 8601 timestamp of when the budget was created |
+| `id` | `string` | Unique identifier for the budget |
+| `limit_usd` | `float64` | Spending limit in USD for this interval |
+| `reset_interval` | `any` | Interval at which spend resets. |
+| `updated_at` | `string` | ISO 8601 timestamp of when the budget was last updated |
+| `workspace_id` | `string` | ID of the workspace the budget belongs to |
+
+#### Example: List
+
+```go
+workspaceBudgets, err := client.WorkspaceBudget(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(workspaceBudgets) // the array of records
+```
 
 
-### Zdr
+### WorkspaceMember
 
-Create an instance: `zdr := client.Zdr(nil)`
+Create an instance: `workspaceMember := client.WorkspaceMember(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `created_at` | `string` | ISO 8601 timestamp of when the membership was created |
+| `id` | `string` | Unique identifier for the workspace membership |
+| `role` | `string` | Role of the member in the workspace |
+| `user_id` | `string` | Clerk user ID of the member |
+| `workspace_id` | `string` | ID of the workspace |
+
+#### Example: List
+
+```go
+workspaceMembers, err := client.WorkspaceMember(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(workspaceMembers) // the array of records
+```
 
 ## Features
 
@@ -4485,7 +4120,7 @@ activated earlier.
 
 ## Open types
 
-30 fields are carried as open values rather than typed structures.
+32 fields are carried as open values rather than typed structures.
 This follows from the API definition, not from a gap in this SDK: the
 definition describes them with untagged unions —
 `oneOf`/`anyOf` branches with no `discriminator` — so it never states which
@@ -4495,36 +4130,38 @@ guarantee.
 
 | Entity | Field | Variants | Nesting |
 | --- | --- | --- | --- |
-| `create_preset_from_inference` | `input` | 49 | 19 levels |
 | `open_responses_result` | `input` | 49 | 19 levels |
+| `response` | `input` | 49 | 19 levels |
 | `open_responses_result` | `tools` | 27 | 12 levels |
+| `response` | `tools` | 27 | 12 levels |
 | `message` | `tools` | 13 | 6 levels |
 | `chat_result` | `tools` | 12 | 6 levels |
-| `create_preset_from_inference` | `tools` | 12 | 6 levels |
+| `completion` | `tools` | 12 | 6 levels |
 | `message` | `messages` | 12 | 14 levels |
 | `open_responses_result` | `tool_choice` | 8 | 4 levels |
+| `response` | `tool_choice` | 8 | 4 levels |
 | `chat_result` | `plugins` | 5 | 12 levels |
 | `chat_result` | `tool_choice` | 5 | 0 levels |
-| `create_preset_from_inference` | `plugins` | 5 | 12 levels |
-| `create_preset_from_inference` | `tool_choice` | 5 | 0 levels |
+| `completion` | `plugins` | 5 | 12 levels |
+| `completion` | `tool_choice` | 5 | 0 levels |
 | `embedding` | `input` | 5 | 6 levels |
 | `message` | `plugins` | 5 | 12 levels |
 | `open_responses_result` | `plugins` | 5 | 12 levels |
-| `create_preset_from_inference` | `prompt` | 4 | 3 levels |
+| `response` | `plugins` | 5 | 12 levels |
 | `image` | `usage` | 4 | 3 levels |
 | `message` | `tool_choice` | 4 | 0 levels |
 | `open_responses_result` | `prompt` | 4 | 3 levels |
+| `response` | `prompt` | 4 | 3 levels |
 | `beta_analytics` | `classifier_filters` | 3 | 8 levels |
 | `beta_analytics` | `filters` | 3 | 6 levels |
 | `chat_result` | `image_config` | 3 | 1 level |
-| `create_preset_from_inference` | `context_management` | 3 | 7 levels |
-| `create_preset_from_inference` | `image_config` | 3 | 1 level |
-| `create_preset_from_inference` | `text` | 3 | 4 levels |
-| `create_preset_from_inference` | `thinking` | 3 | 0 levels |
+| `completion` | `image_config` | 3 | 1 level |
 | `message` | `context_management` | 3 | 7 levels |
 | `message` | `thinking` | 3 | 0 levels |
 | `open_responses_result` | `image_config` | 3 | 1 level |
 | `open_responses_result` | `text` | 3 | 4 levels |
+| `response` | `image_config` | 3 | 1 level |
+| `response` | `text` | 3 | 4 levels |
 
 These values round-trip unchanged — read them, modify them, send them back. If
 the API adds a `discriminator` to the definition, regenerating will type them.
@@ -4602,15 +4239,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-presetversion := client.PresetVersion(nil)
-presetversion.Load(map[string]any{"id": "example_id", "slug": "example"}, nil)
+provider := client.Provider(nil)
+provider.List(nil, nil)
 
-// presetversion.Data() now returns the presetversion data from the last load
-// presetversion.Match() returns the last match criteria
+// provider.Data() now returns the provider data from the last list
+// provider.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

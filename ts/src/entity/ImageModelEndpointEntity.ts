@@ -19,7 +19,6 @@ import type {
   ImageModelEndpointListMatch,
 } from '../OpenrouterModelsTypes'
 
-// TODO: needs Entity superclass
 class ImageModelEndpointEntity extends OpenrouterModelsEntityBase<ImageModelEndpoint> {
 
   constructor(client: OpenrouterModelsSDK, entopts: any) {

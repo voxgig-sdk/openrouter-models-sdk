@@ -1,0 +1,550 @@
+# Entity: guardrail
+
+main: kit: entity: guardrail: {
+
+  alias: field: {}
+
+  fields: {
+    allowed_models: {
+      h: "Allowed Models"
+      n: "allowed_models"
+      r: false
+      sh: "Array of model canonical_slugs (immutable identifiers)"
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    allowed_providers: {
+      h: "Allowed Providers"
+      n: "allowed_providers"
+      r: false
+      sh: "List of allowed provider IDs"
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    content_filter_builtins: {
+      h: "Content Filter Builtins"
+      n: "content_filter_builtins"
+      r: false
+      sh: "Builtin content filters applied to requests."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    content_filters: {
+      h: "Content Filters"
+      n: "content_filters"
+      r: false
+      sh: "Custom regex content filters applied to request messages"
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: true
+      sh: "ISO 8601 timestamp of when the guardrail was created"
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Description of the guardrail"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    enforce_zdr: {
+      de: true
+      h: "Enforce Zdr"
+      n: "enforce_zdr"
+      r: false
+      sh: "Deprecated."
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    enforce_zdr_anthropic: {
+      h: "Enforce Zdr Anthropic"
+      n: "enforce_zdr_anthropic"
+      r: false
+      sh: "Whether to enforce zero data retention for Anthropic models."
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    enforce_zdr_google: {
+      h: "Enforce Zdr Google"
+      n: "enforce_zdr_google"
+      r: false
+      sh: "Whether to enforce zero data retention for Google models."
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    enforce_zdr_openai: {
+      h: "Enforce Zdr Openai"
+      n: "enforce_zdr_openai"
+      r: false
+      sh: "Whether to enforce zero data retention for OpenAI models."
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    enforce_zdr_other: {
+      h: "Enforce Zdr Other"
+      n: "enforce_zdr_other"
+      r: false
+      sh: "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI."
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    enforce_zdr_xai: {
+      h: "Enforce Zdr Xai"
+      n: "enforce_zdr_xai"
+      r: false
+      sh: "Whether to enforce zero data retention for xAI models."
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    id: {
+      fo: "uuid"
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "Unique identifier for the guardrail"
+      t: "`$STRING`"
+    }
+    ignored_models: {
+      h: "Ignored Models"
+      n: "ignored_models"
+      r: false
+      sh: "Array of model canonical_slugs to exclude from routing"
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    ignored_providers: {
+      h: "Ignored Providers"
+      n: "ignored_providers"
+      r: false
+      sh: "List of provider IDs to exclude from routing"
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    limit_usd: {
+      fo: "double"
+      h: "Limit Usd"
+      n: "limit_usd"
+      r: false
+      sh: "Spending limit in USD"
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      sh: "Name of the guardrail"
+      t: "`$STRING`"
+    }
+    reset_interval: {
+      h: "Reset Interval"
+      n: "reset_interval"
+      r: false
+      sh: "Interval at which the limit resets (daily, weekly, monthly)"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "ISO 8601 timestamp of when the guardrail was last updated"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    workspace_id: {
+      fo: "uuid"
+      h: "Workspace Id"
+      n: "workspace_id"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "The workspace ID this guardrail belongs to."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "guardrail"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /guardrails"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/guardrails"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "guardrails"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /guardrails"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: "0df9e665-d932-5740-b2c7-b52af166bc11"
+                k: "query"
+                n: "workspace_id"
+                or: "workspace_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/guardrails"
+          q: {
+            exist: [
+              "http_referer"
+              "limit"
+              "offset"
+              "workspace_id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "guardrails"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /guardrails/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "550e8400-e29b-41d4-a716-446655440000"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/guardrails/{id}"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "guardrails"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /guardrails/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "550e8400-e29b-41d4-a716-446655440000"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/guardrails/{id}"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "guardrails"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

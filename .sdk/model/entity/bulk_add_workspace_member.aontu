@@ -1,0 +1,120 @@
+# Entity: bulk_add_workspace_member
+
+main: kit: entity: bulk_add_workspace_member: {
+
+  alias: field: {}
+
+  fields: {
+    added_count: {
+      h: "Added Count"
+      n: "added_count"
+      r: true
+      sh: "Number of workspace memberships created or updated"
+      t: "`$INTEGER`"
+    }
+    data: {
+      h: "Data"
+      n: "data"
+      r: true
+      sh: "List of added workspace memberships"
+      t: "`$ARRAY`"
+    }
+    user_ids: {
+      h: "User Ids"
+      n: "user_ids"
+      r: true
+      sh: "List of user IDs to add to the workspace."
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "bulk_add_workspace_member"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /workspaces/{id}/members/add"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "production"
+                k: "param"
+                n: "workspace_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/workspaces/{id}/members/add"
+          q: {
+            exist: [
+              "http_referer"
+              "workspace_id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          r: {
+            param: {
+              id: "workspace_id"
+            }
+          }
+          s: [
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "workspace_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              lit: "add"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.workspace")]
+  ]
+
+}

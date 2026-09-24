@@ -1,0 +1,84 @@
+{
+  "existing": {
+    "video_model": {
+      "VIDEO_MODEL00": {
+        "allowed_passthrough_parameters": [],
+        "canonical_slug": "s97",
+        "created": 152,
+        "description": "s99",
+        "generate_audio": "s9a",
+        "hugging_face_id": "HUGGING_FACE01",
+        "id": "VIDEO_MODEL00",
+        "name": "s9d",
+        "pricing_skus": "s9e",
+        "seed": "s9f",
+        "supported_aspect_ratios": "sa0",
+        "supported_durations": "sa1",
+        "supported_frame_images": "sa2",
+        "supported_resolutions": "sa3",
+        "supported_sizes": "sa4"
+      },
+      "VIDEO_MODEL01": {
+        "allowed_passthrough_parameters": [],
+        "canonical_slug": "s12d",
+        "created": 302,
+        "description": "s12f",
+        "generate_audio": "s130",
+        "hugging_face_id": "HUGGING_FACE01",
+        "id": "VIDEO_MODEL01",
+        "name": "s133",
+        "pricing_skus": "s134",
+        "seed": "s135",
+        "supported_aspect_ratios": "s136",
+        "supported_durations": "s137",
+        "supported_frame_images": "s138",
+        "supported_resolutions": "s139",
+        "supported_sizes": "s13a"
+      },
+      "VIDEO_MODEL02": {
+        "allowed_passthrough_parameters": [],
+        "canonical_slug": "s1c3",
+        "created": 452,
+        "description": "s1c5",
+        "generate_audio": "s1c6",
+        "hugging_face_id": "HUGGING_FACE01",
+        "id": "VIDEO_MODEL02",
+        "name": "s1c9",
+        "pricing_skus": "s1ca",
+        "seed": "s1cb",
+        "supported_aspect_ratios": "s1cc",
+        "supported_durations": "s1cd",
+        "supported_frame_images": "s1ce",
+        "supported_resolutions": "s1cf",
+        "supported_sizes": "s1d0"
+      }
+    }
+  },
+  "new": {
+    "video_model": {
+      "video_model_ref01": {
+        "allowed_passthrough_parameters": [],
+        "canonical_slug": "s259",
+        "created": 602,
+        "description": "s25b",
+        "generate_audio": "s25c",
+        "hugging_face_id": "HUGGING_FACE01",
+        "name": "s25f",
+        "pricing_skus": "s260",
+        "seed": "s261",
+        "supported_aspect_ratios": "s262",
+        "supported_durations": "s263",
+        "supported_frame_images": "s264",
+        "supported_resolutions": "s265",
+        "supported_sizes": "s266"
+      }
+    }
+  },
+  "requests": {
+    "GET /videos/models": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

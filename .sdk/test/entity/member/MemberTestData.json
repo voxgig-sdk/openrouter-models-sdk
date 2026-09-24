@@ -1,15 +1,53 @@
 {
   "existing": {
     "member": {
-      "MEMBER00": {},
-      "MEMBER01": {},
-      "MEMBER02": {}
+      "MEMBER00": {
+        "assigned_by": "s3c",
+        "created_at": "s3d",
+        "guardrail_id": "GUARDRAIL01",
+        "id": "MEMBER00",
+        "organization_id": "ORGANIZATION01",
+        "user_id": "USER01"
+      },
+      "MEMBER01": {
+        "assigned_by": "s78",
+        "created_at": "s79",
+        "guardrail_id": "GUARDRAIL01",
+        "id": "MEMBER01",
+        "organization_id": "ORGANIZATION01",
+        "user_id": "USER01"
+      },
+      "MEMBER02": {
+        "assigned_by": "sb4",
+        "created_at": "sb5",
+        "guardrail_id": "GUARDRAIL01",
+        "id": "MEMBER02",
+        "organization_id": "ORGANIZATION01",
+        "user_id": "USER01"
+      }
     }
   },
   "new": {
     "member": {
-      "member_ref01": {}
+      "member_ref01": {
+        "assigned_by": "sf0",
+        "created_at": "sf1",
+        "guardrail_id": "GUARDRAIL01",
+        "organization_id": "ORGANIZATION01",
+        "user_id": "USER01"
+      }
     }
   },
-  "requests": {}
+  "requests": {
+    "GET /guardrails/{id}/assignments/members": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /guardrails/assignments/members": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
 }

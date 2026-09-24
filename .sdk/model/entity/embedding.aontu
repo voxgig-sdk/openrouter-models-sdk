@@ -1,0 +1,166 @@
+# Entity: embedding
+
+main: kit: entity: embedding: {
+
+  alias: field: {}
+
+  fields: {
+    data: {
+      h: "Data"
+      n: "data"
+      r: true
+      sh: "List of embedding objects"
+      t: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 3
+      }
+    }
+    dimensions: {
+      h: "Dimensions"
+      n: "dimensions"
+      r: false
+      sh: "The number of dimensions for the output embeddings"
+      t: "`$INTEGER`"
+    }
+    encoding_format: {
+      h: "Encoding Format"
+      n: "encoding_format"
+      r: false
+      sh: "The format of the output embeddings"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the embeddings response"
+      t: "`$STRING`"
+    }
+    input: {
+      h: "Input"
+      n: "input"
+      r: true
+      sh: "Text, token, or multimodal input(s) to embed"
+      t: "`$ANY`"
+      union: {
+        branches: 5
+        count: 2
+        depth: 6
+      }
+    }
+    input_type: {
+      h: "Input Type"
+      n: "input_type"
+      r: false
+      sh: "The type of input (e.g."
+      t: "`$STRING`"
+    }
+    model: {
+      h: "Model"
+      n: "model"
+      r: true
+      sh: "The model used for embeddings"
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: true
+      t: "`$STRING`"
+    }
+    provider: {
+      h: "Provider"
+      n: "provider"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 6
+        depth: 5
+      }
+    }
+    usage: {
+      h: "Usage"
+      n: "usage"
+      r: true
+      sh: "Token usage statistics"
+      t: "`$OBJECT`"
+    }
+    user: {
+      h: "User"
+      n: "user"
+      r: false
+      sh: "A unique identifier for the end-user"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "embedding"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /embeddings"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/embeddings"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "embeddings"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

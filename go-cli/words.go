@@ -9,18 +9,6 @@ import (
 	sdk "github.com/voxgig-sdk/openrouter-models-sdk/go"
 )
 
-// registerSDKWords installs three native boru words bound to the SDK:
-// list / load / update. Each is declared with two overloads matching
-// the signature  [query?:(Node or Scalar) entity:atom]:
-//
-//   [entity:Atom]            — no query (e.g. `list book`)
-//   [query:Any entity:Atom]  — query is any Node or Scalar (e.g.
-//                              `load {id:1} book`, `load 1 book`)
-//
-// The entity slot is /q-quoted so a bareword `book` parses as the
-// Atom "book" rather than dispatching as an undefined word. Both
-// overloads are all-forward (BarrierAllForward), so args are collected
-// from the tokens following the word.
 func registerSDKWords(r *eng.Registry, client *sdk.OpenrouterModelsSDK) {
 	for _, op := range []string{"list", "load", "update"} {
 		op := op
@@ -91,18 +79,12 @@ func entityFor(client *sdk.OpenrouterModelsSDK, name string) (sdk.OpenrouterMode
 	switch strings.ToLower(name) {
 	case "activity":
 		return client.Activity(nil), nil
-	case "add":
-		return client.Add(nil), nil
 	case "api_key":
 		return client.ApiKey(nil), nil
 	case "app_ranking":
 		return client.AppRanking(nil), nil
-	case "benchmark":
-		return client.Benchmark(nil), nil
 	case "beta_analytics":
 		return client.BetaAnalytics(nil), nil
-	case "budget":
-		return client.Budget(nil), nil
 	case "bulk_add_workspace_member":
 		return client.BulkAddWorkspaceMember(nil), nil
 	case "bulk_assign_key":
@@ -119,78 +101,40 @@ func entityFor(client *sdk.OpenrouterModelsSDK, name string) (sdk.OpenrouterMode
 		return client.Byok(nil), nil
 	case "chat_result":
 		return client.ChatResult(nil), nil
-	case "code":
-		return client.Code(nil), nil
-	case "coinbase":
-		return client.Coinbase(nil), nil
 	case "completion":
 		return client.Completion(nil), nil
-	case "content":
-		return client.Content(nil), nil
-	case "count":
-		return client.Count(nil), nil
-	case "create_byok_key":
-		return client.CreateByokKey(nil), nil
-	case "create_guardrail":
-		return client.CreateGuardrail(nil), nil
 	case "create_observability_destination":
 		return client.CreateObservabilityDestination(nil), nil
-	case "create_preset_from_inference":
-		return client.CreatePresetFromInference(nil), nil
-	case "create_workspace":
-		return client.CreateWorkspace(nil), nil
 	case "credit":
 		return client.Credit(nil), nil
-	case "destination":
-		return client.Destination(nil), nil
 	case "embedding":
 		return client.Embedding(nil), nil
 	case "endpoint":
 		return client.Endpoint(nil), nil
-	case "feedback":
-		return client.Feedback(nil), nil
 	case "file":
 		return client.File(nil), nil
 	case "generation":
 		return client.Generation(nil), nil
-	case "generation_content":
-		return client.GenerationContent(nil), nil
+	case "generation_content_data":
+		return client.GenerationContentData(nil), nil
 	case "guardrail":
 		return client.Guardrail(nil), nil
 	case "image":
 		return client.Image(nil), nil
 	case "image_model_endpoint":
 		return client.ImageModelEndpoint(nil), nil
-	case "image_models_list":
-		return client.ImageModelsList(nil), nil
+	case "image_model_list_item":
+		return client.ImageModelListItem(nil), nil
 	case "key":
 		return client.Key(nil), nil
-	case "list_byok_key":
-		return client.ListByokKey(nil), nil
-	case "list_guardrail":
-		return client.ListGuardrail(nil), nil
-	case "list_key_assignment":
-		return client.ListKeyAssignment(nil), nil
-	case "list_member_assignment":
-		return client.ListMemberAssignment(nil), nil
 	case "list_observability_destination":
 		return client.ListObservabilityDestination(nil), nil
-	case "list_preset":
-		return client.ListPreset(nil), nil
 	case "list_preset_version":
 		return client.ListPresetVersion(nil), nil
-	case "list_workspace":
-		return client.ListWorkspace(nil), nil
-	case "list_workspace_budget":
-		return client.ListWorkspaceBudget(nil), nil
-	case "list_workspace_member":
-		return client.ListWorkspaceMember(nil), nil
 	case "member":
 		return client.Member(nil), nil
 	case "message":
 		return client.Message(nil), nil
-	case "meta":
-		return client.Meta(nil), nil
 	case "model":
 		return client.Model(nil), nil
 	case "models_count":
@@ -211,26 +155,18 @@ func entityFor(client *sdk.OpenrouterModelsSDK, name string) (sdk.OpenrouterMode
 		return client.PresetVersion(nil), nil
 	case "provider":
 		return client.Provider(nil), nil
-	case "query":
-		return client.Query(nil), nil
 	case "rankings_daily":
 		return client.RankingsDaily(nil), nil
-	case "remove":
-		return client.Remove(nil), nil
 	case "rerank":
 		return client.Rerank(nil), nil
 	case "response":
 		return client.Response(nil), nil
-	case "speech":
-		return client.Speech(nil), nil
 	case "stt":
 		return client.Stt(nil), nil
 	case "submit_generation_feedback":
 		return client.SubmitGenerationFeedback(nil), nil
 	case "task":
 		return client.Task(nil), nil
-	case "transcription":
-		return client.Transcription(nil), nil
 	case "tts":
 		return client.Tts(nil), nil
 	case "unified_benchmark":
@@ -245,22 +181,18 @@ func entityFor(client *sdk.OpenrouterModelsSDK, name string) (sdk.OpenrouterMode
 		return client.UpdateWorkspace(nil), nil
 	case "upsert_workspace_budget":
 		return client.UpsertWorkspaceBudget(nil), nil
-	case "user":
-		return client.User(nil), nil
-	case "version":
-		return client.Version(nil), nil
 	case "video":
 		return client.Video(nil), nil
 	case "video_generation":
 		return client.VideoGeneration(nil), nil
-	case "video_models_list":
-		return client.VideoModelsList(nil), nil
+	case "video_model":
+		return client.VideoModel(nil), nil
 	case "workspace":
 		return client.Workspace(nil), nil
 	case "workspace_budget":
 		return client.WorkspaceBudget(nil), nil
-	case "zdr":
-		return client.Zdr(nil), nil
+	case "workspace_member":
+		return client.WorkspaceMember(nil), nil
 
 	}
 	return nil, fmt.Errorf("unknown entity %q", name)

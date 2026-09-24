@@ -264,7 +264,6 @@ func (sdk *OpenrouterModelsSDK) rawRequest(fetchargs map[string]any) (map[string
 		if !noBody {
 			if jf := vs.GetProp(fm, "json"); jf != nil {
 				if f, ok := jf.(func() any); ok {
-					// f() returns nil on parse error in our fetcher.
 					jsonData = f()
 				}
 			}
@@ -281,17 +280,6 @@ func (sdk *OpenrouterModelsSDK) rawRequest(fetchargs map[string]any) (map[string
 	return map[string]any{"ok": false, "err": ctx.MakeError("direct_invalid", "invalid response type")}, nil
 }
 
-// Raw GraphQL access: the pressure valve that makes the generated surface's
-// deliberate omissions (per-call selection sets, typed filter builders,
-// batching, subscriptions) livable — the whole schema stays reachable.
-//
-// Thin wrapper over the same prepare/fetch path Direct uses, with the one
-// thing raw Direct cannot do for GraphQL: a GraphQL failure rides HTTP 200
-// as a top-level `errors` array, so status alone would report a failed query
-// as ok.
-//
-// NOTE: like Direct, this bypasses the feature pipeline — no retry,
-// ratelimit or paging features apply.
 func (sdk *OpenrouterModelsSDK) Graphql(
 	query string, variables map[string]any, ctrl map[string]any,
 ) (map[string]any, error) {
@@ -346,14 +334,6 @@ func (sdk *OpenrouterModelsSDK) Activity(data map[string]any) OpenrouterModelsEn
 }
 
 
-// Add returns a Add entity bound to this client.
-// Idiomatic usage: client.Add(nil).List(nil, nil) or
-// client.Add(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Add(data map[string]any) OpenrouterModelsEntity {
-	return NewAddEntityFunc(sdk, data)
-}
-
-
 // ApiKey returns a ApiKey entity bound to this client.
 // Idiomatic usage: client.ApiKey(nil).List(nil, nil) or
 // client.ApiKey(nil).Load(map[string]any{"id": ...}, nil).
@@ -370,27 +350,11 @@ func (sdk *OpenrouterModelsSDK) AppRanking(data map[string]any) OpenrouterModels
 }
 
 
-// Benchmark returns a Benchmark entity bound to this client.
-// Idiomatic usage: client.Benchmark(nil).List(nil, nil) or
-// client.Benchmark(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Benchmark(data map[string]any) OpenrouterModelsEntity {
-	return NewBenchmarkEntityFunc(sdk, data)
-}
-
-
 // BetaAnalytics returns a BetaAnalytics entity bound to this client.
 // Idiomatic usage: client.BetaAnalytics(nil).List(nil, nil) or
 // client.BetaAnalytics(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenrouterModelsSDK) BetaAnalytics(data map[string]any) OpenrouterModelsEntity {
 	return NewBetaAnalyticsEntityFunc(sdk, data)
-}
-
-
-// Budget returns a Budget entity bound to this client.
-// Idiomatic usage: client.Budget(nil).List(nil, nil) or
-// client.Budget(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Budget(data map[string]any) OpenrouterModelsEntity {
-	return NewBudgetEntityFunc(sdk, data)
 }
 
 
@@ -458,59 +422,11 @@ func (sdk *OpenrouterModelsSDK) ChatResult(data map[string]any) OpenrouterModels
 }
 
 
-// Code returns a Code entity bound to this client.
-// Idiomatic usage: client.Code(nil).List(nil, nil) or
-// client.Code(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Code(data map[string]any) OpenrouterModelsEntity {
-	return NewCodeEntityFunc(sdk, data)
-}
-
-
-// Coinbase returns a Coinbase entity bound to this client.
-// Idiomatic usage: client.Coinbase(nil).List(nil, nil) or
-// client.Coinbase(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Coinbase(data map[string]any) OpenrouterModelsEntity {
-	return NewCoinbaseEntityFunc(sdk, data)
-}
-
-
 // Completion returns a Completion entity bound to this client.
 // Idiomatic usage: client.Completion(nil).List(nil, nil) or
 // client.Completion(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenrouterModelsSDK) Completion(data map[string]any) OpenrouterModelsEntity {
 	return NewCompletionEntityFunc(sdk, data)
-}
-
-
-// Content returns a Content entity bound to this client.
-// Idiomatic usage: client.Content(nil).List(nil, nil) or
-// client.Content(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Content(data map[string]any) OpenrouterModelsEntity {
-	return NewContentEntityFunc(sdk, data)
-}
-
-
-// Count returns a Count entity bound to this client.
-// Idiomatic usage: client.Count(nil).List(nil, nil) or
-// client.Count(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Count(data map[string]any) OpenrouterModelsEntity {
-	return NewCountEntityFunc(sdk, data)
-}
-
-
-// CreateByokKey returns a CreateByokKey entity bound to this client.
-// Idiomatic usage: client.CreateByokKey(nil).List(nil, nil) or
-// client.CreateByokKey(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) CreateByokKey(data map[string]any) OpenrouterModelsEntity {
-	return NewCreateByokKeyEntityFunc(sdk, data)
-}
-
-
-// CreateGuardrail returns a CreateGuardrail entity bound to this client.
-// Idiomatic usage: client.CreateGuardrail(nil).List(nil, nil) or
-// client.CreateGuardrail(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) CreateGuardrail(data map[string]any) OpenrouterModelsEntity {
-	return NewCreateGuardrailEntityFunc(sdk, data)
 }
 
 
@@ -522,35 +438,11 @@ func (sdk *OpenrouterModelsSDK) CreateObservabilityDestination(data map[string]a
 }
 
 
-// CreatePresetFromInference returns a CreatePresetFromInference entity bound to this client.
-// Idiomatic usage: client.CreatePresetFromInference(nil).List(nil, nil) or
-// client.CreatePresetFromInference(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) CreatePresetFromInference(data map[string]any) OpenrouterModelsEntity {
-	return NewCreatePresetFromInferenceEntityFunc(sdk, data)
-}
-
-
-// CreateWorkspace returns a CreateWorkspace entity bound to this client.
-// Idiomatic usage: client.CreateWorkspace(nil).List(nil, nil) or
-// client.CreateWorkspace(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) CreateWorkspace(data map[string]any) OpenrouterModelsEntity {
-	return NewCreateWorkspaceEntityFunc(sdk, data)
-}
-
-
 // Credit returns a Credit entity bound to this client.
 // Idiomatic usage: client.Credit(nil).List(nil, nil) or
 // client.Credit(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenrouterModelsSDK) Credit(data map[string]any) OpenrouterModelsEntity {
 	return NewCreditEntityFunc(sdk, data)
-}
-
-
-// Destination returns a Destination entity bound to this client.
-// Idiomatic usage: client.Destination(nil).List(nil, nil) or
-// client.Destination(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Destination(data map[string]any) OpenrouterModelsEntity {
-	return NewDestinationEntityFunc(sdk, data)
 }
 
 
@@ -570,14 +462,6 @@ func (sdk *OpenrouterModelsSDK) Endpoint(data map[string]any) OpenrouterModelsEn
 }
 
 
-// Feedback returns a Feedback entity bound to this client.
-// Idiomatic usage: client.Feedback(nil).List(nil, nil) or
-// client.Feedback(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Feedback(data map[string]any) OpenrouterModelsEntity {
-	return NewFeedbackEntityFunc(sdk, data)
-}
-
-
 // File returns a File entity bound to this client.
 // Idiomatic usage: client.File(nil).List(nil, nil) or
 // client.File(nil).Load(map[string]any{"id": ...}, nil).
@@ -594,11 +478,11 @@ func (sdk *OpenrouterModelsSDK) Generation(data map[string]any) OpenrouterModels
 }
 
 
-// GenerationContent returns a GenerationContent entity bound to this client.
-// Idiomatic usage: client.GenerationContent(nil).List(nil, nil) or
-// client.GenerationContent(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) GenerationContent(data map[string]any) OpenrouterModelsEntity {
-	return NewGenerationContentEntityFunc(sdk, data)
+// GenerationContentData returns a GenerationContentData entity bound to this client.
+// Idiomatic usage: client.GenerationContentData(nil).List(nil, nil) or
+// client.GenerationContentData(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *OpenrouterModelsSDK) GenerationContentData(data map[string]any) OpenrouterModelsEntity {
+	return NewGenerationContentDataEntityFunc(sdk, data)
 }
 
 
@@ -626,11 +510,11 @@ func (sdk *OpenrouterModelsSDK) ImageModelEndpoint(data map[string]any) Openrout
 }
 
 
-// ImageModelsList returns a ImageModelsList entity bound to this client.
-// Idiomatic usage: client.ImageModelsList(nil).List(nil, nil) or
-// client.ImageModelsList(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) ImageModelsList(data map[string]any) OpenrouterModelsEntity {
-	return NewImageModelsListEntityFunc(sdk, data)
+// ImageModelListItem returns a ImageModelListItem entity bound to this client.
+// Idiomatic usage: client.ImageModelListItem(nil).List(nil, nil) or
+// client.ImageModelListItem(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *OpenrouterModelsSDK) ImageModelListItem(data map[string]any) OpenrouterModelsEntity {
+	return NewImageModelListItemEntityFunc(sdk, data)
 }
 
 
@@ -642,38 +526,6 @@ func (sdk *OpenrouterModelsSDK) Key(data map[string]any) OpenrouterModelsEntity 
 }
 
 
-// ListByokKey returns a ListByokKey entity bound to this client.
-// Idiomatic usage: client.ListByokKey(nil).List(nil, nil) or
-// client.ListByokKey(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) ListByokKey(data map[string]any) OpenrouterModelsEntity {
-	return NewListByokKeyEntityFunc(sdk, data)
-}
-
-
-// ListGuardrail returns a ListGuardrail entity bound to this client.
-// Idiomatic usage: client.ListGuardrail(nil).List(nil, nil) or
-// client.ListGuardrail(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) ListGuardrail(data map[string]any) OpenrouterModelsEntity {
-	return NewListGuardrailEntityFunc(sdk, data)
-}
-
-
-// ListKeyAssignment returns a ListKeyAssignment entity bound to this client.
-// Idiomatic usage: client.ListKeyAssignment(nil).List(nil, nil) or
-// client.ListKeyAssignment(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) ListKeyAssignment(data map[string]any) OpenrouterModelsEntity {
-	return NewListKeyAssignmentEntityFunc(sdk, data)
-}
-
-
-// ListMemberAssignment returns a ListMemberAssignment entity bound to this client.
-// Idiomatic usage: client.ListMemberAssignment(nil).List(nil, nil) or
-// client.ListMemberAssignment(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) ListMemberAssignment(data map[string]any) OpenrouterModelsEntity {
-	return NewListMemberAssignmentEntityFunc(sdk, data)
-}
-
-
 // ListObservabilityDestination returns a ListObservabilityDestination entity bound to this client.
 // Idiomatic usage: client.ListObservabilityDestination(nil).List(nil, nil) or
 // client.ListObservabilityDestination(nil).Load(map[string]any{"id": ...}, nil).
@@ -682,43 +534,11 @@ func (sdk *OpenrouterModelsSDK) ListObservabilityDestination(data map[string]any
 }
 
 
-// ListPreset returns a ListPreset entity bound to this client.
-// Idiomatic usage: client.ListPreset(nil).List(nil, nil) or
-// client.ListPreset(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) ListPreset(data map[string]any) OpenrouterModelsEntity {
-	return NewListPresetEntityFunc(sdk, data)
-}
-
-
 // ListPresetVersion returns a ListPresetVersion entity bound to this client.
 // Idiomatic usage: client.ListPresetVersion(nil).List(nil, nil) or
 // client.ListPresetVersion(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenrouterModelsSDK) ListPresetVersion(data map[string]any) OpenrouterModelsEntity {
 	return NewListPresetVersionEntityFunc(sdk, data)
-}
-
-
-// ListWorkspace returns a ListWorkspace entity bound to this client.
-// Idiomatic usage: client.ListWorkspace(nil).List(nil, nil) or
-// client.ListWorkspace(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) ListWorkspace(data map[string]any) OpenrouterModelsEntity {
-	return NewListWorkspaceEntityFunc(sdk, data)
-}
-
-
-// ListWorkspaceBudget returns a ListWorkspaceBudget entity bound to this client.
-// Idiomatic usage: client.ListWorkspaceBudget(nil).List(nil, nil) or
-// client.ListWorkspaceBudget(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) ListWorkspaceBudget(data map[string]any) OpenrouterModelsEntity {
-	return NewListWorkspaceBudgetEntityFunc(sdk, data)
-}
-
-
-// ListWorkspaceMember returns a ListWorkspaceMember entity bound to this client.
-// Idiomatic usage: client.ListWorkspaceMember(nil).List(nil, nil) or
-// client.ListWorkspaceMember(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) ListWorkspaceMember(data map[string]any) OpenrouterModelsEntity {
-	return NewListWorkspaceMemberEntityFunc(sdk, data)
 }
 
 
@@ -735,14 +555,6 @@ func (sdk *OpenrouterModelsSDK) Member(data map[string]any) OpenrouterModelsEnti
 // client.Message(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenrouterModelsSDK) Message(data map[string]any) OpenrouterModelsEntity {
 	return NewMessageEntityFunc(sdk, data)
-}
-
-
-// Meta returns a Meta entity bound to this client.
-// Idiomatic usage: client.Meta(nil).List(nil, nil) or
-// client.Meta(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Meta(data map[string]any) OpenrouterModelsEntity {
-	return NewMetaEntityFunc(sdk, data)
 }
 
 
@@ -826,27 +638,11 @@ func (sdk *OpenrouterModelsSDK) Provider(data map[string]any) OpenrouterModelsEn
 }
 
 
-// Query returns a Query entity bound to this client.
-// Idiomatic usage: client.Query(nil).List(nil, nil) or
-// client.Query(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Query(data map[string]any) OpenrouterModelsEntity {
-	return NewQueryEntityFunc(sdk, data)
-}
-
-
 // RankingsDaily returns a RankingsDaily entity bound to this client.
 // Idiomatic usage: client.RankingsDaily(nil).List(nil, nil) or
 // client.RankingsDaily(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenrouterModelsSDK) RankingsDaily(data map[string]any) OpenrouterModelsEntity {
 	return NewRankingsDailyEntityFunc(sdk, data)
-}
-
-
-// Remove returns a Remove entity bound to this client.
-// Idiomatic usage: client.Remove(nil).List(nil, nil) or
-// client.Remove(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Remove(data map[string]any) OpenrouterModelsEntity {
-	return NewRemoveEntityFunc(sdk, data)
 }
 
 
@@ -863,14 +659,6 @@ func (sdk *OpenrouterModelsSDK) Rerank(data map[string]any) OpenrouterModelsEnti
 // client.Response(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenrouterModelsSDK) Response(data map[string]any) OpenrouterModelsEntity {
 	return NewResponseEntityFunc(sdk, data)
-}
-
-
-// Speech returns a Speech entity bound to this client.
-// Idiomatic usage: client.Speech(nil).List(nil, nil) or
-// client.Speech(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Speech(data map[string]any) OpenrouterModelsEntity {
-	return NewSpeechEntityFunc(sdk, data)
 }
 
 
@@ -895,14 +683,6 @@ func (sdk *OpenrouterModelsSDK) SubmitGenerationFeedback(data map[string]any) Op
 // client.Task(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OpenrouterModelsSDK) Task(data map[string]any) OpenrouterModelsEntity {
 	return NewTaskEntityFunc(sdk, data)
-}
-
-
-// Transcription returns a Transcription entity bound to this client.
-// Idiomatic usage: client.Transcription(nil).List(nil, nil) or
-// client.Transcription(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Transcription(data map[string]any) OpenrouterModelsEntity {
-	return NewTranscriptionEntityFunc(sdk, data)
 }
 
 
@@ -962,22 +742,6 @@ func (sdk *OpenrouterModelsSDK) UpsertWorkspaceBudget(data map[string]any) Openr
 }
 
 
-// User returns a User entity bound to this client.
-// Idiomatic usage: client.User(nil).List(nil, nil) or
-// client.User(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) User(data map[string]any) OpenrouterModelsEntity {
-	return NewUserEntityFunc(sdk, data)
-}
-
-
-// Version returns a Version entity bound to this client.
-// Idiomatic usage: client.Version(nil).List(nil, nil) or
-// client.Version(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Version(data map[string]any) OpenrouterModelsEntity {
-	return NewVersionEntityFunc(sdk, data)
-}
-
-
 // Video returns a Video entity bound to this client.
 // Idiomatic usage: client.Video(nil).List(nil, nil) or
 // client.Video(nil).Load(map[string]any{"id": ...}, nil).
@@ -994,11 +758,11 @@ func (sdk *OpenrouterModelsSDK) VideoGeneration(data map[string]any) OpenrouterM
 }
 
 
-// VideoModelsList returns a VideoModelsList entity bound to this client.
-// Idiomatic usage: client.VideoModelsList(nil).List(nil, nil) or
-// client.VideoModelsList(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) VideoModelsList(data map[string]any) OpenrouterModelsEntity {
-	return NewVideoModelsListEntityFunc(sdk, data)
+// VideoModel returns a VideoModel entity bound to this client.
+// Idiomatic usage: client.VideoModel(nil).List(nil, nil) or
+// client.VideoModel(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *OpenrouterModelsSDK) VideoModel(data map[string]any) OpenrouterModelsEntity {
+	return NewVideoModelEntityFunc(sdk, data)
 }
 
 
@@ -1018,11 +782,11 @@ func (sdk *OpenrouterModelsSDK) WorkspaceBudget(data map[string]any) OpenrouterM
 }
 
 
-// Zdr returns a Zdr entity bound to this client.
-// Idiomatic usage: client.Zdr(nil).List(nil, nil) or
-// client.Zdr(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *OpenrouterModelsSDK) Zdr(data map[string]any) OpenrouterModelsEntity {
-	return NewZdrEntityFunc(sdk, data)
+// WorkspaceMember returns a WorkspaceMember entity bound to this client.
+// Idiomatic usage: client.WorkspaceMember(nil).List(nil, nil) or
+// client.WorkspaceMember(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *OpenrouterModelsSDK) WorkspaceMember(data map[string]any) OpenrouterModelsEntity {
+	return NewWorkspaceMemberEntityFunc(sdk, data)
 }
 
 

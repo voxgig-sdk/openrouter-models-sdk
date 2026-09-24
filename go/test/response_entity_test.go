@@ -32,7 +32,7 @@ func TestResponseEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{} {
+		for _, _op := range []string{"create"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "response." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -47,15 +47,22 @@ func TestResponseEntity(t *testing.T) {
 			t.Skip("live entity test uses synthetic IDs from fixture — set OPENROUTER_MODELS_TEST_RESPONSE_ENTID JSON to run live")
 			return
 		}
-		// Bootstrap entity data from existing test data (no create step in flow).
-		responseRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.response")))
-		var responseRef01Data map[string]any
-		if len(responseRef01DataRaw) > 0 {
-			responseRef01Data = core.ToMapAny(responseRef01DataRaw[0][1])
+		client := setup.client
+
+		// CREATE
+		responseRef01Ent := client.Response(nil)
+		responseRef01Data := core.ToMapAny(vs.GetProp(
+			vs.GetPath(setup.data, []any{"new", "response"}), "response_ref01"))
+		responseRef01Data["slug"] = setup.idmap["slug01"]
+
+		responseRef01DataResult, err := responseRef01Ent.Create(responseRef01Data, nil)
+		if err != nil {
+			t.Fatalf("create failed: %v", err)
 		}
-		// Discard guards against Go's unused-var check when the flow's steps
-		// happen not to consume the bootstrap data (e.g. list-only flows).
-		_ = responseRef01Data
+		responseRef01Data = core.ToMapAny(entityData(responseRef01DataResult))
+		if responseRef01Data == nil {
+			t.Fatal("expected create result to be a map")
+		}
 
 	})
 }
@@ -85,7 +92,7 @@ func responseBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"response01", "response02", "response03"},
+		[]any{"response01", "response02", "response03", "preset01", "preset02", "preset03", "slug01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

@@ -1,9 +1,0 @@
-# BasicQueryFlow
-
-main: kit: flow: BasicQueryFlow:
-{
-  entity: "query",
-  kind: "basic",
-  name: "BasicQueryFlow",
-  "key$": "BasicQueryFlow"
-}

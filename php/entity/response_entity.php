@@ -246,6 +246,36 @@ class ResponseEntity
     
 
     
+    /**
+     * Create a new Response.
+     *
+     * @param ResponseCreateData|array|null $reqdata Body data as an assoc-array;
+     *   a typed ResponseCreateData names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Response|array The created Response as an assoc-array at the
+     *   SDK boundary; throws OpenrouterModelsError on failure (item-5 convention).
+     */
+    public function create(?array $reqdata = null, $ctrl = null): mixed
+    {
+        $utility = $this->_utility;
+        $ctx = ($utility->make_context)([
+            "opname" => "create",
+            "ctrl" => $ctrl,
+            "match" => $this->_match,
+            "data" => $this->_data,
+            "reqdata" => $reqdata,
+        ], $this->_entctx);
+
+        return $this->_run_op($ctx, function () use ($ctx) {
+            if ($ctx->result) {
+                if ($ctx->result->resdata) {
+                    $this->_data = OpenrouterModelsHelpers::to_map(Struct::clone($ctx->result->resdata)) ?? [];
+                }
+            }
+        });
+    }
+
+
 
     
 

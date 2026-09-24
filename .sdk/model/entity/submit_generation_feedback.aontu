@@ -1,0 +1,102 @@
+# Entity: submit_generation_feedback
+
+main: kit: entity: submit_generation_feedback: {
+
+  alias: field: {}
+
+  fields: {
+    category: {
+      h: "Category"
+      n: "category"
+      r: true
+      sh: "The category of feedback being reported"
+      t: "`$STRING`"
+    }
+    comment: {
+      h: "Comment"
+      n: "comment"
+      r: false
+      sh: "An optional free-text comment describing the feedback"
+      t: "`$STRING`"
+    }
+    generation_id: {
+      h: "Generation Id"
+      n: "generation_id"
+      r: true
+      sh: "The generation to submit feedback on"
+      t: "`$STRING`"
+    }
+    success: {
+      h: "Success"
+      n: "success"
+      r: true
+      sh: "Whether the feedback was recorded"
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  name: "submit_generation_feedback"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /generation/feedback"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/generation/feedback"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "generation"
+            }
+            {
+              lit: "feedback"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

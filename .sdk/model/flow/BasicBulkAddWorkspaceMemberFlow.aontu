@@ -1,0 +1,22 @@
+# BasicBulkAddWorkspaceMemberFlow
+
+main: kit: flow: BasicBulkAddWorkspaceMemberFlow:
+{
+  entity: "bulk_add_workspace_member",
+  kind: "basic",
+  name: "BasicBulkAddWorkspaceMemberFlow",
+  step: [
+    {
+      i: {
+        ref: "bulk_add_workspace_member_ref01"
+      }
+
+      m: {
+        workspace_id: "workspace01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicBulkAddWorkspaceMemberFlow"
+}

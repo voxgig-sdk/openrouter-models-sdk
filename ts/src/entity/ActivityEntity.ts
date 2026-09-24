@@ -19,7 +19,6 @@ import type {
   ActivityListMatch,
 } from '../OpenrouterModelsTypes'
 
-// TODO: needs Entity superclass
 class ActivityEntity extends OpenrouterModelsEntityBase<Activity> {
 
   constructor(client: OpenrouterModelsSDK, entopts: any) {

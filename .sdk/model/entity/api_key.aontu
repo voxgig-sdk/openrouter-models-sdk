@@ -1,0 +1,753 @@
+# Entity: api_key
+
+main: kit: entity: api_key: {
+
+  alias: field: {}
+
+  fields: {
+    byok_usage: {
+      fo: "double"
+      h: "Byok Usage"
+      n: "byok_usage"
+      r: true
+      sh: "Total external BYOK usage (in USD) for the API key"
+      t: "`$NUMBER`"
+    }
+    byok_usage_daily: {
+      fo: "double"
+      h: "Byok Usage Daily"
+      n: "byok_usage_daily"
+      r: true
+      sh: "External BYOK usage (in USD) for the current UTC day"
+      t: "`$NUMBER`"
+    }
+    byok_usage_monthly: {
+      fo: "double"
+      h: "Byok Usage Monthly"
+      n: "byok_usage_monthly"
+      r: true
+      sh: "External BYOK usage (in USD) for current UTC month"
+      t: "`$NUMBER`"
+    }
+    byok_usage_weekly: {
+      fo: "double"
+      h: "Byok Usage Weekly"
+      n: "byok_usage_weekly"
+      r: true
+      sh: "External BYOK usage (in USD) for the current UTC week (Monday-Sunday)"
+      t: "`$NUMBER`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: true
+      sh: "ISO 8601 timestamp of when the API key was created"
+      t: "`$STRING`"
+    }
+    creator_user_id: {
+      h: "Creator User Id"
+      n: "creator_user_id"
+      op: {
+        create: {
+          req: false
+          type: [
+            "`$ONE`"
+            [
+              "`$STRING`"
+              "`$NULL`"
+            ]
+          ]
+        }
+      }
+      r: true
+      sh: "The user ID of the key creator."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    disabled: {
+      h: "Disabled"
+      n: "disabled"
+      op: {
+        update: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+      }
+      r: true
+      sh: "Whether the API key is disabled"
+      t: "`$BOOLEAN`"
+    }
+    expires_at: {
+      fo: "date-time"
+      h: "Expires At"
+      n: "expires_at"
+      r: false
+      sh: "ISO 8601 UTC timestamp when the API key expires, or null if no expiration"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    hash: {
+      h: "Hash"
+      n: "hash"
+      r: true
+      sh: "Unique hash identifier for the API key"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    include_byok_in_limit: {
+      h: "Include Byok In Limit"
+      n: "include_byok_in_limit"
+      op: {
+        create: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+        update: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+      }
+      r: true
+      sh: "Whether to include external BYOK usage in the credit limit"
+      t: "`$BOOLEAN`"
+    }
+    is_free_tier: {
+      h: "Is Free Tier"
+      n: "is_free_tier"
+      r: true
+      sh: "Whether this is a free tier API key"
+      t: "`$BOOLEAN`"
+    }
+    is_management_key: {
+      h: "Is Management Key"
+      n: "is_management_key"
+      r: true
+      sh: "Whether this is a management key"
+      t: "`$BOOLEAN`"
+    }
+    is_provisioning_key: {
+      de: true
+      h: "Is Provisioning Key"
+      n: "is_provisioning_key"
+      r: true
+      sh: "Whether this is a management key"
+      t: "`$BOOLEAN`"
+    }
+    label: {
+      h: "Label"
+      n: "label"
+      r: true
+      sh: "Human-readable label for the API key"
+      t: "`$STRING`"
+    }
+    limit: {
+      fo: "double"
+      h: "Limit"
+      n: "limit"
+      op: {
+        create: {
+          req: false
+          type: [
+            "`$ONE`"
+            [
+              "`$NUMBER`"
+              "`$NULL`"
+            ]
+          ]
+        }
+        update: {
+          req: false
+          type: [
+            "`$ONE`"
+            [
+              "`$NUMBER`"
+              "`$NULL`"
+            ]
+          ]
+        }
+      }
+      r: true
+      sh: "Spending limit for the API key in USD"
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    limit_remaining: {
+      fo: "double"
+      h: "Limit Remaining"
+      n: "limit_remaining"
+      r: true
+      sh: "Remaining spending limit in USD"
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    limit_reset: {
+      h: "Limit Reset"
+      n: "limit_reset"
+      op: {
+        create: {
+          req: false
+          type: [
+            "`$ONE`"
+            [
+              "`$STRING`"
+              "`$NULL`"
+            ]
+          ]
+        }
+        update: {
+          req: false
+          type: [
+            "`$ONE`"
+            [
+              "`$STRING`"
+              "`$NULL`"
+            ]
+          ]
+        }
+      }
+      r: true
+      sh: "Type of limit reset for the API key"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "Name of the API key"
+      t: "`$STRING`"
+    }
+    rate_limit: {
+      de: true
+      h: "Rate Limit"
+      n: "rate_limit"
+      r: true
+      sh: "Legacy rate limit information about a key."
+      t: "`$OBJECT`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: true
+      sh: "ISO 8601 timestamp of when the API key was last updated"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    usage: {
+      fo: "double"
+      h: "Usage"
+      n: "usage"
+      r: true
+      sh: "Total OpenRouter credit usage (in USD) for the API key"
+      t: "`$NUMBER`"
+    }
+    usage_daily: {
+      fo: "double"
+      h: "Usage Daily"
+      n: "usage_daily"
+      r: true
+      sh: "OpenRouter credit usage (in USD) for the current UTC day"
+      t: "`$NUMBER`"
+    }
+    usage_monthly: {
+      fo: "double"
+      h: "Usage Monthly"
+      n: "usage_monthly"
+      r: true
+      sh: "OpenRouter credit usage (in USD) for the current UTC month"
+      t: "`$NUMBER`"
+    }
+    usage_weekly: {
+      fo: "double"
+      h: "Usage Weekly"
+      n: "usage_weekly"
+      r: true
+      sh: "OpenRouter credit usage (in USD) for the current UTC week (Monday-Sunday)"
+      t: "`$NUMBER`"
+    }
+    workspace_id: {
+      fo: "uuid"
+      h: "Workspace Id"
+      n: "workspace_id"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "The workspace ID this API key belongs to."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "api_key"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /keys"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/keys"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "keys"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /keys"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "false"
+                k: "query"
+                n: "include_disabled"
+                or: "include_disabled"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: "0df9e665-d932-5740-b2c7-b52af166bc11"
+                k: "query"
+                n: "workspace_id"
+                or: "workspace_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/keys"
+          q: {
+            exist: [
+              "http_referer"
+              "include_disabled"
+              "offset"
+              "workspace_id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "keys"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /keys/{hash}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943"
+                k: "param"
+                n: "id"
+                or: "hash"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/keys/{hash}"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          r: {
+            param: {
+              hash: "id"
+            }
+          }
+          s: [
+            {
+              lit: "keys"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "GET /key"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/key"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "key"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /keys/{hash}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943"
+                k: "param"
+                n: "id"
+                or: "hash"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/keys/{hash}"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          r: {
+            param: {
+              hash: "id"
+            }
+          }
+          s: [
+            {
+              lit: "keys"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PATCH /keys/{hash}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943"
+                k: "param"
+                n: "id"
+                or: "hash"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/keys/{hash}"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          r: {
+            param: {
+              hash: "id"
+            }
+          }
+          s: [
+            {
+              lit: "keys"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

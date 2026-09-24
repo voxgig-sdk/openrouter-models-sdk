@@ -359,24 +359,6 @@ class OpenrouterModelsSDK
     }
 
 
-    private $_add = null;
-
-    // Canonical facade: $client->Add()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->add()
-    // resolves here too.
-    public function Add($data = null)
-    {
-        require_once __DIR__ . '/entity/add_entity.php';
-        if ($data === null) {
-            if ($this->_add === null) {
-                $this->_add = new AddEntity($this, null);
-            }
-            return $this->_add;
-        }
-        return new AddEntity($this, $data);
-    }
-
-
     private $_api_key = null;
 
     // Canonical facade: $client->ApiKey()->list() / ->load(["id" => ...]).
@@ -413,24 +395,6 @@ class OpenrouterModelsSDK
     }
 
 
-    private $_benchmark = null;
-
-    // Canonical facade: $client->Benchmark()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->benchmark()
-    // resolves here too.
-    public function Benchmark($data = null)
-    {
-        require_once __DIR__ . '/entity/benchmark_entity.php';
-        if ($data === null) {
-            if ($this->_benchmark === null) {
-                $this->_benchmark = new BenchmarkEntity($this, null);
-            }
-            return $this->_benchmark;
-        }
-        return new BenchmarkEntity($this, $data);
-    }
-
-
     private $_beta_analytics = null;
 
     // Canonical facade: $client->BetaAnalytics()->list() / ->load(["id" => ...]).
@@ -446,24 +410,6 @@ class OpenrouterModelsSDK
             return $this->_beta_analytics;
         }
         return new BetaAnalyticsEntity($this, $data);
-    }
-
-
-    private $_budget = null;
-
-    // Canonical facade: $client->Budget()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->budget()
-    // resolves here too.
-    public function Budget($data = null)
-    {
-        require_once __DIR__ . '/entity/budget_entity.php';
-        if ($data === null) {
-            if ($this->_budget === null) {
-                $this->_budget = new BudgetEntity($this, null);
-            }
-            return $this->_budget;
-        }
-        return new BudgetEntity($this, $data);
     }
 
 
@@ -611,42 +557,6 @@ class OpenrouterModelsSDK
     }
 
 
-    private $_code = null;
-
-    // Canonical facade: $client->Code()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->code()
-    // resolves here too.
-    public function Code($data = null)
-    {
-        require_once __DIR__ . '/entity/code_entity.php';
-        if ($data === null) {
-            if ($this->_code === null) {
-                $this->_code = new CodeEntity($this, null);
-            }
-            return $this->_code;
-        }
-        return new CodeEntity($this, $data);
-    }
-
-
-    private $_coinbase = null;
-
-    // Canonical facade: $client->Coinbase()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->coinbase()
-    // resolves here too.
-    public function Coinbase($data = null)
-    {
-        require_once __DIR__ . '/entity/coinbase_entity.php';
-        if ($data === null) {
-            if ($this->_coinbase === null) {
-                $this->_coinbase = new CoinbaseEntity($this, null);
-            }
-            return $this->_coinbase;
-        }
-        return new CoinbaseEntity($this, $data);
-    }
-
-
     private $_completion = null;
 
     // Canonical facade: $client->Completion()->list() / ->load(["id" => ...]).
@@ -662,78 +572,6 @@ class OpenrouterModelsSDK
             return $this->_completion;
         }
         return new CompletionEntity($this, $data);
-    }
-
-
-    private $_content = null;
-
-    // Canonical facade: $client->Content()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->content()
-    // resolves here too.
-    public function Content($data = null)
-    {
-        require_once __DIR__ . '/entity/content_entity.php';
-        if ($data === null) {
-            if ($this->_content === null) {
-                $this->_content = new ContentEntity($this, null);
-            }
-            return $this->_content;
-        }
-        return new ContentEntity($this, $data);
-    }
-
-
-    private $_count = null;
-
-    // Canonical facade: $client->Count()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->count()
-    // resolves here too.
-    public function Count($data = null)
-    {
-        require_once __DIR__ . '/entity/count_entity.php';
-        if ($data === null) {
-            if ($this->_count === null) {
-                $this->_count = new CountEntity($this, null);
-            }
-            return $this->_count;
-        }
-        return new CountEntity($this, $data);
-    }
-
-
-    private $_create_byok_key = null;
-
-    // Canonical facade: $client->CreateByokKey()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->create_byok_key()
-    // resolves here too.
-    public function CreateByokKey($data = null)
-    {
-        require_once __DIR__ . '/entity/create_byok_key_entity.php';
-        if ($data === null) {
-            if ($this->_create_byok_key === null) {
-                $this->_create_byok_key = new CreateByokKeyEntity($this, null);
-            }
-            return $this->_create_byok_key;
-        }
-        return new CreateByokKeyEntity($this, $data);
-    }
-
-
-    private $_create_guardrail = null;
-
-    // Canonical facade: $client->CreateGuardrail()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->create_guardrail()
-    // resolves here too.
-    public function CreateGuardrail($data = null)
-    {
-        require_once __DIR__ . '/entity/create_guardrail_entity.php';
-        if ($data === null) {
-            if ($this->_create_guardrail === null) {
-                $this->_create_guardrail = new CreateGuardrailEntity($this, null);
-            }
-            return $this->_create_guardrail;
-        }
-        return new CreateGuardrailEntity($this, $data);
     }
 
 
@@ -755,42 +593,6 @@ class OpenrouterModelsSDK
     }
 
 
-    private $_create_preset_from_inference = null;
-
-    // Canonical facade: $client->CreatePresetFromInference()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->create_preset_from_inference()
-    // resolves here too.
-    public function CreatePresetFromInference($data = null)
-    {
-        require_once __DIR__ . '/entity/create_preset_from_inference_entity.php';
-        if ($data === null) {
-            if ($this->_create_preset_from_inference === null) {
-                $this->_create_preset_from_inference = new CreatePresetFromInferenceEntity($this, null);
-            }
-            return $this->_create_preset_from_inference;
-        }
-        return new CreatePresetFromInferenceEntity($this, $data);
-    }
-
-
-    private $_create_workspace = null;
-
-    // Canonical facade: $client->CreateWorkspace()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->create_workspace()
-    // resolves here too.
-    public function CreateWorkspace($data = null)
-    {
-        require_once __DIR__ . '/entity/create_workspace_entity.php';
-        if ($data === null) {
-            if ($this->_create_workspace === null) {
-                $this->_create_workspace = new CreateWorkspaceEntity($this, null);
-            }
-            return $this->_create_workspace;
-        }
-        return new CreateWorkspaceEntity($this, $data);
-    }
-
-
     private $_credit = null;
 
     // Canonical facade: $client->Credit()->list() / ->load(["id" => ...]).
@@ -806,24 +608,6 @@ class OpenrouterModelsSDK
             return $this->_credit;
         }
         return new CreditEntity($this, $data);
-    }
-
-
-    private $_destination = null;
-
-    // Canonical facade: $client->Destination()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->destination()
-    // resolves here too.
-    public function Destination($data = null)
-    {
-        require_once __DIR__ . '/entity/destination_entity.php';
-        if ($data === null) {
-            if ($this->_destination === null) {
-                $this->_destination = new DestinationEntity($this, null);
-            }
-            return $this->_destination;
-        }
-        return new DestinationEntity($this, $data);
     }
 
 
@@ -863,24 +647,6 @@ class OpenrouterModelsSDK
     }
 
 
-    private $_feedback = null;
-
-    // Canonical facade: $client->Feedback()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->feedback()
-    // resolves here too.
-    public function Feedback($data = null)
-    {
-        require_once __DIR__ . '/entity/feedback_entity.php';
-        if ($data === null) {
-            if ($this->_feedback === null) {
-                $this->_feedback = new FeedbackEntity($this, null);
-            }
-            return $this->_feedback;
-        }
-        return new FeedbackEntity($this, $data);
-    }
-
-
     private $_file = null;
 
     // Canonical facade: $client->File()->list() / ->load(["id" => ...]).
@@ -917,21 +683,21 @@ class OpenrouterModelsSDK
     }
 
 
-    private $_generation_content = null;
+    private $_generation_content_data = null;
 
-    // Canonical facade: $client->GenerationContent()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->generation_content()
+    // Canonical facade: $client->GenerationContentData()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->generation_content_data()
     // resolves here too.
-    public function GenerationContent($data = null)
+    public function GenerationContentData($data = null)
     {
-        require_once __DIR__ . '/entity/generation_content_entity.php';
+        require_once __DIR__ . '/entity/generation_content_data_entity.php';
         if ($data === null) {
-            if ($this->_generation_content === null) {
-                $this->_generation_content = new GenerationContentEntity($this, null);
+            if ($this->_generation_content_data === null) {
+                $this->_generation_content_data = new GenerationContentDataEntity($this, null);
             }
-            return $this->_generation_content;
+            return $this->_generation_content_data;
         }
-        return new GenerationContentEntity($this, $data);
+        return new GenerationContentDataEntity($this, $data);
     }
 
 
@@ -989,21 +755,21 @@ class OpenrouterModelsSDK
     }
 
 
-    private $_image_models_list = null;
+    private $_image_model_list_item = null;
 
-    // Canonical facade: $client->ImageModelsList()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->image_models_list()
+    // Canonical facade: $client->ImageModelListItem()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->image_model_list_item()
     // resolves here too.
-    public function ImageModelsList($data = null)
+    public function ImageModelListItem($data = null)
     {
-        require_once __DIR__ . '/entity/image_models_list_entity.php';
+        require_once __DIR__ . '/entity/image_model_list_item_entity.php';
         if ($data === null) {
-            if ($this->_image_models_list === null) {
-                $this->_image_models_list = new ImageModelsListEntity($this, null);
+            if ($this->_image_model_list_item === null) {
+                $this->_image_model_list_item = new ImageModelListItemEntity($this, null);
             }
-            return $this->_image_models_list;
+            return $this->_image_model_list_item;
         }
-        return new ImageModelsListEntity($this, $data);
+        return new ImageModelListItemEntity($this, $data);
     }
 
 
@@ -1025,78 +791,6 @@ class OpenrouterModelsSDK
     }
 
 
-    private $_list_byok_key = null;
-
-    // Canonical facade: $client->ListByokKey()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->list_byok_key()
-    // resolves here too.
-    public function ListByokKey($data = null)
-    {
-        require_once __DIR__ . '/entity/list_byok_key_entity.php';
-        if ($data === null) {
-            if ($this->_list_byok_key === null) {
-                $this->_list_byok_key = new ListByokKeyEntity($this, null);
-            }
-            return $this->_list_byok_key;
-        }
-        return new ListByokKeyEntity($this, $data);
-    }
-
-
-    private $_list_guardrail = null;
-
-    // Canonical facade: $client->ListGuardrail()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->list_guardrail()
-    // resolves here too.
-    public function ListGuardrail($data = null)
-    {
-        require_once __DIR__ . '/entity/list_guardrail_entity.php';
-        if ($data === null) {
-            if ($this->_list_guardrail === null) {
-                $this->_list_guardrail = new ListGuardrailEntity($this, null);
-            }
-            return $this->_list_guardrail;
-        }
-        return new ListGuardrailEntity($this, $data);
-    }
-
-
-    private $_list_key_assignment = null;
-
-    // Canonical facade: $client->ListKeyAssignment()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->list_key_assignment()
-    // resolves here too.
-    public function ListKeyAssignment($data = null)
-    {
-        require_once __DIR__ . '/entity/list_key_assignment_entity.php';
-        if ($data === null) {
-            if ($this->_list_key_assignment === null) {
-                $this->_list_key_assignment = new ListKeyAssignmentEntity($this, null);
-            }
-            return $this->_list_key_assignment;
-        }
-        return new ListKeyAssignmentEntity($this, $data);
-    }
-
-
-    private $_list_member_assignment = null;
-
-    // Canonical facade: $client->ListMemberAssignment()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->list_member_assignment()
-    // resolves here too.
-    public function ListMemberAssignment($data = null)
-    {
-        require_once __DIR__ . '/entity/list_member_assignment_entity.php';
-        if ($data === null) {
-            if ($this->_list_member_assignment === null) {
-                $this->_list_member_assignment = new ListMemberAssignmentEntity($this, null);
-            }
-            return $this->_list_member_assignment;
-        }
-        return new ListMemberAssignmentEntity($this, $data);
-    }
-
-
     private $_list_observability_destination = null;
 
     // Canonical facade: $client->ListObservabilityDestination()->list() / ->load(["id" => ...]).
@@ -1115,24 +809,6 @@ class OpenrouterModelsSDK
     }
 
 
-    private $_list_preset = null;
-
-    // Canonical facade: $client->ListPreset()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->list_preset()
-    // resolves here too.
-    public function ListPreset($data = null)
-    {
-        require_once __DIR__ . '/entity/list_preset_entity.php';
-        if ($data === null) {
-            if ($this->_list_preset === null) {
-                $this->_list_preset = new ListPresetEntity($this, null);
-            }
-            return $this->_list_preset;
-        }
-        return new ListPresetEntity($this, $data);
-    }
-
-
     private $_list_preset_version = null;
 
     // Canonical facade: $client->ListPresetVersion()->list() / ->load(["id" => ...]).
@@ -1148,60 +824,6 @@ class OpenrouterModelsSDK
             return $this->_list_preset_version;
         }
         return new ListPresetVersionEntity($this, $data);
-    }
-
-
-    private $_list_workspace = null;
-
-    // Canonical facade: $client->ListWorkspace()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->list_workspace()
-    // resolves here too.
-    public function ListWorkspace($data = null)
-    {
-        require_once __DIR__ . '/entity/list_workspace_entity.php';
-        if ($data === null) {
-            if ($this->_list_workspace === null) {
-                $this->_list_workspace = new ListWorkspaceEntity($this, null);
-            }
-            return $this->_list_workspace;
-        }
-        return new ListWorkspaceEntity($this, $data);
-    }
-
-
-    private $_list_workspace_budget = null;
-
-    // Canonical facade: $client->ListWorkspaceBudget()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->list_workspace_budget()
-    // resolves here too.
-    public function ListWorkspaceBudget($data = null)
-    {
-        require_once __DIR__ . '/entity/list_workspace_budget_entity.php';
-        if ($data === null) {
-            if ($this->_list_workspace_budget === null) {
-                $this->_list_workspace_budget = new ListWorkspaceBudgetEntity($this, null);
-            }
-            return $this->_list_workspace_budget;
-        }
-        return new ListWorkspaceBudgetEntity($this, $data);
-    }
-
-
-    private $_list_workspace_member = null;
-
-    // Canonical facade: $client->ListWorkspaceMember()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->list_workspace_member()
-    // resolves here too.
-    public function ListWorkspaceMember($data = null)
-    {
-        require_once __DIR__ . '/entity/list_workspace_member_entity.php';
-        if ($data === null) {
-            if ($this->_list_workspace_member === null) {
-                $this->_list_workspace_member = new ListWorkspaceMemberEntity($this, null);
-            }
-            return $this->_list_workspace_member;
-        }
-        return new ListWorkspaceMemberEntity($this, $data);
     }
 
 
@@ -1238,24 +860,6 @@ class OpenrouterModelsSDK
             return $this->_message;
         }
         return new MessageEntity($this, $data);
-    }
-
-
-    private $_meta = null;
-
-    // Canonical facade: $client->Meta()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->meta()
-    // resolves here too.
-    public function Meta($data = null)
-    {
-        require_once __DIR__ . '/entity/meta_entity.php';
-        if ($data === null) {
-            if ($this->_meta === null) {
-                $this->_meta = new MetaEntity($this, null);
-            }
-            return $this->_meta;
-        }
-        return new MetaEntity($this, $data);
     }
 
 
@@ -1439,24 +1043,6 @@ class OpenrouterModelsSDK
     }
 
 
-    private $_query = null;
-
-    // Canonical facade: $client->Query()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->query()
-    // resolves here too.
-    public function Query($data = null)
-    {
-        require_once __DIR__ . '/entity/query_entity.php';
-        if ($data === null) {
-            if ($this->_query === null) {
-                $this->_query = new QueryEntity($this, null);
-            }
-            return $this->_query;
-        }
-        return new QueryEntity($this, $data);
-    }
-
-
     private $_rankings_daily = null;
 
     // Canonical facade: $client->RankingsDaily()->list() / ->load(["id" => ...]).
@@ -1472,24 +1058,6 @@ class OpenrouterModelsSDK
             return $this->_rankings_daily;
         }
         return new RankingsDailyEntity($this, $data);
-    }
-
-
-    private $_remove = null;
-
-    // Canonical facade: $client->Remove()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->remove()
-    // resolves here too.
-    public function Remove($data = null)
-    {
-        require_once __DIR__ . '/entity/remove_entity.php';
-        if ($data === null) {
-            if ($this->_remove === null) {
-                $this->_remove = new RemoveEntity($this, null);
-            }
-            return $this->_remove;
-        }
-        return new RemoveEntity($this, $data);
     }
 
 
@@ -1526,24 +1094,6 @@ class OpenrouterModelsSDK
             return $this->_response;
         }
         return new ResponseEntity($this, $data);
-    }
-
-
-    private $_speech = null;
-
-    // Canonical facade: $client->Speech()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->speech()
-    // resolves here too.
-    public function Speech($data = null)
-    {
-        require_once __DIR__ . '/entity/speech_entity.php';
-        if ($data === null) {
-            if ($this->_speech === null) {
-                $this->_speech = new SpeechEntity($this, null);
-            }
-            return $this->_speech;
-        }
-        return new SpeechEntity($this, $data);
     }
 
 
@@ -1598,24 +1148,6 @@ class OpenrouterModelsSDK
             return $this->_task;
         }
         return new TaskEntity($this, $data);
-    }
-
-
-    private $_transcription = null;
-
-    // Canonical facade: $client->Transcription()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->transcription()
-    // resolves here too.
-    public function Transcription($data = null)
-    {
-        require_once __DIR__ . '/entity/transcription_entity.php';
-        if ($data === null) {
-            if ($this->_transcription === null) {
-                $this->_transcription = new TranscriptionEntity($this, null);
-            }
-            return $this->_transcription;
-        }
-        return new TranscriptionEntity($this, $data);
     }
 
 
@@ -1745,42 +1277,6 @@ class OpenrouterModelsSDK
     }
 
 
-    private $_user = null;
-
-    // Canonical facade: $client->User()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->user()
-    // resolves here too.
-    public function User($data = null)
-    {
-        require_once __DIR__ . '/entity/user_entity.php';
-        if ($data === null) {
-            if ($this->_user === null) {
-                $this->_user = new UserEntity($this, null);
-            }
-            return $this->_user;
-        }
-        return new UserEntity($this, $data);
-    }
-
-
-    private $_version = null;
-
-    // Canonical facade: $client->Version()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->version()
-    // resolves here too.
-    public function Version($data = null)
-    {
-        require_once __DIR__ . '/entity/version_entity.php';
-        if ($data === null) {
-            if ($this->_version === null) {
-                $this->_version = new VersionEntity($this, null);
-            }
-            return $this->_version;
-        }
-        return new VersionEntity($this, $data);
-    }
-
-
     private $_video = null;
 
     // Canonical facade: $client->Video()->list() / ->load(["id" => ...]).
@@ -1817,21 +1313,21 @@ class OpenrouterModelsSDK
     }
 
 
-    private $_video_models_list = null;
+    private $_video_model = null;
 
-    // Canonical facade: $client->VideoModelsList()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->video_models_list()
+    // Canonical facade: $client->VideoModel()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->video_model()
     // resolves here too.
-    public function VideoModelsList($data = null)
+    public function VideoModel($data = null)
     {
-        require_once __DIR__ . '/entity/video_models_list_entity.php';
+        require_once __DIR__ . '/entity/video_model_entity.php';
         if ($data === null) {
-            if ($this->_video_models_list === null) {
-                $this->_video_models_list = new VideoModelsListEntity($this, null);
+            if ($this->_video_model === null) {
+                $this->_video_model = new VideoModelEntity($this, null);
             }
-            return $this->_video_models_list;
+            return $this->_video_model;
         }
-        return new VideoModelsListEntity($this, $data);
+        return new VideoModelEntity($this, $data);
     }
 
 
@@ -1871,21 +1367,21 @@ class OpenrouterModelsSDK
     }
 
 
-    private $_zdr = null;
+    private $_workspace_member = null;
 
-    // Canonical facade: $client->Zdr()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->zdr()
+    // Canonical facade: $client->WorkspaceMember()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->workspace_member()
     // resolves here too.
-    public function Zdr($data = null)
+    public function WorkspaceMember($data = null)
     {
-        require_once __DIR__ . '/entity/zdr_entity.php';
+        require_once __DIR__ . '/entity/workspace_member_entity.php';
         if ($data === null) {
-            if ($this->_zdr === null) {
-                $this->_zdr = new ZdrEntity($this, null);
+            if ($this->_workspace_member === null) {
+                $this->_workspace_member = new WorkspaceMemberEntity($this, null);
             }
-            return $this->_zdr;
+            return $this->_workspace_member;
         }
-        return new ZdrEntity($this, $data);
+        return new WorkspaceMemberEntity($this, $data);
     }
 
 

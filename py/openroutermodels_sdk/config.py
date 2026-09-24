@@ -112,12 +112,9 @@ def make_config():
       },
             "entity": {
                 "activity": {},
-                "add": {},
                 "api_key": {},
                 "app_ranking": {},
-                "benchmark": {},
                 "beta_analytics": {},
-                "budget": {},
                 "bulk_add_workspace_member": {},
                 "bulk_assign_key": {},
                 "bulk_assign_member": {},
@@ -126,42 +123,23 @@ def make_config():
                 "bulk_unassign_member": {},
                 "byok": {},
                 "chat_result": {},
-                "code": {},
-                "coinbase": {},
                 "completion": {},
-                "content": {},
-                "count": {},
-                "create_byok_key": {},
-                "create_guardrail": {},
                 "create_observability_destination": {},
-                "create_preset_from_inference": {},
-                "create_workspace": {},
                 "credit": {},
-                "destination": {},
                 "embedding": {},
                 "endpoint": {},
-                "feedback": {},
                 "file": {},
                 "generation": {},
-                "generation_content": {},
+                "generation_content_data": {},
                 "guardrail": {},
                 "image": {},
                 "image_model_endpoint": {},
-                "image_models_list": {},
+                "image_model_list_item": {},
                 "key": {},
-                "list_byok_key": {},
-                "list_guardrail": {},
-                "list_key_assignment": {},
-                "list_member_assignment": {},
                 "list_observability_destination": {},
-                "list_preset": {},
                 "list_preset_version": {},
-                "list_workspace": {},
-                "list_workspace_budget": {},
-                "list_workspace_member": {},
                 "member": {},
                 "message": {},
-                "meta": {},
                 "model": {},
                 "models_count": {},
                 "models_list": {},
@@ -172,16 +150,12 @@ def make_config():
                 "preset": {},
                 "preset_version": {},
                 "provider": {},
-                "query": {},
                 "rankings_daily": {},
-                "remove": {},
                 "rerank": {},
                 "response": {},
-                "speech": {},
                 "stt": {},
                 "submit_generation_feedback": {},
                 "task": {},
-                "transcription": {},
                 "tts": {},
                 "unified_benchmark": {},
                 "update_byok_key": {},
@@ -189,86 +163,95 @@ def make_config():
                 "update_observability_destination": {},
                 "update_workspace": {},
                 "upsert_workspace_budget": {},
-                "user": {},
-                "version": {},
                 "video": {},
                 "video_generation": {},
-                "video_models_list": {},
+                "video_model": {},
                 "workspace": {},
                 "workspace_budget": {},
-                "zdr": {},
+                "workspace_member": {},
             },
         },
         "entity": {
       "activity": {
         "fields": [
           {
-            "format": "double",
             "name": "byok_usage_inference",
+            "title": "Byok Usage Inference",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "BYOK inference cost in USD (external credits spent)",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
             "name": "completion_tokens",
+            "title": "Completion Tokens",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Total completion tokens generated",
-            "type": "`$INTEGER`",
           },
           {
             "name": "date",
+            "title": "Date",
+            "type": "`$STRING`",
             "req": True,
             "short": "Date of the activity (YYYY-MM-DD format)",
-            "type": "`$STRING`",
           },
           {
             "name": "endpoint_id",
+            "title": "Endpoint Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "Unique identifier for the endpoint",
-            "type": "`$STRING`",
           },
           {
             "name": "model",
+            "title": "Model",
+            "type": "`$STRING`",
             "req": True,
             "short": "Model slug (e.g., \"openai/gpt-4.1\")",
-            "type": "`$STRING`",
           },
           {
             "name": "model_permaslug",
+            "title": "Model Permaslug",
+            "type": "`$STRING`",
             "req": True,
             "short": "Model permaslug (e.g., \"openai/gpt-4.1-2025-04-14\")",
-            "type": "`$STRING`",
           },
           {
             "name": "prompt_tokens",
+            "title": "Prompt Tokens",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Total prompt tokens used",
-            "type": "`$INTEGER`",
           },
           {
             "name": "provider_name",
+            "title": "Provider Name",
+            "type": "`$STRING`",
             "req": True,
             "short": "Name of the provider serving this endpoint",
-            "type": "`$STRING`",
           },
           {
             "name": "reasoning_tokens",
+            "title": "Reasoning Tokens",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Total reasoning tokens used",
-            "type": "`$INTEGER`",
           },
           {
             "name": "requests",
+            "title": "Requests",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Number of requests made",
-            "type": "`$INTEGER`",
           },
           {
-            "format": "double",
             "name": "usage",
+            "title": "Usage",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "Total cost in USD (OpenRouter credits spent)",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
         ],
         "name": "activity",
@@ -278,51 +261,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "abc123def456...",
-                      "kind": "query",
-                      "name": "api_key_hash",
-                      "orig": "api_key_hash",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "2025-08-24",
-                      "kind": "query",
-                      "name": "date",
-                      "orig": "date",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "user_abc123",
-                      "kind": "query",
-                      "name": "user_id",
-                      "orig": "user_id",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/activity",
@@ -331,6 +269,59 @@ def make_config():
                     "lit": "activity",
                   },
                 ],
+                "parts": [
+                  "activity",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "api_key_hash",
+                      "orig": "api_key_hash",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "abc123def456...",
+                    },
+                    {
+                      "name": "date",
+                      "orig": "date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "2025-08-24",
+                    },
+                    {
+                      "name": "user_id",
+                      "orig": "user_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "user_abc123",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "api_key_hash",
@@ -341,13 +332,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "activity",
-                ],
               },
             ],
           },
@@ -356,56 +340,58 @@ def make_config():
           "ancestors": [],
         },
       },
-      "add": {
-        "fields": [],
-        "name": "add",
-        "op": {},
-        "relations": {
-          "ancestors": [
-            [
-              "workspace",
-            ],
-          ],
-        },
-      },
       "api_key": {
         "fields": [
           {
-            "format": "double",
             "name": "byok_usage",
+            "title": "Byok Usage",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "Total external BYOK usage (in USD) for the API key",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "byok_usage_daily",
+            "title": "Byok Usage Daily",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "External BYOK usage (in USD) for the current UTC day",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "byok_usage_monthly",
+            "title": "Byok Usage Monthly",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "External BYOK usage (in USD) for current UTC month",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "byok_usage_weekly",
+            "title": "Byok Usage Weekly",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "External BYOK usage (in USD) for the current UTC week (Monday-Sunday)",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
             "name": "created_at",
+            "title": "Created At",
+            "type": "`$STRING`",
             "req": True,
             "short": "ISO 8601 timestamp of when the API key was created",
-            "type": "`$STRING`",
           },
           {
             "name": "creator_user_id",
+            "title": "Creator User Id",
+            "type": [
+              "`$ONE`",
+              [
+                "`$STRING`",
+                "`$NULL`",
+              ],
+            ],
+            "req": True,
             "op": {
               "create": {
                 "type": [
@@ -417,31 +403,23 @@ def make_config():
                 ],
               },
             },
-            "req": True,
             "short": "The user ID of the key creator.",
-            "type": [
-              "`$ONE`",
-              [
-                "`$STRING`",
-                "`$NULL`",
-              ],
-            ],
           },
           {
             "name": "disabled",
+            "title": "Disabled",
+            "type": "`$BOOLEAN`",
+            "req": True,
             "op": {
               "update": {
                 "type": "`$BOOLEAN`",
               },
             },
-            "req": True,
             "short": "Whether the API key is disabled",
-            "type": "`$BOOLEAN`",
           },
           {
-            "format": "date-time",
             "name": "expires_at",
-            "short": "ISO 8601 UTC timestamp when the API key expires, or null if no expiration",
+            "title": "Expires At",
             "type": [
               "`$ONE`",
               [
@@ -449,19 +427,26 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "ISO 8601 UTC timestamp when the API key expires, or null if no expiration",
+            "format": "date-time",
           },
           {
             "name": "hash",
+            "title": "Hash",
+            "type": "`$STRING`",
             "req": True,
             "short": "Unique hash identifier for the API key",
-            "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "include_byok_in_limit",
+            "title": "Include Byok In Limit",
+            "type": "`$BOOLEAN`",
+            "req": True,
             "op": {
               "create": {
                 "type": "`$BOOLEAN`",
@@ -470,38 +455,48 @@ def make_config():
                 "type": "`$BOOLEAN`",
               },
             },
-            "req": True,
             "short": "Whether to include external BYOK usage in the credit limit",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "is_free_tier",
+            "title": "Is Free Tier",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Whether this is a free tier API key",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "is_management_key",
+            "title": "Is Management Key",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Whether this is a management key",
-            "type": "`$BOOLEAN`",
           },
           {
-            "deprecated": True,
             "name": "is_provisioning_key",
+            "title": "Is Provisioning Key",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Whether this is a management key",
-            "type": "`$BOOLEAN`",
+            "deprecated": True,
           },
           {
             "name": "label",
+            "title": "Label",
+            "type": "`$STRING`",
             "req": True,
             "short": "Human-readable label for the API key",
-            "type": "`$STRING`",
           },
           {
-            "format": "double",
             "name": "limit",
+            "title": "Limit",
+            "type": [
+              "`$ONE`",
+              [
+                "`$NUMBER`",
+                "`$NULL`",
+              ],
+            ],
+            "req": True,
             "op": {
               "create": {
                 "type": [
@@ -522,21 +517,12 @@ def make_config():
                 ],
               },
             },
-            "req": True,
             "short": "Spending limit for the API key in USD",
-            "type": [
-              "`$ONE`",
-              [
-                "`$NUMBER`",
-                "`$NULL`",
-              ],
-            ],
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "limit_remaining",
-            "req": True,
-            "short": "Remaining spending limit in USD",
+            "title": "Limit Remaining",
             "type": [
               "`$ONE`",
               [
@@ -544,9 +530,21 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Remaining spending limit in USD",
+            "format": "double",
           },
           {
             "name": "limit_reset",
+            "title": "Limit Reset",
+            "type": [
+              "`$ONE`",
+              [
+                "`$STRING`",
+                "`$NULL`",
+              ],
+            ],
+            "req": True,
             "op": {
               "create": {
                 "type": [
@@ -567,38 +565,31 @@ def make_config():
                 ],
               },
             },
-            "req": True,
             "short": "Type of limit reset for the API key",
-            "type": [
-              "`$ONE`",
-              [
-                "`$STRING`",
-                "`$NULL`",
-              ],
-            ],
           },
           {
             "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
+            "req": True,
             "op": {
               "update": {
                 "type": "`$STRING`",
               },
             },
-            "req": True,
             "short": "Name of the API key",
-            "type": "`$STRING`",
           },
           {
-            "deprecated": True,
             "name": "rate_limit",
+            "title": "Rate Limit",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Legacy rate limit information about a key.",
-            "type": "`$OBJECT`",
+            "deprecated": True,
           },
           {
             "name": "updated_at",
-            "req": True,
-            "short": "ISO 8601 timestamp of when the API key was last updated",
+            "title": "Updated At",
             "type": [
               "`$ONE`",
               [
@@ -606,46 +597,53 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "ISO 8601 timestamp of when the API key was last updated",
           },
           {
-            "format": "double",
             "name": "usage",
+            "title": "Usage",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "Total OpenRouter credit usage (in USD) for the API key",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "usage_daily",
+            "title": "Usage Daily",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "OpenRouter credit usage (in USD) for the current UTC day",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "usage_monthly",
+            "title": "Usage Monthly",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "OpenRouter credit usage (in USD) for the current UTC month",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "usage_weekly",
+            "title": "Usage Weekly",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "OpenRouter credit usage (in USD) for the current UTC week (Monday-Sunday)",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "uuid",
             "name": "workspace_id",
+            "title": "Workspace Id",
+            "type": "`$STRING`",
+            "req": True,
             "op": {
               "create": {
                 "type": "`$STRING`",
               },
             },
-            "req": True,
             "short": "The workspace ID this API key belongs to.",
-            "type": "`$STRING`",
+            "format": "uuid",
           },
         ],
         "id": {
@@ -659,28 +657,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/keys",
@@ -689,6 +665,36 @@ def make_config():
                     "lit": "keys",
                   },
                 ],
+                "parts": [
+                  "keys",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -696,13 +702,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "keys",
-                ],
               },
             ],
           },
@@ -711,38 +710,52 @@ def make_config():
             "name": "list",
             "points": [
               {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/keys",
+                "segments": [
+                  {
+                    "lit": "keys",
+                  },
+                ],
+                "parts": [
+                  "keys",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
                 "args": {
                   "header": [
                     {
-                      "kind": "header",
                       "name": "http_referer",
                       "orig": "http_referer",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_category",
                       "orig": "x_open_router_category",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_title",
                       "orig": "x_open_router_title",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                   ],
                   "query": [
                     {
-                      "example": "false",
-                      "kind": "query",
                       "name": "include_disabled",
                       "orig": "include_disabled",
                       "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": "false",
                     },
                     {
-                      "example": 0,
-                      "kind": "query",
                       "name": "offset",
                       "orig": "offset",
                       "type": [
@@ -752,24 +765,18 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 0,
                     },
                     {
-                      "example": "0df9e665-d932-5740-b2c7-b52af166bc11",
-                      "kind": "query",
                       "name": "workspace_id",
                       "orig": "workspace_id",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "0df9e665-d932-5740-b2c7-b52af166bc11",
                     },
                   ],
                 },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/keys",
-                "segments": [
-                  {
-                    "lit": "keys",
-                  },
-                ],
                 "select": {
                   "exist": [
                     "http_referer",
@@ -780,13 +787,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "keys",
-                ],
               },
             ],
           },
@@ -795,46 +795,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "hash",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/keys/{hash}",
-                "rename": {
-                  "param": {
-                    "hash": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "keys",
@@ -843,6 +806,51 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "keys",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "hash": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "hash",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -851,38 +859,8 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "keys",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/key",
@@ -891,6 +869,36 @@ def make_config():
                     "lit": "key",
                   },
                 ],
+                "parts": [
+                  "key",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -898,13 +906,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "key",
-                ],
               },
             ],
           },
@@ -913,46 +914,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "hash",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/keys/{hash}",
-                "rename": {
-                  "param": {
-                    "hash": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "keys",
@@ -961,6 +925,51 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "keys",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "hash": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "hash",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -969,14 +978,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "keys",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -985,46 +986,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "hash",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PATCH",
                 "orig": "/keys/{hash}",
-                "rename": {
-                  "param": {
-                    "hash": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "keys",
@@ -1033,6 +997,51 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "keys",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "hash": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "hash",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "f01d52606dc8f0a8303a7b5cc3fa07109c2e346cec7c0a16b40de462992ce943",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -1041,14 +1050,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "keys",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -1061,33 +1062,38 @@ def make_config():
         "fields": [
           {
             "name": "app_id",
+            "title": "App Id",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Stable numeric identifier of the app on OpenRouter.",
-            "type": "`$INTEGER`",
           },
           {
             "name": "app_name",
+            "title": "App Name",
+            "type": "`$STRING`",
             "req": True,
             "short": "Public display name of the app.",
-            "type": "`$STRING`",
           },
           {
             "name": "rank",
+            "title": "Rank",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "1-based position of the app within this response, per the requested `sort`.",
-            "type": "`$INTEGER`",
           },
           {
             "name": "total_requests",
+            "title": "Total Requests",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Number of requests attributed to the app inside the date window.",
-            "type": "`$INTEGER`",
           },
           {
             "name": "total_tokens",
+            "title": "Total Tokens",
+            "type": "`$STRING`",
             "req": True,
             "short": "Sum of `prompt_tokens + completion_tokens` attributed to the app inside the date window, returned as a decimal string so 64-bit values are not truncated.",
-            "type": "`$STRING`",
           },
         ],
         "name": "app_ranking",
@@ -1097,85 +1103,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "coding",
-                      "kind": "query",
-                      "name": "category",
-                      "orig": "category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "2026-05-11",
-                      "kind": "query",
-                      "name": "end_date",
-                      "orig": "end_date",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 50,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "offset",
-                      "orig": "offset",
-                      "type": [
-                        "`$ONE`",
-                        [
-                          "`$INTEGER`",
-                          "`$NULL`",
-                        ],
-                      ],
-                    },
-                    {
-                      "example": "popular",
-                      "kind": "query",
-                      "name": "sort",
-                      "orig": "sort",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "2026-04-12",
-                      "kind": "query",
-                      "name": "start_date",
-                      "orig": "start_date",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "cli-agent",
-                      "kind": "query",
-                      "name": "subcategory",
-                      "orig": "subcategory",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/datasets/app-rankings",
@@ -1187,6 +1114,94 @@ def make_config():
                     "lit": "app-rankings",
                   },
                 ],
+                "parts": [
+                  "datasets",
+                  "app-rankings",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "category",
+                      "orig": "category",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "coding",
+                    },
+                    {
+                      "name": "end_date",
+                      "orig": "end_date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "2026-05-11",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "offset",
+                      "orig": "offset",
+                      "type": [
+                        "`$ONE`",
+                        [
+                          "`$INTEGER`",
+                          "`$NULL`",
+                        ],
+                      ],
+                      "kind": "query",
+                      "example": 0,
+                    },
+                    {
+                      "name": "sort",
+                      "orig": "sort",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "popular",
+                    },
+                    {
+                      "name": "start_date",
+                      "orig": "start_date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "2026-04-12",
+                    },
+                    {
+                      "name": "subcategory",
+                      "orig": "subcategory",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "cli-agent",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "category",
@@ -1201,14 +1216,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "datasets",
-                  "app-rankings",
-                ],
               },
             ],
           },
@@ -1217,111 +1224,109 @@ def make_config():
           "ancestors": [],
         },
       },
-      "benchmark": {
-        "fields": [],
-        "name": "benchmark",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
       "beta_analytics": {
         "fields": [
           {
-            "format": "double",
             "name": "cachedAt",
+            "title": "Cached At",
             "type": "`$NUMBER`",
+            "format": "double",
           },
           {
             "name": "classifier_dimensions",
+            "title": "Classifier Dimensions",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Group results by custom classifier tags, breaking down metrics by the specified dimension values.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "classifier_filters",
+            "title": "Classifier Filters",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Filter results to generations with specific classifier tag values.",
-            "type": "`$OBJECT`",
-            "union": {
-              "branches": 3,
-              "count": 2,
-              "depth": 8,
-            },
           },
           {
             "name": "data",
-            "req": True,
+            "title": "Data",
             "type": "`$ARRAY`",
+            "req": True,
           },
           {
             "name": "dimensions",
+            "title": "Dimensions",
+            "type": "`$ARRAY`",
+            "req": True,
             "op": {
               "create": {
                 "type": "`$ARRAY`",
               },
             },
-            "req": True,
-            "type": "`$ARRAY`",
           },
           {
             "name": "filters",
+            "title": "Filters",
             "type": "`$ARRAY`",
-            "union": {
-              "branches": 3,
-              "count": 2,
-              "depth": 6,
-            },
           },
           {
             "name": "granularities",
-            "req": True,
+            "title": "Granularities",
             "type": "`$ARRAY`",
+            "req": True,
           },
           {
             "name": "granularity",
-            "short": "Time granularity",
+            "title": "Granularity",
             "type": "`$STRING`",
+            "short": "Time granularity",
           },
           {
             "name": "group_limit",
-            "short": "Maximum rows per distinct combination of dimensions.",
+            "title": "Group Limit",
             "type": "`$INTEGER`",
+            "short": "Maximum rows per distinct combination of dimensions.",
           },
           {
             "name": "limit",
-            "short": "Maximum total rows returned.",
+            "title": "Limit",
             "type": "`$INTEGER`",
+            "short": "Maximum total rows returned.",
           },
           {
             "name": "metadata",
-            "req": True,
+            "title": "Metadata",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "metrics",
-            "req": True,
+            "title": "Metrics",
             "type": "`$ARRAY`",
+            "req": True,
           },
           {
             "name": "operators",
-            "req": True,
+            "title": "Operators",
             "type": "`$ARRAY`",
+            "req": True,
           },
           {
             "name": "order_by",
-            "req": True,
+            "title": "Order By",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "time_range",
-            "req": True,
+            "title": "Time Range",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "warnings",
-            "short": "Warnings about filter resolution issues (e.g.",
+            "title": "Warnings",
             "type": "`$ARRAY`",
+            "short": "Warnings about filter resolution issues (e.g.",
           },
         ],
         "name": "beta_analytics",
@@ -1331,28 +1336,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/analytics/query",
@@ -1364,6 +1347,37 @@ def make_config():
                     "lit": "query",
                   },
                 ],
+                "parts": [
+                  "analytics",
+                  "query",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -1371,14 +1385,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "analytics",
-                  "query",
-                ],
               },
             ],
           },
@@ -1387,28 +1393,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/analytics/meta",
@@ -1420,6 +1404,37 @@ def make_config():
                     "lit": "meta",
                   },
                 ],
+                "parts": [
+                  "analytics",
+                  "meta",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -1427,14 +1442,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "analytics",
-                  "meta",
-                ],
               },
             ],
           },
@@ -1443,37 +1450,28 @@ def make_config():
           "ancestors": [],
         },
       },
-      "budget": {
-        "fields": [],
-        "name": "budget",
-        "op": {},
-        "relations": {
-          "ancestors": [
-            [
-              "workspace",
-            ],
-          ],
-        },
-      },
       "bulk_add_workspace_member": {
         "fields": [
           {
             "name": "added_count",
+            "title": "Added Count",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Number of workspace memberships created or updated",
-            "type": "`$INTEGER`",
           },
           {
             "name": "data",
+            "title": "Data",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of added workspace memberships",
-            "type": "`$ARRAY`",
           },
           {
             "name": "user_ids",
+            "title": "User Ids",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of user IDs to add to the workspace.",
-            "type": "`$ARRAY`",
           },
         ],
         "name": "bulk_add_workspace_member",
@@ -1483,46 +1481,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "production",
-                      "kind": "param",
-                      "name": "workspace_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/workspaces/{id}/members/add",
-                "rename": {
-                  "param": {
-                    "id": "workspace_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "workspaces",
@@ -1537,6 +1498,53 @@ def make_config():
                     "lit": "add",
                   },
                 ],
+                "parts": [
+                  "workspaces",
+                  "{workspace_id}",
+                  "members",
+                  "add",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "workspace_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "workspace_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "production",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -1545,16 +1553,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "workspaces",
-                  "{workspace_id}",
-                  "members",
-                  "add",
-                ],
               },
             ],
           },
@@ -1562,7 +1560,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "workspace",
+              "$.main.kit.entity.workspace",
             ],
           ],
         },
@@ -1571,15 +1569,17 @@ def make_config():
         "fields": [
           {
             "name": "assigned_count",
+            "title": "Assigned Count",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Number of keys successfully assigned",
-            "type": "`$INTEGER`",
           },
           {
             "name": "key_hashes",
+            "title": "Key Hashes",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "Array of API key hashes to assign to the guardrail",
-            "type": "`$ARRAY`",
           },
         ],
         "name": "bulk_assign_key",
@@ -1589,46 +1589,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "550e8400-e29b-41d4-a716-446655440000",
-                      "kind": "param",
-                      "name": "guardrail_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/guardrails/{id}/assignments/keys",
-                "rename": {
-                  "param": {
-                    "id": "guardrail_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "guardrails",
@@ -1643,6 +1606,53 @@ def make_config():
                     "lit": "keys",
                   },
                 ],
+                "parts": [
+                  "guardrails",
+                  "{guardrail_id}",
+                  "assignments",
+                  "keys",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "guardrail_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "guardrail_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "550e8400-e29b-41d4-a716-446655440000",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "guardrail_id",
@@ -1651,16 +1661,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "guardrails",
-                  "{guardrail_id}",
-                  "assignments",
-                  "keys",
-                ],
               },
             ],
           },
@@ -1668,7 +1668,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "guardrail",
+              "$.main.kit.entity.guardrail",
             ],
           ],
         },
@@ -1677,15 +1677,17 @@ def make_config():
         "fields": [
           {
             "name": "assigned_count",
+            "title": "Assigned Count",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Number of members successfully assigned",
-            "type": "`$INTEGER`",
           },
           {
             "name": "member_user_ids",
+            "title": "Member User Ids",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "Array of member user IDs to assign to the guardrail",
-            "type": "`$ARRAY`",
           },
         ],
         "name": "bulk_assign_member",
@@ -1695,46 +1697,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "550e8400-e29b-41d4-a716-446655440000",
-                      "kind": "param",
-                      "name": "guardrail_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/guardrails/{id}/assignments/members",
-                "rename": {
-                  "param": {
-                    "id": "guardrail_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "guardrails",
@@ -1749,6 +1714,53 @@ def make_config():
                     "lit": "members",
                   },
                 ],
+                "parts": [
+                  "guardrails",
+                  "{guardrail_id}",
+                  "assignments",
+                  "members",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "guardrail_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "guardrail_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "550e8400-e29b-41d4-a716-446655440000",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "guardrail_id",
@@ -1757,16 +1769,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "guardrails",
-                  "{guardrail_id}",
-                  "assignments",
-                  "members",
-                ],
               },
             ],
           },
@@ -1774,7 +1776,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "guardrail",
+              "$.main.kit.entity.guardrail",
             ],
           ],
         },
@@ -1783,15 +1785,17 @@ def make_config():
         "fields": [
           {
             "name": "removed_count",
+            "title": "Removed Count",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Number of members removed",
-            "type": "`$INTEGER`",
           },
           {
             "name": "user_ids",
+            "title": "User Ids",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of user IDs to remove from the workspace",
-            "type": "`$ARRAY`",
           },
         ],
         "name": "bulk_remove_workspace_member",
@@ -1801,46 +1805,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "production",
-                      "kind": "param",
-                      "name": "workspace_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/workspaces/{id}/members/remove",
-                "rename": {
-                  "param": {
-                    "id": "workspace_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "workspaces",
@@ -1855,6 +1822,53 @@ def make_config():
                     "lit": "remove",
                   },
                 ],
+                "parts": [
+                  "workspaces",
+                  "{workspace_id}",
+                  "members",
+                  "remove",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "workspace_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "workspace_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "production",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -1863,16 +1877,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "workspaces",
-                  "{workspace_id}",
-                  "members",
-                  "remove",
-                ],
               },
             ],
           },
@@ -1880,7 +1884,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "workspace",
+              "$.main.kit.entity.workspace",
             ],
           ],
         },
@@ -1889,15 +1893,17 @@ def make_config():
         "fields": [
           {
             "name": "key_hashes",
+            "title": "Key Hashes",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "Array of API key hashes to unassign from the guardrail",
-            "type": "`$ARRAY`",
           },
           {
             "name": "unassigned_count",
+            "title": "Unassigned Count",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Number of keys successfully unassigned",
-            "type": "`$INTEGER`",
           },
         ],
         "name": "bulk_unassign_key",
@@ -1907,46 +1913,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "550e8400-e29b-41d4-a716-446655440000",
-                      "kind": "param",
-                      "name": "guardrail_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/guardrails/{id}/assignments/keys/remove",
-                "rename": {
-                  "param": {
-                    "id": "guardrail_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "guardrails",
@@ -1964,6 +1933,54 @@ def make_config():
                     "lit": "remove",
                   },
                 ],
+                "parts": [
+                  "guardrails",
+                  "{guardrail_id}",
+                  "assignments",
+                  "keys",
+                  "remove",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "guardrail_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "guardrail_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "550e8400-e29b-41d4-a716-446655440000",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "guardrail_id",
@@ -1972,17 +1989,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "guardrails",
-                  "{guardrail_id}",
-                  "assignments",
-                  "keys",
-                  "remove",
-                ],
               },
             ],
           },
@@ -1990,7 +1996,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "guardrail",
+              "$.main.kit.entity.guardrail",
             ],
           ],
         },
@@ -1999,15 +2005,17 @@ def make_config():
         "fields": [
           {
             "name": "member_user_ids",
+            "title": "Member User Ids",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "Array of member user IDs to unassign from the guardrail",
-            "type": "`$ARRAY`",
           },
           {
             "name": "unassigned_count",
+            "title": "Unassigned Count",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Number of members successfully unassigned",
-            "type": "`$INTEGER`",
           },
         ],
         "name": "bulk_unassign_member",
@@ -2017,46 +2025,9 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "550e8400-e29b-41d4-a716-446655440000",
-                      "kind": "param",
-                      "name": "guardrail_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/guardrails/{id}/assignments/members/remove",
-                "rename": {
-                  "param": {
-                    "id": "guardrail_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "guardrails",
@@ -2074,6 +2045,54 @@ def make_config():
                     "lit": "remove",
                   },
                 ],
+                "parts": [
+                  "guardrails",
+                  "{guardrail_id}",
+                  "assignments",
+                  "members",
+                  "remove",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "guardrail_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "guardrail_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "550e8400-e29b-41d4-a716-446655440000",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "guardrail_id",
@@ -2082,17 +2101,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "guardrails",
-                  "{guardrail_id}",
-                  "assignments",
-                  "members",
-                  "remove",
-                ],
               },
             ],
           },
@@ -2100,7 +2108,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "guardrail",
+              "$.main.kit.entity.guardrail",
             ],
           ],
         },
@@ -2109,8 +2117,7 @@ def make_config():
         "fields": [
           {
             "name": "allowed_api_key_hashes",
-            "req": True,
-            "short": "Optional allowlist of OpenRouter API key hashes (`api_keys.hash`) that may use this credential.",
+            "title": "Allowed Api Key Hashes",
             "type": [
               "`$ONE`",
               [
@@ -2118,9 +2125,20 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Optional allowlist of OpenRouter API key hashes (`api_keys.hash`) that may use this credential.",
           },
           {
             "name": "allowed_models",
+            "title": "Allowed Models",
+            "type": [
+              "`$ONE`",
+              [
+                "`$ARRAY`",
+                "`$NULL`",
+              ],
+            ],
+            "req": True,
             "op": {
               "create": {
                 "type": [
@@ -2132,18 +2150,19 @@ def make_config():
                 ],
               },
             },
-            "req": True,
             "short": "Optional allowlist of model slugs this credential may be used for.",
-            "type": [
-              "`$ONE`",
-              [
-                "`$ARRAY`",
-                "`$NULL`",
-              ],
-            ],
           },
           {
             "name": "allowed_user_ids",
+            "title": "Allowed User Ids",
+            "type": [
+              "`$ONE`",
+              [
+                "`$ARRAY`",
+                "`$NULL`",
+              ],
+            ],
+            "req": True,
             "op": {
               "create": {
                 "type": [
@@ -2155,66 +2174,64 @@ def make_config():
                 ],
               },
             },
-            "req": True,
             "short": "Optional allowlist of user IDs that may use this credential.",
-            "type": [
-              "`$ONE`",
-              [
-                "`$ARRAY`",
-                "`$NULL`",
-              ],
-            ],
           },
           {
             "name": "created_at",
+            "title": "Created At",
+            "type": "`$STRING`",
             "req": True,
             "short": "ISO timestamp of when the credential was created.",
-            "type": "`$STRING`",
           },
           {
             "name": "disabled",
+            "title": "Disabled",
+            "type": "`$BOOLEAN`",
+            "req": True,
             "op": {
               "create": {
                 "type": "`$BOOLEAN`",
               },
             },
-            "req": True,
             "short": "Whether this credential is currently disabled.",
-            "type": "`$BOOLEAN`",
           },
           {
-            "format": "uuid",
             "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "Stable public identifier for this BYOK credential.",
-            "type": "`$STRING`",
+            "format": "uuid",
           },
           {
             "name": "is_fallback",
+            "title": "Is Fallback",
+            "type": "`$BOOLEAN`",
+            "req": True,
             "op": {
               "create": {
                 "type": "`$BOOLEAN`",
               },
             },
-            "req": True,
             "short": "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried.",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "key",
+            "title": "Key",
+            "type": "`$STRING`",
             "req": True,
             "short": "The raw provider API key or credential.",
-            "type": "`$STRING`",
           },
           {
             "name": "label",
+            "title": "Label",
+            "type": "`$STRING`",
             "req": True,
             "short": "Short masked snippet of the key (e.g.",
-            "type": "`$STRING`",
           },
           {
             "name": "name",
-            "short": "Optional human-readable name for the credential.",
+            "title": "Name",
             "type": [
               "`$ONE`",
               [
@@ -2222,30 +2239,34 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Optional human-readable name for the credential.",
           },
           {
             "name": "provider",
+            "title": "Provider",
+            "type": "`$STRING`",
             "req": True,
             "short": "The upstream provider this credential authenticates against, as a lowercase slug (e.g.",
-            "type": "`$STRING`",
           },
           {
             "name": "sort_order",
+            "title": "Sort Order",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Position within the provider — credentials are tried in ascending sort order.",
-            "type": "`$INTEGER`",
           },
           {
-            "format": "uuid",
             "name": "workspace_id",
+            "title": "Workspace Id",
+            "type": "`$STRING`",
+            "req": True,
             "op": {
               "create": {
                 "type": "`$STRING`",
               },
             },
-            "req": True,
             "short": "ID of the workspace this credential belongs to.",
-            "type": "`$STRING`",
+            "format": "uuid",
           },
         ],
         "id": {
@@ -2259,28 +2280,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/byok",
@@ -2289,6 +2288,36 @@ def make_config():
                     "lit": "byok",
                   },
                 ],
+                "parts": [
+                  "byok",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -2296,13 +2325,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "byok",
-                ],
               },
             ],
           },
@@ -2311,38 +2333,52 @@ def make_config():
             "name": "list",
             "points": [
               {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/byok",
+                "segments": [
+                  {
+                    "lit": "byok",
+                  },
+                ],
+                "parts": [
+                  "byok",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
                 "args": {
                   "header": [
                     {
-                      "kind": "header",
                       "name": "http_referer",
                       "orig": "http_referer",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_category",
                       "orig": "x_open_router_category",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_title",
                       "orig": "x_open_router_title",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                   ],
                   "query": [
                     {
-                      "example": 50,
-                      "kind": "query",
                       "name": "limit",
                       "orig": "limit",
                       "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
                     },
                     {
-                      "example": 0,
-                      "kind": "query",
                       "name": "offset",
                       "orig": "offset",
                       "type": [
@@ -2352,31 +2388,25 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 0,
                     },
                     {
-                      "example": "openai",
-                      "kind": "query",
                       "name": "provider",
                       "orig": "provider",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "openai",
                     },
                     {
-                      "example": "550e8400-e29b-41d4-a716-446655440000",
-                      "kind": "query",
                       "name": "workspace_id",
                       "orig": "workspace_id",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "550e8400-e29b-41d4-a716-446655440000",
                     },
                   ],
                 },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/byok",
-                "segments": [
-                  {
-                    "lit": "byok",
-                  },
-                ],
                 "select": {
                   "exist": [
                     "http_referer",
@@ -2388,13 +2418,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "byok",
-                ],
               },
             ],
           },
@@ -2403,38 +2426,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "11111111-2222-3333-4444-555555555555",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/byok/{id}",
@@ -2446,6 +2437,47 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "byok",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "11111111-2222-3333-4444-555555555555",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -2454,14 +2486,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "byok",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -2470,38 +2494,6 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "11111111-2222-3333-4444-555555555555",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/byok/{id}",
@@ -2513,6 +2505,47 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "byok",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "11111111-2222-3333-4444-555555555555",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -2521,14 +2554,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "byok",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -2541,36 +2566,34 @@ def make_config():
         "fields": [
           {
             "name": "cache_control",
+            "title": "Cache Control",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Enable automatic prompt caching.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "choices",
+            "title": "Choices",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of completion choices",
-            "type": "`$ARRAY`",
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 5,
-            },
           },
           {
             "name": "created",
+            "title": "Created",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Unix timestamp of creation",
-            "type": "`$INTEGER`",
           },
           {
             "name": "debug",
-            "short": "Debug options for inspecting request transformations (streaming only)",
+            "title": "Debug",
             "type": "`$OBJECT`",
+            "short": "Debug options for inspecting request transformations (streaming only)",
           },
           {
-            "format": "double",
             "name": "frequency_penalty",
-            "short": "Frequency penalty (-2.0 to 2.0)",
+            "title": "Frequency Penalty",
             "type": [
               "`$ONE`",
               [
@@ -2578,26 +2601,25 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Frequency penalty (-2.0 to 2.0)",
+            "format": "double",
           },
           {
             "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "Unique completion identifier",
-            "type": "`$STRING`",
           },
           {
             "name": "image_config",
-            "short": "Provider-specific image configuration options.",
+            "title": "Image Config",
             "type": "`$OBJECT`",
-            "union": {
-              "branches": 3,
-              "count": 1,
-              "depth": 1,
-            },
+            "short": "Provider-specific image configuration options.",
           },
           {
             "name": "logit_bias",
-            "short": "Token logit bias adjustments",
+            "title": "Logit Bias",
             "type": [
               "`$ONE`",
               [
@@ -2605,10 +2627,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Token logit bias adjustments",
           },
           {
             "name": "logprobs",
-            "short": "Return log probabilities",
+            "title": "Logprobs",
             "type": [
               "`$ONE`",
               [
@@ -2616,10 +2639,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Return log probabilities",
           },
           {
             "name": "max_completion_tokens",
-            "short": "Maximum tokens in completion",
+            "title": "Max Completion Tokens",
             "type": [
               "`$ONE`",
               [
@@ -2627,10 +2651,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Maximum tokens in completion",
           },
           {
             "name": "max_tokens",
-            "short": "Maximum tokens (deprecated, use max_completion_tokens).",
+            "title": "Max Tokens",
             "type": [
               "`$ONE`",
               [
@@ -2638,27 +2663,24 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Maximum tokens (deprecated, use max_completion_tokens).",
           },
           {
             "name": "messages",
+            "title": "Messages",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of messages for the conversation",
-            "type": "`$ARRAY`",
-            "union": {
-              "branches": 2,
-              "count": 5,
-              "depth": 5,
-            },
           },
           {
             "name": "metadata",
-            "short": "Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values)",
+            "title": "Metadata",
             "type": "`$OBJECT`",
+            "short": "Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values)",
           },
           {
-            "format": "double",
             "name": "min_p",
-            "short": "Minimum probability threshold relative to the most likely token.",
+            "title": "Min P",
             "type": [
               "`$ONE`",
               [
@@ -2666,41 +2688,48 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Minimum probability threshold relative to the most likely token.",
+            "format": "double",
           },
           {
             "name": "modalities",
-            "short": "Output modalities for the response.",
+            "title": "Modalities",
             "type": "`$ARRAY`",
+            "short": "Output modalities for the response.",
           },
           {
             "name": "model",
+            "title": "Model",
+            "type": "`$STRING`",
+            "req": True,
             "op": {
               "create": {
                 "type": "`$STRING`",
               },
             },
-            "req": True,
             "short": "Model used for completion",
-            "type": "`$STRING`",
           },
           {
             "name": "models",
-            "short": "Models to use for completion",
+            "title": "Models",
             "type": "`$ARRAY`",
+            "short": "Models to use for completion",
           },
           {
             "name": "object",
-            "req": True,
+            "title": "Object",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "openrouter_metadata",
-            "req": True,
+            "title": "Openrouter Metadata",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "parallel_tool_calls",
-            "short": "Whether to enable parallel function calling during tool use.",
+            "title": "Parallel Tool Calls",
             "type": [
               "`$ONE`",
               [
@@ -2708,21 +2737,17 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Whether to enable parallel function calling during tool use.",
           },
           {
             "name": "plugins",
-            "short": "Plugins you want to enable for this request, including their settings.",
+            "title": "Plugins",
             "type": "`$ARRAY`",
-            "union": {
-              "branches": 5,
-              "count": 4,
-              "depth": 12,
-            },
+            "short": "Plugins you want to enable for this request, including their settings.",
           },
           {
             "name": "prediction",
-            "req": True,
-            "short": "Static predicted output content.",
+            "title": "Prediction",
             "type": [
               "`$ONE`",
               [
@@ -2730,16 +2755,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 2,
-            },
+            "req": True,
+            "short": "Static predicted output content.",
           },
           {
-            "format": "double",
             "name": "presence_penalty",
-            "short": "Presence penalty (-2.0 to 2.0)",
+            "title": "Presence Penalty",
             "type": [
               "`$ONE`",
               [
@@ -2747,9 +2768,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Presence penalty (-2.0 to 2.0)",
+            "format": "double",
           },
           {
             "name": "prompt_cache_key",
+            "title": "Prompt Cache Key",
             "type": [
               "`$ONE`",
               [
@@ -2760,8 +2784,7 @@ def make_config():
           },
           {
             "name": "prompt_cache_options",
-            "req": True,
-            "short": "Request-level prompt-cache controls.",
+            "title": "Prompt Cache Options",
             "type": [
               "`$ONE`",
               [
@@ -2769,10 +2792,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Request-level prompt-cache controls.",
           },
           {
             "name": "provider",
-            "short": "When multiple model providers are available, optionally indicate your routing preference.",
+            "title": "Provider",
             "type": [
               "`$ONE`",
               [
@@ -2780,20 +2805,17 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-            "union": {
-              "branches": 2,
-              "count": 6,
-              "depth": 3,
-            },
+            "short": "When multiple model providers are available, optionally indicate your routing preference.",
           },
           {
             "name": "reasoning",
-            "short": "Configuration options for reasoning models",
+            "title": "Reasoning",
             "type": "`$OBJECT`",
+            "short": "Configuration options for reasoning models",
           },
           {
             "name": "reasoning_effort",
-            "short": "Shorthand for setting reasoning effort.",
+            "title": "Reasoning Effort",
             "type": [
               "`$ONE`",
               [
@@ -2801,11 +2823,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Shorthand for setting reasoning effort.",
           },
           {
-            "format": "double",
             "name": "repetition_penalty",
-            "short": "Penalizes tokens based on how much they have already appeared in the text.",
+            "title": "Repetition Penalty",
             "type": [
               "`$ONE`",
               [
@@ -2813,16 +2835,18 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Penalizes tokens based on how much they have already appeared in the text.",
+            "format": "double",
           },
           {
             "name": "response_format",
-            "short": "Response format configuration",
+            "title": "Response Format",
             "type": "`$ANY`",
+            "short": "Response format configuration",
           },
           {
-            "deprecated": True,
             "name": "route",
-            "short": "**DEPRECATED** Use providers.sort.partition instead.",
+            "title": "Route",
             "type": [
               "`$ONE`",
               [
@@ -2830,10 +2854,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "**DEPRECATED** Use providers.sort.partition instead.",
+            "deprecated": True,
           },
           {
             "name": "seed",
-            "short": "Random seed for deterministic outputs",
+            "title": "Seed",
             "type": [
               "`$ONE`",
               [
@@ -2841,10 +2867,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Random seed for deterministic outputs",
           },
           {
             "name": "service_tier",
-            "short": "The service tier used by the upstream provider for this request",
+            "title": "Service Tier",
             "type": [
               "`$ONE`",
               [
@@ -2852,35 +2879,35 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "The service tier used by the upstream provider for this request",
           },
           {
             "name": "session_id",
-            "short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
+            "title": "Session Id",
             "type": "`$STRING`",
+            "short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
           },
           {
             "name": "stop",
-            "short": "Stop sequences (up to 4)",
+            "title": "Stop",
             "type": "`$ANY`",
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 0,
-            },
+            "short": "Stop sequences (up to 4)",
           },
           {
             "name": "stop_server_tools_when",
-            "short": "Stop conditions for the server-tool agent loop.",
+            "title": "Stop Server Tools When",
             "type": "`$ARRAY`",
+            "short": "Stop conditions for the server-tool agent loop.",
           },
           {
             "name": "stream",
-            "short": "Enable streaming response",
+            "title": "Stream",
             "type": "`$BOOLEAN`",
+            "short": "Enable streaming response",
           },
           {
             "name": "stream_options",
-            "short": "Streaming configuration options",
+            "title": "Stream Options",
             "type": [
               "`$ONE`",
               [
@@ -2888,11 +2915,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Streaming configuration options",
           },
           {
             "name": "system_fingerprint",
-            "req": True,
-            "short": "System fingerprint",
+            "title": "System Fingerprint",
             "type": [
               "`$ONE`",
               [
@@ -2900,11 +2927,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "System fingerprint",
           },
           {
-            "format": "double",
             "name": "temperature",
-            "short": "Sampling temperature (0-2)",
+            "title": "Temperature",
             "type": [
               "`$ONE`",
               [
@@ -2912,31 +2940,24 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Sampling temperature (0-2)",
+            "format": "double",
           },
           {
             "name": "tool_choice",
-            "short": "Tool choice configuration",
+            "title": "Tool Choice",
             "type": "`$ANY`",
-            "union": {
-              "branches": 5,
-              "count": 1,
-              "depth": 0,
-            },
+            "short": "Tool choice configuration",
           },
           {
             "name": "tools",
-            "short": "Available tools for function calling",
+            "title": "Tools",
             "type": "`$ARRAY`",
-            "union": {
-              "branches": 12,
-              "count": 2,
-              "depth": 6,
-            },
+            "short": "Available tools for function calling",
           },
           {
-            "format": "double",
             "name": "top_a",
-            "short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
+            "title": "Top A",
             "type": [
               "`$ONE`",
               [
@@ -2944,10 +2965,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
+            "format": "double",
           },
           {
             "name": "top_k",
-            "short": "Limits the model to choose from the top K most likely tokens at each step.",
+            "title": "Top K",
             "type": [
               "`$ONE`",
               [
@@ -2955,10 +2978,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Limits the model to choose from the top K most likely tokens at each step.",
           },
           {
             "name": "top_logprobs",
-            "short": "Number of top log probabilities to return (0-20)",
+            "title": "Top Logprobs",
             "type": [
               "`$ONE`",
               [
@@ -2966,11 +2990,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Number of top log probabilities to return (0-20)",
           },
           {
-            "format": "double",
             "name": "top_p",
-            "short": "Nucleus sampling parameter (0-1)",
+            "title": "Top P",
             "type": [
               "`$ONE`",
               [
@@ -2978,22 +3002,27 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Nucleus sampling parameter (0-1)",
+            "format": "double",
           },
           {
             "name": "trace",
-            "short": "Metadata for observability and tracing.",
+            "title": "Trace",
             "type": "`$OBJECT`",
+            "short": "Metadata for observability and tracing.",
           },
           {
             "name": "usage",
+            "title": "Usage",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Token usage statistics",
-            "type": "`$OBJECT`",
           },
           {
             "name": "user",
-            "short": "Unique user identifier",
+            "title": "User",
             "type": "`$STRING`",
+            "short": "Unique user identifier",
           },
         ],
         "id": {
@@ -3007,35 +3036,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "enabled",
-                      "kind": "header",
-                      "name": "x_open_router_metadata",
-                      "orig": "x_open_router_metadata",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/chat/completions",
@@ -3047,6 +3047,44 @@ def make_config():
                     "lit": "completions",
                   },
                 ],
+                "parts": [
+                  "chat",
+                  "completions",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_metadata",
+                      "orig": "x_open_router_metadata",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                      "example": "enabled",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -3055,269 +3093,32 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "chat",
-                  "completions",
-                ],
               },
             ],
           },
         },
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "code": {
-        "fields": [],
-        "name": "code",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "coinbase": {
-        "fields": [],
-        "name": "coinbase",
-        "op": {},
         "relations": {
           "ancestors": [],
         },
       },
       "completion": {
-        "fields": [],
-        "name": "completion",
-        "op": {},
-        "relations": {
-          "ancestors": [
-            [
-              "preset",
-            ],
-          ],
-        },
-      },
-      "content": {
-        "fields": [],
-        "name": "content",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "count": {
-        "fields": [],
-        "name": "count",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "create_byok_key": {
-        "fields": [],
-        "name": "create_byok_key",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "create_guardrail": {
-        "fields": [],
-        "name": "create_guardrail",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "create_observability_destination": {
         "fields": [
-          {
-            "name": "api_key_hashes",
-            "short": "Optional allowlist of OpenRouter API key hashes whose traffic is forwarded.",
-            "type": [
-              "`$ONE`",
-              [
-                "`$ARRAY`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
-            "name": "config",
-            "req": True,
-            "short": "Provider-specific configuration.",
-            "type": "`$OBJECT`",
-          },
-          {
-            "name": "enabled",
-            "short": "Whether this destination should be enabled immediately.",
-            "type": "`$BOOLEAN`",
-          },
-          {
-            "name": "filter_rules",
-            "req": True,
-            "short": "Optional structured filter rules controlling which events are forwarded.",
-            "type": [
-              "`$ONE`",
-              [
-                "`$OBJECT`",
-                "`$NULL`",
-              ],
-            ],
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 8,
-            },
-          },
-          {
-            "name": "name",
-            "req": True,
-            "short": "Human-readable name for the destination.",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "privacy_mode",
-            "short": "When true, request/response bodies are not forwarded — only metadata.",
-            "type": "`$BOOLEAN`",
-          },
-          {
-            "format": "double",
-            "name": "sampling_rate",
-            "short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
-            "type": "`$NUMBER`",
-          },
-          {
-            "name": "type",
-            "req": True,
-            "short": "The destination type.",
-            "type": "`$STRING`",
-          },
-          {
-            "format": "uuid",
-            "name": "workspace_id",
-            "short": "Optional workspace ID.",
-            "type": "`$STRING`",
-          },
-        ],
-        "name": "create_observability_destination",
-        "op": {
-          "create": {
-            "input": "data",
-            "name": "create",
-            "points": [
-              {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "POST",
-                "orig": "/observability/destinations",
-                "segments": [
-                  {
-                    "lit": "observability",
-                  },
-                  {
-                    "lit": "destinations",
-                  },
-                ],
-                "select": {
-                  "exist": [
-                    "http_referer",
-                    "x_open_router_category",
-                    "x_open_router_title",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "observability",
-                  "destinations",
-                ],
-              },
-            ],
-          },
-        },
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "create_preset_from_inference": {
-        "fields": [
-          {
-            "name": "background",
-            "type": [
-              "`$ONE`",
-              [
-                "`$BOOLEAN`",
-                "`$NULL`",
-              ],
-            ],
-          },
           {
             "name": "cache_control",
+            "title": "Cache Control",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Enable automatic prompt caching.",
-            "type": "`$OBJECT`",
-          },
-          {
-            "name": "context_management",
-            "type": [
-              "`$ONE`",
-              [
-                "`$OBJECT`",
-                "`$NULL`",
-              ],
-            ],
-            "union": {
-              "branches": 3,
-              "count": 3,
-              "depth": 7,
-            },
           },
           {
             "name": "debug",
-            "short": "Debug options for inspecting request transformations (streaming only)",
+            "title": "Debug",
             "type": "`$OBJECT`",
+            "short": "Debug options for inspecting request transformations (streaming only)",
           },
           {
-            "name": "fallbacks",
-            "short": "Fallback models to try if the primary model fails or refuses, in order.",
-            "type": [
-              "`$ONE`",
-              [
-                "`$ARRAY`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
-            "format": "double",
             "name": "frequency_penalty",
-            "short": "Frequency penalty (-2.0 to 2.0)",
+            "title": "Frequency Penalty",
             "type": [
               "`$ONE`",
               [
@@ -3325,50 +3126,18 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Frequency penalty (-2.0 to 2.0)",
+            "format": "double",
           },
           {
             "name": "image_config",
-            "short": "Provider-specific image configuration options.",
+            "title": "Image Config",
             "type": "`$OBJECT`",
-            "union": {
-              "branches": 3,
-              "count": 1,
-              "depth": 1,
-            },
-          },
-          {
-            "name": "include",
-            "type": [
-              "`$ONE`",
-              [
-                "`$ARRAY`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
-            "name": "input",
-            "short": "Input for a response request - can be a string or array of items",
-            "type": "`$ANY`",
-            "union": {
-              "branches": 49,
-              "count": 35,
-              "depth": 19,
-            },
-          },
-          {
-            "name": "instructions",
-            "type": [
-              "`$ONE`",
-              [
-                "`$STRING`",
-                "`$NULL`",
-              ],
-            ],
+            "short": "Provider-specific image configuration options.",
           },
           {
             "name": "logit_bias",
-            "short": "Token logit bias adjustments",
+            "title": "Logit Bias",
             "type": [
               "`$ONE`",
               [
@@ -3376,10 +3145,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Token logit bias adjustments",
           },
           {
             "name": "logprobs",
-            "short": "Return log probabilities",
+            "title": "Logprobs",
             "type": [
               "`$ONE`",
               [
@@ -3387,69 +3157,48 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Return log probabilities",
           },
           {
             "name": "max_completion_tokens",
+            "title": "Max Completion Tokens",
+            "type": [
+              "`$ONE`",
+              [
+                "`$INTEGER`",
+                "`$NULL`",
+              ],
+            ],
             "short": "Maximum tokens in completion",
-            "type": [
-              "`$ONE`",
-              [
-                "`$INTEGER`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
-            "name": "max_output_tokens",
-            "type": [
-              "`$ONE`",
-              [
-                "`$INTEGER`",
-                "`$NULL`",
-              ],
-            ],
           },
           {
             "name": "max_tokens",
+            "title": "Max Tokens",
+            "type": [
+              "`$ONE`",
+              [
+                "`$INTEGER`",
+                "`$NULL`",
+              ],
+            ],
             "short": "Maximum tokens (deprecated, use max_completion_tokens).",
-            "type": [
-              "`$ONE`",
-              [
-                "`$INTEGER`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
-            "name": "max_tool_calls",
-            "type": [
-              "`$ONE`",
-              [
-                "`$INTEGER`",
-                "`$NULL`",
-              ],
-            ],
           },
           {
             "name": "messages",
+            "title": "Messages",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of messages for the conversation",
-            "type": "`$ARRAY`",
-            "union": {
-              "branches": 2,
-              "count": 5,
-              "depth": 5,
-            },
           },
           {
             "name": "metadata",
-            "short": "Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values)",
+            "title": "Metadata",
             "type": "`$OBJECT`",
+            "short": "Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values)",
           },
           {
-            "format": "double",
             "name": "min_p",
-            "short": "Minimum probability threshold relative to the most likely token.",
+            "title": "Min P",
             "type": [
               "`$ONE`",
               [
@@ -3457,36 +3206,30 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Minimum probability threshold relative to the most likely token.",
+            "format": "double",
           },
           {
             "name": "modalities",
-            "short": "Output modalities for the response.",
+            "title": "Modalities",
             "type": "`$ARRAY`",
+            "short": "Output modalities for the response.",
           },
           {
             "name": "model",
-            "op": {
-              "create": {
-                "req": True,
-                "type": "`$STRING`",
-              },
-            },
-            "short": "Model to use for completion",
+            "title": "Model",
             "type": "`$STRING`",
+            "short": "Model to use for completion",
           },
           {
             "name": "models",
-            "short": "Models to use for completion",
+            "title": "Models",
             "type": "`$ARRAY`",
-          },
-          {
-            "name": "output_config",
-            "short": "Configuration for controlling output behavior.",
-            "type": "`$OBJECT`",
+            "short": "Models to use for completion",
           },
           {
             "name": "parallel_tool_calls",
-            "short": "Whether to enable parallel function calling during tool use.",
+            "title": "Parallel Tool Calls",
             "type": [
               "`$ONE`",
               [
@@ -3494,21 +3237,17 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Whether to enable parallel function calling during tool use.",
           },
           {
             "name": "plugins",
-            "short": "Plugins you want to enable for this request, including their settings.",
+            "title": "Plugins",
             "type": "`$ARRAY`",
-            "union": {
-              "branches": 5,
-              "count": 4,
-              "depth": 12,
-            },
+            "short": "Plugins you want to enable for this request, including their settings.",
           },
           {
             "name": "prediction",
-            "req": True,
-            "short": "Static predicted output content.",
+            "title": "Prediction",
             "type": [
               "`$ONE`",
               [
@@ -3516,16 +3255,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 2,
-            },
+            "req": True,
+            "short": "Static predicted output content.",
           },
           {
-            "format": "double",
             "name": "presence_penalty",
-            "short": "Presence penalty (-2.0 to 2.0)",
+            "title": "Presence Penalty",
             "type": [
               "`$ONE`",
               [
@@ -3533,30 +3268,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-          },
-          {
-            "name": "previous_response_id",
-            "short": "Not supported.",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "prompt",
-            "req": True,
-            "type": [
-              "`$ONE`",
-              [
-                "`$OBJECT`",
-                "`$NULL`",
-              ],
-            ],
-            "union": {
-              "branches": 4,
-              "count": 1,
-              "depth": 3,
-            },
+            "short": "Presence penalty (-2.0 to 2.0)",
+            "format": "double",
           },
           {
             "name": "prompt_cache_key",
+            "title": "Prompt Cache Key",
             "type": [
               "`$ONE`",
               [
@@ -3567,8 +3284,7 @@ def make_config():
           },
           {
             "name": "prompt_cache_options",
-            "req": True,
-            "short": "Request-level prompt-cache controls.",
+            "title": "Prompt Cache Options",
             "type": [
               "`$ONE`",
               [
@@ -3576,10 +3292,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Request-level prompt-cache controls.",
           },
           {
             "name": "provider",
-            "short": "When multiple model providers are available, optionally indicate your routing preference.",
+            "title": "Provider",
             "type": [
               "`$ONE`",
               [
@@ -3587,20 +3305,17 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-            "union": {
-              "branches": 2,
-              "count": 6,
-              "depth": 3,
-            },
+            "short": "When multiple model providers are available, optionally indicate your routing preference.",
           },
           {
             "name": "reasoning",
-            "short": "Configuration options for reasoning models",
+            "title": "Reasoning",
             "type": "`$OBJECT`",
+            "short": "Configuration options for reasoning models",
           },
           {
             "name": "reasoning_effort",
-            "short": "Shorthand for setting reasoning effort.",
+            "title": "Reasoning Effort",
             "type": [
               "`$ONE`",
               [
@@ -3608,11 +3323,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Shorthand for setting reasoning effort.",
           },
           {
-            "format": "double",
             "name": "repetition_penalty",
-            "short": "Penalizes tokens based on how much they have already appeared in the text.",
+            "title": "Repetition Penalty",
             "type": [
               "`$ONE`",
               [
@@ -3620,37 +3335,31 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Penalizes tokens based on how much they have already appeared in the text.",
+            "format": "double",
           },
           {
             "name": "response_format",
-            "short": "Response format configuration",
+            "title": "Response Format",
             "type": "`$ANY`",
+            "short": "Response format configuration",
           },
           {
-            "deprecated": True,
             "name": "route",
+            "title": "Route",
+            "type": [
+              "`$ONE`",
+              [
+                "`$STRING`",
+                "`$NULL`",
+              ],
+            ],
             "short": "**DEPRECATED** Use providers.sort.partition instead.",
-            "type": [
-              "`$ONE`",
-              [
-                "`$STRING`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
-            "name": "safety_identifier",
-            "type": [
-              "`$ONE`",
-              [
-                "`$STRING`",
-                "`$NULL`",
-              ],
-            ],
+            "deprecated": True,
           },
           {
             "name": "seed",
-            "short": "Random seed for deterministic outputs",
+            "title": "Seed",
             "type": [
               "`$ONE`",
               [
@@ -3658,10 +3367,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Random seed for deterministic outputs",
           },
           {
             "name": "service_tier",
-            "short": "The service tier to use for processing this request.",
+            "title": "Service Tier",
             "type": [
               "`$ONE`",
               [
@@ -3669,47 +3379,35 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "The service tier to use for processing this request.",
           },
           {
             "name": "session_id",
-            "short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
+            "title": "Session Id",
             "type": "`$STRING`",
-          },
-          {
-            "name": "speed",
-            "type": "`$ANY`",
+            "short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
           },
           {
             "name": "stop",
-            "short": "Stop sequences (up to 4)",
+            "title": "Stop",
             "type": "`$ANY`",
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 0,
-            },
-          },
-          {
-            "name": "stop_sequences",
-            "type": "`$ARRAY`",
+            "short": "Stop sequences (up to 4)",
           },
           {
             "name": "stop_server_tools_when",
-            "short": "Stop conditions for the server-tool agent loop.",
+            "title": "Stop Server Tools When",
             "type": "`$ARRAY`",
-          },
-          {
-            "name": "store",
-            "type": "`$BOOLEAN`",
+            "short": "Stop conditions for the server-tool agent loop.",
           },
           {
             "name": "stream",
-            "short": "Enable streaming response",
+            "title": "Stream",
             "type": "`$BOOLEAN`",
+            "short": "Enable streaming response",
           },
           {
             "name": "stream_options",
-            "short": "Streaming configuration options",
+            "title": "Stream Options",
             "type": [
               "`$ONE`",
               [
@@ -3717,20 +3415,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Streaming configuration options",
           },
           {
-            "name": "system",
-            "type": "`$ANY`",
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 0,
-            },
-          },
-          {
-            "format": "double",
             "name": "temperature",
-            "short": "Sampling temperature (0-2)",
+            "title": "Temperature",
             "type": [
               "`$ONE`",
               [
@@ -3738,50 +3427,24 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-          },
-          {
-            "name": "text",
-            "short": "Text output configuration including format and verbosity",
-            "type": "`$ANY`",
-            "union": {
-              "branches": 3,
-              "count": 1,
-              "depth": 4,
-            },
-          },
-          {
-            "name": "thinking",
-            "type": "`$ANY`",
-            "union": {
-              "branches": 3,
-              "count": 1,
-              "depth": 0,
-            },
+            "short": "Sampling temperature (0-2)",
+            "format": "double",
           },
           {
             "name": "tool_choice",
-            "short": "Tool choice configuration",
+            "title": "Tool Choice",
             "type": "`$ANY`",
-            "union": {
-              "branches": 5,
-              "count": 1,
-              "depth": 0,
-            },
+            "short": "Tool choice configuration",
           },
           {
             "name": "tools",
-            "short": "Available tools for function calling",
+            "title": "Tools",
             "type": "`$ARRAY`",
-            "union": {
-              "branches": 12,
-              "count": 2,
-              "depth": 6,
-            },
+            "short": "Available tools for function calling",
           },
           {
-            "format": "double",
             "name": "top_a",
-            "short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
+            "title": "Top A",
             "type": [
               "`$ONE`",
               [
@@ -3789,10 +3452,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token.",
+            "format": "double",
           },
           {
             "name": "top_k",
-            "short": "Limits the model to choose from the top K most likely tokens at each step.",
+            "title": "Top K",
             "type": [
               "`$ONE`",
               [
@@ -3800,10 +3465,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Limits the model to choose from the top K most likely tokens at each step.",
           },
           {
             "name": "top_logprobs",
-            "short": "Number of top log probabilities to return (0-20)",
+            "title": "Top Logprobs",
             "type": [
               "`$ONE`",
               [
@@ -3811,11 +3477,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Number of top log probabilities to return (0-20)",
           },
           {
-            "format": "double",
             "name": "top_p",
-            "short": "Nucleus sampling parameter (0-1)",
+            "title": "Top P",
             "type": [
               "`$ONE`",
               [
@@ -3823,67 +3489,29 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Nucleus sampling parameter (0-1)",
+            "format": "double",
           },
           {
             "name": "trace",
-            "short": "Metadata for observability and tracing.",
+            "title": "Trace",
             "type": "`$OBJECT`",
-          },
-          {
-            "name": "truncation",
-            "type": [
-              "`$ONE`",
-              [
-                "`$STRING`",
-                "`$NULL`",
-              ],
-            ],
+            "short": "Metadata for observability and tracing.",
           },
           {
             "name": "user",
-            "short": "Unique user identifier",
+            "title": "User",
             "type": "`$STRING`",
+            "short": "Unique user identifier",
           },
         ],
-        "name": "create_preset_from_inference",
+        "name": "completion",
         "op": {
           "create": {
             "input": "data",
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "my-preset",
-                      "kind": "param",
-                      "name": "slug",
-                      "orig": "slug",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/presets/{slug}/chat/completions",
@@ -3901,72 +3529,49 @@ def make_config():
                     "lit": "completions",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "http_referer",
-                    "slug",
-                    "x_open_router_category",
-                    "x_open_router_title",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
                 "parts": [
                   "presets",
                   "{slug}",
                   "chat",
                   "completions",
                 ],
-              },
-              {
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
                 "args": {
                   "header": [
                     {
-                      "kind": "header",
                       "name": "http_referer",
                       "orig": "http_referer",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_category",
                       "orig": "x_open_router_category",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_title",
                       "orig": "x_open_router_title",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                   ],
                   "params": [
                     {
-                      "example": "my-preset",
-                      "kind": "param",
                       "name": "slug",
                       "orig": "slug",
-                      "reqd": True,
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "my-preset",
                     },
                   ],
                 },
-                "kind": "http",
-                "method": "POST",
-                "orig": "/presets/{slug}/messages",
-                "segments": [
-                  {
-                    "lit": "presets",
-                  },
-                  {
-                    "var": "slug",
-                  },
-                  {
-                    "lit": "messages",
-                  },
-                ],
                 "select": {
                   "exist": [
                     "http_referer",
@@ -3975,80 +3580,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "presets",
-                  "{slug}",
-                  "messages",
-                ],
-              },
-              {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "my-preset",
-                      "kind": "param",
-                      "name": "slug",
-                      "orig": "slug",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "POST",
-                "orig": "/presets/{slug}/responses",
-                "segments": [
-                  {
-                    "lit": "presets",
-                  },
-                  {
-                    "var": "slug",
-                  },
-                  {
-                    "lit": "responses",
-                  },
-                ],
-                "select": {
-                  "exist": [
-                    "http_referer",
-                    "slug",
-                    "x_open_router_category",
-                    "x_open_router_title",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "presets",
-                  "{slug}",
-                  "responses",
-                ],
               },
             ],
           },
@@ -4056,15 +3587,146 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "preset",
+              "$.main.kit.entity.preset",
             ],
           ],
         },
       },
-      "create_workspace": {
-        "fields": [],
-        "name": "create_workspace",
-        "op": {},
+      "create_observability_destination": {
+        "fields": [
+          {
+            "name": "api_key_hashes",
+            "title": "Api Key Hashes",
+            "type": [
+              "`$ONE`",
+              [
+                "`$ARRAY`",
+                "`$NULL`",
+              ],
+            ],
+            "short": "Optional allowlist of OpenRouter API key hashes whose traffic is forwarded.",
+          },
+          {
+            "name": "config",
+            "title": "Config",
+            "type": "`$OBJECT`",
+            "req": True,
+            "short": "Provider-specific configuration.",
+          },
+          {
+            "name": "enabled",
+            "title": "Enabled",
+            "type": "`$BOOLEAN`",
+            "short": "Whether this destination should be enabled immediately.",
+          },
+          {
+            "name": "filter_rules",
+            "title": "Filter Rules",
+            "type": [
+              "`$ONE`",
+              [
+                "`$OBJECT`",
+                "`$NULL`",
+              ],
+            ],
+            "req": True,
+            "short": "Optional structured filter rules controlling which events are forwarded.",
+          },
+          {
+            "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "Human-readable name for the destination.",
+          },
+          {
+            "name": "privacy_mode",
+            "title": "Privacy Mode",
+            "type": "`$BOOLEAN`",
+            "short": "When true, request/response bodies are not forwarded — only metadata.",
+          },
+          {
+            "name": "sampling_rate",
+            "title": "Sampling Rate",
+            "type": "`$NUMBER`",
+            "short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
+            "format": "double",
+          },
+          {
+            "name": "type",
+            "title": "Type",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "The destination type.",
+          },
+          {
+            "name": "workspace_id",
+            "title": "Workspace Id",
+            "type": "`$STRING`",
+            "short": "Optional workspace ID.",
+            "format": "uuid",
+          },
+        ],
+        "name": "create_observability_destination",
+        "op": {
+          "create": {
+            "input": "data",
+            "name": "create",
+            "points": [
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/observability/destinations",
+                "segments": [
+                  {
+                    "lit": "observability",
+                  },
+                  {
+                    "lit": "destinations",
+                  },
+                ],
+                "parts": [
+                  "observability",
+                  "destinations",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "http_referer",
+                    "x_open_router_category",
+                    "x_open_router_title",
+                  ],
+                },
+              },
+            ],
+          },
+        },
         "relations": {
           "ancestors": [],
         },
@@ -4072,18 +3734,20 @@ def make_config():
       "credit": {
         "fields": [
           {
-            "format": "double",
             "name": "total_credits",
+            "title": "Total Credits",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "Total credits purchased",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "total_usage",
+            "title": "Total Usage",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "Total credits used",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
         ],
         "name": "credit",
@@ -4093,28 +3757,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/credits/coinbase",
@@ -4126,6 +3768,37 @@ def make_config():
                     "lit": "coinbase",
                   },
                 ],
+                "parts": [
+                  "credits",
+                  "coinbase",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "coinbase",
                   "exist": [
@@ -4134,14 +3807,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "credits",
-                  "coinbase",
-                ],
               },
             ],
           },
@@ -4150,28 +3815,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/credits",
@@ -4180,6 +3823,36 @@ def make_config():
                     "lit": "credits",
                   },
                 ],
+                "parts": [
+                  "credits",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -4187,13 +3860,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "credits",
-                ],
               },
             ],
           },
@@ -4202,88 +3868,76 @@ def make_config():
           "ancestors": [],
         },
       },
-      "destination": {
-        "fields": [],
-        "name": "destination",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
       "embedding": {
         "fields": [
           {
             "name": "data",
+            "title": "Data",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of embedding objects",
-            "type": "`$ARRAY`",
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 3,
-            },
           },
           {
             "name": "dimensions",
-            "short": "The number of dimensions for the output embeddings",
+            "title": "Dimensions",
             "type": "`$INTEGER`",
+            "short": "The number of dimensions for the output embeddings",
           },
           {
             "name": "encoding_format",
-            "short": "The format of the output embeddings",
+            "title": "Encoding Format",
             "type": "`$STRING`",
+            "short": "The format of the output embeddings",
           },
           {
             "name": "id",
-            "short": "Unique identifier for the embeddings response",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "Unique identifier for the embeddings response",
           },
           {
             "name": "input",
+            "title": "Input",
+            "type": "`$ANY`",
             "req": True,
             "short": "Text, token, or multimodal input(s) to embed",
-            "type": "`$ANY`",
-            "union": {
-              "branches": 5,
-              "count": 2,
-              "depth": 6,
-            },
           },
           {
             "name": "input_type",
-            "short": "The type of input (e.g.",
+            "title": "Input Type",
             "type": "`$STRING`",
+            "short": "The type of input (e.g.",
           },
           {
             "name": "model",
+            "title": "Model",
+            "type": "`$STRING`",
             "req": True,
             "short": "The model used for embeddings",
-            "type": "`$STRING`",
           },
           {
             "name": "object",
-            "req": True,
+            "title": "Object",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "provider",
+            "title": "Provider",
             "type": "`$ANY`",
-            "union": {
-              "branches": 2,
-              "count": 6,
-              "depth": 5,
-            },
           },
           {
             "name": "usage",
+            "title": "Usage",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Token usage statistics",
-            "type": "`$OBJECT`",
           },
           {
             "name": "user",
-            "short": "A unique identifier for the end-user",
+            "title": "User",
             "type": "`$STRING`",
+            "short": "A unique identifier for the end-user",
           },
         ],
         "id": {
@@ -4297,28 +3951,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/embeddings",
@@ -4327,6 +3959,36 @@ def make_config():
                     "lit": "embeddings",
                   },
                 ],
+                "parts": [
+                  "embeddings",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -4334,13 +3996,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "embeddings",
-                ],
               },
             ],
           },
@@ -4353,26 +4008,28 @@ def make_config():
         "fields": [
           {
             "name": "architecture",
+            "title": "Architecture",
+            "type": "`$ANY`",
             "req": True,
             "short": "Model architecture information",
-            "type": "`$ANY`",
           },
           {
             "name": "benchmarks",
+            "title": "Benchmarks",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Third-party benchmark rankings for this model.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "canonical_slug",
+            "title": "Canonical Slug",
+            "type": "`$STRING`",
             "req": True,
             "short": "Canonical slug for the model",
-            "type": "`$STRING`",
           },
           {
             "name": "context_length",
-            "req": True,
-            "short": "Maximum context length in tokens",
+            "title": "Context Length",
             "type": [
               "`$ONE`",
               [
@@ -4380,17 +4037,19 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Maximum context length in tokens",
           },
           {
             "name": "created",
+            "title": "Created",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Unix timestamp of when the model was created",
-            "type": "`$INTEGER`",
           },
           {
             "name": "default_parameters",
-            "req": True,
-            "short": "Default parameters for this model",
+            "title": "Default Parameters",
             "type": [
               "`$ONE`",
               [
@@ -4398,27 +4057,31 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Default parameters for this model",
           },
           {
             "name": "description",
+            "title": "Description",
+            "type": "`$STRING`",
+            "req": True,
             "op": {
               "list": {
                 "type": "`$STRING`",
               },
             },
-            "req": True,
             "short": "Description of the model",
-            "type": "`$STRING`",
           },
           {
             "name": "endpoints",
+            "title": "Endpoints",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of available endpoints for this model",
-            "type": "`$ARRAY`",
           },
           {
             "name": "expiration_date",
-            "short": "The date after which the model may be removed.",
+            "title": "Expiration Date",
             "type": [
               "`$ONE`",
               [
@@ -4426,10 +4089,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "The date after which the model may be removed.",
           },
           {
             "name": "hugging_face_id",
-            "short": "Hugging Face model identifier, if applicable",
+            "title": "Hugging Face Id",
             "type": [
               "`$ONE`",
               [
@@ -4437,16 +4101,18 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Hugging Face model identifier, if applicable",
           },
           {
             "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "Unique identifier for the model",
-            "type": "`$STRING`",
           },
           {
             "name": "knowledge_cutoff",
-            "short": "The date up to which the model was trained on data.",
+            "title": "Knowledge Cutoff",
             "type": [
               "`$ONE`",
               [
@@ -4454,23 +4120,25 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "The date up to which the model was trained on data.",
           },
           {
             "name": "links",
+            "title": "Links",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Related API endpoints and resources for this model.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
             "req": True,
             "short": "Display name of the model",
-            "type": "`$STRING`",
           },
           {
             "name": "per_request_limits",
-            "req": True,
-            "short": "Per-request token limits",
+            "title": "Per Request Limits",
             "type": [
               "`$ONE`",
               [
@@ -4478,29 +4146,33 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Per-request token limits",
           },
           {
             "name": "pricing",
+            "title": "Pricing",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Pricing information for the model",
-            "type": "`$OBJECT`",
           },
           {
             "name": "reasoning",
+            "title": "Reasoning",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Reasoning effort configuration.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "supported_parameters",
+            "title": "Supported Parameters",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of supported parameters for this model",
-            "type": "`$ARRAY`",
           },
           {
             "name": "supported_voices",
-            "req": True,
-            "short": "List of supported voice identifiers for TTS models.",
+            "title": "Supported Voices",
             "type": [
               "`$ONE`",
               [
@@ -4508,12 +4180,15 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "List of supported voice identifiers for TTS models.",
           },
           {
             "name": "top_provider",
+            "title": "Top Provider",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Information about the top provider for this model",
-            "type": "`$OBJECT`",
           },
         ],
         "id": {
@@ -4527,73 +4202,87 @@ def make_config():
             "name": "list",
             "points": [
               {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/models",
+                "segments": [
+                  {
+                    "lit": "models",
+                  },
+                ],
+                "parts": [
+                  "models",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "header": [
                     {
-                      "kind": "header",
                       "name": "http_referer",
                       "orig": "http_referer",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_category",
                       "orig": "x_open_router_category",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_title",
                       "orig": "x_open_router_title",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                   ],
                   "query": [
                     {
-                      "example": "GPT",
-                      "kind": "query",
                       "name": "arch",
                       "orig": "arch",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "GPT",
                     },
                     {
-                      "example": "programming",
-                      "kind": "query",
                       "name": "category",
                       "orig": "category",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "programming",
                     },
                     {
-                      "example": 128000,
-                      "kind": "query",
                       "name": "context",
                       "orig": "context",
                       "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 128000,
                     },
                     {
-                      "example": "true",
-                      "kind": "query",
                       "name": "distillable",
                       "orig": "distillable",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "true",
                     },
                     {
-                      "example": "text,image",
-                      "kind": "query",
                       "name": "input_modality",
                       "orig": "input_modality",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "text,image",
                     },
                     {
-                      "example": 500,
-                      "kind": "query",
                       "name": "limit",
                       "orig": "limit",
                       "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 500,
                     },
                     {
-                      "example": 90,
-                      "kind": "query",
                       "name": "max_age_day",
                       "orig": "max_age_day",
                       "type": [
@@ -4603,10 +4292,10 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 90,
                     },
                     {
-                      "example": 100,
-                      "kind": "query",
                       "name": "max_agentic_index",
                       "orig": "max_agentic_index",
                       "type": [
@@ -4616,10 +4305,10 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 100,
                     },
                     {
-                      "example": 100,
-                      "kind": "query",
                       "name": "max_coding_index",
                       "orig": "max_coding_index",
                       "type": [
@@ -4629,10 +4318,10 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 100,
                     },
                     {
-                      "example": 100,
-                      "kind": "query",
                       "name": "max_intelligence_index",
                       "orig": "max_intelligence_index",
                       "type": [
@@ -4642,10 +4331,10 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 100,
                     },
                     {
-                      "example": 10,
-                      "kind": "query",
                       "name": "max_output_price",
                       "orig": "max_output_price",
                       "type": [
@@ -4655,10 +4344,10 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 10,
                     },
                     {
-                      "example": 10,
-                      "kind": "query",
                       "name": "max_price",
                       "orig": "max_price",
                       "type": [
@@ -4668,10 +4357,10 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 10,
                     },
                     {
-                      "example": 1,
-                      "kind": "query",
                       "name": "max_tool_success_rate",
                       "orig": "max_tool_success_rate",
                       "type": [
@@ -4681,10 +4370,10 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 1,
                     },
                     {
-                      "example": 0,
-                      "kind": "query",
                       "name": "min_age_day",
                       "orig": "min_age_day",
                       "type": [
@@ -4694,10 +4383,10 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 0,
                     },
                     {
-                      "example": 50,
-                      "kind": "query",
                       "name": "min_agentic_index",
                       "orig": "min_agentic_index",
                       "type": [
@@ -4707,10 +4396,10 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 50,
                     },
                     {
-                      "example": 50,
-                      "kind": "query",
                       "name": "min_coding_index",
                       "orig": "min_coding_index",
                       "type": [
@@ -4720,10 +4409,10 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 50,
                     },
                     {
-                      "example": 50,
-                      "kind": "query",
                       "name": "min_intelligence_index",
                       "orig": "min_intelligence_index",
                       "type": [
@@ -4733,10 +4422,10 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 50,
                     },
                     {
-                      "example": 0,
-                      "kind": "query",
                       "name": "min_output_price",
                       "orig": "min_output_price",
                       "type": [
@@ -4746,10 +4435,10 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 0,
                     },
                     {
-                      "example": 0,
-                      "kind": "query",
                       "name": "min_price",
                       "orig": "min_price",
                       "type": [
@@ -4759,10 +4448,10 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 0,
                     },
                     {
-                      "example": 0.9,
-                      "kind": "query",
                       "name": "min_tool_success_rate",
                       "orig": "min_tool_success_rate",
                       "type": [
@@ -4772,17 +4461,17 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 0.9,
                     },
                     {
-                      "example": "openai,anthropic",
-                      "kind": "query",
                       "name": "model_author",
                       "orig": "model_author",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "openai,anthropic",
                     },
                     {
-                      "example": 0,
-                      "kind": "query",
                       "name": "offset",
                       "orig": "offset",
                       "type": [
@@ -4792,66 +4481,60 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 0,
                     },
                     {
-                      "example": "text",
-                      "kind": "query",
                       "name": "output_modality",
                       "orig": "output_modality",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "text",
                     },
                     {
-                      "example": "OpenAI,Anthropic",
-                      "kind": "query",
                       "name": "provider",
                       "orig": "provider",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "OpenAI,Anthropic",
                     },
                     {
-                      "example": "gpt-4",
-                      "kind": "query",
                       "name": "q",
                       "orig": "q",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "gpt-4",
                     },
                     {
-                      "example": "eu",
-                      "kind": "query",
                       "name": "region",
                       "orig": "region",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "eu",
                     },
                     {
-                      "example": "newest",
-                      "kind": "query",
                       "name": "sort",
                       "orig": "sort",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "newest",
                     },
                     {
-                      "example": "temperature",
-                      "kind": "query",
                       "name": "supported_parameter",
                       "orig": "supported_parameter",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "temperature",
                     },
                     {
-                      "example": "true",
-                      "kind": "query",
                       "name": "zdr",
                       "orig": "zdr",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "true",
                     },
                   ],
                 },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/models",
-                "segments": [
-                  {
-                    "lit": "models",
-                  },
-                ],
                 "select": {
                   "exist": [
                     "arch",
@@ -4888,37 +4571,8 @@ def make_config():
                     "zdr",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "models",
-                ],
               },
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/endpoints/zdr",
@@ -4930,6 +4584,37 @@ def make_config():
                     "lit": "zdr",
                   },
                 ],
+                "parts": [
+                  "endpoints",
+                  "zdr",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "zdr",
                   "exist": [
@@ -4938,14 +4623,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "endpoints",
-                  "zdr",
-                ],
               },
             ],
           },
@@ -4954,46 +4631,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "openai",
-                      "kind": "param",
-                      "name": "author",
-                      "orig": "author",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "gpt-4",
-                      "kind": "param",
-                      "name": "slug",
-                      "orig": "slug",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/models/{author}/{slug}/endpoints",
@@ -5011,6 +4648,57 @@ def make_config():
                     "lit": "endpoints",
                   },
                 ],
+                "parts": [
+                  "models",
+                  "{author}",
+                  "{slug}",
+                  "endpoints",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "author",
+                      "orig": "author",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "openai",
+                    },
+                    {
+                      "name": "slug",
+                      "orig": "slug",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "gpt-4",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "author",
@@ -5020,16 +4708,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "models",
-                  "{author}",
-                  "{slug}",
-                  "endpoints",
-                ],
               },
             ],
           },
@@ -5037,55 +4715,54 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "model",
+              "$.main.kit.entity.model",
             ],
           ],
-        },
-      },
-      "feedback": {
-        "fields": [],
-        "name": "feedback",
-        "op": {},
-        "relations": {
-          "ancestors": [],
         },
       },
       "file": {
         "fields": [
           {
             "name": "created_at",
-            "req": True,
+            "title": "Created At",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "downloadable",
-            "req": True,
+            "title": "Downloadable",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "filename",
-            "req": True,
+            "title": "Filename",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "id",
-            "req": True,
+            "title": "Id",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "mime_type",
-            "req": True,
+            "title": "Mime Type",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "size_bytes",
-            "req": True,
+            "title": "Size Bytes",
             "type": "`$INTEGER`",
+            "req": True,
           },
           {
             "name": "type",
-            "req": True,
+            "title": "Type",
             "type": "`$STRING`",
+            "req": True,
           },
         ],
         "id": {
@@ -5099,37 +4776,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
-                      "kind": "query",
-                      "name": "workspace_id",
-                      "orig": "workspace_id",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/files",
@@ -5138,6 +4784,45 @@ def make_config():
                     "lit": "files",
                   },
                 ],
+                "parts": [
+                  "files",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "workspace_id",
+                      "orig": "workspace_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -5146,13 +4831,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "files",
-                ],
               },
             ],
           },
@@ -5161,51 +4839,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "eyJjdXJzb3IiOiJmaWxlXzAxMUNOaGE4aUNKY1Uxd1hOUjZxNFY4dyJ9",
-                      "kind": "query",
-                      "name": "cursor",
-                      "orig": "cursor",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 100,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
-                      "kind": "query",
-                      "name": "workspace_id",
-                      "orig": "workspace_id",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/files",
@@ -5214,6 +4847,59 @@ def make_config():
                     "lit": "files",
                   },
                 ],
+                "parts": [
+                  "files",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "cursor",
+                      "orig": "cursor",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "eyJjdXJzb3IiOiJmaWxlXzAxMUNOaGE4aUNKY1Uxd1hOUjZxNFY4dyJ9",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 100,
+                    },
+                    {
+                      "name": "workspace_id",
+                      "orig": "workspace_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "cursor",
@@ -5224,13 +4910,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "files",
-                ],
               },
             ],
           },
@@ -5239,55 +4918,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "file_011CNha8iCJcU1wXNR6q4V8w",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "file_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
-                      "kind": "query",
-                      "name": "workspace_id",
-                      "orig": "workspace_id",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/files/{file_id}",
-                "rename": {
-                  "param": {
-                    "file_id": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "files",
@@ -5296,6 +4929,60 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "files",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "file_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "file_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "file_011CNha8iCJcU1wXNR6q4V8w",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "workspace_id",
+                      "orig": "workspace_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -5305,65 +4992,11 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "files",
-                  "{id}",
-                ],
               },
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "file_011CNha8iCJcU1wXNR6q4V8w",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "file_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
-                      "kind": "query",
-                      "name": "workspace_id",
-                      "orig": "workspace_id",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/files/{file_id}/content",
-                "rename": {
-                  "param": {
-                    "file_id": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "files",
@@ -5375,6 +5008,61 @@ def make_config():
                     "lit": "content",
                   },
                 ],
+                "parts": [
+                  "files",
+                  "{id}",
+                  "content",
+                ],
+                "rename": {
+                  "param": {
+                    "file_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "file_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "file_011CNha8iCJcU1wXNR6q4V8w",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "workspace_id",
+                      "orig": "workspace_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "content",
                   "exist": [
@@ -5385,15 +5073,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "files",
-                  "{id}",
-                  "content",
-                ],
               },
             ],
           },
@@ -5402,55 +5081,9 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "file_011CNha8iCJcU1wXNR6q4V8w",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "file_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
-                      "kind": "query",
-                      "name": "workspace_id",
-                      "orig": "workspace_id",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/files/{file_id}",
-                "rename": {
-                  "param": {
-                    "file_id": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "files",
@@ -5459,6 +5092,60 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "files",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "file_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "file_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "file_011CNha8iCJcU1wXNR6q4V8w",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "workspace_id",
+                      "orig": "workspace_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "a103d8b6-42f0-4e50-9a3c-bf41e2c3c1a7",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -5468,14 +5155,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "files",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -5488,8 +5167,7 @@ def make_config():
         "fields": [
           {
             "name": "api_type",
-            "req": True,
-            "short": "Type of API used for the generation",
+            "title": "Api Type",
             "type": [
               "`$ONE`",
               [
@@ -5497,11 +5175,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Type of API used for the generation",
           },
           {
             "name": "app_id",
-            "req": True,
-            "short": "ID of the app that made the request",
+            "title": "App Id",
             "type": [
               "`$ONE`",
               [
@@ -5509,12 +5188,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "ID of the app that made the request",
           },
           {
-            "format": "double",
             "name": "cache_discount",
-            "req": True,
-            "short": "Discount applied due to caching",
+            "title": "Cache Discount",
             "type": [
               "`$ONE`",
               [
@@ -5522,11 +5201,13 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Discount applied due to caching",
+            "format": "double",
           },
           {
             "name": "cancelled",
-            "req": True,
-            "short": "Whether the generation was cancelled",
+            "title": "Cancelled",
             "type": [
               "`$ONE`",
               [
@@ -5534,23 +5215,26 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Whether the generation was cancelled",
           },
           {
             "name": "created_at",
+            "title": "Created At",
+            "type": "`$STRING`",
             "req": True,
             "short": "ISO 8601 timestamp of when the generation was created",
-            "type": "`$STRING`",
           },
           {
             "name": "data_region",
+            "title": "Data Region",
+            "type": "`$STRING`",
             "req": True,
             "short": "The data region this generation was routed through.",
-            "type": "`$STRING`",
           },
           {
             "name": "external_user",
-            "req": True,
-            "short": "External user identifier",
+            "title": "External User",
             "type": [
               "`$ONE`",
               [
@@ -5558,11 +5242,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "External user identifier",
           },
           {
             "name": "finish_reason",
-            "req": True,
-            "short": "Reason the generation finished",
+            "title": "Finish Reason",
             "type": [
               "`$ONE`",
               [
@@ -5570,12 +5255,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Reason the generation finished",
           },
           {
-            "format": "double",
             "name": "generation_time",
-            "req": True,
-            "short": "Time taken for generation in milliseconds",
+            "title": "Generation Time",
             "type": [
               "`$ONE`",
               [
@@ -5583,11 +5268,13 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Time taken for generation in milliseconds",
+            "format": "double",
           },
           {
             "name": "http_referer",
-            "req": True,
-            "short": "Referer header from the request",
+            "title": "Http Referer",
             "type": [
               "`$ONE`",
               [
@@ -5595,24 +5282,26 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Referer header from the request",
           },
           {
             "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "Unique identifier for the generation",
-            "type": "`$STRING`",
           },
           {
             "name": "is_byok",
+            "title": "Is Byok",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Whether this used bring-your-own-key",
-            "type": "`$BOOLEAN`",
           },
           {
-            "format": "double",
             "name": "latency",
-            "req": True,
-            "short": "Total latency in milliseconds",
+            "title": "Latency",
             "type": [
               "`$ONE`",
               [
@@ -5620,18 +5309,20 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Total latency in milliseconds",
+            "format": "double",
           },
           {
             "name": "model",
+            "title": "Model",
+            "type": "`$STRING`",
             "req": True,
             "short": "Model used for the generation",
-            "type": "`$STRING`",
           },
           {
-            "format": "double",
             "name": "moderation_latency",
-            "req": True,
-            "short": "Moderation latency in milliseconds",
+            "title": "Moderation Latency",
             "type": [
               "`$ONE`",
               [
@@ -5639,11 +5330,13 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Moderation latency in milliseconds",
+            "format": "double",
           },
           {
             "name": "native_finish_reason",
-            "req": True,
-            "short": "Native finish reason as reported by provider",
+            "title": "Native Finish Reason",
             "type": [
               "`$ONE`",
               [
@@ -5651,11 +5344,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Native finish reason as reported by provider",
           },
           {
             "name": "native_tokens_cached",
-            "req": True,
-            "short": "Native cached tokens as reported by provider",
+            "title": "Native Tokens Cached",
             "type": [
               "`$ONE`",
               [
@@ -5663,11 +5357,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Native cached tokens as reported by provider",
           },
           {
             "name": "native_tokens_completion",
-            "req": True,
-            "short": "Native completion tokens as reported by provider",
+            "title": "Native Tokens Completion",
             "type": [
               "`$ONE`",
               [
@@ -5675,11 +5370,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Native completion tokens as reported by provider",
           },
           {
             "name": "native_tokens_completion_images",
-            "req": True,
-            "short": "Native completion image tokens as reported by provider",
+            "title": "Native Tokens Completion Images",
             "type": [
               "`$ONE`",
               [
@@ -5687,11 +5383,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Native completion image tokens as reported by provider",
           },
           {
             "name": "native_tokens_prompt",
-            "req": True,
-            "short": "Native prompt tokens as reported by provider",
+            "title": "Native Tokens Prompt",
             "type": [
               "`$ONE`",
               [
@@ -5699,11 +5396,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Native prompt tokens as reported by provider",
           },
           {
             "name": "native_tokens_reasoning",
-            "req": True,
-            "short": "Native reasoning tokens as reported by provider",
+            "title": "Native Tokens Reasoning",
             "type": [
               "`$ONE`",
               [
@@ -5711,11 +5409,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Native reasoning tokens as reported by provider",
           },
           {
             "name": "num_fetches",
-            "req": True,
-            "short": "Number of web fetches performed",
+            "title": "Num Fetches",
             "type": [
               "`$ONE`",
               [
@@ -5723,11 +5422,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Number of web fetches performed",
           },
           {
             "name": "num_input_audio_prompt",
-            "req": True,
-            "short": "Number of audio inputs in the prompt",
+            "title": "Num Input Audio Prompt",
             "type": [
               "`$ONE`",
               [
@@ -5735,11 +5435,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Number of audio inputs in the prompt",
           },
           {
             "name": "num_media_completion",
-            "req": True,
-            "short": "Number of media items in the completion",
+            "title": "Num Media Completion",
             "type": [
               "`$ONE`",
               [
@@ -5747,11 +5448,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Number of media items in the completion",
           },
           {
             "name": "num_media_prompt",
-            "req": True,
-            "short": "Number of media items in the prompt",
+            "title": "Num Media Prompt",
             "type": [
               "`$ONE`",
               [
@@ -5759,11 +5461,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Number of media items in the prompt",
           },
           {
             "name": "num_search_results",
-            "req": True,
-            "short": "Number of search results included",
+            "title": "Num Search Results",
             "type": [
               "`$ONE`",
               [
@@ -5771,17 +5474,19 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Number of search results included",
           },
           {
             "name": "origin",
+            "title": "Origin",
+            "type": "`$STRING`",
             "req": True,
             "short": "Origin URL of the request",
-            "type": "`$STRING`",
           },
           {
             "name": "preset_id",
-            "req": True,
-            "short": "ID of the preset used for this generation, null if no preset was used",
+            "title": "Preset Id",
             "type": [
               "`$ONE`",
               [
@@ -5789,11 +5494,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "ID of the preset used for this generation, null if no preset was used",
           },
           {
             "name": "provider_name",
-            "req": True,
-            "short": "Name of the provider that served the request",
+            "title": "Provider Name",
             "type": [
               "`$ONE`",
               [
@@ -5801,11 +5507,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Name of the provider that served the request",
           },
           {
             "name": "provider_responses",
-            "req": True,
-            "short": "List of provider responses for this generation, including fallback attempts",
+            "title": "Provider Responses",
             "type": [
               "`$ONE`",
               [
@@ -5813,10 +5520,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "List of provider responses for this generation, including fallback attempts",
           },
           {
             "name": "request_id",
-            "short": "Unique identifier grouping all generations from a single API request",
+            "title": "Request Id",
             "type": [
               "`$ONE`",
               [
@@ -5824,10 +5533,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Unique identifier grouping all generations from a single API request",
           },
           {
             "name": "response_cache_source_id",
-            "short": "If this generation was served from response cache, contains the original generation ID.",
+            "title": "Response Cache Source Id",
             "type": [
               "`$ONE`",
               [
@@ -5835,11 +5545,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "If this generation was served from response cache, contains the original generation ID.",
           },
           {
             "name": "router",
-            "req": True,
-            "short": "Router used for the request (e.g., openrouter/auto)",
+            "title": "Router",
             "type": [
               "`$ONE`",
               [
@@ -5847,11 +5557,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Router used for the request (e.g., openrouter/auto)",
           },
           {
             "name": "service_tier",
-            "req": True,
-            "short": "Service tier the upstream provider reported running this request on, or null if it did not report one.",
+            "title": "Service Tier",
             "type": [
               "`$ONE`",
               [
@@ -5859,10 +5570,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Service tier the upstream provider reported running this request on, or null if it did not report one.",
           },
           {
             "name": "session_id",
-            "short": "Session identifier grouping multiple generations in the same session",
+            "title": "Session Id",
             "type": [
               "`$ONE`",
               [
@@ -5870,11 +5583,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Session identifier grouping multiple generations in the same session",
           },
           {
             "name": "streamed",
-            "req": True,
-            "short": "Whether the response was streamed",
+            "title": "Streamed",
             "type": [
               "`$ONE`",
               [
@@ -5882,11 +5595,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Whether the response was streamed",
           },
           {
             "name": "tokens_completion",
-            "req": True,
-            "short": "Number of tokens in the completion",
+            "title": "Tokens Completion",
             "type": [
               "`$ONE`",
               [
@@ -5894,11 +5608,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Number of tokens in the completion",
           },
           {
             "name": "tokens_prompt",
-            "req": True,
-            "short": "Number of tokens in the prompt",
+            "title": "Tokens Prompt",
             "type": [
               "`$ONE`",
               [
@@ -5906,18 +5621,20 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Number of tokens in the prompt",
           },
           {
-            "format": "double",
             "name": "total_cost",
+            "title": "Total Cost",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "Total cost of the generation in USD",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
             "name": "upstream_id",
-            "req": True,
-            "short": "Upstream provider's identifier for this generation",
+            "title": "Upstream Id",
             "type": [
               "`$ONE`",
               [
@@ -5925,12 +5642,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Upstream provider's identifier for this generation",
           },
           {
-            "format": "double",
             "name": "upstream_inference_cost",
-            "req": True,
-            "short": "Cost charged by the upstream provider",
+            "title": "Upstream Inference Cost",
             "type": [
               "`$ONE`",
               [
@@ -5938,18 +5655,21 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Cost charged by the upstream provider",
+            "format": "double",
           },
           {
-            "format": "double",
             "name": "usage",
+            "title": "Usage",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "Usage amount in USD",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
             "name": "user_agent",
-            "req": True,
-            "short": "User-Agent header from the request",
+            "title": "User Agent",
             "type": [
               "`$ONE`",
               [
@@ -5957,11 +5677,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "User-Agent header from the request",
           },
           {
             "name": "web_search_engine",
-            "req": True,
-            "short": "The resolved web search engine used for this generation (e.g.",
+            "title": "Web Search Engine",
             "type": [
               "`$ONE`",
               [
@@ -5969,6 +5690,8 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "The resolved web search engine used for this generation (e.g.",
           },
         ],
         "id": {
@@ -5982,38 +5705,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "gen-1234567890",
-                      "kind": "query",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/generation",
@@ -6022,6 +5713,46 @@ def make_config():
                     "lit": "generation",
                   },
                 ],
+                "parts": [
+                  "generation",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "gen-1234567890",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -6030,13 +5761,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "generation",
-                ],
               },
             ],
           },
@@ -6045,65 +5769,30 @@ def make_config():
           "ancestors": [],
         },
       },
-      "generation_content": {
+      "generation_content_data": {
         "fields": [
           {
             "name": "input",
+            "title": "Input",
+            "type": "`$ANY`",
             "req": True,
             "short": "The input to the generation — either a prompt string or an array of messages",
-            "type": "`$ANY`",
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 0,
-            },
           },
           {
             "name": "output",
+            "title": "Output",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "The output from the generation",
-            "type": "`$OBJECT`",
           },
         ],
-        "name": "generation_content",
+        "name": "generation_content_data",
         "op": {
           "load": {
             "input": "data",
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "gen-1234567890",
-                      "kind": "query",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/generation/content",
@@ -6115,6 +5804,47 @@ def make_config():
                     "lit": "content",
                   },
                 ],
+                "parts": [
+                  "generation",
+                  "content",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "gen-1234567890",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -6123,14 +5853,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "generation",
-                  "content",
-                ],
               },
             ],
           },
@@ -6143,7 +5865,7 @@ def make_config():
         "fields": [
           {
             "name": "allowed_models",
-            "short": "Array of model canonical_slugs (immutable identifiers)",
+            "title": "Allowed Models",
             "type": [
               "`$ONE`",
               [
@@ -6151,10 +5873,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Array of model canonical_slugs (immutable identifiers)",
           },
           {
             "name": "allowed_providers",
-            "short": "List of allowed provider IDs",
+            "title": "Allowed Providers",
             "type": [
               "`$ONE`",
               [
@@ -6162,10 +5885,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "List of allowed provider IDs",
           },
           {
             "name": "content_filter_builtins",
-            "short": "Builtin content filters applied to requests.",
+            "title": "Content Filter Builtins",
             "type": [
               "`$ONE`",
               [
@@ -6173,10 +5897,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Builtin content filters applied to requests.",
           },
           {
             "name": "content_filters",
-            "short": "Custom regex content filters applied to request messages",
+            "title": "Content Filters",
             "type": [
               "`$ONE`",
               [
@@ -6184,16 +5909,18 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Custom regex content filters applied to request messages",
           },
           {
             "name": "created_at",
+            "title": "Created At",
+            "type": "`$STRING`",
             "req": True,
             "short": "ISO 8601 timestamp of when the guardrail was created",
-            "type": "`$STRING`",
           },
           {
             "name": "description",
-            "short": "Description of the guardrail",
+            "title": "Description",
             "type": [
               "`$ONE`",
               [
@@ -6201,11 +5928,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Description of the guardrail",
           },
           {
-            "deprecated": True,
             "name": "enforce_zdr",
-            "short": "Deprecated.",
+            "title": "Enforce Zdr",
             "type": [
               "`$ONE`",
               [
@@ -6213,10 +5940,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Deprecated.",
+            "deprecated": True,
           },
           {
             "name": "enforce_zdr_anthropic",
-            "short": "Whether to enforce zero data retention for Anthropic models.",
+            "title": "Enforce Zdr Anthropic",
             "type": [
               "`$ONE`",
               [
@@ -6224,10 +5953,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Whether to enforce zero data retention for Anthropic models.",
           },
           {
             "name": "enforce_zdr_google",
-            "short": "Whether to enforce zero data retention for Google models.",
+            "title": "Enforce Zdr Google",
             "type": [
               "`$ONE`",
               [
@@ -6235,10 +5965,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Whether to enforce zero data retention for Google models.",
           },
           {
             "name": "enforce_zdr_openai",
-            "short": "Whether to enforce zero data retention for OpenAI models.",
+            "title": "Enforce Zdr Openai",
             "type": [
               "`$ONE`",
               [
@@ -6246,10 +5977,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Whether to enforce zero data retention for OpenAI models.",
           },
           {
             "name": "enforce_zdr_other",
-            "short": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI.",
+            "title": "Enforce Zdr Other",
             "type": [
               "`$ONE`",
               [
@@ -6257,10 +5989,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI.",
           },
           {
             "name": "enforce_zdr_xai",
-            "short": "Whether to enforce zero data retention for xAI models.",
+            "title": "Enforce Zdr Xai",
             "type": [
               "`$ONE`",
               [
@@ -6268,17 +6001,19 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Whether to enforce zero data retention for xAI models.",
           },
           {
-            "format": "uuid",
             "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "Unique identifier for the guardrail",
-            "type": "`$STRING`",
+            "format": "uuid",
           },
           {
             "name": "ignored_models",
-            "short": "Array of model canonical_slugs to exclude from routing",
+            "title": "Ignored Models",
             "type": [
               "`$ONE`",
               [
@@ -6286,10 +6021,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Array of model canonical_slugs to exclude from routing",
           },
           {
             "name": "ignored_providers",
-            "short": "List of provider IDs to exclude from routing",
+            "title": "Ignored Providers",
             "type": [
               "`$ONE`",
               [
@@ -6297,11 +6033,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "List of provider IDs to exclude from routing",
           },
           {
-            "format": "double",
             "name": "limit_usd",
-            "short": "Spending limit in USD",
+            "title": "Limit Usd",
             "type": [
               "`$ONE`",
               [
@@ -6309,16 +6045,19 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Spending limit in USD",
+            "format": "double",
           },
           {
             "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
             "req": True,
             "short": "Name of the guardrail",
-            "type": "`$STRING`",
           },
           {
             "name": "reset_interval",
-            "short": "Interval at which the limit resets (daily, weekly, monthly)",
+            "title": "Reset Interval",
             "type": [
               "`$ONE`",
               [
@@ -6326,10 +6065,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Interval at which the limit resets (daily, weekly, monthly)",
           },
           {
             "name": "updated_at",
-            "short": "ISO 8601 timestamp of when the guardrail was last updated",
+            "title": "Updated At",
             "type": [
               "`$ONE`",
               [
@@ -6337,18 +6077,20 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "ISO 8601 timestamp of when the guardrail was last updated",
           },
           {
-            "format": "uuid",
             "name": "workspace_id",
+            "title": "Workspace Id",
+            "type": "`$STRING`",
+            "req": True,
             "op": {
               "create": {
                 "type": "`$STRING`",
               },
             },
-            "req": True,
             "short": "The workspace ID this guardrail belongs to.",
-            "type": "`$STRING`",
+            "format": "uuid",
           },
         ],
         "id": {
@@ -6362,28 +6104,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/guardrails",
@@ -6392,6 +6112,36 @@ def make_config():
                     "lit": "guardrails",
                   },
                 ],
+                "parts": [
+                  "guardrails",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -6399,13 +6149,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "guardrails",
-                ],
               },
             ],
           },
@@ -6414,38 +6157,52 @@ def make_config():
             "name": "list",
             "points": [
               {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/guardrails",
+                "segments": [
+                  {
+                    "lit": "guardrails",
+                  },
+                ],
+                "parts": [
+                  "guardrails",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
                 "args": {
                   "header": [
                     {
-                      "kind": "header",
                       "name": "http_referer",
                       "orig": "http_referer",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_category",
                       "orig": "x_open_router_category",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_title",
                       "orig": "x_open_router_title",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                   ],
                   "query": [
                     {
-                      "example": 50,
-                      "kind": "query",
                       "name": "limit",
                       "orig": "limit",
                       "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
                     },
                     {
-                      "example": 0,
-                      "kind": "query",
                       "name": "offset",
                       "orig": "offset",
                       "type": [
@@ -6455,24 +6212,18 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 0,
                     },
                     {
-                      "example": "0df9e665-d932-5740-b2c7-b52af166bc11",
-                      "kind": "query",
                       "name": "workspace_id",
                       "orig": "workspace_id",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "0df9e665-d932-5740-b2c7-b52af166bc11",
                     },
                   ],
                 },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/guardrails",
-                "segments": [
-                  {
-                    "lit": "guardrails",
-                  },
-                ],
                 "select": {
                   "exist": [
                     "http_referer",
@@ -6483,13 +6234,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "guardrails",
-                ],
               },
             ],
           },
@@ -6498,38 +6242,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "550e8400-e29b-41d4-a716-446655440000",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/guardrails/{id}",
@@ -6541,6 +6253,47 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "guardrails",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "550e8400-e29b-41d4-a716-446655440000",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -6549,14 +6302,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "guardrails",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -6565,38 +6310,6 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "550e8400-e29b-41d4-a716-446655440000",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/guardrails/{id}",
@@ -6608,6 +6321,47 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "guardrails",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "550e8400-e29b-41d4-a716-446655440000",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -6616,14 +6370,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "guardrails",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -6636,103 +6382,110 @@ def make_config():
         "fields": [
           {
             "name": "aspect_ratio",
-            "short": "Normalized aspect ratio of the generated image.",
+            "title": "Aspect Ratio",
             "type": "`$STRING`",
+            "short": "Normalized aspect ratio of the generated image.",
           },
           {
             "name": "background",
-            "short": "Background treatment.",
+            "title": "Background",
             "type": "`$STRING`",
+            "short": "Background treatment.",
           },
           {
             "name": "created",
+            "title": "Created",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Unix timestamp (seconds) when the image was generated",
-            "type": "`$INTEGER`",
           },
           {
             "name": "data",
+            "title": "Data",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "Generated images",
-            "type": "`$ARRAY`",
           },
           {
             "name": "input_references",
-            "short": "Reference images to guide image-to-image generation, as base64 data URLs or HTTP(S) URLs.",
+            "title": "Input References",
             "type": "`$ARRAY`",
+            "short": "Reference images to guide image-to-image generation, as base64 data URLs or HTTP(S) URLs.",
           },
           {
             "name": "model",
+            "title": "Model",
+            "type": "`$STRING`",
             "req": True,
             "short": "The image generation model to use",
-            "type": "`$STRING`",
           },
           {
             "name": "n",
-            "short": "Number of images to generate (1-10).",
+            "title": "N",
             "type": "`$INTEGER`",
+            "short": "Number of images to generate (1-10).",
           },
           {
             "name": "output_compression",
-            "short": "Compression level (0-100) for webp/jpeg output.",
+            "title": "Output Compression",
             "type": "`$INTEGER`",
+            "short": "Compression level (0-100) for webp/jpeg output.",
           },
           {
             "name": "output_format",
-            "short": "Encoding of the returned image bytes.",
+            "title": "Output Format",
             "type": "`$STRING`",
+            "short": "Encoding of the returned image bytes.",
           },
           {
             "name": "prompt",
+            "title": "Prompt",
+            "type": "`$STRING`",
             "req": True,
             "short": "Text description of the desired image",
-            "type": "`$STRING`",
           },
           {
             "name": "provider",
-            "short": "Provider routing preferences and provider-specific passthrough configuration.",
+            "title": "Provider",
             "type": "`$OBJECT`",
-            "union": {
-              "branches": 2,
-              "count": 4,
-              "depth": 3,
-            },
+            "short": "Provider routing preferences and provider-specific passthrough configuration.",
           },
           {
             "name": "quality",
-            "short": "Rendering quality.",
+            "title": "Quality",
             "type": "`$STRING`",
+            "short": "Rendering quality.",
           },
           {
             "name": "resolution",
-            "short": "Normalized resolution tier of the generated image.",
+            "title": "Resolution",
             "type": "`$STRING`",
+            "short": "Normalized resolution tier of the generated image.",
           },
           {
             "name": "seed",
-            "short": "If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result.",
+            "title": "Seed",
             "type": "`$INTEGER`",
+            "short": "If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result.",
           },
           {
             "name": "size",
-            "short": "Optional.",
+            "title": "Size",
             "type": "`$STRING`",
+            "short": "Optional.",
           },
           {
             "name": "stream",
-            "short": "If true, partial images are streamed as SSE events as they become available.",
+            "title": "Stream",
             "type": "`$BOOLEAN`",
+            "short": "If true, partial images are streamed as SSE events as they become available.",
           },
           {
             "name": "usage",
+            "title": "Usage",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Token and cost usage for the image generation request, when available",
-            "type": "`$OBJECT`",
-            "union": {
-              "branches": 4,
-              "count": 1,
-              "depth": 3,
-            },
           },
         ],
         "name": "image",
@@ -6742,28 +6495,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/images",
@@ -6772,6 +6503,36 @@ def make_config():
                     "lit": "images",
                   },
                 ],
+                "parts": [
+                  "images",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -6779,13 +6540,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "images",
-                ],
               },
             ],
           },
@@ -6798,32 +6552,35 @@ def make_config():
         "fields": [
           {
             "name": "allowed_passthrough_parameters",
+            "title": "Allowed Passthrough Parameters",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "Provider-specific options accepted under provider.options[provider_slug].",
-            "type": "`$ARRAY`",
           },
           {
             "name": "pricing",
+            "title": "Pricing",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "Billable pricing lines for this endpoint.",
-            "type": "`$ARRAY`",
           },
           {
             "name": "provider_name",
+            "title": "Provider Name",
+            "type": "`$STRING`",
             "req": True,
             "short": "Provider display name",
-            "type": "`$STRING`",
           },
           {
             "name": "provider_slug",
+            "title": "Provider Slug",
+            "type": "`$STRING`",
             "req": True,
             "short": "Provider slug",
-            "type": "`$STRING`",
           },
           {
             "name": "provider_tag",
-            "req": True,
-            "short": "Provider tag for request-side selection",
+            "title": "Provider Tag",
             "type": [
               "`$ONE`",
               [
@@ -6831,17 +6588,21 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Provider tag for request-side selection",
           },
           {
             "name": "supported_parameters",
-            "req": True,
+            "title": "Supported Parameters",
             "type": "`$ANY`",
+            "req": True,
           },
           {
             "name": "supports_streaming",
+            "title": "Supports Streaming",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Whether this endpoint supports native SSE streaming (`stream: true` in the request).",
-            "type": "`$BOOLEAN`",
           },
         ],
         "name": "image_model_endpoint",
@@ -6851,54 +6612,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "bytedance-seed",
-                      "kind": "param",
-                      "name": "model_id",
-                      "orig": "author",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "seedream-4.5",
-                      "kind": "param",
-                      "name": "slug",
-                      "orig": "slug",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/images/models/{author}/{slug}/endpoints",
-                "rename": {
-                  "param": {
-                    "author": "model_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "images",
@@ -6916,6 +6632,62 @@ def make_config():
                     "lit": "endpoints",
                   },
                 ],
+                "parts": [
+                  "images",
+                  "models",
+                  "{model_id}",
+                  "{slug}",
+                  "endpoints",
+                ],
+                "rename": {
+                  "param": {
+                    "author": "model_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.endpoints`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "model_id",
+                      "orig": "author",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "bytedance-seed",
+                    },
+                    {
+                      "name": "slug",
+                      "orig": "slug",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "seedream-4.5",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -6925,17 +6697,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.endpoints`",
-                },
-                "parts": [
-                  "images",
-                  "models",
-                  "{model_id}",
-                  "{slug}",
-                  "endpoints",
-                ],
               },
             ],
           },
@@ -6943,93 +6704,79 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "model",
+              "$.main.kit.entity.model",
             ],
           ],
         },
       },
-      "image_models_list": {
+      "image_model_list_item": {
         "fields": [
           {
             "name": "architecture",
-            "req": True,
+            "title": "Architecture",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "created",
+            "title": "Created",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Unix timestamp (seconds) of when the model was created",
-            "type": "`$INTEGER`",
           },
           {
             "name": "description",
-            "req": True,
+            "title": "Description",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "endpoints",
+            "title": "Endpoints",
+            "type": "`$STRING`",
             "req": True,
             "short": "Relative URL to the full per-endpoint records for this model",
-            "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "Model slug",
-            "type": "`$STRING`",
           },
           {
             "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
             "req": True,
             "short": "Display name",
-            "type": "`$STRING`",
           },
           {
             "name": "supported_parameters",
+            "title": "Supported Parameters",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Union of supported parameters across every endpoint of this model.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "supports_streaming",
+            "title": "Supports Streaming",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Whether any endpoint of this model supports native SSE streaming on the dedicated Image API (i.e.",
-            "type": "`$BOOLEAN`",
           },
         ],
         "id": {
           "field": "id",
           "name": "id",
         },
-        "name": "image_models_list",
+        "name": "image_model_list_item",
         "op": {
           "list": {
             "input": "data",
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/images/models",
@@ -7041,6 +6788,37 @@ def make_config():
                     "lit": "models",
                   },
                 ],
+                "parts": [
+                  "images",
+                  "models",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -7048,14 +6826,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "images",
-                  "models",
-                ],
               },
             ],
           },
@@ -7065,39 +6835,10 @@ def make_config():
         },
       },
       "key": {
-        "fields": [],
-        "name": "key",
-        "op": {},
-        "relations": {
-          "ancestors": [
-            [
-              "guardrail",
-            ],
-          ],
-        },
-      },
-      "list_byok_key": {
-        "fields": [],
-        "name": "list_byok_key",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "list_guardrail": {
-        "fields": [],
-        "name": "list_guardrail",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "list_key_assignment": {
         "fields": [
           {
             "name": "assigned_by",
-            "req": True,
-            "short": "User ID of who made the assignment",
+            "title": "Assigned By",
             "type": [
               "`$ONE`",
               [
@@ -7105,119 +6846,68 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "User ID of who made the assignment",
           },
           {
             "name": "created_at",
+            "title": "Created At",
+            "type": "`$STRING`",
             "req": True,
             "short": "ISO 8601 timestamp of when the assignment was created",
-            "type": "`$STRING`",
           },
           {
-            "format": "uuid",
             "name": "guardrail_id",
+            "title": "Guardrail Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "ID of the guardrail",
-            "type": "`$STRING`",
+            "format": "uuid",
           },
           {
-            "format": "uuid",
             "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "Unique identifier for the assignment",
-            "type": "`$STRING`",
+            "format": "uuid",
           },
           {
             "name": "key_hash",
+            "title": "Key Hash",
+            "type": "`$STRING`",
             "req": True,
             "short": "Hash of the assigned API key",
-            "type": "`$STRING`",
           },
           {
             "name": "key_label",
+            "title": "Key Label",
+            "type": "`$STRING`",
             "req": True,
             "short": "Label of the API key",
-            "type": "`$STRING`",
           },
           {
             "name": "key_name",
+            "title": "Key Name",
+            "type": "`$STRING`",
             "req": True,
             "short": "Name of the API key",
-            "type": "`$STRING`",
           },
         ],
         "id": {
           "field": "id",
           "name": "id",
         },
-        "name": "list_key_assignment",
+        "name": "key",
         "op": {
           "list": {
             "input": "data",
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "550e8400-e29b-41d4-a716-446655440000",
-                      "kind": "param",
-                      "name": "guardrail_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": 50,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "offset",
-                      "orig": "offset",
-                      "type": [
-                        "`$ONE`",
-                        [
-                          "`$INTEGER`",
-                          "`$NULL`",
-                        ],
-                      ],
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/guardrails/{id}/assignments/keys",
-                "rename": {
-                  "param": {
-                    "id": "guardrail_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "guardrails",
@@ -7232,6 +6922,75 @@ def make_config():
                     "lit": "keys",
                   },
                 ],
+                "parts": [
+                  "guardrails",
+                  "{guardrail_id}",
+                  "assignments",
+                  "keys",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "guardrail_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "guardrail_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "550e8400-e29b-41d4-a716-446655440000",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "offset",
+                      "orig": "offset",
+                      "type": [
+                        "`$ONE`",
+                        [
+                          "`$INTEGER`",
+                          "`$NULL`",
+                        ],
+                      ],
+                      "kind": "query",
+                      "example": 0,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "guardrail_id",
@@ -7242,62 +7001,8 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "guardrails",
-                  "{guardrail_id}",
-                  "assignments",
-                  "keys",
-                ],
               },
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": 50,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "offset",
-                      "orig": "offset",
-                      "type": [
-                        "`$ONE`",
-                        [
-                          "`$INTEGER`",
-                          "`$NULL`",
-                        ],
-                      ],
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/guardrails/assignments/keys",
@@ -7312,136 +7017,46 @@ def make_config():
                     "lit": "keys",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "http_referer",
-                    "limit",
-                    "offset",
-                    "x_open_router_category",
-                    "x_open_router_title",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
                 "parts": [
                   "guardrails",
                   "assignments",
                   "keys",
                 ],
-              },
-            ],
-          },
-        },
-        "relations": {
-          "ancestors": [
-            [
-              "guardrail",
-            ],
-          ],
-        },
-      },
-      "list_member_assignment": {
-        "fields": [
-          {
-            "name": "assigned_by",
-            "req": True,
-            "short": "User ID of who made the assignment",
-            "type": [
-              "`$ONE`",
-              [
-                "`$STRING`",
-                "`$NULL`",
-              ],
-            ],
-          },
-          {
-            "name": "created_at",
-            "req": True,
-            "short": "ISO 8601 timestamp of when the assignment was created",
-            "type": "`$STRING`",
-          },
-          {
-            "format": "uuid",
-            "name": "guardrail_id",
-            "req": True,
-            "short": "ID of the guardrail",
-            "type": "`$STRING`",
-          },
-          {
-            "format": "uuid",
-            "name": "id",
-            "req": True,
-            "short": "Unique identifier for the assignment",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "organization_id",
-            "req": True,
-            "short": "Organization ID",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "user_id",
-            "req": True,
-            "short": "Clerk user ID of the assigned member",
-            "type": "`$STRING`",
-          },
-        ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
-        "name": "list_member_assignment",
-        "op": {
-          "list": {
-            "input": "data",
-            "name": "list",
-            "points": [
-              {
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
                 "args": {
                   "header": [
                     {
-                      "kind": "header",
                       "name": "http_referer",
                       "orig": "http_referer",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_category",
                       "orig": "x_open_router_category",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_title",
                       "orig": "x_open_router_title",
                       "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "550e8400-e29b-41d4-a716-446655440000",
-                      "kind": "param",
-                      "name": "guardrail_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
+                      "kind": "header",
                     },
                   ],
                   "query": [
                     {
-                      "example": 50,
-                      "kind": "query",
                       "name": "limit",
                       "orig": "limit",
                       "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
                     },
                     {
-                      "example": 0,
-                      "kind": "query",
                       "name": "offset",
                       "orig": "offset",
                       "type": [
@@ -7451,111 +7066,11 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/guardrails/{id}/assignments/members",
-                "rename": {
-                  "param": {
-                    "id": "guardrail_id",
-                  },
-                },
-                "segments": [
-                  {
-                    "lit": "guardrails",
-                  },
-                  {
-                    "var": "guardrail_id",
-                  },
-                  {
-                    "lit": "assignments",
-                  },
-                  {
-                    "lit": "members",
-                  },
-                ],
-                "select": {
-                  "exist": [
-                    "guardrail_id",
-                    "http_referer",
-                    "limit",
-                    "offset",
-                    "x_open_router_category",
-                    "x_open_router_title",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "guardrails",
-                  "{guardrail_id}",
-                  "assignments",
-                  "members",
-                ],
-              },
-              {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": 50,
                       "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
                       "example": 0,
-                      "kind": "query",
-                      "name": "offset",
-                      "orig": "offset",
-                      "type": [
-                        "`$ONE`",
-                        [
-                          "`$INTEGER`",
-                          "`$NULL`",
-                        ],
-                      ],
                     },
                   ],
                 },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/guardrails/assignments/members",
-                "segments": [
-                  {
-                    "lit": "guardrails",
-                  },
-                  {
-                    "lit": "assignments",
-                  },
-                  {
-                    "lit": "members",
-                  },
-                ],
                 "select": {
                   "exist": [
                     "http_referer",
@@ -7565,15 +7080,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "guardrails",
-                  "assignments",
-                  "members",
-                ],
               },
             ],
           },
@@ -7581,7 +7087,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "guardrail",
+              "$.main.kit.entity.guardrail",
             ],
           ],
         },
@@ -7590,20 +7096,17 @@ def make_config():
         "fields": [
           {
             "name": "data",
+            "title": "Data",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of observability destinations.",
-            "type": "`$ARRAY`",
-            "union": {
-              "branches": 2,
-              "count": 11,
-              "depth": 13,
-            },
           },
           {
             "name": "total_count",
+            "title": "Total Count",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Total number of destinations matching the filters.",
-            "type": "`$INTEGER`",
           },
         ],
         "name": "list_observability_destination",
@@ -7613,57 +7116,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": 50,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "offset",
-                      "orig": "offset",
-                      "type": [
-                        "`$ONE`",
-                        [
-                          "`$INTEGER`",
-                          "`$NULL`",
-                        ],
-                      ],
-                    },
-                    {
-                      "example": "550e8400-e29b-41d4-a716-446655440000",
-                      "kind": "query",
-                      "name": "workspace_id",
-                      "orig": "workspace_id",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/observability/destinations",
@@ -7675,6 +7127,66 @@ def make_config():
                     "lit": "destinations",
                   },
                 ],
+                "parts": [
+                  "observability",
+                  "destinations",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "offset",
+                      "orig": "offset",
+                      "type": [
+                        "`$ONE`",
+                        [
+                          "`$INTEGER`",
+                          "`$NULL`",
+                        ],
+                      ],
+                      "kind": "query",
+                      "example": 0,
+                    },
+                    {
+                      "name": "workspace_id",
+                      "orig": "workspace_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "550e8400-e29b-41d4-a716-446655440000",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -7685,14 +7197,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "observability",
-                  "destinations",
-                ],
               },
             ],
           },
@@ -7701,44 +7205,41 @@ def make_config():
           "ancestors": [],
         },
       },
-      "list_preset": {
-        "fields": [],
-        "name": "list_preset",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
       "list_preset_version": {
         "fields": [
           {
             "name": "config",
-            "req": True,
+            "title": "Config",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "created_at",
-            "req": True,
+            "title": "Created At",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "creator_id",
-            "req": True,
+            "title": "Creator Id",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "id",
-            "req": True,
+            "title": "Id",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "preset_id",
-            "req": True,
+            "title": "Preset Id",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "system_prompt",
-            "req": True,
+            "title": "System Prompt",
             "type": [
               "`$ONE`",
               [
@@ -7746,16 +7247,19 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
           },
           {
             "name": "updated_at",
-            "req": True,
+            "title": "Updated At",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "version",
-            "req": True,
+            "title": "Version",
             "type": "`$INTEGER`",
+            "req": True,
           },
         ],
         "id": {
@@ -7769,60 +7273,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "my-preset",
-                      "kind": "param",
-                      "name": "slug",
-                      "orig": "slug",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": 50,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "offset",
-                      "orig": "offset",
-                      "type": [
-                        "`$ONE`",
-                        [
-                          "`$INTEGER`",
-                          "`$NULL`",
-                        ],
-                      ],
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/presets/{slug}/versions",
@@ -7837,6 +7287,70 @@ def make_config():
                     "lit": "versions",
                   },
                 ],
+                "parts": [
+                  "presets",
+                  "{slug}",
+                  "versions",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "slug",
+                      "orig": "slug",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "my-preset",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "offset",
+                      "orig": "offset",
+                      "type": [
+                        "`$ONE`",
+                        [
+                          "`$INTEGER`",
+                          "`$NULL`",
+                        ],
+                      ],
+                      "kind": "query",
+                      "example": 0,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -7847,15 +7361,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "presets",
-                  "{slug}",
-                  "versions",
-                ],
               },
             ],
           },
@@ -7863,45 +7368,16 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "preset",
+              "$.main.kit.entity.preset",
             ],
           ],
         },
       },
-      "list_workspace": {
-        "fields": [],
-        "name": "list_workspace",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "list_workspace_budget": {
+      "member": {
         "fields": [
           {
-            "name": "created_at",
-            "req": True,
-            "short": "ISO 8601 timestamp of when the budget was created",
-            "type": "`$STRING`",
-          },
-          {
-            "format": "uuid",
-            "name": "id",
-            "req": True,
-            "short": "Unique identifier for the budget",
-            "type": "`$STRING`",
-          },
-          {
-            "format": "double",
-            "name": "limit_usd",
-            "req": True,
-            "short": "Spending limit in USD for this interval",
-            "type": "`$NUMBER`",
-          },
-          {
-            "name": "reset_interval",
-            "req": True,
-            "short": "Interval at which spend resets.",
+            "name": "assigned_by",
+            "title": "Assigned By",
             "type": [
               "`$ONE`",
               [
@@ -7909,200 +7385,130 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-          },
-          {
-            "name": "updated_at",
             "req": True,
-            "short": "ISO 8601 timestamp of when the budget was last updated",
-            "type": "`$STRING`",
+            "short": "User ID of who made the assignment",
           },
           {
+            "name": "created_at",
+            "title": "Created At",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "ISO 8601 timestamp of when the assignment was created",
+          },
+          {
+            "name": "guardrail_id",
+            "title": "Guardrail Id",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "ID of the guardrail",
             "format": "uuid",
-            "name": "workspace_id",
-            "req": True,
-            "short": "ID of the workspace the budget belongs to",
+          },
+          {
+            "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
+            "req": True,
+            "short": "Unique identifier for the assignment",
+            "format": "uuid",
+          },
+          {
+            "name": "organization_id",
+            "title": "Organization Id",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "Organization ID",
+          },
+          {
+            "name": "user_id",
+            "title": "User Id",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "Clerk user ID of the assigned member",
           },
         ],
         "id": {
           "field": "id",
           "name": "id",
         },
-        "name": "list_workspace_budget",
+        "name": "member",
         "op": {
           "list": {
             "input": "data",
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "production",
-                      "kind": "param",
-                      "name": "workspace_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
-                "orig": "/workspaces/{id}/budgets",
-                "rename": {
-                  "param": {
-                    "id": "workspace_id",
-                  },
-                },
+                "orig": "/guardrails/{id}/assignments/members",
                 "segments": [
                   {
-                    "lit": "workspaces",
+                    "lit": "guardrails",
                   },
                   {
-                    "var": "workspace_id",
+                    "var": "guardrail_id",
                   },
                   {
-                    "lit": "budgets",
+                    "lit": "assignments",
+                  },
+                  {
+                    "lit": "members",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "http_referer",
-                    "workspace_id",
-                    "x_open_router_category",
-                    "x_open_router_title",
-                  ],
+                "parts": [
+                  "guardrails",
+                  "{guardrail_id}",
+                  "assignments",
+                  "members",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "guardrail_id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
-                "parts": [
-                  "workspaces",
-                  "{workspace_id}",
-                  "budgets",
-                ],
-              },
-            ],
-          },
-        },
-        "relations": {
-          "ancestors": [
-            [
-              "workspace",
-            ],
-          ],
-        },
-      },
-      "list_workspace_member": {
-        "fields": [
-          {
-            "name": "created_at",
-            "req": True,
-            "short": "ISO 8601 timestamp of when the membership was created",
-            "type": "`$STRING`",
-          },
-          {
-            "format": "uuid",
-            "name": "id",
-            "req": True,
-            "short": "Unique identifier for the workspace membership",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "role",
-            "req": True,
-            "short": "Role of the member in the workspace",
-            "type": "`$STRING`",
-          },
-          {
-            "name": "user_id",
-            "req": True,
-            "short": "Clerk user ID of the member",
-            "type": "`$STRING`",
-          },
-          {
-            "format": "uuid",
-            "name": "workspace_id",
-            "req": True,
-            "short": "ID of the workspace",
-            "type": "`$STRING`",
-          },
-        ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
-        "name": "list_workspace_member",
-        "op": {
-          "list": {
-            "input": "data",
-            "name": "list",
-            "points": [
-              {
                 "args": {
                   "header": [
                     {
-                      "kind": "header",
                       "name": "http_referer",
                       "orig": "http_referer",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_category",
                       "orig": "x_open_router_category",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_title",
                       "orig": "x_open_router_title",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                   ],
                   "params": [
                     {
-                      "example": "production",
-                      "kind": "param",
-                      "name": "workspace_id",
+                      "name": "guardrail_id",
                       "orig": "id",
-                      "reqd": True,
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "550e8400-e29b-41d4-a716-446655440000",
                     },
                   ],
                   "query": [
                     {
-                      "example": 50,
-                      "kind": "query",
                       "name": "limit",
                       "orig": "limit",
                       "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
                     },
                     {
-                      "example": 0,
-                      "kind": "query",
                       "name": "offset",
                       "orig": "offset",
                       "type": [
@@ -8112,47 +7518,100 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 0,
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "guardrail_id",
+                    "http_referer",
+                    "limit",
+                    "offset",
+                    "x_open_router_category",
+                    "x_open_router_title",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "GET",
-                "orig": "/workspaces/{id}/members",
-                "rename": {
-                  "param": {
-                    "id": "workspace_id",
-                  },
-                },
+                "orig": "/guardrails/assignments/members",
                 "segments": [
                   {
-                    "lit": "workspaces",
+                    "lit": "guardrails",
                   },
                   {
-                    "var": "workspace_id",
+                    "lit": "assignments",
                   },
                   {
                     "lit": "members",
                   },
                 ],
+                "parts": [
+                  "guardrails",
+                  "assignments",
+                  "members",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "offset",
+                      "orig": "offset",
+                      "type": [
+                        "`$ONE`",
+                        [
+                          "`$INTEGER`",
+                          "`$NULL`",
+                        ],
+                      ],
+                      "kind": "query",
+                      "example": 0,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
                     "limit",
                     "offset",
-                    "workspace_id",
                     "x_open_router_category",
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "workspaces",
-                  "{workspace_id}",
-                  "members",
-                ],
               },
             ],
           },
@@ -8160,19 +7619,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "workspace",
-            ],
-          ],
-        },
-      },
-      "member": {
-        "fields": [],
-        "name": "member",
-        "op": {},
-        "relations": {
-          "ancestors": [
-            [
-              "guardrail",
+              "$.main.kit.entity.guardrail",
             ],
           ],
         },
@@ -8181,12 +7628,14 @@ def make_config():
         "fields": [
           {
             "name": "cache_control",
+            "title": "Cache Control",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Enable automatic prompt caching.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "context_management",
+            "title": "Context Management",
             "type": [
               "`$ONE`",
               [
@@ -8194,15 +7643,10 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-            "union": {
-              "branches": 3,
-              "count": 3,
-              "depth": 7,
-            },
           },
           {
             "name": "fallbacks",
-            "short": "Fallback models to try if the primary model fails or refuses, in order.",
+            "title": "Fallbacks",
             "type": [
               "`$ONE`",
               [
@@ -8210,14 +7654,16 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Fallback models to try if the primary model fails or refuses, in order.",
           },
           {
             "name": "max_tokens",
+            "title": "Max Tokens",
             "type": "`$INTEGER`",
           },
           {
             "name": "messages",
-            "req": True,
+            "title": "Messages",
             "type": [
               "`$ONE`",
               [
@@ -8225,43 +7671,39 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-            "union": {
-              "branches": 12,
-              "count": 7,
-              "depth": 14,
-            },
+            "req": True,
           },
           {
             "name": "metadata",
+            "title": "Metadata",
             "type": "`$OBJECT`",
           },
           {
             "name": "model",
-            "req": True,
+            "title": "Model",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "models",
+            "title": "Models",
             "type": "`$ARRAY`",
           },
           {
             "name": "output_config",
-            "short": "Configuration for controlling output behavior.",
+            "title": "Output Config",
             "type": "`$OBJECT`",
+            "short": "Configuration for controlling output behavior.",
           },
           {
             "name": "plugins",
-            "short": "Plugins you want to enable for this request, including their settings.",
+            "title": "Plugins",
             "type": "`$ARRAY`",
-            "union": {
-              "branches": 5,
-              "count": 4,
-              "depth": 12,
-            },
+            "short": "Plugins you want to enable for this request, including their settings.",
           },
           {
             "name": "provider",
-            "short": "When multiple model providers are available, optionally indicate your routing preference.",
+            "title": "Provider",
             "type": [
               "`$ONE`",
               [
@@ -8269,16 +7711,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-            "union": {
-              "branches": 2,
-              "count": 6,
-              "depth": 3,
-            },
+            "short": "When multiple model providers are available, optionally indicate your routing preference.",
           },
           {
-            "deprecated": True,
             "name": "route",
-            "short": "**DEPRECATED** Use providers.sort.partition instead.",
+            "title": "Route",
             "type": [
               "`$ONE`",
               [
@@ -8286,92 +7723,89 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "**DEPRECATED** Use providers.sort.partition instead.",
+            "deprecated": True,
           },
           {
             "name": "service_tier",
+            "title": "Service Tier",
             "type": "`$STRING`",
           },
           {
             "name": "session_id",
-            "short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
+            "title": "Session Id",
             "type": "`$STRING`",
+            "short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
           },
           {
             "name": "speed",
+            "title": "Speed",
             "type": "`$ANY`",
           },
           {
             "name": "stop_sequences",
+            "title": "Stop Sequences",
             "type": "`$ARRAY`",
           },
           {
             "name": "stop_server_tools_when",
-            "short": "Stop conditions for the server-tool agent loop.",
+            "title": "Stop Server Tools When",
             "type": "`$ARRAY`",
+            "short": "Stop conditions for the server-tool agent loop.",
           },
           {
             "name": "stream",
+            "title": "Stream",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "system",
+            "title": "System",
             "type": "`$ANY`",
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 0,
-            },
           },
           {
-            "format": "double",
             "name": "temperature",
+            "title": "Temperature",
             "type": "`$NUMBER`",
+            "format": "double",
           },
           {
             "name": "thinking",
+            "title": "Thinking",
             "type": "`$ANY`",
-            "union": {
-              "branches": 3,
-              "count": 1,
-              "depth": 0,
-            },
           },
           {
             "name": "tool_choice",
+            "title": "Tool Choice",
             "type": "`$ANY`",
-            "union": {
-              "branches": 4,
-              "count": 1,
-              "depth": 0,
-            },
           },
           {
             "name": "tools",
+            "title": "Tools",
             "type": "`$ARRAY`",
-            "union": {
-              "branches": 13,
-              "count": 2,
-              "depth": 6,
-            },
           },
           {
             "name": "top_k",
+            "title": "Top K",
             "type": "`$INTEGER`",
           },
           {
-            "format": "double",
             "name": "top_p",
+            "title": "Top P",
             "type": "`$NUMBER`",
+            "format": "double",
           },
           {
             "name": "trace",
-            "short": "Metadata for observability and tracing.",
+            "title": "Trace",
             "type": "`$OBJECT`",
+            "short": "Metadata for observability and tracing.",
           },
           {
             "name": "user",
-            "short": "A unique identifier representing your end-user, which helps distinguish between different users of your app.",
+            "title": "User",
             "type": "`$STRING`",
+            "short": "A unique identifier representing your end-user, which helps distinguish between different users of your app.",
           },
         ],
         "name": "message",
@@ -8381,35 +7815,72 @@ def make_config():
             "name": "create",
             "points": [
               {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/presets/{slug}/messages",
+                "segments": [
+                  {
+                    "lit": "presets",
+                  },
+                  {
+                    "var": "slug",
+                  },
+                  {
+                    "lit": "messages",
+                  },
+                ],
+                "parts": [
+                  "presets",
+                  "{slug}",
+                  "messages",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
                 "args": {
                   "header": [
                     {
-                      "kind": "header",
                       "name": "http_referer",
                       "orig": "http_referer",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_category",
                       "orig": "x_open_router_category",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "example": "enabled",
-                      "kind": "header",
-                      "name": "x_open_router_metadata",
-                      "orig": "x_open_router_metadata",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
                       "name": "x_open_router_title",
                       "orig": "x_open_router_title",
                       "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "slug",
+                      "orig": "slug",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "my-preset",
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "http_referer",
+                    "slug",
+                    "x_open_router_category",
+                    "x_open_router_title",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "POST",
                 "orig": "/messages",
@@ -8418,6 +7889,43 @@ def make_config():
                     "lit": "messages",
                   },
                 ],
+                "parts": [
+                  "messages",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_metadata",
+                      "orig": "x_open_router_metadata",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                      "example": "enabled",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -8426,53 +7934,44 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "messages",
-                ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [],
-        },
-      },
-      "meta": {
-        "fields": [],
-        "name": "meta",
-        "op": {},
-        "relations": {
-          "ancestors": [],
+          "ancestors": [
+            [
+              "$.main.kit.entity.preset",
+            ],
+          ],
         },
       },
       "model": {
         "fields": [
           {
             "name": "architecture",
+            "title": "Architecture",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Model architecture information",
-            "type": "`$OBJECT`",
           },
           {
             "name": "benchmarks",
+            "title": "Benchmarks",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Third-party benchmark rankings for this model.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "canonical_slug",
+            "title": "Canonical Slug",
+            "type": "`$STRING`",
             "req": True,
             "short": "Canonical slug for the model",
-            "type": "`$STRING`",
           },
           {
             "name": "context_length",
-            "req": True,
-            "short": "Maximum context length in tokens",
+            "title": "Context Length",
             "type": [
               "`$ONE`",
               [
@@ -8480,17 +7979,19 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Maximum context length in tokens",
           },
           {
             "name": "created",
+            "title": "Created",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Unix timestamp of when the model was created",
-            "type": "`$INTEGER`",
           },
           {
             "name": "default_parameters",
-            "req": True,
-            "short": "Default parameters for this model",
+            "title": "Default Parameters",
             "type": [
               "`$ONE`",
               [
@@ -8498,15 +7999,18 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Default parameters for this model",
           },
           {
             "name": "description",
-            "short": "Description of the model",
+            "title": "Description",
             "type": "`$STRING`",
+            "short": "Description of the model",
           },
           {
             "name": "expiration_date",
-            "short": "The date after which the model may be removed.",
+            "title": "Expiration Date",
             "type": [
               "`$ONE`",
               [
@@ -8514,10 +8018,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "The date after which the model may be removed.",
           },
           {
             "name": "hugging_face_id",
-            "short": "Hugging Face model identifier, if applicable",
+            "title": "Hugging Face Id",
             "type": [
               "`$ONE`",
               [
@@ -8525,16 +8030,18 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Hugging Face model identifier, if applicable",
           },
           {
             "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "Unique identifier for the model",
-            "type": "`$STRING`",
           },
           {
             "name": "knowledge_cutoff",
-            "short": "The date up to which the model was trained on data.",
+            "title": "Knowledge Cutoff",
             "type": [
               "`$ONE`",
               [
@@ -8542,23 +8049,25 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "The date up to which the model was trained on data.",
           },
           {
             "name": "links",
+            "title": "Links",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Related API endpoints and resources for this model.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
             "req": True,
             "short": "Display name of the model",
-            "type": "`$STRING`",
           },
           {
             "name": "per_request_limits",
-            "req": True,
-            "short": "Per-request token limits",
+            "title": "Per Request Limits",
             "type": [
               "`$ONE`",
               [
@@ -8566,29 +8075,33 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Per-request token limits",
           },
           {
             "name": "pricing",
+            "title": "Pricing",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Pricing information for the model",
-            "type": "`$OBJECT`",
           },
           {
             "name": "reasoning",
+            "title": "Reasoning",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Reasoning effort configuration.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "supported_parameters",
+            "title": "Supported Parameters",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of supported parameters for this model",
-            "type": "`$ARRAY`",
           },
           {
             "name": "supported_voices",
-            "req": True,
-            "short": "List of supported voice identifiers for TTS models.",
+            "title": "Supported Voices",
             "type": [
               "`$ONE`",
               [
@@ -8596,12 +8109,15 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "List of supported voice identifiers for TTS models.",
           },
           {
             "name": "top_provider",
+            "title": "Top Provider",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Information about the top provider for this model",
-            "type": "`$OBJECT`",
           },
         ],
         "id": {
@@ -8620,50 +8136,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": 500,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "offset",
-                      "orig": "offset",
-                      "type": [
-                        "`$ONE`",
-                        [
-                          "`$INTEGER`",
-                          "`$NULL`",
-                        ],
-                      ],
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/embeddings/models",
@@ -8675,6 +8147,59 @@ def make_config():
                     "lit": "models",
                   },
                 ],
+                "parts": [
+                  "embeddings",
+                  "models",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 500,
+                    },
+                    {
+                      "name": "offset",
+                      "orig": "offset",
+                      "type": [
+                        "`$ONE`",
+                        [
+                          "`$INTEGER`",
+                          "`$NULL`",
+                        ],
+                      ],
+                      "kind": "query",
+                      "example": 0,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -8684,14 +8209,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "embeddings",
-                  "models",
-                ],
               },
             ],
           },
@@ -8700,46 +8217,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "openai",
-                      "kind": "param",
-                      "name": "author",
-                      "orig": "author",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "gpt-4",
-                      "kind": "param",
-                      "name": "slug",
-                      "orig": "slug",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/model/{author}/{slug}",
@@ -8754,6 +8231,56 @@ def make_config():
                     "var": "slug",
                   },
                 ],
+                "parts": [
+                  "model",
+                  "{author}",
+                  "{slug}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "author",
+                      "orig": "author",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "openai",
+                    },
+                    {
+                      "name": "slug",
+                      "orig": "slug",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "gpt-4",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "author",
@@ -8763,34 +8290,22 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "model",
-                  "{author}",
-                  "{slug}",
-                ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "model",
-            ],
-          ],
+          "ancestors": [],
         },
       },
       "models_count": {
         "fields": [
           {
             "name": "count",
+            "title": "Count",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Total number of available models",
-            "type": "`$INTEGER`",
           },
         ],
         "name": "models_count",
@@ -8800,37 +8315,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "text",
-                      "kind": "query",
-                      "name": "output_modality",
-                      "orig": "output_modality",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/models/count",
@@ -8842,6 +8326,46 @@ def make_config():
                     "lit": "count",
                   },
                 ],
+                "parts": [
+                  "models",
+                  "count",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "output_modality",
+                      "orig": "output_modality",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "text",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -8850,14 +8374,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "models",
-                  "count",
-                ],
               },
             ],
           },
@@ -8870,26 +8386,28 @@ def make_config():
         "fields": [
           {
             "name": "architecture",
+            "title": "Architecture",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Model architecture information",
-            "type": "`$OBJECT`",
           },
           {
             "name": "benchmarks",
+            "title": "Benchmarks",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Third-party benchmark rankings for this model.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "canonical_slug",
+            "title": "Canonical Slug",
+            "type": "`$STRING`",
             "req": True,
             "short": "Canonical slug for the model",
-            "type": "`$STRING`",
           },
           {
             "name": "context_length",
-            "req": True,
-            "short": "Maximum context length in tokens",
+            "title": "Context Length",
             "type": [
               "`$ONE`",
               [
@@ -8897,17 +8415,19 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Maximum context length in tokens",
           },
           {
             "name": "created",
+            "title": "Created",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Unix timestamp of when the model was created",
-            "type": "`$INTEGER`",
           },
           {
             "name": "default_parameters",
-            "req": True,
-            "short": "Default parameters for this model",
+            "title": "Default Parameters",
             "type": [
               "`$ONE`",
               [
@@ -8915,15 +8435,18 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Default parameters for this model",
           },
           {
             "name": "description",
-            "short": "Description of the model",
+            "title": "Description",
             "type": "`$STRING`",
+            "short": "Description of the model",
           },
           {
             "name": "expiration_date",
-            "short": "The date after which the model may be removed.",
+            "title": "Expiration Date",
             "type": [
               "`$ONE`",
               [
@@ -8931,10 +8454,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "The date after which the model may be removed.",
           },
           {
             "name": "hugging_face_id",
-            "short": "Hugging Face model identifier, if applicable",
+            "title": "Hugging Face Id",
             "type": [
               "`$ONE`",
               [
@@ -8942,16 +8466,18 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Hugging Face model identifier, if applicable",
           },
           {
             "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "Unique identifier for the model",
-            "type": "`$STRING`",
           },
           {
             "name": "knowledge_cutoff",
-            "short": "The date up to which the model was trained on data.",
+            "title": "Knowledge Cutoff",
             "type": [
               "`$ONE`",
               [
@@ -8959,23 +8485,25 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "The date up to which the model was trained on data.",
           },
           {
             "name": "links",
+            "title": "Links",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Related API endpoints and resources for this model.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
             "req": True,
             "short": "Display name of the model",
-            "type": "`$STRING`",
           },
           {
             "name": "per_request_limits",
-            "req": True,
-            "short": "Per-request token limits",
+            "title": "Per Request Limits",
             "type": [
               "`$ONE`",
               [
@@ -8983,29 +8511,33 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Per-request token limits",
           },
           {
             "name": "pricing",
+            "title": "Pricing",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Pricing information for the model",
-            "type": "`$OBJECT`",
           },
           {
             "name": "reasoning",
+            "title": "Reasoning",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Reasoning effort configuration.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "supported_parameters",
+            "title": "Supported Parameters",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of supported parameters for this model",
-            "type": "`$ARRAY`",
           },
           {
             "name": "supported_voices",
-            "req": True,
-            "short": "List of supported voice identifiers for TTS models.",
+            "title": "Supported Voices",
             "type": [
               "`$ONE`",
               [
@@ -9013,12 +8545,15 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "List of supported voice identifiers for TTS models.",
           },
           {
             "name": "top_provider",
+            "title": "Top Provider",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Information about the top provider for this model",
-            "type": "`$OBJECT`",
           },
         ],
         "id": {
@@ -9032,50 +8567,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": 500,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "offset",
-                      "orig": "offset",
-                      "type": [
-                        "`$ONE`",
-                        [
-                          "`$INTEGER`",
-                          "`$NULL`",
-                        ],
-                      ],
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/models/user",
@@ -9087,6 +8578,59 @@ def make_config():
                     "lit": "user",
                   },
                 ],
+                "parts": [
+                  "models",
+                  "user",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 500,
+                    },
+                    {
+                      "name": "offset",
+                      "orig": "offset",
+                      "type": [
+                        "`$ONE`",
+                        [
+                          "`$INTEGER`",
+                          "`$NULL`",
+                        ],
+                      ],
+                      "kind": "query",
+                      "example": 0,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -9096,14 +8640,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "models",
-                  "user",
-                ],
               },
             ],
           },
@@ -9116,31 +8652,35 @@ def make_config():
         "fields": [
           {
             "name": "app_id",
+            "title": "App Id",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "The application ID associated with this auth code",
-            "type": "`$INTEGER`",
           },
           {
-            "format": "uri",
             "name": "callback_url",
+            "title": "Callback Url",
+            "type": "`$STRING`",
             "req": True,
             "short": "The callback URL to redirect to after authorization.",
-            "type": "`$STRING`",
+            "format": "uri",
           },
           {
             "name": "code",
+            "title": "Code",
+            "type": "`$STRING`",
             "req": True,
             "short": "The authorization code received from the OAuth redirect",
-            "type": "`$STRING`",
           },
           {
             "name": "code_challenge",
-            "short": "PKCE code challenge for enhanced security",
+            "title": "Code Challenge",
             "type": "`$STRING`",
+            "short": "PKCE code challenge for enhanced security",
           },
           {
             "name": "code_challenge_method",
-            "short": "The method used to generate the code challenge",
+            "title": "Code Challenge Method",
             "type": [
               "`$ONE`",
               [
@@ -9148,22 +8688,24 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "The method used to generate the code challenge",
           },
           {
             "name": "code_verifier",
-            "short": "The code verifier if code_challenge was used in the authorization request",
+            "title": "Code Verifier",
             "type": "`$STRING`",
+            "short": "The code verifier if code_challenge was used in the authorization request",
           },
           {
             "name": "created_at",
+            "title": "Created At",
+            "type": "`$STRING`",
             "req": True,
             "short": "ISO 8601 timestamp of when the auth code was created",
-            "type": "`$STRING`",
           },
           {
-            "format": "date-time",
             "name": "expires_at",
-            "short": "Optional expiration time for the API key to be created",
+            "title": "Expires At",
             "type": [
               "`$ONE`",
               [
@@ -9171,49 +8713,57 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Optional expiration time for the API key to be created",
+            "format": "date-time",
           },
           {
             "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "The authorization code ID to use in the exchange request",
-            "type": "`$STRING`",
           },
           {
             "name": "key",
+            "title": "Key",
+            "type": "`$STRING`",
             "req": True,
             "short": "The API key to use for OpenRouter requests",
-            "type": "`$STRING`",
           },
           {
             "name": "key_label",
-            "short": "Optional custom label for the API key.",
+            "title": "Key Label",
             "type": "`$STRING`",
+            "short": "Optional custom label for the API key.",
           },
           {
-            "format": "double",
             "name": "limit",
-            "short": "Credit limit for the API key to be created",
+            "title": "Limit",
             "type": "`$NUMBER`",
+            "short": "Credit limit for the API key to be created",
+            "format": "double",
           },
           {
             "name": "spawn_agent",
-            "short": "Agent identifier for spawn telemetry",
+            "title": "Spawn Agent",
             "type": "`$STRING`",
+            "short": "Agent identifier for spawn telemetry",
           },
           {
             "name": "spawn_cloud",
-            "short": "Cloud identifier for spawn telemetry",
+            "title": "Spawn Cloud",
             "type": "`$STRING`",
+            "short": "Cloud identifier for spawn telemetry",
           },
           {
             "name": "usage_limit_type",
-            "short": "Optional credit limit reset interval.",
+            "title": "Usage Limit Type",
             "type": "`$STRING`",
+            "short": "Optional credit limit reset interval.",
           },
           {
             "name": "user_id",
-            "req": True,
-            "short": "User ID associated with the API key",
+            "title": "User Id",
             "type": [
               "`$ONE`",
               [
@@ -9221,12 +8771,15 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "User ID associated with the API key",
           },
           {
-            "format": "uuid",
             "name": "workspace_id",
-            "short": "Optional workspace ID to associate the API key with",
+            "title": "Workspace Id",
             "type": "`$STRING`",
+            "short": "Optional workspace ID to associate the API key with",
+            "format": "uuid",
           },
         ],
         "id": {
@@ -9240,28 +8793,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/auth/keys",
@@ -9273,6 +8804,37 @@ def make_config():
                     "lit": "keys",
                   },
                 ],
+                "parts": [
+                  "auth",
+                  "keys",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -9280,38 +8842,8 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "auth",
-                  "keys",
-                ],
               },
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/auth/keys/code",
@@ -9326,6 +8858,38 @@ def make_config():
                     "lit": "code",
                   },
                 ],
+                "parts": [
+                  "auth",
+                  "keys",
+                  "code",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -9333,15 +8897,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "auth",
-                  "keys",
-                  "code",
-                ],
               },
             ],
           },
@@ -9354,10 +8909,12 @@ def make_config():
         "fields": [
           {
             "name": "data",
+            "title": "Data",
             "type": "`$OBJECT`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -9372,38 +8929,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/observability/destinations/{id}",
@@ -9418,6 +8943,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "observability",
+                  "destinations",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -9426,15 +8993,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "observability",
-                  "destinations",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -9443,38 +9001,6 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/observability/destinations/{id}",
@@ -9489,6 +9015,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "observability",
+                  "destinations",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -9497,15 +9065,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "observability",
-                  "destinations",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -9518,6 +9077,7 @@ def make_config():
         "fields": [
           {
             "name": "background",
+            "title": "Background",
             "type": [
               "`$ONE`",
               [
@@ -9528,18 +9088,20 @@ def make_config():
           },
           {
             "name": "cache_control",
+            "title": "Cache Control",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Enable automatic prompt caching.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "debug",
-            "short": "Debug options for inspecting request transformations (streaming only)",
+            "title": "Debug",
             "type": "`$OBJECT`",
+            "short": "Debug options for inspecting request transformations (streaming only)",
           },
           {
-            "format": "double",
             "name": "frequency_penalty",
+            "title": "Frequency Penalty",
             "type": [
               "`$ONE`",
               [
@@ -9547,19 +9109,17 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "format": "double",
           },
           {
             "name": "image_config",
-            "short": "Provider-specific image configuration options.",
+            "title": "Image Config",
             "type": "`$OBJECT`",
-            "union": {
-              "branches": 3,
-              "count": 1,
-              "depth": 1,
-            },
+            "short": "Provider-specific image configuration options.",
           },
           {
             "name": "include",
+            "title": "Include",
             "type": [
               "`$ONE`",
               [
@@ -9570,16 +9130,13 @@ def make_config():
           },
           {
             "name": "input",
-            "short": "Input for a response request - can be a string or array of items",
+            "title": "Input",
             "type": "`$ANY`",
-            "union": {
-              "branches": 49,
-              "count": 35,
-              "depth": 19,
-            },
+            "short": "Input for a response request - can be a string or array of items",
           },
           {
             "name": "instructions",
+            "title": "Instructions",
             "type": [
               "`$ONE`",
               [
@@ -9590,6 +9147,7 @@ def make_config():
           },
           {
             "name": "max_output_tokens",
+            "title": "Max Output Tokens",
             "type": [
               "`$ONE`",
               [
@@ -9600,6 +9158,7 @@ def make_config():
           },
           {
             "name": "max_tool_calls",
+            "title": "Max Tool Calls",
             "type": [
               "`$ONE`",
               [
@@ -9610,7 +9169,7 @@ def make_config():
           },
           {
             "name": "metadata",
-            "short": "Metadata key-value pairs for the request.",
+            "title": "Metadata",
             "type": [
               "`$ONE`",
               [
@@ -9618,22 +9177,27 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Metadata key-value pairs for the request.",
           },
           {
             "name": "modalities",
-            "short": "Output modalities for the response.",
+            "title": "Modalities",
             "type": "`$ARRAY`",
+            "short": "Output modalities for the response.",
           },
           {
             "name": "model",
+            "title": "Model",
             "type": "`$STRING`",
           },
           {
             "name": "models",
+            "title": "Models",
             "type": "`$ARRAY`",
           },
           {
             "name": "parallel_tool_calls",
+            "title": "Parallel Tool Calls",
             "type": [
               "`$ONE`",
               [
@@ -9644,17 +9208,13 @@ def make_config():
           },
           {
             "name": "plugins",
-            "short": "Plugins you want to enable for this request, including their settings.",
+            "title": "Plugins",
             "type": "`$ARRAY`",
-            "union": {
-              "branches": 5,
-              "count": 4,
-              "depth": 12,
-            },
+            "short": "Plugins you want to enable for this request, including their settings.",
           },
           {
-            "format": "double",
             "name": "presence_penalty",
+            "title": "Presence Penalty",
             "type": [
               "`$ONE`",
               [
@@ -9662,15 +9222,17 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "format": "double",
           },
           {
             "name": "previous_response_id",
-            "short": "Not supported.",
+            "title": "Previous Response Id",
             "type": "`$STRING`",
+            "short": "Not supported.",
           },
           {
             "name": "prompt",
-            "req": True,
+            "title": "Prompt",
             "type": [
               "`$ONE`",
               [
@@ -9678,14 +9240,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-            "union": {
-              "branches": 4,
-              "count": 1,
-              "depth": 3,
-            },
+            "req": True,
           },
           {
             "name": "prompt_cache_key",
+            "title": "Prompt Cache Key",
             "type": [
               "`$ONE`",
               [
@@ -9696,8 +9255,7 @@ def make_config():
           },
           {
             "name": "prompt_cache_options",
-            "req": True,
-            "short": "Request-level prompt-cache controls.",
+            "title": "Prompt Cache Options",
             "type": [
               "`$ONE`",
               [
@@ -9705,10 +9263,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Request-level prompt-cache controls.",
           },
           {
             "name": "provider",
-            "short": "When multiple model providers are available, optionally indicate your routing preference.",
+            "title": "Provider",
             "type": [
               "`$ONE`",
               [
@@ -9716,21 +9276,17 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-            "union": {
-              "branches": 2,
-              "count": 6,
-              "depth": 3,
-            },
+            "short": "When multiple model providers are available, optionally indicate your routing preference.",
           },
           {
             "name": "reasoning",
-            "short": "Configuration for reasoning mode in the response",
+            "title": "Reasoning",
             "type": "`$ANY`",
+            "short": "Configuration for reasoning mode in the response",
           },
           {
-            "deprecated": True,
             "name": "route",
-            "short": "**DEPRECATED** Use providers.sort.partition instead.",
+            "title": "Route",
             "type": [
               "`$ONE`",
               [
@@ -9738,9 +9294,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "**DEPRECATED** Use providers.sort.partition instead.",
+            "deprecated": True,
           },
           {
             "name": "safety_identifier",
+            "title": "Safety Identifier",
             "type": [
               "`$ONE`",
               [
@@ -9751,6 +9310,7 @@ def make_config():
           },
           {
             "name": "service_tier",
+            "title": "Service Tier",
             "type": [
               "`$ONE`",
               [
@@ -9761,25 +9321,29 @@ def make_config():
           },
           {
             "name": "session_id",
-            "short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
+            "title": "Session Id",
             "type": "`$STRING`",
+            "short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
           },
           {
             "name": "stop_server_tools_when",
-            "short": "Stop conditions for the server-tool agent loop.",
+            "title": "Stop Server Tools When",
             "type": "`$ARRAY`",
+            "short": "Stop conditions for the server-tool agent loop.",
           },
           {
             "name": "store",
+            "title": "Store",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "stream",
+            "title": "Stream",
             "type": "`$BOOLEAN`",
           },
           {
-            "format": "double",
             "name": "temperature",
+            "title": "Temperature",
             "type": [
               "`$ONE`",
               [
@@ -9787,41 +9351,32 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "format": "double",
           },
           {
             "name": "text",
-            "short": "Text output configuration including format and verbosity",
+            "title": "Text",
             "type": "`$ANY`",
-            "union": {
-              "branches": 3,
-              "count": 1,
-              "depth": 4,
-            },
+            "short": "Text output configuration including format and verbosity",
           },
           {
             "name": "tool_choice",
+            "title": "Tool Choice",
             "type": "`$ANY`",
-            "union": {
-              "branches": 8,
-              "count": 3,
-              "depth": 4,
-            },
           },
           {
             "name": "tools",
+            "title": "Tools",
             "type": "`$ARRAY`",
-            "union": {
-              "branches": 27,
-              "count": 10,
-              "depth": 12,
-            },
           },
           {
             "name": "top_k",
+            "title": "Top K",
             "type": "`$INTEGER`",
           },
           {
             "name": "top_logprobs",
+            "title": "Top Logprobs",
             "type": [
               "`$ONE`",
               [
@@ -9831,8 +9386,8 @@ def make_config():
             ],
           },
           {
-            "format": "double",
             "name": "top_p",
+            "title": "Top P",
             "type": [
               "`$ONE`",
               [
@@ -9840,14 +9395,17 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "format": "double",
           },
           {
             "name": "trace",
-            "short": "Metadata for observability and tracing.",
+            "title": "Trace",
             "type": "`$OBJECT`",
+            "short": "Metadata for observability and tracing.",
           },
           {
             "name": "truncation",
+            "title": "Truncation",
             "type": [
               "`$ONE`",
               [
@@ -9858,8 +9416,9 @@ def make_config():
           },
           {
             "name": "user",
-            "short": "A unique identifier representing your end-user, which helps distinguish between different users of your app.",
+            "title": "User",
             "type": "`$STRING`",
+            "short": "A unique identifier representing your end-user, which helps distinguish between different users of your app.",
           },
         ],
         "name": "open_responses_result",
@@ -9869,35 +9428,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "enabled",
-                      "kind": "header",
-                      "name": "x_open_router_metadata",
-                      "orig": "x_open_router_metadata",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/responses",
@@ -9906,6 +9436,43 @@ def make_config():
                     "lit": "responses",
                   },
                 ],
+                "parts": [
+                  "responses",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_metadata",
+                      "orig": "x_open_router_metadata",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                      "example": "enabled",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -9914,13 +9481,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "responses",
-                ],
               },
             ],
           },
@@ -9938,50 +9498,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": 50,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "offset",
-                      "orig": "offset",
-                      "type": [
-                        "`$ONE`",
-                        [
-                          "`$INTEGER`",
-                          "`$NULL`",
-                        ],
-                      ],
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/organization/members",
@@ -9993,6 +9509,59 @@ def make_config():
                     "lit": "members",
                   },
                 ],
+                "parts": [
+                  "organization",
+                  "members",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "offset",
+                      "orig": "offset",
+                      "type": [
+                        "`$ONE`",
+                        [
+                          "`$INTEGER`",
+                          "`$NULL`",
+                        ],
+                      ],
+                      "kind": "query",
+                      "example": 0,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "member",
                   "exist": [
@@ -10003,14 +9572,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "organization",
-                  "members",
-                ],
               },
             ],
           },
@@ -10023,12 +9584,13 @@ def make_config():
         "fields": [
           {
             "name": "created_at",
-            "req": True,
+            "title": "Created At",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "creator_user_id",
-            "req": True,
+            "title": "Creator User Id",
             "type": [
               "`$ONE`",
               [
@@ -10036,10 +9598,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
           },
           {
             "name": "description",
-            "req": True,
+            "title": "Description",
             "type": [
               "`$ONE`",
               [
@@ -10047,11 +9610,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
           },
           {
             "name": "designated_version",
-            "req": True,
-            "short": "A specific version of a preset, containing config and optional system prompt.",
+            "title": "Designated Version",
             "type": [
               "`$ONE`",
               [
@@ -10059,10 +9622,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "A specific version of a preset, containing config and optional system prompt.",
           },
           {
             "name": "designated_version_id",
-            "req": True,
+            "title": "Designated Version Id",
             "type": [
               "`$ONE`",
               [
@@ -10070,31 +9635,36 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
           },
           {
             "name": "id",
-            "req": True,
+            "title": "Id",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "name",
-            "req": True,
+            "title": "Name",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "slug",
-            "req": True,
+            "title": "Slug",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "status",
+            "title": "Status",
+            "type": "`$STRING`",
             "req": True,
             "short": "The status of a preset.",
-            "type": "`$STRING`",
           },
           {
             "name": "status_updated_at",
-            "req": True,
+            "title": "Status Updated At",
             "type": [
               "`$ONE`",
               [
@@ -10102,15 +9672,17 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
           },
           {
             "name": "updated_at",
-            "req": True,
+            "title": "Updated At",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "workspace_id",
-            "req": True,
+            "title": "Workspace Id",
             "type": [
               "`$ONE`",
               [
@@ -10118,6 +9690,7 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
           },
         ],
         "id": {
@@ -10131,38 +9704,52 @@ def make_config():
             "name": "list",
             "points": [
               {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/presets",
+                "segments": [
+                  {
+                    "lit": "presets",
+                  },
+                ],
+                "parts": [
+                  "presets",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
                 "args": {
                   "header": [
                     {
-                      "kind": "header",
                       "name": "http_referer",
                       "orig": "http_referer",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_category",
                       "orig": "x_open_router_category",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_title",
                       "orig": "x_open_router_title",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                   ],
                   "query": [
                     {
-                      "example": 50,
-                      "kind": "query",
                       "name": "limit",
                       "orig": "limit",
                       "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
                     },
                     {
-                      "example": 0,
-                      "kind": "query",
                       "name": "offset",
                       "orig": "offset",
                       "type": [
@@ -10172,17 +9759,11 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 0,
                     },
                   ],
                 },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/presets",
-                "segments": [
-                  {
-                    "lit": "presets",
-                  },
-                ],
                 "select": {
                   "exist": [
                     "http_referer",
@@ -10192,13 +9773,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "presets",
-                ],
               },
             ],
           },
@@ -10207,46 +9781,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "my-preset",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "slug",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/presets/{slug}",
-                "rename": {
-                  "param": {
-                    "slug": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "presets",
@@ -10255,6 +9792,51 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "presets",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "slug": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "slug",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "my-preset",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -10263,56 +9845,49 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "presets",
-                  "{id}",
-                ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "preset",
-            ],
-          ],
+          "ancestors": [],
         },
       },
       "preset_version": {
         "fields": [
           {
             "name": "config",
-            "req": True,
+            "title": "Config",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "created_at",
-            "req": True,
+            "title": "Created At",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "creator_id",
-            "req": True,
+            "title": "Creator Id",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "id",
-            "req": True,
+            "title": "Id",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "preset_id",
-            "req": True,
+            "title": "Preset Id",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "system_prompt",
-            "req": True,
+            "title": "System Prompt",
             "type": [
               "`$ONE`",
               [
@@ -10320,16 +9895,19 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
           },
           {
             "name": "updated_at",
-            "req": True,
+            "title": "Updated At",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "version",
-            "req": True,
+            "title": "Version",
             "type": "`$INTEGER`",
+            "req": True,
           },
         ],
         "id": {
@@ -10343,54 +9921,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "1",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "version",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "my-preset",
-                      "kind": "param",
-                      "name": "slug",
-                      "orig": "slug",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/presets/{slug}/versions/{version}",
-                "rename": {
-                  "param": {
-                    "version": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "presets",
@@ -10405,6 +9938,61 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "presets",
+                  "{slug}",
+                  "versions",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "version": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "version",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "1",
+                    },
+                    {
+                      "name": "slug",
+                      "orig": "slug",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "my-preset",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -10414,16 +10002,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "presets",
-                  "{slug}",
-                  "versions",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -10431,7 +10009,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "preset",
+              "$.main.kit.entity.preset",
             ],
           ],
         },
@@ -10440,7 +10018,7 @@ def make_config():
         "fields": [
           {
             "name": "datacenters",
-            "short": "ISO 3166-1 Alpha-2 country codes of the provider datacenter locations",
+            "title": "Datacenters",
             "type": [
               "`$ONE`",
               [
@@ -10448,10 +10026,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "ISO 3166-1 Alpha-2 country codes of the provider datacenter locations",
           },
           {
             "name": "headquarters",
-            "short": "ISO 3166-1 Alpha-2 country code of the provider headquarters",
+            "title": "Headquarters",
             "type": [
               "`$ONE`",
               [
@@ -10459,17 +10038,18 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "ISO 3166-1 Alpha-2 country code of the provider headquarters",
           },
           {
             "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
             "req": True,
             "short": "Display name of the provider",
-            "type": "`$STRING`",
           },
           {
             "name": "privacy_policy_url",
-            "req": True,
-            "short": "URL to the provider's privacy policy",
+            "title": "Privacy Policy Url",
             "type": [
               "`$ONE`",
               [
@@ -10477,16 +10057,19 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "URL to the provider's privacy policy",
           },
           {
             "name": "slug",
+            "title": "Slug",
+            "type": "`$STRING`",
             "req": True,
             "short": "URL-friendly identifier for the provider",
-            "type": "`$STRING`",
           },
           {
             "name": "status_page_url",
-            "short": "URL to the provider's status page",
+            "title": "Status Page Url",
             "type": [
               "`$ONE`",
               [
@@ -10494,10 +10077,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "URL to the provider's status page",
           },
           {
             "name": "terms_of_service_url",
-            "short": "URL to the provider's terms of service",
+            "title": "Terms Of Service Url",
             "type": [
               "`$ONE`",
               [
@@ -10505,6 +10089,7 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "URL to the provider's terms of service",
           },
         ],
         "name": "provider",
@@ -10514,28 +10099,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/providers",
@@ -10544,6 +10107,36 @@ def make_config():
                     "lit": "providers",
                   },
                 ],
+                "parts": [
+                  "providers",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -10551,13 +10144,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "providers",
-                ],
               },
             ],
           },
@@ -10566,33 +10152,28 @@ def make_config():
           "ancestors": [],
         },
       },
-      "query": {
-        "fields": [],
-        "name": "query",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
       "rankings_daily": {
         "fields": [
           {
             "name": "date",
+            "title": "Date",
+            "type": "`$STRING`",
             "req": True,
             "short": "UTC calendar date the row is aggregated over (YYYY-MM-DD).",
-            "type": "`$STRING`",
           },
           {
             "name": "model_permaslug",
+            "title": "Model Permaslug",
+            "type": "`$STRING`",
             "req": True,
             "short": "Model variant permaslug (e.g.",
-            "type": "`$STRING`",
           },
           {
             "name": "total_tokens",
+            "title": "Total Tokens",
+            "type": "`$STRING`",
             "req": True,
             "short": "Sum of `prompt_tokens + completion_tokens` for the day, returned as a decimal string so 64-bit values are not truncated.",
-            "type": "`$STRING`",
           },
         ],
         "name": "rankings_daily",
@@ -10602,79 +10183,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "programming",
-                      "kind": "query",
-                      "name": "category",
-                      "orig": "category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "100K",
-                      "kind": "query",
-                      "name": "context_bucket",
-                      "orig": "context_bucket",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "2026-05-11",
-                      "kind": "query",
-                      "name": "end_date",
-                      "orig": "end_date",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "natural",
-                      "kind": "query",
-                      "name": "language_type",
-                      "orig": "language_type",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "text",
-                      "kind": "query",
-                      "name": "modality",
-                      "orig": "modality",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "day",
-                      "kind": "query",
-                      "name": "period",
-                      "orig": "period",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "2026-04-12",
-                      "kind": "query",
-                      "name": "start_date",
-                      "orig": "start_date",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/datasets/rankings-daily",
@@ -10686,6 +10194,88 @@ def make_config():
                     "lit": "rankings-daily",
                   },
                 ],
+                "parts": [
+                  "datasets",
+                  "rankings-daily",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "category",
+                      "orig": "category",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "programming",
+                    },
+                    {
+                      "name": "context_bucket",
+                      "orig": "context_bucket",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "100K",
+                    },
+                    {
+                      "name": "end_date",
+                      "orig": "end_date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "2026-05-11",
+                    },
+                    {
+                      "name": "language_type",
+                      "orig": "language_type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "natural",
+                    },
+                    {
+                      "name": "modality",
+                      "orig": "modality",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "text",
+                    },
+                    {
+                      "name": "period",
+                      "orig": "period",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "day",
+                    },
+                    {
+                      "name": "start_date",
+                      "orig": "start_date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "2026-04-12",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "category",
@@ -10700,14 +10290,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "datasets",
-                  "rankings-daily",
-                ],
               },
             ],
           },
@@ -10716,71 +10298,59 @@ def make_config():
           "ancestors": [],
         },
       },
-      "remove": {
-        "fields": [],
-        "name": "remove",
-        "op": {},
-        "relations": {
-          "ancestors": [
-            [
-              "guardrail",
-            ],
-            [
-              "workspace",
-            ],
-          ],
-        },
-      },
       "rerank": {
         "fields": [
           {
             "name": "documents",
+            "title": "Documents",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "The list of documents to rerank.",
-            "type": "`$ARRAY`",
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 1,
-            },
           },
           {
             "name": "id",
-            "short": "Unique identifier for the rerank response (ORID format)",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "Unique identifier for the rerank response (ORID format)",
           },
           {
             "name": "model",
+            "title": "Model",
+            "type": "`$STRING`",
             "req": True,
             "short": "The model used for reranking",
-            "type": "`$STRING`",
           },
           {
             "name": "provider",
-            "short": "The provider that served the rerank request",
+            "title": "Provider",
             "type": "`$STRING`",
+            "short": "The provider that served the rerank request",
           },
           {
             "name": "query",
+            "title": "Query",
+            "type": "`$STRING`",
             "req": True,
             "short": "The search query to rerank documents against",
-            "type": "`$STRING`",
           },
           {
             "name": "results",
+            "title": "Results",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of rerank results sorted by relevance",
-            "type": "`$ARRAY`",
           },
           {
             "name": "top_n",
-            "short": "Number of most relevant documents to return",
+            "title": "Top N",
             "type": "`$INTEGER`",
+            "short": "Number of most relevant documents to return",
           },
           {
             "name": "usage",
-            "short": "Usage statistics",
+            "title": "Usage",
             "type": "`$OBJECT`",
+            "short": "Usage statistics",
           },
         ],
         "id": {
@@ -10794,28 +10364,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/rerank",
@@ -10824,6 +10372,36 @@ def make_config():
                     "lit": "rerank",
                   },
                 ],
+                "parts": [
+                  "rerank",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -10831,13 +10409,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "rerank",
-                ],
               },
             ],
           },
@@ -10847,92 +10418,520 @@ def make_config():
         },
       },
       "response": {
-        "fields": [],
+        "fields": [
+          {
+            "name": "background",
+            "title": "Background",
+            "type": [
+              "`$ONE`",
+              [
+                "`$BOOLEAN`",
+                "`$NULL`",
+              ],
+            ],
+          },
+          {
+            "name": "cache_control",
+            "title": "Cache Control",
+            "type": "`$OBJECT`",
+            "req": True,
+            "short": "Enable automatic prompt caching.",
+          },
+          {
+            "name": "debug",
+            "title": "Debug",
+            "type": "`$OBJECT`",
+            "short": "Debug options for inspecting request transformations (streaming only)",
+          },
+          {
+            "name": "frequency_penalty",
+            "title": "Frequency Penalty",
+            "type": [
+              "`$ONE`",
+              [
+                "`$NUMBER`",
+                "`$NULL`",
+              ],
+            ],
+            "format": "double",
+          },
+          {
+            "name": "image_config",
+            "title": "Image Config",
+            "type": "`$OBJECT`",
+            "short": "Provider-specific image configuration options.",
+          },
+          {
+            "name": "include",
+            "title": "Include",
+            "type": [
+              "`$ONE`",
+              [
+                "`$ARRAY`",
+                "`$NULL`",
+              ],
+            ],
+          },
+          {
+            "name": "input",
+            "title": "Input",
+            "type": "`$ANY`",
+            "short": "Input for a response request - can be a string or array of items",
+          },
+          {
+            "name": "instructions",
+            "title": "Instructions",
+            "type": [
+              "`$ONE`",
+              [
+                "`$STRING`",
+                "`$NULL`",
+              ],
+            ],
+          },
+          {
+            "name": "max_output_tokens",
+            "title": "Max Output Tokens",
+            "type": [
+              "`$ONE`",
+              [
+                "`$INTEGER`",
+                "`$NULL`",
+              ],
+            ],
+          },
+          {
+            "name": "max_tool_calls",
+            "title": "Max Tool Calls",
+            "type": [
+              "`$ONE`",
+              [
+                "`$INTEGER`",
+                "`$NULL`",
+              ],
+            ],
+          },
+          {
+            "name": "metadata",
+            "title": "Metadata",
+            "type": [
+              "`$ONE`",
+              [
+                "`$OBJECT`",
+                "`$NULL`",
+              ],
+            ],
+            "short": "Metadata key-value pairs for the request.",
+          },
+          {
+            "name": "modalities",
+            "title": "Modalities",
+            "type": "`$ARRAY`",
+            "short": "Output modalities for the response.",
+          },
+          {
+            "name": "model",
+            "title": "Model",
+            "type": "`$STRING`",
+          },
+          {
+            "name": "models",
+            "title": "Models",
+            "type": "`$ARRAY`",
+          },
+          {
+            "name": "parallel_tool_calls",
+            "title": "Parallel Tool Calls",
+            "type": [
+              "`$ONE`",
+              [
+                "`$BOOLEAN`",
+                "`$NULL`",
+              ],
+            ],
+          },
+          {
+            "name": "plugins",
+            "title": "Plugins",
+            "type": "`$ARRAY`",
+            "short": "Plugins you want to enable for this request, including their settings.",
+          },
+          {
+            "name": "presence_penalty",
+            "title": "Presence Penalty",
+            "type": [
+              "`$ONE`",
+              [
+                "`$NUMBER`",
+                "`$NULL`",
+              ],
+            ],
+            "format": "double",
+          },
+          {
+            "name": "previous_response_id",
+            "title": "Previous Response Id",
+            "type": "`$STRING`",
+            "short": "Not supported.",
+          },
+          {
+            "name": "prompt",
+            "title": "Prompt",
+            "type": [
+              "`$ONE`",
+              [
+                "`$OBJECT`",
+                "`$NULL`",
+              ],
+            ],
+            "req": True,
+          },
+          {
+            "name": "prompt_cache_key",
+            "title": "Prompt Cache Key",
+            "type": [
+              "`$ONE`",
+              [
+                "`$STRING`",
+                "`$NULL`",
+              ],
+            ],
+          },
+          {
+            "name": "prompt_cache_options",
+            "title": "Prompt Cache Options",
+            "type": [
+              "`$ONE`",
+              [
+                "`$OBJECT`",
+                "`$NULL`",
+              ],
+            ],
+            "req": True,
+            "short": "Request-level prompt-cache controls.",
+          },
+          {
+            "name": "provider",
+            "title": "Provider",
+            "type": [
+              "`$ONE`",
+              [
+                "`$OBJECT`",
+                "`$NULL`",
+              ],
+            ],
+            "short": "When multiple model providers are available, optionally indicate your routing preference.",
+          },
+          {
+            "name": "reasoning",
+            "title": "Reasoning",
+            "type": "`$ANY`",
+            "short": "Configuration for reasoning mode in the response",
+          },
+          {
+            "name": "route",
+            "title": "Route",
+            "type": [
+              "`$ONE`",
+              [
+                "`$STRING`",
+                "`$NULL`",
+              ],
+            ],
+            "short": "**DEPRECATED** Use providers.sort.partition instead.",
+            "deprecated": True,
+          },
+          {
+            "name": "safety_identifier",
+            "title": "Safety Identifier",
+            "type": [
+              "`$ONE`",
+              [
+                "`$STRING`",
+                "`$NULL`",
+              ],
+            ],
+          },
+          {
+            "name": "service_tier",
+            "title": "Service Tier",
+            "type": [
+              "`$ONE`",
+              [
+                "`$STRING`",
+                "`$NULL`",
+              ],
+            ],
+          },
+          {
+            "name": "session_id",
+            "title": "Session Id",
+            "type": "`$STRING`",
+            "short": "A unique identifier for grouping related requests (e.g., a conversation or agent workflow).",
+          },
+          {
+            "name": "stop_server_tools_when",
+            "title": "Stop Server Tools When",
+            "type": "`$ARRAY`",
+            "short": "Stop conditions for the server-tool agent loop.",
+          },
+          {
+            "name": "store",
+            "title": "Store",
+            "type": "`$BOOLEAN`",
+          },
+          {
+            "name": "stream",
+            "title": "Stream",
+            "type": "`$BOOLEAN`",
+          },
+          {
+            "name": "temperature",
+            "title": "Temperature",
+            "type": [
+              "`$ONE`",
+              [
+                "`$NUMBER`",
+                "`$NULL`",
+              ],
+            ],
+            "format": "double",
+          },
+          {
+            "name": "text",
+            "title": "Text",
+            "type": "`$ANY`",
+            "short": "Text output configuration including format and verbosity",
+          },
+          {
+            "name": "tool_choice",
+            "title": "Tool Choice",
+            "type": "`$ANY`",
+          },
+          {
+            "name": "tools",
+            "title": "Tools",
+            "type": "`$ARRAY`",
+          },
+          {
+            "name": "top_k",
+            "title": "Top K",
+            "type": "`$INTEGER`",
+          },
+          {
+            "name": "top_logprobs",
+            "title": "Top Logprobs",
+            "type": [
+              "`$ONE`",
+              [
+                "`$INTEGER`",
+                "`$NULL`",
+              ],
+            ],
+          },
+          {
+            "name": "top_p",
+            "title": "Top P",
+            "type": [
+              "`$ONE`",
+              [
+                "`$NUMBER`",
+                "`$NULL`",
+              ],
+            ],
+            "format": "double",
+          },
+          {
+            "name": "trace",
+            "title": "Trace",
+            "type": "`$OBJECT`",
+            "short": "Metadata for observability and tracing.",
+          },
+          {
+            "name": "truncation",
+            "title": "Truncation",
+            "type": [
+              "`$ONE`",
+              [
+                "`$STRING`",
+                "`$NULL`",
+              ],
+            ],
+          },
+          {
+            "name": "user",
+            "title": "User",
+            "type": "`$STRING`",
+            "short": "A unique identifier representing your end-user, which helps distinguish between different users of your app.",
+          },
+        ],
         "name": "response",
-        "op": {},
-        "relations": {
-          "ancestors": [],
+        "op": {
+          "create": {
+            "input": "data",
+            "name": "create",
+            "points": [
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/presets/{slug}/responses",
+                "segments": [
+                  {
+                    "lit": "presets",
+                  },
+                  {
+                    "var": "slug",
+                  },
+                  {
+                    "lit": "responses",
+                  },
+                ],
+                "parts": [
+                  "presets",
+                  "{slug}",
+                  "responses",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "slug",
+                      "orig": "slug",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "my-preset",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "http_referer",
+                    "slug",
+                    "x_open_router_category",
+                    "x_open_router_title",
+                  ],
+                },
+              },
+            ],
+          },
         },
-      },
-      "speech": {
-        "fields": [],
-        "name": "speech",
-        "op": {},
         "relations": {
-          "ancestors": [],
+          "ancestors": [
+            [
+              "$.main.kit.entity.preset",
+            ],
+          ],
         },
       },
       "stt": {
         "fields": [
           {
-            "format": "double",
             "name": "duration",
-            "short": "Duration of the input audio in seconds, present when response_format is verbose_json",
+            "title": "Duration",
             "type": "`$NUMBER`",
+            "short": "Duration of the input audio in seconds, present when response_format is verbose_json",
+            "format": "double",
           },
           {
             "name": "input_audio",
+            "title": "Input Audio",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Base64-encoded audio to transcribe",
-            "type": "`$OBJECT`",
           },
           {
             "name": "language",
-            "short": "Detected or forced language, present when response_format is verbose_json",
+            "title": "Language",
             "type": "`$STRING`",
+            "short": "Detected or forced language, present when response_format is verbose_json",
           },
           {
             "name": "model",
+            "title": "Model",
+            "type": "`$STRING`",
             "req": True,
             "short": "STT model identifier",
-            "type": "`$STRING`",
           },
           {
             "name": "provider",
-            "short": "Provider-specific passthrough configuration",
+            "title": "Provider",
             "type": "`$OBJECT`",
+            "short": "Provider-specific passthrough configuration",
           },
           {
             "name": "response_format",
-            "short": "Output format.",
+            "title": "Response Format",
             "type": "`$STRING`",
+            "short": "Output format.",
           },
           {
             "name": "segments",
-            "short": "Timestamped transcript segments, present when response_format is verbose_json",
+            "title": "Segments",
             "type": "`$ARRAY`",
+            "short": "Timestamped transcript segments, present when response_format is verbose_json",
           },
           {
             "name": "task",
-            "short": "The task performed, present when response_format is verbose_json",
+            "title": "Task",
             "type": "`$STRING`",
+            "short": "The task performed, present when response_format is verbose_json",
           },
           {
-            "format": "double",
             "name": "temperature",
-            "short": "Sampling temperature for transcription",
+            "title": "Temperature",
             "type": "`$NUMBER`",
+            "short": "Sampling temperature for transcription",
+            "format": "double",
           },
           {
             "name": "text",
+            "title": "Text",
+            "type": "`$STRING`",
             "req": True,
             "short": "The transcribed text",
-            "type": "`$STRING`",
           },
           {
             "name": "timestamp_granularities",
-            "short": "Timestamp detail levels to include when response_format is \"verbose_json\".",
+            "title": "Timestamp Granularities",
             "type": "`$ARRAY`",
+            "short": "Timestamp detail levels to include when response_format is \"verbose_json\".",
           },
           {
             "name": "usage",
-            "short": "Aggregated usage statistics for the request",
+            "title": "Usage",
             "type": "`$OBJECT`",
+            "short": "Aggregated usage statistics for the request",
           },
           {
             "name": "words",
-            "short": "Timestamped words, present when the provider returns word-level timestamps",
+            "title": "Words",
             "type": "`$ARRAY`",
+            "short": "Timestamped words, present when the provider returns word-level timestamps",
           },
         ],
         "name": "stt",
@@ -10942,28 +10941,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/audio/transcriptions",
@@ -10975,6 +10952,37 @@ def make_config():
                     "lit": "transcriptions",
                   },
                 ],
+                "parts": [
+                  "audio",
+                  "transcriptions",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -10982,14 +10990,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "audio",
-                  "transcriptions",
-                ],
               },
             ],
           },
@@ -11002,26 +11002,30 @@ def make_config():
         "fields": [
           {
             "name": "category",
+            "title": "Category",
+            "type": "`$STRING`",
             "req": True,
             "short": "The category of feedback being reported",
-            "type": "`$STRING`",
           },
           {
             "name": "comment",
-            "short": "An optional free-text comment describing the feedback",
+            "title": "Comment",
             "type": "`$STRING`",
+            "short": "An optional free-text comment describing the feedback",
           },
           {
             "name": "generation_id",
+            "title": "Generation Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "The generation to submit feedback on",
-            "type": "`$STRING`",
           },
           {
             "name": "success",
+            "title": "Success",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Whether the feedback was recorded",
-            "type": "`$BOOLEAN`",
           },
         ],
         "name": "submit_generation_feedback",
@@ -11031,28 +11035,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/generation/feedback",
@@ -11064,6 +11046,37 @@ def make_config():
                     "lit": "feedback",
                   },
                 ],
+                "parts": [
+                  "generation",
+                  "feedback",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -11071,14 +11084,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "generation",
-                  "feedback",
-                ],
               },
             ],
           },
@@ -11091,27 +11096,31 @@ def make_config():
         "fields": [
           {
             "name": "as_of",
+            "title": "As Of",
+            "type": "`$STRING`",
             "req": True,
             "short": "UTC date (YYYY-MM-DD) of the window upper bound (yesterday).",
-            "type": "`$STRING`",
           },
           {
             "name": "classifications",
+            "title": "Classifications",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "Per-task classification market-share data, sorted by usage_share descending.",
-            "type": "`$ARRAY`",
           },
           {
             "name": "macro_categories",
+            "title": "Macro Categories",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "Aggregate market-share data per macro-category (code, data, agent, general).",
-            "type": "`$ARRAY`",
           },
           {
             "name": "window_days",
+            "title": "Window Days",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Number of trailing days covered by this snapshot.",
-            "type": "`$INTEGER`",
           },
         ],
         "name": "task",
@@ -11121,37 +11130,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "7d",
-                      "kind": "query",
-                      "name": "window",
-                      "orig": "window",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/classifications/task",
@@ -11163,6 +11141,46 @@ def make_config():
                     "lit": "task",
                   },
                 ],
+                "parts": [
+                  "classifications",
+                  "task",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "window",
+                      "orig": "window",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "7d",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -11171,14 +11189,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "classifications",
-                  "task",
-                ],
               },
             ],
           },
@@ -11187,49 +11197,47 @@ def make_config():
           "ancestors": [],
         },
       },
-      "transcription": {
-        "fields": [],
-        "name": "transcription",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
       "tts": {
         "fields": [
           {
             "name": "input",
+            "title": "Input",
+            "type": "`$STRING`",
             "req": True,
             "short": "Text to synthesize",
-            "type": "`$STRING`",
           },
           {
             "name": "model",
+            "title": "Model",
+            "type": "`$STRING`",
             "req": True,
             "short": "TTS model identifier",
-            "type": "`$STRING`",
           },
           {
             "name": "provider",
-            "short": "Provider-specific passthrough configuration",
+            "title": "Provider",
             "type": "`$OBJECT`",
+            "short": "Provider-specific passthrough configuration",
           },
           {
             "name": "response_format",
-            "short": "Audio output format",
+            "title": "Response Format",
             "type": "`$STRING`",
+            "short": "Audio output format",
           },
           {
-            "format": "double",
             "name": "speed",
-            "short": "Playback speed multiplier.",
+            "title": "Speed",
             "type": "`$NUMBER`",
+            "short": "Playback speed multiplier.",
+            "format": "double",
           },
           {
             "name": "voice",
+            "title": "Voice",
+            "type": "`$STRING`",
             "req": True,
             "short": "Voice identifier (provider-specific).",
-            "type": "`$STRING`",
           },
         ],
         "name": "tts",
@@ -11239,28 +11247,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/audio/speech",
@@ -11272,6 +11258,37 @@ def make_config():
                     "lit": "speech",
                   },
                 ],
+                "parts": [
+                  "audio",
+                  "speech",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -11279,14 +11296,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "audio",
-                  "speech",
-                ],
               },
             ],
           },
@@ -11299,13 +11308,15 @@ def make_config():
         "fields": [
           {
             "name": "data",
-            "req": True,
+            "title": "Data",
             "type": "`$ARRAY`",
+            "req": True,
           },
           {
             "name": "meta",
-            "req": True,
+            "title": "Meta",
             "type": "`$OBJECT`",
+            "req": True,
           },
         ],
         "name": "unified_benchmark",
@@ -11315,65 +11326,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "models",
-                      "kind": "query",
-                      "name": "arena",
-                      "orig": "arena",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "codecategories",
-                      "kind": "query",
-                      "name": "category",
-                      "orig": "category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 50,
-                      "kind": "query",
-                      "name": "max_result",
-                      "orig": "max_result",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": "artificial-analysis",
-                      "kind": "query",
-                      "name": "source",
-                      "orig": "source",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "coding",
-                      "kind": "query",
-                      "name": "task_type",
-                      "orig": "task_type",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/benchmarks",
@@ -11382,6 +11334,73 @@ def make_config():
                     "lit": "benchmarks",
                   },
                 ],
+                "parts": [
+                  "benchmarks",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "arena",
+                      "orig": "arena",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "models",
+                    },
+                    {
+                      "name": "category",
+                      "orig": "category",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "codecategories",
+                    },
+                    {
+                      "name": "max_result",
+                      "orig": "max_result",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "source",
+                      "orig": "source",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "artificial-analysis",
+                    },
+                    {
+                      "name": "task_type",
+                      "orig": "task_type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "coding",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "arena",
@@ -11394,13 +11413,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "benchmarks",
-                ],
               },
             ],
           },
@@ -11413,7 +11425,7 @@ def make_config():
         "fields": [
           {
             "name": "allowed_models",
-            "short": "Optional allowlist of model slugs this credential may be used for.",
+            "title": "Allowed Models",
             "type": [
               "`$ONE`",
               [
@@ -11421,10 +11433,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Optional allowlist of model slugs this credential may be used for.",
           },
           {
             "name": "allowed_user_ids",
-            "short": "Optional allowlist of user IDs that may use this credential.",
+            "title": "Allowed User Ids",
             "type": [
               "`$ONE`",
               [
@@ -11432,29 +11445,34 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Optional allowlist of user IDs that may use this credential.",
           },
           {
             "name": "disabled",
-            "short": "Whether this credential is disabled.",
+            "title": "Disabled",
             "type": "`$BOOLEAN`",
+            "short": "Whether this credential is disabled.",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "is_fallback",
-            "short": "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried.",
+            "title": "Is Fallback",
             "type": "`$BOOLEAN`",
+            "short": "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried.",
           },
           {
             "name": "key",
-            "short": "A new raw provider API key to rotate the credential in-place.",
+            "title": "Key",
             "type": "`$STRING`",
+            "short": "A new raw provider API key to rotate the credential in-place.",
           },
           {
             "name": "name",
-            "short": "Optional human-readable name for the credential.",
+            "title": "Name",
             "type": [
               "`$ONE`",
               [
@@ -11462,6 +11480,7 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Optional human-readable name for the credential.",
           },
         ],
         "id": {
@@ -11475,38 +11494,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "11111111-2222-3333-4444-555555555555",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PATCH",
                 "orig": "/byok/{id}",
@@ -11518,6 +11505,47 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "byok",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "11111111-2222-3333-4444-555555555555",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -11526,14 +11554,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "byok",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -11546,7 +11566,7 @@ def make_config():
         "fields": [
           {
             "name": "allowed_models",
-            "short": "Array of model identifiers (slug or canonical_slug accepted)",
+            "title": "Allowed Models",
             "type": [
               "`$ONE`",
               [
@@ -11554,10 +11574,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Array of model identifiers (slug or canonical_slug accepted)",
           },
           {
             "name": "allowed_providers",
-            "short": "New list of allowed provider IDs",
+            "title": "Allowed Providers",
             "type": [
               "`$ONE`",
               [
@@ -11565,10 +11586,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "New list of allowed provider IDs",
           },
           {
             "name": "content_filter_builtins",
-            "short": "Builtin content filters to apply.",
+            "title": "Content Filter Builtins",
             "type": [
               "`$ONE`",
               [
@@ -11576,10 +11598,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Builtin content filters to apply.",
           },
           {
             "name": "content_filters",
-            "short": "Custom regex content filters to apply.",
+            "title": "Content Filters",
             "type": [
               "`$ONE`",
               [
@@ -11587,10 +11610,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Custom regex content filters to apply.",
           },
           {
             "name": "description",
-            "short": "New description for the guardrail",
+            "title": "Description",
             "type": [
               "`$ONE`",
               [
@@ -11598,11 +11622,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "New description for the guardrail",
           },
           {
-            "deprecated": True,
             "name": "enforce_zdr",
-            "short": "Deprecated.",
+            "title": "Enforce Zdr",
             "type": [
               "`$ONE`",
               [
@@ -11610,10 +11634,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Deprecated.",
+            "deprecated": True,
           },
           {
             "name": "enforce_zdr_anthropic",
-            "short": "Whether to enforce zero data retention for Anthropic models.",
+            "title": "Enforce Zdr Anthropic",
             "type": [
               "`$ONE`",
               [
@@ -11621,10 +11647,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Whether to enforce zero data retention for Anthropic models.",
           },
           {
             "name": "enforce_zdr_google",
-            "short": "Whether to enforce zero data retention for Google models.",
+            "title": "Enforce Zdr Google",
             "type": [
               "`$ONE`",
               [
@@ -11632,10 +11659,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Whether to enforce zero data retention for Google models.",
           },
           {
             "name": "enforce_zdr_openai",
-            "short": "Whether to enforce zero data retention for OpenAI models.",
+            "title": "Enforce Zdr Openai",
             "type": [
               "`$ONE`",
               [
@@ -11643,10 +11671,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Whether to enforce zero data retention for OpenAI models.",
           },
           {
             "name": "enforce_zdr_other",
-            "short": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI.",
+            "title": "Enforce Zdr Other",
             "type": [
               "`$ONE`",
               [
@@ -11654,10 +11683,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI.",
           },
           {
             "name": "enforce_zdr_xai",
-            "short": "Whether to enforce zero data retention for xAI models.",
+            "title": "Enforce Zdr Xai",
             "type": [
               "`$ONE`",
               [
@@ -11665,14 +11695,16 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Whether to enforce zero data retention for xAI models.",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "ignored_models",
-            "short": "Array of model identifiers to exclude from routing (slug or canonical_slug accepted)",
+            "title": "Ignored Models",
             "type": [
               "`$ONE`",
               [
@@ -11680,10 +11712,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Array of model identifiers to exclude from routing (slug or canonical_slug accepted)",
           },
           {
             "name": "ignored_providers",
-            "short": "List of provider IDs to exclude from routing",
+            "title": "Ignored Providers",
             "type": [
               "`$ONE`",
               [
@@ -11691,11 +11724,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "List of provider IDs to exclude from routing",
           },
           {
-            "format": "double",
             "name": "limit_usd",
-            "short": "New spending limit in USD",
+            "title": "Limit Usd",
             "type": [
               "`$ONE`",
               [
@@ -11703,15 +11736,18 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "New spending limit in USD",
+            "format": "double",
           },
           {
             "name": "name",
-            "short": "New name for the guardrail",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "New name for the guardrail",
           },
           {
             "name": "reset_interval",
-            "short": "Interval at which the limit resets (daily, weekly, monthly)",
+            "title": "Reset Interval",
             "type": [
               "`$ONE`",
               [
@@ -11719,6 +11755,7 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Interval at which the limit resets (daily, weekly, monthly)",
           },
         ],
         "id": {
@@ -11732,38 +11769,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "550e8400-e29b-41d4-a716-446655440000",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PATCH",
                 "orig": "/guardrails/{id}",
@@ -11775,6 +11780,47 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "guardrails",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "550e8400-e29b-41d4-a716-446655440000",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -11783,14 +11829,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "guardrails",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -11803,7 +11841,7 @@ def make_config():
         "fields": [
           {
             "name": "api_key_hashes",
-            "short": "Optional allowlist of OpenRouter API key hashes.",
+            "title": "Api Key Hashes",
             "type": [
               "`$ONE`",
               [
@@ -11811,45 +11849,48 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Optional allowlist of OpenRouter API key hashes.",
           },
           {
             "name": "config",
-            "short": "Provider-specific configuration fields to update.",
+            "title": "Config",
             "type": "`$OBJECT`",
+            "short": "Provider-specific configuration fields to update.",
           },
           {
             "name": "enabled",
-            "short": "Whether the destination is enabled.",
+            "title": "Enabled",
             "type": "`$BOOLEAN`",
+            "short": "Whether the destination is enabled.",
           },
           {
             "name": "filter_rules",
+            "title": "Filter Rules",
             "type": "`$ANY`",
-            "union": {
-              "branches": 2,
-              "count": 1,
-              "depth": 10,
-            },
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "name",
-            "short": "Human-readable name for the destination.",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "Human-readable name for the destination.",
           },
           {
             "name": "privacy_mode",
-            "short": "When true, request/response bodies are not forwarded — only metadata.",
+            "title": "Privacy Mode",
             "type": "`$BOOLEAN`",
+            "short": "When true, request/response bodies are not forwarded — only metadata.",
           },
           {
-            "format": "double",
             "name": "sampling_rate",
-            "short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
+            "title": "Sampling Rate",
             "type": "`$NUMBER`",
+            "short": "Sampling rate between 0.0001 and 1 (1 = 100%).",
+            "format": "double",
           },
         ],
         "id": {
@@ -11863,38 +11904,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PATCH",
                 "orig": "/observability/destinations/{id}",
@@ -11909,6 +11918,48 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "observability",
+                  "destinations",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "99999999-aaaa-bbbb-cccc-dddddddddddd",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -11917,15 +11968,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "observability",
-                  "destinations",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -11938,14 +11980,14 @@ def make_config():
         "fields": [
           {
             "name": "created_at",
+            "title": "Created At",
+            "type": "`$STRING`",
             "req": True,
             "short": "ISO 8601 timestamp of when the workspace was created",
-            "type": "`$STRING`",
           },
           {
             "name": "created_by",
-            "req": True,
-            "short": "User ID of the workspace creator",
+            "title": "Created By",
             "type": [
               "`$ONE`",
               [
@@ -11953,9 +11995,19 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "User ID of the workspace creator",
           },
           {
             "name": "default_image_model",
+            "title": "Default Image Model",
+            "type": [
+              "`$ONE`",
+              [
+                "`$STRING`",
+                "`$NULL`",
+              ],
+            ],
             "op": {
               "list": {
                 "req": True,
@@ -11969,6 +12021,10 @@ def make_config():
               },
             },
             "short": "Default image model for this workspace",
+          },
+          {
+            "name": "default_provider_sort",
+            "title": "Default Provider Sort",
             "type": [
               "`$ONE`",
               [
@@ -11976,9 +12032,6 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-          },
-          {
-            "name": "default_provider_sort",
             "op": {
               "list": {
                 "req": True,
@@ -11992,6 +12045,10 @@ def make_config():
               },
             },
             "short": "Default provider sort preference (price, throughput, latency, exacto)",
+          },
+          {
+            "name": "default_text_model",
+            "title": "Default Text Model",
             "type": [
               "`$ONE`",
               [
@@ -11999,9 +12056,6 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-          },
-          {
-            "name": "default_text_model",
             "op": {
               "list": {
                 "req": True,
@@ -12015,6 +12069,10 @@ def make_config():
               },
             },
             "short": "Default text model for this workspace",
+          },
+          {
+            "name": "description",
+            "title": "Description",
             "type": [
               "`$ONE`",
               [
@@ -12022,9 +12080,6 @@ def make_config():
                 "`$NULL`",
               ],
             ],
-          },
-          {
-            "name": "description",
             "op": {
               "list": {
                 "req": True,
@@ -12038,23 +12093,25 @@ def make_config():
               },
             },
             "short": "Description of the workspace",
-            "type": [
-              "`$ONE`",
-              [
-                "`$STRING`",
-                "`$NULL`",
-              ],
-            ],
           },
           {
-            "format": "uuid",
             "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "Unique identifier for the workspace",
-            "type": "`$STRING`",
+            "format": "uuid",
           },
           {
             "name": "io_logging_api_key_ids",
+            "title": "Io Logging Api Key Ids",
+            "type": [
+              "`$ONE`",
+              [
+                "`$ARRAY`",
+                "`$NULL`",
+              ],
+            ],
             "op": {
               "list": {
                 "req": True,
@@ -12068,17 +12125,11 @@ def make_config():
               },
             },
             "short": "Optional array of API key IDs to filter I/O logging",
-            "type": [
-              "`$ONE`",
-              [
-                "`$ARRAY`",
-                "`$NULL`",
-              ],
-            ],
           },
           {
-            "format": "double",
             "name": "io_logging_sampling_rate",
+            "title": "Io Logging Sampling Rate",
+            "type": "`$NUMBER`",
             "op": {
               "list": {
                 "req": True,
@@ -12086,10 +12137,12 @@ def make_config():
               },
             },
             "short": "Sampling rate for I/O logging (0.0001-1)",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
             "name": "is_data_discount_logging_enabled",
+            "title": "Is Data Discount Logging Enabled",
+            "type": "`$BOOLEAN`",
             "op": {
               "list": {
                 "req": True,
@@ -12097,10 +12150,11 @@ def make_config():
               },
             },
             "short": "Whether data discount logging is enabled",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "is_observability_broadcast_enabled",
+            "title": "Is Observability Broadcast Enabled",
+            "type": "`$BOOLEAN`",
             "op": {
               "list": {
                 "req": True,
@@ -12108,10 +12162,11 @@ def make_config():
               },
             },
             "short": "Whether broadcast is enabled",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "is_observability_io_logging_enabled",
+            "title": "Is Observability Io Logging Enabled",
+            "type": "`$BOOLEAN`",
             "op": {
               "list": {
                 "req": True,
@@ -12119,34 +12174,34 @@ def make_config():
               },
             },
             "short": "Whether private logging is enabled",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
+            "req": True,
             "op": {
               "update": {
                 "type": "`$STRING`",
               },
             },
-            "req": True,
             "short": "Name for the new workspace",
-            "type": "`$STRING`",
           },
           {
             "name": "slug",
+            "title": "Slug",
+            "type": "`$STRING`",
+            "req": True,
             "op": {
               "update": {
                 "type": "`$STRING`",
               },
             },
-            "req": True,
             "short": "URL-friendly slug (lowercase alphanumeric segments separated by single hyphens, no leading/trailing hyphens)",
-            "type": "`$STRING`",
           },
           {
             "name": "updated_at",
-            "req": True,
-            "short": "ISO 8601 timestamp of when the workspace was last updated",
+            "title": "Updated At",
             "type": [
               "`$ONE`",
               [
@@ -12154,6 +12209,8 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "ISO 8601 timestamp of when the workspace was last updated",
           },
         ],
         "id": {
@@ -12167,28 +12224,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/workspaces",
@@ -12197,6 +12232,36 @@ def make_config():
                     "lit": "workspaces",
                   },
                 ],
+                "parts": [
+                  "workspaces",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -12204,13 +12269,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "workspaces",
-                ],
               },
             ],
           },
@@ -12219,38 +12277,52 @@ def make_config():
             "name": "list",
             "points": [
               {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/workspaces",
+                "segments": [
+                  {
+                    "lit": "workspaces",
+                  },
+                ],
+                "parts": [
+                  "workspaces",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
                 "args": {
                   "header": [
                     {
-                      "kind": "header",
                       "name": "http_referer",
                       "orig": "http_referer",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_category",
                       "orig": "x_open_router_category",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                     {
-                      "kind": "header",
                       "name": "x_open_router_title",
                       "orig": "x_open_router_title",
                       "type": "`$STRING`",
+                      "kind": "header",
                     },
                   ],
                   "query": [
                     {
-                      "example": 50,
-                      "kind": "query",
                       "name": "limit",
                       "orig": "limit",
                       "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
                     },
                     {
-                      "example": 0,
-                      "kind": "query",
                       "name": "offset",
                       "orig": "offset",
                       "type": [
@@ -12260,17 +12332,11 @@ def make_config():
                           "`$NULL`",
                         ],
                       ],
+                      "kind": "query",
+                      "example": 0,
                     },
                   ],
                 },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/workspaces",
-                "segments": [
-                  {
-                    "lit": "workspaces",
-                  },
-                ],
                 "select": {
                   "exist": [
                     "http_referer",
@@ -12280,13 +12346,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "workspaces",
-                ],
               },
             ],
           },
@@ -12295,38 +12354,6 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "production",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PATCH",
                 "orig": "/workspaces/{id}",
@@ -12338,6 +12365,47 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "workspaces",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "production",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -12346,14 +12414,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "workspaces",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -12366,14 +12426,16 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
-            "format": "double",
             "name": "limit_usd",
+            "title": "Limit Usd",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "Spending limit in USD.",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
         ],
         "id": {
@@ -12387,55 +12449,9 @@ def make_config():
             "name": "update",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "monthly",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "interval",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "production",
-                      "kind": "param",
-                      "name": "workspace_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/workspaces/{id}/budgets/{interval}",
-                "rename": {
-                  "param": {
-                    "id": "workspace_id",
-                    "interval": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "workspaces",
@@ -12450,6 +12466,62 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "workspaces",
+                  "{workspace_id}",
+                  "budgets",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "workspace_id",
+                    "interval": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "interval",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "monthly",
+                    },
+                    {
+                      "name": "workspace_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "production",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -12459,16 +12531,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "workspaces",
-                  "{workspace_id}",
-                  "budgets",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -12476,27 +12538,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "workspace",
-            ],
-          ],
-        },
-      },
-      "user": {
-        "fields": [],
-        "name": "user",
-        "op": {},
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "version": {
-        "fields": [],
-        "name": "version",
-        "op": {},
-        "relations": {
-          "ancestors": [
-            [
-              "preset",
+              "$.main.kit.entity.workspace",
             ],
           ],
         },
@@ -12505,97 +12547,116 @@ def make_config():
         "fields": [
           {
             "name": "aspect_ratio",
-            "short": "Aspect ratio of the generated video",
+            "title": "Aspect Ratio",
             "type": "`$STRING`",
+            "short": "Aspect ratio of the generated video",
           },
           {
-            "format": "uri",
             "name": "callback_url",
-            "short": "URL to receive a webhook notification when the video generation job completes.",
+            "title": "Callback Url",
             "type": "`$STRING`",
+            "short": "URL to receive a webhook notification when the video generation job completes.",
+            "format": "uri",
           },
           {
             "name": "duration",
-            "short": "Duration of the generated video in seconds",
+            "title": "Duration",
             "type": "`$INTEGER`",
+            "short": "Duration of the generated video in seconds",
           },
           {
             "name": "error",
+            "title": "Error",
             "type": "`$STRING`",
           },
           {
             "name": "frame_images",
-            "short": "Images to use as the first and/or last frame of the generated video.",
+            "title": "Frame Images",
             "type": "`$ARRAY`",
+            "short": "Images to use as the first and/or last frame of the generated video.",
           },
           {
             "name": "generate_audio",
-            "short": "Whether to generate audio alongside the video.",
+            "title": "Generate Audio",
             "type": "`$BOOLEAN`",
+            "short": "Whether to generate audio alongside the video.",
           },
           {
             "name": "generation_id",
-            "short": "The generation ID associated with this video generation job.",
+            "title": "Generation Id",
             "type": "`$STRING`",
+            "short": "The generation ID associated with this video generation job.",
           },
           {
             "name": "id",
-            "req": True,
+            "title": "Id",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "input_references",
-            "short": "Reference assets to guide video generation.",
+            "title": "Input References",
             "type": "`$ARRAY`",
+            "short": "Reference assets to guide video generation.",
           },
           {
             "name": "model",
-            "req": True,
+            "title": "Model",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "polling_url",
-            "req": True,
+            "title": "Polling Url",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "prompt",
-            "short": "Text prompt describing the video to generate.",
+            "title": "Prompt",
             "type": "`$STRING`",
+            "short": "Text prompt describing the video to generate.",
           },
           {
             "name": "provider",
-            "short": "Provider-specific passthrough configuration",
+            "title": "Provider",
             "type": "`$OBJECT`",
+            "short": "Provider-specific passthrough configuration",
           },
           {
             "name": "resolution",
-            "short": "Resolution of the generated video",
+            "title": "Resolution",
             "type": "`$STRING`",
+            "short": "Resolution of the generated video",
           },
           {
             "name": "seed",
-            "short": "If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result.",
+            "title": "Seed",
             "type": "`$INTEGER`",
+            "short": "If specified, the generation will sample deterministically, such that repeated requests with the same seed and parameters should return the same result.",
           },
           {
             "name": "size",
-            "short": "Exact pixel dimensions of the generated video in \"WIDTHxHEIGHT\" format (e.g.",
+            "title": "Size",
             "type": "`$STRING`",
+            "short": "Exact pixel dimensions of the generated video in \"WIDTHxHEIGHT\" format (e.g.",
           },
           {
             "name": "status",
-            "req": True,
+            "title": "Status",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "unsigned_urls",
+            "title": "Unsigned Urls",
             "type": "`$ARRAY`",
           },
           {
             "name": "usage",
-            "short": "Usage and cost information for the video generation.",
+            "title": "Usage",
             "type": "`$OBJECT`",
+            "short": "Usage and cost information for the video generation.",
           },
         ],
         "id": {
@@ -12609,28 +12670,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/videos",
@@ -12639,6 +12678,36 @@ def make_config():
                     "lit": "videos",
                   },
                 ],
+                "parts": [
+                  "videos",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -12646,13 +12715,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "videos",
-                ],
               },
             ],
           },
@@ -12661,46 +12723,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "job-abc123",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "job_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/videos/{jobId}",
-                "rename": {
-                  "param": {
-                    "jobId": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "videos",
@@ -12709,6 +12734,51 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "videos",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "jobId": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "job_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "job-abc123",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -12717,14 +12787,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "videos",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -12737,6 +12799,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -12751,61 +12814,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "job-abc123",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "job_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "index",
-                      "orig": "index",
-                      "type": [
-                        "`$ONE`",
-                        [
-                          "`$INTEGER`",
-                          "`$NULL`",
-                        ],
-                      ],
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/videos/{jobId}/content",
-                "rename": {
-                  "param": {
-                    "jobId": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "videos",
@@ -12817,6 +12828,67 @@ def make_config():
                     "lit": "content",
                   },
                 ],
+                "parts": [
+                  "videos",
+                  "{id}",
+                  "content",
+                ],
+                "rename": {
+                  "param": {
+                    "jobId": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "job_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "job-abc123",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "index",
+                      "orig": "index",
+                      "type": [
+                        "`$ONE`",
+                        [
+                          "`$INTEGER`",
+                          "`$NULL`",
+                        ],
+                      ],
+                      "kind": "query",
+                      "example": 0,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "content",
                   "exist": [
@@ -12827,15 +12899,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "videos",
-                  "{id}",
-                  "content",
-                ],
               },
             ],
           },
@@ -12844,35 +12907,38 @@ def make_config():
           "ancestors": [],
         },
       },
-      "video_models_list": {
+      "video_model": {
         "fields": [
           {
             "name": "allowed_passthrough_parameters",
+            "title": "Allowed Passthrough Parameters",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "List of parameters that are allowed to be passed through to the provider",
-            "type": "`$ARRAY`",
           },
           {
             "name": "canonical_slug",
+            "title": "Canonical Slug",
+            "type": "`$STRING`",
             "req": True,
             "short": "Canonical slug for the model",
-            "type": "`$STRING`",
           },
           {
             "name": "created",
+            "title": "Created",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "Unix timestamp of when the model was created",
-            "type": "`$INTEGER`",
           },
           {
             "name": "description",
-            "short": "Description of the model",
+            "title": "Description",
             "type": "`$STRING`",
+            "short": "Description of the model",
           },
           {
             "name": "generate_audio",
-            "req": True,
-            "short": "Whether the model supports generating audio alongside video",
+            "title": "Generate Audio",
             "type": [
               "`$ONE`",
               [
@@ -12880,10 +12946,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Whether the model supports generating audio alongside video",
           },
           {
             "name": "hugging_face_id",
-            "short": "Hugging Face model identifier, if applicable",
+            "title": "Hugging Face Id",
             "type": [
               "`$ONE`",
               [
@@ -12891,22 +12959,25 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Hugging Face model identifier, if applicable",
           },
           {
             "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "Unique identifier for the model",
-            "type": "`$STRING`",
           },
           {
             "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
             "req": True,
             "short": "Display name of the model",
-            "type": "`$STRING`",
           },
           {
             "name": "pricing_skus",
-            "short": "Pricing SKUs with provider prefix stripped, values as strings",
+            "title": "Pricing Skus",
             "type": [
               "`$ONE`",
               [
@@ -12914,11 +12985,11 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "short": "Pricing SKUs with provider prefix stripped, values as strings",
           },
           {
             "name": "seed",
-            "req": True,
-            "short": "Whether the model supports deterministic generation via seed parameter",
+            "title": "Seed",
             "type": [
               "`$ONE`",
               [
@@ -12926,11 +12997,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Whether the model supports deterministic generation via seed parameter",
           },
           {
             "name": "supported_aspect_ratios",
-            "req": True,
-            "short": "Supported output aspect ratios",
+            "title": "Supported Aspect Ratios",
             "type": [
               "`$ONE`",
               [
@@ -12938,11 +13010,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Supported output aspect ratios",
           },
           {
             "name": "supported_durations",
-            "req": True,
-            "short": "Supported video durations in seconds",
+            "title": "Supported Durations",
             "type": [
               "`$ONE`",
               [
@@ -12950,11 +13023,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Supported video durations in seconds",
           },
           {
             "name": "supported_frame_images",
-            "req": True,
-            "short": "Supported frame image types (e.g.",
+            "title": "Supported Frame Images",
             "type": [
               "`$ONE`",
               [
@@ -12962,11 +13036,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Supported frame image types (e.g.",
           },
           {
             "name": "supported_resolutions",
-            "req": True,
-            "short": "Supported output resolutions",
+            "title": "Supported Resolutions",
             "type": [
               "`$ONE`",
               [
@@ -12974,11 +13049,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Supported output resolutions",
           },
           {
             "name": "supported_sizes",
-            "req": True,
-            "short": "Supported output sizes (width x height)",
+            "title": "Supported Sizes",
             "type": [
               "`$ONE`",
               [
@@ -12986,41 +13062,21 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Supported output sizes (width x height)",
           },
         ],
         "id": {
           "field": "id",
           "name": "id",
         },
-        "name": "video_models_list",
+        "name": "video_model",
         "op": {
           "list": {
             "input": "data",
             "name": "list",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/videos/models",
@@ -13032,6 +13088,37 @@ def make_config():
                     "lit": "models",
                   },
                 ],
+                "parts": [
+                  "videos",
+                  "models",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -13039,14 +13126,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "videos",
-                  "models",
-                ],
               },
             ],
           },
@@ -13059,14 +13138,14 @@ def make_config():
         "fields": [
           {
             "name": "created_at",
+            "title": "Created At",
+            "type": "`$STRING`",
             "req": True,
             "short": "ISO 8601 timestamp of when the workspace was created",
-            "type": "`$STRING`",
           },
           {
             "name": "created_by",
-            "req": True,
-            "short": "User ID of the workspace creator",
+            "title": "Created By",
             "type": [
               "`$ONE`",
               [
@@ -13074,11 +13153,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "User ID of the workspace creator",
           },
           {
             "name": "default_image_model",
-            "req": True,
-            "short": "Default image model for this workspace",
+            "title": "Default Image Model",
             "type": [
               "`$ONE`",
               [
@@ -13086,11 +13166,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Default image model for this workspace",
           },
           {
             "name": "default_provider_sort",
-            "req": True,
-            "short": "Default provider sort preference (price, throughput, latency, exacto)",
+            "title": "Default Provider Sort",
             "type": [
               "`$ONE`",
               [
@@ -13098,11 +13179,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Default provider sort preference (price, throughput, latency, exacto)",
           },
           {
             "name": "default_text_model",
-            "req": True,
-            "short": "Default text model for this workspace",
+            "title": "Default Text Model",
             "type": [
               "`$ONE`",
               [
@@ -13110,11 +13192,12 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Default text model for this workspace",
           },
           {
             "name": "description",
-            "req": True,
-            "short": "Description of the workspace",
+            "title": "Description",
             "type": [
               "`$ONE`",
               [
@@ -13122,18 +13205,20 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Description of the workspace",
           },
           {
-            "format": "uuid",
             "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
             "req": True,
             "short": "Unique identifier for the workspace",
-            "type": "`$STRING`",
+            "format": "uuid",
           },
           {
             "name": "io_logging_api_key_ids",
-            "req": True,
-            "short": "Optional array of API key IDs to filter I/O logging.",
+            "title": "Io Logging Api Key Ids",
             "type": [
               "`$ONE`",
               [
@@ -13141,48 +13226,55 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "Optional array of API key IDs to filter I/O logging.",
           },
           {
-            "format": "double",
             "name": "io_logging_sampling_rate",
+            "title": "Io Logging Sampling Rate",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "Sampling rate for I/O logging (0.0001-1).",
-            "type": "`$NUMBER`",
+            "format": "double",
           },
           {
             "name": "is_data_discount_logging_enabled",
+            "title": "Is Data Discount Logging Enabled",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Whether data discount logging is enabled for this workspace",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "is_observability_broadcast_enabled",
+            "title": "Is Observability Broadcast Enabled",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Whether broadcast is enabled for this workspace",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "is_observability_io_logging_enabled",
+            "title": "Is Observability Io Logging Enabled",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Whether private logging is enabled for this workspace",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
             "req": True,
             "short": "Name of the workspace",
-            "type": "`$STRING`",
           },
           {
             "name": "slug",
+            "title": "Slug",
+            "type": "`$STRING`",
             "req": True,
             "short": "URL-friendly slug for the workspace",
-            "type": "`$STRING`",
           },
           {
             "name": "updated_at",
-            "req": True,
-            "short": "ISO 8601 timestamp of when the workspace was last updated",
+            "title": "Updated At",
             "type": [
               "`$ONE`",
               [
@@ -13190,6 +13282,8 @@ def make_config():
                 "`$NULL`",
               ],
             ],
+            "req": True,
+            "short": "ISO 8601 timestamp of when the workspace was last updated",
           },
         ],
         "id": {
@@ -13203,38 +13297,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "production",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/workspaces/{id}",
@@ -13246,6 +13308,47 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "workspaces",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "production",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -13254,14 +13357,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "workspaces",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -13270,38 +13365,6 @@ def make_config():
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "production",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/workspaces/{id}",
@@ -13313,6 +13376,47 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "workspaces",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "production",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -13321,14 +13425,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "workspaces",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -13340,8 +13436,55 @@ def make_config():
       "workspace_budget": {
         "fields": [
           {
-            "name": "id",
+            "name": "created_at",
+            "title": "Created At",
             "type": "`$STRING`",
+            "req": True,
+            "short": "ISO 8601 timestamp of when the budget was created",
+          },
+          {
+            "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "Unique identifier for the budget",
+            "format": "uuid",
+          },
+          {
+            "name": "limit_usd",
+            "title": "Limit Usd",
+            "type": "`$NUMBER`",
+            "req": True,
+            "short": "Spending limit in USD for this interval",
+            "format": "double",
+          },
+          {
+            "name": "reset_interval",
+            "title": "Reset Interval",
+            "type": [
+              "`$ONE`",
+              [
+                "`$STRING`",
+                "`$NULL`",
+              ],
+            ],
+            "req": True,
+            "short": "Interval at which spend resets.",
+          },
+          {
+            "name": "updated_at",
+            "title": "Updated At",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "ISO 8601 timestamp of when the budget was last updated",
+          },
+          {
+            "name": "workspace_id",
+            "title": "Workspace Id",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "ID of the workspace the budget belongs to",
+            "format": "uuid",
           },
         ],
         "id": {
@@ -13350,60 +13493,86 @@ def make_config():
         },
         "name": "workspace_budget",
         "op": {
+          "list": {
+            "input": "data",
+            "name": "list",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/workspaces/{id}/budgets",
+                "segments": [
+                  {
+                    "lit": "workspaces",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "budgets",
+                  },
+                ],
+                "parts": [
+                  "workspaces",
+                  "{id}",
+                  "budgets",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "production",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "http_referer",
+                    "id",
+                    "x_open_router_category",
+                    "x_open_router_title",
+                  ],
+                },
+              },
+            ],
+          },
           "remove": {
             "input": "data",
             "name": "remove",
             "points": [
               {
-                "args": {
-                  "header": [
-                    {
-                      "kind": "header",
-                      "name": "http_referer",
-                      "orig": "http_referer",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_category",
-                      "orig": "x_open_router_category",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "header",
-                      "name": "x_open_router_title",
-                      "orig": "x_open_router_title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "params": [
-                    {
-                      "example": "monthly",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "interval",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "production",
-                      "kind": "param",
-                      "name": "workspace_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/workspaces/{id}/budgets/{interval}",
-                "rename": {
-                  "param": {
-                    "id": "workspace_id",
-                    "interval": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "workspaces",
@@ -13418,6 +13587,62 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "workspaces",
+                  "{workspace_id}",
+                  "budgets",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "id": "workspace_id",
+                    "interval": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "interval",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "monthly",
+                    },
+                    {
+                      "name": "workspace_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "production",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "http_referer",
@@ -13427,16 +13652,6 @@ def make_config():
                     "x_open_router_title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "workspaces",
-                  "{workspace_id}",
-                  "budgets",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -13444,15 +13659,154 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "workspace",
+              "$.main.kit.entity.workspace",
             ],
           ],
         },
       },
-      "zdr": {
-        "fields": [],
-        "name": "zdr",
-        "op": {},
+      "workspace_member": {
+        "fields": [
+          {
+            "name": "created_at",
+            "title": "Created At",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "ISO 8601 timestamp of when the membership was created",
+          },
+          {
+            "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "Unique identifier for the workspace membership",
+            "format": "uuid",
+          },
+          {
+            "name": "role",
+            "title": "Role",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "Role of the member in the workspace",
+          },
+          {
+            "name": "user_id",
+            "title": "User Id",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "Clerk user ID of the member",
+          },
+          {
+            "name": "workspace_id",
+            "title": "Workspace Id",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "ID of the workspace",
+            "format": "uuid",
+          },
+        ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
+        "name": "workspace_member",
+        "op": {
+          "list": {
+            "input": "data",
+            "name": "list",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/workspaces/{id}/members",
+                "segments": [
+                  {
+                    "lit": "workspaces",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "members",
+                  },
+                ],
+                "parts": [
+                  "workspaces",
+                  "{id}",
+                  "members",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "header": [
+                    {
+                      "name": "http_referer",
+                      "orig": "http_referer",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_category",
+                      "orig": "x_open_router_category",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                    {
+                      "name": "x_open_router_title",
+                      "orig": "x_open_router_title",
+                      "type": "`$STRING`",
+                      "kind": "header",
+                    },
+                  ],
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "production",
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "offset",
+                      "orig": "offset",
+                      "type": [
+                        "`$ONE`",
+                        [
+                          "`$INTEGER`",
+                          "`$NULL`",
+                        ],
+                      ],
+                      "kind": "query",
+                      "example": 0,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "http_referer",
+                    "id",
+                    "limit",
+                    "offset",
+                    "x_open_router_category",
+                    "x_open_router_title",
+                  ],
+                },
+              },
+            ],
+          },
+        },
         "relations": {
           "ancestors": [],
         },

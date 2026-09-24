@@ -1,0 +1,32 @@
+# BasicObservabilityDestinationFlow
+
+main: kit: flow: BasicObservabilityDestinationFlow:
+{
+  entity: "observability_destination",
+  kind: "basic",
+  name: "BasicObservabilityDestinationFlow",
+  step: [
+    {
+      i: {
+        ref: "observability_destination_ref01",
+        srcdatavar: "observability_destination_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "observability_destination01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-observability_destination_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicObservabilityDestinationFlow"
+}

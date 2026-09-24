@@ -1,0 +1,156 @@
+# Entity: update_byok_key
+
+main: kit: entity: update_byok_key: {
+
+  alias: field: {}
+
+  fields: {
+    allowed_models: {
+      h: "Allowed Models"
+      n: "allowed_models"
+      r: false
+      sh: "Optional allowlist of model slugs this credential may be used for."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    allowed_user_ids: {
+      h: "Allowed User Ids"
+      n: "allowed_user_ids"
+      r: false
+      sh: "Optional allowlist of user IDs that may use this credential."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    disabled: {
+      h: "Disabled"
+      n: "disabled"
+      r: false
+      sh: "Whether this credential is disabled."
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    is_fallback: {
+      h: "Is Fallback"
+      n: "is_fallback"
+      r: false
+      sh: "Whether this credential is treated as a fallback — used only after non-fallback keys for the same provider have been tried."
+      t: "`$BOOLEAN`"
+    }
+    key: {
+      h: "Key"
+      n: "key"
+      r: false
+      sh: "A new raw provider API key to rotate the credential in-place."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Optional human-readable name for the credential."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "update_byok_key"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PATCH /byok/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "11111111-2222-3333-4444-555555555555"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/byok/{id}"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "byok"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

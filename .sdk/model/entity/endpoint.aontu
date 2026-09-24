@@ -1,0 +1,758 @@
+# Entity: endpoint
+
+main: kit: entity: endpoint: {
+
+  alias: field: {}
+
+  fields: {
+    architecture: {
+      h: "Architecture"
+      n: "architecture"
+      r: true
+      sh: "Model architecture information"
+      t: "`$ANY`"
+    }
+    benchmarks: {
+      h: "Benchmarks"
+      n: "benchmarks"
+      r: true
+      sh: "Third-party benchmark rankings for this model."
+      t: "`$OBJECT`"
+    }
+    canonical_slug: {
+      h: "Canonical Slug"
+      n: "canonical_slug"
+      r: true
+      sh: "Canonical slug for the model"
+      t: "`$STRING`"
+    }
+    context_length: {
+      h: "Context Length"
+      n: "context_length"
+      r: true
+      sh: "Maximum context length in tokens"
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    created: {
+      h: "Created"
+      n: "created"
+      r: true
+      sh: "Unix timestamp of when the model was created"
+      t: "`$INTEGER`"
+    }
+    default_parameters: {
+      h: "Default Parameters"
+      n: "default_parameters"
+      r: true
+      sh: "Default parameters for this model"
+      t: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      op: {
+        list: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "Description of the model"
+      t: "`$STRING`"
+    }
+    endpoints: {
+      h: "Endpoints"
+      n: "endpoints"
+      r: true
+      sh: "List of available endpoints for this model"
+      t: "`$ARRAY`"
+    }
+    expiration_date: {
+      h: "Expiration Date"
+      n: "expiration_date"
+      r: false
+      sh: "The date after which the model may be removed."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    hugging_face_id: {
+      h: "Hugging Face Id"
+      n: "hugging_face_id"
+      r: false
+      sh: "Hugging Face model identifier, if applicable"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "Unique identifier for the model"
+      t: "`$STRING`"
+    }
+    knowledge_cutoff: {
+      h: "Knowledge Cutoff"
+      n: "knowledge_cutoff"
+      r: false
+      sh: "The date up to which the model was trained on data."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    links: {
+      h: "Links"
+      n: "links"
+      r: true
+      sh: "Related API endpoints and resources for this model."
+      t: "`$OBJECT`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      sh: "Display name of the model"
+      t: "`$STRING`"
+    }
+    per_request_limits: {
+      h: "Per Request Limits"
+      n: "per_request_limits"
+      r: true
+      sh: "Per-request token limits"
+      t: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    pricing: {
+      h: "Pricing"
+      n: "pricing"
+      r: true
+      sh: "Pricing information for the model"
+      t: "`$OBJECT`"
+    }
+    reasoning: {
+      h: "Reasoning"
+      n: "reasoning"
+      r: true
+      sh: "Reasoning effort configuration."
+      t: "`$OBJECT`"
+    }
+    supported_parameters: {
+      h: "Supported Parameters"
+      n: "supported_parameters"
+      r: true
+      sh: "List of supported parameters for this model"
+      t: "`$ARRAY`"
+    }
+    supported_voices: {
+      h: "Supported Voices"
+      n: "supported_voices"
+      r: true
+      sh: "List of supported voice identifiers for TTS models."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    top_provider: {
+      h: "Top Provider"
+      n: "top_provider"
+      r: true
+      sh: "Information about the top provider for this model"
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "endpoint"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /models"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "GPT"
+                k: "query"
+                n: "arch"
+                or: "arch"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "programming"
+                k: "query"
+                n: "category"
+                or: "category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 128000
+                k: "query"
+                n: "context"
+                or: "context"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "true"
+                k: "query"
+                n: "distillable"
+                or: "distillable"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "text,image"
+                k: "query"
+                n: "input_modality"
+                or: "input_modality"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 500
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 90
+                k: "query"
+                n: "max_age_day"
+                or: "max_age_day"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: 100
+                k: "query"
+                n: "max_agentic_index"
+                or: "max_agentic_index"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$NUMBER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: 100
+                k: "query"
+                n: "max_coding_index"
+                or: "max_coding_index"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$NUMBER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: 100
+                k: "query"
+                n: "max_intelligence_index"
+                or: "max_intelligence_index"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$NUMBER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: 10
+                k: "query"
+                n: "max_output_price"
+                or: "max_output_price"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$NUMBER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: 10
+                k: "query"
+                n: "max_price"
+                or: "max_price"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$NUMBER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "max_tool_success_rate"
+                or: "max_tool_success_rate"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$NUMBER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "min_age_day"
+                or: "min_age_day"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "min_agentic_index"
+                or: "min_agentic_index"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$NUMBER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "min_coding_index"
+                or: "min_coding_index"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$NUMBER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "min_intelligence_index"
+                or: "min_intelligence_index"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$NUMBER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "min_output_price"
+                or: "min_output_price"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$NUMBER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "min_price"
+                or: "min_price"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$NUMBER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: 0.9
+                k: "query"
+                n: "min_tool_success_rate"
+                or: "min_tool_success_rate"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$NUMBER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: "openai,anthropic"
+                k: "query"
+                n: "model_author"
+                or: "model_author"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: "text"
+                k: "query"
+                n: "output_modality"
+                or: "output_modality"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "OpenAI,Anthropic"
+                k: "query"
+                n: "provider"
+                or: "provider"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "gpt-4"
+                k: "query"
+                n: "q"
+                or: "q"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "eu"
+                k: "query"
+                n: "region"
+                or: "region"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "newest"
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "temperature"
+                k: "query"
+                n: "supported_parameter"
+                or: "supported_parameter"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "true"
+                k: "query"
+                n: "zdr"
+                or: "zdr"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/models"
+          q: {
+            exist: [
+              "arch"
+              "category"
+              "context"
+              "distillable"
+              "http_referer"
+              "input_modality"
+              "limit"
+              "max_age_day"
+              "max_agentic_index"
+              "max_coding_index"
+              "max_intelligence_index"
+              "max_output_price"
+              "max_price"
+              "max_tool_success_rate"
+              "min_age_day"
+              "min_agentic_index"
+              "min_coding_index"
+              "min_intelligence_index"
+              "min_output_price"
+              "min_price"
+              "min_tool_success_rate"
+              "model_author"
+              "offset"
+              "output_modality"
+              "provider"
+              "q"
+              "region"
+              "sort"
+              "supported_parameter"
+              "x_open_router_category"
+              "x_open_router_title"
+              "zdr"
+            ]
+          }
+          s: [
+            {
+              lit: "models"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /endpoints/zdr"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/endpoints/zdr"
+          q: {
+            "$action": "zdr"
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "endpoints"
+            }
+            {
+              lit: "zdr"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /models/{author}/{slug}/endpoints"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "openai"
+                k: "param"
+                n: "author"
+                or: "author"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "gpt-4"
+                k: "param"
+                n: "slug"
+                or: "slug"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/models/{author}/{slug}/endpoints"
+          q: {
+            exist: [
+              "author"
+              "http_referer"
+              "slug"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "models"
+            }
+            {
+              var: "author"
+            }
+            {
+              var: "slug"
+            }
+            {
+              lit: "endpoints"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.model")]
+  ]
+
+}

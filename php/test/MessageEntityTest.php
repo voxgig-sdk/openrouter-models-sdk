@@ -65,7 +65,7 @@ function message_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["message01", "message02", "message03"] as $k) {
+    foreach (["message01", "message02", "message03", "preset01", "preset02", "preset03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

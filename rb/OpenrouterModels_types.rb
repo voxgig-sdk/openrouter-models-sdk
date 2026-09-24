@@ -2,8 +2,8 @@
 
 # Typed models for the OpenrouterModels SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Member types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Member types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Ruby types are unenforced; these YARD
 # annotations document the shapes. Do not edit by hand.
@@ -73,10 +73,6 @@ ActivityListMatch = Struct.new(
   :user_id,
   keyword_init: true
 )
-
-# Add entity data model.
-class Add
-end
 
 # ApiKey entity data model.
 #
@@ -498,10 +494,6 @@ AppRankingListMatch = Struct.new(
   keyword_init: true
 )
 
-# Benchmark entity data model.
-class Benchmark
-end
-
 # BetaAnalytics entity data model.
 #
 # @!attribute [rw] cachedAt
@@ -708,10 +700,6 @@ BetaAnalyticsCreateData = Struct.new(
   :warnings,
   keyword_init: true
 )
-
-# Budget entity data model.
-class Budget
-end
 
 # BulkAddWorkspaceMember entity data model.
 #
@@ -1456,33 +1444,355 @@ ChatResultCreateData = Struct.new(
   keyword_init: true
 )
 
-# Code entity data model.
-class Code
-end
-
-# Coinbase entity data model.
-class Coinbase
-end
-
 # Completion entity data model.
-class Completion
-end
+#
+# @!attribute [rw] cache_control
+#   @return [Hash]
+#
+# @!attribute [rw] debug
+#   @return [Hash, nil]
+#
+# @!attribute [rw] frequency_penalty
+#   @return [Object, nil]
+#
+# @!attribute [rw] image_config
+#   @return [Hash, nil]
+#
+# @!attribute [rw] logit_bias
+#   @return [Object, nil]
+#
+# @!attribute [rw] logprobs
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_completion_tokens
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_tokens
+#   @return [Object, nil]
+#
+# @!attribute [rw] messages
+#   @return [Array]
+#
+# @!attribute [rw] metadata
+#   @return [Hash, nil]
+#
+# @!attribute [rw] min_p
+#   @return [Object, nil]
+#
+# @!attribute [rw] modalities
+#   @return [Array, nil]
+#
+# @!attribute [rw] model
+#   @return [String, nil]
+#
+# @!attribute [rw] models
+#   @return [Array, nil]
+#
+# @!attribute [rw] parallel_tool_calls
+#   @return [Object, nil]
+#
+# @!attribute [rw] plugins
+#   @return [Array, nil]
+#
+# @!attribute [rw] prediction
+#   @return [Object]
+#
+# @!attribute [rw] presence_penalty
+#   @return [Object, nil]
+#
+# @!attribute [rw] prompt_cache_key
+#   @return [Object, nil]
+#
+# @!attribute [rw] prompt_cache_options
+#   @return [Object]
+#
+# @!attribute [rw] provider
+#   @return [Object, nil]
+#
+# @!attribute [rw] reasoning
+#   @return [Hash, nil]
+#
+# @!attribute [rw] reasoning_effort
+#   @return [Object, nil]
+#
+# @!attribute [rw] repetition_penalty
+#   @return [Object, nil]
+#
+# @!attribute [rw] response_format
+#   @return [Object, nil]
+#
+# @!attribute [rw] route
+#   @return [Object, nil]
+#
+# @!attribute [rw] seed
+#   @return [Object, nil]
+#
+# @!attribute [rw] service_tier
+#   @return [Object, nil]
+#
+# @!attribute [rw] session_id
+#   @return [String, nil]
+#
+# @!attribute [rw] stop
+#   @return [Object, nil]
+#
+# @!attribute [rw] stop_server_tools_when
+#   @return [Array, nil]
+#
+# @!attribute [rw] stream
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] stream_options
+#   @return [Object, nil]
+#
+# @!attribute [rw] temperature
+#   @return [Object, nil]
+#
+# @!attribute [rw] tool_choice
+#   @return [Object, nil]
+#
+# @!attribute [rw] tools
+#   @return [Array, nil]
+#
+# @!attribute [rw] top_a
+#   @return [Object, nil]
+#
+# @!attribute [rw] top_k
+#   @return [Object, nil]
+#
+# @!attribute [rw] top_logprobs
+#   @return [Object, nil]
+#
+# @!attribute [rw] top_p
+#   @return [Object, nil]
+#
+# @!attribute [rw] trace
+#   @return [Hash, nil]
+#
+# @!attribute [rw] user
+#   @return [String, nil]
+Completion = Struct.new(
+  :cache_control,
+  :debug,
+  :frequency_penalty,
+  :image_config,
+  :logit_bias,
+  :logprobs,
+  :max_completion_tokens,
+  :max_tokens,
+  :messages,
+  :metadata,
+  :min_p,
+  :modalities,
+  :model,
+  :models,
+  :parallel_tool_calls,
+  :plugins,
+  :prediction,
+  :presence_penalty,
+  :prompt_cache_key,
+  :prompt_cache_options,
+  :provider,
+  :reasoning,
+  :reasoning_effort,
+  :repetition_penalty,
+  :response_format,
+  :route,
+  :seed,
+  :service_tier,
+  :session_id,
+  :stop,
+  :stop_server_tools_when,
+  :stream,
+  :stream_options,
+  :temperature,
+  :tool_choice,
+  :tools,
+  :top_a,
+  :top_k,
+  :top_logprobs,
+  :top_p,
+  :trace,
+  :user,
+  keyword_init: true
+)
 
-# Content entity data model.
-class Content
-end
-
-# Count entity data model.
-class Count
-end
-
-# CreateByokKey entity data model.
-class CreateByokKey
-end
-
-# CreateGuardrail entity data model.
-class CreateGuardrail
-end
+# Request payload for Completion#create.
+#
+# @!attribute [rw] slug
+#   @return [String]
+#
+# @!attribute [rw] cache_control
+#   @return [Hash]
+#
+# @!attribute [rw] debug
+#   @return [Hash, nil]
+#
+# @!attribute [rw] frequency_penalty
+#   @return [Object, nil]
+#
+# @!attribute [rw] image_config
+#   @return [Hash, nil]
+#
+# @!attribute [rw] logit_bias
+#   @return [Object, nil]
+#
+# @!attribute [rw] logprobs
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_completion_tokens
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_tokens
+#   @return [Object, nil]
+#
+# @!attribute [rw] messages
+#   @return [Array]
+#
+# @!attribute [rw] metadata
+#   @return [Hash, nil]
+#
+# @!attribute [rw] min_p
+#   @return [Object, nil]
+#
+# @!attribute [rw] modalities
+#   @return [Array, nil]
+#
+# @!attribute [rw] model
+#   @return [String, nil]
+#
+# @!attribute [rw] models
+#   @return [Array, nil]
+#
+# @!attribute [rw] parallel_tool_calls
+#   @return [Object, nil]
+#
+# @!attribute [rw] plugins
+#   @return [Array, nil]
+#
+# @!attribute [rw] prediction
+#   @return [Object]
+#
+# @!attribute [rw] presence_penalty
+#   @return [Object, nil]
+#
+# @!attribute [rw] prompt_cache_key
+#   @return [Object, nil]
+#
+# @!attribute [rw] prompt_cache_options
+#   @return [Object]
+#
+# @!attribute [rw] provider
+#   @return [Object, nil]
+#
+# @!attribute [rw] reasoning
+#   @return [Hash, nil]
+#
+# @!attribute [rw] reasoning_effort
+#   @return [Object, nil]
+#
+# @!attribute [rw] repetition_penalty
+#   @return [Object, nil]
+#
+# @!attribute [rw] response_format
+#   @return [Object, nil]
+#
+# @!attribute [rw] route
+#   @return [Object, nil]
+#
+# @!attribute [rw] seed
+#   @return [Object, nil]
+#
+# @!attribute [rw] service_tier
+#   @return [Object, nil]
+#
+# @!attribute [rw] session_id
+#   @return [String, nil]
+#
+# @!attribute [rw] stop
+#   @return [Object, nil]
+#
+# @!attribute [rw] stop_server_tools_when
+#   @return [Array, nil]
+#
+# @!attribute [rw] stream
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] stream_options
+#   @return [Object, nil]
+#
+# @!attribute [rw] temperature
+#   @return [Object, nil]
+#
+# @!attribute [rw] tool_choice
+#   @return [Object, nil]
+#
+# @!attribute [rw] tools
+#   @return [Array, nil]
+#
+# @!attribute [rw] top_a
+#   @return [Object, nil]
+#
+# @!attribute [rw] top_k
+#   @return [Object, nil]
+#
+# @!attribute [rw] top_logprobs
+#   @return [Object, nil]
+#
+# @!attribute [rw] top_p
+#   @return [Object, nil]
+#
+# @!attribute [rw] trace
+#   @return [Hash, nil]
+#
+# @!attribute [rw] user
+#   @return [String, nil]
+CompletionCreateData = Struct.new(
+  :slug,
+  :cache_control,
+  :debug,
+  :frequency_penalty,
+  :image_config,
+  :logit_bias,
+  :logprobs,
+  :max_completion_tokens,
+  :max_tokens,
+  :messages,
+  :metadata,
+  :min_p,
+  :modalities,
+  :model,
+  :models,
+  :parallel_tool_calls,
+  :plugins,
+  :prediction,
+  :presence_penalty,
+  :prompt_cache_key,
+  :prompt_cache_options,
+  :provider,
+  :reasoning,
+  :reasoning_effort,
+  :repetition_penalty,
+  :response_format,
+  :route,
+  :seed,
+  :service_tier,
+  :session_id,
+  :stop,
+  :stop_server_tools_when,
+  :stream,
+  :stream_options,
+  :temperature,
+  :tool_choice,
+  :tools,
+  :top_a,
+  :top_k,
+  :top_logprobs,
+  :top_p,
+  :trace,
+  :user,
+  keyword_init: true
+)
 
 # CreateObservabilityDestination entity data model.
 #
@@ -1566,512 +1876,6 @@ CreateObservabilityDestinationCreateData = Struct.new(
   keyword_init: true
 )
 
-# CreatePresetFromInference entity data model.
-#
-# @!attribute [rw] background
-#   @return [Object, nil]
-#
-# @!attribute [rw] cache_control
-#   @return [Hash]
-#
-# @!attribute [rw] context_management
-#   @return [Object, nil]
-#
-# @!attribute [rw] debug
-#   @return [Hash, nil]
-#
-# @!attribute [rw] fallbacks
-#   @return [Object, nil]
-#
-# @!attribute [rw] frequency_penalty
-#   @return [Object, nil]
-#
-# @!attribute [rw] image_config
-#   @return [Hash, nil]
-#
-# @!attribute [rw] include
-#   @return [Object, nil]
-#
-# @!attribute [rw] input
-#   @return [Object, nil]
-#
-# @!attribute [rw] instructions
-#   @return [Object, nil]
-#
-# @!attribute [rw] logit_bias
-#   @return [Object, nil]
-#
-# @!attribute [rw] logprobs
-#   @return [Object, nil]
-#
-# @!attribute [rw] max_completion_tokens
-#   @return [Object, nil]
-#
-# @!attribute [rw] max_output_tokens
-#   @return [Object, nil]
-#
-# @!attribute [rw] max_tokens
-#   @return [Object, nil]
-#
-# @!attribute [rw] max_tool_calls
-#   @return [Object, nil]
-#
-# @!attribute [rw] messages
-#   @return [Array]
-#
-# @!attribute [rw] metadata
-#   @return [Hash, nil]
-#
-# @!attribute [rw] min_p
-#   @return [Object, nil]
-#
-# @!attribute [rw] modalities
-#   @return [Array, nil]
-#
-# @!attribute [rw] model
-#   @return [String, nil]
-#
-# @!attribute [rw] models
-#   @return [Array, nil]
-#
-# @!attribute [rw] output_config
-#   @return [Hash, nil]
-#
-# @!attribute [rw] parallel_tool_calls
-#   @return [Object, nil]
-#
-# @!attribute [rw] plugins
-#   @return [Array, nil]
-#
-# @!attribute [rw] prediction
-#   @return [Object]
-#
-# @!attribute [rw] presence_penalty
-#   @return [Object, nil]
-#
-# @!attribute [rw] previous_response_id
-#   @return [String, nil]
-#
-# @!attribute [rw] prompt
-#   @return [Object]
-#
-# @!attribute [rw] prompt_cache_key
-#   @return [Object, nil]
-#
-# @!attribute [rw] prompt_cache_options
-#   @return [Object]
-#
-# @!attribute [rw] provider
-#   @return [Object, nil]
-#
-# @!attribute [rw] reasoning
-#   @return [Hash, nil]
-#
-# @!attribute [rw] reasoning_effort
-#   @return [Object, nil]
-#
-# @!attribute [rw] repetition_penalty
-#   @return [Object, nil]
-#
-# @!attribute [rw] response_format
-#   @return [Object, nil]
-#
-# @!attribute [rw] route
-#   @return [Object, nil]
-#
-# @!attribute [rw] safety_identifier
-#   @return [Object, nil]
-#
-# @!attribute [rw] seed
-#   @return [Object, nil]
-#
-# @!attribute [rw] service_tier
-#   @return [Object, nil]
-#
-# @!attribute [rw] session_id
-#   @return [String, nil]
-#
-# @!attribute [rw] speed
-#   @return [Object, nil]
-#
-# @!attribute [rw] stop
-#   @return [Object, nil]
-#
-# @!attribute [rw] stop_sequences
-#   @return [Array, nil]
-#
-# @!attribute [rw] stop_server_tools_when
-#   @return [Array, nil]
-#
-# @!attribute [rw] store
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] stream
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] stream_options
-#   @return [Object, nil]
-#
-# @!attribute [rw] system
-#   @return [Object, nil]
-#
-# @!attribute [rw] temperature
-#   @return [Object, nil]
-#
-# @!attribute [rw] text
-#   @return [Object, nil]
-#
-# @!attribute [rw] thinking
-#   @return [Object, nil]
-#
-# @!attribute [rw] tool_choice
-#   @return [Object, nil]
-#
-# @!attribute [rw] tools
-#   @return [Array, nil]
-#
-# @!attribute [rw] top_a
-#   @return [Object, nil]
-#
-# @!attribute [rw] top_k
-#   @return [Object, nil]
-#
-# @!attribute [rw] top_logprobs
-#   @return [Object, nil]
-#
-# @!attribute [rw] top_p
-#   @return [Object, nil]
-#
-# @!attribute [rw] trace
-#   @return [Hash, nil]
-#
-# @!attribute [rw] truncation
-#   @return [Object, nil]
-#
-# @!attribute [rw] user
-#   @return [String, nil]
-CreatePresetFromInference = Struct.new(
-  :background,
-  :cache_control,
-  :context_management,
-  :debug,
-  :fallbacks,
-  :frequency_penalty,
-  :image_config,
-  :include,
-  :input,
-  :instructions,
-  :logit_bias,
-  :logprobs,
-  :max_completion_tokens,
-  :max_output_tokens,
-  :max_tokens,
-  :max_tool_calls,
-  :messages,
-  :metadata,
-  :min_p,
-  :modalities,
-  :model,
-  :models,
-  :output_config,
-  :parallel_tool_calls,
-  :plugins,
-  :prediction,
-  :presence_penalty,
-  :previous_response_id,
-  :prompt,
-  :prompt_cache_key,
-  :prompt_cache_options,
-  :provider,
-  :reasoning,
-  :reasoning_effort,
-  :repetition_penalty,
-  :response_format,
-  :route,
-  :safety_identifier,
-  :seed,
-  :service_tier,
-  :session_id,
-  :speed,
-  :stop,
-  :stop_sequences,
-  :stop_server_tools_when,
-  :store,
-  :stream,
-  :stream_options,
-  :system,
-  :temperature,
-  :text,
-  :thinking,
-  :tool_choice,
-  :tools,
-  :top_a,
-  :top_k,
-  :top_logprobs,
-  :top_p,
-  :trace,
-  :truncation,
-  :user,
-  keyword_init: true
-)
-
-# Request payload for CreatePresetFromInference#create.
-#
-# @!attribute [rw] slug
-#   @return [String]
-#
-# @!attribute [rw] background
-#   @return [Object, nil]
-#
-# @!attribute [rw] cache_control
-#   @return [Hash]
-#
-# @!attribute [rw] context_management
-#   @return [Object, nil]
-#
-# @!attribute [rw] debug
-#   @return [Hash, nil]
-#
-# @!attribute [rw] fallbacks
-#   @return [Object, nil]
-#
-# @!attribute [rw] frequency_penalty
-#   @return [Object, nil]
-#
-# @!attribute [rw] image_config
-#   @return [Hash, nil]
-#
-# @!attribute [rw] include
-#   @return [Object, nil]
-#
-# @!attribute [rw] input
-#   @return [Object, nil]
-#
-# @!attribute [rw] instructions
-#   @return [Object, nil]
-#
-# @!attribute [rw] logit_bias
-#   @return [Object, nil]
-#
-# @!attribute [rw] logprobs
-#   @return [Object, nil]
-#
-# @!attribute [rw] max_completion_tokens
-#   @return [Object, nil]
-#
-# @!attribute [rw] max_output_tokens
-#   @return [Object, nil]
-#
-# @!attribute [rw] max_tokens
-#   @return [Object, nil]
-#
-# @!attribute [rw] max_tool_calls
-#   @return [Object, nil]
-#
-# @!attribute [rw] messages
-#   @return [Array]
-#
-# @!attribute [rw] metadata
-#   @return [Hash, nil]
-#
-# @!attribute [rw] min_p
-#   @return [Object, nil]
-#
-# @!attribute [rw] modalities
-#   @return [Array, nil]
-#
-# @!attribute [rw] model
-#   @return [String, nil]
-#
-# @!attribute [rw] models
-#   @return [Array, nil]
-#
-# @!attribute [rw] output_config
-#   @return [Hash, nil]
-#
-# @!attribute [rw] parallel_tool_calls
-#   @return [Object, nil]
-#
-# @!attribute [rw] plugins
-#   @return [Array, nil]
-#
-# @!attribute [rw] prediction
-#   @return [Object]
-#
-# @!attribute [rw] presence_penalty
-#   @return [Object, nil]
-#
-# @!attribute [rw] previous_response_id
-#   @return [String, nil]
-#
-# @!attribute [rw] prompt
-#   @return [Object]
-#
-# @!attribute [rw] prompt_cache_key
-#   @return [Object, nil]
-#
-# @!attribute [rw] prompt_cache_options
-#   @return [Object]
-#
-# @!attribute [rw] provider
-#   @return [Object, nil]
-#
-# @!attribute [rw] reasoning
-#   @return [Hash, nil]
-#
-# @!attribute [rw] reasoning_effort
-#   @return [Object, nil]
-#
-# @!attribute [rw] repetition_penalty
-#   @return [Object, nil]
-#
-# @!attribute [rw] response_format
-#   @return [Object, nil]
-#
-# @!attribute [rw] route
-#   @return [Object, nil]
-#
-# @!attribute [rw] safety_identifier
-#   @return [Object, nil]
-#
-# @!attribute [rw] seed
-#   @return [Object, nil]
-#
-# @!attribute [rw] service_tier
-#   @return [Object, nil]
-#
-# @!attribute [rw] session_id
-#   @return [String, nil]
-#
-# @!attribute [rw] speed
-#   @return [Object, nil]
-#
-# @!attribute [rw] stop
-#   @return [Object, nil]
-#
-# @!attribute [rw] stop_sequences
-#   @return [Array, nil]
-#
-# @!attribute [rw] stop_server_tools_when
-#   @return [Array, nil]
-#
-# @!attribute [rw] store
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] stream
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] stream_options
-#   @return [Object, nil]
-#
-# @!attribute [rw] system
-#   @return [Object, nil]
-#
-# @!attribute [rw] temperature
-#   @return [Object, nil]
-#
-# @!attribute [rw] text
-#   @return [Object, nil]
-#
-# @!attribute [rw] thinking
-#   @return [Object, nil]
-#
-# @!attribute [rw] tool_choice
-#   @return [Object, nil]
-#
-# @!attribute [rw] tools
-#   @return [Array, nil]
-#
-# @!attribute [rw] top_a
-#   @return [Object, nil]
-#
-# @!attribute [rw] top_k
-#   @return [Object, nil]
-#
-# @!attribute [rw] top_logprobs
-#   @return [Object, nil]
-#
-# @!attribute [rw] top_p
-#   @return [Object, nil]
-#
-# @!attribute [rw] trace
-#   @return [Hash, nil]
-#
-# @!attribute [rw] truncation
-#   @return [Object, nil]
-#
-# @!attribute [rw] user
-#   @return [String, nil]
-CreatePresetFromInferenceCreateData = Struct.new(
-  :slug,
-  :background,
-  :cache_control,
-  :context_management,
-  :debug,
-  :fallbacks,
-  :frequency_penalty,
-  :image_config,
-  :include,
-  :input,
-  :instructions,
-  :logit_bias,
-  :logprobs,
-  :max_completion_tokens,
-  :max_output_tokens,
-  :max_tokens,
-  :max_tool_calls,
-  :messages,
-  :metadata,
-  :min_p,
-  :modalities,
-  :model,
-  :models,
-  :output_config,
-  :parallel_tool_calls,
-  :plugins,
-  :prediction,
-  :presence_penalty,
-  :previous_response_id,
-  :prompt,
-  :prompt_cache_key,
-  :prompt_cache_options,
-  :provider,
-  :reasoning,
-  :reasoning_effort,
-  :repetition_penalty,
-  :response_format,
-  :route,
-  :safety_identifier,
-  :seed,
-  :service_tier,
-  :session_id,
-  :speed,
-  :stop,
-  :stop_sequences,
-  :stop_server_tools_when,
-  :store,
-  :stream,
-  :stream_options,
-  :system,
-  :temperature,
-  :text,
-  :thinking,
-  :tool_choice,
-  :tools,
-  :top_a,
-  :top_k,
-  :top_logprobs,
-  :top_p,
-  :trace,
-  :truncation,
-  :user,
-  keyword_init: true
-)
-
-# CreateWorkspace entity data model.
-class CreateWorkspace
-end
-
 # Credit entity data model.
 #
 # @!attribute [rw] total_credits
@@ -2110,10 +1914,6 @@ CreditCreateData = Struct.new(
   :total_usage,
   keyword_init: true
 )
-
-# Destination entity data model.
-class Destination
-end
 
 # Embedding entity data model.
 #
@@ -2432,10 +2232,6 @@ EndpointListMatch = Struct.new(
   keyword_init: true
 )
 
-# Feedback entity data model.
-class Feedback
-end
-
 # File entity data model.
 #
 # @!attribute [rw] created_at
@@ -2739,24 +2535,24 @@ GenerationLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# GenerationContent entity data model.
+# GenerationContentData entity data model.
 #
 # @!attribute [rw] input
 #   @return [Object]
 #
 # @!attribute [rw] output
 #   @return [Hash]
-GenerationContent = Struct.new(
+GenerationContentData = Struct.new(
   :input,
   :output,
   keyword_init: true
 )
 
-# Request payload for GenerationContent#load.
+# Request payload for GenerationContentData#load.
 #
 # @!attribute [rw] id
 #   @return [String]
-GenerationContentLoadMatch = Struct.new(
+GenerationContentDataLoadMatch = Struct.new(
   :id,
   keyword_init: true
 )
@@ -3158,7 +2954,7 @@ ImageModelEndpointListMatch = Struct.new(
   keyword_init: true
 )
 
-# ImageModelsList entity data model.
+# ImageModelListItem entity data model.
 #
 # @!attribute [rw] architecture
 #   @return [Hash]
@@ -3183,7 +2979,7 @@ ImageModelEndpointListMatch = Struct.new(
 #
 # @!attribute [rw] supports_streaming
 #   @return [Boolean]
-ImageModelsList = Struct.new(
+ImageModelListItem = Struct.new(
   :architecture,
   :created,
   :description,
@@ -3195,7 +2991,7 @@ ImageModelsList = Struct.new(
   keyword_init: true
 )
 
-# Request payload for ImageModelsList#list.
+# Request payload for ImageModelListItem#list.
 #
 # @!attribute [rw] architecture
 #   @return [Hash, nil]
@@ -3220,7 +3016,7 @@ ImageModelsList = Struct.new(
 #
 # @!attribute [rw] supports_streaming
 #   @return [Boolean, nil]
-ImageModelsListListMatch = Struct.new(
+ImageModelListItemListMatch = Struct.new(
   :architecture,
   :created,
   :description,
@@ -3233,18 +3029,6 @@ ImageModelsListListMatch = Struct.new(
 )
 
 # Key entity data model.
-class Key
-end
-
-# ListByokKey entity data model.
-class ListByokKey
-end
-
-# ListGuardrail entity data model.
-class ListGuardrail
-end
-
-# ListKeyAssignment entity data model.
 #
 # @!attribute [rw] assigned_by
 #   @return [Object]
@@ -3266,7 +3050,7 @@ end
 #
 # @!attribute [rw] key_name
 #   @return [String]
-ListKeyAssignment = Struct.new(
+Key = Struct.new(
   :assigned_by,
   :created_at,
   :guardrail_id,
@@ -3277,56 +3061,14 @@ ListKeyAssignment = Struct.new(
   keyword_init: true
 )
 
-# Request payload for ListKeyAssignment#list.
+# Request payload for Key#list.
 #
 # @!attribute [rw] limit
 #   @return [Integer, nil]
 #
 # @!attribute [rw] offset
 #   @return [Object, nil]
-ListKeyAssignmentListMatch = Struct.new(
-  :limit,
-  :offset,
-  keyword_init: true
-)
-
-# ListMemberAssignment entity data model.
-#
-# @!attribute [rw] assigned_by
-#   @return [Object]
-#
-# @!attribute [rw] created_at
-#   @return [String]
-#
-# @!attribute [rw] guardrail_id
-#   @return [String]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] organization_id
-#   @return [String]
-#
-# @!attribute [rw] user_id
-#   @return [String]
-ListMemberAssignment = Struct.new(
-  :assigned_by,
-  :created_at,
-  :guardrail_id,
-  :id,
-  :organization_id,
-  :user_id,
-  keyword_init: true
-)
-
-# Request payload for ListMemberAssignment#list.
-#
-# @!attribute [rw] limit
-#   @return [Integer, nil]
-#
-# @!attribute [rw] offset
-#   @return [Object, nil]
-ListMemberAssignmentListMatch = Struct.new(
+KeyListMatch = Struct.new(
   :limit,
   :offset,
   keyword_init: true
@@ -3361,10 +3103,6 @@ ListObservabilityDestinationListMatch = Struct.new(
   :workspace_id,
   keyword_init: true
 )
-
-# ListPreset entity data model.
-class ListPreset
-end
 
 # ListPresetVersion entity data model.
 #
@@ -3420,93 +3158,47 @@ ListPresetVersionListMatch = Struct.new(
   keyword_init: true
 )
 
-# ListWorkspace entity data model.
-class ListWorkspace
-end
-
-# ListWorkspaceBudget entity data model.
+# Member entity data model.
 #
-# @!attribute [rw] created_at
-#   @return [String]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] limit_usd
-#   @return [Float]
-#
-# @!attribute [rw] reset_interval
+# @!attribute [rw] assigned_by
 #   @return [Object]
 #
-# @!attribute [rw] updated_at
-#   @return [String]
-#
-# @!attribute [rw] workspace_id
-#   @return [String]
-ListWorkspaceBudget = Struct.new(
-  :created_at,
-  :id,
-  :limit_usd,
-  :reset_interval,
-  :updated_at,
-  :workspace_id,
-  keyword_init: true
-)
-
-# Request payload for ListWorkspaceBudget#list.
-#
-# @!attribute [rw] workspace_id
-#   @return [String]
-ListWorkspaceBudgetListMatch = Struct.new(
-  :workspace_id,
-  keyword_init: true
-)
-
-# ListWorkspaceMember entity data model.
-#
 # @!attribute [rw] created_at
+#   @return [String]
+#
+# @!attribute [rw] guardrail_id
 #   @return [String]
 #
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] role
+# @!attribute [rw] organization_id
 #   @return [String]
 #
 # @!attribute [rw] user_id
 #   @return [String]
-#
-# @!attribute [rw] workspace_id
-#   @return [String]
-ListWorkspaceMember = Struct.new(
+Member = Struct.new(
+  :assigned_by,
   :created_at,
+  :guardrail_id,
   :id,
-  :role,
+  :organization_id,
   :user_id,
-  :workspace_id,
   keyword_init: true
 )
 
-# Request payload for ListWorkspaceMember#list.
-#
-# @!attribute [rw] workspace_id
-#   @return [String]
+# Request payload for Member#list.
 #
 # @!attribute [rw] limit
 #   @return [Integer, nil]
 #
 # @!attribute [rw] offset
 #   @return [Object, nil]
-ListWorkspaceMemberListMatch = Struct.new(
-  :workspace_id,
+MemberListMatch = Struct.new(
   :limit,
   :offset,
   keyword_init: true
 )
-
-# Member entity data model.
-class Member
-end
 
 # Message entity data model.
 #
@@ -3733,10 +3425,6 @@ MessageCreateData = Struct.new(
   :user,
   keyword_init: true
 )
-
-# Meta entity data model.
-class Meta
-end
 
 # Model entity data model.
 #
@@ -4672,10 +4360,6 @@ ProviderListMatch = Struct.new(
   keyword_init: true
 )
 
-# Query entity data model.
-class Query
-end
-
 # RankingsDaily entity data model.
 #
 # @!attribute [rw] date
@@ -4725,10 +4409,6 @@ RankingsDailyListMatch = Struct.new(
   :start_date,
   keyword_init: true
 )
-
-# Remove entity data model.
-class Remove
-end
 
 # Rerank entity data model.
 #
@@ -4805,12 +4485,338 @@ RerankCreateData = Struct.new(
 )
 
 # Response entity data model.
-class Response
-end
+#
+# @!attribute [rw] background
+#   @return [Object, nil]
+#
+# @!attribute [rw] cache_control
+#   @return [Hash]
+#
+# @!attribute [rw] debug
+#   @return [Hash, nil]
+#
+# @!attribute [rw] frequency_penalty
+#   @return [Object, nil]
+#
+# @!attribute [rw] image_config
+#   @return [Hash, nil]
+#
+# @!attribute [rw] include
+#   @return [Object, nil]
+#
+# @!attribute [rw] input
+#   @return [Object, nil]
+#
+# @!attribute [rw] instructions
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_output_tokens
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_tool_calls
+#   @return [Object, nil]
+#
+# @!attribute [rw] metadata
+#   @return [Object, nil]
+#
+# @!attribute [rw] modalities
+#   @return [Array, nil]
+#
+# @!attribute [rw] model
+#   @return [String, nil]
+#
+# @!attribute [rw] models
+#   @return [Array, nil]
+#
+# @!attribute [rw] parallel_tool_calls
+#   @return [Object, nil]
+#
+# @!attribute [rw] plugins
+#   @return [Array, nil]
+#
+# @!attribute [rw] presence_penalty
+#   @return [Object, nil]
+#
+# @!attribute [rw] previous_response_id
+#   @return [String, nil]
+#
+# @!attribute [rw] prompt
+#   @return [Object]
+#
+# @!attribute [rw] prompt_cache_key
+#   @return [Object, nil]
+#
+# @!attribute [rw] prompt_cache_options
+#   @return [Object]
+#
+# @!attribute [rw] provider
+#   @return [Object, nil]
+#
+# @!attribute [rw] reasoning
+#   @return [Object, nil]
+#
+# @!attribute [rw] route
+#   @return [Object, nil]
+#
+# @!attribute [rw] safety_identifier
+#   @return [Object, nil]
+#
+# @!attribute [rw] service_tier
+#   @return [Object, nil]
+#
+# @!attribute [rw] session_id
+#   @return [String, nil]
+#
+# @!attribute [rw] stop_server_tools_when
+#   @return [Array, nil]
+#
+# @!attribute [rw] store
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] stream
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] temperature
+#   @return [Object, nil]
+#
+# @!attribute [rw] text
+#   @return [Object, nil]
+#
+# @!attribute [rw] tool_choice
+#   @return [Object, nil]
+#
+# @!attribute [rw] tools
+#   @return [Array, nil]
+#
+# @!attribute [rw] top_k
+#   @return [Integer, nil]
+#
+# @!attribute [rw] top_logprobs
+#   @return [Object, nil]
+#
+# @!attribute [rw] top_p
+#   @return [Object, nil]
+#
+# @!attribute [rw] trace
+#   @return [Hash, nil]
+#
+# @!attribute [rw] truncation
+#   @return [Object, nil]
+#
+# @!attribute [rw] user
+#   @return [String, nil]
+Response = Struct.new(
+  :background,
+  :cache_control,
+  :debug,
+  :frequency_penalty,
+  :image_config,
+  :include,
+  :input,
+  :instructions,
+  :max_output_tokens,
+  :max_tool_calls,
+  :metadata,
+  :modalities,
+  :model,
+  :models,
+  :parallel_tool_calls,
+  :plugins,
+  :presence_penalty,
+  :previous_response_id,
+  :prompt,
+  :prompt_cache_key,
+  :prompt_cache_options,
+  :provider,
+  :reasoning,
+  :route,
+  :safety_identifier,
+  :service_tier,
+  :session_id,
+  :stop_server_tools_when,
+  :store,
+  :stream,
+  :temperature,
+  :text,
+  :tool_choice,
+  :tools,
+  :top_k,
+  :top_logprobs,
+  :top_p,
+  :trace,
+  :truncation,
+  :user,
+  keyword_init: true
+)
 
-# Speech entity data model.
-class Speech
-end
+# Request payload for Response#create.
+#
+# @!attribute [rw] slug
+#   @return [String]
+#
+# @!attribute [rw] background
+#   @return [Object, nil]
+#
+# @!attribute [rw] cache_control
+#   @return [Hash]
+#
+# @!attribute [rw] debug
+#   @return [Hash, nil]
+#
+# @!attribute [rw] frequency_penalty
+#   @return [Object, nil]
+#
+# @!attribute [rw] image_config
+#   @return [Hash, nil]
+#
+# @!attribute [rw] include
+#   @return [Object, nil]
+#
+# @!attribute [rw] input
+#   @return [Object, nil]
+#
+# @!attribute [rw] instructions
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_output_tokens
+#   @return [Object, nil]
+#
+# @!attribute [rw] max_tool_calls
+#   @return [Object, nil]
+#
+# @!attribute [rw] metadata
+#   @return [Object, nil]
+#
+# @!attribute [rw] modalities
+#   @return [Array, nil]
+#
+# @!attribute [rw] model
+#   @return [String, nil]
+#
+# @!attribute [rw] models
+#   @return [Array, nil]
+#
+# @!attribute [rw] parallel_tool_calls
+#   @return [Object, nil]
+#
+# @!attribute [rw] plugins
+#   @return [Array, nil]
+#
+# @!attribute [rw] presence_penalty
+#   @return [Object, nil]
+#
+# @!attribute [rw] previous_response_id
+#   @return [String, nil]
+#
+# @!attribute [rw] prompt
+#   @return [Object]
+#
+# @!attribute [rw] prompt_cache_key
+#   @return [Object, nil]
+#
+# @!attribute [rw] prompt_cache_options
+#   @return [Object]
+#
+# @!attribute [rw] provider
+#   @return [Object, nil]
+#
+# @!attribute [rw] reasoning
+#   @return [Object, nil]
+#
+# @!attribute [rw] route
+#   @return [Object, nil]
+#
+# @!attribute [rw] safety_identifier
+#   @return [Object, nil]
+#
+# @!attribute [rw] service_tier
+#   @return [Object, nil]
+#
+# @!attribute [rw] session_id
+#   @return [String, nil]
+#
+# @!attribute [rw] stop_server_tools_when
+#   @return [Array, nil]
+#
+# @!attribute [rw] store
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] stream
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] temperature
+#   @return [Object, nil]
+#
+# @!attribute [rw] text
+#   @return [Object, nil]
+#
+# @!attribute [rw] tool_choice
+#   @return [Object, nil]
+#
+# @!attribute [rw] tools
+#   @return [Array, nil]
+#
+# @!attribute [rw] top_k
+#   @return [Integer, nil]
+#
+# @!attribute [rw] top_logprobs
+#   @return [Object, nil]
+#
+# @!attribute [rw] top_p
+#   @return [Object, nil]
+#
+# @!attribute [rw] trace
+#   @return [Hash, nil]
+#
+# @!attribute [rw] truncation
+#   @return [Object, nil]
+#
+# @!attribute [rw] user
+#   @return [String, nil]
+ResponseCreateData = Struct.new(
+  :slug,
+  :background,
+  :cache_control,
+  :debug,
+  :frequency_penalty,
+  :image_config,
+  :include,
+  :input,
+  :instructions,
+  :max_output_tokens,
+  :max_tool_calls,
+  :metadata,
+  :modalities,
+  :model,
+  :models,
+  :parallel_tool_calls,
+  :plugins,
+  :presence_penalty,
+  :previous_response_id,
+  :prompt,
+  :prompt_cache_key,
+  :prompt_cache_options,
+  :provider,
+  :reasoning,
+  :route,
+  :safety_identifier,
+  :service_tier,
+  :session_id,
+  :stop_server_tools_when,
+  :store,
+  :stream,
+  :temperature,
+  :text,
+  :tool_choice,
+  :tools,
+  :top_k,
+  :top_logprobs,
+  :top_p,
+  :trace,
+  :truncation,
+  :user,
+  keyword_init: true
+)
 
 # Stt entity data model.
 #
@@ -4997,10 +5003,6 @@ TaskLoadMatch = Struct.new(
   :window,
   keyword_init: true
 )
-
-# Transcription entity data model.
-class Transcription
-end
 
 # Tts entity data model.
 #
@@ -5622,14 +5624,6 @@ UpsertWorkspaceBudgetUpdateData = Struct.new(
   keyword_init: true
 )
 
-# User entity data model.
-class User
-end
-
-# Version entity data model.
-class Version
-end
-
 # Video entity data model.
 #
 # @!attribute [rw] aspect_ratio
@@ -5823,7 +5817,7 @@ VideoGenerationLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# VideoModelsList entity data model.
+# VideoModel entity data model.
 #
 # @!attribute [rw] allowed_passthrough_parameters
 #   @return [Array]
@@ -5869,7 +5863,7 @@ VideoGenerationLoadMatch = Struct.new(
 #
 # @!attribute [rw] supported_sizes
 #   @return [Object]
-VideoModelsList = Struct.new(
+VideoModel = Struct.new(
   :allowed_passthrough_parameters,
   :canonical_slug,
   :created,
@@ -5888,7 +5882,7 @@ VideoModelsList = Struct.new(
   keyword_init: true
 )
 
-# Request payload for VideoModelsList#list.
+# Request payload for VideoModel#list.
 #
 # @!attribute [rw] allowed_passthrough_parameters
 #   @return [Array, nil]
@@ -5934,7 +5928,7 @@ VideoModelsList = Struct.new(
 #
 # @!attribute [rw] supported_sizes
 #   @return [Object, nil]
-VideoModelsListListMatch = Struct.new(
+VideoModelListMatch = Struct.new(
   :allowed_passthrough_parameters,
   :canonical_slug,
   :created,
@@ -6038,9 +6032,38 @@ WorkspaceRemoveMatch = Struct.new(
 
 # WorkspaceBudget entity data model.
 #
+# @!attribute [rw] created_at
+#   @return [String]
+#
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
+#
+# @!attribute [rw] limit_usd
+#   @return [Float]
+#
+# @!attribute [rw] reset_interval
+#   @return [Object]
+#
+# @!attribute [rw] updated_at
+#   @return [String]
+#
+# @!attribute [rw] workspace_id
+#   @return [String]
 WorkspaceBudget = Struct.new(
+  :created_at,
+  :id,
+  :limit_usd,
+  :reset_interval,
+  :updated_at,
+  :workspace_id,
+  keyword_init: true
+)
+
+# Request payload for WorkspaceBudget#list.
+#
+# @!attribute [rw] id
+#   @return [String]
+WorkspaceBudgetListMatch = Struct.new(
   :id,
   keyword_init: true
 )
@@ -6058,7 +6081,45 @@ WorkspaceBudgetRemoveMatch = Struct.new(
   keyword_init: true
 )
 
-# Zdr entity data model.
-class Zdr
-end
+# WorkspaceMember entity data model.
+#
+# @!attribute [rw] created_at
+#   @return [String]
+#
+# @!attribute [rw] id
+#   @return [String]
+#
+# @!attribute [rw] role
+#   @return [String]
+#
+# @!attribute [rw] user_id
+#   @return [String]
+#
+# @!attribute [rw] workspace_id
+#   @return [String]
+WorkspaceMember = Struct.new(
+  :created_at,
+  :id,
+  :role,
+  :user_id,
+  :workspace_id,
+  keyword_init: true
+)
+
+# Request payload for WorkspaceMember#list.
+#
+# @!attribute [rw] id
+#   @return [String]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] offset
+#   @return [Object, nil]
+WorkspaceMemberListMatch = Struct.new(
+  :id,
+  :limit,
+  :offset,
+  keyword_init: true
+)
 

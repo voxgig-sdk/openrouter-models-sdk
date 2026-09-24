@@ -1,0 +1,113 @@
+# Entity: bulk_assign_key
+
+main: kit: entity: bulk_assign_key: {
+
+  alias: field: {}
+
+  fields: {
+    assigned_count: {
+      h: "Assigned Count"
+      n: "assigned_count"
+      r: true
+      sh: "Number of keys successfully assigned"
+      t: "`$INTEGER`"
+    }
+    key_hashes: {
+      h: "Key Hashes"
+      n: "key_hashes"
+      r: true
+      sh: "Array of API key hashes to assign to the guardrail"
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "bulk_assign_key"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /guardrails/{id}/assignments/keys"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "550e8400-e29b-41d4-a716-446655440000"
+                k: "param"
+                n: "guardrail_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/guardrails/{id}/assignments/keys"
+          q: {
+            exist: [
+              "guardrail_id"
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          r: {
+            param: {
+              id: "guardrail_id"
+            }
+          }
+          s: [
+            {
+              lit: "guardrails"
+            }
+            {
+              var: "guardrail_id"
+            }
+            {
+              lit: "assignments"
+            }
+            {
+              lit: "keys"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.guardrail")]
+  ]
+
+}

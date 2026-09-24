@@ -1,9 +1,0 @@
-# BasicRemoveFlow
-
-main: kit: flow: BasicRemoveFlow:
-{
-  entity: "remove",
-  kind: "basic",
-  name: "BasicRemoveFlow",
-  "key$": "BasicRemoveFlow"
-}

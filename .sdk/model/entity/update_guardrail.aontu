@@ -1,0 +1,300 @@
+# Entity: update_guardrail
+
+main: kit: entity: update_guardrail: {
+
+  alias: field: {}
+
+  fields: {
+    allowed_models: {
+      h: "Allowed Models"
+      n: "allowed_models"
+      r: false
+      sh: "Array of model identifiers (slug or canonical_slug accepted)"
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    allowed_providers: {
+      h: "Allowed Providers"
+      n: "allowed_providers"
+      r: false
+      sh: "New list of allowed provider IDs"
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    content_filter_builtins: {
+      h: "Content Filter Builtins"
+      n: "content_filter_builtins"
+      r: false
+      sh: "Builtin content filters to apply."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    content_filters: {
+      h: "Content Filters"
+      n: "content_filters"
+      r: false
+      sh: "Custom regex content filters to apply."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "New description for the guardrail"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    enforce_zdr: {
+      de: true
+      h: "Enforce Zdr"
+      n: "enforce_zdr"
+      r: false
+      sh: "Deprecated."
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    enforce_zdr_anthropic: {
+      h: "Enforce Zdr Anthropic"
+      n: "enforce_zdr_anthropic"
+      r: false
+      sh: "Whether to enforce zero data retention for Anthropic models."
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    enforce_zdr_google: {
+      h: "Enforce Zdr Google"
+      n: "enforce_zdr_google"
+      r: false
+      sh: "Whether to enforce zero data retention for Google models."
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    enforce_zdr_openai: {
+      h: "Enforce Zdr Openai"
+      n: "enforce_zdr_openai"
+      r: false
+      sh: "Whether to enforce zero data retention for OpenAI models."
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    enforce_zdr_other: {
+      h: "Enforce Zdr Other"
+      n: "enforce_zdr_other"
+      r: false
+      sh: "Whether to enforce zero data retention for models that are not from Anthropic, OpenAI, Google, or xAI."
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    enforce_zdr_xai: {
+      h: "Enforce Zdr Xai"
+      n: "enforce_zdr_xai"
+      r: false
+      sh: "Whether to enforce zero data retention for xAI models."
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    ignored_models: {
+      h: "Ignored Models"
+      n: "ignored_models"
+      r: false
+      sh: "Array of model identifiers to exclude from routing (slug or canonical_slug accepted)"
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    ignored_providers: {
+      h: "Ignored Providers"
+      n: "ignored_providers"
+      r: false
+      sh: "List of provider IDs to exclude from routing"
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    limit_usd: {
+      fo: "double"
+      h: "Limit Usd"
+      n: "limit_usd"
+      r: false
+      sh: "New spending limit in USD"
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "New name for the guardrail"
+      t: "`$STRING`"
+    }
+    reset_interval: {
+      h: "Reset Interval"
+      n: "reset_interval"
+      r: false
+      sh: "Interval at which the limit resets (daily, weekly, monthly)"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "update_guardrail"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PATCH /guardrails/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "550e8400-e29b-41d4-a716-446655440000"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/guardrails/{id}"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "guardrails"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

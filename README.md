@@ -14,13 +14,13 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
 ## Entities, not endpoints
 
-This SDK exposes the API as **86 semantic entities** that you
+This SDK exposes the API as **58 semantic entities** that you
 call directly, instead of assembling URL paths and query strings. See the [Entities](#entities) table below for the full list. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`list`, `load`, `create`, `update`, `remove`):
@@ -46,23 +46,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = OpenrouterModelsSDK.test({
   entity: {
-    preset_version: {
+    provider: {
       test01: { id: 'test01' },
     },
   },
 })
-const presetversion = await client.PresetVersion().load({ id: 'test01', slug: 'example_slug' })
-// presetversion is the PresetVersion entity, populated with mock data
-// — call presetversion.data() for the record itself
-console.log(presetversion)
+const providers = await client.Provider().list()
+// providers is an array of Provider entities, populated with mock data
+// — call providers[0].data() for the record itself
+console.log(providers)
 ```
 
 ### Python
 
 ```python
 client = OpenrouterModelsSDK.test()
-presetversion = client.PresetVersion().load({"id": "test01", "slug": "example"})
-print(presetversion)
+providers = client.Provider().list()
+print(providers)
 ```
 
 ### PHP
@@ -70,17 +70,17 @@ print(presetversion)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = OpenrouterModelsSDK::test([
-    "entity" => ["presetversion" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["provider" => ["test01" => []]],
 ]);
-$presetversion = $client->PresetVersion()->load(["id" => "test01", "slug" => "example"]);
+$providers = $client->Provider()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.PresetVersion(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+result, err := client.Provider(nil).List(
+    nil, nil,
 )
 ```
 
@@ -89,16 +89,16 @@ result, err := client.PresetVersion(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = OpenrouterModelsSDK.test({
-  "entity" => { "presetversion" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "provider" => { "test01" => {} } },
 })
-presetversion = client.PresetVersion.load({ "id" => "test01", "slug" => "example" })
+providers = client.Provider.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:PresetVersion():load({ id = "test01", slug = "example" })
+local results, err = client:Provider():list()
 ```
 
 ## Packages
@@ -173,17 +173,14 @@ Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
 
 ## Entities
 
-The API exposes 86 entities:
+The API exposes 58 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
 | **Activity** | The Activity entity (list). | `/activity` |
-| **Add** | The Add entity. | `` |
 | **ApiKey** | The ApiKey entity (create, list, load, remove, update). | `/keys` |
 | **AppRanking** | The AppRanking entity (list). | `/datasets/app-rankings` |
-| **Benchmark** | The Benchmark entity. | `` |
 | **BetaAnalytics** | The BetaAnalytics entity (create, load). | `/analytics/meta` |
-| **Budget** | The Budget entity. | `` |
 | **BulkAddWorkspaceMember** | The BulkAddWorkspaceMember entity (create). | `/workspaces/{id}/members/add` |
 | **BulkAssignKey** | The BulkAssignKey entity (create). | `/guardrails/{id}/assignments/keys` |
 | **BulkAssignMember** | The BulkAssignMember entity (create). | `/guardrails/{id}/assignments/members` |
@@ -192,42 +189,23 @@ The API exposes 86 entities:
 | **BulkUnassignMember** | The BulkUnassignMember entity (create). | `/guardrails/{id}/assignments/members/remove` |
 | **Byok** | The Byok entity (create, list, load, remove). | `/byok` |
 | **ChatResult** | The ChatResult entity (create). | `/chat/completions` |
-| **Code** | The Code entity. | `` |
-| **Coinbase** | The Coinbase entity. | `` |
-| **Completion** | The Completion entity. | `` |
-| **Content** | The Content entity. | `` |
-| **Count** | The Count entity. | `` |
-| **CreateByokKey** | The CreateByokKey entity. | `` |
-| **CreateGuardrail** | The CreateGuardrail entity. | `` |
+| **Completion** | The Completion entity (create). | `/presets/{slug}/chat/completions` |
 | **CreateObservabilityDestination** | The CreateObservabilityDestination entity (create). | `/observability/destinations` |
-| **CreatePresetFromInference** | The CreatePresetFromInference entity (create). | `/presets/{slug}/chat/completions` |
-| **CreateWorkspace** | The CreateWorkspace entity. | `` |
 | **Credit** | The Credit entity (create, load). | `/credits` |
-| **Destination** | The Destination entity. | `` |
 | **Embedding** | The Embedding entity (create). | `/embeddings` |
 | **Endpoint** | The Endpoint entity (list, load). | `/models` |
-| **Feedback** | The Feedback entity. | `` |
 | **File** | The File entity (create, list, load, remove). | `/files` |
 | **Generation** | The Generation entity (load). | `/generation` |
-| **GenerationContent** | The GenerationContent entity (load). | `/generation/content` |
+| **GenerationContentData** | The GenerationContentData entity (load). | `/generation/content` |
 | **Guardrail** | The Guardrail entity (create, list, load, remove). | `/guardrails` |
 | **Image** | The Image entity (create). | `/images` |
 | **ImageModelEndpoint** | The ImageModelEndpoint entity (list). | `/images/models/{author}/{slug}/endpoints` |
-| **ImageModelsList** | The ImageModelsList entity (list). | `/images/models` |
-| **Key** | The Key entity. | `` |
-| **ListByokKey** | The ListByokKey entity. | `` |
-| **ListGuardrail** | The ListGuardrail entity. | `` |
-| **ListKeyAssignment** | The ListKeyAssignment entity (list). | `/guardrails/{id}/assignments/keys` |
-| **ListMemberAssignment** | The ListMemberAssignment entity (list). | `/guardrails/{id}/assignments/members` |
+| **ImageModelListItem** | The ImageModelListItem entity (list). | `/images/models` |
+| **Key** | The Key entity (list). | `/guardrails/{id}/assignments/keys` |
 | **ListObservabilityDestination** | The ListObservabilityDestination entity (list). | `/observability/destinations` |
-| **ListPreset** | The ListPreset entity. | `` |
 | **ListPresetVersion** | The ListPresetVersion entity (list). | `/presets/{slug}/versions` |
-| **ListWorkspace** | The ListWorkspace entity. | `` |
-| **ListWorkspaceBudget** | The ListWorkspaceBudget entity (list). | `/workspaces/{id}/budgets` |
-| **ListWorkspaceMember** | The ListWorkspaceMember entity (list). | `/workspaces/{id}/members` |
-| **Member** | The Member entity. | `` |
-| **Message** | The Message entity (create). | `/messages` |
-| **Meta** | The Meta entity. | `` |
+| **Member** | The Member entity (list). | `/guardrails/{id}/assignments/members` |
+| **Message** | The Message entity (create). | `/presets/{slug}/messages` |
 | **Model** | The Model entity (list, load). | `/embeddings/models` |
 | **ModelsCount** | The ModelsCount entity (load). | `/models/count` |
 | **ModelsList** | The ModelsList entity (list). | `/models/user` |
@@ -238,16 +216,12 @@ The API exposes 86 entities:
 | **Preset** | The Preset entity (list, load). | `/presets` |
 | **PresetVersion** | The PresetVersion entity (load). | `/presets/{slug}/versions/{version}` |
 | **Provider** | The Provider entity (list). | `/providers` |
-| **Query** | The Query entity. | `` |
 | **RankingsDaily** | The RankingsDaily entity (list). | `/datasets/rankings-daily` |
-| **Remove** | The Remove entity. | `` |
 | **Rerank** | The Rerank entity (create). | `/rerank` |
-| **Response** | The Response entity. | `` |
-| **Speech** | The Speech entity. | `` |
+| **Response** | The Response entity (create). | `/presets/{slug}/responses` |
 | **Stt** | The Stt entity (create). | `/audio/transcriptions` |
 | **SubmitGenerationFeedback** | The SubmitGenerationFeedback entity (create). | `/generation/feedback` |
 | **Task** | The Task entity (load). | `/classifications/task` |
-| **Transcription** | The Transcription entity. | `` |
 | **Tts** | The Tts entity (create). | `/audio/speech` |
 | **UnifiedBenchmark** | The UnifiedBenchmark entity (list). | `/benchmarks` |
 | **UpdateByokKey** | The UpdateByokKey entity (update). | `/byok/{id}` |
@@ -255,14 +229,12 @@ The API exposes 86 entities:
 | **UpdateObservabilityDestination** | The UpdateObservabilityDestination entity (update). | `/observability/destinations/{id}` |
 | **UpdateWorkspace** | The UpdateWorkspace entity (create, list, update). | `/workspaces` |
 | **UpsertWorkspaceBudget** | The UpsertWorkspaceBudget entity (update). | `/workspaces/{id}/budgets/{interval}` |
-| **User** | The User entity. | `` |
-| **Version** | The Version entity. | `` |
 | **Video** | The Video entity (create, load). | `/videos/{jobId}` |
 | **VideoGeneration** | The VideoGeneration entity (load). | `/videos/{jobId}/content` |
-| **VideoModelsList** | The VideoModelsList entity (list). | `/videos/models` |
+| **VideoModel** | The VideoModel entity (list). | `/videos/models` |
 | **Workspace** | The Workspace entity (load, remove). | `/workspaces/{id}` |
-| **WorkspaceBudget** | The WorkspaceBudget entity (remove). | `/workspaces/{id}/budgets/{interval}` |
-| **Zdr** | The Zdr entity. | `` |
+| **WorkspaceBudget** | The WorkspaceBudget entity (list, remove). | `/workspaces/{id}/budgets` |
+| **WorkspaceMember** | The WorkspaceMember entity (list). | `/workspaces/{id}/members` |
 
 The operations available across these entities are **load**, **list**, **create**, **update**, **remove** — see each entity's
 own list above for exactly which it supports.

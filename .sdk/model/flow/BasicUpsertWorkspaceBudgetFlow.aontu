@@ -1,0 +1,32 @@
+# BasicUpsertWorkspaceBudgetFlow
+
+main: kit: flow: BasicUpsertWorkspaceBudgetFlow:
+{
+  entity: "upsert_workspace_budget",
+  kind: "basic",
+  name: "BasicUpsertWorkspaceBudgetFlow",
+  step: [
+    {
+      d: {
+        workspace_id: "workspace01"
+      }
+
+      i: {
+        ref: "upsert_workspace_budget_ref01",
+        srcdatavar: "upsert_workspace_budget_ref01_data",
+        suffix: "_up0"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-upsert_workspace_budget_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUpsertWorkspaceBudgetFlow"
+}

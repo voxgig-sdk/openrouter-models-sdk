@@ -1,0 +1,22 @@
+# BasicListObservabilityDestinationFlow
+
+main: kit: flow: BasicListObservabilityDestinationFlow:
+{
+  entity: "list_observability_destination",
+  kind: "basic",
+  name: "BasicListObservabilityDestinationFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "list_observability_destination_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicListObservabilityDestinationFlow"
+}

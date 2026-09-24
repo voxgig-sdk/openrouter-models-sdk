@@ -19,7 +19,6 @@ import type {
   OrganizationListMatch,
 } from '../OpenrouterModelsTypes'
 
-// TODO: needs Entity superclass
 class OrganizationEntity extends OpenrouterModelsEntityBase<Organization> {
 
   constructor(client: OpenrouterModelsSDK, entopts: any) {

@@ -1,0 +1,22 @@
+# BasicRankingsDailyFlow
+
+main: kit: flow: BasicRankingsDailyFlow:
+{
+  entity: "rankings_daily",
+  kind: "basic",
+  name: "BasicRankingsDailyFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "rankings_daily_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRankingsDailyFlow"
+}

@@ -1,0 +1,44 @@
+{
+  "existing": {
+    "workspace_member": {
+      "WORKSPACE_MEMBER00": {
+        "created_at": "s32",
+        "id": "WORKSPACE_MEMBER00",
+        "role": "s34",
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01"
+      },
+      "WORKSPACE_MEMBER01": {
+        "created_at": "s64",
+        "id": "WORKSPACE_MEMBER01",
+        "role": "s66",
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01"
+      },
+      "WORKSPACE_MEMBER02": {
+        "created_at": "s96",
+        "id": "WORKSPACE_MEMBER02",
+        "role": "s98",
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  },
+  "new": {
+    "workspace_member": {
+      "workspace_member_ref01": {
+        "created_at": "sc8",
+        "role": "sca",
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  },
+  "requests": {
+    "GET /workspaces/{id}/members": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

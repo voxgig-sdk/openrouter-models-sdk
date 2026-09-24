@@ -1,0 +1,276 @@
+# Entity: o_auth
+
+main: kit: entity: o_auth: {
+
+  alias: field: {}
+
+  fields: {
+    app_id: {
+      h: "App Id"
+      n: "app_id"
+      r: true
+      sh: "The application ID associated with this auth code"
+      t: "`$INTEGER`"
+    }
+    callback_url: {
+      fo: "uri"
+      h: "Callback Url"
+      n: "callback_url"
+      r: true
+      sh: "The callback URL to redirect to after authorization."
+      t: "`$STRING`"
+    }
+    code: {
+      h: "Code"
+      n: "code"
+      r: true
+      sh: "The authorization code received from the OAuth redirect"
+      t: "`$STRING`"
+    }
+    code_challenge: {
+      h: "Code Challenge"
+      n: "code_challenge"
+      r: false
+      sh: "PKCE code challenge for enhanced security"
+      t: "`$STRING`"
+    }
+    code_challenge_method: {
+      h: "Code Challenge Method"
+      n: "code_challenge_method"
+      r: false
+      sh: "The method used to generate the code challenge"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    code_verifier: {
+      h: "Code Verifier"
+      n: "code_verifier"
+      r: false
+      sh: "The code verifier if code_challenge was used in the authorization request"
+      t: "`$STRING`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: true
+      sh: "ISO 8601 timestamp of when the auth code was created"
+      t: "`$STRING`"
+    }
+    expires_at: {
+      fo: "date-time"
+      h: "Expires At"
+      n: "expires_at"
+      r: false
+      sh: "Optional expiration time for the API key to be created"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "The authorization code ID to use in the exchange request"
+      t: "`$STRING`"
+    }
+    key: {
+      h: "Key"
+      n: "key"
+      r: true
+      sh: "The API key to use for OpenRouter requests"
+      t: "`$STRING`"
+    }
+    key_label: {
+      h: "Key Label"
+      n: "key_label"
+      r: false
+      sh: "Optional custom label for the API key."
+      t: "`$STRING`"
+    }
+    limit: {
+      fo: "double"
+      h: "Limit"
+      n: "limit"
+      r: false
+      sh: "Credit limit for the API key to be created"
+      t: "`$NUMBER`"
+    }
+    spawn_agent: {
+      h: "Spawn Agent"
+      n: "spawn_agent"
+      r: false
+      sh: "Agent identifier for spawn telemetry"
+      t: "`$STRING`"
+    }
+    spawn_cloud: {
+      h: "Spawn Cloud"
+      n: "spawn_cloud"
+      r: false
+      sh: "Cloud identifier for spawn telemetry"
+      t: "`$STRING`"
+    }
+    usage_limit_type: {
+      h: "Usage Limit Type"
+      n: "usage_limit_type"
+      r: false
+      sh: "Optional credit limit reset interval."
+      t: "`$STRING`"
+    }
+    user_id: {
+      h: "User Id"
+      n: "user_id"
+      r: true
+      sh: "User ID associated with the API key"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    workspace_id: {
+      fo: "uuid"
+      h: "Workspace Id"
+      n: "workspace_id"
+      r: false
+      sh: "Optional workspace ID to associate the API key with"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "o_auth"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /auth/keys"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/auth/keys"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "keys"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /auth/keys/code"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/auth/keys/code"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "keys"
+            }
+            {
+              lit: "code"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

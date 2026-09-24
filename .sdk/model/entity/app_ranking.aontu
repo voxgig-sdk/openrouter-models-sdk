@@ -1,0 +1,180 @@
+# Entity: app_ranking
+
+main: kit: entity: app_ranking: {
+
+  alias: field: {}
+
+  fields: {
+    app_id: {
+      h: "App Id"
+      n: "app_id"
+      r: true
+      sh: "Stable numeric identifier of the app on OpenRouter."
+      t: "`$INTEGER`"
+    }
+    app_name: {
+      h: "App Name"
+      n: "app_name"
+      r: true
+      sh: "Public display name of the app."
+      t: "`$STRING`"
+    }
+    rank: {
+      h: "Rank"
+      n: "rank"
+      r: true
+      sh: "1-based position of the app within this response, per the requested `sort`."
+      t: "`$INTEGER`"
+    }
+    total_requests: {
+      h: "Total Requests"
+      n: "total_requests"
+      r: true
+      sh: "Number of requests attributed to the app inside the date window."
+      t: "`$INTEGER`"
+    }
+    total_tokens: {
+      h: "Total Tokens"
+      n: "total_tokens"
+      r: true
+      sh: "Sum of `prompt_tokens + completion_tokens` attributed to the app inside the date window, returned as a decimal string so 64-bit values are not truncated."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "app_ranking"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /datasets/app-rankings"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "coding"
+                k: "query"
+                n: "category"
+                or: "category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "2026-05-11"
+                k: "query"
+                n: "end_date"
+                or: "end_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+              {
+                ex: "popular"
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "2026-04-12"
+                k: "query"
+                n: "start_date"
+                or: "start_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "cli-agent"
+                k: "query"
+                n: "subcategory"
+                or: "subcategory"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/datasets/app-rankings"
+          q: {
+            exist: [
+              "category"
+              "end_date"
+              "http_referer"
+              "limit"
+              "offset"
+              "sort"
+              "start_date"
+              "subcategory"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "datasets"
+            }
+            {
+              lit: "app-rankings"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

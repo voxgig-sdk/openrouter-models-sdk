@@ -19,7 +19,7 @@ describe("ResponseEntity", function()
     local setup = response_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
-    for _, _op in ipairs({}) do
+    for _, _op in ipairs({"create"}) do
       local _should_skip, _reason = runner.is_control_skipped("entityOp", "response." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
@@ -34,13 +34,16 @@ describe("ResponseEntity", function()
     end
     local client = setup.client
 
-    -- Bootstrap entity data from existing test data.
-    local response_ref01_data_raw = vs.items(helpers.to_map(
-      vs.getpath(setup.data, "existing.response")))
-    local response_ref01_data = nil
-    if #response_ref01_data_raw > 0 then
-      response_ref01_data = helpers.to_map(response_ref01_data_raw[1][2])
-    end
+    -- CREATE
+    local response_ref01_ent = client:Response(nil)
+    local response_ref01_data = helpers.to_map(vs.getprop(
+      vs.getpath(setup.data, "new.response"), "response_ref01"))
+    response_ref01_data["slug"] = setup.idmap["slug01"]
+
+    local response_ref01_data_result, err = response_ref01_ent:create(response_ref01_data, nil)
+    assert.is_nil(err)
+    response_ref01_data = helpers.to_map(type(response_ref01_data_result) == 'table' and response_ref01_data_result.data_get and response_ref01_data_result:data_get() or response_ref01_data_result)
+    assert.is_not_nil(response_ref01_data)
 
   end)
 end)
@@ -65,7 +68,7 @@ function response_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "response01", "response02", "response03" },
+    { "response01", "response02", "response03", "preset01", "preset02", "preset03", "slug01" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

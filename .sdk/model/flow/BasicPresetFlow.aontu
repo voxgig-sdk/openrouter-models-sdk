@@ -1,0 +1,44 @@
+# BasicPresetFlow
+
+main: kit: flow: BasicPresetFlow:
+{
+  entity: "preset",
+  kind: "basic",
+  name: "BasicPresetFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "preset_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "preset_ref01",
+        srcdatavar: "preset_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "preset01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-preset_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPresetFlow"
+}

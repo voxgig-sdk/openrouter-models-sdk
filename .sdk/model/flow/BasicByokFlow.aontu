@@ -1,0 +1,81 @@
+# BasicByokFlow
+
+main: kit: flow: BasicByokFlow:
+{
+  entity: "byok",
+  kind: "basic",
+  name: "BasicByokFlow",
+  step: [
+    {
+      i: {
+        ref: "byok_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "byok_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "byok_ref01",
+        srcdatavar: "byok_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "byok01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-byok_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "byok_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "byok01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "byok_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicByokFlow"
+}

@@ -1,0 +1,56 @@
+{
+  "existing": {
+    "image_model_list_item": {
+      "IMAGE_MODEL_LIST_ITEM00": {
+        "architecture": {},
+        "created": 81,
+        "description": "s52",
+        "endpoints": "s53",
+        "id": "IMAGE_MODEL_LIST_ITEM00",
+        "name": "s55",
+        "supported_parameters": {},
+        "supports_streaming": false
+      },
+      "IMAGE_MODEL_LIST_ITEM01": {
+        "architecture": {},
+        "created": 161,
+        "description": "sa2",
+        "endpoints": "sa3",
+        "id": "IMAGE_MODEL_LIST_ITEM01",
+        "name": "sa5",
+        "supported_parameters": {},
+        "supports_streaming": false
+      },
+      "IMAGE_MODEL_LIST_ITEM02": {
+        "architecture": {},
+        "created": 241,
+        "description": "sf2",
+        "endpoints": "sf3",
+        "id": "IMAGE_MODEL_LIST_ITEM02",
+        "name": "sf5",
+        "supported_parameters": {},
+        "supports_streaming": false
+      }
+    }
+  },
+  "new": {
+    "image_model_list_item": {
+      "image_model_list_item_ref01": {
+        "architecture": {},
+        "created": 321,
+        "description": "s142",
+        "endpoints": "s143",
+        "name": "s145",
+        "supported_parameters": {},
+        "supports_streaming": false
+      }
+    }
+  },
+  "requests": {
+    "GET /images/models": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

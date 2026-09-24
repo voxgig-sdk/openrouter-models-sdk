@@ -1,9 +1,0 @@
-# BasicListPresetFlow
-
-main: kit: flow: BasicListPresetFlow:
-{
-  entity: "list_preset",
-  kind: "basic",
-  name: "BasicListPresetFlow",
-  "key$": "BasicListPresetFlow"
-}

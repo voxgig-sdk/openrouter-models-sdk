@@ -23,7 +23,7 @@ class CompletionEntityTest extends TestCase
         $setup = completion_basic_setup(null);
         // Per-op sdk-test-control.json skip.
         $_live = !empty($setup["live"]);
-        foreach ([] as $_op) {
+        foreach (["create"] as $_op) {
             [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "completion." . $_op, $_live ? "live" : "unit");
             if ($_shouldSkip) {
                 $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
@@ -38,13 +38,15 @@ class CompletionEntityTest extends TestCase
         }
         $client = $setup["client"];
 
-        // Bootstrap entity data from existing test data.
-        $completion_ref01_data_raw = Vs::items(Helpers::to_map(
-            Vs::getpath($setup["data"], "existing.completion")));
-        $completion_ref01_data = null;
-        if (count($completion_ref01_data_raw) > 0) {
-            $completion_ref01_data = Helpers::to_map($completion_ref01_data_raw[0][1]);
-        }
+        // CREATE
+        $completion_ref01_ent = $client->Completion(null);
+        $completion_ref01_data = Helpers::to_map(Vs::getprop(
+            Vs::getpath($setup["data"], "new.completion"), "completion_ref01"));
+        $completion_ref01_data["slug"] = $setup["idmap"]["slug01"];
+
+        $completion_ref01_data_result = $completion_ref01_ent->create($completion_ref01_data, null);
+        $completion_ref01_data = Helpers::to_map(is_object($completion_ref01_data_result) && method_exists($completion_ref01_data_result, 'data_get') ? $completion_ref01_data_result->data_get() : $completion_ref01_data_result);
+        $this->assertNotNull($completion_ref01_data);
 
     }
 }
@@ -64,7 +66,7 @@ function completion_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["completion01", "completion02", "completion03", "preset01", "preset02", "preset03"] as $k) {
+    foreach (["completion01", "completion02", "completion03", "preset01", "preset02", "preset03", "slug01"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

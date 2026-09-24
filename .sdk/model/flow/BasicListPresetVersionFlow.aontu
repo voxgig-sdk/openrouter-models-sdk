@@ -1,0 +1,26 @@
+# BasicListPresetVersionFlow
+
+main: kit: flow: BasicListPresetVersionFlow:
+{
+  entity: "list_preset_version",
+  kind: "basic",
+  name: "BasicListPresetVersionFlow",
+  step: [
+    {
+      m: {
+        slug: "slug01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "list_preset_version_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicListPresetVersionFlow"
+}

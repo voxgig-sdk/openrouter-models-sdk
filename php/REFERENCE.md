@@ -46,10 +46,6 @@ $client = OpenrouterModelsSDK::test();
 
 Create a new `ActivityEntity` instance. Pass `null` for no initial data.
 
-#### `Add($data = null)`
-
-Create a new `AddEntity` instance. Pass `null` for no initial data.
-
 #### `ApiKey($data = null)`
 
 Create a new `ApiKeyEntity` instance. Pass `null` for no initial data.
@@ -58,17 +54,9 @@ Create a new `ApiKeyEntity` instance. Pass `null` for no initial data.
 
 Create a new `AppRankingEntity` instance. Pass `null` for no initial data.
 
-#### `Benchmark($data = null)`
-
-Create a new `BenchmarkEntity` instance. Pass `null` for no initial data.
-
 #### `BetaAnalytics($data = null)`
 
 Create a new `BetaAnalyticsEntity` instance. Pass `null` for no initial data.
-
-#### `Budget($data = null)`
-
-Create a new `BudgetEntity` instance. Pass `null` for no initial data.
 
 #### `BulkAddWorkspaceMember($data = null)`
 
@@ -102,53 +90,17 @@ Create a new `ByokEntity` instance. Pass `null` for no initial data.
 
 Create a new `ChatResultEntity` instance. Pass `null` for no initial data.
 
-#### `Code($data = null)`
-
-Create a new `CodeEntity` instance. Pass `null` for no initial data.
-
-#### `Coinbase($data = null)`
-
-Create a new `CoinbaseEntity` instance. Pass `null` for no initial data.
-
 #### `Completion($data = null)`
 
 Create a new `CompletionEntity` instance. Pass `null` for no initial data.
-
-#### `Content($data = null)`
-
-Create a new `ContentEntity` instance. Pass `null` for no initial data.
-
-#### `Count($data = null)`
-
-Create a new `CountEntity` instance. Pass `null` for no initial data.
-
-#### `CreateByokKey($data = null)`
-
-Create a new `CreateByokKeyEntity` instance. Pass `null` for no initial data.
-
-#### `CreateGuardrail($data = null)`
-
-Create a new `CreateGuardrailEntity` instance. Pass `null` for no initial data.
 
 #### `CreateObservabilityDestination($data = null)`
 
 Create a new `CreateObservabilityDestinationEntity` instance. Pass `null` for no initial data.
 
-#### `CreatePresetFromInference($data = null)`
-
-Create a new `CreatePresetFromInferenceEntity` instance. Pass `null` for no initial data.
-
-#### `CreateWorkspace($data = null)`
-
-Create a new `CreateWorkspaceEntity` instance. Pass `null` for no initial data.
-
 #### `Credit($data = null)`
 
 Create a new `CreditEntity` instance. Pass `null` for no initial data.
-
-#### `Destination($data = null)`
-
-Create a new `DestinationEntity` instance. Pass `null` for no initial data.
 
 #### `Embedding($data = null)`
 
@@ -158,10 +110,6 @@ Create a new `EmbeddingEntity` instance. Pass `null` for no initial data.
 
 Create a new `EndpointEntity` instance. Pass `null` for no initial data.
 
-#### `Feedback($data = null)`
-
-Create a new `FeedbackEntity` instance. Pass `null` for no initial data.
-
 #### `File($data = null)`
 
 Create a new `FileEntity` instance. Pass `null` for no initial data.
@@ -170,9 +118,9 @@ Create a new `FileEntity` instance. Pass `null` for no initial data.
 
 Create a new `GenerationEntity` instance. Pass `null` for no initial data.
 
-#### `GenerationContent($data = null)`
+#### `GenerationContentData($data = null)`
 
-Create a new `GenerationContentEntity` instance. Pass `null` for no initial data.
+Create a new `GenerationContentDataEntity` instance. Pass `null` for no initial data.
 
 #### `Guardrail($data = null)`
 
@@ -186,53 +134,21 @@ Create a new `ImageEntity` instance. Pass `null` for no initial data.
 
 Create a new `ImageModelEndpointEntity` instance. Pass `null` for no initial data.
 
-#### `ImageModelsList($data = null)`
+#### `ImageModelListItem($data = null)`
 
-Create a new `ImageModelsListEntity` instance. Pass `null` for no initial data.
+Create a new `ImageModelListItemEntity` instance. Pass `null` for no initial data.
 
 #### `Key($data = null)`
 
 Create a new `KeyEntity` instance. Pass `null` for no initial data.
 
-#### `ListByokKey($data = null)`
-
-Create a new `ListByokKeyEntity` instance. Pass `null` for no initial data.
-
-#### `ListGuardrail($data = null)`
-
-Create a new `ListGuardrailEntity` instance. Pass `null` for no initial data.
-
-#### `ListKeyAssignment($data = null)`
-
-Create a new `ListKeyAssignmentEntity` instance. Pass `null` for no initial data.
-
-#### `ListMemberAssignment($data = null)`
-
-Create a new `ListMemberAssignmentEntity` instance. Pass `null` for no initial data.
-
 #### `ListObservabilityDestination($data = null)`
 
 Create a new `ListObservabilityDestinationEntity` instance. Pass `null` for no initial data.
 
-#### `ListPreset($data = null)`
-
-Create a new `ListPresetEntity` instance. Pass `null` for no initial data.
-
 #### `ListPresetVersion($data = null)`
 
 Create a new `ListPresetVersionEntity` instance. Pass `null` for no initial data.
-
-#### `ListWorkspace($data = null)`
-
-Create a new `ListWorkspaceEntity` instance. Pass `null` for no initial data.
-
-#### `ListWorkspaceBudget($data = null)`
-
-Create a new `ListWorkspaceBudgetEntity` instance. Pass `null` for no initial data.
-
-#### `ListWorkspaceMember($data = null)`
-
-Create a new `ListWorkspaceMemberEntity` instance. Pass `null` for no initial data.
 
 #### `Member($data = null)`
 
@@ -241,10 +157,6 @@ Create a new `MemberEntity` instance. Pass `null` for no initial data.
 #### `Message($data = null)`
 
 Create a new `MessageEntity` instance. Pass `null` for no initial data.
-
-#### `Meta($data = null)`
-
-Create a new `MetaEntity` instance. Pass `null` for no initial data.
 
 #### `Model($data = null)`
 
@@ -286,17 +198,9 @@ Create a new `PresetVersionEntity` instance. Pass `null` for no initial data.
 
 Create a new `ProviderEntity` instance. Pass `null` for no initial data.
 
-#### `Query($data = null)`
-
-Create a new `QueryEntity` instance. Pass `null` for no initial data.
-
 #### `RankingsDaily($data = null)`
 
 Create a new `RankingsDailyEntity` instance. Pass `null` for no initial data.
-
-#### `Remove($data = null)`
-
-Create a new `RemoveEntity` instance. Pass `null` for no initial data.
 
 #### `Rerank($data = null)`
 
@@ -305,10 +209,6 @@ Create a new `RerankEntity` instance. Pass `null` for no initial data.
 #### `Response($data = null)`
 
 Create a new `ResponseEntity` instance. Pass `null` for no initial data.
-
-#### `Speech($data = null)`
-
-Create a new `SpeechEntity` instance. Pass `null` for no initial data.
 
 #### `Stt($data = null)`
 
@@ -321,10 +221,6 @@ Create a new `SubmitGenerationFeedbackEntity` instance. Pass `null` for no initi
 #### `Task($data = null)`
 
 Create a new `TaskEntity` instance. Pass `null` for no initial data.
-
-#### `Transcription($data = null)`
-
-Create a new `TranscriptionEntity` instance. Pass `null` for no initial data.
 
 #### `Tts($data = null)`
 
@@ -354,14 +250,6 @@ Create a new `UpdateWorkspaceEntity` instance. Pass `null` for no initial data.
 
 Create a new `UpsertWorkspaceBudgetEntity` instance. Pass `null` for no initial data.
 
-#### `User($data = null)`
-
-Create a new `UserEntity` instance. Pass `null` for no initial data.
-
-#### `Version($data = null)`
-
-Create a new `VersionEntity` instance. Pass `null` for no initial data.
-
 #### `Video($data = null)`
 
 Create a new `VideoEntity` instance. Pass `null` for no initial data.
@@ -370,9 +258,9 @@ Create a new `VideoEntity` instance. Pass `null` for no initial data.
 
 Create a new `VideoGenerationEntity` instance. Pass `null` for no initial data.
 
-#### `VideoModelsList($data = null)`
+#### `VideoModel($data = null)`
 
-Create a new `VideoModelsListEntity` instance. Pass `null` for no initial data.
+Create a new `VideoModelEntity` instance. Pass `null` for no initial data.
 
 #### `Workspace($data = null)`
 
@@ -382,9 +270,9 @@ Create a new `WorkspaceEntity` instance. Pass `null` for no initial data.
 
 Create a new `WorkspaceBudgetEntity` instance. Pass `null` for no initial data.
 
-#### `Zdr($data = null)`
+#### `WorkspaceMember($data = null)`
 
-Create a new `ZdrEntity` instance. Pass `null` for no initial data.
+Create a new `WorkspaceMemberEntity` instance. Pass `null` for no initial data.
 
 #### `options_map(): array`
 
@@ -476,42 +364,6 @@ Set the entity match criteria.
 #### `make(): ActivityEntity`
 
 Create a new `ActivityEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## AddEntity
-
-```php
-$add = $client->Add();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): AddEntity`
-
-Create a new `AddEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -745,42 +597,6 @@ Return the entity name.
 
 ---
 
-## BenchmarkEntity
-
-```php
-$benchmark = $client->Benchmark();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): BenchmarkEntity`
-
-Create a new `BenchmarkEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
 ## BetaAnalyticsEntity
 
 ```php
@@ -879,42 +695,6 @@ Set the entity match criteria.
 #### `make(): BetaAnalyticsEntity`
 
 Create a new `BetaAnalyticsEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## BudgetEntity
-
-```php
-$budget = $client->Budget();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): BudgetEntity`
-
-Create a new `BudgetEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -1554,82 +1334,73 @@ Return the entity name.
 
 ---
 
-## CodeEntity
-
-```php
-$code = $client->Code();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): CodeEntity`
-
-Create a new `CodeEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## CoinbaseEntity
-
-```php
-$coinbase = $client->Coinbase();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): CoinbaseEntity`
-
-Create a new `CoinbaseEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
 ## CompletionEntity
 
 ```php
 $completion = $client->Completion();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `cache_control` | `array` | Yes | Enable automatic prompt caching. |
+| `debug` | `array` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `mixed` | No | Frequency penalty (-2.0 to 2.0) |
+| `image_config` | `array` | No | Provider-specific image configuration options. |
+| `logit_bias` | `mixed` | No | Token logit bias adjustments |
+| `logprobs` | `mixed` | No | Return log probabilities |
+| `max_completion_tokens` | `mixed` | No | Maximum tokens in completion |
+| `max_tokens` | `mixed` | No | Maximum tokens (deprecated, use max_completion_tokens). |
+| `messages` | `array` | Yes | List of messages for the conversation |
+| `metadata` | `array` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `mixed` | No | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `array` | No | Output modalities for the response. |
+| `model` | `string` | No | Model to use for completion |
+| `models` | `array` | No | Models to use for completion |
+| `parallel_tool_calls` | `mixed` | No | Whether to enable parallel function calling during tool use. |
+| `plugins` | `array` | No | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `mixed` | Yes | Static predicted output content. |
+| `presence_penalty` | `mixed` | No | Presence penalty (-2.0 to 2.0) |
+| `prompt_cache_key` | `mixed` | No |  |
+| `prompt_cache_options` | `mixed` | Yes | Request-level prompt-cache controls. |
+| `provider` | `mixed` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `array` | No | Configuration options for reasoning models |
+| `reasoning_effort` | `mixed` | No | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `mixed` | No | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `mixed` | No | Response format configuration |
+| `route` | `mixed` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `seed` | `mixed` | No | Random seed for deterministic outputs |
+| `service_tier` | `mixed` | No | The service tier to use for processing this request. |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop` | `mixed` | No | Stop sequences (up to 4) |
+| `stop_server_tools_when` | `array` | No | Stop conditions for the server-tool agent loop. |
+| `stream` | `bool` | No | Enable streaming response |
+| `stream_options` | `mixed` | No | Streaming configuration options |
+| `temperature` | `mixed` | No | Sampling temperature (0-2) |
+| `tool_choice` | `mixed` | No | Tool choice configuration |
+| `tools` | `array` | No | Available tools for function calling |
+| `top_a` | `mixed` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `mixed` | No | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `mixed` | No | Number of top log probabilities to return (0-20) |
+| `top_p` | `mixed` | No | Nucleus sampling parameter (0-1) |
+| `trace` | `array` | No | Metadata for observability and tracing. |
+| `user` | `string` | No | Unique user identifier |
+
+### Operations
+
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
+
+Create a new entity with the given data. Throws on error.
+
+```php
+$result = $client->Completion()->create([
+  "slug" => null, // string
+  "cache_control" => null, // array
+  "messages" => null, // array
+  "prediction" => null, // mixed
+  "prompt_cache_options" => null, // mixed
+]);
 ```
 
 ### Common Methods
@@ -1653,150 +1424,6 @@ Set the entity match criteria.
 #### `make(): CompletionEntity`
 
 Create a new `CompletionEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## ContentEntity
-
-```php
-$content = $client->Content();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): ContentEntity`
-
-Create a new `ContentEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## CountEntity
-
-```php
-$count = $client->Count();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): CountEntity`
-
-Create a new `CountEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## CreateByokKeyEntity
-
-```php
-$create_byok_key = $client->CreateByokKey();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): CreateByokKeyEntity`
-
-Create a new `CreateByokKeyEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## CreateGuardrailEntity
-
-```php
-$create_guardrail = $client->CreateGuardrail();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): CreateGuardrailEntity`
-
-Create a new `CreateGuardrailEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -1871,227 +1498,6 @@ Return the entity name.
 
 ---
 
-## CreatePresetFromInferenceEntity
-
-```php
-$create_preset_from_inference = $client->CreatePresetFromInference();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `background` | `mixed` | No |  |
-| `cache_control` | `array` | Yes | Enable automatic prompt caching. |
-| `context_management` | `mixed` | No |  |
-| `debug` | `array` | No | Debug options for inspecting request transformations (streaming only) |
-| `fallbacks` | `mixed` | No | Fallback models to try if the primary model fails or refuses, in order. |
-| `frequency_penalty` | `mixed` | No | Frequency penalty (-2.0 to 2.0) |
-| `image_config` | `array` | No | Provider-specific image configuration options. |
-| `include` | `mixed` | No |  |
-| `input` | `mixed` | No | Input for a response request - can be a string or array of items |
-| `instructions` | `mixed` | No |  |
-| `logit_bias` | `mixed` | No | Token logit bias adjustments |
-| `logprobs` | `mixed` | No | Return log probabilities |
-| `max_completion_tokens` | `mixed` | No | Maximum tokens in completion |
-| `max_output_tokens` | `mixed` | No |  |
-| `max_tokens` | `mixed` | No | Maximum tokens (deprecated, use max_completion_tokens). |
-| `max_tool_calls` | `mixed` | No |  |
-| `messages` | `array` | Yes | List of messages for the conversation |
-| `metadata` | `array` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
-| `min_p` | `mixed` | No | Minimum probability threshold relative to the most likely token. |
-| `modalities` | `array` | No | Output modalities for the response. |
-| `model` | `string` | No | Model to use for completion |
-| `models` | `array` | No | Models to use for completion |
-| `output_config` | `array` | No | Configuration for controlling output behavior. |
-| `parallel_tool_calls` | `mixed` | No | Whether to enable parallel function calling during tool use. |
-| `plugins` | `array` | No | Plugins you want to enable for this request, including their settings. |
-| `prediction` | `mixed` | Yes | Static predicted output content. |
-| `presence_penalty` | `mixed` | No | Presence penalty (-2.0 to 2.0) |
-| `previous_response_id` | `string` | No | Not supported. |
-| `prompt` | `mixed` | Yes |  |
-| `prompt_cache_key` | `mixed` | No |  |
-| `prompt_cache_options` | `mixed` | Yes | Request-level prompt-cache controls. |
-| `provider` | `mixed` | No | When multiple model providers are available, optionally indicate your routing preference. |
-| `reasoning` | `array` | No | Configuration options for reasoning models |
-| `reasoning_effort` | `mixed` | No | Shorthand for setting reasoning effort. |
-| `repetition_penalty` | `mixed` | No | Penalizes tokens based on how much they have already appeared in the text. |
-| `response_format` | `mixed` | No | Response format configuration |
-| `route` | `mixed` | No | **DEPRECATED** Use providers.sort.partition instead. |
-| `safety_identifier` | `mixed` | No |  |
-| `seed` | `mixed` | No | Random seed for deterministic outputs |
-| `service_tier` | `mixed` | No | The service tier to use for processing this request. |
-| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
-| `speed` | `mixed` | No |  |
-| `stop` | `mixed` | No | Stop sequences (up to 4) |
-| `stop_sequences` | `array` | No |  |
-| `stop_server_tools_when` | `array` | No | Stop conditions for the server-tool agent loop. |
-| `store` | `bool` | No |  |
-| `stream` | `bool` | No | Enable streaming response |
-| `stream_options` | `mixed` | No | Streaming configuration options |
-| `system` | `mixed` | No |  |
-| `temperature` | `mixed` | No | Sampling temperature (0-2) |
-| `text` | `mixed` | No | Text output configuration including format and verbosity |
-| `thinking` | `mixed` | No |  |
-| `tool_choice` | `mixed` | No | Tool choice configuration |
-| `tools` | `array` | No | Available tools for function calling |
-| `top_a` | `mixed` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
-| `top_k` | `mixed` | No | Limits the model to choose from the top K most likely tokens at each step. |
-| `top_logprobs` | `mixed` | No | Number of top log probabilities to return (0-20) |
-| `top_p` | `mixed` | No | Nucleus sampling parameter (0-1) |
-| `trace` | `array` | No | Metadata for observability and tracing. |
-| `truncation` | `mixed` | No |  |
-| `user` | `string` | No | Unique user identifier |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `background` | - |
-| `cache_control` | - |
-| `context_management` | - |
-| `debug` | - |
-| `fallbacks` | - |
-| `frequency_penalty` | - |
-| `image_config` | - |
-| `include` | - |
-| `input` | - |
-| `instructions` | - |
-| `logit_bias` | - |
-| `logprobs` | - |
-| `max_completion_tokens` | - |
-| `max_output_tokens` | - |
-| `max_tokens` | - |
-| `max_tool_calls` | - |
-| `messages` | - |
-| `metadata` | - |
-| `min_p` | - |
-| `modalities` | - |
-| `model` | Yes |
-| `models` | - |
-| `output_config` | - |
-| `parallel_tool_calls` | - |
-| `plugins` | - |
-| `prediction` | - |
-| `presence_penalty` | - |
-| `previous_response_id` | - |
-| `prompt` | - |
-| `prompt_cache_key` | - |
-| `prompt_cache_options` | - |
-| `provider` | - |
-| `reasoning` | - |
-| `reasoning_effort` | - |
-| `repetition_penalty` | - |
-| `response_format` | - |
-| `route` | - |
-| `safety_identifier` | - |
-| `seed` | - |
-| `service_tier` | - |
-| `session_id` | - |
-| `speed` | - |
-| `stop` | - |
-| `stop_sequences` | - |
-| `stop_server_tools_when` | - |
-| `store` | - |
-| `stream` | - |
-| `stream_options` | - |
-| `system` | - |
-| `temperature` | - |
-| `text` | - |
-| `thinking` | - |
-| `tool_choice` | - |
-| `tools` | - |
-| `top_a` | - |
-| `top_k` | - |
-| `top_logprobs` | - |
-| `top_p` | - |
-| `trace` | - |
-| `truncation` | - |
-| `user` | - |
-
-### Operations
-
-#### `create(array $reqdata, ?array $ctrl = null): mixed`
-
-Create a new entity with the given data. Throws on error.
-
-```php
-$result = $client->CreatePresetFromInference()->create([
-  "slug" => null, // string
-  "cache_control" => null, // array
-  "messages" => null, // array
-  "prediction" => null, // mixed
-  "prompt" => null, // mixed
-  "prompt_cache_options" => null, // mixed
-]);
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): CreatePresetFromInferenceEntity`
-
-Create a new `CreatePresetFromInferenceEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## CreateWorkspaceEntity
-
-```php
-$create_workspace = $client->CreateWorkspace();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): CreateWorkspaceEntity`
-
-Create a new `CreateWorkspaceEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
 ## CreditEntity
 
 ```php
@@ -2147,42 +1553,6 @@ Set the entity match criteria.
 #### `make(): CreditEntity`
 
 Create a new `CreditEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## DestinationEntity
-
-```php
-$destination = $client->Destination();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): DestinationEntity`
-
-Create a new `DestinationEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -2355,42 +1725,6 @@ Set the entity match criteria.
 #### `make(): EndpointEntity`
 
 Create a new `EndpointEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## FeedbackEntity
-
-```php
-$feedback = $client->Feedback();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): FeedbackEntity`
-
-Create a new `FeedbackEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -2585,10 +1919,10 @@ Return the entity name.
 
 ---
 
-## GenerationContentEntity
+## GenerationContentDataEntity
 
 ```php
-$generation_content = $client->GenerationContent();
+$generation_content_data = $client->GenerationContentData();
 ```
 
 ### Fields
@@ -2605,7 +1939,7 @@ $generation_content = $client->GenerationContent();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->GenerationContent()->load(["id" => "generation_content_id"]);
+$result = $client->GenerationContentData()->load(["id" => "generation_content_data_id"]);
 ```
 
 ### Common Methods
@@ -2626,9 +1960,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): GenerationContentEntity`
+#### `make(): GenerationContentDataEntity`
 
-Create a new `GenerationContentEntity` instance with the same client and
+Create a new `GenerationContentDataEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -2895,10 +2229,10 @@ Return the entity name.
 
 ---
 
-## ImageModelsListEntity
+## ImageModelListItemEntity
 
 ```php
-$image_models_list = $client->ImageModelsList();
+$image_model_list_item = $client->ImageModelListItem();
 ```
 
 ### Fields
@@ -2921,7 +2255,7 @@ $image_models_list = $client->ImageModelsList();
 List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->ImageModelsList()->list();
+$results = $client->ImageModelListItem()->list();
 ```
 
 ### Common Methods
@@ -2942,9 +2276,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): ImageModelsListEntity`
+#### `make(): ImageModelListItemEntity`
 
-Create a new `ImageModelsListEntity` instance with the same client and
+Create a new `ImageModelListItemEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -2958,6 +2292,28 @@ Return the entity name.
 
 ```php
 $key = $client->Key();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `assigned_by` | `mixed` | Yes | User ID of who made the assignment |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `string` | Yes | ID of the guardrail |
+| `id` | `string` | Yes | Unique identifier for the assignment |
+| `key_hash` | `string` | Yes | Hash of the assigned API key |
+| `key_label` | `string` | Yes | Label of the API key |
+| `key_name` | `string` | Yes | Name of the API key |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->Key()->list();
 ```
 
 ### Common Methods
@@ -2981,193 +2337,6 @@ Set the entity match criteria.
 #### `make(): KeyEntity`
 
 Create a new `KeyEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## ListByokKeyEntity
-
-```php
-$list_byok_key = $client->ListByokKey();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): ListByokKeyEntity`
-
-Create a new `ListByokKeyEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## ListGuardrailEntity
-
-```php
-$list_guardrail = $client->ListGuardrail();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): ListGuardrailEntity`
-
-Create a new `ListGuardrailEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## ListKeyAssignmentEntity
-
-```php
-$list_key_assignment = $client->ListKeyAssignment();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `assigned_by` | `mixed` | Yes | User ID of who made the assignment |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
-| `guardrail_id` | `string` | Yes | ID of the guardrail |
-| `id` | `string` | Yes | Unique identifier for the assignment |
-| `key_hash` | `string` | Yes | Hash of the assigned API key |
-| `key_label` | `string` | Yes | Label of the API key |
-| `key_name` | `string` | Yes | Name of the API key |
-
-### Operations
-
-#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
-
-```php
-$results = $client->ListKeyAssignment()->list();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): ListKeyAssignmentEntity`
-
-Create a new `ListKeyAssignmentEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## ListMemberAssignmentEntity
-
-```php
-$list_member_assignment = $client->ListMemberAssignment();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `assigned_by` | `mixed` | Yes | User ID of who made the assignment |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
-| `guardrail_id` | `string` | Yes | ID of the guardrail |
-| `id` | `string` | Yes | Unique identifier for the assignment |
-| `organization_id` | `string` | Yes | Organization ID |
-| `user_id` | `string` | Yes | Clerk user ID of the assigned member |
-
-### Operations
-
-#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
-
-```php
-$results = $client->ListMemberAssignment()->list();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): ListMemberAssignmentEntity`
-
-Create a new `ListMemberAssignmentEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -3221,42 +2390,6 @@ Set the entity match criteria.
 #### `make(): ListObservabilityDestinationEntity`
 
 Create a new `ListObservabilityDestinationEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## ListPresetEntity
-
-```php
-$list_preset = $client->ListPreset();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): ListPresetEntity`
-
-Create a new `ListPresetEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -3325,159 +2458,31 @@ Return the entity name.
 
 ---
 
-## ListWorkspaceEntity
-
-```php
-$list_workspace = $client->ListWorkspace();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): ListWorkspaceEntity`
-
-Create a new `ListWorkspaceEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## ListWorkspaceBudgetEntity
-
-```php
-$list_workspace_budget = $client->ListWorkspaceBudget();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the budget was created |
-| `id` | `string` | Yes | Unique identifier for the budget |
-| `limit_usd` | `float` | Yes | Spending limit in USD for this interval |
-| `reset_interval` | `mixed` | Yes | Interval at which spend resets. |
-| `updated_at` | `string` | Yes | ISO 8601 timestamp of when the budget was last updated |
-| `workspace_id` | `string` | Yes | ID of the workspace the budget belongs to |
-
-### Operations
-
-#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
-
-```php
-$results = $client->ListWorkspaceBudget()->list();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): ListWorkspaceBudgetEntity`
-
-Create a new `ListWorkspaceBudgetEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## ListWorkspaceMemberEntity
-
-```php
-$list_workspace_member = $client->ListWorkspaceMember();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `created_at` | `string` | Yes | ISO 8601 timestamp of when the membership was created |
-| `id` | `string` | Yes | Unique identifier for the workspace membership |
-| `role` | `string` | Yes | Role of the member in the workspace |
-| `user_id` | `string` | Yes | Clerk user ID of the member |
-| `workspace_id` | `string` | Yes | ID of the workspace |
-
-### Operations
-
-#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
-
-```php
-$results = $client->ListWorkspaceMember()->list();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): ListWorkspaceMemberEntity`
-
-Create a new `ListWorkspaceMemberEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
 ## MemberEntity
 
 ```php
 $member = $client->Member();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `assigned_by` | `mixed` | Yes | User ID of who made the assignment |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `string` | Yes | ID of the guardrail |
+| `id` | `string` | Yes | Unique identifier for the assignment |
+| `organization_id` | `string` | Yes | Organization ID |
+| `user_id` | `string` | Yes | Clerk user ID of the assigned member |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->Member()->list();
 ```
 
 ### Common Methods
@@ -3583,42 +2588,6 @@ Set the entity match criteria.
 #### `make(): MessageEntity`
 
 Create a new `MessageEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## MetaEntity
-
-```php
-$meta = $client->Meta();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): MetaEntity`
-
-Create a new `MetaEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -4294,42 +3263,6 @@ Return the entity name.
 
 ---
 
-## QueryEntity
-
-```php
-$query = $client->Query();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): QueryEntity`
-
-Create a new `QueryEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
 ## RankingsDailyEntity
 
 ```php
@@ -4375,42 +3308,6 @@ Set the entity match criteria.
 #### `make(): RankingsDailyEntity`
 
 Create a new `RankingsDailyEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## RemoveEntity
-
-```php
-$remove = $client->Remove();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): RemoveEntity`
-
-Create a new `RemoveEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -4490,6 +3387,66 @@ Return the entity name.
 $response = $client->Response();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `background` | `mixed` | No |  |
+| `cache_control` | `array` | Yes | Enable automatic prompt caching. |
+| `debug` | `array` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `mixed` | No |  |
+| `image_config` | `array` | No | Provider-specific image configuration options. |
+| `include` | `mixed` | No |  |
+| `input` | `mixed` | No | Input for a response request - can be a string or array of items |
+| `instructions` | `mixed` | No |  |
+| `max_output_tokens` | `mixed` | No |  |
+| `max_tool_calls` | `mixed` | No |  |
+| `metadata` | `mixed` | No | Metadata key-value pairs for the request. |
+| `modalities` | `array` | No | Output modalities for the response. |
+| `model` | `string` | No |  |
+| `models` | `array` | No |  |
+| `parallel_tool_calls` | `mixed` | No |  |
+| `plugins` | `array` | No | Plugins you want to enable for this request, including their settings. |
+| `presence_penalty` | `mixed` | No |  |
+| `previous_response_id` | `string` | No | Not supported. |
+| `prompt` | `mixed` | Yes |  |
+| `prompt_cache_key` | `mixed` | No |  |
+| `prompt_cache_options` | `mixed` | Yes | Request-level prompt-cache controls. |
+| `provider` | `mixed` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `mixed` | No | Configuration for reasoning mode in the response |
+| `route` | `mixed` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `safety_identifier` | `mixed` | No |  |
+| `service_tier` | `mixed` | No |  |
+| `session_id` | `string` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop_server_tools_when` | `array` | No | Stop conditions for the server-tool agent loop. |
+| `store` | `bool` | No |  |
+| `stream` | `bool` | No |  |
+| `temperature` | `mixed` | No |  |
+| `text` | `mixed` | No | Text output configuration including format and verbosity |
+| `tool_choice` | `mixed` | No |  |
+| `tools` | `array` | No |  |
+| `top_k` | `int` | No |  |
+| `top_logprobs` | `mixed` | No |  |
+| `top_p` | `mixed` | No |  |
+| `trace` | `array` | No | Metadata for observability and tracing. |
+| `truncation` | `mixed` | No |  |
+| `user` | `string` | No | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
+
+### Operations
+
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
+
+Create a new entity with the given data. Throws on error.
+
+```php
+$result = $client->Response()->create([
+  "slug" => null, // string
+  "cache_control" => null, // array
+  "prompt" => null, // mixed
+  "prompt_cache_options" => null, // mixed
+]);
+```
+
 ### Common Methods
 
 #### `data_get(): array`
@@ -4511,42 +3468,6 @@ Set the entity match criteria.
 #### `make(): ResponseEntity`
 
 Create a new `ResponseEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## SpeechEntity
-
-```php
-$speech = $client->Speech();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): SpeechEntity`
-
-Create a new `SpeechEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -4729,42 +3650,6 @@ Set the entity match criteria.
 #### `make(): TaskEntity`
 
 Create a new `TaskEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## TranscriptionEntity
-
-```php
-$transcription = $client->Transcription();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): TranscriptionEntity`
-
-Create a new `TranscriptionEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -5251,78 +4136,6 @@ Return the entity name.
 
 ---
 
-## UserEntity
-
-```php
-$user = $client->User();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): UserEntity`
-
-Create a new `UserEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## VersionEntity
-
-```php
-$version = $client->Version();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): VersionEntity`
-
-Create a new `VersionEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
 ## VideoEntity
 
 ```php
@@ -5458,10 +4271,10 @@ Return the entity name.
 
 ---
 
-## VideoModelsListEntity
+## VideoModelEntity
 
 ```php
-$video_models_list = $client->VideoModelsList();
+$video_model = $client->VideoModel();
 ```
 
 ### Fields
@@ -5491,7 +4304,7 @@ $video_models_list = $client->VideoModelsList();
 List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->VideoModelsList()->list();
+$results = $client->VideoModel()->list();
 ```
 
 ### Common Methods
@@ -5512,9 +4325,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): VideoModelsListEntity`
+#### `make(): VideoModelEntity`
 
-Create a new `VideoModelsListEntity` instance with the same client and
+Create a new `VideoModelEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -5608,9 +4421,22 @@ $workspace_budget = $client->WorkspaceBudget();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the budget was created |
+| `id` | `string` | Yes | Unique identifier for the budget |
+| `limit_usd` | `float` | Yes | Spending limit in USD for this interval |
+| `reset_interval` | `mixed` | Yes | Interval at which spend resets. |
+| `updated_at` | `string` | Yes | ISO 8601 timestamp of when the budget was last updated |
+| `workspace_id` | `string` | Yes | ID of the workspace the budget belongs to |
 
 ### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->WorkspaceBudget()->list();
+```
 
 #### `remove(array $reqmatch, ?array $ctrl = null): mixed`
 
@@ -5650,10 +4476,30 @@ Return the entity name.
 
 ---
 
-## ZdrEntity
+## WorkspaceMemberEntity
 
 ```php
-$zdr = $client->Zdr();
+$workspace_member = $client->WorkspaceMember();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `created_at` | `string` | Yes | ISO 8601 timestamp of when the membership was created |
+| `id` | `string` | Yes | Unique identifier for the workspace membership |
+| `role` | `string` | Yes | Role of the member in the workspace |
+| `user_id` | `string` | Yes | Clerk user ID of the member |
+| `workspace_id` | `string` | Yes | ID of the workspace |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->WorkspaceMember()->list();
 ```
 
 ### Common Methods
@@ -5674,9 +4520,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): ZdrEntity`
+#### `make(): WorkspaceMemberEntity`
 
-Create a new `ZdrEntity` instance with the same client and
+Create a new `WorkspaceMemberEntity` instance with the same client and
 options.
 
 #### `get_name(): string`

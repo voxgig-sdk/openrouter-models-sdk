@@ -1,0 +1,116 @@
+# Entity: bulk_unassign_member
+
+main: kit: entity: bulk_unassign_member: {
+
+  alias: field: {}
+
+  fields: {
+    member_user_ids: {
+      h: "Member User Ids"
+      n: "member_user_ids"
+      r: true
+      sh: "Array of member user IDs to unassign from the guardrail"
+      t: "`$ARRAY`"
+    }
+    unassigned_count: {
+      h: "Unassigned Count"
+      n: "unassigned_count"
+      r: true
+      sh: "Number of members successfully unassigned"
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "bulk_unassign_member"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /guardrails/{id}/assignments/members/remove"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "550e8400-e29b-41d4-a716-446655440000"
+                k: "param"
+                n: "guardrail_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/guardrails/{id}/assignments/members/remove"
+          q: {
+            exist: [
+              "guardrail_id"
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          r: {
+            param: {
+              id: "guardrail_id"
+            }
+          }
+          s: [
+            {
+              lit: "guardrails"
+            }
+            {
+              var: "guardrail_id"
+            }
+            {
+              lit: "assignments"
+            }
+            {
+              lit: "members"
+            }
+            {
+              lit: "remove"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.guardrail")]
+  ]
+
+}

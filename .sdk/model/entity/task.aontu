@@ -1,0 +1,113 @@
+# Entity: task
+
+main: kit: entity: task: {
+
+  alias: field: {}
+
+  fields: {
+    as_of: {
+      h: "As Of"
+      n: "as_of"
+      r: true
+      sh: "UTC date (YYYY-MM-DD) of the window upper bound (yesterday)."
+      t: "`$STRING`"
+    }
+    classifications: {
+      h: "Classifications"
+      n: "classifications"
+      r: true
+      sh: "Per-task classification market-share data, sorted by usage_share descending."
+      t: "`$ARRAY`"
+    }
+    macro_categories: {
+      h: "Macro Categories"
+      n: "macro_categories"
+      r: true
+      sh: "Aggregate market-share data per macro-category (code, data, agent, general)."
+      t: "`$ARRAY`"
+    }
+    window_days: {
+      h: "Window Days"
+      n: "window_days"
+      r: true
+      sh: "Number of trailing days covered by this snapshot."
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "task"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /classifications/task"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "7d"
+                k: "query"
+                n: "window"
+                or: "window"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/classifications/task"
+          q: {
+            exist: [
+              "http_referer"
+              "window"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "classifications"
+            }
+            {
+              lit: "task"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

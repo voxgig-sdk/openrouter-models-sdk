@@ -1,0 +1,573 @@
+# Entity: completion
+
+main: kit: entity: completion: {
+
+  alias: field: {}
+
+  fields: {
+    cache_control: {
+      h: "Cache Control"
+      n: "cache_control"
+      r: true
+      sh: "Enable automatic prompt caching."
+      t: "`$OBJECT`"
+    }
+    debug: {
+      h: "Debug"
+      n: "debug"
+      r: false
+      sh: "Debug options for inspecting request transformations (streaming only)"
+      t: "`$OBJECT`"
+    }
+    frequency_penalty: {
+      fo: "double"
+      h: "Frequency Penalty"
+      n: "frequency_penalty"
+      r: false
+      sh: "Frequency penalty (-2.0 to 2.0)"
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    image_config: {
+      h: "Image Config"
+      n: "image_config"
+      r: false
+      sh: "Provider-specific image configuration options."
+      t: "`$OBJECT`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 1
+      }
+    }
+    logit_bias: {
+      h: "Logit Bias"
+      n: "logit_bias"
+      r: false
+      sh: "Token logit bias adjustments"
+      t: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    logprobs: {
+      h: "Logprobs"
+      n: "logprobs"
+      r: false
+      sh: "Return log probabilities"
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    max_completion_tokens: {
+      h: "Max Completion Tokens"
+      n: "max_completion_tokens"
+      r: false
+      sh: "Maximum tokens in completion"
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    max_tokens: {
+      h: "Max Tokens"
+      n: "max_tokens"
+      r: false
+      sh: "Maximum tokens (deprecated, use max_completion_tokens)."
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    messages: {
+      h: "Messages"
+      n: "messages"
+      r: true
+      sh: "List of messages for the conversation"
+      t: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 5
+        depth: 5
+      }
+    }
+    metadata: {
+      h: "Metadata"
+      n: "metadata"
+      r: false
+      sh: "Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values)"
+      t: "`$OBJECT`"
+    }
+    min_p: {
+      fo: "double"
+      h: "Min P"
+      n: "min_p"
+      r: false
+      sh: "Minimum probability threshold relative to the most likely token."
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    modalities: {
+      h: "Modalities"
+      n: "modalities"
+      r: false
+      sh: "Output modalities for the response."
+      t: "`$ARRAY`"
+    }
+    model: {
+      h: "Model"
+      n: "model"
+      r: false
+      sh: "Model to use for completion"
+      t: "`$STRING`"
+    }
+    models: {
+      h: "Models"
+      n: "models"
+      r: false
+      sh: "Models to use for completion"
+      t: "`$ARRAY`"
+    }
+    parallel_tool_calls: {
+      h: "Parallel Tool Calls"
+      n: "parallel_tool_calls"
+      r: false
+      sh: "Whether to enable parallel function calling during tool use."
+      t: [
+        "`$ONE`"
+        [
+          "`$BOOLEAN`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    plugins: {
+      h: "Plugins"
+      n: "plugins"
+      r: false
+      sh: "Plugins you want to enable for this request, including their settings."
+      t: "`$ARRAY`"
+      union: {
+        branches: 5
+        count: 4
+        depth: 12
+      }
+    }
+    prediction: {
+      h: "Prediction"
+      n: "prediction"
+      r: true
+      sh: "Static predicted output content."
+      t: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 2
+        count: 1
+        depth: 2
+      }
+    }
+    presence_penalty: {
+      fo: "double"
+      h: "Presence Penalty"
+      n: "presence_penalty"
+      r: false
+      sh: "Presence penalty (-2.0 to 2.0)"
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    prompt_cache_key: {
+      h: "Prompt Cache Key"
+      n: "prompt_cache_key"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    prompt_cache_options: {
+      h: "Prompt Cache Options"
+      n: "prompt_cache_options"
+      r: true
+      sh: "Request-level prompt-cache controls."
+      t: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    provider: {
+      h: "Provider"
+      n: "provider"
+      r: false
+      sh: "When multiple model providers are available, optionally indicate your routing preference."
+      t: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 2
+        count: 6
+        depth: 3
+      }
+    }
+    reasoning: {
+      h: "Reasoning"
+      n: "reasoning"
+      r: false
+      sh: "Configuration options for reasoning models"
+      t: "`$OBJECT`"
+    }
+    reasoning_effort: {
+      h: "Reasoning Effort"
+      n: "reasoning_effort"
+      r: false
+      sh: "Shorthand for setting reasoning effort."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    repetition_penalty: {
+      fo: "double"
+      h: "Repetition Penalty"
+      n: "repetition_penalty"
+      r: false
+      sh: "Penalizes tokens based on how much they have already appeared in the text."
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    response_format: {
+      h: "Response Format"
+      n: "response_format"
+      r: false
+      sh: "Response format configuration"
+      t: "`$ANY`"
+    }
+    route: {
+      de: true
+      h: "Route"
+      n: "route"
+      r: false
+      sh: "**DEPRECATED** Use providers.sort.partition instead."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    seed: {
+      h: "Seed"
+      n: "seed"
+      r: false
+      sh: "Random seed for deterministic outputs"
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    service_tier: {
+      h: "Service Tier"
+      n: "service_tier"
+      r: false
+      sh: "The service tier to use for processing this request."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    session_id: {
+      h: "Session Id"
+      n: "session_id"
+      r: false
+      sh: "A unique identifier for grouping related requests (e.g., a conversation or agent workflow)."
+      t: "`$STRING`"
+    }
+    stop: {
+      h: "Stop"
+      n: "stop"
+      r: false
+      sh: "Stop sequences (up to 4)"
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    stop_server_tools_when: {
+      h: "Stop Server Tools When"
+      n: "stop_server_tools_when"
+      r: false
+      sh: "Stop conditions for the server-tool agent loop."
+      t: "`$ARRAY`"
+    }
+    stream: {
+      h: "Stream"
+      n: "stream"
+      r: false
+      sh: "Enable streaming response"
+      t: "`$BOOLEAN`"
+    }
+    stream_options: {
+      h: "Stream Options"
+      n: "stream_options"
+      r: false
+      sh: "Streaming configuration options"
+      t: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    temperature: {
+      fo: "double"
+      h: "Temperature"
+      n: "temperature"
+      r: false
+      sh: "Sampling temperature (0-2)"
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    tool_choice: {
+      h: "Tool Choice"
+      n: "tool_choice"
+      r: false
+      sh: "Tool choice configuration"
+      t: "`$ANY`"
+      union: {
+        branches: 5
+        count: 1
+        depth: 0
+      }
+    }
+    tools: {
+      h: "Tools"
+      n: "tools"
+      r: false
+      sh: "Available tools for function calling"
+      t: "`$ARRAY`"
+      union: {
+        branches: 12
+        count: 2
+        depth: 6
+      }
+    }
+    top_a: {
+      fo: "double"
+      h: "Top A"
+      n: "top_a"
+      r: false
+      sh: "Consider only tokens with \"sufficiently high\" probabilities based on the probability of the most likely token."
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    top_k: {
+      h: "Top K"
+      n: "top_k"
+      r: false
+      sh: "Limits the model to choose from the top K most likely tokens at each step."
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    top_logprobs: {
+      h: "Top Logprobs"
+      n: "top_logprobs"
+      r: false
+      sh: "Number of top log probabilities to return (0-20)"
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    top_p: {
+      fo: "double"
+      h: "Top P"
+      n: "top_p"
+      r: false
+      sh: "Nucleus sampling parameter (0-1)"
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    trace: {
+      h: "Trace"
+      n: "trace"
+      r: false
+      sh: "Metadata for observability and tracing."
+      t: "`$OBJECT`"
+    }
+    user: {
+      h: "User"
+      n: "user"
+      r: false
+      sh: "Unique user identifier"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "completion"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /presets/{slug}/chat/completions"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "my-preset"
+                k: "param"
+                n: "slug"
+                or: "slug"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/presets/{slug}/chat/completions"
+          q: {
+            exist: [
+              "http_referer"
+              "slug"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "presets"
+            }
+            {
+              var: "slug"
+            }
+            {
+              lit: "chat"
+            }
+            {
+              lit: "completions"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.preset")]
+  ]
+
+}

@@ -20,7 +20,7 @@ export OPENROUTER_MODELS_APIKEY=sk_live_xxx
 
 # 4. Each command line is ONE boru expression, run against the API:
 ./openrouter-models-cli list activity
-./openrouter-models-cli list add
+./openrouter-models-cli list api_key
 
 # 5. Override the API base URL for a single call
 OPENROUTER_MODELS_BASE=https://api.example.com ./openrouter-models-cli list activity
@@ -106,7 +106,7 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 ### Discover the available entities
 
 `/help` in the REPL prints the full entity list, or see [Entities](#entities)
-below — this SDK exposes 86 entities.
+below — this SDK exposes 58 entities.
 
 ## Reference
 
@@ -161,9 +161,9 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 ### Entities
 
-The 86 entities this SDK exposes (any is valid as `<entity>`):
+The 58 entities this SDK exposes (any is valid as `<entity>`):
 
-activity add api_key app_ranking benchmark beta_analytics budget bulk_add_workspace_member bulk_assign_key bulk_assign_member bulk_remove_workspace_member bulk_unassign_key bulk_unassign_member byok chat_result code coinbase completion content count create_byok_key create_guardrail create_observability_destination create_preset_from_inference create_workspace credit destination embedding endpoint feedback file generation generation_content guardrail image image_model_endpoint image_models_list key list_byok_key list_guardrail list_key_assignment list_member_assignment list_observability_destination list_preset list_preset_version list_workspace list_workspace_budget list_workspace_member member message meta model models_count models_list o_auth observability_destination open_responses_result organization preset preset_version provider query rankings_daily remove rerank response speech stt submit_generation_feedback task transcription tts unified_benchmark update_byok_key update_guardrail update_observability_destination update_workspace upsert_workspace_budget user version video video_generation video_models_list workspace workspace_budget zdr
+activity api_key app_ranking beta_analytics bulk_add_workspace_member bulk_assign_key bulk_assign_member bulk_remove_workspace_member bulk_unassign_key bulk_unassign_member byok chat_result completion create_observability_destination credit embedding endpoint file generation generation_content_data guardrail image image_model_endpoint image_model_list_item key list_observability_destination list_preset_version member message model models_count models_list o_auth observability_destination open_responses_result organization preset preset_version provider rankings_daily rerank response stt submit_generation_feedback task tts unified_benchmark update_byok_key update_guardrail update_observability_destination update_workspace upsert_workspace_budget video video_generation video_model workspace workspace_budget workspace_member
 
 ## Explanation
 

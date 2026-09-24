@@ -1,0 +1,156 @@
+# Entity: create_observability_destination
+
+main: kit: entity: create_observability_destination: {
+
+  alias: field: {}
+
+  fields: {
+    api_key_hashes: {
+      h: "Api Key Hashes"
+      n: "api_key_hashes"
+      r: false
+      sh: "Optional allowlist of OpenRouter API key hashes whose traffic is forwarded."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    config: {
+      h: "Config"
+      n: "config"
+      r: true
+      sh: "Provider-specific configuration."
+      t: "`$OBJECT`"
+    }
+    enabled: {
+      h: "Enabled"
+      n: "enabled"
+      r: false
+      sh: "Whether this destination should be enabled immediately."
+      t: "`$BOOLEAN`"
+    }
+    filter_rules: {
+      h: "Filter Rules"
+      n: "filter_rules"
+      r: true
+      sh: "Optional structured filter rules controlling which events are forwarded."
+      t: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+      union: {
+        branches: 2
+        count: 1
+        depth: 8
+      }
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      sh: "Human-readable name for the destination."
+      t: "`$STRING`"
+    }
+    privacy_mode: {
+      h: "Privacy Mode"
+      n: "privacy_mode"
+      r: false
+      sh: "When true, request/response bodies are not forwarded — only metadata."
+      t: "`$BOOLEAN`"
+    }
+    sampling_rate: {
+      fo: "double"
+      h: "Sampling Rate"
+      n: "sampling_rate"
+      r: false
+      sh: "Sampling rate between 0.0001 and 1 (1 = 100%)."
+      t: "`$NUMBER`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: true
+      sh: "The destination type."
+      t: "`$STRING`"
+    }
+    workspace_id: {
+      fo: "uuid"
+      h: "Workspace Id"
+      n: "workspace_id"
+      r: false
+      sh: "Optional workspace ID."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "create_observability_destination"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /observability/destinations"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/observability/destinations"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "observability"
+            }
+            {
+              lit: "destinations"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

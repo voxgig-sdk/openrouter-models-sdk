@@ -19,7 +19,6 @@ import type {
   UnifiedBenchmarkListMatch,
 } from '../OpenrouterModelsTypes'
 
-// TODO: needs Entity superclass
 class UnifiedBenchmarkEntity extends OpenrouterModelsEntityBase<UnifiedBenchmark> {
 
   constructor(client: OpenrouterModelsSDK, entopts: any) {

@@ -1,0 +1,104 @@
+# Entity: generation_content_data
+
+main: kit: entity: generation_content_data: {
+
+  alias: field: {}
+
+  fields: {
+    input: {
+      h: "Input"
+      n: "input"
+      r: true
+      sh: "The input to the generation — either a prompt string or an array of messages"
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    output: {
+      h: "Output"
+      n: "output"
+      r: true
+      sh: "The output from the generation"
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "generation_content_data"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /generation/content"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "gen-1234567890"
+                k: "query"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/generation/content"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "generation"
+            }
+            {
+              lit: "content"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

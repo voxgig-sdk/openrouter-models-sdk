@@ -1,0 +1,18 @@
+# BasicChatResultFlow
+
+main: kit: flow: BasicChatResultFlow:
+{
+  entity: "chat_result",
+  kind: "basic",
+  name: "BasicChatResultFlow",
+  step: [
+    {
+      i: {
+        ref: "chat_result_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicChatResultFlow"
+}

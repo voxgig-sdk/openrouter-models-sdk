@@ -1,0 +1,28 @@
+# BasicModelsCountFlow
+
+main: kit: flow: BasicModelsCountFlow:
+{
+  entity: "models_count",
+  kind: "basic",
+  name: "BasicModelsCountFlow",
+  step: [
+    {
+      i: {
+        ref: "models_count_ref01",
+        srcdatavar: "models_count_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-models_count_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicModelsCountFlow"
+}

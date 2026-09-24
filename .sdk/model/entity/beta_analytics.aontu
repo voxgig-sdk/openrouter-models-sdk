@@ -1,0 +1,251 @@
+# Entity: beta_analytics
+
+main: kit: entity: beta_analytics: {
+
+  alias: field: {}
+
+  fields: {
+    cachedAt: {
+      fo: "double"
+      h: "Cached At"
+      n: "cachedAt"
+      r: false
+      t: "`$NUMBER`"
+    }
+    classifier_dimensions: {
+      h: "Classifier Dimensions"
+      n: "classifier_dimensions"
+      r: true
+      sh: "Group results by custom classifier tags, breaking down metrics by the specified dimension values."
+      t: "`$OBJECT`"
+    }
+    classifier_filters: {
+      h: "Classifier Filters"
+      n: "classifier_filters"
+      r: true
+      sh: "Filter results to generations with specific classifier tag values."
+      t: "`$OBJECT`"
+      union: {
+        branches: 3
+        count: 2
+        depth: 8
+      }
+    }
+    data: {
+      h: "Data"
+      n: "data"
+      r: true
+      t: "`$ARRAY`"
+    }
+    dimensions: {
+      h: "Dimensions"
+      n: "dimensions"
+      op: {
+        create: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
+      r: true
+      t: "`$ARRAY`"
+    }
+    filters: {
+      h: "Filters"
+      n: "filters"
+      r: false
+      t: "`$ARRAY`"
+      union: {
+        branches: 3
+        count: 2
+        depth: 6
+      }
+    }
+    granularities: {
+      h: "Granularities"
+      n: "granularities"
+      r: true
+      t: "`$ARRAY`"
+    }
+    granularity: {
+      h: "Granularity"
+      n: "granularity"
+      r: false
+      sh: "Time granularity"
+      t: "`$STRING`"
+    }
+    group_limit: {
+      h: "Group Limit"
+      n: "group_limit"
+      r: false
+      sh: "Maximum rows per distinct combination of dimensions."
+      t: "`$INTEGER`"
+    }
+    limit: {
+      h: "Limit"
+      n: "limit"
+      r: false
+      sh: "Maximum total rows returned."
+      t: "`$INTEGER`"
+    }
+    metadata: {
+      h: "Metadata"
+      n: "metadata"
+      r: true
+      t: "`$OBJECT`"
+    }
+    metrics: {
+      h: "Metrics"
+      n: "metrics"
+      r: true
+      t: "`$ARRAY`"
+    }
+    operators: {
+      h: "Operators"
+      n: "operators"
+      r: true
+      t: "`$ARRAY`"
+    }
+    order_by: {
+      h: "Order By"
+      n: "order_by"
+      r: true
+      t: "`$OBJECT`"
+    }
+    time_range: {
+      h: "Time Range"
+      n: "time_range"
+      r: true
+      t: "`$OBJECT`"
+    }
+    warnings: {
+      h: "Warnings"
+      n: "warnings"
+      r: false
+      sh: "Warnings about filter resolution issues (e.g."
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "beta_analytics"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /analytics/query"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/analytics/query"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "query"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /analytics/meta"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/analytics/meta"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "analytics"
+            }
+            {
+              lit: "meta"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

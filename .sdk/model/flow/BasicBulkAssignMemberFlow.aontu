@@ -1,0 +1,22 @@
+# BasicBulkAssignMemberFlow
+
+main: kit: flow: BasicBulkAssignMemberFlow:
+{
+  entity: "bulk_assign_member",
+  kind: "basic",
+  name: "BasicBulkAssignMemberFlow",
+  step: [
+    {
+      i: {
+        ref: "bulk_assign_member_ref01"
+      }
+
+      m: {
+        guardrail_id: "guardrail01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicBulkAssignMemberFlow"
+}

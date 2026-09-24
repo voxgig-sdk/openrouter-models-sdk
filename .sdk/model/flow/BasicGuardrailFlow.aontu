@@ -1,0 +1,81 @@
+# BasicGuardrailFlow
+
+main: kit: flow: BasicGuardrailFlow:
+{
+  entity: "guardrail",
+  kind: "basic",
+  name: "BasicGuardrailFlow",
+  step: [
+    {
+      i: {
+        ref: "guardrail_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "guardrail_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "guardrail_ref01",
+        srcdatavar: "guardrail_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "guardrail01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-guardrail_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "guardrail_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "guardrail01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "guardrail_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGuardrailFlow"
+}

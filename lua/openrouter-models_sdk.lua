@@ -363,20 +363,6 @@ function OpenrouterModelsSDK:Activity(data)
 end
 
 
--- Idiomatic facade: client:Add():list() / client:Add():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Add(data)
-  local EntityMod = require("entity.add_entity")
-  if data == nil then
-    if self._add == nil then
-      self._add = EntityMod.new(self, nil)
-    end
-    return self._add
-  end
-  return EntityMod.new(self, data)
-end
-
-
 -- Idiomatic facade: client:ApiKey():list() / client:ApiKey():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function OpenrouterModelsSDK:ApiKey(data)
@@ -405,20 +391,6 @@ function OpenrouterModelsSDK:AppRanking(data)
 end
 
 
--- Idiomatic facade: client:Benchmark():list() / client:Benchmark():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Benchmark(data)
-  local EntityMod = require("entity.benchmark_entity")
-  if data == nil then
-    if self._benchmark == nil then
-      self._benchmark = EntityMod.new(self, nil)
-    end
-    return self._benchmark
-  end
-  return EntityMod.new(self, data)
-end
-
-
 -- Idiomatic facade: client:BetaAnalytics():list() / client:BetaAnalytics():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function OpenrouterModelsSDK:BetaAnalytics(data)
@@ -428,20 +400,6 @@ function OpenrouterModelsSDK:BetaAnalytics(data)
       self._beta_analytics = EntityMod.new(self, nil)
     end
     return self._beta_analytics
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:Budget():list() / client:Budget():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Budget(data)
-  local EntityMod = require("entity.budget_entity")
-  if data == nil then
-    if self._budget == nil then
-      self._budget = EntityMod.new(self, nil)
-    end
-    return self._budget
   end
   return EntityMod.new(self, data)
 end
@@ -559,34 +517,6 @@ function OpenrouterModelsSDK:ChatResult(data)
 end
 
 
--- Idiomatic facade: client:Code():list() / client:Code():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Code(data)
-  local EntityMod = require("entity.code_entity")
-  if data == nil then
-    if self._code == nil then
-      self._code = EntityMod.new(self, nil)
-    end
-    return self._code
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:Coinbase():list() / client:Coinbase():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Coinbase(data)
-  local EntityMod = require("entity.coinbase_entity")
-  if data == nil then
-    if self._coinbase == nil then
-      self._coinbase = EntityMod.new(self, nil)
-    end
-    return self._coinbase
-  end
-  return EntityMod.new(self, data)
-end
-
-
 -- Idiomatic facade: client:Completion():list() / client:Completion():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function OpenrouterModelsSDK:Completion(data)
@@ -596,62 +526,6 @@ function OpenrouterModelsSDK:Completion(data)
       self._completion = EntityMod.new(self, nil)
     end
     return self._completion
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:Content():list() / client:Content():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Content(data)
-  local EntityMod = require("entity.content_entity")
-  if data == nil then
-    if self._content == nil then
-      self._content = EntityMod.new(self, nil)
-    end
-    return self._content
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:Count():list() / client:Count():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Count(data)
-  local EntityMod = require("entity.count_entity")
-  if data == nil then
-    if self._count == nil then
-      self._count = EntityMod.new(self, nil)
-    end
-    return self._count
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:CreateByokKey():list() / client:CreateByokKey():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:CreateByokKey(data)
-  local EntityMod = require("entity.create_byok_key_entity")
-  if data == nil then
-    if self._create_byok_key == nil then
-      self._create_byok_key = EntityMod.new(self, nil)
-    end
-    return self._create_byok_key
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:CreateGuardrail():list() / client:CreateGuardrail():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:CreateGuardrail(data)
-  local EntityMod = require("entity.create_guardrail_entity")
-  if data == nil then
-    if self._create_guardrail == nil then
-      self._create_guardrail = EntityMod.new(self, nil)
-    end
-    return self._create_guardrail
   end
   return EntityMod.new(self, data)
 end
@@ -671,34 +545,6 @@ function OpenrouterModelsSDK:CreateObservabilityDestination(data)
 end
 
 
--- Idiomatic facade: client:CreatePresetFromInference():list() / client:CreatePresetFromInference():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:CreatePresetFromInference(data)
-  local EntityMod = require("entity.create_preset_from_inference_entity")
-  if data == nil then
-    if self._create_preset_from_inference == nil then
-      self._create_preset_from_inference = EntityMod.new(self, nil)
-    end
-    return self._create_preset_from_inference
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:CreateWorkspace():list() / client:CreateWorkspace():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:CreateWorkspace(data)
-  local EntityMod = require("entity.create_workspace_entity")
-  if data == nil then
-    if self._create_workspace == nil then
-      self._create_workspace = EntityMod.new(self, nil)
-    end
-    return self._create_workspace
-  end
-  return EntityMod.new(self, data)
-end
-
-
 -- Idiomatic facade: client:Credit():list() / client:Credit():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function OpenrouterModelsSDK:Credit(data)
@@ -708,20 +554,6 @@ function OpenrouterModelsSDK:Credit(data)
       self._credit = EntityMod.new(self, nil)
     end
     return self._credit
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:Destination():list() / client:Destination():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Destination(data)
-  local EntityMod = require("entity.destination_entity")
-  if data == nil then
-    if self._destination == nil then
-      self._destination = EntityMod.new(self, nil)
-    end
-    return self._destination
   end
   return EntityMod.new(self, data)
 end
@@ -755,20 +587,6 @@ function OpenrouterModelsSDK:Endpoint(data)
 end
 
 
--- Idiomatic facade: client:Feedback():list() / client:Feedback():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Feedback(data)
-  local EntityMod = require("entity.feedback_entity")
-  if data == nil then
-    if self._feedback == nil then
-      self._feedback = EntityMod.new(self, nil)
-    end
-    return self._feedback
-  end
-  return EntityMod.new(self, data)
-end
-
-
 -- Idiomatic facade: client:File():list() / client:File():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function OpenrouterModelsSDK:File(data)
@@ -797,15 +615,15 @@ function OpenrouterModelsSDK:Generation(data)
 end
 
 
--- Idiomatic facade: client:GenerationContent():list() / client:GenerationContent():load({ id = ... })
+-- Idiomatic facade: client:GenerationContentData():list() / client:GenerationContentData():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:GenerationContent(data)
-  local EntityMod = require("entity.generation_content_entity")
+function OpenrouterModelsSDK:GenerationContentData(data)
+  local EntityMod = require("entity.generation_content_data_entity")
   if data == nil then
-    if self._generation_content == nil then
-      self._generation_content = EntityMod.new(self, nil)
+    if self._generation_content_data == nil then
+      self._generation_content_data = EntityMod.new(self, nil)
     end
-    return self._generation_content
+    return self._generation_content_data
   end
   return EntityMod.new(self, data)
 end
@@ -853,15 +671,15 @@ function OpenrouterModelsSDK:ImageModelEndpoint(data)
 end
 
 
--- Idiomatic facade: client:ImageModelsList():list() / client:ImageModelsList():load({ id = ... })
+-- Idiomatic facade: client:ImageModelListItem():list() / client:ImageModelListItem():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:ImageModelsList(data)
-  local EntityMod = require("entity.image_models_list_entity")
+function OpenrouterModelsSDK:ImageModelListItem(data)
+  local EntityMod = require("entity.image_model_list_item_entity")
   if data == nil then
-    if self._image_models_list == nil then
-      self._image_models_list = EntityMod.new(self, nil)
+    if self._image_model_list_item == nil then
+      self._image_model_list_item = EntityMod.new(self, nil)
     end
-    return self._image_models_list
+    return self._image_model_list_item
   end
   return EntityMod.new(self, data)
 end
@@ -881,62 +699,6 @@ function OpenrouterModelsSDK:Key(data)
 end
 
 
--- Idiomatic facade: client:ListByokKey():list() / client:ListByokKey():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:ListByokKey(data)
-  local EntityMod = require("entity.list_byok_key_entity")
-  if data == nil then
-    if self._list_byok_key == nil then
-      self._list_byok_key = EntityMod.new(self, nil)
-    end
-    return self._list_byok_key
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:ListGuardrail():list() / client:ListGuardrail():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:ListGuardrail(data)
-  local EntityMod = require("entity.list_guardrail_entity")
-  if data == nil then
-    if self._list_guardrail == nil then
-      self._list_guardrail = EntityMod.new(self, nil)
-    end
-    return self._list_guardrail
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:ListKeyAssignment():list() / client:ListKeyAssignment():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:ListKeyAssignment(data)
-  local EntityMod = require("entity.list_key_assignment_entity")
-  if data == nil then
-    if self._list_key_assignment == nil then
-      self._list_key_assignment = EntityMod.new(self, nil)
-    end
-    return self._list_key_assignment
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:ListMemberAssignment():list() / client:ListMemberAssignment():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:ListMemberAssignment(data)
-  local EntityMod = require("entity.list_member_assignment_entity")
-  if data == nil then
-    if self._list_member_assignment == nil then
-      self._list_member_assignment = EntityMod.new(self, nil)
-    end
-    return self._list_member_assignment
-  end
-  return EntityMod.new(self, data)
-end
-
-
 -- Idiomatic facade: client:ListObservabilityDestination():list() / client:ListObservabilityDestination():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function OpenrouterModelsSDK:ListObservabilityDestination(data)
@@ -951,20 +713,6 @@ function OpenrouterModelsSDK:ListObservabilityDestination(data)
 end
 
 
--- Idiomatic facade: client:ListPreset():list() / client:ListPreset():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:ListPreset(data)
-  local EntityMod = require("entity.list_preset_entity")
-  if data == nil then
-    if self._list_preset == nil then
-      self._list_preset = EntityMod.new(self, nil)
-    end
-    return self._list_preset
-  end
-  return EntityMod.new(self, data)
-end
-
-
 -- Idiomatic facade: client:ListPresetVersion():list() / client:ListPresetVersion():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function OpenrouterModelsSDK:ListPresetVersion(data)
@@ -974,48 +722,6 @@ function OpenrouterModelsSDK:ListPresetVersion(data)
       self._list_preset_version = EntityMod.new(self, nil)
     end
     return self._list_preset_version
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:ListWorkspace():list() / client:ListWorkspace():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:ListWorkspace(data)
-  local EntityMod = require("entity.list_workspace_entity")
-  if data == nil then
-    if self._list_workspace == nil then
-      self._list_workspace = EntityMod.new(self, nil)
-    end
-    return self._list_workspace
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:ListWorkspaceBudget():list() / client:ListWorkspaceBudget():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:ListWorkspaceBudget(data)
-  local EntityMod = require("entity.list_workspace_budget_entity")
-  if data == nil then
-    if self._list_workspace_budget == nil then
-      self._list_workspace_budget = EntityMod.new(self, nil)
-    end
-    return self._list_workspace_budget
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:ListWorkspaceMember():list() / client:ListWorkspaceMember():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:ListWorkspaceMember(data)
-  local EntityMod = require("entity.list_workspace_member_entity")
-  if data == nil then
-    if self._list_workspace_member == nil then
-      self._list_workspace_member = EntityMod.new(self, nil)
-    end
-    return self._list_workspace_member
   end
   return EntityMod.new(self, data)
 end
@@ -1044,20 +750,6 @@ function OpenrouterModelsSDK:Message(data)
       self._message = EntityMod.new(self, nil)
     end
     return self._message
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:Meta():list() / client:Meta():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Meta(data)
-  local EntityMod = require("entity.meta_entity")
-  if data == nil then
-    if self._meta == nil then
-      self._meta = EntityMod.new(self, nil)
-    end
-    return self._meta
   end
   return EntityMod.new(self, data)
 end
@@ -1203,20 +895,6 @@ function OpenrouterModelsSDK:Provider(data)
 end
 
 
--- Idiomatic facade: client:Query():list() / client:Query():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Query(data)
-  local EntityMod = require("entity.query_entity")
-  if data == nil then
-    if self._query == nil then
-      self._query = EntityMod.new(self, nil)
-    end
-    return self._query
-  end
-  return EntityMod.new(self, data)
-end
-
-
 -- Idiomatic facade: client:RankingsDaily():list() / client:RankingsDaily():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function OpenrouterModelsSDK:RankingsDaily(data)
@@ -1226,20 +904,6 @@ function OpenrouterModelsSDK:RankingsDaily(data)
       self._rankings_daily = EntityMod.new(self, nil)
     end
     return self._rankings_daily
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:Remove():list() / client:Remove():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Remove(data)
-  local EntityMod = require("entity.remove_entity")
-  if data == nil then
-    if self._remove == nil then
-      self._remove = EntityMod.new(self, nil)
-    end
-    return self._remove
   end
   return EntityMod.new(self, data)
 end
@@ -1268,20 +932,6 @@ function OpenrouterModelsSDK:Response(data)
       self._response = EntityMod.new(self, nil)
     end
     return self._response
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:Speech():list() / client:Speech():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Speech(data)
-  local EntityMod = require("entity.speech_entity")
-  if data == nil then
-    if self._speech == nil then
-      self._speech = EntityMod.new(self, nil)
-    end
-    return self._speech
   end
   return EntityMod.new(self, data)
 end
@@ -1324,20 +974,6 @@ function OpenrouterModelsSDK:Task(data)
       self._task = EntityMod.new(self, nil)
     end
     return self._task
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:Transcription():list() / client:Transcription():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Transcription(data)
-  local EntityMod = require("entity.transcription_entity")
-  if data == nil then
-    if self._transcription == nil then
-      self._transcription = EntityMod.new(self, nil)
-    end
-    return self._transcription
   end
   return EntityMod.new(self, data)
 end
@@ -1441,34 +1077,6 @@ function OpenrouterModelsSDK:UpsertWorkspaceBudget(data)
 end
 
 
--- Idiomatic facade: client:User():list() / client:User():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:User(data)
-  local EntityMod = require("entity.user_entity")
-  if data == nil then
-    if self._user == nil then
-      self._user = EntityMod.new(self, nil)
-    end
-    return self._user
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:Version():list() / client:Version():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Version(data)
-  local EntityMod = require("entity.version_entity")
-  if data == nil then
-    if self._version == nil then
-      self._version = EntityMod.new(self, nil)
-    end
-    return self._version
-  end
-  return EntityMod.new(self, data)
-end
-
-
 -- Idiomatic facade: client:Video():list() / client:Video():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function OpenrouterModelsSDK:Video(data)
@@ -1497,15 +1105,15 @@ function OpenrouterModelsSDK:VideoGeneration(data)
 end
 
 
--- Idiomatic facade: client:VideoModelsList():list() / client:VideoModelsList():load({ id = ... })
+-- Idiomatic facade: client:VideoModel():list() / client:VideoModel():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:VideoModelsList(data)
-  local EntityMod = require("entity.video_models_list_entity")
+function OpenrouterModelsSDK:VideoModel(data)
+  local EntityMod = require("entity.video_model_entity")
   if data == nil then
-    if self._video_models_list == nil then
-      self._video_models_list = EntityMod.new(self, nil)
+    if self._video_model == nil then
+      self._video_model = EntityMod.new(self, nil)
     end
-    return self._video_models_list
+    return self._video_model
   end
   return EntityMod.new(self, data)
 end
@@ -1539,15 +1147,15 @@ function OpenrouterModelsSDK:WorkspaceBudget(data)
 end
 
 
--- Idiomatic facade: client:Zdr():list() / client:Zdr():load({ id = ... })
+-- Idiomatic facade: client:WorkspaceMember():list() / client:WorkspaceMember():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function OpenrouterModelsSDK:Zdr(data)
-  local EntityMod = require("entity.zdr_entity")
+function OpenrouterModelsSDK:WorkspaceMember(data)
+  local EntityMod = require("entity.workspace_member_entity")
   if data == nil then
-    if self._zdr == nil then
-      self._zdr = EntityMod.new(self, nil)
+    if self._workspace_member == nil then
+      self._workspace_member = EntityMod.new(self, nil)
     end
-    return self._zdr
+    return self._workspace_member
   end
   return EntityMod.new(self, data)
 end

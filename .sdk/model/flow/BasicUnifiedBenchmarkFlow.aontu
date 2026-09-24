@@ -1,0 +1,22 @@
+# BasicUnifiedBenchmarkFlow
+
+main: kit: flow: BasicUnifiedBenchmarkFlow:
+{
+  entity: "unified_benchmark",
+  kind: "basic",
+  name: "BasicUnifiedBenchmarkFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "unified_benchmark_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUnifiedBenchmarkFlow"
+}

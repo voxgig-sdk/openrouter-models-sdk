@@ -19,7 +19,6 @@ import type {
   RankingsDailyListMatch,
 } from '../OpenrouterModelsTypes'
 
-// TODO: needs Entity superclass
 class RankingsDailyEntity extends OpenrouterModelsEntityBase<RankingsDaily> {
 
   constructor(client: OpenrouterModelsSDK, entopts: any) {

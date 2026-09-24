@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 // Typed models for the OpenrouterModels SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 //
@@ -34,11 +34,6 @@ class ActivityListMatch
     public ?string $api_key_hash = null;
     public ?string $date = null;
     public ?string $user_id = null;
-}
-
-/** Add entity data model. */
-class Add
-{
 }
 
 /** ApiKey entity data model. */
@@ -176,11 +171,6 @@ class AppRankingListMatch
     public ?string $subcategory = null;
 }
 
-/** Benchmark entity data model. */
-class Benchmark
-{
-}
-
 /** BetaAnalytics entity data model. */
 class BetaAnalytics
 {
@@ -242,11 +232,6 @@ class BetaAnalyticsCreateData
     public array $order_by;
     public array $time_range;
     public ?array $warnings = null;
-}
-
-/** Budget entity data model. */
-class Budget
-{
 }
 
 /** BulkAddWorkspaceMember entity data model. */
@@ -506,39 +491,99 @@ class ChatResultCreateData
     public ?string $user = null;
 }
 
-/** Code entity data model. */
-class Code
-{
-}
-
-/** Coinbase entity data model. */
-class Coinbase
-{
-}
-
 /** Completion entity data model. */
 class Completion
 {
+    public array $cache_control;
+    public ?array $debug = null;
+    public mixed $frequency_penalty = null;
+    public ?array $image_config = null;
+    public mixed $logit_bias = null;
+    public mixed $logprobs = null;
+    public mixed $max_completion_tokens = null;
+    public mixed $max_tokens = null;
+    public array $messages;
+    public ?array $metadata = null;
+    public mixed $min_p = null;
+    public ?array $modalities = null;
+    public ?string $model = null;
+    public ?array $models = null;
+    public mixed $parallel_tool_calls = null;
+    public ?array $plugins = null;
+    public mixed $prediction;
+    public mixed $presence_penalty = null;
+    public mixed $prompt_cache_key = null;
+    public mixed $prompt_cache_options;
+    public mixed $provider = null;
+    public ?array $reasoning = null;
+    public mixed $reasoning_effort = null;
+    public mixed $repetition_penalty = null;
+    public mixed $response_format = null;
+    public mixed $route = null;
+    public mixed $seed = null;
+    public mixed $service_tier = null;
+    public ?string $session_id = null;
+    public mixed $stop = null;
+    public ?array $stop_server_tools_when = null;
+    public ?bool $stream = null;
+    public mixed $stream_options = null;
+    public mixed $temperature = null;
+    public mixed $tool_choice = null;
+    public ?array $tools = null;
+    public mixed $top_a = null;
+    public mixed $top_k = null;
+    public mixed $top_logprobs = null;
+    public mixed $top_p = null;
+    public ?array $trace = null;
+    public ?string $user = null;
 }
 
-/** Content entity data model. */
-class Content
+/** Request payload for Completion#create. */
+class CompletionCreateData
 {
-}
-
-/** Count entity data model. */
-class Count
-{
-}
-
-/** CreateByokKey entity data model. */
-class CreateByokKey
-{
-}
-
-/** CreateGuardrail entity data model. */
-class CreateGuardrail
-{
+    public string $slug;
+    public array $cache_control;
+    public ?array $debug = null;
+    public mixed $frequency_penalty = null;
+    public ?array $image_config = null;
+    public mixed $logit_bias = null;
+    public mixed $logprobs = null;
+    public mixed $max_completion_tokens = null;
+    public mixed $max_tokens = null;
+    public array $messages;
+    public ?array $metadata = null;
+    public mixed $min_p = null;
+    public ?array $modalities = null;
+    public ?string $model = null;
+    public ?array $models = null;
+    public mixed $parallel_tool_calls = null;
+    public ?array $plugins = null;
+    public mixed $prediction;
+    public mixed $presence_penalty = null;
+    public mixed $prompt_cache_key = null;
+    public mixed $prompt_cache_options;
+    public mixed $provider = null;
+    public ?array $reasoning = null;
+    public mixed $reasoning_effort = null;
+    public mixed $repetition_penalty = null;
+    public mixed $response_format = null;
+    public mixed $route = null;
+    public mixed $seed = null;
+    public mixed $service_tier = null;
+    public ?string $session_id = null;
+    public mixed $stop = null;
+    public ?array $stop_server_tools_when = null;
+    public ?bool $stream = null;
+    public mixed $stream_options = null;
+    public mixed $temperature = null;
+    public mixed $tool_choice = null;
+    public ?array $tools = null;
+    public mixed $top_a = null;
+    public mixed $top_k = null;
+    public mixed $top_logprobs = null;
+    public mixed $top_p = null;
+    public ?array $trace = null;
+    public ?string $user = null;
 }
 
 /** CreateObservabilityDestination entity data model. */
@@ -569,144 +614,6 @@ class CreateObservabilityDestinationCreateData
     public ?string $workspace_id = null;
 }
 
-/** CreatePresetFromInference entity data model. */
-class CreatePresetFromInference
-{
-    public mixed $background = null;
-    public array $cache_control;
-    public mixed $context_management = null;
-    public ?array $debug = null;
-    public mixed $fallbacks = null;
-    public mixed $frequency_penalty = null;
-    public ?array $image_config = null;
-    public mixed $include = null;
-    public mixed $input = null;
-    public mixed $instructions = null;
-    public mixed $logit_bias = null;
-    public mixed $logprobs = null;
-    public mixed $max_completion_tokens = null;
-    public mixed $max_output_tokens = null;
-    public mixed $max_tokens = null;
-    public mixed $max_tool_calls = null;
-    public array $messages;
-    public ?array $metadata = null;
-    public mixed $min_p = null;
-    public ?array $modalities = null;
-    public ?string $model = null;
-    public ?array $models = null;
-    public ?array $output_config = null;
-    public mixed $parallel_tool_calls = null;
-    public ?array $plugins = null;
-    public mixed $prediction;
-    public mixed $presence_penalty = null;
-    public ?string $previous_response_id = null;
-    public mixed $prompt;
-    public mixed $prompt_cache_key = null;
-    public mixed $prompt_cache_options;
-    public mixed $provider = null;
-    public ?array $reasoning = null;
-    public mixed $reasoning_effort = null;
-    public mixed $repetition_penalty = null;
-    public mixed $response_format = null;
-    public mixed $route = null;
-    public mixed $safety_identifier = null;
-    public mixed $seed = null;
-    public mixed $service_tier = null;
-    public ?string $session_id = null;
-    public mixed $speed = null;
-    public mixed $stop = null;
-    public ?array $stop_sequences = null;
-    public ?array $stop_server_tools_when = null;
-    public ?bool $store = null;
-    public ?bool $stream = null;
-    public mixed $stream_options = null;
-    public mixed $system = null;
-    public mixed $temperature = null;
-    public mixed $text = null;
-    public mixed $thinking = null;
-    public mixed $tool_choice = null;
-    public ?array $tools = null;
-    public mixed $top_a = null;
-    public mixed $top_k = null;
-    public mixed $top_logprobs = null;
-    public mixed $top_p = null;
-    public ?array $trace = null;
-    public mixed $truncation = null;
-    public ?string $user = null;
-}
-
-/** Request payload for CreatePresetFromInference#create. */
-class CreatePresetFromInferenceCreateData
-{
-    public string $slug;
-    public mixed $background = null;
-    public array $cache_control;
-    public mixed $context_management = null;
-    public ?array $debug = null;
-    public mixed $fallbacks = null;
-    public mixed $frequency_penalty = null;
-    public ?array $image_config = null;
-    public mixed $include = null;
-    public mixed $input = null;
-    public mixed $instructions = null;
-    public mixed $logit_bias = null;
-    public mixed $logprobs = null;
-    public mixed $max_completion_tokens = null;
-    public mixed $max_output_tokens = null;
-    public mixed $max_tokens = null;
-    public mixed $max_tool_calls = null;
-    public array $messages;
-    public ?array $metadata = null;
-    public mixed $min_p = null;
-    public ?array $modalities = null;
-    public ?string $model = null;
-    public ?array $models = null;
-    public ?array $output_config = null;
-    public mixed $parallel_tool_calls = null;
-    public ?array $plugins = null;
-    public mixed $prediction;
-    public mixed $presence_penalty = null;
-    public ?string $previous_response_id = null;
-    public mixed $prompt;
-    public mixed $prompt_cache_key = null;
-    public mixed $prompt_cache_options;
-    public mixed $provider = null;
-    public ?array $reasoning = null;
-    public mixed $reasoning_effort = null;
-    public mixed $repetition_penalty = null;
-    public mixed $response_format = null;
-    public mixed $route = null;
-    public mixed $safety_identifier = null;
-    public mixed $seed = null;
-    public mixed $service_tier = null;
-    public ?string $session_id = null;
-    public mixed $speed = null;
-    public mixed $stop = null;
-    public ?array $stop_sequences = null;
-    public ?array $stop_server_tools_when = null;
-    public ?bool $store = null;
-    public ?bool $stream = null;
-    public mixed $stream_options = null;
-    public mixed $system = null;
-    public mixed $temperature = null;
-    public mixed $text = null;
-    public mixed $thinking = null;
-    public mixed $tool_choice = null;
-    public ?array $tools = null;
-    public mixed $top_a = null;
-    public mixed $top_k = null;
-    public mixed $top_logprobs = null;
-    public mixed $top_p = null;
-    public ?array $trace = null;
-    public mixed $truncation = null;
-    public ?string $user = null;
-}
-
-/** CreateWorkspace entity data model. */
-class CreateWorkspace
-{
-}
-
 /** Credit entity data model. */
 class Credit
 {
@@ -726,11 +633,6 @@ class CreditCreateData
 {
     public float $total_credits;
     public float $total_usage;
-}
-
-/** Destination entity data model. */
-class Destination
-{
 }
 
 /** Embedding entity data model. */
@@ -829,11 +731,6 @@ class EndpointListMatch
     public ?string $sort = null;
     public ?string $supported_parameter = null;
     public ?string $zdr = null;
-}
-
-/** Feedback entity data model. */
-class Feedback
-{
 }
 
 /** File entity data model. */
@@ -938,15 +835,15 @@ class GenerationLoadMatch
     public string $id;
 }
 
-/** GenerationContent entity data model. */
-class GenerationContent
+/** GenerationContentData entity data model. */
+class GenerationContentData
 {
     public mixed $input;
     public array $output;
 }
 
-/** Request payload for GenerationContent#load. */
-class GenerationContentLoadMatch
+/** Request payload for GenerationContentData#load. */
+class GenerationContentDataLoadMatch
 {
     public string $id;
 }
@@ -1084,8 +981,8 @@ class ImageModelEndpointListMatch
     public string $slug;
 }
 
-/** ImageModelsList entity data model. */
-class ImageModelsList
+/** ImageModelListItem entity data model. */
+class ImageModelListItem
 {
     public array $architecture;
     public int $created;
@@ -1097,8 +994,8 @@ class ImageModelsList
     public bool $supports_streaming;
 }
 
-/** Request payload for ImageModelsList#list. */
-class ImageModelsListListMatch
+/** Request payload for ImageModelListItem#list. */
+class ImageModelListItemListMatch
 {
     public ?array $architecture = null;
     public ?int $created = null;
@@ -1113,21 +1010,6 @@ class ImageModelsListListMatch
 /** Key entity data model. */
 class Key
 {
-}
-
-/** ListByokKey entity data model. */
-class ListByokKey
-{
-}
-
-/** ListGuardrail entity data model. */
-class ListGuardrail
-{
-}
-
-/** ListKeyAssignment entity data model. */
-class ListKeyAssignment
-{
     public mixed $assigned_by;
     public string $created_at;
     public string $guardrail_id;
@@ -1137,26 +1019,8 @@ class ListKeyAssignment
     public string $key_name;
 }
 
-/** Request payload for ListKeyAssignment#list. */
-class ListKeyAssignmentListMatch
-{
-    public ?int $limit = null;
-    public mixed $offset = null;
-}
-
-/** ListMemberAssignment entity data model. */
-class ListMemberAssignment
-{
-    public mixed $assigned_by;
-    public string $created_at;
-    public string $guardrail_id;
-    public string $id;
-    public string $organization_id;
-    public string $user_id;
-}
-
-/** Request payload for ListMemberAssignment#list. */
-class ListMemberAssignmentListMatch
+/** Request payload for Key#list. */
+class KeyListMatch
 {
     public ?int $limit = null;
     public mixed $offset = null;
@@ -1175,11 +1039,6 @@ class ListObservabilityDestinationListMatch
     public ?int $limit = null;
     public mixed $offset = null;
     public ?string $workspace_id = null;
-}
-
-/** ListPreset entity data model. */
-class ListPreset
-{
 }
 
 /** ListPresetVersion entity data model. */
@@ -1203,49 +1062,22 @@ class ListPresetVersionListMatch
     public mixed $offset = null;
 }
 
-/** ListWorkspace entity data model. */
-class ListWorkspace
-{
-}
-
-/** ListWorkspaceBudget entity data model. */
-class ListWorkspaceBudget
-{
-    public string $created_at;
-    public string $id;
-    public float $limit_usd;
-    public mixed $reset_interval;
-    public string $updated_at;
-    public string $workspace_id;
-}
-
-/** Request payload for ListWorkspaceBudget#list. */
-class ListWorkspaceBudgetListMatch
-{
-    public string $workspace_id;
-}
-
-/** ListWorkspaceMember entity data model. */
-class ListWorkspaceMember
-{
-    public string $created_at;
-    public string $id;
-    public string $role;
-    public string $user_id;
-    public string $workspace_id;
-}
-
-/** Request payload for ListWorkspaceMember#list. */
-class ListWorkspaceMemberListMatch
-{
-    public string $workspace_id;
-    public ?int $limit = null;
-    public mixed $offset = null;
-}
-
 /** Member entity data model. */
 class Member
 {
+    public mixed $assigned_by;
+    public string $created_at;
+    public string $guardrail_id;
+    public string $id;
+    public string $organization_id;
+    public string $user_id;
+}
+
+/** Request payload for Member#list. */
+class MemberListMatch
+{
+    public ?int $limit = null;
+    public mixed $offset = null;
 }
 
 /** Message entity data model. */
@@ -1310,11 +1142,6 @@ class MessageCreateData
     public ?float $top_p = null;
     public ?array $trace = null;
     public ?string $user = null;
-}
-
-/** Meta entity data model. */
-class Meta
-{
 }
 
 /** Model entity data model. */
@@ -1637,11 +1464,6 @@ class ProviderListMatch
     public mixed $terms_of_service_url = null;
 }
 
-/** Query entity data model. */
-class Query
-{
-}
-
 /** RankingsDaily entity data model. */
 class RankingsDaily
 {
@@ -1660,11 +1482,6 @@ class RankingsDailyListMatch
     public ?string $modality = null;
     public ?string $period = null;
     public ?string $start_date = null;
-}
-
-/** Remove entity data model. */
-class Remove
-{
 }
 
 /** Rerank entity data model. */
@@ -1696,11 +1513,92 @@ class RerankCreateData
 /** Response entity data model. */
 class Response
 {
+    public mixed $background = null;
+    public array $cache_control;
+    public ?array $debug = null;
+    public mixed $frequency_penalty = null;
+    public ?array $image_config = null;
+    public mixed $include = null;
+    public mixed $input = null;
+    public mixed $instructions = null;
+    public mixed $max_output_tokens = null;
+    public mixed $max_tool_calls = null;
+    public mixed $metadata = null;
+    public ?array $modalities = null;
+    public ?string $model = null;
+    public ?array $models = null;
+    public mixed $parallel_tool_calls = null;
+    public ?array $plugins = null;
+    public mixed $presence_penalty = null;
+    public ?string $previous_response_id = null;
+    public mixed $prompt;
+    public mixed $prompt_cache_key = null;
+    public mixed $prompt_cache_options;
+    public mixed $provider = null;
+    public mixed $reasoning = null;
+    public mixed $route = null;
+    public mixed $safety_identifier = null;
+    public mixed $service_tier = null;
+    public ?string $session_id = null;
+    public ?array $stop_server_tools_when = null;
+    public ?bool $store = null;
+    public ?bool $stream = null;
+    public mixed $temperature = null;
+    public mixed $text = null;
+    public mixed $tool_choice = null;
+    public ?array $tools = null;
+    public ?int $top_k = null;
+    public mixed $top_logprobs = null;
+    public mixed $top_p = null;
+    public ?array $trace = null;
+    public mixed $truncation = null;
+    public ?string $user = null;
 }
 
-/** Speech entity data model. */
-class Speech
+/** Request payload for Response#create. */
+class ResponseCreateData
 {
+    public string $slug;
+    public mixed $background = null;
+    public array $cache_control;
+    public ?array $debug = null;
+    public mixed $frequency_penalty = null;
+    public ?array $image_config = null;
+    public mixed $include = null;
+    public mixed $input = null;
+    public mixed $instructions = null;
+    public mixed $max_output_tokens = null;
+    public mixed $max_tool_calls = null;
+    public mixed $metadata = null;
+    public ?array $modalities = null;
+    public ?string $model = null;
+    public ?array $models = null;
+    public mixed $parallel_tool_calls = null;
+    public ?array $plugins = null;
+    public mixed $presence_penalty = null;
+    public ?string $previous_response_id = null;
+    public mixed $prompt;
+    public mixed $prompt_cache_key = null;
+    public mixed $prompt_cache_options;
+    public mixed $provider = null;
+    public mixed $reasoning = null;
+    public mixed $route = null;
+    public mixed $safety_identifier = null;
+    public mixed $service_tier = null;
+    public ?string $session_id = null;
+    public ?array $stop_server_tools_when = null;
+    public ?bool $store = null;
+    public ?bool $stream = null;
+    public mixed $temperature = null;
+    public mixed $text = null;
+    public mixed $tool_choice = null;
+    public ?array $tools = null;
+    public ?int $top_k = null;
+    public mixed $top_logprobs = null;
+    public mixed $top_p = null;
+    public ?array $trace = null;
+    public mixed $truncation = null;
+    public ?string $user = null;
 }
 
 /** Stt entity data model. */
@@ -1770,11 +1668,6 @@ class Task
 class TaskLoadMatch
 {
     public ?string $window = null;
-}
-
-/** Transcription entity data model. */
-class Transcription
-{
 }
 
 /** Tts entity data model. */
@@ -1992,16 +1885,6 @@ class UpsertWorkspaceBudgetUpdateData
     public ?float $limit_usd = null;
 }
 
-/** User entity data model. */
-class User
-{
-}
-
-/** Version entity data model. */
-class Version
-{
-}
-
 /** Video entity data model. */
 class Video
 {
@@ -2069,8 +1952,8 @@ class VideoGenerationLoadMatch
     public mixed $index = null;
 }
 
-/** VideoModelsList entity data model. */
-class VideoModelsList
+/** VideoModel entity data model. */
+class VideoModel
 {
     public array $allowed_passthrough_parameters;
     public string $canonical_slug;
@@ -2089,8 +1972,8 @@ class VideoModelsList
     public mixed $supported_sizes;
 }
 
-/** Request payload for VideoModelsList#list. */
-class VideoModelsListListMatch
+/** Request payload for VideoModel#list. */
+class VideoModelListMatch
 {
     public ?array $allowed_passthrough_parameters = null;
     public ?string $canonical_slug = null;
@@ -2144,7 +2027,18 @@ class WorkspaceRemoveMatch
 /** WorkspaceBudget entity data model. */
 class WorkspaceBudget
 {
-    public ?string $id = null;
+    public string $created_at;
+    public string $id;
+    public float $limit_usd;
+    public mixed $reset_interval;
+    public string $updated_at;
+    public string $workspace_id;
+}
+
+/** Request payload for WorkspaceBudget#list. */
+class WorkspaceBudgetListMatch
+{
+    public string $id;
 }
 
 /** Request payload for WorkspaceBudget#remove. */
@@ -2154,8 +2048,21 @@ class WorkspaceBudgetRemoveMatch
     public string $workspace_id;
 }
 
-/** Zdr entity data model. */
-class Zdr
+/** WorkspaceMember entity data model. */
+class WorkspaceMember
 {
+    public string $created_at;
+    public string $id;
+    public string $role;
+    public string $user_id;
+    public string $workspace_id;
+}
+
+/** Request payload for WorkspaceMember#list. */
+class WorkspaceMemberListMatch
+{
+    public string $id;
+    public ?int $limit = null;
+    public mixed $offset = null;
 }
 

@@ -1,7 +1,7 @@
 -- Typed models for the OpenrouterModels SDK (LuaLS annotations).
 --
--- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
--- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+-- params (op.<name>.points[].g.params[]). Field/param types come from the
 -- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 -- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
 -- edit by hand.
@@ -23,8 +23,6 @@
 ---@field api_key_hash? string
 ---@field date? string
 ---@field user_id? string
-
----@class Add
 
 ---@class ApiKey
 ---@field byok_usage number
@@ -137,8 +135,6 @@
 ---@field start_date? string
 ---@field subcategory? string
 
----@class Benchmark
-
 ---@class BetaAnalytics
 ---@field cachedAt? number
 ---@field classifier_dimensions table
@@ -192,8 +188,6 @@
 ---@field order_by table
 ---@field time_range table
 ---@field warnings? table
-
----@class Budget
 
 ---@class BulkAddWorkspaceMember
 ---@field added_count number
@@ -395,19 +389,94 @@
 ---@field usage table
 ---@field user? string
 
----@class Code
-
----@class Coinbase
-
 ---@class Completion
+---@field cache_control table
+---@field debug? table
+---@field frequency_penalty? number|nil
+---@field image_config? table
+---@field logit_bias? table|nil
+---@field logprobs? boolean|nil
+---@field max_completion_tokens? number|nil
+---@field max_tokens? number|nil
+---@field messages table
+---@field metadata? table
+---@field min_p? number|nil
+---@field modalities? table
+---@field model? string
+---@field models? table
+---@field parallel_tool_calls? boolean|nil
+---@field plugins? table
+---@field prediction table|nil
+---@field presence_penalty? number|nil
+---@field prompt_cache_key? string|nil
+---@field prompt_cache_options table|nil
+---@field provider? table|nil
+---@field reasoning? table
+---@field reasoning_effort? string|nil
+---@field repetition_penalty? number|nil
+---@field response_format? any
+---@field route? string|nil
+---@field seed? number|nil
+---@field service_tier? string|nil
+---@field session_id? string
+---@field stop? any
+---@field stop_server_tools_when? table
+---@field stream? boolean
+---@field stream_options? table|nil
+---@field temperature? number|nil
+---@field tool_choice? any
+---@field tools? table
+---@field top_a? number|nil
+---@field top_k? number|nil
+---@field top_logprobs? number|nil
+---@field top_p? number|nil
+---@field trace? table
+---@field user? string
 
----@class Content
-
----@class Count
-
----@class CreateByokKey
-
----@class CreateGuardrail
+---@class CompletionCreateData
+---@field slug string
+---@field cache_control table
+---@field debug? table
+---@field frequency_penalty? number|nil
+---@field image_config? table
+---@field logit_bias? table|nil
+---@field logprobs? boolean|nil
+---@field max_completion_tokens? number|nil
+---@field max_tokens? number|nil
+---@field messages table
+---@field metadata? table
+---@field min_p? number|nil
+---@field modalities? table
+---@field model? string
+---@field models? table
+---@field parallel_tool_calls? boolean|nil
+---@field plugins? table
+---@field prediction table|nil
+---@field presence_penalty? number|nil
+---@field prompt_cache_key? string|nil
+---@field prompt_cache_options table|nil
+---@field provider? table|nil
+---@field reasoning? table
+---@field reasoning_effort? string|nil
+---@field repetition_penalty? number|nil
+---@field response_format? any
+---@field route? string|nil
+---@field seed? number|nil
+---@field service_tier? string|nil
+---@field session_id? string
+---@field stop? any
+---@field stop_server_tools_when? table
+---@field stream? boolean
+---@field stream_options? table|nil
+---@field temperature? number|nil
+---@field tool_choice? any
+---@field tools? table
+---@field top_a? number|nil
+---@field top_k? number|nil
+---@field top_logprobs? number|nil
+---@field top_p? number|nil
+---@field trace? table
+---@field user? string
 
 ---@class CreateObservabilityDestination
 ---@field api_key_hashes? table|nil
@@ -431,135 +500,6 @@
 ---@field type string
 ---@field workspace_id? string
 
----@class CreatePresetFromInference
----@field background? boolean|nil
----@field cache_control table
----@field context_management? table|nil
----@field debug? table
----@field fallbacks? table|nil
----@field frequency_penalty? number|nil
----@field image_config? table
----@field include? table|nil
----@field input? any
----@field instructions? string|nil
----@field logit_bias? table|nil
----@field logprobs? boolean|nil
----@field max_completion_tokens? number|nil
----@field max_output_tokens? number|nil
----@field max_tokens? number|nil
----@field max_tool_calls? number|nil
----@field messages table
----@field metadata? table
----@field min_p? number|nil
----@field modalities? table
----@field model? string
----@field models? table
----@field output_config? table
----@field parallel_tool_calls? boolean|nil
----@field plugins? table
----@field prediction table|nil
----@field presence_penalty? number|nil
----@field previous_response_id? string
----@field prompt table|nil
----@field prompt_cache_key? string|nil
----@field prompt_cache_options table|nil
----@field provider? table|nil
----@field reasoning? table
----@field reasoning_effort? string|nil
----@field repetition_penalty? number|nil
----@field response_format? any
----@field route? string|nil
----@field safety_identifier? string|nil
----@field seed? number|nil
----@field service_tier? string|nil
----@field session_id? string
----@field speed? any
----@field stop? any
----@field stop_sequences? table
----@field stop_server_tools_when? table
----@field store? boolean
----@field stream? boolean
----@field stream_options? table|nil
----@field system? any
----@field temperature? number|nil
----@field text? any
----@field thinking? any
----@field tool_choice? any
----@field tools? table
----@field top_a? number|nil
----@field top_k? number|nil
----@field top_logprobs? number|nil
----@field top_p? number|nil
----@field trace? table
----@field truncation? string|nil
----@field user? string
-
----@class CreatePresetFromInferenceCreateData
----@field slug string
----@field background? boolean|nil
----@field cache_control table
----@field context_management? table|nil
----@field debug? table
----@field fallbacks? table|nil
----@field frequency_penalty? number|nil
----@field image_config? table
----@field include? table|nil
----@field input? any
----@field instructions? string|nil
----@field logit_bias? table|nil
----@field logprobs? boolean|nil
----@field max_completion_tokens? number|nil
----@field max_output_tokens? number|nil
----@field max_tokens? number|nil
----@field max_tool_calls? number|nil
----@field messages table
----@field metadata? table
----@field min_p? number|nil
----@field modalities? table
----@field model? string
----@field models? table
----@field output_config? table
----@field parallel_tool_calls? boolean|nil
----@field plugins? table
----@field prediction table|nil
----@field presence_penalty? number|nil
----@field previous_response_id? string
----@field prompt table|nil
----@field prompt_cache_key? string|nil
----@field prompt_cache_options table|nil
----@field provider? table|nil
----@field reasoning? table
----@field reasoning_effort? string|nil
----@field repetition_penalty? number|nil
----@field response_format? any
----@field route? string|nil
----@field safety_identifier? string|nil
----@field seed? number|nil
----@field service_tier? string|nil
----@field session_id? string
----@field speed? any
----@field stop? any
----@field stop_sequences? table
----@field stop_server_tools_when? table
----@field store? boolean
----@field stream? boolean
----@field stream_options? table|nil
----@field system? any
----@field temperature? number|nil
----@field text? any
----@field thinking? any
----@field tool_choice? any
----@field tools? table
----@field top_a? number|nil
----@field top_k? number|nil
----@field top_logprobs? number|nil
----@field top_p? number|nil
----@field trace? table
----@field truncation? string|nil
----@field user? string
-
----@class CreateWorkspace
-
 ---@class Credit
 ---@field total_credits number
 ---@field total_usage number
@@ -571,8 +511,6 @@
 ---@class CreditCreateData
 ---@field total_credits number
 ---@field total_usage number
-
----@class Destination
 
 ---@class Embedding
 ---@field data table
@@ -657,8 +595,6 @@
 ---@field supported_parameter? string
 ---@field zdr? string
 
----@class Feedback
-
 ---@class File
 ---@field created_at string
 ---@field downloadable boolean
@@ -740,11 +676,11 @@
 ---@class GenerationLoadMatch
 ---@field id string
 
----@class GenerationContent
+---@class GenerationContentData
 ---@field input any
 ---@field output table
 
----@class GenerationContentLoadMatch
+---@class GenerationContentDataLoadMatch
 ---@field id string
 
 ---@class Guardrail
@@ -853,7 +789,7 @@
 ---@field model_id string
 ---@field slug string
 
----@class ImageModelsList
+---@class ImageModelListItem
 ---@field architecture table
 ---@field created number
 ---@field description string
@@ -863,7 +799,7 @@
 ---@field supported_parameters table
 ---@field supports_streaming boolean
 
----@class ImageModelsListListMatch
+---@class ImageModelListItemListMatch
 ---@field architecture? table
 ---@field created? number
 ---@field description? string
@@ -874,12 +810,6 @@
 ---@field supports_streaming? boolean
 
 ---@class Key
-
----@class ListByokKey
-
----@class ListGuardrail
-
----@class ListKeyAssignment
 ---@field assigned_by string|nil
 ---@field created_at string
 ---@field guardrail_id string
@@ -888,19 +818,7 @@
 ---@field key_label string
 ---@field key_name string
 
----@class ListKeyAssignmentListMatch
----@field limit? number
----@field offset? number|nil
-
----@class ListMemberAssignment
----@field assigned_by string|nil
----@field created_at string
----@field guardrail_id string
----@field id string
----@field organization_id string
----@field user_id string
-
----@class ListMemberAssignmentListMatch
+---@class KeyListMatch
 ---@field limit? number
 ---@field offset? number|nil
 
@@ -912,8 +830,6 @@
 ---@field limit? number
 ---@field offset? number|nil
 ---@field workspace_id? string
-
----@class ListPreset
 
 ---@class ListPresetVersion
 ---@field config table
@@ -930,32 +846,17 @@
 ---@field limit? number
 ---@field offset? number|nil
 
----@class ListWorkspace
-
----@class ListWorkspaceBudget
+---@class Member
+---@field assigned_by string|nil
 ---@field created_at string
+---@field guardrail_id string
 ---@field id string
----@field limit_usd number
----@field reset_interval string|nil
----@field updated_at string
----@field workspace_id string
-
----@class ListWorkspaceBudgetListMatch
----@field workspace_id string
-
----@class ListWorkspaceMember
----@field created_at string
----@field id string
----@field role string
+---@field organization_id string
 ---@field user_id string
----@field workspace_id string
 
----@class ListWorkspaceMemberListMatch
----@field workspace_id string
+---@class MemberListMatch
 ---@field limit? number
 ---@field offset? number|nil
-
----@class Member
 
 ---@class Message
 ---@field cache_control table
@@ -1014,8 +915,6 @@
 ---@field top_p? number
 ---@field trace? table
 ---@field user? string
-
----@class Meta
 
 ---@class Model
 ---@field architecture table
@@ -1268,8 +1167,6 @@
 ---@field status_page_url? string|nil
 ---@field terms_of_service_url? string|nil
 
----@class Query
-
 ---@class RankingsDaily
 ---@field date string
 ---@field model_permaslug string
@@ -1283,8 +1180,6 @@
 ---@field modality? string
 ---@field period? string
 ---@field start_date? string
-
----@class Remove
 
 ---@class Rerank
 ---@field documents table
@@ -1307,8 +1202,89 @@
 ---@field usage? table
 
 ---@class Response
+---@field background? boolean|nil
+---@field cache_control table
+---@field debug? table
+---@field frequency_penalty? number|nil
+---@field image_config? table
+---@field include? table|nil
+---@field input? any
+---@field instructions? string|nil
+---@field max_output_tokens? number|nil
+---@field max_tool_calls? number|nil
+---@field metadata? table|nil
+---@field modalities? table
+---@field model? string
+---@field models? table
+---@field parallel_tool_calls? boolean|nil
+---@field plugins? table
+---@field presence_penalty? number|nil
+---@field previous_response_id? string
+---@field prompt table|nil
+---@field prompt_cache_key? string|nil
+---@field prompt_cache_options table|nil
+---@field provider? table|nil
+---@field reasoning? any
+---@field route? string|nil
+---@field safety_identifier? string|nil
+---@field service_tier? string|nil
+---@field session_id? string
+---@field stop_server_tools_when? table
+---@field store? boolean
+---@field stream? boolean
+---@field temperature? number|nil
+---@field text? any
+---@field tool_choice? any
+---@field tools? table
+---@field top_k? number
+---@field top_logprobs? number|nil
+---@field top_p? number|nil
+---@field trace? table
+---@field truncation? string|nil
+---@field user? string
 
----@class Speech
+---@class ResponseCreateData
+---@field slug string
+---@field background? boolean|nil
+---@field cache_control table
+---@field debug? table
+---@field frequency_penalty? number|nil
+---@field image_config? table
+---@field include? table|nil
+---@field input? any
+---@field instructions? string|nil
+---@field max_output_tokens? number|nil
+---@field max_tool_calls? number|nil
+---@field metadata? table|nil
+---@field modalities? table
+---@field model? string
+---@field models? table
+---@field parallel_tool_calls? boolean|nil
+---@field plugins? table
+---@field presence_penalty? number|nil
+---@field previous_response_id? string
+---@field prompt table|nil
+---@field prompt_cache_key? string|nil
+---@field prompt_cache_options table|nil
+---@field provider? table|nil
+---@field reasoning? any
+---@field route? string|nil
+---@field safety_identifier? string|nil
+---@field service_tier? string|nil
+---@field session_id? string
+---@field stop_server_tools_when? table
+---@field store? boolean
+---@field stream? boolean
+---@field temperature? number|nil
+---@field text? any
+---@field tool_choice? any
+---@field tools? table
+---@field top_k? number
+---@field top_logprobs? number|nil
+---@field top_p? number|nil
+---@field trace? table
+---@field truncation? string|nil
+---@field user? string
 
 ---@class Stt
 ---@field duration? number
@@ -1360,8 +1336,6 @@
 
 ---@class TaskLoadMatch
 ---@field window? string
-
----@class Transcription
 
 ---@class Tts
 ---@field input string
@@ -1530,10 +1504,6 @@
 ---@field workspace_id string
 ---@field limit_usd? number
 
----@class User
-
----@class Version
-
 ---@class Video
 ---@field aspect_ratio? string
 ---@field callback_url? string
@@ -1586,7 +1556,7 @@
 ---@field id string
 ---@field index? number|nil
 
----@class VideoModelsList
+---@class VideoModel
 ---@field allowed_passthrough_parameters table
 ---@field canonical_slug string
 ---@field created number
@@ -1603,7 +1573,7 @@
 ---@field supported_resolutions table|nil
 ---@field supported_sizes table|nil
 
----@class VideoModelsListListMatch
+---@class VideoModelListMatch
 ---@field allowed_passthrough_parameters? table
 ---@field canonical_slug? string
 ---@field created? number
@@ -1644,13 +1614,31 @@
 ---@field id string
 
 ---@class WorkspaceBudget
----@field id? string
+---@field created_at string
+---@field id string
+---@field limit_usd number
+---@field reset_interval string|nil
+---@field updated_at string
+---@field workspace_id string
+
+---@class WorkspaceBudgetListMatch
+---@field id string
 
 ---@class WorkspaceBudgetRemoveMatch
 ---@field id string
 ---@field workspace_id string
 
----@class Zdr
+---@class WorkspaceMember
+---@field created_at string
+---@field id string
+---@field role string
+---@field user_id string
+---@field workspace_id string
+
+---@class WorkspaceMemberListMatch
+---@field id string
+---@field limit? number
+---@field offset? number|nil
 
 local M = {}
 

@@ -27,7 +27,7 @@ class TestCompletionEntity:
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in []:
+        for _op in ["create"]:
             _skip, _reason = runner.is_control_skipped("entityOp", "completion." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
@@ -39,12 +39,14 @@ class TestCompletionEntity:
                         "set OPENROUTER_MODELS_TEST_COMPLETION_ENTID JSON to run live")
         client = setup["client"]
 
-        # Bootstrap entity data from existing test data.
-        completion_ref01_data_raw = vs.items(helpers.to_map(
-            vs.getpath(setup["data"], "existing.completion")))
-        completion_ref01_data = None
-        if len(completion_ref01_data_raw) > 0:
-            completion_ref01_data = helpers.to_map(completion_ref01_data_raw[0][1])
+        # CREATE
+        completion_ref01_ent = client.Completion(None)
+        completion_ref01_data = helpers.to_map(vs.getprop(
+            vs.getpath(setup["data"], "new.completion"), "completion_ref01"))
+        completion_ref01_data["slug"] = setup["idmap"]["slug01"]
+
+        completion_ref01_data = helpers.to_map(runner.entity_data(completion_ref01_ent.create(completion_ref01_data, None)))
+        assert completion_ref01_data is not None
 
 
 
@@ -64,7 +66,7 @@ def _completion_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["completion01", "completion02", "completion03", "preset01", "preset02", "preset03"],
+        ["completion01", "completion02", "completion03", "preset01", "preset02", "preset03", "slug01"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

@@ -1,0 +1,150 @@
+# Entity: provider
+
+main: kit: entity: provider: {
+
+  alias: field: {}
+
+  fields: {
+    datacenters: {
+      h: "Datacenters"
+      n: "datacenters"
+      r: false
+      sh: "ISO 3166-1 Alpha-2 country codes of the provider datacenter locations"
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    headquarters: {
+      h: "Headquarters"
+      n: "headquarters"
+      r: false
+      sh: "ISO 3166-1 Alpha-2 country code of the provider headquarters"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      sh: "Display name of the provider"
+      t: "`$STRING`"
+    }
+    privacy_policy_url: {
+      h: "Privacy Policy Url"
+      n: "privacy_policy_url"
+      r: true
+      sh: "URL to the provider's privacy policy"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    slug: {
+      h: "Slug"
+      n: "slug"
+      r: true
+      sh: "URL-friendly identifier for the provider"
+      t: "`$STRING`"
+    }
+    status_page_url: {
+      h: "Status Page Url"
+      n: "status_page_url"
+      r: false
+      sh: "URL to the provider's status page"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    terms_of_service_url: {
+      h: "Terms Of Service Url"
+      n: "terms_of_service_url"
+      r: false
+      sh: "URL to the provider's terms of service"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  }
+
+  name: "provider"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /providers"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/providers"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "providers"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

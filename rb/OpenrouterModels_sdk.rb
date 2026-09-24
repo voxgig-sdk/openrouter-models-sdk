@@ -296,13 +296,6 @@ class OpenrouterModelsSDK
   end
 
 
-  # Canonical facade: client.Add.list / client.Add.load({ "id" => ... })
-  def Add(data = nil)
-    require_relative 'entity/add_entity'
-    AddEntity.new(self, data)
-  end
-
-
   # Canonical facade: client.ApiKey.list / client.ApiKey.load({ "id" => ... })
   def ApiKey(data = nil)
     require_relative 'entity/api_key_entity'
@@ -317,24 +310,10 @@ class OpenrouterModelsSDK
   end
 
 
-  # Canonical facade: client.Benchmark.list / client.Benchmark.load({ "id" => ... })
-  def Benchmark(data = nil)
-    require_relative 'entity/benchmark_entity'
-    BenchmarkEntity.new(self, data)
-  end
-
-
   # Canonical facade: client.BetaAnalytics.list / client.BetaAnalytics.load({ "id" => ... })
   def BetaAnalytics(data = nil)
     require_relative 'entity/beta_analytics_entity'
     BetaAnalyticsEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.Budget.list / client.Budget.load({ "id" => ... })
-  def Budget(data = nil)
-    require_relative 'entity/budget_entity'
-    BudgetEntity.new(self, data)
   end
 
 
@@ -394,52 +373,10 @@ class OpenrouterModelsSDK
   end
 
 
-  # Canonical facade: client.Code.list / client.Code.load({ "id" => ... })
-  def Code(data = nil)
-    require_relative 'entity/code_entity'
-    CodeEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.Coinbase.list / client.Coinbase.load({ "id" => ... })
-  def Coinbase(data = nil)
-    require_relative 'entity/coinbase_entity'
-    CoinbaseEntity.new(self, data)
-  end
-
-
   # Canonical facade: client.Completion.list / client.Completion.load({ "id" => ... })
   def Completion(data = nil)
     require_relative 'entity/completion_entity'
     CompletionEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.Content.list / client.Content.load({ "id" => ... })
-  def Content(data = nil)
-    require_relative 'entity/content_entity'
-    ContentEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.Count.list / client.Count.load({ "id" => ... })
-  def Count(data = nil)
-    require_relative 'entity/count_entity'
-    CountEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.CreateByokKey.list / client.CreateByokKey.load({ "id" => ... })
-  def CreateByokKey(data = nil)
-    require_relative 'entity/create_byok_key_entity'
-    CreateByokKeyEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.CreateGuardrail.list / client.CreateGuardrail.load({ "id" => ... })
-  def CreateGuardrail(data = nil)
-    require_relative 'entity/create_guardrail_entity'
-    CreateGuardrailEntity.new(self, data)
   end
 
 
@@ -450,31 +387,10 @@ class OpenrouterModelsSDK
   end
 
 
-  # Canonical facade: client.CreatePresetFromInference.list / client.CreatePresetFromInference.load({ "id" => ... })
-  def CreatePresetFromInference(data = nil)
-    require_relative 'entity/create_preset_from_inference_entity'
-    CreatePresetFromInferenceEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.CreateWorkspace.list / client.CreateWorkspace.load({ "id" => ... })
-  def CreateWorkspace(data = nil)
-    require_relative 'entity/create_workspace_entity'
-    CreateWorkspaceEntity.new(self, data)
-  end
-
-
   # Canonical facade: client.Credit.list / client.Credit.load({ "id" => ... })
   def Credit(data = nil)
     require_relative 'entity/credit_entity'
     CreditEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.Destination.list / client.Destination.load({ "id" => ... })
-  def Destination(data = nil)
-    require_relative 'entity/destination_entity'
-    DestinationEntity.new(self, data)
   end
 
 
@@ -492,13 +408,6 @@ class OpenrouterModelsSDK
   end
 
 
-  # Canonical facade: client.Feedback.list / client.Feedback.load({ "id" => ... })
-  def Feedback(data = nil)
-    require_relative 'entity/feedback_entity'
-    FeedbackEntity.new(self, data)
-  end
-
-
   # Canonical facade: client.File.list / client.File.load({ "id" => ... })
   def File(data = nil)
     require_relative 'entity/file_entity'
@@ -513,10 +422,10 @@ class OpenrouterModelsSDK
   end
 
 
-  # Canonical facade: client.GenerationContent.list / client.GenerationContent.load({ "id" => ... })
-  def GenerationContent(data = nil)
-    require_relative 'entity/generation_content_entity'
-    GenerationContentEntity.new(self, data)
+  # Canonical facade: client.GenerationContentData.list / client.GenerationContentData.load({ "id" => ... })
+  def GenerationContentData(data = nil)
+    require_relative 'entity/generation_content_data_entity'
+    GenerationContentDataEntity.new(self, data)
   end
 
 
@@ -541,10 +450,10 @@ class OpenrouterModelsSDK
   end
 
 
-  # Canonical facade: client.ImageModelsList.list / client.ImageModelsList.load({ "id" => ... })
-  def ImageModelsList(data = nil)
-    require_relative 'entity/image_models_list_entity'
-    ImageModelsListEntity.new(self, data)
+  # Canonical facade: client.ImageModelListItem.list / client.ImageModelListItem.load({ "id" => ... })
+  def ImageModelListItem(data = nil)
+    require_relative 'entity/image_model_list_item_entity'
+    ImageModelListItemEntity.new(self, data)
   end
 
 
@@ -555,34 +464,6 @@ class OpenrouterModelsSDK
   end
 
 
-  # Canonical facade: client.ListByokKey.list / client.ListByokKey.load({ "id" => ... })
-  def ListByokKey(data = nil)
-    require_relative 'entity/list_byok_key_entity'
-    ListByokKeyEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.ListGuardrail.list / client.ListGuardrail.load({ "id" => ... })
-  def ListGuardrail(data = nil)
-    require_relative 'entity/list_guardrail_entity'
-    ListGuardrailEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.ListKeyAssignment.list / client.ListKeyAssignment.load({ "id" => ... })
-  def ListKeyAssignment(data = nil)
-    require_relative 'entity/list_key_assignment_entity'
-    ListKeyAssignmentEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.ListMemberAssignment.list / client.ListMemberAssignment.load({ "id" => ... })
-  def ListMemberAssignment(data = nil)
-    require_relative 'entity/list_member_assignment_entity'
-    ListMemberAssignmentEntity.new(self, data)
-  end
-
-
   # Canonical facade: client.ListObservabilityDestination.list / client.ListObservabilityDestination.load({ "id" => ... })
   def ListObservabilityDestination(data = nil)
     require_relative 'entity/list_observability_destination_entity'
@@ -590,38 +471,10 @@ class OpenrouterModelsSDK
   end
 
 
-  # Canonical facade: client.ListPreset.list / client.ListPreset.load({ "id" => ... })
-  def ListPreset(data = nil)
-    require_relative 'entity/list_preset_entity'
-    ListPresetEntity.new(self, data)
-  end
-
-
   # Canonical facade: client.ListPresetVersion.list / client.ListPresetVersion.load({ "id" => ... })
   def ListPresetVersion(data = nil)
     require_relative 'entity/list_preset_version_entity'
     ListPresetVersionEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.ListWorkspace.list / client.ListWorkspace.load({ "id" => ... })
-  def ListWorkspace(data = nil)
-    require_relative 'entity/list_workspace_entity'
-    ListWorkspaceEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.ListWorkspaceBudget.list / client.ListWorkspaceBudget.load({ "id" => ... })
-  def ListWorkspaceBudget(data = nil)
-    require_relative 'entity/list_workspace_budget_entity'
-    ListWorkspaceBudgetEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.ListWorkspaceMember.list / client.ListWorkspaceMember.load({ "id" => ... })
-  def ListWorkspaceMember(data = nil)
-    require_relative 'entity/list_workspace_member_entity'
-    ListWorkspaceMemberEntity.new(self, data)
   end
 
 
@@ -636,13 +489,6 @@ class OpenrouterModelsSDK
   def Message(data = nil)
     require_relative 'entity/message_entity'
     MessageEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.Meta.list / client.Meta.load({ "id" => ... })
-  def Meta(data = nil)
-    require_relative 'entity/meta_entity'
-    MetaEntity.new(self, data)
   end
 
 
@@ -716,24 +562,10 @@ class OpenrouterModelsSDK
   end
 
 
-  # Canonical facade: client.Query.list / client.Query.load({ "id" => ... })
-  def Query(data = nil)
-    require_relative 'entity/query_entity'
-    QueryEntity.new(self, data)
-  end
-
-
   # Canonical facade: client.RankingsDaily.list / client.RankingsDaily.load({ "id" => ... })
   def RankingsDaily(data = nil)
     require_relative 'entity/rankings_daily_entity'
     RankingsDailyEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.Remove.list / client.Remove.load({ "id" => ... })
-  def Remove(data = nil)
-    require_relative 'entity/remove_entity'
-    RemoveEntity.new(self, data)
   end
 
 
@@ -748,13 +580,6 @@ class OpenrouterModelsSDK
   def Response(data = nil)
     require_relative 'entity/response_entity'
     ResponseEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.Speech.list / client.Speech.load({ "id" => ... })
-  def Speech(data = nil)
-    require_relative 'entity/speech_entity'
-    SpeechEntity.new(self, data)
   end
 
 
@@ -776,13 +601,6 @@ class OpenrouterModelsSDK
   def Task(data = nil)
     require_relative 'entity/task_entity'
     TaskEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.Transcription.list / client.Transcription.load({ "id" => ... })
-  def Transcription(data = nil)
-    require_relative 'entity/transcription_entity'
-    TranscriptionEntity.new(self, data)
   end
 
 
@@ -835,20 +653,6 @@ class OpenrouterModelsSDK
   end
 
 
-  # Canonical facade: client.User.list / client.User.load({ "id" => ... })
-  def User(data = nil)
-    require_relative 'entity/user_entity'
-    UserEntity.new(self, data)
-  end
-
-
-  # Canonical facade: client.Version.list / client.Version.load({ "id" => ... })
-  def Version(data = nil)
-    require_relative 'entity/version_entity'
-    VersionEntity.new(self, data)
-  end
-
-
   # Canonical facade: client.Video.list / client.Video.load({ "id" => ... })
   def Video(data = nil)
     require_relative 'entity/video_entity'
@@ -863,10 +667,10 @@ class OpenrouterModelsSDK
   end
 
 
-  # Canonical facade: client.VideoModelsList.list / client.VideoModelsList.load({ "id" => ... })
-  def VideoModelsList(data = nil)
-    require_relative 'entity/video_models_list_entity'
-    VideoModelsListEntity.new(self, data)
+  # Canonical facade: client.VideoModel.list / client.VideoModel.load({ "id" => ... })
+  def VideoModel(data = nil)
+    require_relative 'entity/video_model_entity'
+    VideoModelEntity.new(self, data)
   end
 
 
@@ -884,10 +688,10 @@ class OpenrouterModelsSDK
   end
 
 
-  # Canonical facade: client.Zdr.list / client.Zdr.load({ "id" => ... })
-  def Zdr(data = nil)
-    require_relative 'entity/zdr_entity'
-    ZdrEntity.new(self, data)
+  # Canonical facade: client.WorkspaceMember.list / client.WorkspaceMember.load({ "id" => ... })
+  def WorkspaceMember(data = nil)
+    require_relative 'entity/workspace_member_entity'
+    WorkspaceMemberEntity.new(self, data)
   end
 
 

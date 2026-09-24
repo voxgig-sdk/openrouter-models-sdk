@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "generation_content_data": {
+      "GENERATION_CONTENT_DATA00": {
+        "input": "s14",
+        "output": {},
+        "id": "GENERATION_CONTENT_DATA00"
+      },
+      "GENERATION_CONTENT_DATA01": {
+        "input": "s28",
+        "output": {},
+        "id": "GENERATION_CONTENT_DATA01"
+      },
+      "GENERATION_CONTENT_DATA02": {
+        "input": "s3c",
+        "output": {},
+        "id": "GENERATION_CONTENT_DATA02"
+      }
+    }
+  },
+  "new": {
+    "generation_content_data": {
+      "generation_content_data_ref01": {
+        "input": "s50",
+        "output": {}
+      }
+    }
+  },
+  "requests": {
+    "GET /generation/content": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -46,10 +46,6 @@ client = OpenrouterModelsSDK.test
 
 Create a new `Activity` entity instance. Pass `nil` for no initial data.
 
-#### `Add(data = nil)`
-
-Create a new `Add` entity instance. Pass `nil` for no initial data.
-
 #### `ApiKey(data = nil)`
 
 Create a new `ApiKey` entity instance. Pass `nil` for no initial data.
@@ -58,17 +54,9 @@ Create a new `ApiKey` entity instance. Pass `nil` for no initial data.
 
 Create a new `AppRanking` entity instance. Pass `nil` for no initial data.
 
-#### `Benchmark(data = nil)`
-
-Create a new `Benchmark` entity instance. Pass `nil` for no initial data.
-
 #### `BetaAnalytics(data = nil)`
 
 Create a new `BetaAnalytics` entity instance. Pass `nil` for no initial data.
-
-#### `Budget(data = nil)`
-
-Create a new `Budget` entity instance. Pass `nil` for no initial data.
 
 #### `BulkAddWorkspaceMember(data = nil)`
 
@@ -102,53 +90,17 @@ Create a new `Byok` entity instance. Pass `nil` for no initial data.
 
 Create a new `ChatResult` entity instance. Pass `nil` for no initial data.
 
-#### `Code(data = nil)`
-
-Create a new `Code` entity instance. Pass `nil` for no initial data.
-
-#### `Coinbase(data = nil)`
-
-Create a new `Coinbase` entity instance. Pass `nil` for no initial data.
-
 #### `Completion(data = nil)`
 
 Create a new `Completion` entity instance. Pass `nil` for no initial data.
-
-#### `Content(data = nil)`
-
-Create a new `Content` entity instance. Pass `nil` for no initial data.
-
-#### `Count(data = nil)`
-
-Create a new `Count` entity instance. Pass `nil` for no initial data.
-
-#### `CreateByokKey(data = nil)`
-
-Create a new `CreateByokKey` entity instance. Pass `nil` for no initial data.
-
-#### `CreateGuardrail(data = nil)`
-
-Create a new `CreateGuardrail` entity instance. Pass `nil` for no initial data.
 
 #### `CreateObservabilityDestination(data = nil)`
 
 Create a new `CreateObservabilityDestination` entity instance. Pass `nil` for no initial data.
 
-#### `CreatePresetFromInference(data = nil)`
-
-Create a new `CreatePresetFromInference` entity instance. Pass `nil` for no initial data.
-
-#### `CreateWorkspace(data = nil)`
-
-Create a new `CreateWorkspace` entity instance. Pass `nil` for no initial data.
-
 #### `Credit(data = nil)`
 
 Create a new `Credit` entity instance. Pass `nil` for no initial data.
-
-#### `Destination(data = nil)`
-
-Create a new `Destination` entity instance. Pass `nil` for no initial data.
 
 #### `Embedding(data = nil)`
 
@@ -158,10 +110,6 @@ Create a new `Embedding` entity instance. Pass `nil` for no initial data.
 
 Create a new `Endpoint` entity instance. Pass `nil` for no initial data.
 
-#### `Feedback(data = nil)`
-
-Create a new `Feedback` entity instance. Pass `nil` for no initial data.
-
 #### `File(data = nil)`
 
 Create a new `File` entity instance. Pass `nil` for no initial data.
@@ -170,9 +118,9 @@ Create a new `File` entity instance. Pass `nil` for no initial data.
 
 Create a new `Generation` entity instance. Pass `nil` for no initial data.
 
-#### `GenerationContent(data = nil)`
+#### `GenerationContentData(data = nil)`
 
-Create a new `GenerationContent` entity instance. Pass `nil` for no initial data.
+Create a new `GenerationContentData` entity instance. Pass `nil` for no initial data.
 
 #### `Guardrail(data = nil)`
 
@@ -186,53 +134,21 @@ Create a new `Image` entity instance. Pass `nil` for no initial data.
 
 Create a new `ImageModelEndpoint` entity instance. Pass `nil` for no initial data.
 
-#### `ImageModelsList(data = nil)`
+#### `ImageModelListItem(data = nil)`
 
-Create a new `ImageModelsList` entity instance. Pass `nil` for no initial data.
+Create a new `ImageModelListItem` entity instance. Pass `nil` for no initial data.
 
 #### `Key(data = nil)`
 
 Create a new `Key` entity instance. Pass `nil` for no initial data.
 
-#### `ListByokKey(data = nil)`
-
-Create a new `ListByokKey` entity instance. Pass `nil` for no initial data.
-
-#### `ListGuardrail(data = nil)`
-
-Create a new `ListGuardrail` entity instance. Pass `nil` for no initial data.
-
-#### `ListKeyAssignment(data = nil)`
-
-Create a new `ListKeyAssignment` entity instance. Pass `nil` for no initial data.
-
-#### `ListMemberAssignment(data = nil)`
-
-Create a new `ListMemberAssignment` entity instance. Pass `nil` for no initial data.
-
 #### `ListObservabilityDestination(data = nil)`
 
 Create a new `ListObservabilityDestination` entity instance. Pass `nil` for no initial data.
 
-#### `ListPreset(data = nil)`
-
-Create a new `ListPreset` entity instance. Pass `nil` for no initial data.
-
 #### `ListPresetVersion(data = nil)`
 
 Create a new `ListPresetVersion` entity instance. Pass `nil` for no initial data.
-
-#### `ListWorkspace(data = nil)`
-
-Create a new `ListWorkspace` entity instance. Pass `nil` for no initial data.
-
-#### `ListWorkspaceBudget(data = nil)`
-
-Create a new `ListWorkspaceBudget` entity instance. Pass `nil` for no initial data.
-
-#### `ListWorkspaceMember(data = nil)`
-
-Create a new `ListWorkspaceMember` entity instance. Pass `nil` for no initial data.
 
 #### `Member(data = nil)`
 
@@ -241,10 +157,6 @@ Create a new `Member` entity instance. Pass `nil` for no initial data.
 #### `Message(data = nil)`
 
 Create a new `Message` entity instance. Pass `nil` for no initial data.
-
-#### `Meta(data = nil)`
-
-Create a new `Meta` entity instance. Pass `nil` for no initial data.
 
 #### `Model(data = nil)`
 
@@ -286,17 +198,9 @@ Create a new `PresetVersion` entity instance. Pass `nil` for no initial data.
 
 Create a new `Provider` entity instance. Pass `nil` for no initial data.
 
-#### `Query(data = nil)`
-
-Create a new `Query` entity instance. Pass `nil` for no initial data.
-
 #### `RankingsDaily(data = nil)`
 
 Create a new `RankingsDaily` entity instance. Pass `nil` for no initial data.
-
-#### `Remove(data = nil)`
-
-Create a new `Remove` entity instance. Pass `nil` for no initial data.
 
 #### `Rerank(data = nil)`
 
@@ -305,10 +209,6 @@ Create a new `Rerank` entity instance. Pass `nil` for no initial data.
 #### `Response(data = nil)`
 
 Create a new `Response` entity instance. Pass `nil` for no initial data.
-
-#### `Speech(data = nil)`
-
-Create a new `Speech` entity instance. Pass `nil` for no initial data.
 
 #### `Stt(data = nil)`
 
@@ -321,10 +221,6 @@ Create a new `SubmitGenerationFeedback` entity instance. Pass `nil` for no initi
 #### `Task(data = nil)`
 
 Create a new `Task` entity instance. Pass `nil` for no initial data.
-
-#### `Transcription(data = nil)`
-
-Create a new `Transcription` entity instance. Pass `nil` for no initial data.
 
 #### `Tts(data = nil)`
 
@@ -354,14 +250,6 @@ Create a new `UpdateWorkspace` entity instance. Pass `nil` for no initial data.
 
 Create a new `UpsertWorkspaceBudget` entity instance. Pass `nil` for no initial data.
 
-#### `User(data = nil)`
-
-Create a new `User` entity instance. Pass `nil` for no initial data.
-
-#### `Version(data = nil)`
-
-Create a new `Version` entity instance. Pass `nil` for no initial data.
-
 #### `Video(data = nil)`
 
 Create a new `Video` entity instance. Pass `nil` for no initial data.
@@ -370,9 +258,9 @@ Create a new `Video` entity instance. Pass `nil` for no initial data.
 
 Create a new `VideoGeneration` entity instance. Pass `nil` for no initial data.
 
-#### `VideoModelsList(data = nil)`
+#### `VideoModel(data = nil)`
 
-Create a new `VideoModelsList` entity instance. Pass `nil` for no initial data.
+Create a new `VideoModel` entity instance. Pass `nil` for no initial data.
 
 #### `Workspace(data = nil)`
 
@@ -382,9 +270,9 @@ Create a new `Workspace` entity instance. Pass `nil` for no initial data.
 
 Create a new `WorkspaceBudget` entity instance. Pass `nil` for no initial data.
 
-#### `Zdr(data = nil)`
+#### `WorkspaceMember(data = nil)`
 
-Create a new `Zdr` entity instance. Pass `nil` for no initial data.
+Create a new `WorkspaceMember` entity instance. Pass `nil` for no initial data.
 
 #### `options_map -> Hash`
 
@@ -477,42 +365,6 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `ActivityEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## AddEntity
-
-```ruby
-add = client.Add
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `AddEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -746,42 +598,6 @@ Return the entity name.
 
 ---
 
-## BenchmarkEntity
-
-```ruby
-benchmark = client.Benchmark
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `BenchmarkEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
 ## BetaAnalyticsEntity
 
 ```ruby
@@ -880,42 +696,6 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `BetaAnalyticsEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## BudgetEntity
-
-```ruby
-budget = client.Budget
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `BudgetEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -1555,82 +1335,73 @@ Return the entity name.
 
 ---
 
-## CodeEntity
-
-```ruby
-code = client.Code
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `CodeEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## CoinbaseEntity
-
-```ruby
-coinbase = client.Coinbase
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `CoinbaseEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
 ## CompletionEntity
 
 ```ruby
 completion = client.Completion
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `cache_control` | `Hash` | Yes | Enable automatic prompt caching. |
+| `debug` | `Hash` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `Object` | No | Frequency penalty (-2.0 to 2.0) |
+| `image_config` | `Hash` | No | Provider-specific image configuration options. |
+| `logit_bias` | `Object` | No | Token logit bias adjustments |
+| `logprobs` | `Object` | No | Return log probabilities |
+| `max_completion_tokens` | `Object` | No | Maximum tokens in completion |
+| `max_tokens` | `Object` | No | Maximum tokens (deprecated, use max_completion_tokens). |
+| `messages` | `Array` | Yes | List of messages for the conversation |
+| `metadata` | `Hash` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `Object` | No | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `Array` | No | Output modalities for the response. |
+| `model` | `String` | No | Model to use for completion |
+| `models` | `Array` | No | Models to use for completion |
+| `parallel_tool_calls` | `Object` | No | Whether to enable parallel function calling during tool use. |
+| `plugins` | `Array` | No | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `Object` | Yes | Static predicted output content. |
+| `presence_penalty` | `Object` | No | Presence penalty (-2.0 to 2.0) |
+| `prompt_cache_key` | `Object` | No |  |
+| `prompt_cache_options` | `Object` | Yes | Request-level prompt-cache controls. |
+| `provider` | `Object` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `Hash` | No | Configuration options for reasoning models |
+| `reasoning_effort` | `Object` | No | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `Object` | No | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `Object` | No | Response format configuration |
+| `route` | `Object` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `seed` | `Object` | No | Random seed for deterministic outputs |
+| `service_tier` | `Object` | No | The service tier to use for processing this request. |
+| `session_id` | `String` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop` | `Object` | No | Stop sequences (up to 4) |
+| `stop_server_tools_when` | `Array` | No | Stop conditions for the server-tool agent loop. |
+| `stream` | `Boolean` | No | Enable streaming response |
+| `stream_options` | `Object` | No | Streaming configuration options |
+| `temperature` | `Object` | No | Sampling temperature (0-2) |
+| `tool_choice` | `Object` | No | Tool choice configuration |
+| `tools` | `Array` | No | Available tools for function calling |
+| `top_a` | `Object` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `Object` | No | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `Object` | No | Number of top log probabilities to return (0-20) |
+| `top_p` | `Object` | No | Nucleus sampling parameter (0-1) |
+| `trace` | `Hash` | No | Metadata for observability and tracing. |
+| `user` | `String` | No | Unique user identifier |
+
+### Operations
+
+#### `create(reqdata, ctrl = nil) -> result`
+
+Create a new entity with the given data. Raises on error.
+
+```ruby
+result = client.Completion.create({
+  "slug" => "example_slug", # String
+  "cache_control" => {}, # Hash
+  "messages" => [], # Array
+  "prediction" => {}, # Object
+  "prompt_cache_options" => {}, # Object
+})
 ```
 
 ### Common Methods
@@ -1654,150 +1425,6 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `CompletionEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## ContentEntity
-
-```ruby
-content = client.Content
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `ContentEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## CountEntity
-
-```ruby
-count = client.Count
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `CountEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## CreateByokKeyEntity
-
-```ruby
-create_byok_key = client.CreateByokKey
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `CreateByokKeyEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## CreateGuardrailEntity
-
-```ruby
-create_guardrail = client.CreateGuardrail
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `CreateGuardrailEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -1872,227 +1499,6 @@ Return the entity name.
 
 ---
 
-## CreatePresetFromInferenceEntity
-
-```ruby
-create_preset_from_inference = client.CreatePresetFromInference
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `background` | `Object` | No |  |
-| `cache_control` | `Hash` | Yes | Enable automatic prompt caching. |
-| `context_management` | `Object` | No |  |
-| `debug` | `Hash` | No | Debug options for inspecting request transformations (streaming only) |
-| `fallbacks` | `Object` | No | Fallback models to try if the primary model fails or refuses, in order. |
-| `frequency_penalty` | `Object` | No | Frequency penalty (-2.0 to 2.0) |
-| `image_config` | `Hash` | No | Provider-specific image configuration options. |
-| `include` | `Object` | No |  |
-| `input` | `Object` | No | Input for a response request - can be a string or array of items |
-| `instructions` | `Object` | No |  |
-| `logit_bias` | `Object` | No | Token logit bias adjustments |
-| `logprobs` | `Object` | No | Return log probabilities |
-| `max_completion_tokens` | `Object` | No | Maximum tokens in completion |
-| `max_output_tokens` | `Object` | No |  |
-| `max_tokens` | `Object` | No | Maximum tokens (deprecated, use max_completion_tokens). |
-| `max_tool_calls` | `Object` | No |  |
-| `messages` | `Array` | Yes | List of messages for the conversation |
-| `metadata` | `Hash` | No | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
-| `min_p` | `Object` | No | Minimum probability threshold relative to the most likely token. |
-| `modalities` | `Array` | No | Output modalities for the response. |
-| `model` | `String` | No | Model to use for completion |
-| `models` | `Array` | No | Models to use for completion |
-| `output_config` | `Hash` | No | Configuration for controlling output behavior. |
-| `parallel_tool_calls` | `Object` | No | Whether to enable parallel function calling during tool use. |
-| `plugins` | `Array` | No | Plugins you want to enable for this request, including their settings. |
-| `prediction` | `Object` | Yes | Static predicted output content. |
-| `presence_penalty` | `Object` | No | Presence penalty (-2.0 to 2.0) |
-| `previous_response_id` | `String` | No | Not supported. |
-| `prompt` | `Object` | Yes |  |
-| `prompt_cache_key` | `Object` | No |  |
-| `prompt_cache_options` | `Object` | Yes | Request-level prompt-cache controls. |
-| `provider` | `Object` | No | When multiple model providers are available, optionally indicate your routing preference. |
-| `reasoning` | `Hash` | No | Configuration options for reasoning models |
-| `reasoning_effort` | `Object` | No | Shorthand for setting reasoning effort. |
-| `repetition_penalty` | `Object` | No | Penalizes tokens based on how much they have already appeared in the text. |
-| `response_format` | `Object` | No | Response format configuration |
-| `route` | `Object` | No | **DEPRECATED** Use providers.sort.partition instead. |
-| `safety_identifier` | `Object` | No |  |
-| `seed` | `Object` | No | Random seed for deterministic outputs |
-| `service_tier` | `Object` | No | The service tier to use for processing this request. |
-| `session_id` | `String` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
-| `speed` | `Object` | No |  |
-| `stop` | `Object` | No | Stop sequences (up to 4) |
-| `stop_sequences` | `Array` | No |  |
-| `stop_server_tools_when` | `Array` | No | Stop conditions for the server-tool agent loop. |
-| `store` | `Boolean` | No |  |
-| `stream` | `Boolean` | No | Enable streaming response |
-| `stream_options` | `Object` | No | Streaming configuration options |
-| `system` | `Object` | No |  |
-| `temperature` | `Object` | No | Sampling temperature (0-2) |
-| `text` | `Object` | No | Text output configuration including format and verbosity |
-| `thinking` | `Object` | No |  |
-| `tool_choice` | `Object` | No | Tool choice configuration |
-| `tools` | `Array` | No | Available tools for function calling |
-| `top_a` | `Object` | No | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
-| `top_k` | `Object` | No | Limits the model to choose from the top K most likely tokens at each step. |
-| `top_logprobs` | `Object` | No | Number of top log probabilities to return (0-20) |
-| `top_p` | `Object` | No | Nucleus sampling parameter (0-1) |
-| `trace` | `Hash` | No | Metadata for observability and tracing. |
-| `truncation` | `Object` | No |  |
-| `user` | `String` | No | Unique user identifier |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `background` | - |
-| `cache_control` | - |
-| `context_management` | - |
-| `debug` | - |
-| `fallbacks` | - |
-| `frequency_penalty` | - |
-| `image_config` | - |
-| `include` | - |
-| `input` | - |
-| `instructions` | - |
-| `logit_bias` | - |
-| `logprobs` | - |
-| `max_completion_tokens` | - |
-| `max_output_tokens` | - |
-| `max_tokens` | - |
-| `max_tool_calls` | - |
-| `messages` | - |
-| `metadata` | - |
-| `min_p` | - |
-| `modalities` | - |
-| `model` | Yes |
-| `models` | - |
-| `output_config` | - |
-| `parallel_tool_calls` | - |
-| `plugins` | - |
-| `prediction` | - |
-| `presence_penalty` | - |
-| `previous_response_id` | - |
-| `prompt` | - |
-| `prompt_cache_key` | - |
-| `prompt_cache_options` | - |
-| `provider` | - |
-| `reasoning` | - |
-| `reasoning_effort` | - |
-| `repetition_penalty` | - |
-| `response_format` | - |
-| `route` | - |
-| `safety_identifier` | - |
-| `seed` | - |
-| `service_tier` | - |
-| `session_id` | - |
-| `speed` | - |
-| `stop` | - |
-| `stop_sequences` | - |
-| `stop_server_tools_when` | - |
-| `store` | - |
-| `stream` | - |
-| `stream_options` | - |
-| `system` | - |
-| `temperature` | - |
-| `text` | - |
-| `thinking` | - |
-| `tool_choice` | - |
-| `tools` | - |
-| `top_a` | - |
-| `top_k` | - |
-| `top_logprobs` | - |
-| `top_p` | - |
-| `trace` | - |
-| `truncation` | - |
-| `user` | - |
-
-### Operations
-
-#### `create(reqdata, ctrl = nil) -> result`
-
-Create a new entity with the given data. Raises on error.
-
-```ruby
-result = client.CreatePresetFromInference.create({
-  "slug" => "example_slug", # String
-  "cache_control" => {}, # Hash
-  "messages" => [], # Array
-  "prediction" => {}, # Object
-  "prompt" => {}, # Object
-  "prompt_cache_options" => {}, # Object
-})
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `CreatePresetFromInferenceEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## CreateWorkspaceEntity
-
-```ruby
-create_workspace = client.CreateWorkspace
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `CreateWorkspaceEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
 ## CreditEntity
 
 ```ruby
@@ -2148,42 +1554,6 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `CreditEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## DestinationEntity
-
-```ruby
-destination = client.Destination
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `DestinationEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -2356,42 +1726,6 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `EndpointEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## FeedbackEntity
-
-```ruby
-feedback = client.Feedback
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `FeedbackEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -2586,10 +1920,10 @@ Return the entity name.
 
 ---
 
-## GenerationContentEntity
+## GenerationContentDataEntity
 
 ```ruby
-generation_content = client.GenerationContent
+generation_content_data = client.GenerationContentData
 ```
 
 ### Fields
@@ -2606,7 +1940,7 @@ generation_content = client.GenerationContent
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GenerationContent.load({ "id" => "generation_content_id" })
+result = client.GenerationContentData.load({ "id" => "generation_content_data_id" })
 ```
 
 ### Common Methods
@@ -2629,7 +1963,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `GenerationContentEntity` instance with the same client and
+Create a new `GenerationContentDataEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -2896,10 +2230,10 @@ Return the entity name.
 
 ---
 
-## ImageModelsListEntity
+## ImageModelListItemEntity
 
 ```ruby
-image_models_list = client.ImageModelsList
+image_model_list_item = client.ImageModelListItem
 ```
 
 ### Fields
@@ -2922,7 +2256,7 @@ image_models_list = client.ImageModelsList
 List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.ImageModelsList.list
+results = client.ImageModelListItem.list
 ```
 
 ### Common Methods
@@ -2945,7 +2279,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `ImageModelsListEntity` instance with the same client and
+Create a new `ImageModelListItemEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -2959,6 +2293,28 @@ Return the entity name.
 
 ```ruby
 key = client.Key
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `assigned_by` | `Object` | Yes | User ID of who made the assignment |
+| `created_at` | `String` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `String` | Yes | ID of the guardrail |
+| `id` | `String` | Yes | Unique identifier for the assignment |
+| `key_hash` | `String` | Yes | Hash of the assigned API key |
+| `key_label` | `String` | Yes | Label of the API key |
+| `key_name` | `String` | Yes | Name of the API key |
+
+### Operations
+
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+
+```ruby
+results = client.Key.list
 ```
 
 ### Common Methods
@@ -2982,193 +2338,6 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `KeyEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## ListByokKeyEntity
-
-```ruby
-list_byok_key = client.ListByokKey
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `ListByokKeyEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## ListGuardrailEntity
-
-```ruby
-list_guardrail = client.ListGuardrail
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `ListGuardrailEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## ListKeyAssignmentEntity
-
-```ruby
-list_key_assignment = client.ListKeyAssignment
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `assigned_by` | `Object` | Yes | User ID of who made the assignment |
-| `created_at` | `String` | Yes | ISO 8601 timestamp of when the assignment was created |
-| `guardrail_id` | `String` | Yes | ID of the guardrail |
-| `id` | `String` | Yes | Unique identifier for the assignment |
-| `key_hash` | `String` | Yes | Hash of the assigned API key |
-| `key_label` | `String` | Yes | Label of the API key |
-| `key_name` | `String` | Yes | Name of the API key |
-
-### Operations
-
-#### `list(reqmatch = nil, ctrl = nil) -> Array`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
-
-```ruby
-results = client.ListKeyAssignment.list
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `ListKeyAssignmentEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## ListMemberAssignmentEntity
-
-```ruby
-list_member_assignment = client.ListMemberAssignment
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `assigned_by` | `Object` | Yes | User ID of who made the assignment |
-| `created_at` | `String` | Yes | ISO 8601 timestamp of when the assignment was created |
-| `guardrail_id` | `String` | Yes | ID of the guardrail |
-| `id` | `String` | Yes | Unique identifier for the assignment |
-| `organization_id` | `String` | Yes | Organization ID |
-| `user_id` | `String` | Yes | Clerk user ID of the assigned member |
-
-### Operations
-
-#### `list(reqmatch = nil, ctrl = nil) -> Array`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
-
-```ruby
-results = client.ListMemberAssignment.list
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `ListMemberAssignmentEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -3222,42 +2391,6 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `ListObservabilityDestinationEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## ListPresetEntity
-
-```ruby
-list_preset = client.ListPreset
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `ListPresetEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -3326,159 +2459,31 @@ Return the entity name.
 
 ---
 
-## ListWorkspaceEntity
-
-```ruby
-list_workspace = client.ListWorkspace
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `ListWorkspaceEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## ListWorkspaceBudgetEntity
-
-```ruby
-list_workspace_budget = client.ListWorkspaceBudget
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `created_at` | `String` | Yes | ISO 8601 timestamp of when the budget was created |
-| `id` | `String` | Yes | Unique identifier for the budget |
-| `limit_usd` | `Float` | Yes | Spending limit in USD for this interval |
-| `reset_interval` | `Object` | Yes | Interval at which spend resets. |
-| `updated_at` | `String` | Yes | ISO 8601 timestamp of when the budget was last updated |
-| `workspace_id` | `String` | Yes | ID of the workspace the budget belongs to |
-
-### Operations
-
-#### `list(reqmatch = nil, ctrl = nil) -> Array`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
-
-```ruby
-results = client.ListWorkspaceBudget.list
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `ListWorkspaceBudgetEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## ListWorkspaceMemberEntity
-
-```ruby
-list_workspace_member = client.ListWorkspaceMember
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `created_at` | `String` | Yes | ISO 8601 timestamp of when the membership was created |
-| `id` | `String` | Yes | Unique identifier for the workspace membership |
-| `role` | `String` | Yes | Role of the member in the workspace |
-| `user_id` | `String` | Yes | Clerk user ID of the member |
-| `workspace_id` | `String` | Yes | ID of the workspace |
-
-### Operations
-
-#### `list(reqmatch = nil, ctrl = nil) -> Array`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
-
-```ruby
-results = client.ListWorkspaceMember.list
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `ListWorkspaceMemberEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
 ## MemberEntity
 
 ```ruby
 member = client.Member
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `assigned_by` | `Object` | Yes | User ID of who made the assignment |
+| `created_at` | `String` | Yes | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `String` | Yes | ID of the guardrail |
+| `id` | `String` | Yes | Unique identifier for the assignment |
+| `organization_id` | `String` | Yes | Organization ID |
+| `user_id` | `String` | Yes | Clerk user ID of the assigned member |
+
+### Operations
+
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+
+```ruby
+results = client.Member.list
 ```
 
 ### Common Methods
@@ -3584,42 +2589,6 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `MessageEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## MetaEntity
-
-```ruby
-meta = client.Meta
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `MetaEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -4295,42 +3264,6 @@ Return the entity name.
 
 ---
 
-## QueryEntity
-
-```ruby
-query = client.Query
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `QueryEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
 ## RankingsDailyEntity
 
 ```ruby
@@ -4376,42 +3309,6 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `RankingsDailyEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## RemoveEntity
-
-```ruby
-remove = client.Remove
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `RemoveEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -4491,40 +3388,64 @@ Return the entity name.
 response = client.Response
 ```
 
-### Common Methods
+### Fields
 
-#### `data_get -> Hash`
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `background` | `Object` | No |  |
+| `cache_control` | `Hash` | Yes | Enable automatic prompt caching. |
+| `debug` | `Hash` | No | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `Object` | No |  |
+| `image_config` | `Hash` | No | Provider-specific image configuration options. |
+| `include` | `Object` | No |  |
+| `input` | `Object` | No | Input for a response request - can be a string or array of items |
+| `instructions` | `Object` | No |  |
+| `max_output_tokens` | `Object` | No |  |
+| `max_tool_calls` | `Object` | No |  |
+| `metadata` | `Object` | No | Metadata key-value pairs for the request. |
+| `modalities` | `Array` | No | Output modalities for the response. |
+| `model` | `String` | No |  |
+| `models` | `Array` | No |  |
+| `parallel_tool_calls` | `Object` | No |  |
+| `plugins` | `Array` | No | Plugins you want to enable for this request, including their settings. |
+| `presence_penalty` | `Object` | No |  |
+| `previous_response_id` | `String` | No | Not supported. |
+| `prompt` | `Object` | Yes |  |
+| `prompt_cache_key` | `Object` | No |  |
+| `prompt_cache_options` | `Object` | Yes | Request-level prompt-cache controls. |
+| `provider` | `Object` | No | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `Object` | No | Configuration for reasoning mode in the response |
+| `route` | `Object` | No | **DEPRECATED** Use providers.sort.partition instead. |
+| `safety_identifier` | `Object` | No |  |
+| `service_tier` | `Object` | No |  |
+| `session_id` | `String` | No | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop_server_tools_when` | `Array` | No | Stop conditions for the server-tool agent loop. |
+| `store` | `Boolean` | No |  |
+| `stream` | `Boolean` | No |  |
+| `temperature` | `Object` | No |  |
+| `text` | `Object` | No | Text output configuration including format and verbosity |
+| `tool_choice` | `Object` | No |  |
+| `tools` | `Array` | No |  |
+| `top_k` | `Integer` | No |  |
+| `top_logprobs` | `Object` | No |  |
+| `top_p` | `Object` | No |  |
+| `trace` | `Hash` | No | Metadata for observability and tracing. |
+| `truncation` | `Object` | No |  |
+| `user` | `String` | No | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
-Get the entity data. Returns a copy of the current data.
+### Operations
 
-#### `data_set(data)`
+#### `create(reqdata, ctrl = nil) -> result`
 
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `ResponseEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## SpeechEntity
+Create a new entity with the given data. Raises on error.
 
 ```ruby
-speech = client.Speech
+result = client.Response.create({
+  "slug" => "example_slug", # String
+  "cache_control" => {}, # Hash
+  "prompt" => {}, # Object
+  "prompt_cache_options" => {}, # Object
+})
 ```
 
 ### Common Methods
@@ -4547,7 +3468,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `SpeechEntity` instance with the same client and
+Create a new `ResponseEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -4730,42 +3651,6 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `TaskEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## TranscriptionEntity
-
-```ruby
-transcription = client.Transcription
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `TranscriptionEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -5252,78 +4137,6 @@ Return the entity name.
 
 ---
 
-## UserEntity
-
-```ruby
-user = client.User
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `UserEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
-## VersionEntity
-
-```ruby
-version = client.Version
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `VersionEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
 ## VideoEntity
 
 ```ruby
@@ -5459,10 +4272,10 @@ Return the entity name.
 
 ---
 
-## VideoModelsListEntity
+## VideoModelEntity
 
 ```ruby
-video_models_list = client.VideoModelsList
+video_model = client.VideoModel
 ```
 
 ### Fields
@@ -5492,7 +4305,7 @@ video_models_list = client.VideoModelsList
 List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.VideoModelsList.list
+results = client.VideoModel.list
 ```
 
 ### Common Methods
@@ -5515,7 +4328,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `VideoModelsListEntity` instance with the same client and
+Create a new `VideoModelEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -5609,9 +4422,22 @@ workspace_budget = client.WorkspaceBudget
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `String` | No |  |
+| `created_at` | `String` | Yes | ISO 8601 timestamp of when the budget was created |
+| `id` | `String` | Yes | Unique identifier for the budget |
+| `limit_usd` | `Float` | Yes | Spending limit in USD for this interval |
+| `reset_interval` | `Object` | Yes | Interval at which spend resets. |
+| `updated_at` | `String` | Yes | ISO 8601 timestamp of when the budget was last updated |
+| `workspace_id` | `String` | Yes | ID of the workspace the budget belongs to |
 
 ### Operations
+
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+
+```ruby
+results = client.WorkspaceBudget.list
+```
 
 #### `remove(reqmatch, ctrl = nil) -> result`
 
@@ -5651,10 +4477,30 @@ Return the entity name.
 
 ---
 
-## ZdrEntity
+## WorkspaceMemberEntity
 
 ```ruby
-zdr = client.Zdr
+workspace_member = client.WorkspaceMember
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `created_at` | `String` | Yes | ISO 8601 timestamp of when the membership was created |
+| `id` | `String` | Yes | Unique identifier for the workspace membership |
+| `role` | `String` | Yes | Role of the member in the workspace |
+| `user_id` | `String` | Yes | Clerk user ID of the member |
+| `workspace_id` | `String` | Yes | ID of the workspace |
+
+### Operations
+
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+
+```ruby
+results = client.WorkspaceMember.list
 ```
 
 ### Common Methods
@@ -5677,7 +4523,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `ZdrEntity` instance with the same client and
+Create a new `WorkspaceMemberEntity` instance with the same client and
 options.
 
 #### `get_name -> String`

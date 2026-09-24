@@ -19,7 +19,6 @@ import type {
   ModelsListListMatch,
 } from '../OpenrouterModelsTypes'
 
-// TODO: needs Entity superclass
 class ModelsListEntity extends OpenrouterModelsEntityBase<ModelsList> {
 
   constructor(client: OpenrouterModelsSDK, entopts: any) {

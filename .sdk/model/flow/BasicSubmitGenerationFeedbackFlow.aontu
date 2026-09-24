@@ -1,0 +1,18 @@
+# BasicSubmitGenerationFeedbackFlow
+
+main: kit: flow: BasicSubmitGenerationFeedbackFlow:
+{
+  entity: "submit_generation_feedback",
+  kind: "basic",
+  name: "BasicSubmitGenerationFeedbackFlow",
+  step: [
+    {
+      i: {
+        ref: "submit_generation_feedback_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicSubmitGenerationFeedbackFlow"
+}

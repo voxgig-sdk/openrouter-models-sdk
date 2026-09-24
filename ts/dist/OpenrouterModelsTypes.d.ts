@@ -16,8 +16,6 @@ export interface ActivityListMatch {
     date?: string;
     user_id?: string;
 }
-export interface Add {
-}
 export interface ApiKey {
     byok_usage: number;
     byok_usage_daily: number;
@@ -129,8 +127,6 @@ export interface AppRankingListMatch {
     start_date?: string;
     subcategory?: string;
 }
-export interface Benchmark {
-}
 export interface BetaAnalytics {
     cachedAt?: number;
     classifier_dimensions: Record<string, any>;
@@ -184,8 +180,6 @@ export interface BetaAnalyticsCreateData {
     order_by: Record<string, any>;
     time_range: Record<string, any>;
     warnings?: any[];
-}
-export interface Budget {
 }
 export interface BulkAddWorkspaceMember {
     added_count: number;
@@ -387,19 +381,94 @@ export interface ChatResultCreateData {
     usage: Record<string, any>;
     user?: string;
 }
-export interface Code {
-}
-export interface Coinbase {
-}
 export interface Completion {
+    cache_control: Record<string, any>;
+    debug?: Record<string, any>;
+    frequency_penalty?: number | null;
+    image_config?: Record<string, any>;
+    logit_bias?: Record<string, any> | null;
+    logprobs?: boolean | null;
+    max_completion_tokens?: number | null;
+    max_tokens?: number | null;
+    messages: any[];
+    metadata?: Record<string, any>;
+    min_p?: number | null;
+    modalities?: any[];
+    model?: string;
+    models?: any[];
+    parallel_tool_calls?: boolean | null;
+    plugins?: any[];
+    prediction: Record<string, any> | null;
+    presence_penalty?: number | null;
+    prompt_cache_key?: string | null;
+    prompt_cache_options: Record<string, any> | null;
+    provider?: Record<string, any> | null;
+    reasoning?: Record<string, any>;
+    reasoning_effort?: string | null;
+    repetition_penalty?: number | null;
+    response_format?: any;
+    route?: string | null;
+    seed?: number | null;
+    service_tier?: string | null;
+    session_id?: string;
+    stop?: any;
+    stop_server_tools_when?: any[];
+    stream?: boolean;
+    stream_options?: Record<string, any> | null;
+    temperature?: number | null;
+    tool_choice?: any;
+    tools?: any[];
+    top_a?: number | null;
+    top_k?: number | null;
+    top_logprobs?: number | null;
+    top_p?: number | null;
+    trace?: Record<string, any>;
+    user?: string;
 }
-export interface Content {
-}
-export interface Count {
-}
-export interface CreateByokKey {
-}
-export interface CreateGuardrail {
+export interface CompletionCreateData {
+    slug: string;
+    cache_control: Record<string, any>;
+    debug?: Record<string, any>;
+    frequency_penalty?: number | null;
+    image_config?: Record<string, any>;
+    logit_bias?: Record<string, any> | null;
+    logprobs?: boolean | null;
+    max_completion_tokens?: number | null;
+    max_tokens?: number | null;
+    messages: any[];
+    metadata?: Record<string, any>;
+    min_p?: number | null;
+    modalities?: any[];
+    model?: string;
+    models?: any[];
+    parallel_tool_calls?: boolean | null;
+    plugins?: any[];
+    prediction: Record<string, any> | null;
+    presence_penalty?: number | null;
+    prompt_cache_key?: string | null;
+    prompt_cache_options: Record<string, any> | null;
+    provider?: Record<string, any> | null;
+    reasoning?: Record<string, any>;
+    reasoning_effort?: string | null;
+    repetition_penalty?: number | null;
+    response_format?: any;
+    route?: string | null;
+    seed?: number | null;
+    service_tier?: string | null;
+    session_id?: string;
+    stop?: any;
+    stop_server_tools_when?: any[];
+    stream?: boolean;
+    stream_options?: Record<string, any> | null;
+    temperature?: number | null;
+    tool_choice?: any;
+    tools?: any[];
+    top_a?: number | null;
+    top_k?: number | null;
+    top_logprobs?: number | null;
+    top_p?: number | null;
+    trace?: Record<string, any>;
+    user?: string;
 }
 export interface CreateObservabilityDestination {
     api_key_hashes?: any[] | null;
@@ -423,135 +492,6 @@ export interface CreateObservabilityDestinationCreateData {
     type: string;
     workspace_id?: string;
 }
-export interface CreatePresetFromInference {
-    background?: boolean | null;
-    cache_control: Record<string, any>;
-    context_management?: Record<string, any> | null;
-    debug?: Record<string, any>;
-    fallbacks?: any[] | null;
-    frequency_penalty?: number | null;
-    image_config?: Record<string, any>;
-    include?: any[] | null;
-    input?: any;
-    instructions?: string | null;
-    logit_bias?: Record<string, any> | null;
-    logprobs?: boolean | null;
-    max_completion_tokens?: number | null;
-    max_output_tokens?: number | null;
-    max_tokens?: number | null;
-    max_tool_calls?: number | null;
-    messages: any[];
-    metadata?: Record<string, any>;
-    min_p?: number | null;
-    modalities?: any[];
-    model?: string;
-    models?: any[];
-    output_config?: Record<string, any>;
-    parallel_tool_calls?: boolean | null;
-    plugins?: any[];
-    prediction: Record<string, any> | null;
-    presence_penalty?: number | null;
-    previous_response_id?: string;
-    prompt: Record<string, any> | null;
-    prompt_cache_key?: string | null;
-    prompt_cache_options: Record<string, any> | null;
-    provider?: Record<string, any> | null;
-    reasoning?: Record<string, any>;
-    reasoning_effort?: string | null;
-    repetition_penalty?: number | null;
-    response_format?: any;
-    route?: string | null;
-    safety_identifier?: string | null;
-    seed?: number | null;
-    service_tier?: string | null;
-    session_id?: string;
-    speed?: any;
-    stop?: any;
-    stop_sequences?: any[];
-    stop_server_tools_when?: any[];
-    store?: boolean;
-    stream?: boolean;
-    stream_options?: Record<string, any> | null;
-    system?: any;
-    temperature?: number | null;
-    text?: any;
-    thinking?: any;
-    tool_choice?: any;
-    tools?: any[];
-    top_a?: number | null;
-    top_k?: number | null;
-    top_logprobs?: number | null;
-    top_p?: number | null;
-    trace?: Record<string, any>;
-    truncation?: string | null;
-    user?: string;
-}
-export interface CreatePresetFromInferenceCreateData {
-    slug: string;
-    background?: boolean | null;
-    cache_control: Record<string, any>;
-    context_management?: Record<string, any> | null;
-    debug?: Record<string, any>;
-    fallbacks?: any[] | null;
-    frequency_penalty?: number | null;
-    image_config?: Record<string, any>;
-    include?: any[] | null;
-    input?: any;
-    instructions?: string | null;
-    logit_bias?: Record<string, any> | null;
-    logprobs?: boolean | null;
-    max_completion_tokens?: number | null;
-    max_output_tokens?: number | null;
-    max_tokens?: number | null;
-    max_tool_calls?: number | null;
-    messages: any[];
-    metadata?: Record<string, any>;
-    min_p?: number | null;
-    modalities?: any[];
-    model?: string;
-    models?: any[];
-    output_config?: Record<string, any>;
-    parallel_tool_calls?: boolean | null;
-    plugins?: any[];
-    prediction: Record<string, any> | null;
-    presence_penalty?: number | null;
-    previous_response_id?: string;
-    prompt: Record<string, any> | null;
-    prompt_cache_key?: string | null;
-    prompt_cache_options: Record<string, any> | null;
-    provider?: Record<string, any> | null;
-    reasoning?: Record<string, any>;
-    reasoning_effort?: string | null;
-    repetition_penalty?: number | null;
-    response_format?: any;
-    route?: string | null;
-    safety_identifier?: string | null;
-    seed?: number | null;
-    service_tier?: string | null;
-    session_id?: string;
-    speed?: any;
-    stop?: any;
-    stop_sequences?: any[];
-    stop_server_tools_when?: any[];
-    store?: boolean;
-    stream?: boolean;
-    stream_options?: Record<string, any> | null;
-    system?: any;
-    temperature?: number | null;
-    text?: any;
-    thinking?: any;
-    tool_choice?: any;
-    tools?: any[];
-    top_a?: number | null;
-    top_k?: number | null;
-    top_logprobs?: number | null;
-    top_p?: number | null;
-    trace?: Record<string, any>;
-    truncation?: string | null;
-    user?: string;
-}
-export interface CreateWorkspace {
-}
 export interface Credit {
     total_credits: number;
     total_usage: number;
@@ -565,8 +505,6 @@ export interface CreditCreateData {
     total_usage: number;
     $action?: string;
     [action: string]: any;
-}
-export interface Destination {
 }
 export interface Embedding {
     data: any[];
@@ -653,8 +591,6 @@ export interface EndpointListMatch {
     $action?: string;
     [action: string]: any;
 }
-export interface Feedback {
-}
 export interface File {
     created_at: string;
     downloadable: boolean;
@@ -738,11 +674,11 @@ export interface Generation {
 export interface GenerationLoadMatch {
     id: string;
 }
-export interface GenerationContent {
+export interface GenerationContentData {
     input: any;
     output: Record<string, any>;
 }
-export interface GenerationContentLoadMatch {
+export interface GenerationContentDataLoadMatch {
     id: string;
 }
 export interface Guardrail {
@@ -851,7 +787,7 @@ export interface ImageModelEndpointListMatch {
     model_id: string;
     slug: string;
 }
-export interface ImageModelsList {
+export interface ImageModelListItem {
     architecture: Record<string, any>;
     created: number;
     description: string;
@@ -861,7 +797,7 @@ export interface ImageModelsList {
     supported_parameters: Record<string, any>;
     supports_streaming: boolean;
 }
-export interface ImageModelsListListMatch {
+export interface ImageModelListItemListMatch {
     architecture?: Record<string, any>;
     created?: number;
     description?: string;
@@ -872,12 +808,6 @@ export interface ImageModelsListListMatch {
     supports_streaming?: boolean;
 }
 export interface Key {
-}
-export interface ListByokKey {
-}
-export interface ListGuardrail {
-}
-export interface ListKeyAssignment {
     assigned_by: string | null;
     created_at: string;
     guardrail_id: string;
@@ -886,19 +816,7 @@ export interface ListKeyAssignment {
     key_label: string;
     key_name: string;
 }
-export interface ListKeyAssignmentListMatch {
-    limit?: number;
-    offset?: number | null;
-}
-export interface ListMemberAssignment {
-    assigned_by: string | null;
-    created_at: string;
-    guardrail_id: string;
-    id: string;
-    organization_id: string;
-    user_id: string;
-}
-export interface ListMemberAssignmentListMatch {
+export interface KeyListMatch {
     limit?: number;
     offset?: number | null;
 }
@@ -910,8 +828,6 @@ export interface ListObservabilityDestinationListMatch {
     limit?: number;
     offset?: number | null;
     workspace_id?: string;
-}
-export interface ListPreset {
 }
 export interface ListPresetVersion {
     config: Record<string, any>;
@@ -928,32 +844,17 @@ export interface ListPresetVersionListMatch {
     limit?: number;
     offset?: number | null;
 }
-export interface ListWorkspace {
-}
-export interface ListWorkspaceBudget {
+export interface Member {
+    assigned_by: string | null;
     created_at: string;
+    guardrail_id: string;
     id: string;
-    limit_usd: number;
-    reset_interval: string | null;
-    updated_at: string;
-    workspace_id: string;
-}
-export interface ListWorkspaceBudgetListMatch {
-    workspace_id: string;
-}
-export interface ListWorkspaceMember {
-    created_at: string;
-    id: string;
-    role: string;
+    organization_id: string;
     user_id: string;
-    workspace_id: string;
 }
-export interface ListWorkspaceMemberListMatch {
-    workspace_id: string;
+export interface MemberListMatch {
     limit?: number;
     offset?: number | null;
-}
-export interface Member {
 }
 export interface Message {
     cache_control: Record<string, any>;
@@ -1012,8 +913,6 @@ export interface MessageCreateData {
     top_p?: number;
     trace?: Record<string, any>;
     user?: string;
-}
-export interface Meta {
 }
 export interface Model {
     architecture: Record<string, any>;
@@ -1268,8 +1167,6 @@ export interface ProviderListMatch {
     status_page_url?: string | null;
     terms_of_service_url?: string | null;
 }
-export interface Query {
-}
 export interface RankingsDaily {
     date: string;
     model_permaslug: string;
@@ -1283,8 +1180,6 @@ export interface RankingsDailyListMatch {
     modality?: string;
     period?: string;
     start_date?: string;
-}
-export interface Remove {
 }
 export interface Rerank {
     documents: any[];
@@ -1307,8 +1202,89 @@ export interface RerankCreateData {
     usage?: Record<string, any>;
 }
 export interface Response {
+    background?: boolean | null;
+    cache_control: Record<string, any>;
+    debug?: Record<string, any>;
+    frequency_penalty?: number | null;
+    image_config?: Record<string, any>;
+    include?: any[] | null;
+    input?: any;
+    instructions?: string | null;
+    max_output_tokens?: number | null;
+    max_tool_calls?: number | null;
+    metadata?: Record<string, any> | null;
+    modalities?: any[];
+    model?: string;
+    models?: any[];
+    parallel_tool_calls?: boolean | null;
+    plugins?: any[];
+    presence_penalty?: number | null;
+    previous_response_id?: string;
+    prompt: Record<string, any> | null;
+    prompt_cache_key?: string | null;
+    prompt_cache_options: Record<string, any> | null;
+    provider?: Record<string, any> | null;
+    reasoning?: any;
+    route?: string | null;
+    safety_identifier?: string | null;
+    service_tier?: string | null;
+    session_id?: string;
+    stop_server_tools_when?: any[];
+    store?: boolean;
+    stream?: boolean;
+    temperature?: number | null;
+    text?: any;
+    tool_choice?: any;
+    tools?: any[];
+    top_k?: number;
+    top_logprobs?: number | null;
+    top_p?: number | null;
+    trace?: Record<string, any>;
+    truncation?: string | null;
+    user?: string;
 }
-export interface Speech {
+export interface ResponseCreateData {
+    slug: string;
+    background?: boolean | null;
+    cache_control: Record<string, any>;
+    debug?: Record<string, any>;
+    frequency_penalty?: number | null;
+    image_config?: Record<string, any>;
+    include?: any[] | null;
+    input?: any;
+    instructions?: string | null;
+    max_output_tokens?: number | null;
+    max_tool_calls?: number | null;
+    metadata?: Record<string, any> | null;
+    modalities?: any[];
+    model?: string;
+    models?: any[];
+    parallel_tool_calls?: boolean | null;
+    plugins?: any[];
+    presence_penalty?: number | null;
+    previous_response_id?: string;
+    prompt: Record<string, any> | null;
+    prompt_cache_key?: string | null;
+    prompt_cache_options: Record<string, any> | null;
+    provider?: Record<string, any> | null;
+    reasoning?: any;
+    route?: string | null;
+    safety_identifier?: string | null;
+    service_tier?: string | null;
+    session_id?: string;
+    stop_server_tools_when?: any[];
+    store?: boolean;
+    stream?: boolean;
+    temperature?: number | null;
+    text?: any;
+    tool_choice?: any;
+    tools?: any[];
+    top_k?: number;
+    top_logprobs?: number | null;
+    top_p?: number | null;
+    trace?: Record<string, any>;
+    truncation?: string | null;
+    user?: string;
 }
 export interface Stt {
     duration?: number;
@@ -1360,8 +1336,6 @@ export interface Task {
 }
 export interface TaskLoadMatch {
     window?: string;
-}
-export interface Transcription {
 }
 export interface Tts {
     input: string;
@@ -1530,10 +1504,6 @@ export interface UpsertWorkspaceBudgetUpdateData {
     workspace_id: string;
     limit_usd?: number;
 }
-export interface User {
-}
-export interface Version {
-}
 export interface Video {
     aspect_ratio?: string;
     callback_url?: string;
@@ -1588,7 +1558,7 @@ export interface VideoGenerationLoadMatch {
     $action?: string;
     [action: string]: any;
 }
-export interface VideoModelsList {
+export interface VideoModel {
     allowed_passthrough_parameters: any[];
     canonical_slug: string;
     created: number;
@@ -1605,7 +1575,7 @@ export interface VideoModelsList {
     supported_resolutions: any[] | null;
     supported_sizes: any[] | null;
 }
-export interface VideoModelsListListMatch {
+export interface VideoModelListMatch {
     allowed_passthrough_parameters?: any[];
     canonical_slug?: string;
     created?: number;
@@ -1646,11 +1616,29 @@ export interface WorkspaceRemoveMatch {
     id: string;
 }
 export interface WorkspaceBudget {
-    id?: string;
+    created_at: string;
+    id: string;
+    limit_usd: number;
+    reset_interval: string | null;
+    updated_at: string;
+    workspace_id: string;
+}
+export interface WorkspaceBudgetListMatch {
+    id: string;
 }
 export interface WorkspaceBudgetRemoveMatch {
     id: string;
     workspace_id: string;
 }
-export interface Zdr {
+export interface WorkspaceMember {
+    created_at: string;
+    id: string;
+    role: string;
+    user_id: string;
+    workspace_id: string;
+}
+export interface WorkspaceMemberListMatch {
+    id: string;
+    limit?: number;
+    offset?: number | null;
 }

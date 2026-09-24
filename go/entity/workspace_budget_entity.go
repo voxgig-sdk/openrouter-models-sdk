@@ -50,10 +50,6 @@ func NewWorkspaceBudgetEntity(client *core.OpenrouterModelsSDK, entopts map[stri
 
 func (e *WorkspaceBudgetEntity) GetName() string { return e.name }
 
-// Deleted marks this instance as removed. `Remove` resolves to the entity
-// like every other operation, and the instance KEEPS the data it held — a
-// caller can still read what was deleted — but it is no longer a live
-// record. See AGENTS.md "Entity operations return ENTITIES".
 func (e *WorkspaceBudgetEntity) MarkDeleted() {
 	e.deleted = true
 }
@@ -122,15 +118,6 @@ func (e *WorkspaceBudgetEntity) MatchTyped(match ...WorkspaceBudget) WorkspaceBu
 	return typedFrom[WorkspaceBudget](e.Match())
 }
 
-// Stream (feature #4). Runs `action` through the full pipeline and returns a
-// channel over result items, so the `streaming` feature's incremental output
-// is reachable from a generated entity (a normal op call materialises the
-// whole result). `callopts` parameterises the call:
-//   - inbound (download): the channel yields items/chunks (from the streaming
-//     feature when active, else the materialised items);
-//   - outbound (upload): a `body` in callopts is attached to the request so the
-//     transport can stream the payload;
-//   - `ctrl` (pipeline control) and `signal` (a done channel) are honoured.
 func (e *WorkspaceBudgetEntity) Stream(action string, args map[string]any, callopts map[string]any) <-chan any {
 	out := make(chan any)
 
@@ -260,9 +247,37 @@ func (e *WorkspaceBudgetEntity) Load(_ map[string]any, _ map[string]any) (any, e
 }
 
 
-func (e *WorkspaceBudgetEntity) List(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("list", e.name)
+
+func (e *WorkspaceBudgetEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, error) {
+	utility := e.utility
+	ctx := utility.MakeContext(map[string]any{
+		"opname":   "list",
+		"ctrl":     ctrl,
+		"match":    e.match,
+		"data":     e.data,
+		"reqmatch": reqmatch,
+	}, e.entctx)
+
+	return e.runOp(ctx, func() {
+		if ctx.Result != nil {
+			if ctx.Result.Resmatch != nil {
+				e.match = ctx.Result.Resmatch
+			}
+		}
+	})
 }
+
+// ListTyped is the statically-typed variant of List: it takes an
+// WorkspaceBudgetListMatch and returns []WorkspaceBudget. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *WorkspaceBudgetEntity) ListTyped(reqmatch WorkspaceBudgetListMatch, ctrl map[string]any) ([]WorkspaceBudget, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[WorkspaceBudget](res), nil
+}
+
 
 
 func (e *WorkspaceBudgetEntity) Create(_ map[string]any, _ map[string]any) (any, error) {
@@ -360,14 +375,6 @@ func (e *WorkspaceBudgetEntity) runOp(ctx *core.Context, postDone func()) (any, 
 		return out, doneErr
 	}
 
-	// An operation resolves to the ENTITY, not the raw data. Entities are
-	// stateful: post_done has just absorbed resdata/resmatch into this
-	// instance, and the caller reaches the record through data(). Two
-	// structural exceptions: `list` resolves to the ARRAY of entity
-	// instances make_result built, and a failed op with throwing disabled
-	// hands back the error payload unchanged. `remove` additionally marks
-	// the entity deleted; it KEEPS its data, so a caller can still read
-	// what was removed. See AGENTS.md "Entity operations return ENTITIES".
 	opname := ""
 	if ctx.Op != nil {
 		opname = ctx.Op.Name

@@ -73,10 +73,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    presetversion = client.PresetVersion().load({"id": "example_id", "slug": "example"})
-    print(presetversion)
+    providers = client.Provider().list()
+    print(providers)
 except Exception as err:
-    print(f"load failed: {err}")
+    print(f"list failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -142,8 +142,8 @@ client = OpenrouterModelsSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-presetversion = client.PresetVersion().load({"id": "test01", "slug": "example"})
-# presetversion contains the mock response record
+provider = client.Provider().list()
+# provider contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -222,12 +222,9 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Activity` | `(data) -> ActivityEntity` | Create an Activity entity instance. |
-| `Add` | `(data) -> AddEntity` | Create an Add entity instance. |
 | `ApiKey` | `(data) -> ApiKeyEntity` | Create an ApiKey entity instance. |
 | `AppRanking` | `(data) -> AppRankingEntity` | Create an AppRanking entity instance. |
-| `Benchmark` | `(data) -> BenchmarkEntity` | Create a Benchmark entity instance. |
 | `BetaAnalytics` | `(data) -> BetaAnalyticsEntity` | Create a BetaAnalytics entity instance. |
-| `Budget` | `(data) -> BudgetEntity` | Create a Budget entity instance. |
 | `BulkAddWorkspaceMember` | `(data) -> BulkAddWorkspaceMemberEntity` | Create a BulkAddWorkspaceMember entity instance. |
 | `BulkAssignKey` | `(data) -> BulkAssignKeyEntity` | Create a BulkAssignKey entity instance. |
 | `BulkAssignMember` | `(data) -> BulkAssignMemberEntity` | Create a BulkAssignMember entity instance. |
@@ -236,42 +233,23 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `BulkUnassignMember` | `(data) -> BulkUnassignMemberEntity` | Create a BulkUnassignMember entity instance. |
 | `Byok` | `(data) -> ByokEntity` | Create a Byok entity instance. |
 | `ChatResult` | `(data) -> ChatResultEntity` | Create a ChatResult entity instance. |
-| `Code` | `(data) -> CodeEntity` | Create a Code entity instance. |
-| `Coinbase` | `(data) -> CoinbaseEntity` | Create a Coinbase entity instance. |
 | `Completion` | `(data) -> CompletionEntity` | Create a Completion entity instance. |
-| `Content` | `(data) -> ContentEntity` | Create a Content entity instance. |
-| `Count` | `(data) -> CountEntity` | Create a Count entity instance. |
-| `CreateByokKey` | `(data) -> CreateByokKeyEntity` | Create a CreateByokKey entity instance. |
-| `CreateGuardrail` | `(data) -> CreateGuardrailEntity` | Create a CreateGuardrail entity instance. |
 | `CreateObservabilityDestination` | `(data) -> CreateObservabilityDestinationEntity` | Create a CreateObservabilityDestination entity instance. |
-| `CreatePresetFromInference` | `(data) -> CreatePresetFromInferenceEntity` | Create a CreatePresetFromInference entity instance. |
-| `CreateWorkspace` | `(data) -> CreateWorkspaceEntity` | Create a CreateWorkspace entity instance. |
 | `Credit` | `(data) -> CreditEntity` | Create a Credit entity instance. |
-| `Destination` | `(data) -> DestinationEntity` | Create a Destination entity instance. |
 | `Embedding` | `(data) -> EmbeddingEntity` | Create an Embedding entity instance. |
 | `Endpoint` | `(data) -> EndpointEntity` | Create an Endpoint entity instance. |
-| `Feedback` | `(data) -> FeedbackEntity` | Create a Feedback entity instance. |
 | `File` | `(data) -> FileEntity` | Create a File entity instance. |
 | `Generation` | `(data) -> GenerationEntity` | Create a Generation entity instance. |
-| `GenerationContent` | `(data) -> GenerationContentEntity` | Create a GenerationContent entity instance. |
+| `GenerationContentData` | `(data) -> GenerationContentDataEntity` | Create a GenerationContentData entity instance. |
 | `Guardrail` | `(data) -> GuardrailEntity` | Create a Guardrail entity instance. |
 | `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
 | `ImageModelEndpoint` | `(data) -> ImageModelEndpointEntity` | Create an ImageModelEndpoint entity instance. |
-| `ImageModelsList` | `(data) -> ImageModelsListEntity` | Create an ImageModelsList entity instance. |
+| `ImageModelListItem` | `(data) -> ImageModelListItemEntity` | Create an ImageModelListItem entity instance. |
 | `Key` | `(data) -> KeyEntity` | Create a Key entity instance. |
-| `ListByokKey` | `(data) -> ListByokKeyEntity` | Create a ListByokKey entity instance. |
-| `ListGuardrail` | `(data) -> ListGuardrailEntity` | Create a ListGuardrail entity instance. |
-| `ListKeyAssignment` | `(data) -> ListKeyAssignmentEntity` | Create a ListKeyAssignment entity instance. |
-| `ListMemberAssignment` | `(data) -> ListMemberAssignmentEntity` | Create a ListMemberAssignment entity instance. |
 | `ListObservabilityDestination` | `(data) -> ListObservabilityDestinationEntity` | Create a ListObservabilityDestination entity instance. |
-| `ListPreset` | `(data) -> ListPresetEntity` | Create a ListPreset entity instance. |
 | `ListPresetVersion` | `(data) -> ListPresetVersionEntity` | Create a ListPresetVersion entity instance. |
-| `ListWorkspace` | `(data) -> ListWorkspaceEntity` | Create a ListWorkspace entity instance. |
-| `ListWorkspaceBudget` | `(data) -> ListWorkspaceBudgetEntity` | Create a ListWorkspaceBudget entity instance. |
-| `ListWorkspaceMember` | `(data) -> ListWorkspaceMemberEntity` | Create a ListWorkspaceMember entity instance. |
 | `Member` | `(data) -> MemberEntity` | Create a Member entity instance. |
 | `Message` | `(data) -> MessageEntity` | Create a Message entity instance. |
-| `Meta` | `(data) -> MetaEntity` | Create a Meta entity instance. |
 | `Model` | `(data) -> ModelEntity` | Create a Model entity instance. |
 | `ModelsCount` | `(data) -> ModelsCountEntity` | Create a ModelsCount entity instance. |
 | `ModelsList` | `(data) -> ModelsListEntity` | Create a ModelsList entity instance. |
@@ -282,16 +260,12 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `Preset` | `(data) -> PresetEntity` | Create a Preset entity instance. |
 | `PresetVersion` | `(data) -> PresetVersionEntity` | Create a PresetVersion entity instance. |
 | `Provider` | `(data) -> ProviderEntity` | Create a Provider entity instance. |
-| `Query` | `(data) -> QueryEntity` | Create a Query entity instance. |
 | `RankingsDaily` | `(data) -> RankingsDailyEntity` | Create a RankingsDaily entity instance. |
-| `Remove` | `(data) -> RemoveEntity` | Create a Remove entity instance. |
 | `Rerank` | `(data) -> RerankEntity` | Create a Rerank entity instance. |
 | `Response` | `(data) -> ResponseEntity` | Create a Response entity instance. |
-| `Speech` | `(data) -> SpeechEntity` | Create a Speech entity instance. |
 | `Stt` | `(data) -> SttEntity` | Create a Stt entity instance. |
 | `SubmitGenerationFeedback` | `(data) -> SubmitGenerationFeedbackEntity` | Create a SubmitGenerationFeedback entity instance. |
 | `Task` | `(data) -> TaskEntity` | Create a Task entity instance. |
-| `Transcription` | `(data) -> TranscriptionEntity` | Create a Transcription entity instance. |
 | `Tts` | `(data) -> TtsEntity` | Create a Tts entity instance. |
 | `UnifiedBenchmark` | `(data) -> UnifiedBenchmarkEntity` | Create an UnifiedBenchmark entity instance. |
 | `UpdateByokKey` | `(data) -> UpdateByokKeyEntity` | Create an UpdateByokKey entity instance. |
@@ -299,14 +273,12 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `UpdateObservabilityDestination` | `(data) -> UpdateObservabilityDestinationEntity` | Create an UpdateObservabilityDestination entity instance. |
 | `UpdateWorkspace` | `(data) -> UpdateWorkspaceEntity` | Create an UpdateWorkspace entity instance. |
 | `UpsertWorkspaceBudget` | `(data) -> UpsertWorkspaceBudgetEntity` | Create an UpsertWorkspaceBudget entity instance. |
-| `User` | `(data) -> UserEntity` | Create an User entity instance. |
-| `Version` | `(data) -> VersionEntity` | Create a Version entity instance. |
 | `Video` | `(data) -> VideoEntity` | Create a Video entity instance. |
 | `VideoGeneration` | `(data) -> VideoGenerationEntity` | Create a VideoGeneration entity instance. |
-| `VideoModelsList` | `(data) -> VideoModelsListEntity` | Create a VideoModelsList entity instance. |
+| `VideoModel` | `(data) -> VideoModelEntity` | Create a VideoModel entity instance. |
 | `Workspace` | `(data) -> WorkspaceEntity` | Create a Workspace entity instance. |
 | `WorkspaceBudget` | `(data) -> WorkspaceBudgetEntity` | Create a WorkspaceBudget entity instance. |
-| `Zdr` | `(data) -> ZdrEntity` | Create a Zdr entity instance. |
+| `WorkspaceMember` | `(data) -> WorkspaceMemberEntity` | Create a WorkspaceMember entity instance. |
 
 ### Entity interface
 
@@ -366,15 +338,6 @@ Operations: List.
 
 API path: `/activity`
 
-#### Add
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### ApiKey
 
 | Field | Description |
@@ -424,15 +387,6 @@ Operations: List.
 
 API path: `/datasets/app-rankings`
 
-#### Benchmark
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### BetaAnalytics
 
 | Field | Description |
@@ -457,15 +411,6 @@ API path: ``
 Operations: Create, Load.
 
 API path: `/analytics/query`
-
-#### Budget
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### BulkAddWorkspaceMember
 
@@ -614,68 +559,56 @@ Operations: Create.
 
 API path: `/chat/completions`
 
-#### Code
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### Coinbase
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### Completion
 
 | Field | Description |
 | --- | --- |
+| `cache_control` | Enable automatic prompt caching. |
+| `debug` | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | Frequency penalty (-2.0 to 2.0) |
+| `image_config` | Provider-specific image configuration options. |
+| `logit_bias` | Token logit bias adjustments |
+| `logprobs` | Return log probabilities |
+| `max_completion_tokens` | Maximum tokens in completion |
+| `max_tokens` | Maximum tokens (deprecated, use max_completion_tokens). |
+| `messages` | List of messages for the conversation |
+| `metadata` | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | Minimum probability threshold relative to the most likely token. |
+| `modalities` | Output modalities for the response. |
+| `model` | Model to use for completion |
+| `models` | Models to use for completion |
+| `parallel_tool_calls` | Whether to enable parallel function calling during tool use. |
+| `plugins` | Plugins you want to enable for this request, including their settings. |
+| `prediction` | Static predicted output content. |
+| `presence_penalty` | Presence penalty (-2.0 to 2.0) |
+| `prompt_cache_key` |  |
+| `prompt_cache_options` | Request-level prompt-cache controls. |
+| `provider` | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | Configuration options for reasoning models |
+| `reasoning_effort` | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | Response format configuration |
+| `route` | **DEPRECATED** Use providers.sort.partition instead. |
+| `seed` | Random seed for deterministic outputs |
+| `service_tier` | The service tier to use for processing this request. |
+| `session_id` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop` | Stop sequences (up to 4) |
+| `stop_server_tools_when` | Stop conditions for the server-tool agent loop. |
+| `stream` | Enable streaming response |
+| `stream_options` | Streaming configuration options |
+| `temperature` | Sampling temperature (0-2) |
+| `tool_choice` | Tool choice configuration |
+| `tools` | Available tools for function calling |
+| `top_a` | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | Number of top log probabilities to return (0-20) |
+| `top_p` | Nucleus sampling parameter (0-1) |
+| `trace` | Metadata for observability and tracing. |
+| `user` | Unique user identifier |
 
-Operations: .
+Operations: Create.
 
-API path: ``
-
-#### Content
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### Count
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### CreateByokKey
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### CreateGuardrail
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
+API path: `/presets/{slug}/chat/completions`
 
 #### CreateObservabilityDestination
 
@@ -695,85 +628,6 @@ Operations: Create.
 
 API path: `/observability/destinations`
 
-#### CreatePresetFromInference
-
-| Field | Description |
-| --- | --- |
-| `background` |  |
-| `cache_control` | Enable automatic prompt caching. |
-| `context_management` |  |
-| `debug` | Debug options for inspecting request transformations (streaming only) |
-| `fallbacks` | Fallback models to try if the primary model fails or refuses, in order. |
-| `frequency_penalty` | Frequency penalty (-2.0 to 2.0) |
-| `image_config` | Provider-specific image configuration options. |
-| `include` |  |
-| `input` | Input for a response request - can be a string or array of items |
-| `instructions` |  |
-| `logit_bias` | Token logit bias adjustments |
-| `logprobs` | Return log probabilities |
-| `max_completion_tokens` | Maximum tokens in completion |
-| `max_output_tokens` |  |
-| `max_tokens` | Maximum tokens (deprecated, use max_completion_tokens). |
-| `max_tool_calls` |  |
-| `messages` | List of messages for the conversation |
-| `metadata` | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
-| `min_p` | Minimum probability threshold relative to the most likely token. |
-| `modalities` | Output modalities for the response. |
-| `model` | Model to use for completion |
-| `models` | Models to use for completion |
-| `output_config` | Configuration for controlling output behavior. |
-| `parallel_tool_calls` | Whether to enable parallel function calling during tool use. |
-| `plugins` | Plugins you want to enable for this request, including their settings. |
-| `prediction` | Static predicted output content. |
-| `presence_penalty` | Presence penalty (-2.0 to 2.0) |
-| `previous_response_id` | Not supported. |
-| `prompt` |  |
-| `prompt_cache_key` |  |
-| `prompt_cache_options` | Request-level prompt-cache controls. |
-| `provider` | When multiple model providers are available, optionally indicate your routing preference. |
-| `reasoning` | Configuration options for reasoning models |
-| `reasoning_effort` | Shorthand for setting reasoning effort. |
-| `repetition_penalty` | Penalizes tokens based on how much they have already appeared in the text. |
-| `response_format` | Response format configuration |
-| `route` | **DEPRECATED** Use providers.sort.partition instead. |
-| `safety_identifier` |  |
-| `seed` | Random seed for deterministic outputs |
-| `service_tier` | The service tier to use for processing this request. |
-| `session_id` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
-| `speed` |  |
-| `stop` | Stop sequences (up to 4) |
-| `stop_sequences` |  |
-| `stop_server_tools_when` | Stop conditions for the server-tool agent loop. |
-| `store` |  |
-| `stream` | Enable streaming response |
-| `stream_options` | Streaming configuration options |
-| `system` |  |
-| `temperature` | Sampling temperature (0-2) |
-| `text` | Text output configuration including format and verbosity |
-| `thinking` |  |
-| `tool_choice` | Tool choice configuration |
-| `tools` | Available tools for function calling |
-| `top_a` | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
-| `top_k` | Limits the model to choose from the top K most likely tokens at each step. |
-| `top_logprobs` | Number of top log probabilities to return (0-20) |
-| `top_p` | Nucleus sampling parameter (0-1) |
-| `trace` | Metadata for observability and tracing. |
-| `truncation` |  |
-| `user` | Unique user identifier |
-
-Operations: Create.
-
-API path: `/presets/{slug}/chat/completions`
-
-#### CreateWorkspace
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### Credit
 
 | Field | Description |
@@ -784,15 +638,6 @@ API path: ``
 Operations: Create, Load.
 
 API path: `/credits/coinbase`
-
-#### Destination
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### Embedding
 
@@ -842,15 +687,6 @@ API path: `/embeddings`
 Operations: List, Load.
 
 API path: `/models`
-
-#### Feedback
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### File
 
@@ -921,7 +757,7 @@ Operations: Load.
 
 API path: `/generation`
 
-#### GenerationContent
+#### GenerationContentData
 
 | Field | Description |
 | --- | --- |
@@ -1003,7 +839,7 @@ Operations: List.
 
 API path: `/images/models/{author}/{slug}/endpoints`
 
-#### ImageModelsList
+#### ImageModelListItem
 
 | Field | Description |
 | --- | --- |
@@ -1024,33 +860,6 @@ API path: `/images/models`
 
 | Field | Description |
 | --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### ListByokKey
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### ListGuardrail
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### ListKeyAssignment
-
-| Field | Description |
-| --- | --- |
 | `assigned_by` | User ID of who made the assignment |
 | `created_at` | ISO 8601 timestamp of when the assignment was created |
 | `guardrail_id` | ID of the guardrail |
@@ -1063,21 +872,6 @@ Operations: List.
 
 API path: `/guardrails/{id}/assignments/keys`
 
-#### ListMemberAssignment
-
-| Field | Description |
-| --- | --- |
-| `assigned_by` | User ID of who made the assignment |
-| `created_at` | ISO 8601 timestamp of when the assignment was created |
-| `guardrail_id` | ID of the guardrail |
-| `id` | Unique identifier for the assignment |
-| `organization_id` | Organization ID |
-| `user_id` | Clerk user ID of the assigned member |
-
-Operations: List.
-
-API path: `/guardrails/{id}/assignments/members`
-
 #### ListObservabilityDestination
 
 | Field | Description |
@@ -1088,15 +882,6 @@ API path: `/guardrails/{id}/assignments/members`
 Operations: List.
 
 API path: `/observability/destinations`
-
-#### ListPreset
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### ListPresetVersion
 
@@ -1115,52 +900,20 @@ Operations: List.
 
 API path: `/presets/{slug}/versions`
 
-#### ListWorkspace
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### ListWorkspaceBudget
-
-| Field | Description |
-| --- | --- |
-| `created_at` | ISO 8601 timestamp of when the budget was created |
-| `id` | Unique identifier for the budget |
-| `limit_usd` | Spending limit in USD for this interval |
-| `reset_interval` | Interval at which spend resets. |
-| `updated_at` | ISO 8601 timestamp of when the budget was last updated |
-| `workspace_id` | ID of the workspace the budget belongs to |
-
-Operations: List.
-
-API path: `/workspaces/{id}/budgets`
-
-#### ListWorkspaceMember
-
-| Field | Description |
-| --- | --- |
-| `created_at` | ISO 8601 timestamp of when the membership was created |
-| `id` | Unique identifier for the workspace membership |
-| `role` | Role of the member in the workspace |
-| `user_id` | Clerk user ID of the member |
-| `workspace_id` | ID of the workspace |
-
-Operations: List.
-
-API path: `/workspaces/{id}/members`
-
 #### Member
 
 | Field | Description |
 | --- | --- |
+| `assigned_by` | User ID of who made the assignment |
+| `created_at` | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | ID of the guardrail |
+| `id` | Unique identifier for the assignment |
+| `organization_id` | Organization ID |
+| `user_id` | Clerk user ID of the assigned member |
 
-Operations: .
+Operations: List.
 
-API path: ``
+API path: `/guardrails/{id}/assignments/members`
 
 #### Message
 
@@ -1196,16 +949,7 @@ API path: ``
 
 Operations: Create.
 
-API path: `/messages`
-
-#### Meta
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
+API path: `/presets/{slug}/messages`
 
 #### Model
 
@@ -1422,15 +1166,6 @@ Operations: List.
 
 API path: `/providers`
 
-#### Query
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### RankingsDaily
 
 | Field | Description |
@@ -1442,15 +1177,6 @@ API path: ``
 Operations: List.
 
 API path: `/datasets/rankings-daily`
-
-#### Remove
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### Rerank
 
@@ -1473,19 +1199,50 @@ API path: `/rerank`
 
 | Field | Description |
 | --- | --- |
+| `background` |  |
+| `cache_control` | Enable automatic prompt caching. |
+| `debug` | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` |  |
+| `image_config` | Provider-specific image configuration options. |
+| `include` |  |
+| `input` | Input for a response request - can be a string or array of items |
+| `instructions` |  |
+| `max_output_tokens` |  |
+| `max_tool_calls` |  |
+| `metadata` | Metadata key-value pairs for the request. |
+| `modalities` | Output modalities for the response. |
+| `model` |  |
+| `models` |  |
+| `parallel_tool_calls` |  |
+| `plugins` | Plugins you want to enable for this request, including their settings. |
+| `presence_penalty` |  |
+| `previous_response_id` | Not supported. |
+| `prompt` |  |
+| `prompt_cache_key` |  |
+| `prompt_cache_options` | Request-level prompt-cache controls. |
+| `provider` | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | Configuration for reasoning mode in the response |
+| `route` | **DEPRECATED** Use providers.sort.partition instead. |
+| `safety_identifier` |  |
+| `service_tier` |  |
+| `session_id` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop_server_tools_when` | Stop conditions for the server-tool agent loop. |
+| `store` |  |
+| `stream` |  |
+| `temperature` |  |
+| `text` | Text output configuration including format and verbosity |
+| `tool_choice` |  |
+| `tools` |  |
+| `top_k` |  |
+| `top_logprobs` |  |
+| `top_p` |  |
+| `trace` | Metadata for observability and tracing. |
+| `truncation` |  |
+| `user` | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
 
-Operations: .
+Operations: Create.
 
-API path: ``
-
-#### Speech
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
+API path: `/presets/{slug}/responses`
 
 #### Stt
 
@@ -1534,15 +1291,6 @@ API path: `/generation/feedback`
 Operations: Load.
 
 API path: `/classifications/task`
-
-#### Transcription
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 #### Tts
 
@@ -1664,24 +1412,6 @@ Operations: Update.
 
 API path: `/workspaces/{id}/budgets/{interval}`
 
-#### User
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
-#### Version
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
-
 #### Video
 
 | Field | Description |
@@ -1720,7 +1450,7 @@ Operations: Load.
 
 API path: `/videos/{jobId}/content`
 
-#### VideoModelsList
+#### VideoModel
 
 | Field | Description |
 | --- | --- |
@@ -1772,20 +1502,30 @@ API path: `/workspaces/{id}`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
+| `created_at` | ISO 8601 timestamp of when the budget was created |
+| `id` | Unique identifier for the budget |
+| `limit_usd` | Spending limit in USD for this interval |
+| `reset_interval` | Interval at which spend resets. |
+| `updated_at` | ISO 8601 timestamp of when the budget was last updated |
+| `workspace_id` | ID of the workspace the budget belongs to |
 
-Operations: Remove.
+Operations: List, Remove.
 
-API path: `/workspaces/{id}/budgets/{interval}`
+API path: `/workspaces/{id}/budgets`
 
-#### Zdr
+#### WorkspaceMember
 
 | Field | Description |
 | --- | --- |
+| `created_at` | ISO 8601 timestamp of when the membership was created |
+| `id` | Unique identifier for the workspace membership |
+| `role` | Role of the member in the workspace |
+| `user_id` | Clerk user ID of the member |
+| `workspace_id` | ID of the workspace |
 
-Operations: .
+Operations: List.
 
-API path: ``
+API path: `/workspaces/{id}/members`
 
 
 
@@ -1823,11 +1563,6 @@ Create an instance: `activity = client.Activity()`
 ```python
 activitys = client.Activity().list()
 ```
-
-
-### Add
-
-Create an instance: `add = client.Add()`
 
 
 ### ApiKey
@@ -1946,11 +1681,6 @@ app_rankings = client.AppRanking().list()
 ```
 
 
-### Benchmark
-
-Create an instance: `benchmark = client.Benchmark()`
-
-
 ### BetaAnalytics
 
 Create an instance: `beta_analytics = client.BetaAnalytics()`
@@ -2005,11 +1735,6 @@ beta_analytics = client.BetaAnalytics().create({
     "time_range": {},  # dict
 })
 ```
-
-
-### Budget
-
-Create an instance: `budget = client.Budget()`
 
 
 ### BulkAddWorkspaceMember
@@ -2329,39 +2054,74 @@ chat_result = client.ChatResult().create({
 ```
 
 
-### Code
-
-Create an instance: `code = client.Code()`
-
-
-### Coinbase
-
-Create an instance: `coinbase = client.Coinbase()`
-
-
 ### Completion
 
 Create an instance: `completion = client.Completion()`
 
+#### Operations
 
-### Content
+| Method | Description |
+| --- | --- |
+| `create(data)` | Create a new entity with the given data. |
 
-Create an instance: `content = client.Content()`
+#### Fields
 
+| Field | Type | Description |
+| --- | --- | --- |
+| `cache_control` | `dict` | Enable automatic prompt caching. |
+| `debug` | `dict` | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `float | None` | Frequency penalty (-2.0 to 2.0) |
+| `image_config` | `dict` | Provider-specific image configuration options. |
+| `logit_bias` | `dict | None` | Token logit bias adjustments |
+| `logprobs` | `bool | None` | Return log probabilities |
+| `max_completion_tokens` | `int | None` | Maximum tokens in completion |
+| `max_tokens` | `int | None` | Maximum tokens (deprecated, use max_completion_tokens). |
+| `messages` | `list` | List of messages for the conversation |
+| `metadata` | `dict` | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
+| `min_p` | `float | None` | Minimum probability threshold relative to the most likely token. |
+| `modalities` | `list` | Output modalities for the response. |
+| `model` | `str` | Model to use for completion |
+| `models` | `list` | Models to use for completion |
+| `parallel_tool_calls` | `bool | None` | Whether to enable parallel function calling during tool use. |
+| `plugins` | `list` | Plugins you want to enable for this request, including their settings. |
+| `prediction` | `dict | None` | Static predicted output content. |
+| `presence_penalty` | `float | None` | Presence penalty (-2.0 to 2.0) |
+| `prompt_cache_key` | `str | None` |  |
+| `prompt_cache_options` | `dict | None` | Request-level prompt-cache controls. |
+| `provider` | `dict | None` | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `dict` | Configuration options for reasoning models |
+| `reasoning_effort` | `str | None` | Shorthand for setting reasoning effort. |
+| `repetition_penalty` | `float | None` | Penalizes tokens based on how much they have already appeared in the text. |
+| `response_format` | `Any` | Response format configuration |
+| `route` | `str | None` | **DEPRECATED** Use providers.sort.partition instead. |
+| `seed` | `int | None` | Random seed for deterministic outputs |
+| `service_tier` | `str | None` | The service tier to use for processing this request. |
+| `session_id` | `str` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop` | `Any` | Stop sequences (up to 4) |
+| `stop_server_tools_when` | `list` | Stop conditions for the server-tool agent loop. |
+| `stream` | `bool` | Enable streaming response |
+| `stream_options` | `dict | None` | Streaming configuration options |
+| `temperature` | `float | None` | Sampling temperature (0-2) |
+| `tool_choice` | `Any` | Tool choice configuration |
+| `tools` | `list` | Available tools for function calling |
+| `top_a` | `float | None` | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
+| `top_k` | `int | None` | Limits the model to choose from the top K most likely tokens at each step. |
+| `top_logprobs` | `int | None` | Number of top log probabilities to return (0-20) |
+| `top_p` | `float | None` | Nucleus sampling parameter (0-1) |
+| `trace` | `dict` | Metadata for observability and tracing. |
+| `user` | `str` | Unique user identifier |
 
-### Count
+#### Example: Create
 
-Create an instance: `count = client.Count()`
-
-
-### CreateByokKey
-
-Create an instance: `create_byok_key = client.CreateByokKey()`
-
-
-### CreateGuardrail
-
-Create an instance: `create_guardrail = client.CreateGuardrail()`
+```python
+completion = client.Completion().create({
+    "slug": "example_slug",  # str
+    "cache_control": {},  # dict
+    "messages": [],  # list
+    "prediction": {},  # dict | None
+    "prompt_cache_options": {},  # dict | None
+})
+```
 
 
 ### CreateObservabilityDestination
@@ -2400,101 +2160,6 @@ create_observability_destination = client.CreateObservabilityDestination().creat
 ```
 
 
-### CreatePresetFromInference
-
-Create an instance: `create_preset_from_inference = client.CreatePresetFromInference()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `create(data)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `background` | `bool | None` |  |
-| `cache_control` | `dict` | Enable automatic prompt caching. |
-| `context_management` | `dict | None` |  |
-| `debug` | `dict` | Debug options for inspecting request transformations (streaming only) |
-| `fallbacks` | `list | None` | Fallback models to try if the primary model fails or refuses, in order. |
-| `frequency_penalty` | `float | None` | Frequency penalty (-2.0 to 2.0) |
-| `image_config` | `dict` | Provider-specific image configuration options. |
-| `include` | `list | None` |  |
-| `input` | `Any` | Input for a response request - can be a string or array of items |
-| `instructions` | `str | None` |  |
-| `logit_bias` | `dict | None` | Token logit bias adjustments |
-| `logprobs` | `bool | None` | Return log probabilities |
-| `max_completion_tokens` | `int | None` | Maximum tokens in completion |
-| `max_output_tokens` | `int | None` |  |
-| `max_tokens` | `int | None` | Maximum tokens (deprecated, use max_completion_tokens). |
-| `max_tool_calls` | `int | None` |  |
-| `messages` | `list` | List of messages for the conversation |
-| `metadata` | `dict` | Key-value pairs for additional object information (max 16 pairs, 64 char keys, 512 char values) |
-| `min_p` | `float | None` | Minimum probability threshold relative to the most likely token. |
-| `modalities` | `list` | Output modalities for the response. |
-| `model` | `str` | Model to use for completion |
-| `models` | `list` | Models to use for completion |
-| `output_config` | `dict` | Configuration for controlling output behavior. |
-| `parallel_tool_calls` | `bool | None` | Whether to enable parallel function calling during tool use. |
-| `plugins` | `list` | Plugins you want to enable for this request, including their settings. |
-| `prediction` | `dict | None` | Static predicted output content. |
-| `presence_penalty` | `float | None` | Presence penalty (-2.0 to 2.0) |
-| `previous_response_id` | `str` | Not supported. |
-| `prompt` | `dict | None` |  |
-| `prompt_cache_key` | `str | None` |  |
-| `prompt_cache_options` | `dict | None` | Request-level prompt-cache controls. |
-| `provider` | `dict | None` | When multiple model providers are available, optionally indicate your routing preference. |
-| `reasoning` | `dict` | Configuration options for reasoning models |
-| `reasoning_effort` | `str | None` | Shorthand for setting reasoning effort. |
-| `repetition_penalty` | `float | None` | Penalizes tokens based on how much they have already appeared in the text. |
-| `response_format` | `Any` | Response format configuration |
-| `route` | `str | None` | **DEPRECATED** Use providers.sort.partition instead. |
-| `safety_identifier` | `str | None` |  |
-| `seed` | `int | None` | Random seed for deterministic outputs |
-| `service_tier` | `str | None` | The service tier to use for processing this request. |
-| `session_id` | `str` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
-| `speed` | `Any` |  |
-| `stop` | `Any` | Stop sequences (up to 4) |
-| `stop_sequences` | `list` |  |
-| `stop_server_tools_when` | `list` | Stop conditions for the server-tool agent loop. |
-| `store` | `bool` |  |
-| `stream` | `bool` | Enable streaming response |
-| `stream_options` | `dict | None` | Streaming configuration options |
-| `system` | `Any` |  |
-| `temperature` | `float | None` | Sampling temperature (0-2) |
-| `text` | `Any` | Text output configuration including format and verbosity |
-| `thinking` | `Any` |  |
-| `tool_choice` | `Any` | Tool choice configuration |
-| `tools` | `list` | Available tools for function calling |
-| `top_a` | `float | None` | Consider only tokens with "sufficiently high" probabilities based on the probability of the most likely token. |
-| `top_k` | `int | None` | Limits the model to choose from the top K most likely tokens at each step. |
-| `top_logprobs` | `int | None` | Number of top log probabilities to return (0-20) |
-| `top_p` | `float | None` | Nucleus sampling parameter (0-1) |
-| `trace` | `dict` | Metadata for observability and tracing. |
-| `truncation` | `str | None` |  |
-| `user` | `str` | Unique user identifier |
-
-#### Example: Create
-
-```python
-create_preset_from_inference = client.CreatePresetFromInference().create({
-    "slug": "example_slug",  # str
-    "cache_control": {},  # dict
-    "messages": [],  # list
-    "prediction": {},  # dict | None
-    "prompt": {},  # dict | None
-    "prompt_cache_options": {},  # dict | None
-})
-```
-
-
-### CreateWorkspace
-
-Create an instance: `create_workspace = client.CreateWorkspace()`
-
-
 ### Credit
 
 Create an instance: `credit = client.Credit()`
@@ -2527,11 +2192,6 @@ credit = client.Credit().create({
     "total_usage": 1,  # float
 })
 ```
-
-
-### Destination
-
-Create an instance: `destination = client.Destination()`
 
 
 ### Embedding
@@ -2620,11 +2280,6 @@ endpoint = client.Endpoint().load({"author": "author", "slug": "slug"})
 ```python
 endpoints = client.Endpoint().list()
 ```
-
-
-### Feedback
-
-Create an instance: `feedback = client.Feedback()`
 
 
 ### File
@@ -2745,9 +2400,9 @@ generation = client.Generation().load({"id": "generation_id"})
 ```
 
 
-### GenerationContent
+### GenerationContentData
 
-Create an instance: `generation_content = client.GenerationContent()`
+Create an instance: `generation_content_data = client.GenerationContentData()`
 
 #### Operations
 
@@ -2765,7 +2420,7 @@ Create an instance: `generation_content = client.GenerationContent()`
 #### Example: Load
 
 ```python
-generation_content = client.GenerationContent().load({"id": "generation_content_id"})
+generation_content_data = client.GenerationContentData().load({"id": "generation_content_data_id"})
 ```
 
 
@@ -2905,9 +2560,9 @@ image_model_endpoints = client.ImageModelEndpoint().list({"model_id": "example",
 ```
 
 
-### ImageModelsList
+### ImageModelListItem
 
-Create an instance: `image_models_list = client.ImageModelsList()`
+Create an instance: `image_model_list_item = client.ImageModelListItem()`
 
 #### Operations
 
@@ -2931,28 +2586,13 @@ Create an instance: `image_models_list = client.ImageModelsList()`
 #### Example: List
 
 ```python
-image_models_lists = client.ImageModelsList().list()
+image_model_list_items = client.ImageModelListItem().list()
 ```
 
 
 ### Key
 
 Create an instance: `key = client.Key()`
-
-
-### ListByokKey
-
-Create an instance: `list_byok_key = client.ListByokKey()`
-
-
-### ListGuardrail
-
-Create an instance: `list_guardrail = client.ListGuardrail()`
-
-
-### ListKeyAssignment
-
-Create an instance: `list_key_assignment = client.ListKeyAssignment()`
 
 #### Operations
 
@@ -2975,35 +2615,7 @@ Create an instance: `list_key_assignment = client.ListKeyAssignment()`
 #### Example: List
 
 ```python
-list_key_assignments = client.ListKeyAssignment().list()
-```
-
-
-### ListMemberAssignment
-
-Create an instance: `list_member_assignment = client.ListMemberAssignment()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list()` | List entities, optionally matching the given criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `assigned_by` | `str | None` | User ID of who made the assignment |
-| `created_at` | `str` | ISO 8601 timestamp of when the assignment was created |
-| `guardrail_id` | `str` | ID of the guardrail |
-| `id` | `str` | Unique identifier for the assignment |
-| `organization_id` | `str` | Organization ID |
-| `user_id` | `str` | Clerk user ID of the assigned member |
-
-#### Example: List
-
-```python
-list_member_assignments = client.ListMemberAssignment().list()
+keys = client.Key().list()
 ```
 
 
@@ -3029,11 +2641,6 @@ Create an instance: `list_observability_destination = client.ListObservabilityDe
 ```python
 list_observability_destinations = client.ListObservabilityDestination().list()
 ```
-
-
-### ListPreset
-
-Create an instance: `list_preset = client.ListPreset()`
 
 
 ### ListPresetVersion
@@ -3066,69 +2673,32 @@ list_preset_versions = client.ListPresetVersion().list({"slug": "example"})
 ```
 
 
-### ListWorkspace
-
-Create an instance: `list_workspace = client.ListWorkspace()`
-
-
-### ListWorkspaceBudget
-
-Create an instance: `list_workspace_budget = client.ListWorkspaceBudget()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list()` | List entities, optionally matching the given criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `created_at` | `str` | ISO 8601 timestamp of when the budget was created |
-| `id` | `str` | Unique identifier for the budget |
-| `limit_usd` | `float` | Spending limit in USD for this interval |
-| `reset_interval` | `str | None` | Interval at which spend resets. |
-| `updated_at` | `str` | ISO 8601 timestamp of when the budget was last updated |
-| `workspace_id` | `str` | ID of the workspace the budget belongs to |
-
-#### Example: List
-
-```python
-list_workspace_budgets = client.ListWorkspaceBudget().list({"workspace_id": "example"})
-```
-
-
-### ListWorkspaceMember
-
-Create an instance: `list_workspace_member = client.ListWorkspaceMember()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list()` | List entities, optionally matching the given criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `created_at` | `str` | ISO 8601 timestamp of when the membership was created |
-| `id` | `str` | Unique identifier for the workspace membership |
-| `role` | `str` | Role of the member in the workspace |
-| `user_id` | `str` | Clerk user ID of the member |
-| `workspace_id` | `str` | ID of the workspace |
-
-#### Example: List
-
-```python
-list_workspace_members = client.ListWorkspaceMember().list({"workspace_id": "example"})
-```
-
-
 ### Member
 
 Create an instance: `member = client.Member()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list()` | List entities, optionally matching the given criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `assigned_by` | `str | None` | User ID of who made the assignment |
+| `created_at` | `str` | ISO 8601 timestamp of when the assignment was created |
+| `guardrail_id` | `str` | ID of the guardrail |
+| `id` | `str` | Unique identifier for the assignment |
+| `organization_id` | `str` | Organization ID |
+| `user_id` | `str` | Clerk user ID of the assigned member |
+
+#### Example: List
+
+```python
+members = client.Member().list()
+```
 
 
 ### Message
@@ -3182,11 +2752,6 @@ message = client.Message().create({
     "model": "example_model",  # str
 })
 ```
-
-
-### Meta
-
-Create an instance: `meta = client.Meta()`
 
 
 ### Model
@@ -3556,11 +3121,6 @@ providers = client.Provider().list()
 ```
 
 
-### Query
-
-Create an instance: `query = client.Query()`
-
-
 ### RankingsDaily
 
 Create an instance: `rankings_daily = client.RankingsDaily()`
@@ -3584,11 +3144,6 @@ Create an instance: `rankings_daily = client.RankingsDaily()`
 ```python
 rankings_dailys = client.RankingsDaily().list()
 ```
-
-
-### Remove
-
-Create an instance: `remove = client.Remove()`
 
 
 ### Rerank
@@ -3630,10 +3185,67 @@ rerank = client.Rerank().create({
 
 Create an instance: `response = client.Response()`
 
+#### Operations
 
-### Speech
+| Method | Description |
+| --- | --- |
+| `create(data)` | Create a new entity with the given data. |
 
-Create an instance: `speech = client.Speech()`
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `background` | `bool | None` |  |
+| `cache_control` | `dict` | Enable automatic prompt caching. |
+| `debug` | `dict` | Debug options for inspecting request transformations (streaming only) |
+| `frequency_penalty` | `float | None` |  |
+| `image_config` | `dict` | Provider-specific image configuration options. |
+| `include` | `list | None` |  |
+| `input` | `Any` | Input for a response request - can be a string or array of items |
+| `instructions` | `str | None` |  |
+| `max_output_tokens` | `int | None` |  |
+| `max_tool_calls` | `int | None` |  |
+| `metadata` | `dict | None` | Metadata key-value pairs for the request. |
+| `modalities` | `list` | Output modalities for the response. |
+| `model` | `str` |  |
+| `models` | `list` |  |
+| `parallel_tool_calls` | `bool | None` |  |
+| `plugins` | `list` | Plugins you want to enable for this request, including their settings. |
+| `presence_penalty` | `float | None` |  |
+| `previous_response_id` | `str` | Not supported. |
+| `prompt` | `dict | None` |  |
+| `prompt_cache_key` | `str | None` |  |
+| `prompt_cache_options` | `dict | None` | Request-level prompt-cache controls. |
+| `provider` | `dict | None` | When multiple model providers are available, optionally indicate your routing preference. |
+| `reasoning` | `Any` | Configuration for reasoning mode in the response |
+| `route` | `str | None` | **DEPRECATED** Use providers.sort.partition instead. |
+| `safety_identifier` | `str | None` |  |
+| `service_tier` | `str | None` |  |
+| `session_id` | `str` | A unique identifier for grouping related requests (e.g., a conversation or agent workflow). |
+| `stop_server_tools_when` | `list` | Stop conditions for the server-tool agent loop. |
+| `store` | `bool` |  |
+| `stream` | `bool` |  |
+| `temperature` | `float | None` |  |
+| `text` | `Any` | Text output configuration including format and verbosity |
+| `tool_choice` | `Any` |  |
+| `tools` | `list` |  |
+| `top_k` | `int` |  |
+| `top_logprobs` | `int | None` |  |
+| `top_p` | `float | None` |  |
+| `trace` | `dict` | Metadata for observability and tracing. |
+| `truncation` | `str | None` |  |
+| `user` | `str` | A unique identifier representing your end-user, which helps distinguish between different users of your app. |
+
+#### Example: Create
+
+```python
+response = client.Response().create({
+    "slug": "example_slug",  # str
+    "cache_control": {},  # dict
+    "prompt": {},  # dict | None
+    "prompt_cache_options": {},  # dict | None
+})
+```
 
 
 ### Stt
@@ -3729,11 +3341,6 @@ Create an instance: `task = client.Task()`
 ```python
 task = client.Task().load()
 ```
-
-
-### Transcription
-
-Create an instance: `transcription = client.Transcription()`
 
 
 ### Tts
@@ -3942,16 +3549,6 @@ Create an instance: `upsert_workspace_budget = client.UpsertWorkspaceBudget()`
 | `limit_usd` | `float` | Spending limit in USD. |
 
 
-### User
-
-Create an instance: `user = client.User()`
-
-
-### Version
-
-Create an instance: `version = client.Version()`
-
-
 ### Video
 
 Create an instance: `video = client.Video()`
@@ -4028,9 +3625,9 @@ video_generation = client.VideoGeneration().load({"id": "video_generation_id"})
 ```
 
 
-### VideoModelsList
+### VideoModel
 
-Create an instance: `video_models_list = client.VideoModelsList()`
+Create an instance: `video_model = client.VideoModel()`
 
 #### Operations
 
@@ -4061,7 +3658,7 @@ Create an instance: `video_models_list = client.VideoModelsList()`
 #### Example: List
 
 ```python
-video_models_lists = client.VideoModelsList().list()
+video_models = client.VideoModel().list()
 ```
 
 
@@ -4111,18 +3708,52 @@ Create an instance: `workspace_budget = client.WorkspaceBudget()`
 
 | Method | Description |
 | --- | --- |
+| `list()` | List entities, optionally matching the given criteria. |
 | `remove(match)` | Remove the matching entity. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `str` |  |
+| `created_at` | `str` | ISO 8601 timestamp of when the budget was created |
+| `id` | `str` | Unique identifier for the budget |
+| `limit_usd` | `float` | Spending limit in USD for this interval |
+| `reset_interval` | `str | None` | Interval at which spend resets. |
+| `updated_at` | `str` | ISO 8601 timestamp of when the budget was last updated |
+| `workspace_id` | `str` | ID of the workspace the budget belongs to |
+
+#### Example: List
+
+```python
+workspace_budgets = client.WorkspaceBudget().list({"id": "example"})
+```
 
 
-### Zdr
+### WorkspaceMember
 
-Create an instance: `zdr = client.Zdr()`
+Create an instance: `workspace_member = client.WorkspaceMember()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list()` | List entities, optionally matching the given criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `created_at` | `str` | ISO 8601 timestamp of when the membership was created |
+| `id` | `str` | Unique identifier for the workspace membership |
+| `role` | `str` | Role of the member in the workspace |
+| `user_id` | `str` | Clerk user ID of the member |
+| `workspace_id` | `str` | ID of the workspace |
+
+#### Example: List
+
+```python
+workspace_members = client.WorkspaceMember().list({"id": "example"})
+```
 
 ## Features
 
@@ -4208,7 +3839,7 @@ activated earlier.
 
 ## Open types
 
-30 fields are carried as open values rather than typed structures.
+32 fields are carried as open values rather than typed structures.
 This follows from the API definition, not from a gap in this SDK: the
 definition describes them with untagged unions —
 `oneOf`/`anyOf` branches with no `discriminator` — so it never states which
@@ -4218,36 +3849,38 @@ guarantee.
 
 | Entity | Field | Variants | Nesting |
 | --- | --- | --- | --- |
-| `create_preset_from_inference` | `input` | 49 | 19 levels |
 | `open_responses_result` | `input` | 49 | 19 levels |
+| `response` | `input` | 49 | 19 levels |
 | `open_responses_result` | `tools` | 27 | 12 levels |
+| `response` | `tools` | 27 | 12 levels |
 | `message` | `tools` | 13 | 6 levels |
 | `chat_result` | `tools` | 12 | 6 levels |
-| `create_preset_from_inference` | `tools` | 12 | 6 levels |
+| `completion` | `tools` | 12 | 6 levels |
 | `message` | `messages` | 12 | 14 levels |
 | `open_responses_result` | `tool_choice` | 8 | 4 levels |
+| `response` | `tool_choice` | 8 | 4 levels |
 | `chat_result` | `plugins` | 5 | 12 levels |
 | `chat_result` | `tool_choice` | 5 | 0 levels |
-| `create_preset_from_inference` | `plugins` | 5 | 12 levels |
-| `create_preset_from_inference` | `tool_choice` | 5 | 0 levels |
+| `completion` | `plugins` | 5 | 12 levels |
+| `completion` | `tool_choice` | 5 | 0 levels |
 | `embedding` | `input` | 5 | 6 levels |
 | `message` | `plugins` | 5 | 12 levels |
 | `open_responses_result` | `plugins` | 5 | 12 levels |
-| `create_preset_from_inference` | `prompt` | 4 | 3 levels |
+| `response` | `plugins` | 5 | 12 levels |
 | `image` | `usage` | 4 | 3 levels |
 | `message` | `tool_choice` | 4 | 0 levels |
 | `open_responses_result` | `prompt` | 4 | 3 levels |
+| `response` | `prompt` | 4 | 3 levels |
 | `beta_analytics` | `classifier_filters` | 3 | 8 levels |
 | `beta_analytics` | `filters` | 3 | 6 levels |
 | `chat_result` | `image_config` | 3 | 1 level |
-| `create_preset_from_inference` | `context_management` | 3 | 7 levels |
-| `create_preset_from_inference` | `image_config` | 3 | 1 level |
-| `create_preset_from_inference` | `text` | 3 | 4 levels |
-| `create_preset_from_inference` | `thinking` | 3 | 0 levels |
+| `completion` | `image_config` | 3 | 1 level |
 | `message` | `context_management` | 3 | 7 levels |
 | `message` | `thinking` | 3 | 0 levels |
 | `open_responses_result` | `image_config` | 3 | 1 level |
 | `open_responses_result` | `text` | 3 | 4 levels |
+| `response` | `image_config` | 3 | 1 level |
+| `response` | `text` | 3 | 4 levels |
 
 These values round-trip unchanged — read them, modify them, send them back. If
 the API adds a `discriminator` to the definition, regenerating will type them.
@@ -4328,15 +3961,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-presetversion = client.PresetVersion()
-presetversion.load({"id": "example_id", "slug": "example"})
+provider = client.Provider()
+provider.list()
 
-# presetversion.data_get() now returns the presetversion data from the last load
-# presetversion.match_get() returns the last match criteria
+# provider.data_get() now returns the provider data from the last list
+# provider.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

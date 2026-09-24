@@ -1,9 +1,0 @@
-# BasicCreateWorkspaceFlow
-
-main: kit: flow: BasicCreateWorkspaceFlow:
-{
-  entity: "create_workspace",
-  kind: "basic",
-  name: "BasicCreateWorkspaceFlow",
-  "key$": "BasicCreateWorkspaceFlow"
-}

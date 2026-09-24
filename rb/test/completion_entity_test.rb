@@ -16,7 +16,7 @@ class CompletionEntityTest < Minitest::Test
     setup = completion_basic_setup(nil)
     # Per-op sdk-test-control.json skip.
     _live = setup[:live] || false
-    [].each do |_op|
+    ["create"].each do |_op|
       _should_skip, _reason = Runner.is_control_skipped("entityOp", "completion." + _op, _live ? "live" : "unit")
       if _should_skip
         skip(_reason || "skipped via sdk-test-control.json")
@@ -31,13 +31,15 @@ class CompletionEntityTest < Minitest::Test
     end
     client = setup[:client]
 
-    # Bootstrap entity data from existing test data.
-    completion_ref01_data_raw = Vs.items(Helpers.to_map(
-      Vs.getpath(setup[:data], "existing.completion")))
-    completion_ref01_data = nil
-    if completion_ref01_data_raw.length > 0
-      completion_ref01_data = Helpers.to_map(completion_ref01_data_raw[0][1])
-    end
+    # CREATE
+    completion_ref01_ent = client.Completion(nil)
+    completion_ref01_data = Helpers.to_map(Vs.getprop(
+      Vs.getpath(setup[:data], "new.completion"), "completion_ref01"))
+    completion_ref01_data["slug"] = setup[:idmap]["slug01"]
+
+    completion_ref01_data_result = completion_ref01_ent.create(completion_ref01_data, nil)
+    completion_ref01_data = Helpers.to_map(completion_ref01_data_result.respond_to?(:data_get) ? completion_ref01_data_result.data_get : completion_ref01_data_result)
+    assert !completion_ref01_data.nil?
 
   end
 end
@@ -56,7 +58,7 @@ def completion_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["completion01", "completion02", "completion03", "preset01", "preset02", "preset03"],
+    ["completion01", "completion02", "completion03", "preset01", "preset02", "preset03", "slug01"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

@@ -1,12 +1,9 @@
 // OpenrouterModels Ts SDK
 
 import { ActivityEntity } from './entity/ActivityEntity'
-import { AddEntity } from './entity/AddEntity'
 import { ApiKeyEntity } from './entity/ApiKeyEntity'
 import { AppRankingEntity } from './entity/AppRankingEntity'
-import { BenchmarkEntity } from './entity/BenchmarkEntity'
 import { BetaAnalyticsEntity } from './entity/BetaAnalyticsEntity'
-import { BudgetEntity } from './entity/BudgetEntity'
 import { BulkAddWorkspaceMemberEntity } from './entity/BulkAddWorkspaceMemberEntity'
 import { BulkAssignKeyEntity } from './entity/BulkAssignKeyEntity'
 import { BulkAssignMemberEntity } from './entity/BulkAssignMemberEntity'
@@ -15,42 +12,23 @@ import { BulkUnassignKeyEntity } from './entity/BulkUnassignKeyEntity'
 import { BulkUnassignMemberEntity } from './entity/BulkUnassignMemberEntity'
 import { ByokEntity } from './entity/ByokEntity'
 import { ChatResultEntity } from './entity/ChatResultEntity'
-import { CodeEntity } from './entity/CodeEntity'
-import { CoinbaseEntity } from './entity/CoinbaseEntity'
 import { CompletionEntity } from './entity/CompletionEntity'
-import { ContentEntity } from './entity/ContentEntity'
-import { CountEntity } from './entity/CountEntity'
-import { CreateByokKeyEntity } from './entity/CreateByokKeyEntity'
-import { CreateGuardrailEntity } from './entity/CreateGuardrailEntity'
 import { CreateObservabilityDestinationEntity } from './entity/CreateObservabilityDestinationEntity'
-import { CreatePresetFromInferenceEntity } from './entity/CreatePresetFromInferenceEntity'
-import { CreateWorkspaceEntity } from './entity/CreateWorkspaceEntity'
 import { CreditEntity } from './entity/CreditEntity'
-import { DestinationEntity } from './entity/DestinationEntity'
 import { EmbeddingEntity } from './entity/EmbeddingEntity'
 import { EndpointEntity } from './entity/EndpointEntity'
-import { FeedbackEntity } from './entity/FeedbackEntity'
 import { FileEntity } from './entity/FileEntity'
 import { GenerationEntity } from './entity/GenerationEntity'
-import { GenerationContentEntity } from './entity/GenerationContentEntity'
+import { GenerationContentDataEntity } from './entity/GenerationContentDataEntity'
 import { GuardrailEntity } from './entity/GuardrailEntity'
 import { ImageEntity } from './entity/ImageEntity'
 import { ImageModelEndpointEntity } from './entity/ImageModelEndpointEntity'
-import { ImageModelsListEntity } from './entity/ImageModelsListEntity'
+import { ImageModelListItemEntity } from './entity/ImageModelListItemEntity'
 import { KeyEntity } from './entity/KeyEntity'
-import { ListByokKeyEntity } from './entity/ListByokKeyEntity'
-import { ListGuardrailEntity } from './entity/ListGuardrailEntity'
-import { ListKeyAssignmentEntity } from './entity/ListKeyAssignmentEntity'
-import { ListMemberAssignmentEntity } from './entity/ListMemberAssignmentEntity'
 import { ListObservabilityDestinationEntity } from './entity/ListObservabilityDestinationEntity'
-import { ListPresetEntity } from './entity/ListPresetEntity'
 import { ListPresetVersionEntity } from './entity/ListPresetVersionEntity'
-import { ListWorkspaceEntity } from './entity/ListWorkspaceEntity'
-import { ListWorkspaceBudgetEntity } from './entity/ListWorkspaceBudgetEntity'
-import { ListWorkspaceMemberEntity } from './entity/ListWorkspaceMemberEntity'
 import { MemberEntity } from './entity/MemberEntity'
 import { MessageEntity } from './entity/MessageEntity'
-import { MetaEntity } from './entity/MetaEntity'
 import { ModelEntity } from './entity/ModelEntity'
 import { ModelsCountEntity } from './entity/ModelsCountEntity'
 import { ModelsListEntity } from './entity/ModelsListEntity'
@@ -61,16 +39,12 @@ import { OrganizationEntity } from './entity/OrganizationEntity'
 import { PresetEntity } from './entity/PresetEntity'
 import { PresetVersionEntity } from './entity/PresetVersionEntity'
 import { ProviderEntity } from './entity/ProviderEntity'
-import { QueryEntity } from './entity/QueryEntity'
 import { RankingsDailyEntity } from './entity/RankingsDailyEntity'
-import { RemoveEntity } from './entity/RemoveEntity'
 import { RerankEntity } from './entity/RerankEntity'
 import { ResponseEntity } from './entity/ResponseEntity'
-import { SpeechEntity } from './entity/SpeechEntity'
 import { SttEntity } from './entity/SttEntity'
 import { SubmitGenerationFeedbackEntity } from './entity/SubmitGenerationFeedbackEntity'
 import { TaskEntity } from './entity/TaskEntity'
-import { TranscriptionEntity } from './entity/TranscriptionEntity'
 import { TtsEntity } from './entity/TtsEntity'
 import { UnifiedBenchmarkEntity } from './entity/UnifiedBenchmarkEntity'
 import { UpdateByokKeyEntity } from './entity/UpdateByokKeyEntity'
@@ -78,14 +52,12 @@ import { UpdateGuardrailEntity } from './entity/UpdateGuardrailEntity'
 import { UpdateObservabilityDestinationEntity } from './entity/UpdateObservabilityDestinationEntity'
 import { UpdateWorkspaceEntity } from './entity/UpdateWorkspaceEntity'
 import { UpsertWorkspaceBudgetEntity } from './entity/UpsertWorkspaceBudgetEntity'
-import { UserEntity } from './entity/UserEntity'
-import { VersionEntity } from './entity/VersionEntity'
 import { VideoEntity } from './entity/VideoEntity'
 import { VideoGenerationEntity } from './entity/VideoGenerationEntity'
-import { VideoModelsListEntity } from './entity/VideoModelsListEntity'
+import { VideoModelEntity } from './entity/VideoModelEntity'
 import { WorkspaceEntity } from './entity/WorkspaceEntity'
 import { WorkspaceBudgetEntity } from './entity/WorkspaceBudgetEntity'
-import { ZdrEntity } from './entity/ZdrEntity'
+import { WorkspaceMemberEntity } from './entity/WorkspaceMemberEntity'
 
 export type * from './OpenrouterModelsTypes'
 
@@ -209,7 +181,6 @@ class OpenrouterModelsSDK {
 
     const options = this._options
 
-    // Build spec directly from SDK options + user-provided fetch args.
     const spec: any = {
       base: options.base,
       prefix: options.prefix,
@@ -225,7 +196,6 @@ class OpenrouterModelsSDK {
 
     ctx.spec = spec
 
-    // Merge user-provided headers over SDK defaults.
     if (fetchargs.headers) {
       const uheaders = fetchargs.headers
       for (let key in uheaders) {
@@ -235,7 +205,6 @@ class OpenrouterModelsSDK {
 
     
 
-    // Apply SDK auth (apikey, auth prefix, etc.)
     const authResult = prepareAuth(ctx)
     if (authResult instanceof Error) {
       return authResult
@@ -328,18 +297,6 @@ class OpenrouterModelsSDK {
 
 
 
-  // Raw GraphQL access: the pressure valve that makes the generated
-  // surface's deliberate omissions (per-call selection sets, typed filter
-  // builders, batching, subscriptions) livable — the whole schema stays
-  // reachable.
-  //
-  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
-  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
-  // HTTP 200 as a top-level `errors` array, so status alone would report a
-  // failed query as ok.
-  //
-  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
-  // ratelimit or paging features apply.
   async graphql(query: string, variables?: any, ctrl?: any) {
     const options = this._options
 
@@ -391,15 +348,6 @@ class OpenrouterModelsSDK {
   }
 
 
-  // Entity access: `client.Add().list()` / `client.Add().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Add(entopts?: Record<string, any>) {
-    const self = this
-    return new AddEntity(self, entopts)
-  }
-
-
   // Entity access: `client.ApiKey().list()` / `client.ApiKey().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
@@ -418,30 +366,12 @@ class OpenrouterModelsSDK {
   }
 
 
-  // Entity access: `client.Benchmark().list()` / `client.Benchmark().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Benchmark(entopts?: Record<string, any>) {
-    const self = this
-    return new BenchmarkEntity(self, entopts)
-  }
-
-
   // Entity access: `client.BetaAnalytics().list()` / `client.BetaAnalytics().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
   BetaAnalytics(entopts?: Record<string, any>) {
     const self = this
     return new BetaAnalyticsEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.Budget().list()` / `client.Budget().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Budget(entopts?: Record<string, any>) {
-    const self = this
-    return new BudgetEntity(self, entopts)
   }
 
 
@@ -517,66 +447,12 @@ class OpenrouterModelsSDK {
   }
 
 
-  // Entity access: `client.Code().list()` / `client.Code().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Code(entopts?: Record<string, any>) {
-    const self = this
-    return new CodeEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.Coinbase().list()` / `client.Coinbase().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Coinbase(entopts?: Record<string, any>) {
-    const self = this
-    return new CoinbaseEntity(self, entopts)
-  }
-
-
   // Entity access: `client.Completion().list()` / `client.Completion().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
   Completion(entopts?: Record<string, any>) {
     const self = this
     return new CompletionEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.Content().list()` / `client.Content().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Content(entopts?: Record<string, any>) {
-    const self = this
-    return new ContentEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.Count().list()` / `client.Count().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Count(entopts?: Record<string, any>) {
-    const self = this
-    return new CountEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.CreateByokKey().list()` / `client.CreateByokKey().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  CreateByokKey(entopts?: Record<string, any>) {
-    const self = this
-    return new CreateByokKeyEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.CreateGuardrail().list()` / `client.CreateGuardrail().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  CreateGuardrail(entopts?: Record<string, any>) {
-    const self = this
-    return new CreateGuardrailEntity(self, entopts)
   }
 
 
@@ -589,39 +465,12 @@ class OpenrouterModelsSDK {
   }
 
 
-  // Entity access: `client.CreatePresetFromInference().list()` / `client.CreatePresetFromInference().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  CreatePresetFromInference(entopts?: Record<string, any>) {
-    const self = this
-    return new CreatePresetFromInferenceEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.CreateWorkspace().list()` / `client.CreateWorkspace().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  CreateWorkspace(entopts?: Record<string, any>) {
-    const self = this
-    return new CreateWorkspaceEntity(self, entopts)
-  }
-
-
   // Entity access: `client.Credit().list()` / `client.Credit().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
   Credit(entopts?: Record<string, any>) {
     const self = this
     return new CreditEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.Destination().list()` / `client.Destination().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Destination(entopts?: Record<string, any>) {
-    const self = this
-    return new DestinationEntity(self, entopts)
   }
 
 
@@ -643,15 +492,6 @@ class OpenrouterModelsSDK {
   }
 
 
-  // Entity access: `client.Feedback().list()` / `client.Feedback().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Feedback(entopts?: Record<string, any>) {
-    const self = this
-    return new FeedbackEntity(self, entopts)
-  }
-
-
   // Entity access: `client.File().list()` / `client.File().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
@@ -670,12 +510,12 @@ class OpenrouterModelsSDK {
   }
 
 
-  // Entity access: `client.GenerationContent().list()` / `client.GenerationContent().load({ id })`.
+  // Entity access: `client.GenerationContentData().list()` / `client.GenerationContentData().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
-  GenerationContent(entopts?: Record<string, any>) {
+  GenerationContentData(entopts?: Record<string, any>) {
     const self = this
-    return new GenerationContentEntity(self, entopts)
+    return new GenerationContentDataEntity(self, entopts)
   }
 
 
@@ -706,12 +546,12 @@ class OpenrouterModelsSDK {
   }
 
 
-  // Entity access: `client.ImageModelsList().list()` / `client.ImageModelsList().load({ id })`.
+  // Entity access: `client.ImageModelListItem().list()` / `client.ImageModelListItem().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
-  ImageModelsList(entopts?: Record<string, any>) {
+  ImageModelListItem(entopts?: Record<string, any>) {
     const self = this
-    return new ImageModelsListEntity(self, entopts)
+    return new ImageModelListItemEntity(self, entopts)
   }
 
 
@@ -724,42 +564,6 @@ class OpenrouterModelsSDK {
   }
 
 
-  // Entity access: `client.ListByokKey().list()` / `client.ListByokKey().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  ListByokKey(entopts?: Record<string, any>) {
-    const self = this
-    return new ListByokKeyEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.ListGuardrail().list()` / `client.ListGuardrail().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  ListGuardrail(entopts?: Record<string, any>) {
-    const self = this
-    return new ListGuardrailEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.ListKeyAssignment().list()` / `client.ListKeyAssignment().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  ListKeyAssignment(entopts?: Record<string, any>) {
-    const self = this
-    return new ListKeyAssignmentEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.ListMemberAssignment().list()` / `client.ListMemberAssignment().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  ListMemberAssignment(entopts?: Record<string, any>) {
-    const self = this
-    return new ListMemberAssignmentEntity(self, entopts)
-  }
-
-
   // Entity access: `client.ListObservabilityDestination().list()` / `client.ListObservabilityDestination().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
@@ -769,48 +573,12 @@ class OpenrouterModelsSDK {
   }
 
 
-  // Entity access: `client.ListPreset().list()` / `client.ListPreset().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  ListPreset(entopts?: Record<string, any>) {
-    const self = this
-    return new ListPresetEntity(self, entopts)
-  }
-
-
   // Entity access: `client.ListPresetVersion().list()` / `client.ListPresetVersion().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
   ListPresetVersion(entopts?: Record<string, any>) {
     const self = this
     return new ListPresetVersionEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.ListWorkspace().list()` / `client.ListWorkspace().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  ListWorkspace(entopts?: Record<string, any>) {
-    const self = this
-    return new ListWorkspaceEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.ListWorkspaceBudget().list()` / `client.ListWorkspaceBudget().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  ListWorkspaceBudget(entopts?: Record<string, any>) {
-    const self = this
-    return new ListWorkspaceBudgetEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.ListWorkspaceMember().list()` / `client.ListWorkspaceMember().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  ListWorkspaceMember(entopts?: Record<string, any>) {
-    const self = this
-    return new ListWorkspaceMemberEntity(self, entopts)
   }
 
 
@@ -829,15 +597,6 @@ class OpenrouterModelsSDK {
   Message(entopts?: Record<string, any>) {
     const self = this
     return new MessageEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.Meta().list()` / `client.Meta().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Meta(entopts?: Record<string, any>) {
-    const self = this
-    return new MetaEntity(self, entopts)
   }
 
 
@@ -931,30 +690,12 @@ class OpenrouterModelsSDK {
   }
 
 
-  // Entity access: `client.Query().list()` / `client.Query().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Query(entopts?: Record<string, any>) {
-    const self = this
-    return new QueryEntity(self, entopts)
-  }
-
-
   // Entity access: `client.RankingsDaily().list()` / `client.RankingsDaily().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
   RankingsDaily(entopts?: Record<string, any>) {
     const self = this
     return new RankingsDailyEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.Remove().list()` / `client.Remove().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Remove(entopts?: Record<string, any>) {
-    const self = this
-    return new RemoveEntity(self, entopts)
   }
 
 
@@ -973,15 +714,6 @@ class OpenrouterModelsSDK {
   Response(entopts?: Record<string, any>) {
     const self = this
     return new ResponseEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.Speech().list()` / `client.Speech().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Speech(entopts?: Record<string, any>) {
-    const self = this
-    return new SpeechEntity(self, entopts)
   }
 
 
@@ -1009,15 +741,6 @@ class OpenrouterModelsSDK {
   Task(entopts?: Record<string, any>) {
     const self = this
     return new TaskEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.Transcription().list()` / `client.Transcription().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Transcription(entopts?: Record<string, any>) {
-    const self = this
-    return new TranscriptionEntity(self, entopts)
   }
 
 
@@ -1084,24 +807,6 @@ class OpenrouterModelsSDK {
   }
 
 
-  // Entity access: `client.User().list()` / `client.User().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  User(entopts?: Record<string, any>) {
-    const self = this
-    return new UserEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.Version().list()` / `client.Version().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  Version(entopts?: Record<string, any>) {
-    const self = this
-    return new VersionEntity(self, entopts)
-  }
-
-
   // Entity access: `client.Video().list()` / `client.Video().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
@@ -1120,12 +825,12 @@ class OpenrouterModelsSDK {
   }
 
 
-  // Entity access: `client.VideoModelsList().list()` / `client.VideoModelsList().load({ id })`.
+  // Entity access: `client.VideoModel().list()` / `client.VideoModel().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
-  VideoModelsList(entopts?: Record<string, any>) {
+  VideoModel(entopts?: Record<string, any>) {
     const self = this
-    return new VideoModelsListEntity(self, entopts)
+    return new VideoModelEntity(self, entopts)
   }
 
 
@@ -1147,12 +852,12 @@ class OpenrouterModelsSDK {
   }
 
 
-  // Entity access: `client.Zdr().list()` / `client.Zdr().load({ id })`.
+  // Entity access: `client.WorkspaceMember().list()` / `client.WorkspaceMember().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
-  Zdr(entopts?: Record<string, any>) {
+  WorkspaceMember(entopts?: Record<string, any>) {
     const self = this
-    return new ZdrEntity(self, entopts)
+    return new WorkspaceMemberEntity(self, entopts)
   }
 
 

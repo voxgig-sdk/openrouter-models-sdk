@@ -23,7 +23,7 @@ class ResponseEntityTest extends TestCase
         $setup = response_basic_setup(null);
         // Per-op sdk-test-control.json skip.
         $_live = !empty($setup["live"]);
-        foreach ([] as $_op) {
+        foreach (["create"] as $_op) {
             [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "response." . $_op, $_live ? "live" : "unit");
             if ($_shouldSkip) {
                 $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
@@ -38,13 +38,15 @@ class ResponseEntityTest extends TestCase
         }
         $client = $setup["client"];
 
-        // Bootstrap entity data from existing test data.
-        $response_ref01_data_raw = Vs::items(Helpers::to_map(
-            Vs::getpath($setup["data"], "existing.response")));
-        $response_ref01_data = null;
-        if (count($response_ref01_data_raw) > 0) {
-            $response_ref01_data = Helpers::to_map($response_ref01_data_raw[0][1]);
-        }
+        // CREATE
+        $response_ref01_ent = $client->Response(null);
+        $response_ref01_data = Helpers::to_map(Vs::getprop(
+            Vs::getpath($setup["data"], "new.response"), "response_ref01"));
+        $response_ref01_data["slug"] = $setup["idmap"]["slug01"];
+
+        $response_ref01_data_result = $response_ref01_ent->create($response_ref01_data, null);
+        $response_ref01_data = Helpers::to_map(is_object($response_ref01_data_result) && method_exists($response_ref01_data_result, 'data_get') ? $response_ref01_data_result->data_get() : $response_ref01_data_result);
+        $this->assertNotNull($response_ref01_data);
 
     }
 }
@@ -64,7 +66,7 @@ function response_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["response01", "response02", "response03"] as $k) {
+    foreach (["response01", "response02", "response03", "preset01", "preset02", "preset03", "slug01"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

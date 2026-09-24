@@ -1,0 +1,366 @@
+# Entity: model
+
+main: kit: entity: model: {
+
+  alias: field: {}
+
+  fields: {
+    architecture: {
+      h: "Architecture"
+      n: "architecture"
+      r: true
+      sh: "Model architecture information"
+      t: "`$OBJECT`"
+    }
+    benchmarks: {
+      h: "Benchmarks"
+      n: "benchmarks"
+      r: true
+      sh: "Third-party benchmark rankings for this model."
+      t: "`$OBJECT`"
+    }
+    canonical_slug: {
+      h: "Canonical Slug"
+      n: "canonical_slug"
+      r: true
+      sh: "Canonical slug for the model"
+      t: "`$STRING`"
+    }
+    context_length: {
+      h: "Context Length"
+      n: "context_length"
+      r: true
+      sh: "Maximum context length in tokens"
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    created: {
+      h: "Created"
+      n: "created"
+      r: true
+      sh: "Unix timestamp of when the model was created"
+      t: "`$INTEGER`"
+    }
+    default_parameters: {
+      h: "Default Parameters"
+      n: "default_parameters"
+      r: true
+      sh: "Default parameters for this model"
+      t: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Description of the model"
+      t: "`$STRING`"
+    }
+    expiration_date: {
+      h: "Expiration Date"
+      n: "expiration_date"
+      r: false
+      sh: "The date after which the model may be removed."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    hugging_face_id: {
+      h: "Hugging Face Id"
+      n: "hugging_face_id"
+      r: false
+      sh: "Hugging Face model identifier, if applicable"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "Unique identifier for the model"
+      t: "`$STRING`"
+    }
+    knowledge_cutoff: {
+      h: "Knowledge Cutoff"
+      n: "knowledge_cutoff"
+      r: false
+      sh: "The date up to which the model was trained on data."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    links: {
+      h: "Links"
+      n: "links"
+      r: true
+      sh: "Related API endpoints and resources for this model."
+      t: "`$OBJECT`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      sh: "Display name of the model"
+      t: "`$STRING`"
+    }
+    per_request_limits: {
+      h: "Per Request Limits"
+      n: "per_request_limits"
+      r: true
+      sh: "Per-request token limits"
+      t: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    pricing: {
+      h: "Pricing"
+      n: "pricing"
+      r: true
+      sh: "Pricing information for the model"
+      t: "`$OBJECT`"
+    }
+    reasoning: {
+      h: "Reasoning"
+      n: "reasoning"
+      r: true
+      sh: "Reasoning effort configuration."
+      t: "`$OBJECT`"
+    }
+    supported_parameters: {
+      h: "Supported Parameters"
+      n: "supported_parameters"
+      r: true
+      sh: "List of supported parameters for this model"
+      t: "`$ARRAY`"
+    }
+    supported_voices: {
+      h: "Supported Voices"
+      n: "supported_voices"
+      r: true
+      sh: "List of supported voice identifiers for TTS models."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    top_provider: {
+      h: "Top Provider"
+      n: "top_provider"
+      r: true
+      sh: "Information about the top provider for this model"
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+    parts: [
+      "author"
+      "slug"
+    ]
+    sep: "/"
+  }
+
+  name: "model"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /embeddings/models"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 500
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+            ]
+          }
+          m: "GET"
+          o: "/embeddings/models"
+          q: {
+            exist: [
+              "http_referer"
+              "limit"
+              "offset"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "embeddings"
+            }
+            {
+              lit: "models"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /model/{author}/{slug}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "openai"
+                k: "param"
+                n: "author"
+                or: "author"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "gpt-4"
+                k: "param"
+                n: "slug"
+                or: "slug"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/model/{author}/{slug}"
+          q: {
+            exist: [
+              "author"
+              "http_referer"
+              "slug"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "model"
+            }
+            {
+              var: "author"
+            }
+            {
+              var: "slug"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

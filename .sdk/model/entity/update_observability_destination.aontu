@@ -1,0 +1,159 @@
+# Entity: update_observability_destination
+
+main: kit: entity: update_observability_destination: {
+
+  alias: field: {}
+
+  fields: {
+    api_key_hashes: {
+      h: "Api Key Hashes"
+      n: "api_key_hashes"
+      r: false
+      sh: "Optional allowlist of OpenRouter API key hashes."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    config: {
+      h: "Config"
+      n: "config"
+      r: false
+      sh: "Provider-specific configuration fields to update."
+      t: "`$OBJECT`"
+    }
+    enabled: {
+      h: "Enabled"
+      n: "enabled"
+      r: false
+      sh: "Whether the destination is enabled."
+      t: "`$BOOLEAN`"
+    }
+    filter_rules: {
+      h: "Filter Rules"
+      n: "filter_rules"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 10
+      }
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Human-readable name for the destination."
+      t: "`$STRING`"
+    }
+    privacy_mode: {
+      h: "Privacy Mode"
+      n: "privacy_mode"
+      r: false
+      sh: "When true, request/response bodies are not forwarded — only metadata."
+      t: "`$BOOLEAN`"
+    }
+    sampling_rate: {
+      fo: "double"
+      h: "Sampling Rate"
+      n: "sampling_rate"
+      r: false
+      sh: "Sampling rate between 0.0001 and 1 (1 = 100%)."
+      t: "`$NUMBER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "update_observability_destination"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PATCH /observability/destinations/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "99999999-aaaa-bbbb-cccc-dddddddddddd"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/observability/destinations/{id}"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "observability"
+            }
+            {
+              lit: "destinations"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

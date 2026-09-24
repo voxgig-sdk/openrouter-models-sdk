@@ -1,0 +1,113 @@
+# Entity: bulk_remove_workspace_member
+
+main: kit: entity: bulk_remove_workspace_member: {
+
+  alias: field: {}
+
+  fields: {
+    removed_count: {
+      h: "Removed Count"
+      n: "removed_count"
+      r: true
+      sh: "Number of members removed"
+      t: "`$INTEGER`"
+    }
+    user_ids: {
+      h: "User Ids"
+      n: "user_ids"
+      r: true
+      sh: "List of user IDs to remove from the workspace"
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "bulk_remove_workspace_member"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /workspaces/{id}/members/remove"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "production"
+                k: "param"
+                n: "workspace_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/workspaces/{id}/members/remove"
+          q: {
+            exist: [
+              "http_referer"
+              "workspace_id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          r: {
+            param: {
+              id: "workspace_id"
+            }
+          }
+          s: [
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "workspace_id"
+            }
+            {
+              lit: "members"
+            }
+            {
+              lit: "remove"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.workspace")]
+  ]
+
+}

@@ -1,0 +1,471 @@
+# Entity: update_workspace
+
+main: kit: entity: update_workspace: {
+
+  alias: field: {}
+
+  fields: {
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: true
+      sh: "ISO 8601 timestamp of when the workspace was created"
+      t: "`$STRING`"
+    }
+    created_by: {
+      h: "Created By"
+      n: "created_by"
+      r: true
+      sh: "User ID of the workspace creator"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    default_image_model: {
+      h: "Default Image Model"
+      n: "default_image_model"
+      op: {
+        list: {
+          req: true
+          type: [
+            "`$ONE`"
+            [
+              "`$STRING`"
+              "`$NULL`"
+            ]
+          ]
+        }
+      }
+      r: false
+      sh: "Default image model for this workspace"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    default_provider_sort: {
+      h: "Default Provider Sort"
+      n: "default_provider_sort"
+      op: {
+        list: {
+          req: true
+          type: [
+            "`$ONE`"
+            [
+              "`$STRING`"
+              "`$NULL`"
+            ]
+          ]
+        }
+      }
+      r: false
+      sh: "Default provider sort preference (price, throughput, latency, exacto)"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    default_text_model: {
+      h: "Default Text Model"
+      n: "default_text_model"
+      op: {
+        list: {
+          req: true
+          type: [
+            "`$ONE`"
+            [
+              "`$STRING`"
+              "`$NULL`"
+            ]
+          ]
+        }
+      }
+      r: false
+      sh: "Default text model for this workspace"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      op: {
+        list: {
+          req: true
+          type: [
+            "`$ONE`"
+            [
+              "`$STRING`"
+              "`$NULL`"
+            ]
+          ]
+        }
+      }
+      r: false
+      sh: "Description of the workspace"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    id: {
+      fo: "uuid"
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "Unique identifier for the workspace"
+      t: "`$STRING`"
+    }
+    io_logging_api_key_ids: {
+      h: "Io Logging Api Key Ids"
+      n: "io_logging_api_key_ids"
+      op: {
+        list: {
+          req: true
+          type: [
+            "`$ONE`"
+            [
+              "`$ARRAY`"
+              "`$NULL`"
+            ]
+          ]
+        }
+      }
+      r: false
+      sh: "Optional array of API key IDs to filter I/O logging"
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    io_logging_sampling_rate: {
+      fo: "double"
+      h: "Io Logging Sampling Rate"
+      n: "io_logging_sampling_rate"
+      op: {
+        list: {
+          req: true
+          type: "`$NUMBER`"
+        }
+      }
+      r: false
+      sh: "Sampling rate for I/O logging (0.0001-1)"
+      t: "`$NUMBER`"
+    }
+    is_data_discount_logging_enabled: {
+      h: "Is Data Discount Logging Enabled"
+      n: "is_data_discount_logging_enabled"
+      op: {
+        list: {
+          req: true
+          type: "`$BOOLEAN`"
+        }
+      }
+      r: false
+      sh: "Whether data discount logging is enabled"
+      t: "`$BOOLEAN`"
+    }
+    is_observability_broadcast_enabled: {
+      h: "Is Observability Broadcast Enabled"
+      n: "is_observability_broadcast_enabled"
+      op: {
+        list: {
+          req: true
+          type: "`$BOOLEAN`"
+        }
+      }
+      r: false
+      sh: "Whether broadcast is enabled"
+      t: "`$BOOLEAN`"
+    }
+    is_observability_io_logging_enabled: {
+      h: "Is Observability Io Logging Enabled"
+      n: "is_observability_io_logging_enabled"
+      op: {
+        list: {
+          req: true
+          type: "`$BOOLEAN`"
+        }
+      }
+      r: false
+      sh: "Whether private logging is enabled"
+      t: "`$BOOLEAN`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "Name for the new workspace"
+      t: "`$STRING`"
+    }
+    slug: {
+      h: "Slug"
+      n: "slug"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "URL-friendly slug (lowercase alphanumeric segments separated by single hyphens, no leading/trailing hyphens)"
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: true
+      sh: "ISO 8601 timestamp of when the workspace was last updated"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "update_workspace"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /workspaces"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/workspaces"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "workspaces"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /workspaces"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+            ]
+          }
+          m: "GET"
+          o: "/workspaces"
+          q: {
+            exist: [
+              "http_referer"
+              "limit"
+              "offset"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "workspaces"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PATCH /workspaces/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "production"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/workspaces/{id}"
+          q: {
+            exist: [
+              "http_referer"
+              "id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,22 @@
+# BasicBulkAssignKeyFlow
+
+main: kit: flow: BasicBulkAssignKeyFlow:
+{
+  entity: "bulk_assign_key",
+  kind: "basic",
+  name: "BasicBulkAssignKeyFlow",
+  step: [
+    {
+      i: {
+        ref: "bulk_assign_key_ref01"
+      }
+
+      m: {
+        guardrail_id: "guardrail01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicBulkAssignKeyFlow"
+}

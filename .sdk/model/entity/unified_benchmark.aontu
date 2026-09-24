@@ -1,0 +1,130 @@
+# Entity: unified_benchmark
+
+main: kit: entity: unified_benchmark: {
+
+  alias: field: {}
+
+  fields: {
+    data: {
+      h: "Data"
+      n: "data"
+      r: true
+      t: "`$ARRAY`"
+    }
+    meta: {
+      h: "Meta"
+      n: "meta"
+      r: true
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "unified_benchmark"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /benchmarks"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "models"
+                k: "query"
+                n: "arena"
+                or: "arena"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "codecategories"
+                k: "query"
+                n: "category"
+                or: "category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "max_result"
+                or: "max_result"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "artificial-analysis"
+                k: "query"
+                n: "source"
+                or: "source"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "coding"
+                k: "query"
+                n: "task_type"
+                or: "task_type"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/benchmarks"
+          q: {
+            exist: [
+              "arena"
+              "category"
+              "http_referer"
+              "max_result"
+              "source"
+              "task_type"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "benchmarks"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

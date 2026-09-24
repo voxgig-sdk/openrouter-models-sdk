@@ -1,0 +1,117 @@
+# Entity: tts
+
+main: kit: entity: tts: {
+
+  alias: field: {}
+
+  fields: {
+    input: {
+      h: "Input"
+      n: "input"
+      r: true
+      sh: "Text to synthesize"
+      t: "`$STRING`"
+    }
+    model: {
+      h: "Model"
+      n: "model"
+      r: true
+      sh: "TTS model identifier"
+      t: "`$STRING`"
+    }
+    provider: {
+      h: "Provider"
+      n: "provider"
+      r: false
+      sh: "Provider-specific passthrough configuration"
+      t: "`$OBJECT`"
+    }
+    response_format: {
+      h: "Response Format"
+      n: "response_format"
+      r: false
+      sh: "Audio output format"
+      t: "`$STRING`"
+    }
+    speed: {
+      fo: "double"
+      h: "Speed"
+      n: "speed"
+      r: false
+      sh: "Playback speed multiplier."
+      t: "`$NUMBER`"
+    }
+    voice: {
+      h: "Voice"
+      n: "voice"
+      r: true
+      sh: "Voice identifier (provider-specific)."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "tts"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /audio/speech"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/audio/speech"
+          q: {
+            exist: [
+              "http_referer"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "audio"
+            }
+            {
+              lit: "speech"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

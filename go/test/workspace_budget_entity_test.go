@@ -24,6 +24,54 @@ func TestWorkspaceBudgetEntity(t *testing.T) {
 		}
 	})
 
+	// Feature #4: the entity Stream(action, ...) method runs the op pipeline and
+	// returns a channel over result items. With the streaming feature active it
+	// yields the feature's incremental output; otherwise it falls back to the
+	// materialised list so Stream always yields.
+	t.Run("stream", func(t *testing.T) {
+		seed := map[string]any{
+			"entity": map[string]any{
+				"workspace_budget": map[string]any{
+					"s1": map[string]any{"id": "s1"},
+					"s2": map[string]any{"id": "s2"},
+					"s3": map[string]any{"id": "s3"},
+				},
+			},
+		}
+
+		// Fallback: streaming inactive -> yields the materialised list items.
+		base := sdk.TestSDK(seed, nil)
+		var seen []any
+		for item := range base.WorkspaceBudget(nil).Stream("list", nil, nil) {
+			seen = append(seen, item)
+		}
+		if len(seen) != 3 {
+			t.Fatalf("expected 3 streamed items, got %d", len(seen))
+		}
+
+		// Inbound: streaming active -> yields each item from the feature iterator.
+		hasStreaming := false
+		if fm, ok := core.SharedConfig()["feature"].(map[string]any); ok {
+			_, hasStreaming = fm["streaming"]
+		}
+		if hasStreaming {
+			streamSdk := sdk.TestSDK(seed, map[string]any{
+				"feature": map[string]any{"streaming": map[string]any{"active": true}},
+			})
+			var got []any
+			for item := range streamSdk.WorkspaceBudget(nil).Stream("list", nil, nil) {
+				if sub, ok := item.([]any); ok {
+					got = append(got, sub...)
+				} else {
+					got = append(got, item)
+				}
+			}
+			if len(got) != 3 {
+				t.Fatalf("expected 3 items via streaming feature, got %d", len(got))
+			}
+		}
+	})
+
 	t.Run("basic", func(t *testing.T) {
 		setup := workspace_budgetBasicSetup(nil)
 		// Per-op sdk-test-control.json skip — basic test exercises a flow
@@ -32,7 +80,7 @@ func TestWorkspaceBudgetEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{} {
+		for _, _op := range []string{"list"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "workspace_budget." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -47,6 +95,8 @@ func TestWorkspaceBudgetEntity(t *testing.T) {
 			t.Skip("live entity test uses synthetic IDs from fixture — set OPENROUTER_MODELS_TEST_WORKSPACE_BUDGET_ENTID JSON to run live")
 			return
 		}
+		client := setup.client
+
 		// Bootstrap entity data from existing test data (no create step in flow).
 		workspaceBudgetRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.workspace_budget")))
 		var workspaceBudgetRef01Data map[string]any
@@ -56,6 +106,19 @@ func TestWorkspaceBudgetEntity(t *testing.T) {
 		// Discard guards against Go's unused-var check when the flow's steps
 		// happen not to consume the bootstrap data (e.g. list-only flows).
 		_ = workspaceBudgetRef01Data
+
+		// LIST
+		workspaceBudgetRef01Ent := client.WorkspaceBudget(nil)
+		workspaceBudgetRef01Match := map[string]any{}
+
+		workspaceBudgetRef01ListResult, err := workspaceBudgetRef01Ent.List(workspaceBudgetRef01Match, nil)
+		if err != nil {
+			t.Fatalf("list failed: %v", err)
+		}
+		_, workspaceBudgetRef01ListOk := workspaceBudgetRef01ListResult.([]any)
+		if !workspaceBudgetRef01ListOk {
+			t.Fatalf("expected list result to be an array, got %T", workspaceBudgetRef01ListResult)
+		}
 
 	})
 }

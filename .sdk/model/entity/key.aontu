@@ -1,0 +1,269 @@
+# Entity: key
+
+main: kit: entity: key: {
+
+  alias: field: {}
+
+  fields: {
+    assigned_by: {
+      h: "Assigned By"
+      n: "assigned_by"
+      r: true
+      sh: "User ID of who made the assignment"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: true
+      sh: "ISO 8601 timestamp of when the assignment was created"
+      t: "`$STRING`"
+    }
+    guardrail_id: {
+      fo: "uuid"
+      h: "Guardrail Id"
+      n: "guardrail_id"
+      r: true
+      sh: "ID of the guardrail"
+      t: "`$STRING`"
+    }
+    id: {
+      fo: "uuid"
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "Unique identifier for the assignment"
+      t: "`$STRING`"
+    }
+    key_hash: {
+      h: "Key Hash"
+      n: "key_hash"
+      r: true
+      sh: "Hash of the assigned API key"
+      t: "`$STRING`"
+    }
+    key_label: {
+      h: "Key Label"
+      n: "key_label"
+      r: true
+      sh: "Label of the API key"
+      t: "`$STRING`"
+    }
+    key_name: {
+      h: "Key Name"
+      n: "key_name"
+      r: true
+      sh: "Name of the API key"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "key"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /guardrails/{id}/assignments/keys"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "550e8400-e29b-41d4-a716-446655440000"
+                k: "param"
+                n: "guardrail_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+            ]
+          }
+          m: "GET"
+          o: "/guardrails/{id}/assignments/keys"
+          q: {
+            exist: [
+              "guardrail_id"
+              "http_referer"
+              "limit"
+              "offset"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          r: {
+            param: {
+              id: "guardrail_id"
+            }
+          }
+          s: [
+            {
+              lit: "guardrails"
+            }
+            {
+              var: "guardrail_id"
+            }
+            {
+              lit: "assignments"
+            }
+            {
+              lit: "keys"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "GET /guardrails/assignments/keys"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: [
+                  "`$ONE`"
+                  [
+                    "`$INTEGER`"
+                    "`$NULL`"
+                  ]
+                ]
+              }
+            ]
+          }
+          m: "GET"
+          o: "/guardrails/assignments/keys"
+          q: {
+            exist: [
+              "http_referer"
+              "limit"
+              "offset"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "guardrails"
+            }
+            {
+              lit: "assignments"
+            }
+            {
+              lit: "keys"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.guardrail")]
+  ]
+
+}

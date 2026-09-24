@@ -1,9 +1,0 @@
-# BasicFeedbackFlow
-
-main: kit: flow: BasicFeedbackFlow:
-{
-  entity: "feedback",
-  kind: "basic",
-  name: "BasicFeedbackFlow",
-  "key$": "BasicFeedbackFlow"
-}

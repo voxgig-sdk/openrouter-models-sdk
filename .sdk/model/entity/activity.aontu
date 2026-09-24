@@ -1,0 +1,179 @@
+# Entity: activity
+
+main: kit: entity: activity: {
+
+  alias: field: {}
+
+  fields: {
+    byok_usage_inference: {
+      fo: "double"
+      h: "Byok Usage Inference"
+      n: "byok_usage_inference"
+      r: true
+      sh: "BYOK inference cost in USD (external credits spent)"
+      t: "`$NUMBER`"
+    }
+    completion_tokens: {
+      h: "Completion Tokens"
+      n: "completion_tokens"
+      r: true
+      sh: "Total completion tokens generated"
+      t: "`$INTEGER`"
+    }
+    date: {
+      h: "Date"
+      n: "date"
+      r: true
+      sh: "Date of the activity (YYYY-MM-DD format)"
+      t: "`$STRING`"
+    }
+    endpoint_id: {
+      h: "Endpoint Id"
+      n: "endpoint_id"
+      r: true
+      sh: "Unique identifier for the endpoint"
+      t: "`$STRING`"
+    }
+    model: {
+      h: "Model"
+      n: "model"
+      r: true
+      sh: "Model slug (e.g., \"openai/gpt-4.1\")"
+      t: "`$STRING`"
+    }
+    model_permaslug: {
+      h: "Model Permaslug"
+      n: "model_permaslug"
+      r: true
+      sh: "Model permaslug (e.g., \"openai/gpt-4.1-2025-04-14\")"
+      t: "`$STRING`"
+    }
+    prompt_tokens: {
+      h: "Prompt Tokens"
+      n: "prompt_tokens"
+      r: true
+      sh: "Total prompt tokens used"
+      t: "`$INTEGER`"
+    }
+    provider_name: {
+      h: "Provider Name"
+      n: "provider_name"
+      r: true
+      sh: "Name of the provider serving this endpoint"
+      t: "`$STRING`"
+    }
+    reasoning_tokens: {
+      h: "Reasoning Tokens"
+      n: "reasoning_tokens"
+      r: true
+      sh: "Total reasoning tokens used"
+      t: "`$INTEGER`"
+    }
+    requests: {
+      h: "Requests"
+      n: "requests"
+      r: true
+      sh: "Number of requests made"
+      t: "`$INTEGER`"
+    }
+    usage: {
+      fo: "double"
+      h: "Usage"
+      n: "usage"
+      r: true
+      sh: "Total cost in USD (OpenRouter credits spent)"
+      t: "`$NUMBER`"
+    }
+  }
+
+  name: "activity"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /activity"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "http_referer"
+                or: "http_referer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_category"
+                or: "x_open_router_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "header"
+                n: "x_open_router_title"
+                or: "x_open_router_title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "abc123def456..."
+                k: "query"
+                n: "api_key_hash"
+                or: "api_key_hash"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "2025-08-24"
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "user_abc123"
+                k: "query"
+                n: "user_id"
+                or: "user_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/activity"
+          q: {
+            exist: [
+              "api_key_hash"
+              "date"
+              "http_referer"
+              "user_id"
+              "x_open_router_category"
+              "x_open_router_title"
+            ]
+          }
+          s: [
+            {
+              lit: "activity"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
